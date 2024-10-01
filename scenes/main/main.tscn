@@ -1,9 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://d28lh7c58l5qv"]
+[gd_scene load_steps=4 format=3 uid="uid://d28lh7c58l5qv"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_bkdub"]
 [ext_resource type="PackedScene" uid="uid://6ngiuq2e3o7u" path="res://scenes/game/game.tscn" id="2_t3v72"]
+[ext_resource type="Script" path="res://scenes/fps_counter.gd" id="3_w0te1"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_bkdub")
 
 [node name="Game" parent="." instance=ExtResource("2_t3v72")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 675.0
+offset_bottom = 31.0
+theme_override_constants/outline_size = 5
+text = "FPS: 00"
+script = ExtResource("3_w0te1")
