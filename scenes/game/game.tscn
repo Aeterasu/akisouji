@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://6ngiuq2e3o7u"]
+
+[ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
+[ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="2_r2k5x"]
+
+[sub_resource type="Environment" id="Environment_sbv5w"]
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_bcfl2")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(24, 0.1, 24)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBox3D"]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, 5, 1, -5)
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGBox3D"]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, -4, 1, -1)
+radius = 2.0
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="CSGBox3D"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, 0, 2.98023e-08, 0, 1, 2, 1, 7)
+radius = 1.0
+height = 8.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sbv5w")
+
+[node name="Player" parent="." instance=ExtResource("2_r2k5x")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+shadow_enabled = true

@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://077fpjam3rlw"]
+
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="1_e0tat"]
+[ext_resource type="Script" path="res://scenes/component/gravity_component/gravity_component.gd" id="2_nr0jr"]
+[ext_resource type="Script" path="res://scenes/component/velocity_component/velocity_component.gd" id="3_umteq"]
+[ext_resource type="Script" path="res://scenes/player/player_camera.gd" id="4_feodf"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_0hdl6"]
+height = 1.8
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("velocity_component", "gravity_component", "camera", "camera_origin")]
+floor_block_on_wall = false
+script = ExtResource("1_e0tat")
+velocity_component = NodePath("VelocityComponent")
+gravity_component = NodePath("GravityComponent")
+camera = NodePath("CameraOrigin/Camera3D")
+camera_origin = NodePath("CameraOrigin")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CylinderShape3D_0hdl6")
+
+[node name="GravityComponent" type="Node" parent="."]
+script = ExtResource("2_nr0jr")
+
+[node name="VelocityComponent" type="Node" parent="."]
+script = ExtResource("3_umteq")
+speed = 4.0
+smooth_toggle = true
+accel_weight = 4.0
+decel_weight = 4.0
+
+[node name="CameraOrigin" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.685927, 0)
+
+[node name="Camera3D" type="Camera3D" parent="CameraOrigin"]
+fov = 90.0
+script = ExtResource("4_feodf")
