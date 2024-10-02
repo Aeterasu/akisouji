@@ -34,22 +34,29 @@ func _populate_multimesh():
 	#get our multimesh
 	multimesh = target_multimesh_instance.multimesh
 
-	#get all white pixels in our noise texture
+	#get all non-black pixels in our noise texture
 	# 0 - no leaf, 1 - leaf
 	var viewport_texture = target_sub_viewport.get_texture()
 	var image_data = viewport_texture.get_image()
 
 	viewport_image_size = image_data.get_size()
 
-	var white_pixel_count : int = 0
+	var suitable_pixels_count : int = 0
+	var final_instances_count : int = 0
 
 	for i in viewport_image_size.x:
 		for j in viewport_image_size.y:
-			if (image_data.get_pixel(j, i).r > 0.1):
-				white_pixel_count += 1
+			if (image_data.get_pixel(j, i).r > 0.01):
+				suitable_pixels_count += 1
+				var leaves_count = floor(leaves_per_pixel * image_data.get_pixel(j, i).r)
+				final_instances_count += leaves_count
 				white_pixels.append(Vector2(j, i))
 
-	multimesh.instance_count = white_pixel_count * leaves_per_pixel
+				var leaf_data = LeafInstanceData.create(Vector2i(i, j))
+				leaf_data.index_count = leaves_count
+				leaf_data_array.append(leaf_data)
+
+	multimesh.instance_count = final_instances_count
 
 func _translate_multimesh():
 	print(multimesh.instance_count)
@@ -57,17 +64,16 @@ func _translate_multimesh():
 	var offset : int = 0
 
 	for u in range(len(white_pixels)):
-		var leaf_data = LeafInstanceData.create(Vector2i(floor(white_pixels[u].x), floor(white_pixels[u].y)))
-		leaf_data_array.append(leaf_data)
-		for v in (range(leaves_per_pixel)):
+		var data = leaf_data_array[u]
 
+		for v in (range(data.index_count)):
 			var origin = Vector3(white_pixels[u].x - pixel_offset + (randf() - 0.5) * 2, 1, white_pixels[u].y - pixel_offset + (randf() - 0.5) * 2)
 			var transform = Transform3D()
 			transform = transform.rotated(Vector3.UP, randf() * PI * 2)
 			transform = transform.translated(origin)
 			multimesh.set_instance_transform(offset, transform)
 
-			leaf_data.indexes.append(offset)
+			data.indexes.append(offset)
 
 			offset += 1
 	

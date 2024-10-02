@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=13 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_population.gd" id="3_672ow"]
@@ -7,19 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="4_yxefm"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_noise_sprite.gd" id="5_emot5"]
 
-[sub_resource type="Gradient" id="Gradient_g2ees"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.291188)
+[sub_resource type="Gradient" id="Gradient_u7xbo"]
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_bqr4r"]
-noise_type = 2
-frequency = 0.1093
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2xdgg"]
-width = 64
-height = 64
-color_ramp = SubResource("Gradient_g2ees")
-noise = SubResource("FastNoiseLite_bqr4r")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7n0ws"]
+gradient = SubResource("Gradient_u7xbo")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b2hyn"]
 albedo_color = Color(0, 0, 0, 1)
@@ -75,7 +66,7 @@ render_target_update_mode = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/SubViewportContainer/SubViewport"]
 texture_filter = 1
-texture = SubResource("NoiseTexture2D_2xdgg")
+texture = SubResource("GradientTexture2D_7n0ws")
 centered = false
 script = ExtResource("5_emot5")
 
@@ -107,3 +98,4 @@ environment = SubResource("Environment_my23x")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.983255, -0.133279, 0.124284, 0, 0.681998, 0.731354, -0.182236, -0.719107, 0.670578, 40.222, 28.85, 73.882)
+current = true
