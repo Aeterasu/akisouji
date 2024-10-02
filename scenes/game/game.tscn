@@ -1,17 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=14 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_population.gd" id="3_672ow"]
 [ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://scenes/leaf/leaf_mesh.tres" id="3_snafj"]
-[ext_resource type="Script" path="res://addons/simple-free-look-camera-4/camera.gd" id="5_7xxjy"]
+[ext_resource type="Script" path="res://scenes/leaf/leaf_cleaning_handler.gd" id="3_tlxk6"]
+[ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="4_yxefm"]
+[ext_resource type="Script" path="res://scenes/leaf/leaf_noise_sprite.gd" id="5_emot5"]
 
 [sub_resource type="Gradient" id="Gradient_g2ees"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.444444)
+offsets = PackedFloat32Array(0, 0.291188)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_bqr4r"]
 noise_type = 2
-frequency = 0.2589
+frequency = 0.1093
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2xdgg"]
 width = 64
@@ -20,11 +22,11 @@ color_ramp = SubResource("Gradient_g2ees")
 noise = SubResource("FastNoiseLite_bqr4r")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b2hyn"]
-transparency = 1
-albedo_color = Color(0, 0, 0, 0.419608)
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="MultiMesh" id="MultiMesh_oqm1k"]
 transform_format = 1
+use_custom_data = true
 mesh = ExtResource("3_snafj")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yk4nu"]
@@ -35,11 +37,19 @@ size = Vector2(36, 36)
 [node name="Game" type="Node3D"]
 script = ExtResource("1_bcfl2")
 
-[node name="LeafPopulation" type="Node" parent="." node_paths=PackedStringArray("target_multimesh_instance", "target_sub_viewport")]
+[node name="Player" parent="." instance=ExtResource("4_yxefm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 8.124, 32)
+
+[node name="LeafPopulation" type="Node" parent="." node_paths=PackedStringArray("target_multimesh_instance", "target_sub_viewport", "leaf_cleaning_handler")]
 script = ExtResource("3_672ow")
-leaves_per_pixel = 8
+leaves_per_pixel = 32
 target_multimesh_instance = NodePath("../MultiMeshInstance3D")
 target_sub_viewport = NodePath("../Control/SubViewportContainer/SubViewport")
+leaf_cleaning_handler = NodePath("LeafCleaningHandler")
+
+[node name="LeafCleaningHandler" type="Node" parent="LeafPopulation" node_paths=PackedStringArray("cleaning_origin")]
+script = ExtResource("3_tlxk6")
+cleaning_origin = NodePath("../../Player")
 
 [node name="Control" type="Control" parent="."]
 process_priority = -1
@@ -60,7 +70,6 @@ offset_bottom = 106.0
 
 [node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer"]
 disable_3d = true
-transparent_bg = true
 handle_input_locally = false
 size = Vector2i(64, 64)
 render_target_update_mode = 4
@@ -68,8 +77,11 @@ render_target_update_mode = 4
 [node name="Sprite2D" type="Sprite2D" parent="Control/SubViewportContainer/SubViewport"]
 texture_filter = 1
 texture = SubResource("NoiseTexture2D_2xdgg")
+centered = false
+script = ExtResource("5_emot5")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 32)
 use_collision = true
 size = Vector3(64, 0.1, 64)
 material = SubResource("StandardMaterial3D_b2hyn")
@@ -79,6 +91,7 @@ transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
 shadow_enabled = true
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.603562, 0)
 multimesh = SubResource("MultiMesh_oqm1k")
 
 [node name="Leaf" type="MeshInstance3D" parent="MultiMeshInstance3D"]
@@ -93,7 +106,5 @@ mesh = SubResource("PlaneMesh_yk4nu")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_my23x")
 
-[node name="FreeLookCamera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.615662, 0.788011, 0, -0.788011, 0.615662, 1.135, 20.821, 21.135)
-current = true
-script = ExtResource("5_7xxjy")
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.983255, -0.133279, 0.124284, 0, 0.681998, 0.731354, -0.182236, -0.719107, 0.670578, 40.222, 28.85, 73.882)
