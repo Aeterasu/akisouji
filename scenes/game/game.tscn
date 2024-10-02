@@ -30,6 +30,8 @@ script = ExtResource("1_bcfl2")
 [node name="Player" parent="." instance=ExtResource("4_yxefm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 8.124, 32)
 
+[node name="CSGSphere3D" type="CSGSphere3D" parent="Player"]
+
 [node name="LeafPopulation" type="Node" parent="." node_paths=PackedStringArray("target_multimesh_instance", "target_sub_viewport", "leaf_cleaning_handler")]
 script = ExtResource("3_672ow")
 leaves_per_pixel = 32

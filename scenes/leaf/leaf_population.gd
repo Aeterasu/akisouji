@@ -52,7 +52,7 @@ func _populate_multimesh():
 				final_instances_count += leaves_count
 				white_pixels.append(Vector2(j, i))
 
-				var leaf_data = LeafInstanceData.create(Vector2i(i, j))
+				var leaf_data = LeafInstanceData.create(Vector2i(j, i))
 				leaf_data.index_count = leaves_count
 				leaf_data_array.append(leaf_data)
 
