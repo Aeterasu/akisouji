@@ -45,6 +45,9 @@ func translate_multimesh():
 
 	for u in range(len(white_pixels)):
 		for v in (range(leaves_per_pixel)):
-			var transform = Transform3D(Basis(), Vector3(white_pixels[u].x - 16 + (randf() - 0.5) * 2, 1, white_pixels[u].y - 16 + (randf() - 0.5) * 2))
+			var origin = Vector3(white_pixels[u].x - 16 + (randf() - 0.5) * 2, 1, white_pixels[u].y - 16 + (randf() - 0.5) * 2)
+			var transform = Transform3D()
+			transform = transform.rotated(Vector3.UP, randf() * PI * 2)
+			transform = transform.translated(origin)
 			multimesh.set_instance_transform(offset, transform)
 			offset += 1
