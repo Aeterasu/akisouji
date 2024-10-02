@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=14 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_population.gd" id="3_672ow"]
@@ -7,10 +7,17 @@
 [ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="4_yxefm"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_noise_sprite.gd" id="5_emot5"]
 
-[sub_resource type="Gradient" id="Gradient_u7xbo"]
+[sub_resource type="Gradient" id="Gradient_gclsu"]
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_7n0ws"]
-gradient = SubResource("Gradient_u7xbo")
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_nmslb"]
+noise_type = 2
+frequency = 0.0796
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ed7tw"]
+width = 64
+height = 64
+color_ramp = SubResource("Gradient_gclsu")
+noise = SubResource("FastNoiseLite_nmslb")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b2hyn"]
 albedo_color = Color(0, 0, 0, 1)
@@ -31,17 +38,7 @@ script = ExtResource("1_bcfl2")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 8.124, 32)
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Player"]
-
-[node name="LeafPopulation" type="Node" parent="." node_paths=PackedStringArray("target_multimesh_instance", "target_sub_viewport", "leaf_cleaning_handler")]
-script = ExtResource("3_672ow")
-leaves_per_pixel = 32
-target_multimesh_instance = NodePath("../MultiMeshInstance3D")
-target_sub_viewport = NodePath("../Control/SubViewportContainer/SubViewport")
-leaf_cleaning_handler = NodePath("LeafCleaningHandler")
-
-[node name="LeafCleaningHandler" type="Node" parent="LeafPopulation" node_paths=PackedStringArray("cleaning_origin")]
-script = ExtResource("3_tlxk6")
-cleaning_origin = NodePath("../../Player")
+visible = false
 
 [node name="Control" type="Control" parent="."]
 process_priority = -1
@@ -68,9 +65,20 @@ render_target_update_mode = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/SubViewportContainer/SubViewport"]
 texture_filter = 1
-texture = SubResource("GradientTexture2D_7n0ws")
+texture = SubResource("NoiseTexture2D_ed7tw")
 centered = false
 script = ExtResource("5_emot5")
+
+[node name="LeafPopulation" type="Node" parent="." node_paths=PackedStringArray("target_multimesh_instance", "target_sub_viewport", "leaf_cleaning_handler")]
+script = ExtResource("3_672ow")
+leaves_per_pixel = 32
+target_multimesh_instance = NodePath("../MultiMeshInstance3D")
+target_sub_viewport = NodePath("../Control/SubViewportContainer/SubViewport")
+leaf_cleaning_handler = NodePath("LeafCleaningHandler")
+
+[node name="LeafCleaningHandler" type="Node" parent="LeafPopulation" node_paths=PackedStringArray("cleaning_origin")]
+script = ExtResource("3_tlxk6")
+cleaning_origin = NodePath("../../Player")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 32)
@@ -100,4 +108,3 @@ environment = SubResource("Environment_my23x")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.983255, -0.133279, 0.124284, 0, 0.681998, 0.731354, -0.182236, -0.719107, 0.670578, 40.222, 28.85, 73.882)
-current = true

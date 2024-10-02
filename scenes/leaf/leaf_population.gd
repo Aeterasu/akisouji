@@ -21,14 +21,21 @@ var current_cleaning_position = Vector2i()
 var leaf_data_array : Array[LeafInstanceData] = []
 
 func _ready():
+	await get_tree().create_timer(0.5).timeout # TODO: this has a potential to go VERY sour. replace with something better later
+	_populate_multimesh()
+	await get_tree().create_timer(0.5).timeout
+	_translate_multimesh()
+
 	leaf_cleaning_handler.on_origin_position_update.connect(_on_clean_origin_position_updated)
 
 func _physics_process(delta):
-	if (Input.is_action_just_pressed("1")):
-		_populate_multimesh()
+	#if (Input.is_action_just_pressed("1")):
+		#_populate_multimesh()
 
-	if (Input.is_action_just_pressed("2")):
-		_translate_multimesh()
+	#if (Input.is_action_just_pressed("2")):
+		#_translate_multimesh()
+
+	pass
 
 func _populate_multimesh():
 	#get our multimesh
