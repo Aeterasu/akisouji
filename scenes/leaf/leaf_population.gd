@@ -36,12 +36,15 @@ func populate_multimesh():
 				white_pixel_count += 1
 				white_pixels.append(Vector2(i, j))
 
-	multimesh.instance_count = white_pixel_count
+	multimesh.instance_count = white_pixel_count * leaves_per_pixel
 
 func translate_multimesh():
 	print(multimesh.instance_count)
 
-	for u in range(multimesh.instance_count):
-		var transform = Transform3D(Basis(), target_multimesh_instance.to_global(Vector3(white_pixels[u].x - 16, 1, white_pixels[u].y - 16)))
-		multimesh.set_instance_transform(u, transform)
-		print()
+	var offset : int = 0
+
+	for u in range(len(white_pixels)):
+		for v in (range(leaves_per_pixel)):
+			var transform = Transform3D(Basis(), Vector3(white_pixels[u].x - 16 + (randf() - 0.5) * 2, 1, white_pixels[u].y - 16 + (randf() - 0.5) * 2))
+			multimesh.set_instance_transform(offset, transform)
+			offset += 1

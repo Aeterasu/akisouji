@@ -37,6 +37,7 @@ script = ExtResource("1_bcfl2")
 
 [node name="LeafPopulation" type="Node" parent="." node_paths=PackedStringArray("target_multimesh_instance", "target_sub_viewport")]
 script = ExtResource("3_672ow")
+leaves_per_pixel = 8
 target_multimesh_instance = NodePath("../MultiMeshInstance3D")
 target_sub_viewport = NodePath("../Control/SubViewportContainer/SubViewport")
 
