@@ -26,7 +26,6 @@ albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="MultiMesh" id="MultiMesh_oqm1k"]
 transform_format = 1
-use_custom_data = true
 mesh = ExtResource("3_snafj")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yk4nu"]

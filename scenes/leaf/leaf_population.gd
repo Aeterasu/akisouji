@@ -66,7 +66,6 @@ func _translate_multimesh():
 			transform = transform.rotated(Vector3.UP, randf() * PI * 2)
 			transform = transform.translated(origin)
 			multimesh.set_instance_transform(offset, transform)
-			multimesh.set_instance_custom_data(offset, Color(white_pixels[u].x, white_pixels[u].y, 0.0, 0.0))
 
 			leaf_data.indexes.append(offset)
 
