@@ -11,7 +11,7 @@ class_name Player extends CharacterBody3D
 @export var camera_origin : Node3D = null
 
 @export_group("Leaf Cleaning")
-@export var cleaning_radius : int = 1
+@export_range(1, 32) var cleaning_radius : int = 1
 @export var leaf_cleaning_handler : LeafCleaningHandler = null
 
 var mouse_sensitivity : float = 1.0

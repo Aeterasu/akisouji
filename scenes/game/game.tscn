@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=19 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_population.gd" id="3_672ow"]
 [ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://scenes/leaf/leaf_mesh.tres" id="3_snafj"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_cleaning_handler.gd" id="3_tlxk6"]
 [ext_resource type="Texture2D" uid="uid://dbqwuevdtqyjl" path="res://assets/texture/ui/texture_ui_crosshair_dot.png" id="4_0d2qd"]
+[ext_resource type="Script" path="res://scenes/circle_utils/circle_debug.gd" id="4_o3v4p"]
 [ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="4_yxefm"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_noise_sprite.gd" id="5_emot5"]
 
@@ -23,6 +24,21 @@ height = 64
 color_ramp = SubResource("Gradient_gclsu")
 noise = SubResource("FastNoiseLite_nmslb")
 
+[sub_resource type="Gradient" id="Gradient_u105w"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1xc6g"]
+noise_type = 2
+frequency = 0.0796
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kj47g"]
+width = 64
+height = 64
+color_ramp = SubResource("Gradient_u105w")
+noise = SubResource("FastNoiseLite_1xc6g")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b2hyn"]
 albedo_color = Color(0, 0, 0, 1)
 
@@ -40,6 +56,7 @@ script = ExtResource("1_bcfl2")
 
 [node name="Player" parent="." node_paths=PackedStringArray("leaf_cleaning_handler") instance=ExtResource("4_yxefm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 8.124, 32)
+cleaning_radius = 2
 leaf_cleaning_handler = NodePath("../LeafPopulation/LeafCleaningHandler")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Player"]
@@ -73,6 +90,13 @@ texture_filter = 1
 texture = SubResource("NoiseTexture2D_ed7tw")
 centered = false
 script = ExtResource("5_emot5")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Control/SubViewportContainer"]
+texture_filter = 1
+position = Vector2(0, 107)
+texture = SubResource("NoiseTexture2D_kj47g")
+centered = false
+script = ExtResource("4_o3v4p")
 
 [node name="CenterContainer" type="CenterContainer" parent="Control"]
 layout_mode = 1

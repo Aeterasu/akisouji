@@ -15,8 +15,6 @@ var white_pixels : Array[Vector2]
 
 var pixel_offset : int = 0
 
-var is_populated : bool = false
-
 var current_cleaning_position = Vector2i()
 
 var leaf_data_array : Array[LeafInstanceData] = []
@@ -58,7 +56,7 @@ func _populate_multimesh() -> void:
 	multimesh.instance_count = final_instances_count
 
 func _translate_multimesh() -> void:
-	print(multimesh.instance_count)
+	print("Instances: " + str(multimesh.instance_count))
 
 	var offset : int = 0
 
@@ -75,8 +73,6 @@ func _translate_multimesh() -> void:
 			data.indexes.append(offset)
 
 			offset += 1
-	
-	is_populated = true
 
 func _on_clean_origin_position_updated(global_position : Vector3, cleaning_radius : int) -> void:
 	var viewport_position = Vector2i(int(global_position.x + pixel_offset), int(global_position.z + pixel_offset))
@@ -89,12 +85,8 @@ func _on_clean_origin_position_updated(global_position : Vector3, cleaning_radiu
 
 	for pos in circle:
 		_clean_on_viewport_position(pos)
-		print(pos)
 
 func _clean_on_viewport_position(viewport_position : Vector2i) -> void:
-	if (!is_populated):
-		return
-
 	var transform = Transform3D()
 	transform.origin = Vector3(999, 999, 999)
 

@@ -20,9 +20,10 @@ static func get_circle_vector_array(origin : Vector2i, r: int) -> Array[Vector2i
         x1 = r * cos(angle)
         y1 = r * sin(angle)
 
-        var pixel_origin = Vector2i(origin.x + round(x1), origin.y + round(y1))
+        for i in range(abs(round(x1))):
+            var pixel_origin = Vector2i(origin.x + round(i) * sign(x1), origin.y + floor(y1))
 
-        if (!result.has(pixel_origin)):
-            result.append(pixel_origin)
+            if (!result.has(pixel_origin)):
+                result.append(pixel_origin)
 
     return result
