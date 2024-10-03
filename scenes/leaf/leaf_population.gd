@@ -1,6 +1,7 @@
 extends Node
 
 @export var leaves_per_pixel : int = 4
+@export_range(0.0, 2.0) var position_disperse : float = 2.0
 
 @export var target_multimesh_instance : MultiMeshInstance3D = null
 @export var target_sub_viewport : SubViewport = null
@@ -20,24 +21,15 @@ var current_cleaning_position = Vector2i()
 
 var leaf_data_array : Array[LeafInstanceData] = []
 
-func _ready():
+func _ready() -> void:
 	await get_tree().create_timer(0.5).timeout # TODO: this has a potential to go VERY sour. replace with something better later
 	_populate_multimesh()
 	await get_tree().create_timer(0.5).timeout
 	_translate_multimesh()
 
-	leaf_cleaning_handler.on_origin_position_update.connect(_on_clean_origin_position_updated)
+	leaf_cleaning_handler.on_cleaning_request_at_global_position.connect(_on_clean_origin_position_updated)
 
-func _physics_process(delta):
-	#if (Input.is_action_just_pressed("1")):
-		#_populate_multimesh()
-
-	#if (Input.is_action_just_pressed("2")):
-		#_translate_multimesh()
-
-	pass
-
-func _populate_multimesh():
+func _populate_multimesh() -> void:
 	#get our multimesh
 	multimesh = target_multimesh_instance.multimesh
 
@@ -65,7 +57,7 @@ func _populate_multimesh():
 
 	multimesh.instance_count = final_instances_count
 
-func _translate_multimesh():
+func _translate_multimesh() -> void:
 	print(multimesh.instance_count)
 
 	var offset : int = 0
@@ -74,7 +66,7 @@ func _translate_multimesh():
 		var data = leaf_data_array[u]
 
 		for v in (range(data.index_count)):
-			var origin = Vector3(white_pixels[u].x - pixel_offset + (randf() - 0.5) * 2, 1, white_pixels[u].y - pixel_offset + (randf() - 0.5) * 2)
+			var origin = Vector3(white_pixels[u].x - pixel_offset + (randf() - 0.5) * position_disperse, 1, white_pixels[u].y - pixel_offset + (randf() - 0.5) * position_disperse)
 			var transform = Transform3D()
 			transform = transform.rotated(Vector3.UP, randf() * PI * 2)
 			transform = transform.translated(origin)
@@ -86,18 +78,18 @@ func _translate_multimesh():
 	
 	is_populated = true
 
-func _on_clean_origin_position_updated(global_position : Vector3) -> void:
+func _on_clean_origin_position_updated(global_position : Vector3, cleaning_radius : int) -> void:
 	var viewport_position = Vector2i(int(global_position.x + pixel_offset), int(global_position.z + pixel_offset))
 
 	if (current_cleaning_position == viewport_position):
 		return
 
 	current_cleaning_position = viewport_position
-	_clean_on_viewport_position(viewport_position)
-	_clean_on_viewport_position(viewport_position + Vector2i.LEFT)
-	_clean_on_viewport_position(viewport_position + Vector2i.RIGHT)
-	_clean_on_viewport_position(viewport_position + Vector2i.UP)
-	_clean_on_viewport_position(viewport_position + Vector2i.DOWN)
+	var circle = CircleUtils.get_circle_vector_array(viewport_position, cleaning_radius)
+
+	for pos in circle:
+		_clean_on_viewport_position(pos)
+		print(pos)
 
 func _clean_on_viewport_position(viewport_position : Vector2i) -> void:
 	if (!is_populated):

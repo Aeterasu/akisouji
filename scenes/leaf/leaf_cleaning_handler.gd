@@ -1,18 +1,17 @@
 class_name LeafCleaningHandler extends Node
 
-@export var cleaning_origin : Node3D = null
+signal on_cleaning_request_at_global_position
 
-var last_origin_position : Vector3 = Vector3() # in global coordinates
+func _on_player_cleaning_input(cleaning_radius : int = 1) -> void:
+	var screen_center = Vector2(960.0 * 0.5, 540 * 0.5) # TODO: remove hard-coded value
 
-signal on_origin_position_update
+	var active_camera = get_viewport().get_camera_3d()
+	var space_state = active_camera.get_world_3d().direct_space_state
+	var from = active_camera.project_ray_origin(screen_center)
+	var to = from + active_camera.project_ray_normal(screen_center) * 64.0
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	
+	var result = space_state.intersect_ray(query)
 
-func _ready():
-	last_origin_position = cleaning_origin.global_position
-
-func _physics_process(delta):
-	var last_origin_position_2d : Vector2 = Vector2(last_origin_position.x, last_origin_position.z)
-	var cleaning_origin_position_2d : Vector2 = Vector2(cleaning_origin.global_position.x, cleaning_origin.global_position.z)
-
-	if (last_origin_position_2d.distance_to(cleaning_origin_position_2d) > 0.1):
-		on_origin_position_update.emit(cleaning_origin.global_position)
-		last_origin_position = cleaning_origin.global_position
+	if (result):
+		on_cleaning_request_at_global_position.emit(result["position"], cleaning_radius)
