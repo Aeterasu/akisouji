@@ -28,11 +28,6 @@ func _ready() -> void:
 
 	leaf_cleaning_handler.on_cleaning_request_at_global_position.connect(_on_clean_origin_position_updated)
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventMouseButton:
-		if (OS.get_name() == "Web"):
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
 func _populate_multimesh() -> void:
 	#get our multimesh
 	multimesh = target_multimesh_instance.multimesh
@@ -96,20 +91,11 @@ func sort_leaf_instances_by_position(a : LeafInstanceData, b : LeafInstanceData)
 func _on_clean_origin_position_updated(global_position : Vector3, circle_radius : float = 1.0) -> void:
 	_clean_on_real_position(Vector2(global_position.x, global_position.z), circle_radius)
 
-func _clean_leaf(index : int):
+func _clean_leaf(index : int, sorted_index : int):
 	var transform = Transform3D()
 	transform.origin = Vector3(999, 999, 999)
 
 	multimesh.set_instance_transform(index, transform)
-
-func _clean_on_viewport_position(viewport_position : Vector2i, coeff : float = 1.0) -> void:
-	for leaf_chunk_data in leaf_chunk_data_array:
-		if (leaf_chunk_data.viewport_position == viewport_position):
-			var target_indexes : int = int(ceil(len(leaf_chunk_data.indexes) * coeff))
-			for i in range(leaf_chunk_data.last_clean_index, min(leaf_chunk_data.last_clean_index + target_indexes, leaf_chunk_data.indexes[0] + len(leaf_chunk_data.indexes))):
-				_clean_leaf(i)
-				leaf_chunk_data.last_clean_index = i
-			return
 
 # TODO: optimize with binary search
 # TODO: real gradient circle
@@ -128,4 +114,6 @@ func _clean_on_real_position(real_position : Vector2, circle_radius : float = 1.
 				chance = 1 - (distance / (circle_radius + threshold))
 			
 			if (randf() <= chance):
-				_clean_leaf(leaf.instance_index)
+				_clean_leaf(leaf.instance_index, i)
+		elif (position >= real_position + Vector2.ONE * circle_radius):
+			break
