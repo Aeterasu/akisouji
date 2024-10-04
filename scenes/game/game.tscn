@@ -10,13 +10,14 @@
 [ext_resource type="Script" path="res://scenes/leaf/leaf_noise_sprite.gd" id="5_emot5"]
 
 [sub_resource type="Gradient" id="Gradient_x1h73"]
-offsets = PackedFloat32Array(0, 0.562249)
-colors = PackedColorArray(1, 1, 1, 1, 0.0110876, 0.0110876, 0.0110876, 1)
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.37751, 0.73494)
+colors = PackedColorArray(1, 1, 1, 1, 0.419813, 0.419813, 0.419813, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3m81g"]
 gradient = SubResource("Gradient_x1h73")
-width = 6
-height = 6
+width = 3
+height = 3
 use_hdr = true
 fill = 1
 fill_from = Vector2(0.5, 0.5)
@@ -67,7 +68,7 @@ size = Vector2(36, 36)
 script = ExtResource("1_bcfl2")
 
 [node name="Player" parent="." node_paths=PackedStringArray("leaf_cleaning_handler") instance=ExtResource("4_yxefm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 8.124, 32)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3388, 8.124, 32)
 cleaning_texture = SubResource("GradientTexture2D_3m81g")
 leaf_cleaning_handler = NodePath("../LeafPopulation/LeafCleaningHandler")
 
@@ -124,7 +125,7 @@ texture = ExtResource("4_0d2qd")
 
 [node name="LeafPopulation" type="Node" parent="." node_paths=PackedStringArray("target_multimesh_instance", "target_sub_viewport", "leaf_cleaning_handler")]
 script = ExtResource("3_672ow")
-leaves_per_pixel = 128
+leaves_per_pixel = 32
 target_multimesh_instance = NodePath("../MultiMeshInstance3D")
 target_sub_viewport = NodePath("../Control/SubViewportContainer/SubViewport")
 leaf_cleaning_handler = NodePath("LeafCleaningHandler")

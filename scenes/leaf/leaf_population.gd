@@ -15,7 +15,9 @@ var white_pixels : Array[Vector2]
 
 var pixel_offset : int = 0
 
-var leaf_data_array : Array[LeafInstanceData] = []
+var leaf_chunk_data_array : Array[LeafChunkData] = []
+
+var leaf_instances_sorted_by_position : Array[LeafInstanceData] = []
 
 func _ready() -> void:
 	await get_tree().create_timer(0.5).timeout # TODO: this has a potential to go VERY sour. replace with something better later
@@ -47,9 +49,9 @@ func _populate_multimesh() -> void:
 				final_instances_count += leaves_count
 				white_pixels.append(Vector2(j, i))
 
-				var leaf_data = LeafInstanceData.create(Vector2i(j, i))
+				var leaf_data = LeafChunkData.create(Vector2i(j, i))
 				leaf_data.index_count = leaves_count
-				leaf_data_array.append(leaf_data)
+				leaf_chunk_data_array.append(leaf_data)
 
 	multimesh.instance_count = final_instances_count
 
@@ -59,7 +61,7 @@ func _translate_multimesh() -> void:
 	var offset : int = 0
 
 	for u in range(len(white_pixels)):
-		var data = leaf_data_array[u]
+		var data = leaf_chunk_data_array[u]
 		data.last_clean_index = offset
 
 		for v in (range(data.index_count)):
@@ -71,24 +73,44 @@ func _translate_multimesh() -> void:
 
 			data.indexes.append(offset)
 
+			leaf_instances_sorted_by_position.append(LeafInstanceData.create(Vector2(origin.x, origin.z), offset))
+
 			offset += 1
+
+	leaf_instances_sorted_by_position.sort_custom(sort_leaf_instances_by_position)
+
+	for i in range(10):
+		print(leaf_instances_sorted_by_position[i].instance_position)
+
+func sort_leaf_instances_by_position(a : LeafInstanceData, b : LeafInstanceData) -> bool:
+	if (a.instance_position < b.instance_position):
+		return true
+	return false
 			
 func _on_clean_origin_position_updated(global_position : Vector3, cleaning_texture_data : CleaningTextureData) -> void:
-	var viewport_position = Vector2i(int(global_position.x + pixel_offset), int(global_position.z + pixel_offset))
+	_clean_on_real_position(Vector2(global_position.x, global_position.z))
 
-	print(viewport_position)
-
-	for i in range(cleaning_texture_data.index_count):
-		_clean_on_viewport_position(viewport_position + cleaning_texture_data.position_array[i], cleaning_texture_data.coeff_array[i])
-
-func _clean_on_viewport_position(viewport_position : Vector2i, coeff : float = 1.0) -> void:
+func _clean_leaf(index : int):
 	var transform = Transform3D()
 	transform.origin = Vector3(999, 999, 999)
 
-	for leaf_instance_data in leaf_data_array:
-		if (leaf_instance_data.viewport_position == viewport_position):
-			var target_indexes : int = int(ceil(len(leaf_instance_data.indexes) * coeff))
-			for i in range(leaf_instance_data.last_clean_index, min(leaf_instance_data.last_clean_index + target_indexes, leaf_instance_data.indexes[0] + len(leaf_instance_data.indexes))):
-				multimesh.set_instance_transform(i, transform)
-				leaf_instance_data.last_clean_index = i
+	multimesh.set_instance_transform(index, transform)
+
+func _clean_on_viewport_position(viewport_position : Vector2i, coeff : float = 1.0) -> void:
+	for leaf_chunk_data in leaf_chunk_data_array:
+		if (leaf_chunk_data.viewport_position == viewport_position):
+			var target_indexes : int = int(ceil(len(leaf_chunk_data.indexes) * coeff))
+			for i in range(leaf_chunk_data.last_clean_index, min(leaf_chunk_data.last_clean_index + target_indexes, leaf_chunk_data.indexes[0] + len(leaf_chunk_data.indexes))):
+				_clean_leaf(i)
+				leaf_chunk_data.last_clean_index = i
 			return
+
+# TODO: optimize with binary search
+func _clean_on_real_position(real_position : Vector2, circle_radius : float = 1.0):
+	#find the starting fitting index
+	for leaf in leaf_instances_sorted_by_position:
+		var position = leaf.instance_position
+		var distance = sqrt(pow(abs(position.x - real_position.x), 2) + pow(abs(position.y - real_position.y), 2))
+
+		if (distance < circle_radius):
+			_clean_leaf(leaf.instance_index)
