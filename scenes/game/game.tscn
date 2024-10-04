@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=19 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_population.gd" id="3_672ow"]
@@ -8,19 +8,6 @@
 [ext_resource type="Script" path="res://scenes/circle_utils/circle_debug.gd" id="4_o3v4p"]
 [ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="4_yxefm"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_noise_sprite.gd" id="5_emot5"]
-
-[sub_resource type="Gradient" id="Gradient_x1h73"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.37751, 0.73494)
-colors = PackedColorArray(1, 1, 1, 1, 0.419813, 0.419813, 0.419813, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_3m81g"]
-gradient = SubResource("Gradient_x1h73")
-width = 3
-height = 3
-use_hdr = true
-fill = 1
-fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="Gradient" id="Gradient_gclsu"]
 interpolation_mode = 2
@@ -69,7 +56,7 @@ script = ExtResource("1_bcfl2")
 
 [node name="Player" parent="." node_paths=PackedStringArray("leaf_cleaning_handler") instance=ExtResource("4_yxefm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3388, 8.124, 32)
-cleaning_texture = SubResource("GradientTexture2D_3m81g")
+cleaning_radius = 1.25
 leaf_cleaning_handler = NodePath("../LeafPopulation/LeafCleaningHandler")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Player"]

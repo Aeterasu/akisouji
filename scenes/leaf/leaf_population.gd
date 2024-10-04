@@ -18,6 +18,7 @@ var pixel_offset : int = 0
 var leaf_chunk_data_array : Array[LeafChunkData] = []
 
 var leaf_instances_sorted_by_position : Array[LeafInstanceData] = []
+var leaf_instances_sorted_positions : Array[Vector2] = []
 
 func _ready() -> void:
 	await get_tree().create_timer(0.5).timeout # TODO: this has a potential to go VERY sour. replace with something better later
@@ -79,16 +80,19 @@ func _translate_multimesh() -> void:
 
 	leaf_instances_sorted_by_position.sort_custom(sort_leaf_instances_by_position)
 
+	for leaf in leaf_instances_sorted_by_position:
+		leaf_instances_sorted_positions.append(leaf.instance_position)
+
 	for i in range(10):
-		print(leaf_instances_sorted_by_position[i].instance_position)
+		print(leaf_instances_sorted_positions[i])
 
 func sort_leaf_instances_by_position(a : LeafInstanceData, b : LeafInstanceData) -> bool:
 	if (a.instance_position < b.instance_position):
 		return true
 	return false
 			
-func _on_clean_origin_position_updated(global_position : Vector3, cleaning_texture_data : CleaningTextureData) -> void:
-	_clean_on_real_position(Vector2(global_position.x, global_position.z))
+func _on_clean_origin_position_updated(global_position : Vector3, circle_radius : float = 1.0) -> void:
+	_clean_on_real_position(Vector2(global_position.x, global_position.z), circle_radius)
 
 func _clean_leaf(index : int):
 	var transform = Transform3D()
@@ -106,11 +110,16 @@ func _clean_on_viewport_position(viewport_position : Vector2i, coeff : float = 1
 			return
 
 # TODO: optimize with binary search
+# TODO: gradient circle
 func _clean_on_real_position(real_position : Vector2, circle_radius : float = 1.0):
-	#find the starting fitting index
-	for leaf in leaf_instances_sorted_by_position:
-		var position = leaf.instance_position
-		var distance = sqrt(pow(abs(position.x - real_position.x), 2) + pow(abs(position.y - real_position.y), 2))
+	var first_suitable_index : int = leaf_instances_sorted_positions.bsearch(real_position + Vector2.LEFT * circle_radius)
 
-		if (distance < circle_radius):
+	print("Desired position: " + str(real_position) + ", Closest position: " + str(leaf_instances_sorted_positions[first_suitable_index]))
+
+	for i in range(first_suitable_index, len(leaf_instances_sorted_by_position) - 1):
+		var leaf = leaf_instances_sorted_by_position[i]
+		var position = leaf.instance_position
+		var distance = real_position.distance_to(position)
+
+		if (distance <= circle_radius):
 			_clean_leaf(leaf.instance_index)
