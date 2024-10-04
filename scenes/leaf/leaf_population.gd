@@ -28,6 +28,11 @@ func _ready() -> void:
 
 	leaf_cleaning_handler.on_cleaning_request_at_global_position.connect(_on_clean_origin_position_updated)
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton:
+		if (OS.get_name() == "Web"):
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 func _populate_multimesh() -> void:
 	#get our multimesh
 	multimesh = target_multimesh_instance.multimesh
