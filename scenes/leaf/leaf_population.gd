@@ -15,8 +15,6 @@ var white_pixels : Array[Vector2]
 
 var pixel_offset : int = 0
 
-var current_cleaning_position = Vector2i()
-
 var leaf_data_array : Array[LeafInstanceData] = []
 
 func _ready() -> void:
@@ -62,6 +60,7 @@ func _translate_multimesh() -> void:
 
 	for u in range(len(white_pixels)):
 		var data = leaf_data_array[u]
+		data.last_clean_index = offset
 
 		for v in (range(data.index_count)):
 			var origin = Vector3(white_pixels[u].x - pixel_offset + (randf() - 0.5) * position_disperse, 1, white_pixels[u].y - pixel_offset + (randf() - 0.5) * position_disperse)
@@ -73,25 +72,23 @@ func _translate_multimesh() -> void:
 			data.indexes.append(offset)
 
 			offset += 1
-
-func _on_clean_origin_position_updated(global_position : Vector3, cleaning_radius : int) -> void:
+			
+func _on_clean_origin_position_updated(global_position : Vector3, cleaning_texture_data : CleaningTextureData) -> void:
 	var viewport_position = Vector2i(int(global_position.x + pixel_offset), int(global_position.z + pixel_offset))
 
-	if (current_cleaning_position == viewport_position):
-		return
+	print(viewport_position)
 
-	current_cleaning_position = viewport_position
-	var circle = CircleUtils.get_circle_vector_array(viewport_position, cleaning_radius)
+	for i in range(cleaning_texture_data.index_count):
+		_clean_on_viewport_position(viewport_position + cleaning_texture_data.position_array[i], cleaning_texture_data.coeff_array[i])
 
-	for pos in circle:
-		_clean_on_viewport_position(pos)
-
-func _clean_on_viewport_position(viewport_position : Vector2i) -> void:
+func _clean_on_viewport_position(viewport_position : Vector2i, coeff : float = 1.0) -> void:
 	var transform = Transform3D()
 	transform.origin = Vector3(999, 999, 999)
 
 	for leaf_instance_data in leaf_data_array:
 		if (leaf_instance_data.viewport_position == viewport_position):
-			for i in leaf_instance_data.indexes:
+			var target_indexes : int = int(ceil(len(leaf_instance_data.indexes) * coeff))
+			for i in range(leaf_instance_data.last_clean_index, min(leaf_instance_data.last_clean_index + target_indexes, leaf_instance_data.indexes[0] + len(leaf_instance_data.indexes))):
 				multimesh.set_instance_transform(i, transform)
+				leaf_instance_data.last_clean_index = i
 			return

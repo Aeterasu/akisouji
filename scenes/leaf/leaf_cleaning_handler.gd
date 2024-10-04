@@ -2,8 +2,9 @@ class_name LeafCleaningHandler extends Node
 
 signal on_cleaning_request_at_global_position
 
-func _on_player_cleaning_input(cleaning_radius : int = 1) -> void:
-	var screen_center = Vector2(960.0 * 0.5, 540 * 0.5) # TODO: remove hard-coded value
+#TODO: add overload for on-the-fly generated circles, but later
+func _on_player_cleaning_input(cleaning_texture_data : CleaningTextureData) -> void:
+	var screen_center = Vector2(1280.0 * 0.5, 720 * 0.5) # TODO: remove hard-coded value
 
 	var active_camera = get_viewport().get_camera_3d()
 	var space_state = active_camera.get_world_3d().direct_space_state
@@ -14,4 +15,4 @@ func _on_player_cleaning_input(cleaning_radius : int = 1) -> void:
 	var result = space_state.intersect_ray(query)
 
 	if (result):
-		on_cleaning_request_at_global_position.emit(result["position"], cleaning_radius)
+		on_cleaning_request_at_global_position.emit(result["position"], cleaning_texture_data)
