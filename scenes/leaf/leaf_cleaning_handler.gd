@@ -4,7 +4,8 @@ signal on_cleaning_request_at_global_position
 
 #TODO: add overload for on-the-fly generated circles, but later
 func _on_player_cleaning_input(circle_radius : float = 1.0) -> void:
-	var screen_center = Vector2(1280.0 * 0.5, 720 * 0.5) # TODO: remove hard-coded value
+	var screen_size = get_viewport().size
+	var screen_center = Vector2(screen_size.x * 0.5, screen_size.y * 0.5) # TODO: remove hard-coded value
 
 	var active_camera = get_viewport().get_camera_3d()
 	var space_state = active_camera.get_world_3d().direct_space_state

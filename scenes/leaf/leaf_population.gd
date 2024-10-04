@@ -83,9 +83,6 @@ func _translate_multimesh() -> void:
 	for leaf in leaf_instances_sorted_by_position:
 		leaf_instances_sorted_positions.append(leaf.instance_position)
 
-	for i in range(10):
-		print(leaf_instances_sorted_positions[i])
-
 func sort_leaf_instances_by_position(a : LeafInstanceData, b : LeafInstanceData) -> bool:
 	if (a.instance_position < b.instance_position):
 		return true
@@ -110,11 +107,9 @@ func _clean_on_viewport_position(viewport_position : Vector2i, coeff : float = 1
 			return
 
 # TODO: optimize with binary search
-# TODO: gradient circle
+# TODO: real gradient circle
 func _clean_on_real_position(real_position : Vector2, circle_radius : float = 1.0):
 	var first_suitable_index : int = leaf_instances_sorted_positions.bsearch(real_position + Vector2.LEFT * circle_radius)
-
-	print("Desired position: " + str(real_position) + ", Closest position: " + str(leaf_instances_sorted_positions[first_suitable_index]))
 
 	for i in range(first_suitable_index, len(leaf_instances_sorted_by_position) - 1):
 		var leaf = leaf_instances_sorted_by_position[i]
@@ -122,4 +117,10 @@ func _clean_on_real_position(real_position : Vector2, circle_radius : float = 1.
 		var distance = real_position.distance_to(position)
 
 		if (distance <= circle_radius):
-			_clean_leaf(leaf.instance_index)
+			var chance = 1.0
+			var threshold = 0.5
+			if (distance > threshold):
+				chance = 1 - (distance / (circle_radius + threshold))
+			
+			if (randf() <= chance):
+				_clean_leaf(leaf.instance_index)
