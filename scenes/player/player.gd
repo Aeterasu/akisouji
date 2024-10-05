@@ -6,6 +6,7 @@ class_name Player extends CharacterBody3D
 @export var velocity_component : VelocityComponent = null
 @export var gravity_component : GravityComponent = null
 @export var jump_strength : float = 2.0
+@export_range(0, 30) var jump_buffer_size : int = 3
 @export_range(1.0, 2.0) var sprint_speed_multiplier : float = 1.5
 
 @export_group("Camera")
@@ -23,6 +24,9 @@ var mouse_sensitivity : float = 1.0
 var gamepad_sensitvity : float = 64.0
 var gamepad_deadzone : float = 0.3
 
+var current_jump_buffer_ticks : int = 0
+
+var wish_jumping : bool = false
 var wish_sprint : bool = false
 
 func _ready():
@@ -58,8 +62,9 @@ func input_process(delta : float):
 
 	# jump
 
-	if (Input.is_action_just_pressed("player_action_jump") && is_on_floor()):
-		gravity_component.hop(jump_strength)
+	if (Input.is_action_just_pressed("player_action_jump")):
+		wish_jumping = true
+		#gravity_component.hop(jump_strength)
 
 	# broom
 
@@ -103,6 +108,18 @@ func move_camera(input : Vector2) -> void:
 	camera_origin.rotation_degrees.x = clampf(camera_origin.rotation_degrees.x, -80.0, 80.0)
 
 func movement_process(delta):
+	if (wish_jumping):
+		if (is_on_floor()):
+			gravity_component.hop(jump_strength)
+			current_jump_buffer_ticks = 0
+			wish_jumping = false
+		else:
+			current_jump_buffer_ticks += 1
+
+			if (current_jump_buffer_ticks > jump_buffer_size):
+				current_jump_buffer_ticks = 0
+				wish_jumping = false
+
 	if (wish_sprint):
 		velocity_component.speed_multiplier = sprint_speed_multiplier
 	else:
