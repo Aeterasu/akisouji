@@ -112,9 +112,8 @@ func _clean_on_real_position(real_position : Vector2, circle_radius : float = 1.
 
 		if (distance <= circle_radius):
 			var chance = 1.0
-			var threshold = 0.5
-			if (distance > threshold):
-				chance = 1 - (distance / (circle_radius + threshold))
+			if (distance > leaf_cleaning_handler.falloff_threshold):
+				chance = (1 - (distance / (circle_radius + leaf_cleaning_handler.falloff_threshold))) * leaf_cleaning_handler.base_cleaning_coeff
 			
 			if (randf() <= chance):
 				_clean_leaf(leaf.instance_index, i)

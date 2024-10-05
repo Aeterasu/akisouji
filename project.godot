@@ -39,6 +39,66 @@ window/stretch/aspect="expand"
 
 project/assembly_name="GD4-Template"
 
+[importer_defaults]
+
+scene={
+"_subresources": {},
+"animation/fps": 30,
+"animation/import": true,
+"animation/import_rest_as_RESET": false,
+"animation/remove_immutable_tracks": true,
+"animation/trimming": false,
+"blender/animation/always_sample": true,
+"blender/animation/group_tracks": true,
+"blender/animation/limit_playback": true,
+"blender/materials/export_materials": 1,
+"blender/materials/unpack_enabled": true,
+"blender/meshes/colors": false,
+"blender/meshes/export_bones_deforming_mesh_only": false,
+"blender/meshes/normals": true,
+"blender/meshes/skins": 2,
+"blender/meshes/tangents": true,
+"blender/meshes/uvs": true,
+"blender/nodes/active_collection_only": false,
+"blender/nodes/cameras": true,
+"blender/nodes/custom_properties": true,
+"blender/nodes/modifiers": 1,
+"blender/nodes/punctual_lights": true,
+"blender/nodes/visible": 0,
+"import_script/path": "res://post_import/mesh_post_import.gd",
+"meshes/create_shadow_meshes": true,
+"meshes/ensure_tangents": true,
+"meshes/force_disable_compression": false,
+"meshes/generate_lods": true,
+"meshes/light_baking": 1,
+"meshes/lightmap_texel_size": 0.2,
+"nodes/apply_root_scale": true,
+"nodes/import_as_skeleton_bones": false,
+"nodes/root_name": "",
+"nodes/root_scale": 1.0,
+"nodes/root_type": "",
+"skins/use_named_skins": true
+}
+texture={
+"compress/channel_pack": 0,
+"compress/hdr_compression": 1,
+"compress/high_quality": false,
+"compress/lossy_quality": 0.7,
+"compress/mode": 0,
+"compress/normal_map": 0,
+"detect_3d/compress_to": 0,
+"mipmaps/generate": true,
+"mipmaps/limit": -1,
+"process/fix_alpha_border": true,
+"process/hdr_as_srgb": false,
+"process/hdr_clamp_exposure": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"process/size_limit": 0,
+"roughness/mode": 0,
+"roughness/src_normal": ""
+}
+
 [input]
 
 player_move_forward={

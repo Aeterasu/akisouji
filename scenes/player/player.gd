@@ -14,6 +14,9 @@ class_name Player extends CharacterBody3D
 @export var cleaning_radius : float = 1.0
 @export var leaf_cleaning_handler : LeafCleaningHandler = null
 
+@export_group("Equipment")
+@export var equipment_viewmodel : BroomViewmodel = null
+
 var mouse_sensitivity : float = 1.0
 var gamepad_sensitvity : float = 64.0
 var gamepad_deadzone : float = 0.3
@@ -23,12 +26,17 @@ func _ready():
 	gamepad_sensitvity = GlobalSettings.gamepad_sensitvity
 	gamepad_deadzone = GlobalSettings.gamepad_deadzone
 
+	equipment_viewmodel.on_broom.connect(on_broom)
+
 func _physics_process(delta : float):
 	input_process(delta)
 	movement_process(delta)
 
-	if (Input.is_action_just_pressed("player_action_primary")):
-		leaf_cleaning_handler._on_player_cleaning_input(cleaning_radius)
+	if (Input.is_action_pressed("player_action_primary")):
+		equipment_viewmodel._attempt_brooming()
+
+func on_broom():
+	leaf_cleaning_handler._on_player_cleaning_input(cleaning_radius)
 
 func input_process(delta : float):
 	velocity_component.input_direction = Vector2()
