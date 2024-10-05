@@ -68,7 +68,7 @@ func input_process(delta : float):
 
 	# sprint
 
-	if (Input.is_action_just_pressed("player_action_sprint")):
+	if (Input.is_action_just_pressed("player_action_sprint") && velocity_component.input_direction.length() > 0.0 && is_on_floor()):
 		toggle_sprint(!wish_sprint)
 
 func get_input_direction() -> Vector2:

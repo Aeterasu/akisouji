@@ -45,7 +45,7 @@ script = ExtResource("1_bcfl2")
 
 [node name="Player" parent="." node_paths=PackedStringArray("leaf_cleaning_handler") instance=ExtResource("4_yxefm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3388, 8.124, 32)
-cleaning_radius = 1.5
+cleaning_radius = 1.25
 leaf_cleaning_handler = NodePath("../LeafPopulation/LeafCleaningHandler")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Player"]
