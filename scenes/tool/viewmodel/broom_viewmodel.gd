@@ -2,7 +2,7 @@ class_name BroomViewmodel extends Node3D
 
 @export var animation_player : AnimationPlayer = null
 
-@export var allow_animation : bool = true
+@export var allow_brooming : bool = true
 
 @export var walk_cycle_speed : float = 5.0
 @export var walk_cycle_direction : Vector3 = Vector3()
@@ -27,12 +27,19 @@ func _animate_idle() -> void:
 	animation_player.play("idle")
 
 func _attempt_brooming() -> void:
-	if (!allow_animation):
+	if (!allow_brooming):
 		return
 
-	allow_animation = false
+	allow_brooming = false
 
 	_animate_broom()
 
 func _broom():
 	on_broom.emit()
+
+func _animate_sprint_init():
+	animation_player.play("sprint_init")
+	allow_brooming = false
+
+func _animate_sprint_end():
+	animation_player.play("sprint_end")

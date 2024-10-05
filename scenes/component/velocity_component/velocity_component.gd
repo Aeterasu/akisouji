@@ -2,6 +2,7 @@ class_name VelocityComponent extends Node
 
 @export_group("Speed")
 @export var speed : float = 1.0
+@export var speed_multiplier : float = 1.0
 
 @export_group("Smooth Velocity")
 @export var smooth_toggle : bool = false
@@ -14,7 +15,7 @@ var target_velocty = Vector2()
 var current_velocity = Vector2()
 
 func _physics_process(delta):
-	target_velocty = input_direction * speed
+	target_velocty = input_direction * speed * speed_multiplier
 
 	if (smooth_toggle):
 		if (input_direction.length() > 0.0):

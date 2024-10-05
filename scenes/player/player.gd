@@ -6,6 +6,7 @@ class_name Player extends CharacterBody3D
 @export var velocity_component : VelocityComponent = null
 @export var gravity_component : GravityComponent = null
 @export var jump_strength : float = 2.0
+@export_range(1.0, 2.0) var sprint_speed_multiplier : float = 1.5
 
 @export_group("Camera")
 @export var camera : Camera3D = null
@@ -22,6 +23,8 @@ var mouse_sensitivity : float = 1.0
 var gamepad_sensitvity : float = 64.0
 var gamepad_deadzone : float = 0.3
 
+var wish_sprint : bool = false
+
 func _ready():
 	mouse_sensitivity = GlobalSettings.mouse_sensitivity
 	gamepad_sensitvity = GlobalSettings.gamepad_sensitvity
@@ -32,9 +35,6 @@ func _ready():
 func _physics_process(delta : float):
 	input_process(delta)
 	movement_process(delta)
-
-	if (Input.is_action_pressed("player_action_primary")):
-		equipment_viewmodel._attempt_brooming()
 
 	equipment_viewmodel.walk_multiplier = velocity_component.current_velocity.length() / velocity_component.speed
 
@@ -53,10 +53,23 @@ func input_process(delta : float):
 
 	velocity_component.input_direction = velocity_component.input_direction.rotated(-rotation.y)
 
+	if (velocity_component.input_direction.length() < 0.5):
+		toggle_sprint(false)
+
 	# jump
 
 	if (Input.is_action_just_pressed("player_action_jump") && is_on_floor()):
 		gravity_component.hop(jump_strength)
+
+	# broom
+
+	if (Input.is_action_pressed("player_action_primary")):
+		equipment_viewmodel._attempt_brooming()
+
+	# sprint
+
+	if (Input.is_action_just_pressed("player_action_sprint")):
+		toggle_sprint(!wish_sprint)
 
 func get_input_direction() -> Vector2:
 	var result = Vector2()
@@ -90,6 +103,11 @@ func move_camera(input : Vector2) -> void:
 	camera_origin.rotation_degrees.x = clampf(camera_origin.rotation_degrees.x, -80.0, 80.0)
 
 func movement_process(delta):
+	if (wish_sprint):
+		velocity_component.speed_multiplier = sprint_speed_multiplier
+	else:
+		velocity_component.speed_multiplier = 1.0
+
 	velocity = Vector3(velocity_component.current_velocity.x, gravity_component.current_velocity, velocity_component.current_velocity.y)
 
 	move_and_slide()
@@ -99,3 +117,12 @@ func movement_process(delta):
 
 func is_walking() -> bool:
 	return velocity_component.current_velocity.length() > 0.0
+
+func toggle_sprint(toggle : bool):
+	if (wish_sprint != toggle):
+		if (toggle):
+			equipment_viewmodel._animate_sprint_init()
+		else:
+			equipment_viewmodel._animate_sprint_end()
+
+	wish_sprint = toggle	
