@@ -8,6 +8,8 @@ extends Node
 
 @export var leaf_cleaning_handler : LeafCleaningHandler = null
 
+@export var leaf_color_palette : LeafColorPalette = null
+
 var multimesh : MultiMesh = null
 
 var viewport_image_size = Vector2i()
@@ -71,6 +73,7 @@ func _translate_multimesh() -> void:
 			transform = transform.rotated(Vector3.UP, randf() * PI * 2)
 			transform = transform.translated(origin)
 			multimesh.set_instance_transform(offset, transform)
+			multimesh.set_instance_color(offset, leaf_color_palette._get_random_color())
 
 			data.indexes.append(offset)
 
