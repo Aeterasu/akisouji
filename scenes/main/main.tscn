@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://d28lh7c58l5qv"]
+[gd_scene load_steps=7 format=3 uid="uid://d28lh7c58l5qv"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_bkdub"]
 [ext_resource type="PackedScene" uid="uid://6ngiuq2e3o7u" path="res://scenes/game/game.tscn" id="2_t3v72"]
 [ext_resource type="Script" path="res://scenes/fps_counter.gd" id="3_w0te1"]
 [ext_resource type="Shader" path="res://shaders/kuwahara_screen.gdshader" id="4_cm0ii"]
+[ext_resource type="PackedScene" uid="uid://dcaypqvm8j1yq" path="res://scenes/ui/ui.tscn" id="5_pyd74"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sk82f"]
 shader = ExtResource("4_cm0ii")
@@ -15,24 +16,6 @@ script = ExtResource("1_bkdub")
 
 [node name="Game" parent="." instance=ExtResource("2_t3v72")]
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 675.0
-offset_bottom = 31.0
-theme_override_constants/outline_size = 5
-text = "FPS: 00"
-script = ExtResource("3_w0te1")
-
 [node name="KuwaharaLayer" type="CanvasLayer" parent="."]
 
 [node name="ColorRect" type="ColorRect" parent="KuwaharaLayer"]
@@ -42,3 +25,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 99
+
+[node name="UI" parent="UILayer" instance=ExtResource("5_pyd74")]
+
+[node name="Control" type="Control" parent="UILayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UILayer/Control"]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 675.0
+offset_bottom = 31.0
+theme_override_constants/outline_size = 5
+text = "FPS: 00"
+script = ExtResource("3_w0te1")

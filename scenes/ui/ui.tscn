@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcaypqvm8j1yq"]
+
+[ext_resource type="Texture2D" uid="uid://dbqwuevdtqyjl" path="res://assets/texture/ui/texture_ui_crosshair_dot.png" id="2_sidhx"]
+[ext_resource type="Texture2D" uid="uid://cvtg8bskknog1" path="res://assets/texture/ui/texture_ui_vignette.png" id="3_l63lv"]
+
+[node name="UI" type="Control"]
+process_priority = -1
+process_physics_priority = -1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Vignette" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.376471)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_l63lv")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Crosshair" type="TextureRect" parent="CenterContainer"]
+layout_mode = 2
+texture = ExtResource("2_sidhx")

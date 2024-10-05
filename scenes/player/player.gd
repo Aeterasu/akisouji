@@ -5,6 +5,7 @@ class_name Player extends CharacterBody3D
 @export_group("Movement")
 @export var velocity_component : VelocityComponent = null
 @export var gravity_component : GravityComponent = null
+@export var jump_strength : float = 2.0
 
 @export_group("Camera")
 @export var camera : Camera3D = null
@@ -51,6 +52,11 @@ func input_process(delta : float):
 			move_camera_gamepad(delta)
 
 	velocity_component.input_direction = velocity_component.input_direction.rotated(-rotation.y)
+
+	# jump
+
+	if (Input.is_action_just_pressed("player_action_jump") && is_on_floor()):
+		gravity_component.hop(jump_strength)
 
 func get_input_direction() -> Vector2:
 	var result = Vector2()

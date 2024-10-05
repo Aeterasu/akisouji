@@ -1,23 +1,21 @@
-[gd_scene load_steps=17 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=15 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_population.gd" id="3_672ow"]
 [ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://scenes/leaf/leaf_mesh.tres" id="3_snafj"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_cleaning_handler.gd" id="3_tlxk6"]
-[ext_resource type="Texture2D" uid="uid://dbqwuevdtqyjl" path="res://assets/texture/ui/texture_ui_crosshair_dot.png" id="4_0d2qd"]
 [ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="4_yxefm"]
-[ext_resource type="Texture2D" uid="uid://cvtg8bskknog1" path="res://assets/texture/ui/texture_ui_vignette.png" id="5_1lxio"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_noise_sprite.gd" id="5_emot5"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_color_palette.gd" id="7_tu2pw"]
 
 [sub_resource type="Gradient" id="Gradient_gclsu"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0.524904, 1)
-colors = PackedColorArray(0.266575, 0.266575, 0.266575, 1, 1, 1, 1, 1)
+offsets = PackedFloat32Array(0, 0.268199, 0.524904, 1)
+colors = PackedColorArray(0.0605303, 0.0605304, 0.0605303, 1, 0.211819, 0.211819, 0.211819, 1, 0.266575, 0.266575, 0.266575, 1, 1, 1, 1, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_nmslb"]
 noise_type = 2
-frequency = 0.0796
+frequency = 0.1383
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ed7tw"]
 width = 64
@@ -81,28 +79,6 @@ texture_filter = 1
 texture = SubResource("NoiseTexture2D_ed7tw")
 centered = false
 script = ExtResource("5_emot5")
-
-[node name="CenterContainer" type="CenterContainer" parent="Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="TextureRect" type="TextureRect" parent="Control/CenterContainer"]
-layout_mode = 2
-texture = ExtResource("4_0d2qd")
-
-[node name="Vignette" type="TextureRect" parent="Control"]
-modulate = Color(1, 1, 1, 0.376471)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("5_1lxio")
 
 [node name="LeafPopulation" type="Node" parent="." node_paths=PackedStringArray("target_multimesh_instance", "target_sub_viewport", "leaf_cleaning_handler", "leaf_color_palette")]
 script = ExtResource("3_672ow")
