@@ -7,6 +7,8 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sk82f"]
 shader = ExtResource("4_cm0ii")
+shader_parameter/radius = 2
+shader_parameter/offset = Vector3(0, 0, 0)
 
 [node name="Main" type="Node"]
 script = ExtResource("1_bkdub")
@@ -32,7 +34,6 @@ text = "FPS: 00"
 script = ExtResource("3_w0te1")
 
 [node name="KuwaharaLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="KuwaharaLayer"]
 material = SubResource("ShaderMaterial_sk82f")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://077fpjam3rlw"]
+[gd_scene load_steps=15 format=3 uid="uid://077fpjam3rlw"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_e0tat"]
 [ext_resource type="Script" path="res://scenes/component/gravity_component/gravity_component.gd" id="2_nr0jr"]
@@ -15,7 +15,11 @@ height = 1.8
 diffuse_mode = 2
 albedo_texture = ExtResource("6_g4l35")
 metallic_specular = 0.0
-texture_filter = 0
+texture_filter = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cjscd"]
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_h5qqg"]
 resource_name = "idle"
@@ -209,14 +213,17 @@ script = ExtResource("4_feodf")
 [node name="BroomViewmodel" type="Node3D" parent="CameraOrigin/Camera3D/ViewmodelOrigin" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("5_fq1iu")
 animation_player = NodePath("AnimationPlayer")
+walk_cycle_direction = Vector3(0.025, 0.01, 0)
 
 [node name="mesh_broom" parent="CameraOrigin/Camera3D/ViewmodelOrigin/BroomViewmodel" instance=ExtResource("5_nl0cb")]
 transform = Transform3D(0.0749063, -0.00298182, -0.00226902, -0.00309004, -0.0234711, -0.0711657, 0.00211929, 0.0711703, -0.0235647, 0.084, -0.102, -0.154)
 cast_shadow = 0
 surface_material_override/0 = SubResource("StandardMaterial3D_skvaf")
+surface_material_override/1 = SubResource("StandardMaterial3D_cjscd")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CameraOrigin/Camera3D/ViewmodelOrigin/BroomViewmodel"]
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_52egn")
 }
+playback_default_blend_time = 0.15

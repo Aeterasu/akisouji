@@ -4,3 +4,4 @@
 
 [node name="GlobalSettings" type="Node"]
 script = ExtResource("1_diykh")
+fov = 75.0

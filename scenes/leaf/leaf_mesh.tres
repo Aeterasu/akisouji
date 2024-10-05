@@ -8,7 +8,7 @@ diffuse_mode = 1
 specular_mode = 2
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_87h8r")
-texture_filter = 0
+texture_filter = 1
 
 [resource]
 material = SubResource("StandardMaterial3D_brd0k")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=17 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_population.gd" id="3_672ow"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/leaf/leaf_cleaning_handler.gd" id="3_tlxk6"]
 [ext_resource type="Texture2D" uid="uid://dbqwuevdtqyjl" path="res://assets/texture/ui/texture_ui_crosshair_dot.png" id="4_0d2qd"]
 [ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="4_yxefm"]
+[ext_resource type="Texture2D" uid="uid://cvtg8bskknog1" path="res://assets/texture/ui/texture_ui_vignette.png" id="5_1lxio"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_noise_sprite.gd" id="5_emot5"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_color_palette.gd" id="7_tu2pw"]
 
@@ -36,6 +37,9 @@ mesh = ExtResource("3_snafj")
 size = Vector2(36, 36)
 
 [sub_resource type="Environment" id="Environment_my23x"]
+background_mode = 1
+background_color = Color(0.745098, 0.760784, 0.776471, 1)
+ambient_light_color = Color(1, 1, 1, 1)
 glow_bloom = 0.48
 
 [node name="Game" type="Node3D"]
@@ -90,6 +94,16 @@ grow_vertical = 2
 layout_mode = 2
 texture = ExtResource("4_0d2qd")
 
+[node name="Vignette" type="TextureRect" parent="Control"]
+modulate = Color(1, 1, 1, 0.376471)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_1lxio")
+
 [node name="LeafPopulation" type="Node" parent="." node_paths=PackedStringArray("target_multimesh_instance", "target_sub_viewport", "leaf_cleaning_handler", "leaf_color_palette")]
 script = ExtResource("3_672ow")
 leaves_per_pixel = 64
@@ -116,6 +130,7 @@ material = SubResource("StandardMaterial3D_b2hyn")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+light_color = Color(0.871403, 0.717197, 0.695115, 1)
 shadow_enabled = true
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]

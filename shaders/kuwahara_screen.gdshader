@@ -1,58 +1,84 @@
 shader_type canvas_item;
+uniform int radius = 5;
+uniform vec3 offset=vec3(0.0);
+uniform sampler2D SCREEN_TEXTURE : hint_screen_texture;
 
-// Precalculated kernels for various radius quadrants
-const vec2 kernel3[4] = {vec2(0,0), vec2(0,1), vec2(1,0), vec2(1,1)};
-const vec2 kernel4[13] = {vec2(0,0), vec2(0,1), vec2(0,2), vec2(0,3), vec2(1,0), vec2(1,1), vec2(1,2), vec2(1,3), vec2(2,0), vec2(2,1), vec2(2,2), vec2(3,0), vec2(3,1)};
-const vec2 kernel5[25] = {vec2(0,0), vec2(0,1), vec2(0,2), vec2(0,3), vec2(0,4), vec2(1,0), vec2(2,0), vec2(3,0), vec2(4,0), vec2(1,1), vec2(1,2), vec2(1,3), vec2(1,4), vec2(2,0), vec2(2,1), vec2(2,2), vec2(2,3), vec2(2,4), vec2(3,0), vec2(3,1), vec2(3,2), vec2(3,3), vec2(4,0), vec2(4,1), vec2(4,2)};
-const vec2 kernel6[41] = {vec2(0,0), vec2(0,1), vec2(0,2), vec2(0,3), vec2(0,4), vec2(0,5), vec2(0,6), vec2(1,0), vec2(1,1), vec2(1,2), vec2(1,3), vec2(1,4), vec2(1,5), vec2(1,6), vec2(2,0), vec2(2,1), vec2(2,2), vec2(2,3), vec2(2,4), vec2(2,5), vec2(2,6), vec2(3,0), vec2(3,1), vec2(3,2), vec2(3,3), vec2(3,4), vec2(3,5), vec2(4,0), vec2(4,1), vec2(4,2), vec2(4,3), vec2(4,4), vec2(4,5), vec2(5,0), vec2(5,1), vec2(5,2), vec2(5,3), vec2(5,4), vec2(6,0), vec2(6,1), vec2(6,2)};
+void fragment()
+ {
+     vec2 src_size = vec2 ( SCREEN_PIXEL_SIZE.x,  SCREEN_PIXEL_SIZE.y);
+     vec2 uv = SCREEN_UV.xy;
+     float n = float((radius + 1) * (radius + 1));
+     vec3 m0 = offset; vec3 m1 = offset; vec3 m2 = offset; vec3 m3 = offset;
+     vec3 s0 = offset; vec3 s1 = offset; vec3 s2 = offset; vec3 s3 = offset;
+     vec3 c;
 
-uniform sampler2D SCREEN_TEXTURE : hint_screen_texture, filter_linear_mipmap;
+     for (int j = -radius; j <= 0; ++j)  {
+         for (int i = -radius; i <= 0; ++i)  {
+             c = texture(SCREEN_TEXTURE, uv + vec2(float(i),float(j)) * src_size).rgb;
+             m0 += c;
+             s0 += c * c;
+         }
+     }
 
-// Get the mean colour and standard deviation of a single quadrant around the current pixel
-vec4 quadrant(sampler2D tex, vec2 uv, float xDir, float yDir, vec2 resolution) {
-	vec3 pointTotal = vec3(0,0,0);
+     for (int j = -radius; j <= 0; ++j)  {
+         for (int i = 0; i <= radius; ++i)  {
+             c = texture(SCREEN_TEXTURE, uv + vec2(float(i),float(j)) * src_size).rgb;
+             m1 += c;
+             s1 += c * c;
+         }
+     }
 
-	float maxPoint = 0.0;
-	float minPoint = 255.0;
-	for (int i=0; i<kernel4.length(); i++) {
-		// Apply the direction modifiers to the coordinate
-		vec2 uvOffset = (kernel4[i]*vec2(xDir, yDir))/resolution;
-		vec3 point = texture(tex, uv + uvOffset).xyz;
+     for (int j = 0; j <= radius; ++j)  {
+         for (int i = 0; i <= radius; ++i)  {
+             c = texture(SCREEN_TEXTURE, uv + vec2(float(i),float(j)) * src_size).rgb;
+             m2 += c;
+             s2 += c * c;
+         }
+     }
 
-		// Changing this value calculation has interesting effects on the colour groupings
-		float value = max(max(point.x, point.y), point.z);
-		pointTotal += point;
-		maxPoint = max(maxPoint, value);
-		minPoint = min(minPoint, value);
-	}
+     for (int j = 0; j <= radius; ++j)  {
+         for (int i = -radius; i <= 0; ++i)  {
+             c = texture(SCREEN_TEXTURE, uv + vec2(float(i),float(j)) * src_size).rgb;
+             m3 += c;
+             s3 += c * c;
+         }
+     }
 
-	// Standard deviation can be quickly approximated and the loss of accuracy does not diminish the effect
-	float standardDeviation = maxPoint-minPoint;
 
-	// Return a vec4 to get round not being able to return structs or arrays
-	return vec4(pointTotal.x, pointTotal.y, pointTotal.z, standardDeviation);
-}
+     float min_sigma2 = 1e+2;
+     m0 /= n;
+     s0 = abs(s0 / n - m0 * m0);
 
-void fragment() {
-	vec2 resolution = vec2(textureSize(SCREEN_TEXTURE, 0));
+     float sigma2 = s0.r + s0.g + s0.b;
+     if (sigma2 < min_sigma2) {
+         min_sigma2 = sigma2;
+         COLOR = vec4(m0, 1.0);
+     }
 
-	// Get the mean and standard deviation of all quadrants around the current pixel
-	vec4 quadrants[4] = {
-		quadrant(SCREEN_TEXTURE, SCREEN_UV, -1.0, -1.0, resolution),
-		quadrant(SCREEN_TEXTURE, SCREEN_UV, 1.0, -1.0, resolution),
-		quadrant(SCREEN_TEXTURE, SCREEN_UV, -1.0, 1.0, resolution),
-		quadrant(SCREEN_TEXTURE, SCREEN_UV, 1.0, 1.0, resolution)
-	};
+     m1 /= n;
+     s1 = abs(s1 / n - m1 * m1);
 
-	// Find the quadrant with the lowest standard deviation
-	float minStandardDeviation = 255.0;
-	vec3 colour = vec3(0,0,0);
-	for (int i=0; i<=3; i++) {
-		if (quadrants[i].a < minStandardDeviation) {
-			minStandardDeviation = quadrants[i].a;
-			colour = quadrants[i].xyz;
-		}
-	}
-	// Use the mean colour of the lowest deviation quadrant
-	COLOR.xyz = colour/float(kernel4.length());
-}
+     sigma2 = s1.r + s1.g + s1.b;
+     if (sigma2 < min_sigma2) {
+         min_sigma2 = sigma2;
+         COLOR = vec4(m1, 1.0);
+     }
+
+     m2 /= n;
+     s2 = abs(s2 / n - m2 * m2);
+
+     sigma2 = s2.r + s2.g + s2.b;
+     if (sigma2 < min_sigma2) {
+         min_sigma2 = sigma2;
+         COLOR = vec4(m2, 1.0);
+     }
+
+     m3 /= n;
+     s3 = abs(s3 / n - m3 * m3);
+
+     sigma2 = s3.r + s3.g + s3.b;
+     if (sigma2 < min_sigma2) {
+         min_sigma2 = sigma2;
+         COLOR = vec4(m3, 1.0);
+     }
+ }

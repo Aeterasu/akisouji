@@ -100,7 +100,6 @@ func _clean_leaf(index : int, sorted_index : int):
 
 	multimesh.set_instance_transform(index, transform)
 
-# TODO: optimize with binary search
 # TODO: real gradient circle
 func _clean_on_real_position(real_position : Vector2, circle_radius : float = 1.0):
 	var first_suitable_index : int = leaf_instances_sorted_positions.bsearch(real_position + Vector2.LEFT * circle_radius)

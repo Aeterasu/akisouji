@@ -35,6 +35,8 @@ func _physics_process(delta : float):
 	if (Input.is_action_pressed("player_action_primary")):
 		equipment_viewmodel._attempt_brooming()
 
+	equipment_viewmodel.walk_multiplier = velocity_component.current_velocity.length() / velocity_component.speed
+
 func on_broom():
 	leaf_cleaning_handler._on_player_cleaning_input(cleaning_radius)
 
