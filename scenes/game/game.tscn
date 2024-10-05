@@ -49,9 +49,6 @@ jump_buffer_size = 8
 cleaning_radius = 1.25
 leaf_cleaning_handler = NodePath("../LeafPopulation/LeafCleaningHandler")
 
-[node name="CSGSphere3D" type="CSGSphere3D" parent="Player"]
-visible = false
-
 [node name="Control" type="Control" parent="."]
 process_priority = -1
 process_physics_priority = -1
@@ -83,6 +80,7 @@ script = ExtResource("5_emot5")
 
 [node name="LeafPopulation" type="Node" parent="." node_paths=PackedStringArray("target_multimesh_instance", "target_sub_viewport", "leaf_cleaning_handler", "leaf_color_palette")]
 script = ExtResource("3_672ow")
+enabled = false
 leaves_per_pixel = 64
 target_multimesh_instance = NodePath("../MultiMeshInstance3D")
 target_sub_viewport = NodePath("../Control/SubViewportContainer/SubViewport")

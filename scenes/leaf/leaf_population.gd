@@ -1,5 +1,7 @@
 extends Node
 
+@export var enabled : bool = true
+
 @export var leaves_per_pixel : int = 4
 @export_range(0.0, 2.0) var position_disperse : float = 2.0
 
@@ -23,6 +25,9 @@ var leaf_instances_sorted_by_position : Array[LeafInstanceData] = []
 var leaf_instances_sorted_positions : Array[Vector2] = []
 
 func _ready() -> void:
+	if (!enabled):
+		return
+
 	await get_tree().create_timer(0.5).timeout # TODO: this has a potential to go VERY sour. replace with something better later
 	_populate_multimesh()
 	await get_tree().create_timer(0.5).timeout
