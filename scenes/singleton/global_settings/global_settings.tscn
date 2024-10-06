@@ -4,4 +4,5 @@
 
 [node name="GlobalSettings" type="Node"]
 script = ExtResource("1_diykh")
+gamepad_sensitvity = 96.0
 fov = 75.0

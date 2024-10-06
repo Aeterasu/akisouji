@@ -8,6 +8,8 @@ class_name Player extends CharacterBody3D
 @export var jump_strength : float = 2.0
 @export_range(0, 30) var jump_buffer_size : int = 3
 @export_range(1.0, 2.0) var sprint_speed_multiplier : float = 1.5
+@export var sprint_jumping_boost_amount : float = 1.0
+@export var sprint_jumping_falloff : float = 4.0
 
 @export_group("Camera")
 @export var camera : Camera3D = null
@@ -25,6 +27,8 @@ var gamepad_sensitvity : float = 64.0
 var gamepad_deadzone : float = 0.3
 
 var current_jump_buffer_ticks : int = 0
+
+var current_sprint_jump_boost : Vector2 = Vector2()
 
 var wish_jumping : bool = false
 var wish_sprint : bool = false
@@ -108,8 +112,13 @@ func move_camera(input : Vector2) -> void:
 	camera_origin.rotation_degrees.x = clampf(camera_origin.rotation_degrees.x, -80.0, 80.0)
 
 func movement_process(delta):
+	current_sprint_jump_boost = current_sprint_jump_boost.lerp(Vector2.ZERO, sprint_jumping_falloff * delta)
+
 	if (wish_jumping):
 		if (is_on_floor()):
+			if (current_jump_buffer_ticks > 0 and wish_sprint):
+				current_sprint_jump_boost += velocity_component.current_velocity.normalized() * sprint_jumping_boost_amount		
+
 			gravity_component.hop(jump_strength)
 			current_jump_buffer_ticks = 0
 			wish_jumping = false
@@ -125,7 +134,9 @@ func movement_process(delta):
 	else:
 		velocity_component.speed_multiplier = 1.0
 
-	velocity = Vector3(velocity_component.current_velocity.x, gravity_component.current_velocity, velocity_component.current_velocity.y)
+	velocity = Vector3(velocity_component.current_velocity.x, gravity_component.current_velocity, velocity_component.current_velocity.y) + Vector3(current_sprint_jump_boost.x, 0.0, current_sprint_jump_boost.y)
+
+	print(current_sprint_jump_boost)
 
 	move_and_slide()
 
@@ -142,4 +153,4 @@ func toggle_sprint(toggle : bool):
 		else:
 			equipment_viewmodel._animate_sprint_end()
 
-	wish_sprint = toggle	
+	wish_sprint = toggle
