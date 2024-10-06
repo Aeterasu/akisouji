@@ -12,6 +12,8 @@ extends Node
 
 @export var leaf_color_palette : LeafColorPalette = null
 
+@export var leaf_particle_manager : LeafParticleManager = null
+
 var multimesh : MultiMesh = null
 
 var viewport_image_size = Vector2i()
@@ -23,6 +25,7 @@ var leaf_chunk_data_array : Array[LeafChunkData] = []
 
 var leaf_instances_sorted_by_position : Array[LeafInstanceData] = []
 var leaf_instances_sorted_positions : Array[Vector2] = []
+var cleaned_leaves : Array[bool] = []
 
 func _ready() -> void:
 	if (!enabled):
@@ -83,6 +86,8 @@ func _translate_multimesh() -> void:
 			multimesh.set_instance_transform(offset, transform)
 			multimesh.set_instance_color(offset, leaf_color_palette._get_random_color())
 
+			cleaned_leaves.append(false)
+
 			data.indexes.append(offset)
 
 			leaf_instances_sorted_by_position.append(LeafInstanceData.create(Vector2(origin.x, origin.z), offset))
@@ -100,29 +105,38 @@ func sort_leaf_instances_by_position(a : LeafInstanceData, b : LeafInstanceData)
 	return false
 			
 func _on_clean_origin_position_updated(global_position : Vector3, circle_radius : float = 1.0) -> void:
-	_clean_on_real_position(Vector2(global_position.x, global_position.z), circle_radius)
+	_clean_on_real_position(global_position, circle_radius)
 
 func _clean_leaf(index : int, sorted_index : int):
 	var transform = Transform3D()
-	transform.origin = Vector3(999, 999, 999)
+	transform.origin = Vector3(0, 0, 0)
 
 	multimesh.set_instance_transform(index, transform)
 
+	cleaned_leaves[index] = true
+
 # TODO: real gradient circle
-func _clean_on_real_position(real_position : Vector2, circle_radius : float = 1.0):
-	var first_suitable_index : int = leaf_instances_sorted_positions.bsearch(real_position + Vector2.LEFT * circle_radius)
+func _clean_on_real_position(real_position : Vector3, circle_radius : float = 1.0):
+	var real_position_2d = Vector2(real_position.x, real_position.z)
+	var first_suitable_index : int = leaf_instances_sorted_positions.bsearch(real_position_2d + Vector2.LEFT * circle_radius)
+
+	var cleaned_amount = 0
 
 	for i in range(first_suitable_index, len(leaf_instances_sorted_by_position) - 1):
 		var leaf = leaf_instances_sorted_by_position[i]
 		var position = leaf.instance_position
-		var distance = real_position.distance_to(position)
+		var distance = real_position_2d.distance_to(position)
 
-		if (distance <= circle_radius):
+		if (!cleaned_leaves[leaf.instance_index] && distance <= circle_radius):
 			var chance = 1.0
 			if (distance > leaf_cleaning_handler.falloff_threshold):
 				chance = (1 - (distance / (circle_radius + leaf_cleaning_handler.falloff_threshold))) * leaf_cleaning_handler.base_cleaning_coeff
 			
 			if (randf() <= chance):
 				_clean_leaf(leaf.instance_index, i)
-		elif (position >= real_position + Vector2.ONE * circle_radius):
+				cleaned_amount += 1
+		elif (position >= real_position_2d + Vector2.ONE * circle_radius):
 			break
+
+	if (cleaned_amount / 3 > 0):
+		leaf_particle_manager._create_particles_on_real_position(real_position, cleaned_amount / 3)

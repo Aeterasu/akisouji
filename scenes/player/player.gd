@@ -180,10 +180,10 @@ func _on_landing():
 	if (wish_sprint):
 		multiplier = 1.2
 
-	leaf_cleaning_handler._on_player_cleaning_on_position(global_position, jump_cleaning_radius * multiplier)
+	leaf_cleaning_handler._on_player_cleaning_on_position(global_position + Vector3.DOWN, jump_cleaning_radius * multiplier)
 
 func _on_sprint_cleaning_timeout():
 	if (!wish_sprint or !is_on_floor()):
 		return
 
-	leaf_cleaning_handler._on_player_cleaning_on_position(global_position, sprint_cleaning_radius)
+	leaf_cleaning_handler._on_player_cleaning_on_position(global_position + Vector3.DOWN, sprint_cleaning_radius)

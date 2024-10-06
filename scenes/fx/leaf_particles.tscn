@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://biun1d1hu4wq4"]
+
+[ext_resource type="Texture2D" uid="uid://4h6x30l0l2f0" path="res://assets/texture/leaf/colored/texture_leaf_colored.png" id="1_mttoa"]
+[ext_resource type="Script" path="res://scenes/fx/leaf_particles.gd" id="2_o8k4b"]
+
+[sub_resource type="Gradient" id="Gradient_64oko"]
+offsets = PackedFloat32Array(0, 0.110294, 0.818627, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_yj14r"]
+gradient = SubResource("Gradient_64oko")
+
+[sub_resource type="Curve" id="Curve_f0ytp"]
+min_value = -2.0
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_qksx1"]
+min_value = -2.0
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_x4rje"]
+min_value = -2.0
+max_value = 2.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_dmjv4"]
+curve_x = SubResource("Curve_f0ytp")
+curve_y = SubResource("Curve_qksx1")
+curve_z = SubResource("Curve_x4rje")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7htln"]
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+emission_shape_offset = Vector3(0, 0.5, 0)
+emission_shape_scale = Vector3(0.2, 0.2, 0.2)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+angle_min = -82.4
+angle_max = 94.6
+direction = Vector3(1, 1, 0)
+spread = 58.636
+initial_velocity_min = 0.4
+initial_velocity_max = 1.5
+angular_velocity_min = -42.71
+angular_velocity_max = 24.41
+orbit_velocity_min = -0.306
+orbit_velocity_max = 0.316
+orbit_velocity_curve = SubResource("CurveXYZTexture_dmjv4")
+gravity = Vector3(0, -0.3, 0)
+color_ramp = SubResource("GradientTexture1D_yj14r")
+anim_offset_max = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76akf"]
+transparency = 1
+no_depth_test = true
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("1_mttoa")
+billboard_mode = 3
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_3p35k"]
+material = SubResource("StandardMaterial3D_76akf")
+size = Vector2(0.3, 0.3)
+
+[node name="LeafParticles" type="GPUParticles3D"]
+emitting = false
+amount = 6
+lifetime = 3.0
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_7htln")
+draw_pass_1 = SubResource("QuadMesh_3p35k")
+script = ExtResource("2_o8k4b")
