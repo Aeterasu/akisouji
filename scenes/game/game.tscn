@@ -32,6 +32,7 @@ transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 2, 
 jump_buffer_size = 8
 cleaning_radius = 1.25
 leaf_cleaning_handler = NodePath("../LeafPopulation/LeafCleaningHandler")
+sprint_cleaning_cooldown = 0.1
 
 [node name="Control" type="Control" parent="."]
 process_priority = -1

@@ -20,3 +20,6 @@ func _on_player_cleaning_input(circle_radius : float = 1.0) -> void:
 
 	if (result):
 		on_cleaning_request_at_global_position.emit(result["position"], circle_radius)
+
+func _on_player_cleaning_on_position(position : Vector3, circle_radius : float = 1.0):
+	on_cleaning_request_at_global_position.emit(position, circle_radius)

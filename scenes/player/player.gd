@@ -18,6 +18,9 @@ class_name Player extends CharacterBody3D
 @export_group("Leaf Cleaning")
 @export var cleaning_radius : float = 1.0
 @export var leaf_cleaning_handler : LeafCleaningHandler = null
+@export var jump_cleaning_radius : float = 0.5
+@export var sprint_cleaning_cooldown : float = 0.25
+@export var sprint_cleaning_radius : float = 0.25
 
 @export_group("Equipment")
 @export var equipment_viewmodel : BroomViewmodel = null
@@ -30,8 +33,12 @@ var current_jump_buffer_ticks : int = 0
 
 var current_sprint_jump_boost : Vector2 = Vector2()
 
+var sprint_cleaning_timer : Timer = null
+
 var wish_jumping : bool = false
 var wish_sprint : bool = false
+
+var is_landing : bool = false
 
 func _ready():
 	mouse_sensitivity = GlobalSettings.mouse_sensitivity
@@ -40,11 +47,24 @@ func _ready():
 
 	equipment_viewmodel.on_broom.connect(on_broom)
 
+	sprint_cleaning_timer = Timer.new()
+	add_child(sprint_cleaning_timer)
+	sprint_cleaning_timer.wait_time = sprint_cleaning_cooldown
+	sprint_cleaning_timer.timeout.connect(_on_sprint_cleaning_timeout)
+	sprint_cleaning_timer.start()
+
 func _physics_process(delta : float):
 	input_process(delta)
 	movement_process(delta)
 
 	equipment_viewmodel.walk_multiplier = velocity_component.current_velocity.length() / velocity_component.speed
+
+	if (gravity_component.current_velocity < delta - 0.1):
+		is_landing = true
+
+	if (is_landing && is_on_floor()):
+		is_landing = false
+		_on_landing()
 
 func on_broom():
 	leaf_cleaning_handler._on_player_cleaning_input(cleaning_radius)
@@ -136,8 +156,6 @@ func movement_process(delta):
 
 	velocity = Vector3(velocity_component.current_velocity.x, gravity_component.current_velocity, velocity_component.current_velocity.y) + Vector3(current_sprint_jump_boost.x, 0.0, current_sprint_jump_boost.y)
 
-	print(current_sprint_jump_boost)
-
 	move_and_slide()
 
 	if (is_on_floor()):
@@ -154,3 +172,17 @@ func toggle_sprint(toggle : bool):
 			equipment_viewmodel._animate_sprint_end()
 
 	wish_sprint = toggle
+
+func _on_landing():
+	var multiplier = 1.0
+
+	if (wish_sprint):
+		multiplier = 1.2
+
+	leaf_cleaning_handler._on_player_cleaning_on_position(global_position, jump_cleaning_radius * multiplier)
+
+func _on_sprint_cleaning_timeout():
+	if (!wish_sprint or !is_on_floor()):
+		return
+
+	leaf_cleaning_handler._on_player_cleaning_on_position(global_position, sprint_cleaning_radius)
