@@ -8,8 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://1rbyx1a81x74" path="res://assets/model/tool/mesh_broom.blend" id="5_nl0cb"]
 [ext_resource type="Texture2D" uid="uid://4qx2h2eyxpqf" path="res://assets/texture/tool/texture_broom_1_albm.png" id="6_g4l35"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_0hdl6"]
-height = 1.8
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dq522"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_skvaf"]
 shading_mode = 0
@@ -273,7 +272,7 @@ camera_origin = NodePath("CameraOrigin")
 equipment_viewmodel = NodePath("CameraOrigin/Camera3D/ViewmodelOrigin/BroomViewmodel")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("CylinderShape3D_0hdl6")
+shape = SubResource("CapsuleShape3D_dq522")
 
 [node name="GravityComponent" type="Node" parent="."]
 script = ExtResource("2_nr0jr")

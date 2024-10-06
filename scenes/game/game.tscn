@@ -1,30 +1,23 @@
 [gd_scene load_steps=15 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
+[ext_resource type="Texture2D" uid="uid://bfjyoyw0swl5x" path="res://assets/texture/leaf_map/texture_leaf_map_1.png" id="3_85cyw"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_population.gd" id="3_672ow"]
-[ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://scenes/leaf/leaf_mesh.tres" id="3_snafj"]
+[ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://resource/mesh/leaf_mesh.tres" id="3_snafj"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_cleaning_handler.gd" id="3_tlxk6"]
 [ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="4_yxefm"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_noise_sprite.gd" id="5_emot5"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_color_palette.gd" id="7_tu2pw"]
+[ext_resource type="Material" uid="uid://c4kdvxtxf6qht" path="res://resource/material/material_grass_1.tres" id="8_xqhm7"]
+[ext_resource type="Material" uid="uid://cjtw4ylyq480t" path="res://resource/material/material_stone_pavement.tres" id="9_1um54"]
 
-[sub_resource type="Gradient" id="Gradient_gclsu"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.268199, 0.524904, 1)
-colors = PackedColorArray(0.0605303, 0.0605304, 0.0605303, 1, 0.211819, 0.211819, 0.211819, 1, 0.266575, 0.266575, 0.266575, 1, 1, 1, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_nmslb"]
-noise_type = 2
-frequency = 0.1383
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ed7tw"]
-width = 64
-height = 64
-color_ramp = SubResource("Gradient_gclsu")
-noise = SubResource("FastNoiseLite_nmslb")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b2hyn"]
-albedo_color = Color(0, 0, 0, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6cyti"]
+albedo_color = Color(0.201527, 0.201527, 0.201527, 1)
+metallic = 0.68
+metallic_specular = 1.0
+uv1_scale = Vector3(0.33, 0.33, 0.33)
+uv1_triplanar = true
+uv1_world_triplanar = true
 
 [sub_resource type="MultiMesh" id="MultiMesh_oqm1k"]
 transform_format = 1
@@ -38,13 +31,13 @@ size = Vector2(36, 36)
 background_mode = 1
 background_color = Color(0.745098, 0.760784, 0.776471, 1)
 ambient_light_color = Color(1, 1, 1, 1)
-glow_bloom = 0.48
+glow_hdr_threshold = 2.64
 
 [node name="Game" type="Node3D"]
 script = ExtResource("1_bcfl2")
 
 [node name="Player" parent="." node_paths=PackedStringArray("leaf_cleaning_handler") instance=ExtResource("4_yxefm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.3388, 8.124, 32)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 3, 2, 45)
 jump_buffer_size = 8
 cleaning_radius = 1.25
 leaf_cleaning_handler = NodePath("../LeafPopulation/LeafCleaningHandler")
@@ -69,19 +62,18 @@ offset_bottom = 106.0
 [node name="SubViewport" type="SubViewport" parent="Control/SubViewportContainer"]
 disable_3d = true
 handle_input_locally = false
-size = Vector2i(64, 64)
+size = Vector2i(128, 128)
 render_target_update_mode = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Control/SubViewportContainer/SubViewport"]
 texture_filter = 1
-texture = SubResource("NoiseTexture2D_ed7tw")
+texture = ExtResource("3_85cyw")
 centered = false
 script = ExtResource("5_emot5")
 
 [node name="LeafPopulation" type="Node" parent="." node_paths=PackedStringArray("target_multimesh_instance", "target_sub_viewport", "leaf_cleaning_handler", "leaf_color_palette")]
 script = ExtResource("3_672ow")
-enabled = false
-leaves_per_pixel = 64
+leaves_per_pixel = 32
 target_multimesh_instance = NodePath("../MultiMeshInstance3D")
 target_sub_viewport = NodePath("../Control/SubViewportContainer/SubViewport")
 leaf_cleaning_handler = NodePath("LeafCleaningHandler")
@@ -97,19 +89,174 @@ script = ExtResource("7_tu2pw")
 colors = Array[Color]([Color(0.83, 0.256747, 0.2158, 1), Color(0.83, 0.67811, 0.3237, 1), Color(0.99, 0.52602, 0.2574, 1), Color(0.94, 0.64625, 0.235, 1), Color(0.65, 0.301167, 0.195, 1), Color(0.592157, 0.572549, 0.258824, 1)])
 fallback_color = Color(0.968627, 0.533333, 0, 1)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 0, 32)
+[node name="TestLevel" type="Node3D" parent="."]
+
+[node name="Ground" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64, -0.12, 64)
 use_collision = true
-size = Vector3(64, 0.1, 64)
-material = SubResource("StandardMaterial3D_b2hyn")
+size = Vector3(128, 0.1, 128)
+material = ExtResource("8_xqhm7")
+
+[node name="Fence1" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 1.38, 64)
+use_collision = true
+size = Vector3(0.1, 6, 128)
+material = SubResource("StandardMaterial3D_6cyti")
+
+[node name="Fence3" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38, 64)
+use_collision = true
+size = Vector3(0.1, 6, 128)
+material = SubResource("StandardMaterial3D_6cyti")
+
+[node name="Fence2" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 64, 1.38, 0)
+use_collision = true
+size = Vector3(0.1, 6, 128)
+material = SubResource("StandardMaterial3D_6cyti")
+
+[node name="Fence5" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 48.75, 1.38, 60.5)
+use_collision = true
+size = Vector3(0.1, 6, 52.5)
+material = SubResource("StandardMaterial3D_6cyti")
+
+[node name="Fence7" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 55.75, 1.38, 96.5)
+use_collision = true
+size = Vector3(0.1, 6, 55.5)
+material = SubResource("StandardMaterial3D_6cyti")
+
+[node name="Fence6" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 78.3736, 1.38, 78.497)
+use_collision = true
+size = Vector3(0.1, 6, 38)
+material = SubResource("StandardMaterial3D_6cyti")
+
+[node name="Fence8" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(0.987019, 0, 0.160605, 0, 1, 0, -0.160605, 0, 0.987019, 23.6069, 1.38, 67.6398)
+use_collision = true
+size = Vector3(0.1, 6, 15)
+material = SubResource("StandardMaterial3D_6cyti")
+
+[node name="Fence9" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(0.987019, 0, 0.160605, 0, 1, 0, -0.160605, 0, 0.987019, 27.2465, 1.38, 91.6074)
+use_collision = true
+size = Vector3(0.1, 6, 10)
+material = SubResource("StandardMaterial3D_6cyti")
+
+[node name="Fence4" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 64, 1.38, 128)
+use_collision = true
+size = Vector3(0.1, 6, 128)
+material = SubResource("StandardMaterial3D_6cyti")
+
+[node name="Pavement" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 64.75, -0.02, 45.5)
+use_collision = true
+size = Vector3(116.5, 0.1, 6)
+material = ExtResource("9_1um54")
+
+[node name="Pavement11" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 111.75, -0.02, 85.5)
+use_collision = true
+size = Vector3(55.5, 0.1, 6)
+material = ExtResource("9_1um54")
+
+[node name="Pavement13" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(-0.149794, 0, 0.988717, 0, 1, 0, -0.988717, 0, -0.149794, 18.8089, -0.02, 78.2556)
+use_collision = true
+size = Vector3(70.5, 0.1, 6)
+material = ExtResource("9_1um54")
+
+[node name="Pavement12" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 69.5, -0.02, 110.5)
+use_collision = true
+size = Vector3(91, 0.1, 6)
+material = ExtResource("9_1um54")
+
+[node name="Pavement4" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, 0.258819, 18.0074, -0.02, 37.2426)
+use_collision = true
+size = Vector3(19.5, 0.1, 4)
+material = ExtResource("9_1um54")
+
+[node name="Pavement9" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 98.5074, -0.02, 37.2426)
+use_collision = true
+size = Vector3(19.5, 0.1, 4)
+material = ExtResource("9_1um54")
+
+[node name="Pavement10" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(-2.98023e-08, 0, 1, 0, 1, 0, -1, 0, -2.98023e-08, 74.0074, -0.02, 37.2426)
+use_collision = true
+size = Vector3(19.5, 0.1, 4)
+material = ExtResource("9_1um54")
+
+[node name="Pavement5" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5, -0.02, 29.5)
+use_collision = true
+size = Vector3(50, 0.1, 4)
+material = ExtResource("9_1um54")
+
+[node name="Pavement14" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27, -0.02, 80)
+use_collision = true
+size = Vector3(17, 0.1, 4)
+material = ExtResource("9_1um54")
+
+[node name="Pavement8" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 89.25, -0.02, 29.5)
+use_collision = true
+size = Vector3(17.5, 0.1, 4)
+material = ExtResource("9_1um54")
+
+[node name="Pavement3" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 102, -0.02, 57.75)
+use_collision = true
+size = Vector3(30, 0.1, 30.5)
+material = ExtResource("9_1um54")
+
+[node name="Pavement1" type="CSGCylinder3D" parent="TestLevel"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, -0.02, 45.5)
+use_collision = true
+radius = 8.0
+height = 0.1
+sides = 6
+material = ExtResource("9_1um54")
+
+[node name="Pavement2" type="CSGCylinder3D" parent="TestLevel"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 128.5, -0.02, 45.5)
+use_collision = true
+radius = 8.0
+height = 0.1
+sides = 6
+material = ExtResource("9_1um54")
+
+[node name="Pavement7" type="CSGCylinder3D" parent="TestLevel"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 74.5, -0.02, 29.5)
+use_collision = true
+radius = 8.0
+height = 0.1
+sides = 6
+material = ExtResource("9_1um54")
+
+[node name="Pavement6" type="CSGCylinder3D" parent="TestLevel"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 74.5, 3.98, 29.5)
+use_collision = true
+radius = 5.0
+height = 10.0
+
+[node name="Church" type="CSGBox3D" parent="TestLevel"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 52.5, 4, 81.6803)
+size = Vector3(36, 8, 20)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -0.707107, 0.707107, 0, -0.707107, -0.707107, 0, 25.5, 0)
 light_color = Color(0.871403, 0.717197, 0.695115, 1)
 shadow_enabled = true
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.603562, 0)
 multimesh = SubResource("MultiMesh_oqm1k")
 
 [node name="Leaf" type="MeshInstance3D" parent="MultiMeshInstance3D"]

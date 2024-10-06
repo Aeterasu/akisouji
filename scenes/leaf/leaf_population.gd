@@ -72,8 +72,11 @@ func _translate_multimesh() -> void:
 		var data = leaf_chunk_data_array[u]
 		data.last_clean_index = offset
 
+		# TODO: tie leaves' z position to a heightmap. use 255 colors with 0.1 step
 		for v in (range(data.index_count)):
-			var origin = Vector3(white_pixels[u].x - pixel_offset + (randf() - 0.5) * position_disperse, 1, white_pixels[u].y - pixel_offset + (randf() - 0.5) * position_disperse)
+			var position_x = clampf(white_pixels[u].x - pixel_offset + (randf() - 0.5) * position_disperse, 0.0, viewport_image_size.x)
+			var position_y = clampf(white_pixels[u].y - pixel_offset + (randf() - 0.5) * position_disperse, 0.0, viewport_image_size.y)
+			var origin = Vector3(position_x, 0.05, position_y)
 			var transform = Transform3D()
 			transform = transform.rotated(Vector3.UP, randf() * PI * 2)
 			transform = transform.translated(origin)
