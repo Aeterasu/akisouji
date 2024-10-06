@@ -15,6 +15,11 @@ var rotation_sin_tick : float = 0.0
 var strength : float = 0.0
 
 func _physics_process(delta):
+	if (!GlobalSettings.camera_wobble_enabled):
+		position = Vector3.ZERO
+		rotation_degrees = Vector3.ZERO
+		return
+
 	if (!player.is_on_floor()):
 		strength = lerp(strength, 0.0, 4.0 * delta)
 	else:
