@@ -1,9 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://077fpjam3rlw"]
+[gd_scene load_steps=18 format=3 uid="uid://077fpjam3rlw"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_e0tat"]
 [ext_resource type="Script" path="res://scenes/component/gravity_component/gravity_component.gd" id="2_nr0jr"]
 [ext_resource type="Script" path="res://scenes/component/velocity_component/velocity_component.gd" id="3_umteq"]
 [ext_resource type="Script" path="res://scenes/player/player_camera.gd" id="4_feodf"]
+[ext_resource type="Script" path="res://scenes/player/camera_effect_head_wobble.gd" id="4_nfr6p"]
 [ext_resource type="Script" path="res://scenes/tool/viewmodel/broom_viewmodel.gd" id="5_fq1iu"]
 [ext_resource type="PackedScene" uid="uid://1rbyx1a81x74" path="res://assets/mesh/tool/mesh_broom.blend" id="5_nl0cb"]
 [ext_resource type="Texture2D" uid="uid://4qx2h2eyxpqf" path="res://assets/texture/tool/texture_broom_1_albm.png" id="6_g4l35"]
@@ -269,9 +270,9 @@ gravity_component = NodePath("GravityComponent")
 jump_strength = 5.0
 sprint_jumping_boost_amount = 4.0
 sprint_jumping_falloff = 2.0
-camera = NodePath("CameraOrigin/Camera3D")
+camera = NodePath("CameraOrigin/CameraWobble/Camera3D")
 camera_origin = NodePath("CameraOrigin")
-equipment_viewmodel = NodePath("CameraOrigin/Camera3D/ViewmodelOrigin/BroomViewmodel")
+equipment_viewmodel = NodePath("CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin/BroomViewmodel")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_dq522")
@@ -289,24 +290,33 @@ decel_weight = 4.0
 [node name="CameraOrigin" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.685927, 0)
 
-[node name="Camera3D" type="Camera3D" parent="CameraOrigin"]
+[node name="CameraWobble" type="Node3D" parent="CameraOrigin" node_paths=PackedStringArray("velocity_component", "player")]
+script = ExtResource("4_nfr6p")
+velocity_component = NodePath("../../VelocityComponent")
+player = NodePath("../..")
+position_offset = Vector3(0, 0.05, 0)
+position_speed = 12.0
+rotation_degrees_offset = Vector3(0, 0, 0.1)
+rotation_speed = 4.0
+
+[node name="Camera3D" type="Camera3D" parent="CameraOrigin/CameraWobble"]
 fov = 90.0
 script = ExtResource("4_feodf")
 
-[node name="ViewmodelOrigin" type="Node3D" parent="CameraOrigin/Camera3D"]
+[node name="ViewmodelOrigin" type="Node3D" parent="CameraOrigin/CameraWobble/Camera3D"]
 
-[node name="BroomViewmodel" type="Node3D" parent="CameraOrigin/Camera3D/ViewmodelOrigin" node_paths=PackedStringArray("animation_player")]
+[node name="BroomViewmodel" type="Node3D" parent="CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin" node_paths=PackedStringArray("animation_player")]
 script = ExtResource("5_fq1iu")
 animation_player = NodePath("AnimationPlayer")
 walk_cycle_direction = Vector3(0.025, 0.01, 0)
 
-[node name="mesh_broom" parent="CameraOrigin/Camera3D/ViewmodelOrigin/BroomViewmodel" instance=ExtResource("5_nl0cb")]
+[node name="mesh_broom" parent="CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin/BroomViewmodel" instance=ExtResource("5_nl0cb")]
 transform = Transform3D(0.0749063, -0.00298185, -0.00226904, -0.00309007, -0.0234714, -0.0711656, 0.0021193, 0.0711702, -0.0235649, 0.084, -0.102, -0.154)
 cast_shadow = 0
 surface_material_override/0 = SubResource("StandardMaterial3D_skvaf")
 surface_material_override/1 = SubResource("StandardMaterial3D_cjscd")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CameraOrigin/Camera3D/ViewmodelOrigin/BroomViewmodel"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin/BroomViewmodel"]
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_52egn")

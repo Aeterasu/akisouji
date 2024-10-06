@@ -21,7 +21,7 @@ falloff_threshold = 0.3
 
 [node name="LeafColorPalette" type="Node" parent="."]
 script = ExtResource("3_y5vbc")
-colors = Array[Color]([Color(0.83, 0.256747, 0.2158, 1), Color(0.83, 0.67811, 0.3237, 1), Color(0.99, 0.52602, 0.2574, 1), Color(0.94, 0.64625, 0.235, 1), Color(0.65, 0.301167, 0.195, 1), Color(0.592157, 0.572549, 0.258824, 1)])
+colors = Array[Color]([Color(0.83, 0.256747, 0.2158, 1), Color(0.83, 0.67811, 0.3237, 1), Color(0.99, 0.45078, 0.1386, 1), Color(0.94, 0.64625, 0.235, 1), Color(0.65, 0.301167, 0.195, 1), Color(0.988235, 0.45098, 0.137255, 1), Color(0.831373, 0.254902, 0.215686, 1), Color(0.988235, 0.45098, 0.137255, 1)])
 fallback_color = Color(0.988235, 0.52549, 0.258824, 1)
 
 [node name="LeafParticleManager" type="Node" parent="."]

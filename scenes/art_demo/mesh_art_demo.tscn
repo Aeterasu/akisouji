@@ -31,13 +31,13 @@ surface_material_override/0 = ExtResource("3_bhung")
 [node name="Fence" parent="." index="2"]
 surface_material_override/0 = ExtResource("4_86b2x")
 
-[node name="Fence_003" parent="." index="3"]
+[node name="Fence_001" parent="." index="3"]
 surface_material_override/0 = ExtResource("4_86b2x")
 
-[node name="Fence_001" parent="." index="4"]
+[node name="Fence_002" parent="." index="4"]
 surface_material_override/0 = ExtResource("4_86b2x")
 
-[node name="Fence_002" parent="." index="5"]
+[node name="Fence_003" parent="." index="5"]
 surface_material_override/0 = ExtResource("4_86b2x")
 
 [node name="Fence_004" parent="." index="6"]
@@ -285,3 +285,18 @@ mesh = SubResource("PlaneMesh_ug3hq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 1.25)
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_ug3hq")
+
+[node name="Fence_008" parent="." index="14"]
+visible = false
+
+[node name="Fence_009" parent="." index="15"]
+visible = false
+
+[node name="Fence_010" parent="." index="16"]
+visible = false
+
+[node name="Fence_011" parent="." index="17"]
+visible = false
+
+[node name="Plane" parent="." index="18"]
+visible = false

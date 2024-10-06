@@ -7,4 +7,3 @@
 script = ExtResource("1_bcfl2")
 
 [node name="ArtDemo" parent="." instance=ExtResource("11_ycsnd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

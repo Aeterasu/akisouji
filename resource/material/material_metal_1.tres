@@ -8,5 +8,4 @@ albedo_texture = ExtResource("1_htwi8")
 metallic = 0.59
 metallic_specular = 0.29
 roughness_texture = ExtResource("2_b6ui7")
-uv1_scale = Vector3(0.25, 0.25, 0.25)
 uv1_triplanar = true
