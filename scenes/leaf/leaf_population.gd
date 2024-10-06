@@ -6,7 +6,8 @@ extends Node
 @export_range(0.0, 2.0) var position_disperse : float = 2.0
 
 @export var target_multimesh_instance : MultiMeshInstance3D = null
-@export var target_sub_viewport : SubViewport = null
+@export var target_leaf_map : Sprite2D = null
+@export var height_map : Sprite2D = null
 
 @export var leaf_cleaning_handler : LeafCleaningHandler = null
 
@@ -44,8 +45,8 @@ func _populate_multimesh() -> void:
 
 	#get all non-black pixels in our noise texture
 	# 0 - no leaf, 1 - leaf
-	var viewport_texture = target_sub_viewport.get_texture()
-	var image_data = viewport_texture.get_image()
+	var leafmap_texture = target_leaf_map.get_texture()
+	var image_data = leafmap_texture.get_image()
 
 	viewport_image_size = image_data.get_size()
 
@@ -54,13 +55,13 @@ func _populate_multimesh() -> void:
 
 	for i in viewport_image_size.x:
 		for j in viewport_image_size.y:
-			if (image_data.get_pixel(j, i).r > 0.01):
+			if (image_data.get_pixel(i, j).r > 0.01):
 				suitable_pixels_count += 1
-				var leaves_count = floor(leaves_per_pixel * image_data.get_pixel(j, i).r)
+				var leaves_count = floor(leaves_per_pixel * image_data.get_pixel(i, j).r)
 				final_instances_count += leaves_count
-				white_pixels.append(Vector2(j, i))
+				white_pixels.append(Vector2(i, j))
 
-				var leaf_data = LeafChunkData.create(Vector2i(j, i))
+				var leaf_data = LeafChunkData.create(Vector2i(i, j))
 				leaf_data.index_count = leaves_count
 				leaf_chunk_data_array.append(leaf_data)
 
@@ -68,6 +69,9 @@ func _populate_multimesh() -> void:
 
 func _translate_multimesh() -> void:
 	print("Instances: " + str(multimesh.instance_count))
+
+	var heightmap_texture = height_map.get_texture()
+	var heightmap_image_data = heightmap_texture.get_image()	
 
 	var offset : int = 0
 
@@ -79,7 +83,10 @@ func _translate_multimesh() -> void:
 		for v in (range(data.index_count)):
 			var position_x = clampf(white_pixels[u].x - pixel_offset + (randf() - 0.5) * position_disperse, 0.0, viewport_image_size.x)
 			var position_y = clampf(white_pixels[u].y - pixel_offset + (randf() - 0.5) * position_disperse, 0.0, viewport_image_size.y)
-			var origin = Vector3(position_x, 0.05, position_y)
+			var height : float = 0.01
+			height += float(heightmap_image_data.get_pixel(int(white_pixels[u].x), int(white_pixels[u].y)).r8) * 0.01
+
+			var origin = Vector3(position_x, height, position_y)
 			var transform = Transform3D()
 			transform = transform.rotated(Vector3.UP, randf() * PI * 2)
 			transform = transform.translated(origin)

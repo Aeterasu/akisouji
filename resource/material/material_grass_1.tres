@@ -3,7 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://d0q8kywdm5te2" path="res://assets/texture/environment/texture_grass_1_albm.png" id="1_woalr"]
 
 [resource]
+specular_mode = 2
 albedo_texture = ExtResource("1_woalr")
 uv1_scale = Vector3(0.33, 0.33, 0.33)
 uv1_triplanar = true
 uv1_world_triplanar = true
+distance_fade_min_distance = 32.0
+distance_fade_max_distance = 8.0

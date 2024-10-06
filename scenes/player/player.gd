@@ -69,6 +69,9 @@ func _physics_process(delta : float):
 		_on_landing()
 
 func on_broom():
+	if (!leaf_cleaning_handler):
+		return
+
 	leaf_cleaning_handler._on_player_cleaning_input(cleaning_radius, cleaning_range)
 
 func input_process(delta : float):

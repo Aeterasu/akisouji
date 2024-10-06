@@ -8,7 +8,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sk82f"]
 shader = ExtResource("4_cm0ii")
-shader_parameter/radius = 2
+shader_parameter/radius = 3
 shader_parameter/offset = Vector3(0, 0, 0)
 
 [node name="Main" type="Node"]

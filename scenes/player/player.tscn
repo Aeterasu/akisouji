@@ -5,14 +5,14 @@
 [ext_resource type="Script" path="res://scenes/component/velocity_component/velocity_component.gd" id="3_umteq"]
 [ext_resource type="Script" path="res://scenes/player/player_camera.gd" id="4_feodf"]
 [ext_resource type="Script" path="res://scenes/tool/viewmodel/broom_viewmodel.gd" id="5_fq1iu"]
-[ext_resource type="PackedScene" uid="uid://1rbyx1a81x74" path="res://assets/model/tool/mesh_broom.blend" id="5_nl0cb"]
+[ext_resource type="PackedScene" uid="uid://1rbyx1a81x74" path="res://assets/mesh/tool/mesh_broom.blend" id="5_nl0cb"]
 [ext_resource type="Texture2D" uid="uid://4qx2h2eyxpqf" path="res://assets/texture/tool/texture_broom_1_albm.png" id="6_g4l35"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dq522"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_skvaf"]
-shading_mode = 0
 diffuse_mode = 2
+specular_mode = 2
 albedo_texture = ExtResource("6_g4l35")
 texture_filter = 1
 

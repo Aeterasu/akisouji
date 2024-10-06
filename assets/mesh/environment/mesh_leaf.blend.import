@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://1rbyx1a81x74"
-path="res://.godot/imported/mesh_broom.blend-6e52cfd1555b6c575093dda786af1b31.scn"
+uid="uid://cpvbi5j43o284"
+path="res://.godot/imported/mesh_leaf.blend-77a185211bef95aba132309549bced3e.scn"
 
 [deps]
 
-source_file="res://assets/model/tool/mesh_broom.blend"
-dest_files=["res://.godot/imported/mesh_broom.blend-6e52cfd1555b6c575093dda786af1b31.scn"]
+source_file="res://assets/mesh/environment/mesh_leaf.blend"
+dest_files=["res://.godot/imported/mesh_leaf.blend-77a185211bef95aba132309549bced3e.scn"]
 
 [params]
 
@@ -45,7 +45,7 @@ blender/meshes/tangents=true
 blender/meshes/skins=2
 blender/meshes/export_bones_deforming_mesh_only=false
 blender/materials/unpack_enabled=true
-blender/materials/export_materials=0
+blender/materials/export_materials=1
 blender/animation/limit_playback=true
 blender/animation/always_sample=true
 blender/animation/group_tracks=true

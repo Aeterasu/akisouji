@@ -34,6 +34,7 @@ curve_y = SubResource("Curve_qksx1")
 curve_z = SubResource("Curve_x4rje")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7htln"]
+lifetime_randomness = 0.4
 particle_flag_align_y = true
 particle_flag_rotate_y = true
 emission_shape_offset = Vector3(0, 0.5, 0)
@@ -58,8 +59,11 @@ anim_offset_max = 1.0
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76akf"]
 transparency = 1
 no_depth_test = true
+diffuse_mode = 3
+specular_mode = 2
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_mttoa")
+disable_receive_shadows = true
 billboard_mode = 3
 particles_anim_h_frames = 4
 particles_anim_v_frames = 1
@@ -70,6 +74,7 @@ material = SubResource("StandardMaterial3D_76akf")
 size = Vector2(0.3, 0.3)
 
 [node name="LeafParticles" type="GPUParticles3D"]
+cast_shadow = 0
 emitting = false
 amount = 6
 lifetime = 3.0

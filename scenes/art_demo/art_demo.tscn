@@ -1,0 +1,116 @@
+[gd_scene load_steps=16 format=3 uid="uid://b0ifaodpyet0w"]
+
+[ext_resource type="PackedScene" uid="uid://djpnipbeauewf" path="res://scenes/art_demo/mesh_art_demo.tscn" id="1_j1pii"]
+[ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="1_s7upw"]
+[ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://resource/mesh/leaf_mesh.tres" id="4_htbne"]
+[ext_resource type="Script" path="res://scenes/leaf/leaf_population.gd" id="4_lk8ju"]
+[ext_resource type="Script" path="res://scenes/leaf/leaf_cleaning_handler.gd" id="5_eae0y"]
+[ext_resource type="Texture2D" uid="uid://bivhodxmm44hp" path="res://assets/texture/leaf_map/texture_leaf_map_2.png" id="5_nwt71"]
+[ext_resource type="Script" path="res://scenes/leaf/leaf_color_palette.gd" id="6_5du1g"]
+[ext_resource type="Script" path="res://scenes/leaf/leaf_noise_sprite.gd" id="6_tyeuc"]
+[ext_resource type="Script" path="res://scenes/fx/leaf_particle_manager.gd" id="7_4fkmq"]
+[ext_resource type="PackedScene" uid="uid://biun1d1hu4wq4" path="res://scenes/fx/leaf_particles.tscn" id="8_ed8bw"]
+[ext_resource type="Texture2D" uid="uid://k61hesk67rkh" path="res://assets/texture/leaf_map/texture_leaf_map_2_heightmap.png" id="11_qok73"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pymwl"]
+sky_top_color = Color(0.133333, 0.180392, 0.219608, 1)
+sky_horizon_color = Color(0.45098, 0.352941, 0.321569, 1)
+sky_curve = 0.0630673
+ground_bottom_color = Color(0.133333, 0.180392, 0.219608, 1)
+ground_horizon_color = Color(0.45098, 0.352941, 0.321569, 1)
+ground_curve = 0.0373213
+sun_angle_max = 11.21
+sun_curve = 0.487352
+
+[sub_resource type="Sky" id="Sky_ng8uf"]
+sky_material = SubResource("ProceduralSkyMaterial_pymwl")
+
+[sub_resource type="Environment" id="Environment_krqim"]
+background_mode = 2
+sky = SubResource("Sky_ng8uf")
+ambient_light_source = 3
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 1
+glow_enabled = true
+fog_light_color = Color(0.45098, 0.352941, 0.321569, 1)
+fog_depth_curve = 0.615572
+fog_depth_begin = 29.0
+fog_depth_end = 50.5
+
+[sub_resource type="MultiMesh" id="MultiMesh_mmmap"]
+transform_format = 1
+use_colors = true
+mesh = ExtResource("4_htbne")
+
+[node name="ArtDemo" type="Node3D"]
+
+[node name="Player" parent="." node_paths=PackedStringArray("leaf_cleaning_handler") instance=ExtResource("1_s7upw")]
+transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 10, 2, 16.5)
+jump_buffer_size = 10
+cleaning_radius = 1.25
+leaf_cleaning_handler = NodePath("../LeafPopulation/LeafCleaningHandler")
+sprint_cleaning_cooldown = 0.1
+cleaning_range = 4.0
+
+[node name="mesh_art_demo2" parent="." instance=ExtResource("1_j1pii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 26)
+
+[node name="mesh_art_demo3" parent="." instance=ExtResource("1_j1pii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 8)
+
+[node name="mesh_art_demo4" parent="." instance=ExtResource("1_j1pii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 44)
+
+[node name="mesh_art_demo5" parent="." instance=ExtResource("1_j1pii")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 62)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_krqim")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.866025, 0, -0.5, 0.12941, 0.965926, 0.224144, 0.482963, -0.258819, 0.836516, 0, 0, 0)
+light_color = Color(0.858824, 0.784314, 0.752941, 1)
+light_energy = 2.0
+shadow_enabled = true
+shadow_opacity = 0.7
+
+[node name="LeafPopulation" type="Node" parent="." node_paths=PackedStringArray("target_multimesh_instance", "target_leaf_map", "height_map", "leaf_cleaning_handler", "leaf_color_palette", "leaf_particle_manager")]
+script = ExtResource("4_lk8ju")
+leaves_per_pixel = 32
+position_disperse = 1.0
+target_multimesh_instance = NodePath("../MultiMeshInstance3D")
+target_leaf_map = NodePath("LeafMap")
+height_map = NodePath("HeightMap")
+leaf_cleaning_handler = NodePath("LeafCleaningHandler")
+leaf_color_palette = NodePath("LeafColorPalette")
+leaf_particle_manager = NodePath("LeafParticleManager")
+
+[node name="LeafCleaningHandler" type="Node" parent="LeafPopulation"]
+script = ExtResource("5_eae0y")
+base_cleaning_coeff = 1.0
+falloff_threshold = 0.3
+
+[node name="LeafColorPalette" type="Node" parent="LeafPopulation"]
+script = ExtResource("6_5du1g")
+colors = Array[Color]([Color(0.83, 0.256747, 0.2158, 1), Color(0.83, 0.67811, 0.3237, 1), Color(0.99, 0.52602, 0.2574, 1), Color(0.94, 0.64625, 0.235, 1), Color(0.65, 0.301167, 0.195, 1), Color(0.592157, 0.572549, 0.258824, 1)])
+fallback_color = Color(0.988235, 0.52549, 0.258824, 1)
+
+[node name="LeafParticleManager" type="Node" parent="LeafPopulation"]
+script = ExtResource("7_4fkmq")
+leaf_particles = ExtResource("8_ed8bw")
+
+[node name="LeafMap" type="Sprite2D" parent="LeafPopulation"]
+texture_filter = 1
+texture = ExtResource("5_nwt71")
+centered = false
+script = ExtResource("6_tyeuc")
+
+[node name="HeightMap" type="Sprite2D" parent="LeafPopulation"]
+texture_filter = 1
+position = Vector2(18, 0)
+texture = ExtResource("11_qok73")
+centered = false
+script = ExtResource("6_tyeuc")
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+multimesh = SubResource("MultiMesh_mmmap")
