@@ -6,3 +6,5 @@ extends Node
 @export var fov : float = 90.0
 
 @export var camera_wobble_enabled : bool = true
+
+@export var show_fps_counter : bool = true

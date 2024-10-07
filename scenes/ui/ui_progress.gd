@@ -12,4 +12,4 @@ func _get_progress() -> float:
 	if (current_value <= 0):
 		return 0.0
 
-	return ceil(float(current_value) / float(max_value) * 100.0)
+	return clamp(ceil(float(current_value) / float(max_value) * 100.0), 0.0, 100.0)

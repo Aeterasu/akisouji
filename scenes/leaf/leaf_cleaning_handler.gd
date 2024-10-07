@@ -5,6 +5,8 @@ signal on_cleaning_request_at_global_position
 @export var base_cleaning_coeff : float = 0.8
 @export var falloff_threshold : float = 0.2
 
+@export var target_cleaned_amount_leeway : float = 0.95
+
 var leaves_amount : int = 0
 var cleaned_leaves_amount : int = 0
 

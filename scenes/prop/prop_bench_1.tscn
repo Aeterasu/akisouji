@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://sc8rnu0d8xc8"]
+[gd_scene load_steps=7 format=3 uid="uid://sc8rnu0d8xc8"]
 
 [ext_resource type="PackedScene" uid="uid://cwplg47rdo8fh" path="res://assets/mesh/prop/mesh_bench_1.blend" id="1_lypml"]
 [ext_resource type="Texture2D" uid="uid://bawgf6fokehwx" path="res://assets/texture/prop/texture_bench_1_albm.png" id="2_56ufp"]
@@ -9,9 +9,16 @@
 albedo_texture = ExtResource("2_56ufp")
 roughness_texture = ExtResource("3_6nqb4")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_n1rpy"]
+size = Vector3(5.76978, 1.92621, 0.412598)
+
 [node name="PropBench1" instance=ExtResource("1_lypml")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_isjjn")
 
 [node name="Bench_001" parent="." index="0"]
 surface_material_override/0 = ExtResource("4_riuwl")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Collision " index="1"]
+transform = Transform3D(1, 0, 0, 0, 0.912856, 0.408283, 0, -0.408283, 0.912856, 0.00427246, 1.50916, -0.913998)
+shape = SubResource("BoxShape3D_n1rpy")
