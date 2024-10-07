@@ -18,8 +18,9 @@ albedo_texture = ExtResource("6_g4l35")
 texture_filter = 1
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cjscd"]
+transparency = 1
 shading_mode = 0
-albedo_color = Color(0, 0, 0, 1)
+albedo_color = Color(0, 0, 0, 0.552941)
 
 [sub_resource type="Animation" id="Animation_jw8jy"]
 length = 0.001

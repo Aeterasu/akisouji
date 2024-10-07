@@ -1,7 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://b0ifaodpyet0w"]
+[gd_scene load_steps=17 format=3 uid="uid://b0ifaodpyet0w"]
 
 [ext_resource type="PackedScene" uid="uid://djpnipbeauewf" path="res://scenes/art_demo/mesh_art_demo.tscn" id="1_j1pii"]
 [ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="1_s7upw"]
+[ext_resource type="PackedScene" uid="uid://diw7xvdfo2yjh" path="res://scenes/prop/prop_gomibako.tscn" id="3_uanm0"]
 [ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://resource/mesh/leaf_mesh.tres" id="4_htbne"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_population.gd" id="4_lk8ju"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_cleaning_handler.gd" id="5_eae0y"]
@@ -48,7 +49,7 @@ mesh = ExtResource("4_htbne")
 [node name="ArtDemo" type="Node3D"]
 
 [node name="Player" parent="." node_paths=PackedStringArray("leaf_cleaning_handler") instance=ExtResource("1_s7upw")]
-transform = Transform3D(1, 0, -1.06581e-14, 0, 1, 0, 1.06581e-14, 0, 1, 10, 2, 16.5)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 8.5, 2, 4.5)
 jump_buffer_size = 10
 cleaning_radius = 1.25
 leaf_cleaning_handler = NodePath("../LeafPopulation/LeafCleaningHandler")
@@ -66,6 +67,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 44)
 
 [node name="mesh_art_demo5" parent="." instance=ExtResource("1_j1pii")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 62)
+
+[node name="PropGomibako" parent="." instance=ExtResource("3_uanm0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.12457, -0.008991, 10.5)
+
+[node name="PropGomibako4" parent="." instance=ExtResource("3_uanm0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.96491, -0.008991, 37)
+
+[node name="PropGomibako7" parent="." instance=ExtResource("3_uanm0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.12457, -0.008991, 64.5)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_krqim")
