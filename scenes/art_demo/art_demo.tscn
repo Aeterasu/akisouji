@@ -152,7 +152,7 @@ transform = Transform3D(3.39741e-08, 0, -0.45, 0, 0.45, 0, 0.45, 0, 3.39741e-08,
 environment = SubResource("Environment_krqim")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.64165, -0.0917475, 0.76149, 0.128867, 0.965811, 0.224951, -0.756094, 0.242471, -0.607889, 0, 0, 0)
+transform = Transform3D(0.971961, -0.0588749, 0.227652, 0, 0.968148, 0.25038, -0.235142, -0.24336, 0.941002, 0, 0, 0)
 light_color = Color(0.858824, 0.784314, 0.752941, 1)
 light_energy = 2.0
 shadow_enabled = true
