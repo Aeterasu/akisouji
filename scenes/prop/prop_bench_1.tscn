@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://sc8rnu0d8xc8"]
+
+[ext_resource type="PackedScene" uid="uid://cwplg47rdo8fh" path="res://assets/mesh/prop/mesh_bench_1.blend" id="1_lypml"]
+[ext_resource type="Texture2D" uid="uid://bawgf6fokehwx" path="res://assets/texture/prop/texture_bench_1_albm.png" id="2_56ufp"]
+[ext_resource type="Texture2D" uid="uid://c50qxnsj6hc6" path="res://assets/texture/prop/texture_bench_1_rmmap.png" id="3_6nqb4"]
+[ext_resource type="Material" uid="uid://mrdkkmwqr7ls" path="res://resource/material/material_metal_1.tres" id="4_riuwl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_isjjn"]
+albedo_texture = ExtResource("2_56ufp")
+roughness_texture = ExtResource("3_6nqb4")
+
+[node name="PropBench1" instance=ExtResource("1_lypml")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_isjjn")
+
+[node name="Bench_001" parent="." index="0"]
+surface_material_override/0 = ExtResource("4_riuwl")

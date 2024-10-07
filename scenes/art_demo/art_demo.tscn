@@ -1,10 +1,14 @@
-[gd_scene load_steps=17 format=3 uid="uid://b0ifaodpyet0w"]
+[gd_scene load_steps=21 format=3 uid="uid://b0ifaodpyet0w"]
 
 [ext_resource type="PackedScene" uid="uid://djpnipbeauewf" path="res://scenes/art_demo/mesh_art_demo.tscn" id="1_j1pii"]
 [ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="1_s7upw"]
+[ext_resource type="Script" path="res://scenes/fx/rain_particles.gd" id="2_4nblq"]
+[ext_resource type="PackedScene" uid="uid://d1lybxei6fkyd" path="res://scenes/fx/rain_particles.tscn" id="2_2422r"]
 [ext_resource type="PackedScene" uid="uid://diw7xvdfo2yjh" path="res://scenes/prop/prop_gomibako.tscn" id="3_uanm0"]
+[ext_resource type="PackedScene" uid="uid://cogn8elcma40l" path="res://scenes/prop/prop_street_light_1.tscn" id="4_gmwxv"]
 [ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://resource/mesh/leaf_mesh.tres" id="4_htbne"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_population.gd" id="4_lk8ju"]
+[ext_resource type="PackedScene" uid="uid://sc8rnu0d8xc8" path="res://scenes/prop/prop_bench_1.tscn" id="5_2vppk"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_cleaning_handler.gd" id="5_eae0y"]
 [ext_resource type="Texture2D" uid="uid://bivhodxmm44hp" path="res://assets/texture/leaf_map/texture_leaf_map_2.png" id="5_nwt71"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_color_palette.gd" id="6_5du1g"]
@@ -48,6 +52,11 @@ mesh = ExtResource("4_htbne")
 
 [node name="ArtDemo" type="Node3D"]
 
+[node name="RainParticles" parent="." node_paths=PackedStringArray("rain_owner") instance=ExtResource("2_2422r")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 18, 0)
+script = ExtResource("2_4nblq")
+rain_owner = NodePath("../Player")
+
 [node name="Player" parent="." node_paths=PackedStringArray("leaf_cleaning_handler") instance=ExtResource("1_s7upw")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 8.5, 2, 4.5)
 jump_buffer_size = 10
@@ -56,36 +65,98 @@ leaf_cleaning_handler = NodePath("../LeafPopulation/LeafCleaningHandler")
 sprint_cleaning_cooldown = 0.1
 cleaning_range = 4.0
 
-[node name="mesh_art_demo2" parent="." instance=ExtResource("1_j1pii")]
+[node name="Props" type="Node3D" parent="."]
+
+[node name="mesh_art_demo2" parent="Props" instance=ExtResource("1_j1pii")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 26)
 
-[node name="mesh_art_demo3" parent="." instance=ExtResource("1_j1pii")]
+[node name="mesh_art_demo3" parent="Props" instance=ExtResource("1_j1pii")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 8)
 
-[node name="mesh_art_demo4" parent="." instance=ExtResource("1_j1pii")]
+[node name="mesh_art_demo4" parent="Props" instance=ExtResource("1_j1pii")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 44)
 
-[node name="mesh_art_demo5" parent="." instance=ExtResource("1_j1pii")]
+[node name="mesh_art_demo5" parent="Props" instance=ExtResource("1_j1pii")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.5, 0, 62)
 
-[node name="PropGomibako" parent="." instance=ExtResource("3_uanm0")]
+[node name="PropGomibako" parent="Props" instance=ExtResource("3_uanm0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.12457, -0.008991, 10.5)
 
-[node name="PropGomibako4" parent="." instance=ExtResource("3_uanm0")]
+[node name="PropGomibako4" parent="Props" instance=ExtResource("3_uanm0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.96491, -0.008991, 37)
 
-[node name="PropGomibako7" parent="." instance=ExtResource("3_uanm0")]
+[node name="PropGomibako7" parent="Props" instance=ExtResource("3_uanm0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.12457, -0.008991, 64.5)
+
+[node name="mesh_street_light_1" parent="Props" instance=ExtResource("4_gmwxv")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 6, 0, 3)
+
+[node name="mesh_street_light_2" parent="Props" instance=ExtResource("4_gmwxv")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 11, 0, 9)
+
+[node name="mesh_street_light_3" parent="Props" instance=ExtResource("4_gmwxv")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 6, 0, 15)
+
+[node name="mesh_street_light_4" parent="Props" instance=ExtResource("4_gmwxv")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 11, 0, 21)
+
+[node name="mesh_street_light_5" parent="Props" instance=ExtResource("4_gmwxv")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 6, 0, 27)
+
+[node name="mesh_street_light_6" parent="Props" instance=ExtResource("4_gmwxv")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 11, 0, 33)
+
+[node name="mesh_street_light_7" parent="Props" instance=ExtResource("4_gmwxv")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 6, 0, 39)
+
+[node name="mesh_street_light_8" parent="Props" instance=ExtResource("4_gmwxv")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 11, 0, 45)
+
+[node name="mesh_street_light_9" parent="Props" instance=ExtResource("4_gmwxv")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 6, 0, 51)
+
+[node name="mesh_street_light_10" parent="Props" instance=ExtResource("4_gmwxv")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 11, 0, 57)
+
+[node name="mesh_street_light_11" parent="Props" instance=ExtResource("4_gmwxv")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 6, 0, 63)
+
+[node name="mesh_street_light_12" parent="Props" instance=ExtResource("4_gmwxv")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 11, 0, 69)
+
+[node name="PropBench1" parent="Props" instance=ExtResource("5_2vppk")]
+transform = Transform3D(-1.96701e-08, 0, 0.45, 0, 0.45, 0, -0.45, 0, -1.96701e-08, 7.2, 0, 12.5)
+
+[node name="PropBench2" parent="Props" instance=ExtResource("5_2vppk")]
+transform = Transform3D(3.39741e-08, 0, -0.45, 0, 0.45, 0, 0.45, 0, 3.39741e-08, 9.7, 0, 19)
+
+[node name="PropBench3" parent="Props" instance=ExtResource("5_2vppk")]
+transform = Transform3D(-1.96701e-08, 0, 0.45, 0, 0.45, 0, -0.45, 0, -1.96701e-08, 7.2, 0, 25.5)
+
+[node name="PropBench5" parent="Props" instance=ExtResource("5_2vppk")]
+transform = Transform3D(-1.96701e-08, 0, 0.45, 0, 0.45, 0, -0.45, 0, -1.96701e-08, 7.2, 0, 62.5)
+
+[node name="PropBench7" parent="Props" instance=ExtResource("5_2vppk")]
+transform = Transform3D(-1.96701e-08, 0, 0.45, 0, 0.45, 0, -0.45, 0, -1.96701e-08, 7.2, 0, 43.5)
+
+[node name="PropBench4" parent="Props" instance=ExtResource("5_2vppk")]
+transform = Transform3D(3.39741e-08, 0, -0.45, 0, 0.45, 0, 0.45, 0, 3.39741e-08, 9.7, 0, 35)
+
+[node name="PropBench6" parent="Props" instance=ExtResource("5_2vppk")]
+transform = Transform3D(3.39741e-08, 0, -0.45, 0, 0.45, 0, 0.45, 0, 3.39741e-08, 9.7, 0, 53.5)
+
+[node name="PropBench8" parent="Props" instance=ExtResource("5_2vppk")]
+transform = Transform3D(3.39741e-08, 0, -0.45, 0, 0.45, 0, 0.45, 0, 3.39741e-08, 9.7, 0, 71)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_krqim")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.866025, 0, -0.5, 0.12941, 0.965926, 0.224144, 0.482963, -0.258819, 0.836516, 0, 0, 0)
+transform = Transform3D(-0.64165, -0.0917475, 0.76149, 0.128867, 0.965811, 0.224951, -0.756094, 0.242471, -0.607889, 0, 0, 0)
 light_color = Color(0.858824, 0.784314, 0.752941, 1)
 light_energy = 2.0
 shadow_enabled = true
-shadow_opacity = 0.7
+shadow_opacity = 0.91
 
 [node name="LeafPopulation" type="Node" parent="." node_paths=PackedStringArray("target_multimesh_instance", "target_leaf_map", "height_map", "leaf_cleaning_handler", "leaf_color_palette", "leaf_particle_manager")]
 script = ExtResource("4_lk8ju")
