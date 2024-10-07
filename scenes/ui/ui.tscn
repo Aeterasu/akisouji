@@ -1,9 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcaypqvm8j1yq"]
+[gd_scene load_steps=7 format=3 uid="uid://dcaypqvm8j1yq"]
 
+[ext_resource type="Script" path="res://scenes/ui/ui.gd" id="1_7l35m"]
 [ext_resource type="Texture2D" uid="uid://dbqwuevdtqyjl" path="res://assets/texture/ui/texture_ui_crosshair_dot.png" id="2_sidhx"]
 [ext_resource type="Texture2D" uid="uid://cvtg8bskknog1" path="res://assets/texture/ui/texture_ui_vignette.png" id="3_l63lv"]
+[ext_resource type="Texture2D" uid="uid://dfvylguh5grfg" path="res://assets/texture/ui/texture_ui_dark_corner.png" id="3_qygll"]
+[ext_resource type="Script" path="res://scenes/ui/ui_progress.gd" id="5_nsbia"]
+[ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="6_j3p5c"]
 
-[node name="UI" type="Control"]
+[node name="UI" type="Control" node_paths=PackedStringArray("progress")]
 process_priority = -1
 process_physics_priority = -1
 layout_mode = 3
@@ -12,9 +16,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_7l35m")
+progress = NodePath("UIProgress")
 
 [node name="Vignette" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.376471)
+modulate = Color(1, 1, 1, 0.486275)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,3 +40,47 @@ grow_vertical = 2
 [node name="Crosshair" type="TextureRect" parent="CenterContainer"]
 layout_mode = 2
 texture = ExtResource("2_sidhx")
+
+[node name="DarkCornerLeft" type="TextureRect" parent="."]
+layout_mode = 1
+offset_right = 66.0
+offset_bottom = 66.0
+scale = Vector2(3, 3)
+texture = ExtResource("3_qygll")
+stretch_mode = 4
+
+[node name="DarkCornerRight" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -198.0
+offset_right = -132.0
+offset_bottom = 66.0
+grow_horizontal = 0
+scale = Vector2(3, 3)
+texture = ExtResource("3_qygll")
+stretch_mode = 4
+flip_h = true
+
+[node name="UIProgress" type="Control" parent="." node_paths=PackedStringArray("label")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_nsbia")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="UIProgress"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 240.0
+offset_bottom = 63.0
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("6_j3p5c")
+theme_override_font_sizes/font_size = 36
+text = "Progress: 0%"
+vertical_alignment = 1

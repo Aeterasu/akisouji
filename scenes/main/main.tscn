@@ -26,7 +26,7 @@ shader_parameter/FlareMult2 = ExtResource("4_1icme")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b6bpu"]
 shader = ExtResource("4_cm0ii")
-shader_parameter/radius = 3
+shader_parameter/radius = 2
 shader_parameter/offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sxc23"]
@@ -110,7 +110,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="UILayer/Control"]
+[node name="FPSCounter" type="Label" parent="UILayer/Control"]
+modulate = Color(0.458405, 0.458405, 0.458405, 1)
 layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0

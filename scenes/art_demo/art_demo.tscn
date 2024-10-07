@@ -160,6 +160,7 @@ shadow_opacity = 0.91
 
 [node name="LeafPopulation" type="Node" parent="." node_paths=PackedStringArray("target_multimesh_instance", "target_leaf_map", "height_map", "leaf_cleaning_handler", "leaf_color_palette", "leaf_particle_manager")]
 script = ExtResource("4_lk8ju")
+enabled = null
 leaves_per_pixel = 48
 position_disperse = 1.0
 target_multimesh_instance = NodePath("../MultiMeshInstance3D")

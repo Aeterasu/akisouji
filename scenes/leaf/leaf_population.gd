@@ -28,6 +28,7 @@ var leaf_instances_sorted_by_position : Array[LeafInstanceData] = []
 var leaf_instances_sorted_positions : Array[Vector2] = []
 var cleaned_leaves : Array[bool] = []
 
+#TODO: Leaf population via navmesh
 func _ready() -> void:
 	if (!enabled):
 		return
@@ -37,6 +38,7 @@ func _ready() -> void:
 	await get_tree().create_timer(0.5).timeout
 	_translate_multimesh()
 
+	leaf_cleaning_handler.leaves_amount = len(cleaned_leaves)
 	leaf_cleaning_handler.on_cleaning_request_at_global_position.connect(_on_clean_origin_position_updated)
 
 func _populate_multimesh() -> void:
@@ -121,6 +123,11 @@ func _clean_leaf(index : int, sorted_index : int):
 	multimesh.set_instance_transform(index, transform)
 
 	cleaned_leaves[index] = true
+	leaf_cleaning_handler.cleaned_leaves_amount += 1
+
+	# update progress on ui
+
+	leaf_cleaning_handler._update_cleaned_leaves_progress()
 
 # TODO: real gradient circle
 func _clean_on_real_position(real_position : Vector3, circle_radius : float = 1.0):
