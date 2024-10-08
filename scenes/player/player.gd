@@ -14,6 +14,7 @@ class_name Player extends CharacterBody3D
 @export_group("Camera")
 @export var camera : Camera3D = null
 @export var camera_origin : Node3D = null
+@export var camera_effect_landing : CameraEffectLanding = null
 
 @export_group("Leaf Cleaning")
 @export var cleaning_radius : float = 1.0
@@ -174,6 +175,8 @@ func _on_landing():
 		multiplier = 1.2
 
 	leaf_cleaning_handler._on_player_cleaning_on_position(global_position + Vector3.DOWN, jump_cleaning_radius * multiplier)
+
+	camera_effect_landing._animate()
 
 func _on_sprint_cleaning_timeout():
 	if (!wish_sprint or !is_on_floor()):
