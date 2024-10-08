@@ -111,7 +111,7 @@ func get_input_direction() -> Vector2:
 	return result
 
 func move_camera_gamepad(delta : float):
-	var right_stick = -Input.get_vector("right_stick_left", "right_stick_right", "right_stick_up", "right_stick_down")
+	var right_stick = CameraControls._get_gamepad_camera_input_vector()
 	move_camera(clamp_gamepad_input_by_deadzone(right_stick) * gamepad_sensitvity * delta)
 
 func clamp_gamepad_input_by_deadzone(input : Vector2) -> Vector2:

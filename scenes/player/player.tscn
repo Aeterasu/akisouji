@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://077fpjam3rlw"]
+[gd_scene load_steps=45 format=3 uid="uid://077fpjam3rlw"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_e0tat"]
 [ext_resource type="Script" path="res://scenes/component/gravity_component/gravity_component.gd" id="2_nr0jr"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scenes/tool/viewmodel/broom_viewmodel.gd" id="5_fq1iu"]
 [ext_resource type="PackedScene" uid="uid://1rbyx1a81x74" path="res://assets/mesh/tool/mesh_broom.blend" id="5_nl0cb"]
 [ext_resource type="Texture2D" uid="uid://4qx2h2eyxpqf" path="res://assets/texture/tool/texture_broom_1_albm.png" id="6_g4l35"]
+[ext_resource type="Script" path="res://scenes/tool/viewmodel/viewmodel_sway.gd" id="6_t0wwe"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dq522"]
 
@@ -27,7 +28,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BroomViewmodel/mesh_broom:position")
+tracks/0/path = NodePath("ViewmodelSway/BroomViewmodel/mesh_broom:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -39,7 +40,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BroomViewmodel/mesh_broom:rotation")
+tracks/1/path = NodePath("ViewmodelSway/BroomViewmodel/mesh_broom:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -57,7 +58,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BroomViewmodel/mesh_broom:position")
+tracks/0/path = NodePath("ViewmodelSway/BroomViewmodel/mesh_broom:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -69,7 +70,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BroomViewmodel/mesh_broom:rotation")
+tracks/1/path = NodePath("ViewmodelSway/BroomViewmodel/mesh_broom:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -85,7 +86,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BroomViewmodel/mesh_broom:position")
+tracks/0/path = NodePath("ViewmodelSway/BroomViewmodel/mesh_broom:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -97,7 +98,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BroomViewmodel/mesh_broom:rotation")
+tracks/1/path = NodePath("ViewmodelSway/BroomViewmodel/mesh_broom:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -114,7 +115,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BroomViewmodel/mesh_broom:position")
+tracks/0/path = NodePath("ViewmodelSway/BroomViewmodel/mesh_broom:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -126,7 +127,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BroomViewmodel/mesh_broom:rotation")
+tracks/1/path = NodePath("ViewmodelSway/BroomViewmodel/mesh_broom:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -143,7 +144,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BroomViewmodel/mesh_broom:position")
+tracks/0/path = NodePath("ViewmodelSway/BroomViewmodel/mesh_broom:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -155,7 +156,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BroomViewmodel/mesh_broom:rotation")
+tracks/1/path = NodePath("ViewmodelSway/BroomViewmodel/mesh_broom:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -167,7 +168,7 @@ tracks/1/keys = {
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("BroomViewmodel")
+tracks/2/path = NodePath("ViewmodelSway/BroomViewmodel")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -186,7 +187,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BroomViewmodel/mesh_broom:position")
+tracks/0/path = NodePath("ViewmodelSway/BroomViewmodel/mesh_broom:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -198,7 +199,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BroomViewmodel/mesh_broom:rotation")
+tracks/1/path = NodePath("ViewmodelSway/BroomViewmodel/mesh_broom:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -216,7 +217,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BroomViewmodel/mesh_broom:position")
+tracks/0/path = NodePath("ViewmodelSway/BroomViewmodel/mesh_broom:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -228,7 +229,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BroomViewmodel/mesh_broom:rotation")
+tracks/1/path = NodePath("ViewmodelSway/BroomViewmodel/mesh_broom:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -240,7 +241,7 @@ tracks/1/keys = {
 tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("BroomViewmodel")
+tracks/2/path = NodePath("ViewmodelSway/BroomViewmodel")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -275,7 +276,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BroomViewmodel/mesh_broom:position")
+tracks/0/path = NodePath("ViewmodelSway/BroomViewmodel/mesh_broom:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -287,7 +288,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BroomViewmodel/mesh_broom:rotation")
+tracks/1/path = NodePath("ViewmodelSway/BroomViewmodel/mesh_broom:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -438,7 +439,7 @@ camera = NodePath("CameraOrigin/CameraWobble/Camera3D")
 camera_origin = NodePath("CameraOrigin")
 cleaning_radius = 0.8
 sprint_cleaning_cooldown = 0.1
-equipment_viewmodel = NodePath("CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin/BroomViewmodel")
+equipment_viewmodel = NodePath("CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin/ViewmodelSway/BroomViewmodel")
 cleaning_range = 3.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -471,25 +472,29 @@ script = ExtResource("4_feodf")
 
 [node name="ViewmodelOrigin" type="Node3D" parent="CameraOrigin/CameraWobble/Camera3D"]
 
-[node name="BroomViewmodel" type="Node3D" parent="CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin" node_paths=PackedStringArray("animation_tree")]
+[node name="ViewmodelSway" type="Node3D" parent="CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin"]
+script = ExtResource("6_t0wwe")
+sway_strength = 0.1
+
+[node name="BroomViewmodel" type="Node3D" parent="CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin/ViewmodelSway" node_paths=PackedStringArray("animation_tree")]
 script = ExtResource("5_fq1iu")
 animation_tree = NodePath("AnimationTree")
 walk_cycle_direction = Vector3(0.025, 0.01, 0)
 
-[node name="mesh_broom" parent="CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin/BroomViewmodel" instance=ExtResource("5_nl0cb")]
+[node name="mesh_broom" parent="CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin/ViewmodelSway/BroomViewmodel" instance=ExtResource("5_nl0cb")]
 transform = Transform3D(0.0749063, -0.00298185, -0.00226904, -0.00309007, -0.0234714, -0.0711656, 0.0021193, 0.0711702, -0.0235649, 0.084, -0.102, -0.154)
 cast_shadow = 0
 surface_material_override/0 = SubResource("StandardMaterial3D_skvaf")
 surface_material_override/1 = SubResource("StandardMaterial3D_cjscd")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin/BroomViewmodel"]
-root_node = NodePath("../..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin/ViewmodelSway/BroomViewmodel"]
+root_node = NodePath("../../..")
 libraries = {
 "": SubResource("AnimationLibrary_52egn")
 }
 
-[node name="AnimationTree" type="AnimationTree" parent="CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin/BroomViewmodel"]
-root_node = NodePath("../..")
+[node name="AnimationTree" type="AnimationTree" parent="CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin/ViewmodelSway/BroomViewmodel"]
+root_node = NodePath("../../..")
 tree_root = SubResource("AnimationNodeStateMachine_wywd0")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
