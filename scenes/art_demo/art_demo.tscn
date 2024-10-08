@@ -121,7 +121,7 @@ transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 11, 0, 57)
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 6, 0, 63)
 
 [node name="mesh_street_light_12" parent="Props" instance=ExtResource("4_gmwxv")]
-transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 11, 0, 69)
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 11, 0, 68)
 
 [node name="PropBench1" parent="Props" instance=ExtResource("5_2vppk")]
 transform = Transform3D(-1.96701e-08, 0, 0.45, 0, 0.45, 0, -0.45, 0, -1.96701e-08, 7.2, 0, 12.5)

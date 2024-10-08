@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://djpnipbeauewf"]
+[gd_scene load_steps=10 format=3 uid="uid://djpnipbeauewf"]
 
 [ext_resource type="PackedScene" uid="uid://bat1pivodplj5" path="res://assets/mesh/environment/mesh_art_demo.blend" id="1_xpog5"]
 [ext_resource type="Material" uid="uid://cjtw4ylyq480t" path="res://resource/material/material_stone_pavement.tres" id="2_po3tj"]
@@ -7,7 +7,10 @@
 [ext_resource type="Texture2D" uid="uid://bqh3kumgb5ikt" path="res://assets/texture/environment/texture_tree_1.png" id="5_2p0gx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_xmibs"]
-size = Vector3(17, 1, 18.5)
+size = Vector3(7, 1, 18.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c6kcq"]
+size = Vector3(3, 1, 18.5)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_shvqo"]
 transparency = 1
@@ -52,13 +55,24 @@ surface_material_override/0 = ExtResource("4_86b2x")
 [node name="Fence_007" parent="." index="9"]
 surface_material_override/0 = ExtResource("4_86b2x")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="10"]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="10" groups=["Material-Grass"]]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 1.25)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" groups=["Material-Grass"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -0.5, 1.25)
 shape = SubResource("BoxShape3D_xmibs")
 
-[node name="Trees" type="Node3D" parent="." index="11"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1" groups=["Material-Grass"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.5, 1.25)
+shape = SubResource("BoxShape3D_xmibs")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." index="11" groups=["Material-Concrete"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" index="0" groups=["Material-Concrete"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, -0.5, 1.25)
+shape = SubResource("BoxShape3D_c6kcq")
+
+[node name="Trees" type="Node3D" parent="." index="12"]
 
 [node name="Sprite3D2" type="Sprite3D" parent="Trees" index="0"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -11, 0, 10)
@@ -276,27 +290,27 @@ shaded = true
 alpha_cut = 1
 texture = ExtResource("5_2p0gx")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="12"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." index="13"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 1.25)
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_ug3hq")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="13"]
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="." index="14"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 1.25)
 cast_shadow = 0
 mesh = SubResource("PlaneMesh_ug3hq")
 
-[node name="Fence_008" parent="." index="14"]
+[node name="Fence_008" parent="." index="15"]
 visible = false
 
-[node name="Fence_009" parent="." index="15"]
+[node name="Fence_009" parent="." index="16"]
 visible = false
 
-[node name="Fence_010" parent="." index="16"]
+[node name="Fence_010" parent="." index="17"]
 visible = false
 
-[node name="Fence_011" parent="." index="17"]
+[node name="Fence_011" parent="." index="18"]
 visible = false
 
-[node name="Plane" parent="." index="18"]
+[node name="Plane" parent="." index="19"]
 visible = false

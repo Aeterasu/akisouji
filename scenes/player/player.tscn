@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://077fpjam3rlw"]
+[gd_scene load_steps=61 format=3 uid="uid://077fpjam3rlw"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_e0tat"]
 [ext_resource type="Script" path="res://scenes/component/gravity_component/gravity_component.gd" id="2_nr0jr"]
@@ -10,6 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://1rbyx1a81x74" path="res://assets/mesh/tool/mesh_broom.blend" id="5_nl0cb"]
 [ext_resource type="Texture2D" uid="uid://4qx2h2eyxpqf" path="res://assets/texture/tool/texture_broom_1_albm.png" id="6_g4l35"]
 [ext_resource type="Script" path="res://scenes/tool/viewmodel/viewmodel_sway.gd" id="6_t0wwe"]
+[ext_resource type="Script" path="res://scenes/player/player_footstep_manager.gd" id="11_le046"]
+[ext_resource type="Script" path="res://addons/bmod/scripts/nodes/sound_effect_player.gd" id="12_ws1qt"]
+[ext_resource type="Script" path="res://addons/bmod/scripts/resources/multi_sound_effect_item.gd" id="13_qnret"]
+[ext_resource type="AudioStream" uid="uid://b60wme35wv0h6" path="res://assets/audio/sfx_footstep_concrete_1.ogg" id="14_uqvqp"]
+[ext_resource type="AudioStream" uid="uid://hr81jseyy61y" path="res://assets/audio/sfx_footstep_concrete_2.ogg" id="15_r44mh"]
+[ext_resource type="Script" path="res://addons/bmod/scripts/resources/sound_effect_meta.gd" id="16_7g8ho"]
+[ext_resource type="Script" path="res://addons/bmod/scripts/resources/multi_sound_effect.gd" id="17_2xuu8"]
+[ext_resource type="AudioStream" uid="uid://b8i85c1qcp7ox" path="res://assets/audio/sfx_gabriel_footstep_grass.ogg" id="18_d0mxl"]
+[ext_resource type="Script" path="res://addons/bmod/scripts/resources/single_sound_effect.gd" id="19_n020x"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dq522"]
 
@@ -427,6 +436,45 @@ states/sprint_loop/position = Vector2(534, 399)
 transitions = ["sprint_init", "sprint_loop", SubResource("AnimationNodeStateMachineTransition_cno54"), "sprint_loop", "sprint_end", SubResource("AnimationNodeStateMachineTransition_v7sc1"), "idle", "sprint_init", SubResource("AnimationNodeStateMachineTransition_dbhv6"), "sprint_end", "idle", SubResource("AnimationNodeStateMachineTransition_6gud3"), "sprint_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_awu8l"), "sprint_init", "sprint_end", SubResource("AnimationNodeStateMachineTransition_gp30y"), "brooming_loop_start", "brooming_loop", SubResource("AnimationNodeStateMachineTransition_yxkvm"), "brooming_loop", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_46hi8"), "idle", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_103xs"), "brooming_loop_end", "idle", SubResource("AnimationNodeStateMachineTransition_gsw54"), "brooming_loop_start", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_ybass"), "brooming_loop_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_jklkv"), "sprint_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_fe82q"), "brooming_loop_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_qtnhm"), "brooming_loop", "sprint_init", SubResource("AnimationNodeStateMachineTransition_yht86")]
 graph_offset = Vector2(-305, -183)
 
+[sub_resource type="Resource" id="Resource_7byao"]
+script = ExtResource("13_qnret")
+audio_stream = ExtResource("14_uqvqp")
+weight = 1
+
+[sub_resource type="Resource" id="Resource_16f4m"]
+script = ExtResource("13_qnret")
+audio_stream = ExtResource("15_r44mh")
+weight = 1
+
+[sub_resource type="Resource" id="Resource_ha4ga"]
+script = ExtResource("16_7g8ho")
+volume_db = 0.0
+volume_variation_db = 0.0
+pitch_scale = 1.0
+pitch_variation = 0.3
+
+[sub_resource type="Resource" id="Resource_ndbnv"]
+script = ExtResource("17_2xuu8")
+effect_pool = Array[ExtResource("13_qnret")]([SubResource("Resource_7byao"), SubResource("Resource_16f4m")])
+mode = 1
+meta = SubResource("Resource_ha4ga")
+play = false
+play_on_change = false
+
+[sub_resource type="Resource" id="Resource_ifbu1"]
+script = ExtResource("16_7g8ho")
+volume_db = -4.0
+volume_variation_db = 0.0
+pitch_scale = 1.0
+pitch_variation = 0.2
+
+[sub_resource type="Resource" id="Resource_8e0gb"]
+script = ExtResource("19_n020x")
+audio_stream = ExtResource("18_d0mxl")
+meta = SubResource("Resource_ifbu1")
+play = false
+play_on_change = false
+
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("velocity_component", "gravity_component", "camera", "camera_origin", "camera_effect_landing", "equipment_viewmodel")]
 floor_block_on_wall = false
 script = ExtResource("1_e0tat")
@@ -471,6 +519,7 @@ rotation_speed = 4.0
 
 [node name="CameraEffectLanding" type="Node3D" parent="CameraOrigin/CameraWobble"]
 script = ExtResource("5_1a0oq")
+direction = Vector3(0, -0.15, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding"]
 script = ExtResource("4_feodf")
@@ -503,3 +552,23 @@ root_node = NodePath("../../..")
 tree_root = SubResource("AnimationNodeStateMachine_wywd0")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="FootstepManager" type="Node3D" parent="." node_paths=PackedStringArray("player", "velocity_component", "concrete_footstep", "grass_footstep")]
+script = ExtResource("11_le046")
+player = NodePath("..")
+velocity_component = NodePath("../VelocityComponent")
+step_rate = 2.1
+concrete_footstep = NodePath("ConcreteFootstep")
+grass_footstep = NodePath("GrassFootstep")
+
+[node name="ConcreteFootstep" type="Node" parent="FootstepManager"]
+script = ExtResource("12_ws1qt")
+sound_effect = SubResource("Resource_ndbnv")
+bus = &"SFX"
+max_polyphony = 4
+
+[node name="GrassFootstep" type="Node" parent="FootstepManager"]
+script = ExtResource("12_ws1qt")
+sound_effect = SubResource("Resource_8e0gb")
+bus = &"SFX"
+max_polyphony = 4

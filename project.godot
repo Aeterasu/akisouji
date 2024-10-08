@@ -24,10 +24,15 @@ boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://icon.svg"
 
+[audio]
+
+bmod/default_sfx_bus=&"SFX"
+
 [autoload]
 
 InputDeviceCheck="*res://scenes/singleton/input_device_check.gd"
 GlobalSettings="*res://scenes/singleton/global_settings/global_settings.tscn"
+BMOD="*res://addons/bmod/autoloads/bmod/bmod.tscn"
 
 [debug]
 
@@ -39,12 +44,19 @@ gdscript/warnings/integer_division=0
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/window_width_override=1920
-window/size/window_height_override=1080
 
 [dotnet]
 
 project/assembly_name="GD4-Template"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/bmod/plugin.cfg")
+
+[global_group]
+
+Material-Concrete=""
+Material-Grass=""
 
 [importer_defaults]
 
@@ -176,6 +188,11 @@ right_stick_down={
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":3,"axis_value":1.0,"script":null)
 ]
 }
+
+[layer_names]
+
+3d_physics/layer_1="Default"
+3d_physics/layer_2="Player"
 
 [rendering]
 
