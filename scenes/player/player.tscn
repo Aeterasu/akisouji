@@ -1,12 +1,14 @@
-[gd_scene load_steps=61 format=3 uid="uid://077fpjam3rlw"]
+[gd_scene load_steps=63 format=3 uid="uid://077fpjam3rlw"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_e0tat"]
 [ext_resource type="Script" path="res://scenes/component/gravity_component/gravity_component.gd" id="2_nr0jr"]
 [ext_resource type="Script" path="res://scenes/component/velocity_component/velocity_component.gd" id="3_umteq"]
 [ext_resource type="Script" path="res://scenes/player/player_camera.gd" id="4_feodf"]
 [ext_resource type="Script" path="res://scenes/player/camera_effect_head_wobble.gd" id="4_nfr6p"]
+[ext_resource type="Script" path="res://scenes/player/move_speed_upgrade_handler.gd" id="4_xp3sh"]
 [ext_resource type="Script" path="res://scenes/player/camera_effect_landing.gd" id="5_1a0oq"]
 [ext_resource type="Script" path="res://scenes/tool/viewmodel/broom_viewmodel.gd" id="5_fq1iu"]
+[ext_resource type="Resource" uid="uid://cc7kdcc5fh4wk" path="res://scenes/upgrade/move_speed/wellies.tres" id="5_ieyg5"]
 [ext_resource type="PackedScene" uid="uid://1rbyx1a81x74" path="res://assets/mesh/tool/mesh_broom.blend" id="5_nl0cb"]
 [ext_resource type="Texture2D" uid="uid://4qx2h2eyxpqf" path="res://assets/texture/tool/texture_broom_1_albm.png" id="6_g4l35"]
 [ext_resource type="Script" path="res://scenes/tool/viewmodel/viewmodel_sway.gd" id="6_t0wwe"]
@@ -504,6 +506,11 @@ speed = 4.0
 smooth_toggle = true
 accel_weight = 4.0
 decel_weight = 4.0
+
+[node name="MoveSpeedUpgradeHandler" type="Node" parent="VelocityComponent" node_paths=PackedStringArray("velocity_component")]
+script = ExtResource("4_xp3sh")
+current_upgrade = ExtResource("5_ieyg5")
+velocity_component = NodePath("..")
 
 [node name="CameraOrigin" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.685927, 0)

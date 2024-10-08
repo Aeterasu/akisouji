@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MoveSpeedUpgrade" load_steps=2 format=3 uid="uid://cc7kdcc5fh4wk"]
+
+[ext_resource type="Script" path="res://scenes/upgrade/move_speed/move_speed_upgrade.gd" id="1_tkd7m"]
+
+[resource]
+script = ExtResource("1_tkd7m")
+speed_multiplier = 0.8
