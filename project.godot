@@ -32,6 +32,7 @@ bmod/default_sfx_bus=&"SFX"
 
 InputDeviceCheck="*res://scenes/singleton/input_device_check.gd"
 GlobalSettings="*res://scenes/singleton/global_settings/global_settings.tscn"
+CashManager="*res://scenes/cash/cash_manager.tscn"
 BMOD="*res://addons/bmod/autoloads/bmod/bmod.tscn"
 
 [debug]

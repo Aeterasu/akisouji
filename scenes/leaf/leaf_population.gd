@@ -154,6 +154,10 @@ func _clean_leaf(index : int, sorted_index : int):
 
 	scale_interpolate_list.append(index)
 
+	# grant reward
+
+	CashManager._grant_cash()
+
 	# update progress on ui
 
 	leaf_cleaning_handler._update_cleaned_leaves_progress()

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cg1c15gfn5n0d"]
+
+[ext_resource type="Script" path="res://scenes/cash/cash_manager.gd" id="1_8exi0"]
+
+[node name="cash_manager" type="Node"]
+script = ExtResource("1_8exi0")
