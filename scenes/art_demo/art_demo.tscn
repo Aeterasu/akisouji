@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b0ifaodpyet0w"]
+[gd_scene load_steps=23 format=3 uid="uid://b0ifaodpyet0w"]
 
 [ext_resource type="PackedScene" uid="uid://djpnipbeauewf" path="res://scenes/art_demo/mesh_art_demo.tscn" id="1_j1pii"]
 [ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="1_s7upw"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://scenes/fx/leaf_particle_manager.gd" id="7_4fkmq"]
 [ext_resource type="Script" path="res://scenes/fx/flaring_directional_light_3d.gd" id="8_anxlt"]
 [ext_resource type="PackedScene" uid="uid://biun1d1hu4wq4" path="res://scenes/fx/leaf_particles.tscn" id="8_ed8bw"]
+[ext_resource type="PackedScene" uid="uid://co8ox2h76lvxx" path="res://scenes/prop/prop_clockpole.tscn" id="8_qjvki"]
 [ext_resource type="Texture2D" uid="uid://k61hesk67rkh" path="res://assets/texture/leaf_map/texture_leaf_map_2_heightmap.png" id="11_qok73"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_pymwl"]
@@ -146,6 +147,9 @@ transform = Transform3D(3.39741e-08, 0, -0.45, 0, 0.45, 0, 0.45, 0, 3.39741e-08,
 
 [node name="PropBench8" parent="Props" instance=ExtResource("5_2vppk")]
 transform = Transform3D(3.39741e-08, 0, -0.45, 0, 0.45, 0, 0.45, 0, 3.39741e-08, 9.7, 0, 71)
+
+[node name="prop_clockpole" parent="Props" instance=ExtResource("8_qjvki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0, 15.1014)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_krqim")
