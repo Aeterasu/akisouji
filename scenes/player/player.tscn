@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://077fpjam3rlw"]
+[gd_scene load_steps=44 format=3 uid="uid://077fpjam3rlw"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_e0tat"]
 [ext_resource type="Script" path="res://scenes/component/gravity_component/gravity_component.gd" id="2_nr0jr"]
@@ -48,88 +48,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(1.89194, 0.0959931, 0.1309)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BroomViewmodel:allow_brooming")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("BroomViewmodel:allow_brooming")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="Animation_kk2uy"]
-resource_name = "broom"
-length = 1.4
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BroomViewmodel/mesh_broom:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.15, 0.8, 1.1),
-"transitions": PackedFloat32Array(0.5, -2, -2, -2),
-"update": 0,
-"values": [Vector3(0.084, -0.102, -0.154), Vector3(0.084, -0.18, -0.3), Vector3(0.084, -0.102, -0.14), Vector3(0.084, -0.102, -0.154)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("BroomViewmodel/mesh_broom:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3, 1, 1.3),
-"transitions": PackedFloat32Array(-2, -2, -2, -2),
-"update": 0,
-"values": [Vector3(1.89194, 0.0959931, 0.1309), Vector3(1.39626, 0.0959931, 0.1309), Vector3(2.00713, 0.0959931, 0.1309), Vector3(1.89194, 0.0959931, 0.1309)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BroomViewmodel")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.1, 1.3),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"_broom"
-}, {
-"args": [],
-"method": &"_animate_idle"
-}]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("BroomViewmodel:allow_brooming")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
 
 [sub_resource type="Animation" id="Animation_h5qqg"]
 resource_name = "idle"
@@ -160,18 +78,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(1.89194, 0.0959931, 0.1309), Vector3(1.74533, 0.139626, 0.1309), Vector3(1.89194, 0.0959931, 0.1309)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BroomViewmodel:allow_brooming")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_7hoeh"]
 resource_name = "sprint_end"
@@ -200,18 +106,6 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(3.14159, 0.0959931, 0.1309), Vector3(1.89194, 0.0959931, 0.1309), Vector3(1.78024, 0.0959931, 0.1309), Vector3(1.89194, 0.0959931, 0.1309)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("BroomViewmodel:allow_brooming")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
 
 [sub_resource type="Animation" id="Animation_7rcfg"]
 resource_name = "sprint_init"
@@ -225,7 +119,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(2, 1),
 "update": 0,
 "values": [Vector3(0.084, -0.102, -0.154), Vector3(0.2, -0.5, -0.154)]
 }
@@ -237,31 +131,287 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(0.5, 0.5),
+"transitions": PackedFloat32Array(2, 0.5),
 "update": 0,
 "values": [Vector3(1.89194, 0.0959931, 0.1309), Vector3(3.14159, 0.0959931, 0.1309)]
 }
-tracks/2/type = "value"
+
+[sub_resource type="Animation" id="Animation_5yecp"]
+resource_name = "brooming_loop_start"
+length = 0.35
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BroomViewmodel/mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(0.5, -2),
+"update": 0,
+"values": [Vector3(0.084, -0.102, -0.154), Vector3(0.084, -0.12, -0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BroomViewmodel/mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(1.89194, 0.0959931, 0.1309), Vector3(1.53589, 0.0959931, 0.1309)]
+}
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("BroomViewmodel:allow_brooming")
+tracks/2/path = NodePath("BroomViewmodel")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0.15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_broom"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_m3125"]
+resource_name = "brooming_loop_end"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BroomViewmodel/mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(0.5, -2, -2),
+"update": 0,
+"values": [Vector3(0.084, -0.12, -0.3), Vector3(0.084, -0.102, -0.14), Vector3(0.084, -0.102, -0.154)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BroomViewmodel/mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.4, 0.75),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(1.53589, 0.0959931, 0.1309), Vector3(2.18166, 0.0959931, 0.1309), Vector3(1.89194, 0.0959931, 0.1309)]
+}
+
+[sub_resource type="Animation" id="Animation_v16ob"]
+resource_name = "brooming_loop"
+length = 1.25
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BroomViewmodel/mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.25, 0.9),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.05, -0.12, -0.3), Vector3(0.184, -0.12, -0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BroomViewmodel/mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.35, 0.7, 1.05),
+"transitions": PackedFloat32Array(0.5, -0.5, 0.5),
+"update": 0,
+"values": [Vector3(1.53589, 0.331613, 0.1309), Vector3(1.69297, -0.0785398, 0.1309), Vector3(1.53589, -0.261799, 0.1309)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BroomViewmodel")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 0.85),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_broom"
+}, {
+"args": [],
+"method": &"_broom"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_1wmt6"]
+resource_name = "sprint_loop"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BroomViewmodel/mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Vector3(0.2, -0.5, -0.154)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BroomViewmodel/mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(3.14159, 0.0959931, 0.1309)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_52egn"]
 _data = {
 "RESET": SubResource("Animation_jw8jy"),
-"broom": SubResource("Animation_kk2uy"),
+"brooming_loop": SubResource("Animation_v16ob"),
+"brooming_loop_end": SubResource("Animation_m3125"),
+"brooming_loop_start": SubResource("Animation_5yecp"),
 "idle": SubResource("Animation_h5qqg"),
 "sprint_end": SubResource("Animation_7hoeh"),
-"sprint_init": SubResource("Animation_7rcfg")
+"sprint_init": SubResource("Animation_7rcfg"),
+"sprint_loop": SubResource("Animation_1wmt6")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gb0py"]
+animation = &"brooming_loop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hes0x"]
+animation = &"brooming_loop_end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ghdy0"]
+animation = &"brooming_loop_start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s6ifs"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fg4ie"]
+animation = &"sprint_end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sn25p"]
+animation = &"sprint_init"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rlncc"]
+animation = &"sprint_loop"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cno54"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v7sc1"]
+advance_mode = 2
+advance_expression = "not wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dbhv6"]
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6gud3"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "not wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_awu8l"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gp30y"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yxkvm"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+advance_expression = "wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_46hi8"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_103xs"]
+advance_mode = 2
+advance_expression = "wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gsw54"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "not wish_brooming
+"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ybass"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "not wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jklkv"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fe82q"]
+xfade_time = 0.5
+advance_mode = 2
+advance_expression = "wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qtnhm"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yht86"]
+xfade_time = 0.2
+break_loop_at_end = true
+advance_mode = 2
+advance_expression = "wish_sprinting"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wywd0"]
+states/End/position = Vector2(882, 138)
+states/Start/position = Vector2(65, 144)
+states/brooming_loop/node = SubResource("AnimationNodeAnimation_gb0py")
+states/brooming_loop/position = Vector2(549, -62)
+states/brooming_loop_end/node = SubResource("AnimationNodeAnimation_hes0x")
+states/brooming_loop_end/position = Vector2(834, 29)
+states/brooming_loop_start/node = SubResource("AnimationNodeAnimation_ghdy0")
+states/brooming_loop_start/position = Vector2(324, 29)
+states/idle/node = SubResource("AnimationNodeAnimation_s6ifs")
+states/idle/position = Vector2(184, 138)
+states/sprint_end/node = SubResource("AnimationNodeAnimation_fg4ie")
+states/sprint_end/position = Vector2(753, 299)
+states/sprint_init/node = SubResource("AnimationNodeAnimation_sn25p")
+states/sprint_init/position = Vector2(324, 291)
+states/sprint_loop/node = SubResource("AnimationNodeAnimation_rlncc")
+states/sprint_loop/position = Vector2(534, 399)
+transitions = ["sprint_init", "sprint_loop", SubResource("AnimationNodeStateMachineTransition_cno54"), "sprint_loop", "sprint_end", SubResource("AnimationNodeStateMachineTransition_v7sc1"), "idle", "sprint_init", SubResource("AnimationNodeStateMachineTransition_dbhv6"), "sprint_end", "idle", SubResource("AnimationNodeStateMachineTransition_6gud3"), "sprint_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_awu8l"), "sprint_init", "sprint_end", SubResource("AnimationNodeStateMachineTransition_gp30y"), "brooming_loop_start", "brooming_loop", SubResource("AnimationNodeStateMachineTransition_yxkvm"), "brooming_loop", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_46hi8"), "idle", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_103xs"), "brooming_loop_end", "idle", SubResource("AnimationNodeStateMachineTransition_gsw54"), "brooming_loop_start", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_ybass"), "brooming_loop_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_jklkv"), "sprint_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_fe82q"), "brooming_loop_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_qtnhm"), "brooming_loop", "sprint_init", SubResource("AnimationNodeStateMachineTransition_yht86")]
+graph_offset = Vector2(-305, -183)
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("velocity_component", "gravity_component", "camera", "camera_origin", "equipment_viewmodel")]
 floor_block_on_wall = false
@@ -269,11 +419,15 @@ script = ExtResource("1_e0tat")
 velocity_component = NodePath("VelocityComponent")
 gravity_component = NodePath("GravityComponent")
 jump_strength = 5.0
+jump_buffer_size = 10
 sprint_jumping_boost_amount = 4.0
 sprint_jumping_falloff = 2.0
 camera = NodePath("CameraOrigin/CameraWobble/Camera3D")
 camera_origin = NodePath("CameraOrigin")
+cleaning_radius = 0.8
+sprint_cleaning_cooldown = 0.1
 equipment_viewmodel = NodePath("CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin/BroomViewmodel")
+cleaning_range = 3.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_dq522")
@@ -301,14 +455,13 @@ rotation_degrees_offset = Vector3(0, 0, 0.1)
 rotation_speed = 4.0
 
 [node name="Camera3D" type="Camera3D" parent="CameraOrigin/CameraWobble"]
-fov = 90.0
 script = ExtResource("4_feodf")
 
 [node name="ViewmodelOrigin" type="Node3D" parent="CameraOrigin/CameraWobble/Camera3D"]
 
-[node name="BroomViewmodel" type="Node3D" parent="CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin" node_paths=PackedStringArray("animation_player")]
+[node name="BroomViewmodel" type="Node3D" parent="CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin" node_paths=PackedStringArray("animation_tree")]
 script = ExtResource("5_fq1iu")
-animation_player = NodePath("AnimationPlayer")
+animation_tree = NodePath("AnimationTree")
 walk_cycle_direction = Vector3(0.025, 0.01, 0)
 
 [node name="mesh_broom" parent="CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin/BroomViewmodel" instance=ExtResource("5_nl0cb")]
@@ -322,4 +475,9 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_52egn")
 }
-playback_default_blend_time = 0.15
+
+[node name="AnimationTree" type="AnimationTree" parent="CameraOrigin/CameraWobble/Camera3D/ViewmodelOrigin/BroomViewmodel"]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_wywd0")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")

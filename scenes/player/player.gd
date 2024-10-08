@@ -60,6 +60,7 @@ func _physics_process(delta : float):
 	movement_process(delta)
 
 	equipment_viewmodel.walk_multiplier = velocity_component.current_velocity.length() / velocity_component.speed
+	equipment_viewmodel._set_sprint_toggle(wish_sprint)
 
 	if (gravity_component.current_velocity < delta - 0.1):
 		is_landing = true
@@ -87,7 +88,7 @@ func input_process(delta : float):
 	velocity_component.input_direction = velocity_component.input_direction.rotated(-rotation.y)
 
 	if (velocity_component.input_direction.length() < 0.5):
-		toggle_sprint(false)
+		wish_sprint = false
 
 	# jump
 
@@ -96,13 +97,12 @@ func input_process(delta : float):
 
 	# broom
 
-	if (Input.is_action_pressed("player_action_primary")):
-		equipment_viewmodel._attempt_brooming()
+	equipment_viewmodel.wish_brooming = Input.is_action_pressed("player_action_primary") && !wish_sprint
 
 	# sprint
 
 	if (Input.is_action_just_pressed("player_action_sprint") && velocity_component.input_direction.length() > 0.0 && is_on_floor()):
-		toggle_sprint(!wish_sprint)
+		wish_sprint = !wish_sprint
 
 func get_input_direction() -> Vector2:
 	var result = Vector2()
@@ -167,15 +167,6 @@ func movement_process(delta):
 
 func is_walking() -> bool:
 	return velocity_component.current_velocity.length() > 0.0
-
-func toggle_sprint(toggle : bool):
-	if (wish_sprint != toggle):
-		if (toggle):
-			equipment_viewmodel._animate_sprint_init()
-		else:
-			equipment_viewmodel._animate_sprint_end()
-
-	wish_sprint = toggle
 
 func _on_landing():
 	var multiplier = 1.0

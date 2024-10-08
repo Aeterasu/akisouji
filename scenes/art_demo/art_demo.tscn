@@ -60,11 +60,7 @@ rain_owner = NodePath("../Player")
 
 [node name="Player" parent="." node_paths=PackedStringArray("leaf_cleaning_handler") instance=ExtResource("1_s7upw")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 8.5, 2, 4.5)
-jump_buffer_size = 10
-cleaning_radius = 1.25
 leaf_cleaning_handler = NodePath("../LeafPopulation/LeafCleaningHandler")
-sprint_cleaning_cooldown = 0.1
-cleaning_range = 4.0
 
 [node name="Props" type="Node3D" parent="."]
 
@@ -172,7 +168,7 @@ leaf_particle_manager = NodePath("LeafParticleManager")
 
 [node name="LeafCleaningHandler" type="Node" parent="LeafPopulation"]
 script = ExtResource("5_eae0y")
-base_cleaning_coeff = 1.0
+base_cleaning_coeff = 0.78
 falloff_threshold = 0.3
 target_cleaned_amount_leeway = 0.9
 
