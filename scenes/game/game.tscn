@@ -1,9 +1,60 @@
-[gd_scene load_steps=3 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=7 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
+[ext_resource type="Script" path="res://scenes/loading_screen.gd" id="3_te81k"]
+[ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="3_uk65u"]
 [ext_resource type="PackedScene" uid="uid://b0ifaodpyet0w" path="res://scenes/art_demo/art_demo.tscn" id="11_ycsnd"]
 
-[node name="Game" type="Node3D"]
+[sub_resource type="Gradient" id="Gradient_w0mr0"]
+colors = PackedColorArray(0, 0, 0, 1, 0.126179, 0.0169545, 0.0044633, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1hww3"]
+gradient = SubResource("Gradient_w0mr0")
+width = 320
+height = 180
+fill_to = Vector2(0, 1)
+
+[node name="Game" type="Node3D" node_paths=PackedStringArray("loading_screen")]
 script = ExtResource("1_bcfl2")
+loading_screen = NodePath("CanvasLayer/LoadingScreen")
 
 [node name="ArtDemo" parent="." instance=ExtResource("11_ycsnd")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 128
+follow_viewport_enabled = true
+
+[node name="LoadingScreen" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_te81k")
+
+[node name="ColorRect" type="TextureRect" parent="CanvasLayer/LoadingScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_1hww3")
+
+[node name="Label" type="Label" parent="CanvasLayer/LoadingScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -23.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("3_uk65u")
+theme_override_font_sizes/font_size = 48
+text = "Loading..."
+horizontal_alignment = 2
+vertical_alignment = 2

@@ -40,6 +40,7 @@ func _ready() -> void:
 	_populate_multimesh()
 	await get_tree().create_timer(0.5).timeout
 	_translate_multimesh()
+	Game.game_instance._on_loading_ended()
 
 	leaf_cleaning_handler.leaves_amount = int(round(len(cleaned_leaves) * leaf_cleaning_handler.target_cleaned_amount_leeway))
 	leaf_cleaning_handler.on_cleaning_request_at_global_position.connect(_on_clean_origin_position_updated)
