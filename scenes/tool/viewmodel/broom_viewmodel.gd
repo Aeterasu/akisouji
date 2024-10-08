@@ -39,7 +39,5 @@ func _set_sprint_toggle(toggle : bool) -> void:
 
 	wish_sprint = toggle
 
-	#animation_tree["parameters/conditions/wish_sprint"] = toggle
-
 func _broom() -> void:
 	on_broom.emit()

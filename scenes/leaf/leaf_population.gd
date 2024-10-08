@@ -28,6 +28,9 @@ var leaf_instances_sorted_by_position : Array[LeafInstanceData] = []
 var leaf_instances_sorted_positions : Array[Vector2] = []
 var cleaned_leaves : Array[bool] = []
 
+var scale_interpolate_list : Array[int] = [] # list of leaf instances in need of scale-lerping!
+var interpolation_deletion_queue : Array[int] = []
+
 #TODO: Leaf population via navmesh
 func _ready() -> void:
 	if (!enabled):
@@ -40,6 +43,30 @@ func _ready() -> void:
 
 	leaf_cleaning_handler.leaves_amount = int(round(len(cleaned_leaves) * leaf_cleaning_handler.target_cleaned_amount_leeway))
 	leaf_cleaning_handler.on_cleaning_request_at_global_position.connect(_on_clean_origin_position_updated)
+
+func _physics_process(delta):
+	if (len(scale_interpolate_list) > 0):
+		for i in range(len(scale_interpolate_list)):
+			var transform = multimesh.get_instance_transform(scale_interpolate_list[i])
+
+			var scale = transform.basis.get_scale()
+
+			if (scale.length() <= 0.1):
+				multimesh.set_instance_transform(scale_interpolate_list[i], Transform3D.IDENTITY.scaled(Vector3.ZERO))
+				interpolation_deletion_queue.append(i)
+				continue
+
+			scale = scale.lerp(Vector3.ZERO, 8 * delta)
+
+			transform = transform.scaled_local(scale)
+			multimesh.set_instance_transform(scale_interpolate_list[i], transform)
+
+	if (len(interpolation_deletion_queue) > 0):
+		var offset : int = 0
+		for i in interpolation_deletion_queue:
+			scale_interpolate_list.remove_at(i - offset)
+			offset += 1
+		interpolation_deletion_queue.clear()
 
 func _populate_multimesh() -> void:
 	#get our multimesh
@@ -81,7 +108,6 @@ func _translate_multimesh() -> void:
 		var data = leaf_chunk_data_array[u]
 		data.last_clean_index = offset
 
-		# TODO: tie leaves' z position to a heightmap. use 255 colors with 0.1 step
 		for v in (range(data.index_count)):
 			var position_x = clampf(white_pixels[u].x - pixel_offset + (randf() - 0.5) * position_disperse, 0.0, viewport_image_size.x)
 			var position_y = clampf(white_pixels[u].y - pixel_offset + (randf() - 0.5) * position_disperse, 0.0, viewport_image_size.y)
@@ -117,13 +143,15 @@ func _on_clean_origin_position_updated(global_position : Vector3, circle_radius 
 	_clean_on_real_position(global_position, circle_radius)
 
 func _clean_leaf(index : int, sorted_index : int):
-	var transform = Transform3D()
-	transform.origin = Vector3(0, 0, 0)
+	#var transform = Transform3D()
+	#transform.origin = Vector3(0, 0, 0)
 
-	multimesh.set_instance_transform(index, transform)
+	#multimesh.set_instance_transform(index, transform)
 
 	cleaned_leaves[index] = true
 	leaf_cleaning_handler.cleaned_leaves_amount += 1
+
+	scale_interpolate_list.append(index)
 
 	# update progress on ui
 
@@ -152,5 +180,5 @@ func _clean_on_real_position(real_position : Vector3, circle_radius : float = 1.
 		elif (position >= real_position_2d + Vector2.ONE * circle_radius):
 			break
 
-	if (cleaned_amount / 3 > 0):
-		leaf_particle_manager._create_particles_on_real_position(real_position, cleaned_amount / 3)
+	if (cleaned_amount / 2 > 0):
+		leaf_particle_manager._create_particles_on_real_position(real_position, cleaned_amount / 2)

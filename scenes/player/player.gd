@@ -22,7 +22,6 @@ class_name Player extends CharacterBody3D
 @export var sprint_cleaning_cooldown : float = 0.25
 @export var sprint_cleaning_radius : float = 0.25
 
-#TODO: add cleaning coeffs
 @export_group("Equipment")
 @export var equipment_viewmodel : BroomViewmodel = null
 @export var cleaning_range : float = 8.0
