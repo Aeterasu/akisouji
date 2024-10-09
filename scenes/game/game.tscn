@@ -1,9 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
+[ext_resource type="PackedScene" uid="uid://dj80ge0828m4t" path="res://scenes/level/park.tscn" id="2_0s3e8"]
 [ext_resource type="Script" path="res://scenes/loading_screen.gd" id="3_te81k"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="3_uk65u"]
-[ext_resource type="PackedScene" uid="uid://b0ifaodpyet0w" path="res://scenes/art_demo/art_demo.tscn" id="11_ycsnd"]
 
 [sub_resource type="Gradient" id="Gradient_w0mr0"]
 colors = PackedColorArray(0, 0, 0, 1, 0.126179, 0.0169545, 0.0044633, 1)
@@ -18,7 +18,7 @@ fill_to = Vector2(0, 1)
 script = ExtResource("1_bcfl2")
 loading_screen = NodePath("CanvasLayer/LoadingScreen")
 
-[node name="ArtDemo" parent="." instance=ExtResource("11_ycsnd")]
+[node name="Park" parent="." instance=ExtResource("2_0s3e8")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 128

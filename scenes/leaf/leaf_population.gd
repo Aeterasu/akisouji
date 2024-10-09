@@ -6,6 +6,7 @@ extends Node
 @export_range(0.0, 2.0) var position_disperse : float = 2.0
 
 @export var target_multimesh_instance : MultiMeshInstance3D = null
+@export var leafmap_resolution_fraction : float = 1.0
 @export var target_leaf_map : Sprite2D = null
 @export var height_map : Sprite2D = null
 
@@ -31,9 +32,12 @@ var cleaned_leaves : Array[bool] = []
 var scale_interpolate_list : Array[int] = [] # list of leaf instances in need of scale-lerping!
 var interpolation_deletion_queue : Array[int] = []
 
+#TODO: Separate multimeshinstances into multiple clusters (amount of cluster should be configurable)
 #TODO: Leaf population via navmesh
 func _ready() -> void:
 	if (!enabled):
+		await get_tree().create_timer(0.1).timeout
+		Game.game_instance._on_loading_ended()
 		return
 
 	await get_tree().create_timer(0.5).timeout # TODO: this has a potential to go VERY sour. replace with something better later
@@ -110,8 +114,8 @@ func _translate_multimesh() -> void:
 		data.last_clean_index = offset
 
 		for v in (range(data.index_count)):
-			var position_x = clampf(white_pixels[u].x - pixel_offset + (randf() - 0.5) * position_disperse, 0.0, viewport_image_size.x)
-			var position_y = clampf(white_pixels[u].y - pixel_offset + (randf() - 0.5) * position_disperse, 0.0, viewport_image_size.y)
+			var position_x = clampf((white_pixels[u].x - pixel_offset + (randf() - 0.5) * position_disperse) / leafmap_resolution_fraction, 0.0, viewport_image_size.x / leafmap_resolution_fraction)
+			var position_y = clampf((white_pixels[u].y - pixel_offset + (randf() - 0.5) * position_disperse) / leafmap_resolution_fraction, 0.0, viewport_image_size.y / leafmap_resolution_fraction)
 			var height : float = 0.01
 			height += float(heightmap_image_data.get_pixel(int(white_pixels[u].x), int(white_pixels[u].y)).r8) * 0.01
 

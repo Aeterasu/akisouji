@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://scenes/player/move_speed_upgrade_handler.gd" id="4_xp3sh"]
 [ext_resource type="Script" path="res://scenes/player/camera_effect_landing.gd" id="5_1a0oq"]
 [ext_resource type="Script" path="res://scenes/tool/viewmodel/broom_viewmodel.gd" id="5_fq1iu"]
-[ext_resource type="Resource" uid="uid://cc7kdcc5fh4wk" path="res://scenes/upgrade/move_speed/wellies.tres" id="5_ieyg5"]
+[ext_resource type="Resource" uid="uid://bnojv12xi1uio" path="res://scenes/upgrade/move_speed/default_boots.tres" id="5_ggm6b"]
 [ext_resource type="PackedScene" uid="uid://1rbyx1a81x74" path="res://assets/mesh/tool/mesh_broom.blend" id="5_nl0cb"]
 [ext_resource type="Texture2D" uid="uid://4qx2h2eyxpqf" path="res://assets/texture/tool/texture_broom_1_albm.png" id="6_g4l35"]
 [ext_resource type="Script" path="res://scenes/tool/viewmodel/viewmodel_sway.gd" id="6_t0wwe"]
@@ -490,7 +490,9 @@ camera = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D")
 camera_origin = NodePath("CameraOrigin")
 camera_effect_landing = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding")
 cleaning_radius = 0.8
+jump_cleaning_radius = 1.2
 sprint_cleaning_cooldown = 0.1
+sprint_cleaning_radius = 0.3
 equipment_viewmodel = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway/BroomViewmodel")
 cleaning_range = 3.0
 
@@ -509,7 +511,7 @@ decel_weight = 4.0
 
 [node name="MoveSpeedUpgradeHandler" type="Node" parent="VelocityComponent" node_paths=PackedStringArray("velocity_component")]
 script = ExtResource("4_xp3sh")
-current_upgrade = ExtResource("5_ieyg5")
+current_upgrade = ExtResource("5_ggm6b")
 velocity_component = NodePath("..")
 
 [node name="CameraOrigin" type="Node3D" parent="."]
@@ -529,6 +531,7 @@ script = ExtResource("5_1a0oq")
 direction = Vector3(0, -0.15, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding"]
+far = 512.0
 script = ExtResource("4_feodf")
 
 [node name="ViewmodelOrigin" type="Node3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D"]

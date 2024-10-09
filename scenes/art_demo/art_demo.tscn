@@ -29,12 +29,12 @@ ground_curve = 0.0373213
 sun_angle_max = 11.21
 sun_curve = 0.487352
 
-[sub_resource type="Sky" id="Sky_ng8uf"]
+[sub_resource type="Sky" id="Sky_h3k8g"]
 sky_material = SubResource("ProceduralSkyMaterial_pymwl")
 
 [sub_resource type="Environment" id="Environment_krqim"]
 background_mode = 2
-sky = SubResource("Sky_ng8uf")
+sky = SubResource("Sky_h3k8g")
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
 reflected_light_source = 1

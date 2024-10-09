@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://b672vw4sfngug"]
+
+[ext_resource type="PackedScene" uid="uid://cw6fu02lancm7" path="res://assets/mesh/level_design/mesh_park.blend" id="1_tafp8"]
+[ext_resource type="Material" uid="uid://c4kdvxtxf6qht" path="res://resource/material/material_grass_1.tres" id="2_2qj5a"]
+[ext_resource type="Material" uid="uid://cjtw4ylyq480t" path="res://resource/material/material_stone_pavement.tres" id="2_o5lx0"]
+
+[node name="mesh_park" instance=ExtResource("1_tafp8")]
+
+[node name="Cylinder" parent="." index="0"]
+visible = false
+
+[node name="Pavement" parent="." index="1"]
+surface_material_override/0 = ExtResource("2_o5lx0")
+
+[node name="Ground" parent="." index="2"]
+surface_material_override/0 = ExtResource("2_2qj5a")
+
+[node name="Ground_001" parent="." index="3"]
+surface_material_override/0 = ExtResource("2_2qj5a")
+
+[node name="Ground_002" parent="." index="4"]
+surface_material_override/0 = ExtResource("2_2qj5a")
+
+[node name="Ground_003" parent="." index="5"]
+surface_material_override/0 = ExtResource("2_2qj5a")
+
+[node name="Ground_004" parent="." index="6"]
+surface_material_override/0 = ExtResource("2_2qj5a")
+
+[node name="Pavement_001" parent="." index="7"]
+surface_material_override/0 = ExtResource("2_o5lx0")
+
+[node name="Pavement_002" parent="." index="8"]
+surface_material_override/0 = ExtResource("2_o5lx0")
+
+[node name="Pavement_003" parent="." index="9"]
+surface_material_override/0 = ExtResource("2_o5lx0")
+
+[node name="NurbsPath" parent="." index="10"]
+visible = false
+
+[node name="NurbsPath_001" parent="." index="11"]
+visible = false
+
+[node name="NurbsPath_002" parent="." index="12"]
+visible = false
+
+[node name="Prop" type="Node3D" parent="." index="13"]
+
+[node name="Fence" type="Node3D" parent="Prop" index="0"]
