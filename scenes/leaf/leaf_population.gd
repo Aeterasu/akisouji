@@ -7,6 +7,7 @@ extends Node
 
 @export var target_multimesh_instance : MultiMeshInstance3D = null
 @export var leafmap_resolution_fraction : float = 1.0
+@export var pixel_offset : Vector2 = Vector2()
 @export var target_leaf_map : Sprite2D = null
 @export var height_map : Sprite2D = null
 
@@ -20,8 +21,6 @@ var multimesh : MultiMesh = null
 
 var viewport_image_size = Vector2i()
 var white_pixels : Array[Vector2]
-
-var pixel_offset : int = 0
 
 var leaf_chunk_data_array : Array[LeafChunkData] = []
 
@@ -114,8 +113,8 @@ func _translate_multimesh() -> void:
 		data.last_clean_index = offset
 
 		for v in (range(data.index_count)):
-			var position_x = clampf((white_pixels[u].x - pixel_offset + (randf() - 0.5) * position_disperse) / leafmap_resolution_fraction, 0.0, viewport_image_size.x / leafmap_resolution_fraction)
-			var position_y = clampf((white_pixels[u].y - pixel_offset + (randf() - 0.5) * position_disperse) / leafmap_resolution_fraction, 0.0, viewport_image_size.y / leafmap_resolution_fraction)
+			var position_x = clampf((white_pixels[u].x + pixel_offset.x + (randf() - 0.5) * position_disperse) / leafmap_resolution_fraction, 0.0, (viewport_image_size.x / leafmap_resolution_fraction) + pixel_offset.x)
+			var position_y = clampf((white_pixels[u].y + pixel_offset.y + (randf() - 0.5) * position_disperse) / leafmap_resolution_fraction, 0.0, (viewport_image_size.y / leafmap_resolution_fraction) + pixel_offset.y)
 			var height : float = 0.01
 			height += float(heightmap_image_data.get_pixel(int(white_pixels[u].x), int(white_pixels[u].y)).r8) * 0.01
 

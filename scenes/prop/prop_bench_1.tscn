@@ -13,7 +13,7 @@ roughness_texture = ExtResource("3_6nqb4")
 size = Vector3(5.87286, 1.92621, 0.412598)
 
 [node name="PropBench1" instance=ExtResource("1_lypml")]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_isjjn")
 
 [node name="Bench_001" parent="." index="0"]

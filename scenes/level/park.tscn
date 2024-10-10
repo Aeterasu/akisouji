@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dj80ge0828m4t"]
+[gd_scene load_steps=18 format=3 uid="uid://dj80ge0828m4t"]
 
 [ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="1_3fu10"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_population.gd" id="2_syws7"]
@@ -10,26 +10,39 @@
 [ext_resource type="Texture2D" uid="uid://d007m2ugjmn01" path="res://assets/texture/leaf_map/texture_leaf_map_3_heightmap.png" id="8_268gr"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_noise_sprite.gd" id="8_afreo"]
 [ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://resource/mesh/leaf_mesh.tres" id="9_x14mu"]
+[ext_resource type="PackedScene" uid="uid://d1lybxei6fkyd" path="res://scenes/fx/rain_particles.tscn" id="11_11h7r"]
 [ext_resource type="PackedScene" uid="uid://b672vw4sfngug" path="res://scenes/level/mesh_park.tscn" id="11_pbrjy"]
 [ext_resource type="Environment" uid="uid://dfi8f6n3mi0ob" path="res://resource/environment_base_autumn.tres" id="11_yb1jl"]
+[ext_resource type="Script" path="res://scenes/fx/rain_particles.gd" id="12_hwyka"]
 [ext_resource type="Script" path="res://scenes/fx/flaring_directional_light_3d.gd" id="13_p0ajq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lmmqf"]
+size = Vector3(256, 0.5, 256)
 
 [sub_resource type="MultiMesh" id="MultiMesh_uld1l"]
 transform_format = 1
 use_colors = true
 mesh = ExtResource("9_x14mu")
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_lmmqf"]
-size = Vector3(256, 0.5, 256)
-
 [node name="Park" type="Node3D"]
+
+[node name="Level" type="Node3D" parent="."]
+
+[node name="mesh_park" parent="Level" instance=ExtResource("11_pbrjy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 131.5)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Level"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, -0.25, 128)
+shape = SubResource("BoxShape3D_lmmqf")
 
 [node name="LeafPopulation" type="Node" parent="." node_paths=PackedStringArray("target_multimesh_instance", "target_leaf_map", "height_map", "leaf_cleaning_handler", "leaf_color_palette", "leaf_particle_manager")]
 script = ExtResource("2_syws7")
-enabled = false
 leaves_per_pixel = 8
 target_multimesh_instance = NodePath("../MultiMeshInstance3D")
 leafmap_resolution_fraction = 2.0
+pixel_offset = Vector2(0, 6.5)
 target_leaf_map = NodePath("LeafMap")
 height_map = NodePath("HeightMap")
 leaf_cleaning_handler = NodePath("LeafCleaningHandler")
@@ -69,24 +82,21 @@ script = ExtResource("8_afreo")
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
 multimesh = SubResource("MultiMesh_uld1l")
 
+[node name="RainParticles" parent="." node_paths=PackedStringArray("rain_owner") instance=ExtResource("11_11h7r")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 45, 19.5, 122)
+amount = 256
+script = ExtResource("12_hwyka")
+rain_owner = NodePath("../Player")
+
 [node name="Player" parent="." node_paths=PackedStringArray("leaf_cleaning_handler") instance=ExtResource("1_3fu10")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 1.5, 122)
 leaf_cleaning_handler = NodePath("../LeafPopulation/LeafCleaningHandler")
-
-[node name="mesh_park2" parent="." instance=ExtResource("11_pbrjy")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 128)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, -0.25, 128)
-shape = SubResource("BoxShape3D_lmmqf")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("11_yb1jl")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.985109, 0.0342771, -0.168477, 0, 0.979924, 0.199368, 0.171929, 0.196399, -0.965333, 0, 0, 0)
+transform = Transform3D(-0.97437, 0.0332499, -0.22248, 0, 0.989015, 0.147809, 0.224951, 0.144021, -0.963667, 0, 0, 0)
 light_color = Color(0.858824, 0.784314, 0.752941, 1)
 light_energy = 2.0
 light_bake_mode = 1
