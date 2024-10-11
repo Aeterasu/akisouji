@@ -97,7 +97,7 @@ leaf_cleaning_handler = NodePath("../LeafPopulation/LeafCleaningHandler")
 environment = ExtResource("11_yb1jl")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.97437, 0.0332499, -0.22248, 0, 0.989015, 0.147809, 0.224951, 0.144021, -0.963667, 0, 0, 0)
+transform = Transform3D(-0.990268, 0.0205711, -0.137644, 0, 0.989015, 0.147809, 0.139173, 0.146371, -0.97939, 0, 0, 0)
 light_color = Color(0.858824, 0.784314, 0.752941, 1)
 light_energy = 2.0
 light_bake_mode = 1
