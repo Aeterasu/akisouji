@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b672vw4sfngug"]
+[gd_scene load_steps=9 format=3 uid="uid://b672vw4sfngug"]
 
 [ext_resource type="PackedScene" uid="uid://cw6fu02lancm7" path="res://assets/mesh/level_design/mesh_park.blend" id="1_tafp8"]
 [ext_resource type="Material" uid="uid://c4kdvxtxf6qht" path="res://resource/material/material_grass_1.tres" id="2_2qj5a"]
+[ext_resource type="PackedScene" uid="uid://wvvv002b8764" path="res://scenes/prop/foliage/tree_1.tscn" id="2_k18s0"]
 [ext_resource type="Material" uid="uid://cjtw4ylyq480t" path="res://resource/material/material_stone_pavement.tres" id="2_o5lx0"]
 [ext_resource type="Material" uid="uid://cgjd6cvl16ab2" path="res://resource/material/material_stone_pavement_border.tres" id="3_kvs60"]
 [ext_resource type="Material" uid="uid://mrdkkmwqr7ls" path="res://resource/material/material_metal_1.tres" id="5_h8h33"]
@@ -15,6 +16,64 @@
 [node name="Fence" type="Node3D" parent="Prop" index="0"]
 
 [node name="Trees" type="Node3D" parent="Prop" index="1"]
+
+[node name="prop_tree_1" parent="Prop/Trees" index="0" instance=ExtResource("2_k18s0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.51328, 0, -6.56538)
+lod_bias = 0.001
+
+[node name="prop_tree_2" parent="Prop/Trees" index="1" instance=ExtResource("2_k18s0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 15.8341, 0, -3.60212)
+
+[node name="prop_tree_3" parent="Prop/Trees" index="2" instance=ExtResource("2_k18s0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 29.2906, 0, -10.19)
+
+[node name="prop_tree_4" parent="Prop/Trees" index="3" instance=ExtResource("2_k18s0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.7739, 0, -29.936)
+
+[node name="prop_tree_5" parent="Prop/Trees" index="4" instance=ExtResource("2_k18s0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 18.2169, 0, -17.0235)
+
+[node name="prop_tree_6" parent="Prop/Trees" index="5" instance=ExtResource("2_k18s0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6.24225, 0, -44.6142)
+
+[node name="prop_tree_7" parent="Prop/Trees" index="6" instance=ExtResource("2_k18s0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 6.24225, 0, -24.7966)
+
+[node name="prop_tree_8" parent="Prop/Trees" index="7" instance=ExtResource("2_k18s0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 18.1379, 0, -40.2966)
+
+[node name="prop_tree_9" parent="Prop/Trees" index="8" instance=ExtResource("2_k18s0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.3323, 0, -52.6833)
+
+[node name="prop_tree_10" parent="Prop/Trees" index="9" instance=ExtResource("2_k18s0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 2.35557, 0, -70.1666)
+
+[node name="prop_tree_11" parent="Prop/Trees" index="10" instance=ExtResource("2_k18s0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.87753, 0, -60.03)
+
+[node name="prop_tree_12" parent="Prop/Trees" index="11" instance=ExtResource("2_k18s0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 15.7299, 0, -78.1214)
+
+[node name="prop_tree_13" parent="Prop/Trees" index="12" instance=ExtResource("2_k18s0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 11.7147, 0, -91.7683)
+
+[node name="prop_tree_14" parent="Prop/Trees" index="13" instance=ExtResource("2_k18s0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 4.11029, 0, -105.189)
+
+[node name="prop_tree_15" parent="Prop/Trees" index="14" instance=ExtResource("2_k18s0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 7.18596, 0, -86.1175)
+
+[node name="prop_tree_16" parent="Prop/Trees" index="15" instance=ExtResource("2_k18s0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 3.76532, 0, -124.34)
+
+[node name="prop_tree_17" parent="Prop/Trees" index="16" instance=ExtResource("2_k18s0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 23.7666, 0, -124.34)
+
+[node name="prop_tree_18" parent="Prop/Trees" index="17" instance=ExtResource("2_k18s0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 26.9117, 0, -107.785)
+
+[node name="prop_tree_19" parent="Prop/Trees" index="18" instance=ExtResource("2_k18s0")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 35.5693, 0, -118.012)
 
 [node name="Bench" type="Node3D" parent="Prop" index="2"]
 

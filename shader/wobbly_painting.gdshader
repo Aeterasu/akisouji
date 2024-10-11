@@ -15,9 +15,9 @@ float clock(float time){
 
 void fragment(){
 	float c = clock(TIME); //Get clock frame
-	vec4 offset = texture(flowMap, vec2(SCREEN_UV.x + c, SCREEN_UV.y + c)) * strength; //Get offset 
+	vec4 offset = texture(flowMap, vec2(SCREEN_UV.x + c, SCREEN_UV.y + c)) * strength; //Get offset
 	//COLOR = texture(TEXTURE, vec2(UV.x,UV.y) + normal.xy); //Apply offset
-	COLOR = texture(SCREEN_TEXTURE, vec2(SCREEN_UV.x,SCREEN_UV.y) + offset.xy - vec2(0.5,0.5)*strength); //We need to remove the displacement 
+	COLOR = texture(SCREEN_TEXTURE, vec2(SCREEN_UV.x,SCREEN_UV.y) + offset.xy - vec2(0.5,0.5)*strength); //We need to remove the displacement
 }
 
 

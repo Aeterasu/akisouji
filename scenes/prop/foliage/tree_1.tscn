@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://wvvv002b8764"]
+
+[ext_resource type="PackedScene" uid="uid://ip2u3jtj7mou" path="res://assets/mesh/prop/mesh_tree_1.blend" id="1_eq144"]
+[ext_resource type="Texture2D" uid="uid://dbe3mpbhypbgn" path="res://assets/texture/environment/texture_wood_1_albm.png" id="2_gjtn6"]
+[ext_resource type="Texture2D" uid="uid://dvbveujmk7j8e" path="res://assets/texture/environment/texture_foliage_1_albm.png" id="3_08gyh"]
+[ext_resource type="Texture2D" uid="uid://dfvni54hmq5a8" path="res://assets/texture/environment/texture_foliage_2_albm.png" id="4_1saxp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8wdgm"]
+albedo_texture = ExtResource("2_gjtn6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s1aaq"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("3_08gyh")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_c1opt"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("4_1saxp")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_gf3lp"]
+height = 4.0
+radius = 0.27
+
+[node name="prop_tree_1" instance=ExtResource("1_eq144")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_8wdgm")
+
+[node name="Foliage" parent="." index="0"]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, -0.5, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_s1aaq")
+
+[node name="Foliage_001" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_c1opt")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("CylinderShape3D_gf3lp")
