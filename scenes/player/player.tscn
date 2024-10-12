@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://077fpjam3rlw"]
+[gd_scene load_steps=68 format=3 uid="uid://077fpjam3rlw"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_e0tat"]
 [ext_resource type="Script" path="res://scenes/component/gravity_component/gravity_component.gd" id="2_nr0jr"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://f1dd6esiymal" path="res://assets/audio/sfx_concrete_footstep_3.ogg" id="18_t1y7a"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/resources/single_sound_effect.gd" id="19_n020x"]
 [ext_resource type="AudioStream" uid="uid://snikjpt8nwa5" path="res://assets/audio/sfx_concrete_footstep_4.ogg" id="19_w7vxr"]
+[ext_resource type="Script" path="res://scenes/player/player_oob_rescue.gd" id="24_6ndkg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dq522"]
 
@@ -594,3 +595,8 @@ script = ExtResource("12_ws1qt")
 sound_effect = SubResource("Resource_8e0gb")
 bus = &"SFX"
 max_polyphony = 4
+
+[node name="PlayerOobRescue" type="Node" parent="." node_paths=PackedStringArray("player")]
+script = ExtResource("24_6ndkg")
+player = NodePath("..")
+trouble_threshold = 5.0
