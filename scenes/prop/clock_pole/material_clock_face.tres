@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://ctxs05jdtvba5"]
+
+[ext_resource type="Texture2D" uid="uid://bdf1tax6w6x6s" path="res://assets/texture/prop/texture_clock_1.png" id="1_x2o6u"]
+
+[resource]
+shading_mode = 0
+albedo_color = Color(0.650128, 0.650128, 0.650128, 1)
+albedo_texture = ExtResource("1_x2o6u")

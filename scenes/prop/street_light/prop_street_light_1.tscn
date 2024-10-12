@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4sbdo24ld2gb"]
+
+[ext_resource type="PackedScene" uid="uid://6aen2ug5udo5" path="res://assets/mesh/prop/mesh_street_light_1.blend" id="1_5josf"]
+[ext_resource type="Material" uid="uid://mrdkkmwqr7ls" path="res://resource/material/material_metal_1.tres" id="2_nev7s"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jbkgb"]
+emission_enabled = true
+emission = Color(0.999994, 0.536441, 0.237661, 1)
+emission_energy_multiplier = 2.35
+
+[node name="PropStreetLight" type="Node3D"]
+
+[node name="mesh_street_light_1" parent="." instance=ExtResource("1_5josf")]
+surface_material_override/0 = ExtResource("2_nev7s")
+surface_material_override/1 = SubResource("StandardMaterial3D_jbkgb")

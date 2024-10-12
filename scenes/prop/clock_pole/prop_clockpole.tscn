@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://vt1u5va52d0y"]
+
+[ext_resource type="PackedScene" uid="uid://icnsfupqglby" path="res://scenes/prop/clock_pole/mesh_clockpole.tscn" id="1_q0y1k"]
+
+[node name="PropClockpole" type="Node3D"]
+
+[node name="mesh_clockpole_1" parent="." instance=ExtResource("1_q0y1k")]

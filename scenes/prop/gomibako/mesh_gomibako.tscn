@@ -1,0 +1,19 @@
+[gd_scene load_steps=7 format=3 uid="uid://b1g3afrwerhlj"]
+
+[ext_resource type="PackedScene" uid="uid://dheh72pn8jli2" path="res://assets/mesh/prop/mesh_gomibako.blend" id="1_e5v6n"]
+[ext_resource type="Texture2D" uid="uid://cavq24tc2g06u" path="res://assets/texture/prop/texture_gomibako_albm.png" id="2_ft6l6"]
+[ext_resource type="Texture2D" uid="uid://bb50tqh4f05yn" path="res://assets/texture/prop/texture_gomibako_metmp.png" id="3_uppm6"]
+[ext_resource type="Texture2D" uid="uid://7rov27ma4qho" path="res://assets/texture/prop/texture_rubbish_albm.png" id="4_hpyu1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mmafo"]
+albedo_texture = ExtResource("2_ft6l6")
+roughness_texture = ExtResource("3_uppm6")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n7k56"]
+albedo_texture = ExtResource("4_hpyu1")
+
+[node name="mesh_gomibako" instance=ExtResource("1_e5v6n")]
+surface_material_override/0 = SubResource("StandardMaterial3D_mmafo")
+
+[node name="Rubbish" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_n7k56")

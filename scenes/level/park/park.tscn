@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://scenes/leaf/leaf_noise_sprite.gd" id="8_afreo"]
 [ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://resource/mesh/leaf_mesh.tres" id="9_x14mu"]
 [ext_resource type="PackedScene" uid="uid://d1lybxei6fkyd" path="res://scenes/fx/rain_particles.tscn" id="11_11h7r"]
-[ext_resource type="PackedScene" uid="uid://b672vw4sfngug" path="res://scenes/level/mesh_park.tscn" id="11_pbrjy"]
+[ext_resource type="PackedScene" uid="uid://b672vw4sfngug" path="res://scenes/level/park/mesh_park.tscn" id="11_pbrjy"]
 [ext_resource type="Environment" uid="uid://dfi8f6n3mi0ob" path="res://resource/environment_base_autumn.tres" id="11_yb1jl"]
 [ext_resource type="Script" path="res://scenes/fx/rain_particles.gd" id="12_hwyka"]
 [ext_resource type="Script" path="res://scenes/fx/flaring_directional_light_3d.gd" id="13_p0ajq"]

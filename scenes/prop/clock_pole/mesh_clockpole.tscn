@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://icnsfupqglby"]
+
+[ext_resource type="PackedScene" uid="uid://cnbbv5eq4u4v7" path="res://assets/mesh/prop/mesh_clockpole_1.blend" id="1_4nlfo"]
+[ext_resource type="Material" uid="uid://mrdkkmwqr7ls" path="res://resource/material/material_metal_1.tres" id="2_082w2"]
+[ext_resource type="Material" uid="uid://ctxs05jdtvba5" path="res://scenes/prop/clock_pole/material_clock_face.tres" id="3_iogtw"]
+[ext_resource type="Script" path="res://scenes/prop/clock_pole/clock_pole.gd" id="4_l16pr"]
+
+[node name="mesh_clockpole_1" node_paths=PackedStringArray("hour_hand", "minute_hand", "seconds_hand", "hour_hand_back", "minute_hand_back", "seconds_hand_back") instance=ExtResource("1_4nlfo")]
+surface_material_override/0 = ExtResource("2_082w2")
+surface_material_override/1 = ExtResource("3_iogtw")
+script = ExtResource("4_l16pr")
+hour_hand = NodePath("Hour")
+minute_hand = NodePath("Minute")
+seconds_hand = NodePath("Second")
+hour_hand_back = NodePath("Hour_001")
+minute_hand_back = NodePath("Minute_001")
+seconds_hand_back = NodePath("Second_001")

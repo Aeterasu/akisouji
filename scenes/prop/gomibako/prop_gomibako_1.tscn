@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ffbredvleqm0"]
+
+[ext_resource type="PackedScene" uid="uid://b1g3afrwerhlj" path="res://scenes/prop/gomibako/mesh_gomibako.tscn" id="1_15u6a"]
+
+[node name="PropGomibako1" type="Node3D"]
+
+[node name="mesh_gomibako" parent="." instance=ExtResource("1_15u6a")]

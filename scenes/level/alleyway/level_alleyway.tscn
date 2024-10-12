@@ -1,0 +1,491 @@
+[gd_scene load_steps=36 format=3 uid="uid://dvlleqic8xnpl"]
+
+[ext_resource type="PackedScene" uid="uid://bqtapora2wl4e" path="res://assets/mesh/level_design/mesh_alleyway.blend" id="1_yq5x8"]
+[ext_resource type="PackedScene" uid="uid://d1lybxei6fkyd" path="res://scenes/fx/rain_particles.tscn" id="2_4wqfp"]
+[ext_resource type="Material" uid="uid://cjtw4ylyq480t" path="res://resource/material/material_stone_pavement.tres" id="2_o4ob6"]
+[ext_resource type="Script" path="res://scenes/fx/rain_particles.gd" id="3_wgda4"]
+[ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="4_5aj5q"]
+[ext_resource type="Environment" uid="uid://dfi8f6n3mi0ob" path="res://resource/environment_base_autumn.tres" id="6_ah06a"]
+[ext_resource type="Script" path="res://scenes/fx/flaring_directional_light_3d.gd" id="7_6rjik"]
+[ext_resource type="Script" path="res://scenes/leaf/leaf_population.gd" id="7_7ouop"]
+[ext_resource type="Script" path="res://scenes/leaf/leaf_cleaning_handler.gd" id="8_v3x78"]
+[ext_resource type="Script" path="res://scenes/leaf/leaf_color_palette.gd" id="9_j3juf"]
+[ext_resource type="Script" path="res://scenes/fx/leaf_particle_manager.gd" id="10_jrmnh"]
+[ext_resource type="PackedScene" uid="uid://biun1d1hu4wq4" path="res://scenes/fx/leaf_particles.tscn" id="11_4o50u"]
+[ext_resource type="Script" path="res://scenes/leaf/leaf_noise_sprite.gd" id="13_hhokx"]
+[ext_resource type="Texture2D" uid="uid://ckp0n0vr7luqv" path="res://assets/texture/leaf_map/texture_leafmap_alleyway_1.png" id="15_23wfq"]
+[ext_resource type="Material" uid="uid://c4kdvxtxf6qht" path="res://resource/material/material_grass_1.tres" id="16_l6vd3"]
+[ext_resource type="Texture2D" uid="uid://cp87vhu3s4gt8" path="res://assets/texture/leaf_map/texture_leafmap_alleyway_1_heightmap.png" id="17_25hv7"]
+[ext_resource type="Material" uid="uid://bnwne1764whql" path="res://resource/material/material_soil_1.tres" id="17_ok7y4"]
+[ext_resource type="PackedScene" uid="uid://cx7dxi1bicvqs" path="res://scenes/prop/foliage/prop_bush_1.tscn" id="18_guaaq"]
+[ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://resource/mesh/leaf_mesh.tres" id="18_rokwx"]
+[ext_resource type="PackedScene" uid="uid://vt1u5va52d0y" path="res://scenes/prop/clock_pole/prop_clockpole.tscn" id="20_dl0xq"]
+[ext_resource type="PackedScene" uid="uid://bx7m3uwwi0u0v" path="res://scenes/prop/trees/prop_tree_1.tscn" id="20_ukg7g"]
+[ext_resource type="PackedScene" uid="uid://u8sbqvfha382" path="res://scenes/prop/bench/prop_bench_1.tscn" id="21_w7u16"]
+[ext_resource type="PackedScene" uid="uid://ffbredvleqm0" path="res://scenes/prop/gomibako/prop_gomibako_1.tscn" id="23_8b1pb"]
+[ext_resource type="PackedScene" uid="uid://b4sbdo24ld2gb" path="res://scenes/prop/street_light/prop_street_light_1.tscn" id="23_ek4ka"]
+[ext_resource type="Texture2D" uid="uid://dw801hdpxbapg" path="res://assets/texture/environment/texture_road_1_albm.png" id="24_w704b"]
+[ext_resource type="Material" uid="uid://mrdkkmwqr7ls" path="res://resource/material/material_metal_1.tres" id="25_y88bx"]
+[ext_resource type="Material" uid="uid://bh0pfkgtt4ll5" path="res://resource/material/material_concrete_1.tres" id="26_fqjk2"]
+[ext_resource type="Material" uid="uid://d2o6he4u2kqp" path="res://resource/material/material_brick_1.tres" id="27_5wex2"]
+[ext_resource type="PackedScene" uid="uid://dfu5idnqbw6ta" path="res://scenes/prop/horizon/horizon_city.tscn" id="27_c2rv4"]
+[ext_resource type="PackedScene" uid="uid://d1pkstxa0k3lv" path="res://scenes/prop/horizon/horizon_trees.tscn" id="28_mloy2"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d2wsc"]
+emission_shape_scale = Vector3(1, 0, 1)
+emission_shape = 2
+emission_sphere_radius = 24.0
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 24.0
+initial_velocity_max = 24.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iukvl"]
+shading_mode = 0
+billboard_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_0oog4"]
+material = SubResource("StandardMaterial3D_iukvl")
+size = Vector2(0.05, 1)
+
+[sub_resource type="MultiMesh" id="MultiMesh_5diau"]
+transform_format = 1
+use_colors = true
+mesh = ExtResource("18_rokwx")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8e08r"]
+albedo_texture = ExtResource("24_w704b")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+
+[node name="LevelAlleyway" instance=ExtResource("1_yq5x8")]
+
+[node name="Pavement" parent="." index="0"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13, 0, 0)
+surface_material_override/0 = ExtResource("2_o4ob6")
+
+[node name="PavementWithBush" parent="." index="1"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13, 0, 8)
+surface_material_override/0 = ExtResource("2_o4ob6")
+
+[node name="PavementCollision " parent="." index="2" groups=["Material-Concrete"]]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 13, 0, 0)
+
+[node name="GrassCollision " parent="." index="3" groups=["Material-Grass"]]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 13, 0, 0)
+
+[node name="Pavement_001" parent="." index="4"]
+surface_material_override/0 = ExtResource("16_l6vd3")
+
+[node name="PavementWithBush_001" parent="." index="5"]
+surface_material_override/0 = ExtResource("16_l6vd3")
+
+[node name="PavementWithBush_002" parent="." index="6"]
+surface_material_override/0 = ExtResource("17_ok7y4")
+
+[node name="Player" parent="." index="7" node_paths=PackedStringArray("leaf_cleaning_handler") instance=ExtResource("4_5aj5q")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13.25, 1, 3)
+leaf_cleaning_handler = NodePath("../LeafPopulation/LeafCleaningHandler")
+
+[node name="RainParticles" parent="." index="8" node_paths=PackedStringArray("rain_owner") instance=ExtResource("2_4wqfp")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 18, 0)
+amount = 137
+process_material = SubResource("ParticleProcessMaterial_d2wsc")
+draw_pass_1 = SubResource("QuadMesh_0oog4")
+script = ExtResource("3_wgda4")
+rain_owner = NodePath("../Player")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="9"]
+environment = ExtResource("6_ah06a")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="10"]
+transform = Transform3D(0.968148, -0.0563232, 0.243963, 0, 0.97437, 0.224951, -0.25038, -0.217786, 0.943334, 0, 0, 0)
+light_color = Color(0.889898, 0.773551, 0.728656, 1)
+light_energy = 2.0
+light_bake_mode = 1
+shadow_enabled = true
+shadow_opacity = 0.91
+directional_shadow_mode = 0
+directional_shadow_fade_start = 1.0
+script = ExtResource("7_6rjik")
+
+[node name="LeafPopulation" type="Node" parent="." index="11" node_paths=PackedStringArray("target_multimesh_instance", "target_leaf_map", "height_map", "leaf_cleaning_handler", "leaf_color_palette", "leaf_particle_manager")]
+script = ExtResource("7_7ouop")
+leaves_per_pixel = 32
+target_multimesh_instance = NodePath("MultiMeshInstance3D")
+target_leaf_map = NodePath("LeafMap")
+height_map = NodePath("HeightMap")
+leaf_cleaning_handler = NodePath("LeafCleaningHandler")
+leaf_color_palette = NodePath("LeafColorPalette")
+leaf_particle_manager = NodePath("LeafParticleManager")
+
+[node name="LeafCleaningHandler" type="Node" parent="LeafPopulation" index="0"]
+script = ExtResource("8_v3x78")
+base_cleaning_coeff = 0.5
+falloff_threshold = 0.15
+target_cleaned_amount_leeway = 0.9
+
+[node name="LeafColorPalette" type="Node" parent="LeafPopulation" index="1"]
+script = ExtResource("9_j3juf")
+colors = Array[Color]([Color(0.83, 0.256747, 0.2158, 1), Color(0.83, 0.67811, 0.3237, 1), Color(0.99, 0.45078, 0.1386, 1), Color(0.94, 0.64625, 0.235, 1), Color(0.65, 0.301167, 0.195, 1), Color(0.988235, 0.45098, 0.137255, 1), Color(0.831373, 0.254902, 0.215686, 1), Color(0.988235, 0.45098, 0.137255, 1)])
+fallback_color = Color(0.988235, 0.52549, 0.258824, 1)
+
+[node name="LeafParticleManager" type="Node" parent="LeafPopulation" index="2"]
+script = ExtResource("10_jrmnh")
+leaf_particles = ExtResource("11_4o50u")
+
+[node name="LeafMap" type="Sprite2D" parent="LeafPopulation" index="3"]
+visible = false
+texture_filter = 1
+texture = ExtResource("15_23wfq")
+centered = false
+script = ExtResource("13_hhokx")
+
+[node name="HeightMap" type="Sprite2D" parent="LeafPopulation" index="4"]
+visible = false
+texture_filter = 1
+position = Vector2(512, 0)
+texture = ExtResource("17_25hv7")
+centered = false
+script = ExtResource("13_hhokx")
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="LeafPopulation" index="5"]
+multimesh = SubResource("MultiMesh_5diau")
+
+[node name="Props" type="Node3D" parent="." index="12"]
+
+[node name="Bushes" type="Node3D" parent="Props" index="0"]
+
+[node name="PropBush1" parent="Props/Bushes" index="0" instance=ExtResource("18_guaaq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1, 0, 12)
+
+[node name="PropBush2" parent="Props/Bushes" index="1" instance=ExtResource("18_guaaq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9648, 0, 12)
+
+[node name="PropBush3" parent="Props/Bushes" index="2" instance=ExtResource("18_guaaq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1, 0, 28)
+
+[node name="PropBush4" parent="Props/Bushes" index="3" instance=ExtResource("18_guaaq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9648, 0, 28)
+
+[node name="PropBush5" parent="Props/Bushes" index="4" instance=ExtResource("18_guaaq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1, 0, 44)
+
+[node name="PropBush6" parent="Props/Bushes" index="5" instance=ExtResource("18_guaaq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9648, 0, 44)
+
+[node name="PropBush7" parent="Props/Bushes" index="6" instance=ExtResource("18_guaaq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1, 0, 60)
+
+[node name="PropBush8" parent="Props/Bushes" index="7" instance=ExtResource("18_guaaq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9648, 0, 60)
+
+[node name="PropBush9" parent="Props/Bushes" index="8" instance=ExtResource("18_guaaq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1, 0, 76)
+
+[node name="PropBush10" parent="Props/Bushes" index="9" instance=ExtResource("18_guaaq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9648, 0, 76)
+
+[node name="PropBush11" parent="Props/Bushes" index="10" instance=ExtResource("18_guaaq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.1, 0, 92)
+
+[node name="PropBush12" parent="Props/Bushes" index="11" instance=ExtResource("18_guaaq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9648, 0, 92)
+
+[node name="Trees" type="Node3D" parent="Props" index="1"]
+
+[node name="PropTree1" parent="Props/Trees" index="0" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(0.612, 0, 0, 0, 0.612, 0, 0, 0, 0.612, 3.366, 0, 12.2046)
+
+[node name="PropTree2" parent="Props/Trees" index="1" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(0.315759, 0, 0.42193, 0, 0.527, 0, -0.42193, 0, 0.315759, 7.56457, 0, 25.28)
+
+[node name="PropTree3" parent="Props/Trees" index="2" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(-0.0966029, 0, 0.604327, 0, 0.612, 0, -0.604327, 0, -0.0966029, 4.00543, 0, 39.1756)
+
+[node name="PropTree4" parent="Props/Trees" index="3" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(0.0462704, 0, 0.610248, 0, 0.612, 0, -0.610248, 0, 0.0462704, 7.29834, 0, 52.3423)
+
+[node name="PropTree5" parent="Props/Trees" index="4" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(-0.359962, 0, 0.620094, 0, 0.717, 0, -0.620094, 0, -0.359962, 2.2368, 0, 46.4009)
+
+[node name="PropTree6" parent="Props/Trees" index="5" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(-0.612, 0, 5.35027e-08, 0, 0.612, 0, -5.35027e-08, 0, -0.612, 21.9029, 0, 63.6779)
+
+[node name="PropTree11" parent="Props/Trees" index="6" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(-0.497, 0, 7.50449e-08, 0, 0.497, 0, -7.50449e-08, 0, -0.497, 18.2997, 0, 70.1711)
+
+[node name="PropTree12" parent="Props/Trees" index="7" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(-0.588507, 0, -0.16794, 0, 0.612, 0, 0.16794, 0, -0.588507, 21.2694, 0, 79.0976)
+
+[node name="PropTree13" parent="Props/Trees" index="8" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(-0.588507, 0, -0.16794, 0, 0.612, 0, 0.16794, 0, -0.588507, 19.3622, 0, 86.2563)
+
+[node name="PropTree14" parent="Props/Trees" index="9" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(-0.550557, 0, 0.267265, 0, 0.612, 0, -0.267265, 0, -0.550557, 22.4577, 0, 94.0354)
+
+[node name="PropTree15" parent="Props/Trees" index="10" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(-0.437758, 0, 0.427682, 0, 0.612, 0, -0.427682, 0, -0.437758, 19.1609, 0, 100.43)
+
+[node name="PropTree16" parent="Props/Trees" index="11" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(-0.43256, 0, -0.432938, 0, 0.612, 0, 0.432938, 0, -0.43256, 3.25203, 0, 100.43)
+
+[node name="PropTree17" parent="Props/Trees" index="12" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(-0.559714, 0, -0.247517, 0, 0.612, 0, 0.247517, 0, -0.559714, 4.30929, 0, 91.1105)
+
+[node name="PropTree18" parent="Props/Trees" index="13" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(-0.581735, 0, 0.190073, 0, 0.612, 0, -0.190073, 0, -0.581735, 3.27834, 0, 80.1263)
+
+[node name="PropTree19" parent="Props/Trees" index="14" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(-0.444179, 0, 0.421009, 0, 0.612, 0, -0.421009, 0, -0.444179, 5.85944, 0, 68.5622)
+
+[node name="PropTree20" parent="Props/Trees" index="15" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(-0.389745, 0, 0.369415, 0, 0.537, 0, -0.369415, 0, -0.389745, 4.22, 0, 60.9543)
+
+[node name="PropTree7" parent="Props/Trees" index="16" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(-0.366688, 0, -0.489983, 0, 0.612, 0, 0.489983, 0, -0.366688, 17.7044, 0, 50.6024)
+
+[node name="PropTree8" parent="Props/Trees" index="17" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(0.0966028, 0, -0.604327, 0, 0.612, 0, 0.604327, 0, 0.0966028, 21.2635, 0, 36.7069)
+
+[node name="PropTree9" parent="Props/Trees" index="18" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(-0.0462704, 0, -0.610248, 0, 0.612, 0, 0.610248, 0, -0.0462704, 17.9706, 0, 23.5402)
+
+[node name="PropTree10" parent="Props/Trees" index="19" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(0.354942, 0, -0.611445, 0, 0.707, 0, 0.611445, 0, 0.354942, 23.0322, 0, 29.4816)
+
+[node name="PropTree21" parent="Props/Trees" index="20" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(-0.496308, 0, -0.503515, 0, 0.707, 0, 0.503515, 0, -0.496308, 23.0322, 0, 15.0401)
+
+[node name="PropTree22" parent="Props/Trees" index="21" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(-0.496308, 0, -0.503515, 0, 0.707, 0, 0.503515, 0, -0.496308, 20.4289, 0, 4.6897)
+
+[node name="PropTree23" parent="Props/Trees" index="22" instance=ExtResource("20_ukg7g")]
+transform = Transform3D(-0.469057, 0, -0.110949, 0, 0.482, 0, 0.110949, 0, -0.469057, 5.45344, 0, 4.6897)
+
+[node name="PropClockpole" parent="Props" index="2" instance=ExtResource("20_dl0xq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 0, 5.5)
+
+[node name="PropClockpole2" parent="Props" index="3" instance=ExtResource("20_dl0xq")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 10.5, 0, 5.5)
+
+[node name="PropClockpole3" parent="Props" index="4" instance=ExtResource("20_dl0xq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 0, 95.5)
+
+[node name="PropClockpole4" parent="Props" index="5" instance=ExtResource("20_dl0xq")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 10.5, 0, 95.5)
+
+[node name="PropBench1" parent="Props" index="6" instance=ExtResource("21_w7u16")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.6954, 0, 7.3114)
+
+[node name="PropBench2" parent="Props" index="7" instance=ExtResource("21_w7u16")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 14.2893, 0, 7.3114)
+
+[node name="PropBench17" parent="Props" index="8" instance=ExtResource("21_w7u16")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.6954, 0, 99.3114)
+
+[node name="PropBench18" parent="Props" index="9" instance=ExtResource("21_w7u16")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 14.2893, 0, 99.3114)
+
+[node name="PropBench3" parent="Props" index="10" instance=ExtResource("21_w7u16")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.6954, 0, 16.3114)
+
+[node name="PropBench4" parent="Props" index="11" instance=ExtResource("21_w7u16")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 14.2893, 0, 23.3114)
+
+[node name="PropBench5" parent="Props" index="12" instance=ExtResource("21_w7u16")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 14.2893, 0, 23.3114)
+
+[node name="PropBench6" parent="Props" index="13" instance=ExtResource("21_w7u16")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.6954, 0, 32.3114)
+
+[node name="PropBench7" parent="Props" index="14" instance=ExtResource("21_w7u16")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 14.2893, 0, 39.3114)
+
+[node name="PropBench8" parent="Props" index="15" instance=ExtResource("21_w7u16")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 14.2893, 0, 39.3114)
+
+[node name="PropBench9" parent="Props" index="16" instance=ExtResource("21_w7u16")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.6954, 0, 48.3114)
+
+[node name="PropBench10" parent="Props" index="17" instance=ExtResource("21_w7u16")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 14.2893, 0, 55.3114)
+
+[node name="PropBench11" parent="Props" index="18" instance=ExtResource("21_w7u16")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 14.2893, 0, 55.3114)
+
+[node name="PropBench12" parent="Props" index="19" instance=ExtResource("21_w7u16")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.6954, 0, 64.3114)
+
+[node name="PropBench13" parent="Props" index="20" instance=ExtResource("21_w7u16")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 14.2893, 0, 71.3114)
+
+[node name="PropBench14" parent="Props" index="21" instance=ExtResource("21_w7u16")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 14.2893, 0, 71.3114)
+
+[node name="PropBench15" parent="Props" index="22" instance=ExtResource("21_w7u16")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 11.6954, 0, 80.3114)
+
+[node name="PropBench16" parent="Props" index="23" instance=ExtResource("21_w7u16")]
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 14.2893, 0, 87.3114)
+
+[node name="PropGomibako1" parent="Props" index="24" instance=ExtResource("23_8b1pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 9.26879)
+
+[node name="PropGomibako3" parent="Props" index="25" instance=ExtResource("23_8b1pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 18.2688)
+
+[node name="PropGomibako2" parent="Props" index="26" instance=ExtResource("23_8b1pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 0, 9.26879)
+
+[node name="PropGomibako4" parent="Props" index="27" instance=ExtResource("23_8b1pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 0, 25.2688)
+
+[node name="PropGomibako5" parent="Props" index="28" instance=ExtResource("23_8b1pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 34.2688)
+
+[node name="PropGomibako6" parent="Props" index="29" instance=ExtResource("23_8b1pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 0, 41.2688)
+
+[node name="PropGomibako7" parent="Props" index="30" instance=ExtResource("23_8b1pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 50.2688)
+
+[node name="PropGomibako8" parent="Props" index="31" instance=ExtResource("23_8b1pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 0, 57.2688)
+
+[node name="PropGomibako9" parent="Props" index="32" instance=ExtResource("23_8b1pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 66.2688)
+
+[node name="PropGomibako10" parent="Props" index="33" instance=ExtResource("23_8b1pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 0, 73.2688)
+
+[node name="PropGomibako11" parent="Props" index="34" instance=ExtResource("23_8b1pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 82.2688)
+
+[node name="PropGomibako12" parent="Props" index="35" instance=ExtResource("23_8b1pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 0, 89.2688)
+
+[node name="PropGomibako13" parent="Props" index="36" instance=ExtResource("23_8b1pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.5, 0, 101.269)
+
+[node name="PropGomibako14" parent="Props" index="37" instance=ExtResource("23_8b1pb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.5, 0, 101.269)
+
+[node name="PropStreetLight2" parent="Props" index="38" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 15.5)
+
+[node name="PropStreetLight3" parent="Props" index="39" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 15.5)
+
+[node name="PropStreetLight4" parent="Props" index="40" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 24.5)
+
+[node name="PropStreetLight5" parent="Props" index="41" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 24.5)
+
+[node name="PropStreetLight6" parent="Props" index="42" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 31.5)
+
+[node name="PropStreetLight7" parent="Props" index="43" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 31.5)
+
+[node name="PropStreetLight8" parent="Props" index="44" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 40.5)
+
+[node name="PropStreetLight9" parent="Props" index="45" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 40.5)
+
+[node name="PropStreetLight10" parent="Props" index="46" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 47.5)
+
+[node name="PropStreetLight11" parent="Props" index="47" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 47.5)
+
+[node name="PropStreetLight12" parent="Props" index="48" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 56.5)
+
+[node name="PropStreetLight13" parent="Props" index="49" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 56.5)
+
+[node name="PropStreetLight14" parent="Props" index="50" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 63.5)
+
+[node name="PropStreetLight15" parent="Props" index="51" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 63.5)
+
+[node name="PropStreetLight16" parent="Props" index="52" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 72.5)
+
+[node name="PropStreetLight17" parent="Props" index="53" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 72.5)
+
+[node name="PropStreetLight18" parent="Props" index="54" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 79.5)
+
+[node name="PropStreetLight19" parent="Props" index="55" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 79.5)
+
+[node name="PropStreetLight20" parent="Props" index="56" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 88.5)
+
+[node name="PropStreetLight21" parent="Props" index="57" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 88.5)
+
+[node name="PropStreetLight22" parent="Props" index="58" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 101)
+
+[node name="PropStreetLight23" parent="Props" index="59" instance=ExtResource("23_ek4ka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 101)
+
+[node name="Pavement_002" parent="." index="13"]
+surface_material_override/0 = ExtResource("2_o4ob6")
+surface_material_override/1 = SubResource("StandardMaterial3D_8e08r")
+surface_material_override/2 = ExtResource("16_l6vd3")
+
+[node name="FenceGate_001" parent="." index="14"]
+surface_material_override/0 = ExtResource("25_y88bx")
+surface_material_override/1 = ExtResource("26_fqjk2")
+surface_material_override/2 = ExtResource("27_5wex2")
+
+[node name="FenceGate" parent="." index="15"]
+surface_material_override/0 = ExtResource("25_y88bx")
+surface_material_override/1 = ExtResource("26_fqjk2")
+surface_material_override/2 = ExtResource("27_5wex2")
+
+[node name="FenceGate_002" parent="." index="16"]
+surface_material_override/0 = ExtResource("26_fqjk2")
+surface_material_override/1 = ExtResource("27_5wex2")
+
+[node name="Fence_002" parent="." index="17"]
+surface_material_override/0 = ExtResource("25_y88bx")
+
+[node name="Fence" parent="." index="18"]
+surface_material_override/0 = ExtResource("25_y88bx")
+
+[node name="Fence_001" parent="." index="19"]
+surface_material_override/0 = ExtResource("25_y88bx")
+
+[node name="Fence_003" parent="." index="21"]
+surface_material_override/0 = ExtResource("25_y88bx")
+
+[node name="Fence_004" parent="." index="22"]
+surface_material_override/0 = ExtResource("25_y88bx")
+
+[node name="Fence_005" parent="." index="23"]
+surface_material_override/0 = ExtResource("25_y88bx")
+
+[node name="Fence_006" parent="." index="24"]
+surface_material_override/0 = ExtResource("25_y88bx")
+
+[node name="CityHorizon" parent="." index="26" instance=ExtResource("27_c2rv4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
+
+[node name="Horizon" parent="." index="27" instance=ExtResource("28_mloy2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.665, 0)
+
+[node name="Plains" parent="." index="28"]
+surface_material_override/0 = ExtResource("16_l6vd3")
+
+[node name="Gates" parent="." index="29"]
+surface_material_override/0 = ExtResource("25_y88bx")
