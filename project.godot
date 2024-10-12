@@ -34,6 +34,7 @@ InputDeviceCheck="*res://scenes/singleton/input_device_check.gd"
 GlobalSettings="*res://scenes/singleton/global_settings/global_settings.tscn"
 CashManager="*res://scenes/cash/cash_manager.tscn"
 BMOD="*res://addons/bmod/autoloads/bmod/bmod.tscn"
+Output="*res://addons/onscreen_output/output.tscn"
 
 [debug]
 
@@ -54,7 +55,7 @@ project/assembly_name="GD4-Template"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/bmod/plugin.cfg")
+enabled=PackedStringArray("res://addons/bmod/plugin.cfg", "res://addons/onscreen_output/plugin.cfg")
 
 [global_group]
 

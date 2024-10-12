@@ -17,3 +17,5 @@ func _physics_process(delta) -> void:
 		if (trouble_counter >= trouble_threshold):
 			player.global_position = rescue_position
 			trouble_counter = 0.0
+	else:
+		trouble_counter = 0.0

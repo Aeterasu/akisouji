@@ -1,6 +1,7 @@
 class_name Main extends Node
 
 func _ready() -> void:
+	Output.print("Onscreen Console test")
 	pass
 
 func _process(delta) -> void:
