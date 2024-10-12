@@ -45,7 +45,7 @@ varying vec3 obj_vertex;
 void vertex()
 {
 	float distanceScale = 1.0;
-	vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;	//Generates world coordinates for vertecies
+	vec3 world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;	//generate world coordinates for vertices
 	vec3 distance_vector = world_pos - (INV_VIEW_MATRIX * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
 	float square_distance = distance_vector.x * distance_vector.x + distance_vector.y * distance_vector.y + distance_vector.z * distance_vector.z;
 	float square_end = (DistanceScaleRange + DistanceStart) * (DistanceScaleRange + DistanceStart);
@@ -53,7 +53,7 @@ void vertex()
 	float square_range = square_end - square_start;
 	
 	float distance_influence = clamp((square_distance - square_start) / square_range, 0.0, 1.0);
-	//Camera-Orientation based on https://www.youtube.com/watch?v=iASMFba7GeI
+
 	vec3 orient_2d = vec3(1.0, 1.0, 0.0) - vec3(UV.x, UV.y, 0.0);
 	orient_2d *= 2.0;
 	orient_2d -= vec3(1.0, 1.0, 0.0);
@@ -73,15 +73,14 @@ void vertex()
 	//vec3 oriented_offset = (INV_VIEW_MATRIX * vec4(orient_2d, 0.0)).xyz;
 	vec3 obj_oriented_offset = (vec4(oriented_offset, 0.0) * MODEL_MATRIX).xyz;
 	
-	//Wind-Effect
-	//adapted from: https://github.com/ruffiely/windshader_godot
+	//цind-Effect
 	float contribution = 1.0 * (1.0 - float(DeactivateGlobalVariation));
 	vec3 world_pos_eff = world_pos * contribution;	//Generates world coordinates for vertecies
 	// Removed using world_position due to dragging bug
 	float positional_influence = -VERTEX.x + VERTEX.z -world_pos_eff.x + world_pos_eff.z;
-	float offset = fract(positional_influence * (1.0 / WindScale) + (TIME * WindScale/1000.0));	//Generates linear curve that slides along vertecies in world space
-	offset = min(1.0 - offset, offset);														//Makes generated curve a smooth gradient
-	offset = (1.0 - offset) * offset * 2.0;													//Smoothes gradient further
+	float offset = fract(positional_influence * (1.0 / WindScale) + (TIME * WindScale/1000.0));	//generates linear curve that slides along vertecies in world space
+	offset = min(1.0 - offset, offset);														//makes generated curve a smooth gradient
+	offset = (1.0 - offset) * offset * 2.0;													
 	
 	float t = TIME + sin(TIME + offset + cos(TIME + offset * WindStrength * 2.0) * WindStrength); //Generates noise in world space value
 	

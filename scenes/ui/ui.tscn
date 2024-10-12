@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcaypqvm8j1yq"]
+[gd_scene load_steps=7 format=3 uid="uid://dcaypqvm8j1yq"]
 
 [ext_resource type="Script" path="res://scenes/ui/ui.gd" id="1_7l35m"]
 [ext_resource type="Texture2D" uid="uid://dbqwuevdtqyjl" path="res://assets/texture/ui/texture_ui_crosshair_dot.png" id="2_sidhx"]
-[ext_resource type="Texture2D" uid="uid://cvtg8bskknog1" path="res://assets/texture/ui/texture_ui_vignette.png" id="3_l63lv"]
 [ext_resource type="Texture2D" uid="uid://dfvylguh5grfg" path="res://assets/texture/ui/texture_ui_dark_corner.png" id="3_qygll"]
 [ext_resource type="Script" path="res://scenes/ui/ui_progress.gd" id="5_nsbia"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="6_j3p5c"]
@@ -19,16 +18,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7l35m")
 progress = NodePath("UIProgress")
-
-[node name="Vignette" type="TextureRect" parent="."]
-modulate = Color(1, 1, 1, 0.486275)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_l63lv")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
