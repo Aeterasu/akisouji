@@ -1,14 +1,25 @@
-[gd_scene load_steps=12 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=28 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="PackedScene" uid="uid://dvlleqic8xnpl" path="res://scenes/level/alleyway/level_alleyway.tscn" id="2_lxt2q"]
 [ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="3_ncnfk"]
 [ext_resource type="Script" path="res://scenes/loading_screen.gd" id="3_te81k"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="3_uk65u"]
+[ext_resource type="Script" path="res://scenes/utils/show_canvas_layer_on_ready.gd" id="4_ha1os"]
 [ext_resource type="PackedScene" uid="uid://dcaypqvm8j1yq" path="res://scenes/ui/ui.tscn" id="5_is4j0"]
 [ext_resource type="Script" path="res://scenes/fps_counter.gd" id="6_5ay1t"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="8_d3y8h"]
 [ext_resource type="Script" path="res://scenes/ui/ui_completion/ui_completion.gd" id="8_h2dad"]
+[ext_resource type="Texture2D" uid="uid://csspljpa4mobh" path="res://assets/texture/fx/texture_speed.png" id="10_0auwo"]
+[ext_resource type="Script" path="res://scenes/utils/delete_in_web.gd" id="11_0g5lc"]
+[ext_resource type="Script" path="res://scenes/fx/speed_effect.gd" id="11_e6qqw"]
+[ext_resource type="Shader" path="res://shader/sun_flare.gdshader" id="12_ceytl"]
+[ext_resource type="Texture2D" uid="uid://1kechv03r57s" path="res://assets/texture/fx/texture_sun_halo.png" id="13_tkker"]
+[ext_resource type="Texture2D" uid="uid://diwf3xbj3nljl" path="res://assets/texture/fx/texture_sun_flare.png" id="14_gpri0"]
+[ext_resource type="Shader" path="res://shader/kuwahara_screen.gdshader" id="15_xpwit"]
+[ext_resource type="Shader" path="res://shader/wobbly_painting.gdshader" id="16_xdxyp"]
+[ext_resource type="Texture2D" uid="uid://28v8t7axkwfj" path="res://assets/texture/fx/texture_brush_nrmp.png" id="17_khpjf"]
+[ext_resource type="Texture2D" uid="uid://cvtg8bskknog1" path="res://assets/texture/ui/texture_ui_vignette.png" id="18_q3514"]
 
 [sub_resource type="Gradient" id="Gradient_w0mr0"]
 colors = PackedColorArray(0, 0, 0, 1, 0.126179, 0.0169545, 0.0044633, 1)
@@ -18,6 +29,38 @@ gradient = SubResource("Gradient_w0mr0")
 width = 320
 height = 180
 fill_to = Vector2(0, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e7rcr"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dvkjl"]
+atlas = ExtResource("10_0auwo")
+region = Rect2(0, 0, 320, 540)
+margin = Rect2(0, 0, 0, -360)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2fb3w"]
+shader = ExtResource("12_ceytl")
+shader_parameter/Blur = 4.455
+shader_parameter/FlareThreshold = 0.9
+shader_parameter/Flares = 16
+shader_parameter/FlareSpacing = 0.125
+shader_parameter/Intensity = 1.425
+shader_parameter/Saturation_ = 1.435
+shader_parameter/FlareMult = ExtResource("13_tkker")
+shader_parameter/FlareMult2 = ExtResource("14_gpri0")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5tcod"]
+shader = ExtResource("15_xpwit")
+shader_parameter/radius = 2
+shader_parameter/offset = Vector3(0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n65bv"]
+shader = ExtResource("16_xdxyp")
+shader_parameter/strength = null
+shader_parameter/speed = null
+shader_parameter/frames = null
+shader_parameter/flowMap = ExtResource("17_khpjf")
 
 [node name="Game" type="Node3D" node_paths=PackedStringArray("player", "level", "loading_screen", "ui_completion")]
 script = ExtResource("1_bcfl2")
@@ -35,6 +78,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13.25,
 layer = 128
 visible = false
 follow_viewport_enabled = true
+script = ExtResource("4_ha1os")
 
 [node name="LoadingScreen" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -98,6 +142,21 @@ script = ExtResource("6_5ay1t")
 [node name="UIUpscaler" type="Node" parent="UILayer/UI"]
 script = ExtResource("8_d3y8h")
 
+[node name="SpeedEffectLayer" type="CanvasLayer" parent="."]
+layer = 64
+
+[node name="SpeedEffect" type="TextureRect" parent="SpeedEffectLayer" node_paths=PackedStringArray("player")]
+material = SubResource("CanvasItemMaterial_e7rcr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_dvkjl")
+script = ExtResource("11_e6qqw")
+player = NodePath("../../LevelAlleyway/Player")
+fps = 12.0
+
 [node name="UICompletionLayer" type="CanvasLayer" parent="."]
 layer = 101
 
@@ -138,3 +197,47 @@ vertical_alignment = 1
 
 [node name="UIUpscaler" type="Node" parent="UICompletionLayer/UICompletion"]
 script = ExtResource("8_d3y8h")
+
+[node name="SunFlare" type="CanvasLayer" parent="."]
+script = ExtResource("11_0g5lc")
+
+[node name="SunFlare" type="ColorRect" parent="SunFlare"]
+material = SubResource("ShaderMaterial_2fb3w")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="KuwaharaLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="KuwaharaLayer"]
+material = SubResource("ShaderMaterial_5tcod")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PaintingLayer" type="CanvasLayer" parent="."]
+script = ExtResource("11_0g5lc")
+
+[node name="ColorRect" type="ColorRect" parent="PaintingLayer"]
+material = SubResource("ShaderMaterial_n65bv")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Vignette" type="CanvasLayer" parent="."]
+
+[node name="Vignette" type="TextureRect" parent="Vignette"]
+modulate = Color(1, 1, 1, 0.486275)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("18_q3514")
