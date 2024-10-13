@@ -13,14 +13,6 @@ func _ready():
 static func _get_ui() -> UI:
 	return ui_instance
 
-func _process(delta):
-	_upscale()
-
-func _upscale():
-	var y_coeff : float = get_viewport_rect().size.y / size.y
-	size = Vector2(get_viewport_rect().size.x / y_coeff, 720.0)
-	scale = Vector2.ONE * y_coeff
-
 func _hide_ui_for_time(duration : float = 0.1) -> void:
 	visible = false
 
