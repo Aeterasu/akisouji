@@ -19,6 +19,7 @@ func _on_loading_ended():
 	loading_screen._on_timeout()
 
 func _on_level_completion():
-	player._block_input = true
+	#TODO: Hide broom on level completion, but allow movement.
+	#player._block_input = true
 	ui_completion.show()
 	Output.print("Level Completed!")

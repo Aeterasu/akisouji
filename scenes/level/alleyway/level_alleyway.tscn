@@ -90,13 +90,12 @@ surface_material_override/0 = ExtResource("17_ok7y4")
 [node name="PlayerSpawnPosition" type="Marker3D" parent="." index="7"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13.25, 1, 3)
 
-[node name="RainParticles" parent="." index="8" node_paths=PackedStringArray("rain_owner") instance=ExtResource("2_4wqfp")]
+[node name="RainParticles" parent="." index="8" instance=ExtResource("2_4wqfp")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 18, 0)
 amount = 137
 process_material = SubResource("ParticleProcessMaterial_d2wsc")
 draw_pass_1 = SubResource("QuadMesh_0oog4")
 script = ExtResource("3_wgda4")
-rain_owner = NodePath("")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="9"]
 environment = ExtResource("6_ah06a")
@@ -125,6 +124,7 @@ leaf_particle_manager = NodePath("LeafParticleManager")
 script = ExtResource("8_v3x78")
 base_cleaning_coeff = 0.5
 falloff_threshold = 0.15
+target_cleaned_amount_leeway = 0.98
 
 [node name="LeafColorPalette" type="Node" parent="LeafPopulation" index="1"]
 script = ExtResource("9_j3juf")

@@ -21,11 +21,11 @@
 [ext_resource type="Texture2D" uid="uid://28v8t7axkwfj" path="res://assets/texture/fx/texture_brush_nrmp.png" id="17_khpjf"]
 [ext_resource type="Texture2D" uid="uid://cvtg8bskknog1" path="res://assets/texture/ui/texture_ui_vignette.png" id="18_q3514"]
 
-[sub_resource type="Gradient" id="Gradient_w0mr0"]
+[sub_resource type="Gradient" id="Gradient_br6rk"]
 colors = PackedColorArray(0, 0, 0, 1, 0.126179, 0.0169545, 0.0044633, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1hww3"]
-gradient = SubResource("Gradient_w0mr0")
+gradient = SubResource("Gradient_br6rk")
 width = 320
 height = 180
 fill_to = Vector2(0, 1)
@@ -89,7 +89,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("3_te81k")
 
-[node name="ColorRect" type="TextureRect" parent="CanvasLayer/LoadingScreen"]
+[node name="Gradient" type="TextureRect" parent="CanvasLayer/LoadingScreen"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -156,6 +156,7 @@ texture = SubResource("AtlasTexture_dvkjl")
 script = ExtResource("11_e6qqw")
 player = NodePath("../../LevelAlleyway/Player")
 fps = 12.0
+target_color = Color(0.29219, 0.29219, 0.29219, 1)
 
 [node name="UICompletionLayer" type="CanvasLayer" parent="."]
 layer = 101

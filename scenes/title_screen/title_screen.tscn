@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxucohptg4lk5"]
+
+[ext_resource type="Script" path="res://scenes/title_screen/title_screen.gd" id="1_cn1xc"]
+[ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="2_x83vb"]
+
+[sub_resource type="Gradient" id="Gradient_w0mr0"]
+colors = PackedColorArray(0, 0, 0, 1, 0.126179, 0.0169545, 0.0044633, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2ip2r"]
+gradient = SubResource("Gradient_w0mr0")
+width = 320
+height = 180
+fill_to = Vector2(0, 1)
+
+[node name="TitleScreen" type="Control" node_paths=PackedStringArray("button_start", "button_options", "button_exit")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cn1xc")
+button_start = NodePath("StartButton")
+button_options = NodePath("OptionsButton")
+button_exit = NodePath("ExitButton")
+
+[node name="ColorRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_2ip2r")
+
+[node name="StartButton" type="Button" parent="."]
+layout_mode = 1
+offset_left = 79.0
+offset_top = 213.0
+offset_right = 496.0
+offset_bottom = 280.0
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.777071, 0.531862, 0.400541, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 35
+theme_override_fonts/font = ExtResource("2_x83vb")
+theme_override_font_sizes/font_size = 36
+text = "Start"
+
+[node name="OptionsButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 79.0
+offset_top = 351.0
+offset_right = 496.0
+offset_bottom = 418.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.777071, 0.531862, 0.400541, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 35
+theme_override_fonts/font = ExtResource("2_x83vb")
+theme_override_font_sizes/font_size = 36
+text = "Options"
+
+[node name="ExitButton" type="Button" parent="."]
+layout_mode = 1
+offset_left = 79.0
+offset_top = 488.0
+offset_right = 496.0
+offset_bottom = 555.0
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.777071, 0.531862, 0.400541, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 35
+theme_override_fonts/font = ExtResource("2_x83vb")
+theme_override_font_sizes/font_size = 36
+text = "Exit"
