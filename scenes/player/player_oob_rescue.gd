@@ -5,17 +5,14 @@ extends Node
 
 var trouble_counter : float = 0.0
 
-var rescue_position : Vector3 = Vector3()
-
-func _ready() -> void:
-	rescue_position = player.global_position
-
 func _physics_process(delta) -> void:
 	if (!player.is_on_floor()):
 		trouble_counter += delta
 
 		if (trouble_counter >= trouble_threshold):
-			player.global_position = rescue_position
+			player.global_transform = player.respawn_transform
 			trouble_counter = 0.0
+
+			Output.print("Player out of bound, rescuing...")
 	else:
 		trouble_counter = 0.0

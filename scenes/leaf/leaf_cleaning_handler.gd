@@ -9,6 +9,11 @@ signal on_cleaning_request_at_global_position
 
 var leaves_amount : int = 0
 var cleaned_leaves_amount : int = 0
+var cleaned_percentage : float = 0.0
+
+var is_completed : bool = false
+
+signal on_completion
 
 func _ready():
 	_update_cleaned_leaves_progress()
@@ -36,4 +41,10 @@ func _update_cleaned_leaves_progress() -> void:
 
 	if (ui and ui.progress):
 		ui.progress.max_value = leaves_amount
-		ui.progress.current_value = cleaned_leaves_amount 	
+		ui.progress.current_value = cleaned_leaves_amount
+
+	cleaned_percentage = clamp(ceil(float(cleaned_leaves_amount) / float(leaves_amount) * 100.0), 0.0, 100.0)
+
+	if (cleaned_percentage >= 100.0):
+		is_completed = true
+		on_completion.emit()

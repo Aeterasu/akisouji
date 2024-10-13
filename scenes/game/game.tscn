@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=10 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="PackedScene" uid="uid://dvlleqic8xnpl" path="res://scenes/level/alleyway/level_alleyway.tscn" id="2_lxt2q"]
+[ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="3_ncnfk"]
 [ext_resource type="Script" path="res://scenes/loading_screen.gd" id="3_te81k"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="3_uk65u"]
+[ext_resource type="PackedScene" uid="uid://dcaypqvm8j1yq" path="res://scenes/ui/ui.tscn" id="5_is4j0"]
+[ext_resource type="Script" path="res://scenes/fps_counter.gd" id="6_5ay1t"]
 
 [sub_resource type="Gradient" id="Gradient_w0mr0"]
 colors = PackedColorArray(0, 0, 0, 1, 0.126179, 0.0169545, 0.0044633, 1)
@@ -14,11 +17,16 @@ width = 320
 height = 180
 fill_to = Vector2(0, 1)
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("loading_screen")]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "level", "loading_screen")]
 script = ExtResource("1_bcfl2")
+player = NodePath("LevelAlleyway/Player")
+level = NodePath("LevelAlleyway")
 loading_screen = NodePath("CanvasLayer/LoadingScreen")
 
 [node name="LevelAlleyway" parent="." instance=ExtResource("2_lxt2q")]
+
+[node name="Player" parent="LevelAlleyway" instance=ExtResource("3_ncnfk")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13.25, 1, 3)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 128
@@ -58,3 +66,27 @@ theme_override_font_sizes/font_size = 48
 text = "Loading..."
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="UILayer" type="CanvasLayer" parent="."]
+layer = 99
+
+[node name="UI" parent="UILayer" instance=ExtResource("5_is4j0")]
+
+[node name="Control" type="Control" parent="UILayer/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FPSCounter" type="Label" parent="UILayer/UI/Control"]
+modulate = Color(0.458405, 0.458405, 0.458405, 1)
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 675.0
+offset_bottom = 31.0
+theme_override_constants/outline_size = 5
+text = "FPS: 00"
+script = ExtResource("6_5ay1t")

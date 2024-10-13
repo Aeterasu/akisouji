@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bqtapora2wl4e" path="res://assets/mesh/level_design/mesh_alleyway.blend" id="1_yq5x8"]
 [ext_resource type="PackedScene" uid="uid://d1lybxei6fkyd" path="res://scenes/fx/rain_particles.tscn" id="2_4wqfp"]
-[ext_resource type="Script" path="res://scenes/level/level.gd" id="2_akrc7"]
 [ext_resource type="Material" uid="uid://cjtw4ylyq480t" path="res://resource/material/material_stone_pavement.tres" id="2_o4ob6"]
 [ext_resource type="Script" path="res://scenes/fx/rain_particles.gd" id="3_wgda4"]
+[ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="4_5aj5q"]
 [ext_resource type="Environment" uid="uid://dfi8f6n3mi0ob" path="res://resource/environment_base_autumn.tres" id="6_ah06a"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_population.gd" id="7_7ouop"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_cleaning_handler.gd" id="8_v3x78"]
@@ -59,10 +59,7 @@ albedo_texture = ExtResource("24_w704b")
 uv1_scale = Vector3(0.25, 0.25, 0.25)
 uv1_triplanar = true
 
-[node name="LevelAlleyway" node_paths=PackedStringArray("leaf_population", "player_spawn_position") instance=ExtResource("1_yq5x8")]
-script = ExtResource("2_akrc7")
-leaf_population = NodePath("LeafPopulation")
-player_spawn_position = NodePath("PlayerSpawnPosition")
+[node name="LevelAlleyway" instance=ExtResource("1_yq5x8")]
 
 [node name="Pavement" parent="." index="0"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13, 0, 0)
@@ -87,8 +84,9 @@ surface_material_override/0 = ExtResource("16_l6vd3")
 [node name="PavementWithBush_002" parent="." index="6"]
 surface_material_override/0 = ExtResource("17_ok7y4")
 
-[node name="PlayerSpawnPosition" type="Marker3D" parent="." index="7"]
+[node name="Player" parent="." index="7" node_paths=PackedStringArray("leaf_cleaning_handler") instance=ExtResource("4_5aj5q")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13.25, 1, 3)
+leaf_cleaning_handler = NodePath("../LeafPopulation/LeafCleaningHandler")
 
 [node name="RainParticles" parent="." index="8" node_paths=PackedStringArray("rain_owner") instance=ExtResource("2_4wqfp")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 18, 0)
@@ -96,7 +94,7 @@ amount = 137
 process_material = SubResource("ParticleProcessMaterial_d2wsc")
 draw_pass_1 = SubResource("QuadMesh_0oog4")
 script = ExtResource("3_wgda4")
-rain_owner = NodePath("")
+rain_owner = NodePath("../Player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." index="9"]
 environment = ExtResource("6_ah06a")
@@ -125,6 +123,7 @@ leaf_particle_manager = NodePath("LeafParticleManager")
 script = ExtResource("8_v3x78")
 base_cleaning_coeff = 0.5
 falloff_threshold = 0.15
+target_cleaned_amount_leeway = 0.9
 
 [node name="LeafColorPalette" type="Node" parent="LeafPopulation" index="1"]
 script = ExtResource("9_j3juf")

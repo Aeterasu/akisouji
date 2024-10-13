@@ -106,7 +106,7 @@ func _setup():
 
 func print(message: String):
 	if not config.debug_enabled:
-		printerr("Onscreen Output: Tried to print, but debug is disabled.")
+		#printerr("Onscreen Output: Tried to print, but debug is disabled.")
 		return
 	
 	
@@ -114,7 +114,7 @@ func print(message: String):
 
 	if config.show_timestamp:
 		log_label.push_indent(1)
-		log_label.append_text("[color=yellow]%s[/color]" % _get_timestamp())
+		log_label.append_text("[color=#658080]%s[/color]" % _get_timestamp())
 		log_label.pop()
 	
 	log_label.newline()

@@ -23,7 +23,6 @@ func _physics_process(delta):
 		var collider = _get_raycast_collider()
 
 		if (collider):
-			#print(collider)
 			if (collider.is_in_group("Material-Concrete")):
 				current_footstep = concrete_footstep
 			if (collider.is_in_group("Material-Grass")):

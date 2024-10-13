@@ -1,4 +1,4 @@
-extends Node
+class_name LeafPopulation extends Node
 
 @export var enabled : bool = true
 
@@ -86,6 +86,8 @@ func _populate_multimesh() -> void:
 	var suitable_pixels_count : int = 0
 	var final_instances_count : int = 0
 
+	Output.print("Leafmap texture size: " + str(viewport_image_size))
+
 	for i in viewport_image_size.x:
 		for j in viewport_image_size.y:
 			if (image_data.get_pixel(i, j).r > 0.01):
@@ -98,10 +100,12 @@ func _populate_multimesh() -> void:
 				leaf_data.index_count = leaves_count
 				leaf_chunk_data_array.append(leaf_data)
 
+	Output.print("Suitable pixels for leaf population: " + str(suitable_pixels_count) + ", with the max of " + str(leaves_per_pixel) + " leaves per pixel")
+
 	multimesh.instance_count = final_instances_count
 
 func _translate_multimesh() -> void:
-	print("Instances: " + str(multimesh.instance_count))
+	Output.print("Leaf instances: " + str(multimesh.instance_count) + ", average " + str(float(multimesh.instance_count) / float((viewport_image_size.x * viewport_image_size.y))) + " leaves per pixel")
 
 	var heightmap_texture = height_map.get_texture()
 	var heightmap_image_data = heightmap_texture.get_image()	
@@ -165,12 +169,19 @@ func _clean_leaf(index : int, sorted_index : int):
 
 	leaf_cleaning_handler._update_cleaned_leaves_progress()
 
+	#Output.print("Cleaned leaf at index " + str(index) + ", sorted index " + str(sorted_index))
+
 # TODO: real gradient circle
 func _clean_on_real_position(real_position : Vector3, circle_radius : float = 1.0):
+	Output.print("Requested cleaning, real position: " + str(real_position) + ", cleaning radius: " + str(circle_radius))
+
 	var real_position_2d = Vector2(real_position.x, real_position.z)
 	var first_suitable_index : int = leaf_instances_sorted_positions.bsearch(real_position_2d + Vector2.LEFT * circle_radius)
 
 	var cleaned_amount = 0
+
+	var first_index = -1
+	var last_index = 0
 
 	for i in range(first_suitable_index, len(leaf_instances_sorted_by_position) - 1):
 		var leaf = leaf_instances_sorted_by_position[i]
@@ -183,10 +194,16 @@ func _clean_on_real_position(real_position : Vector3, circle_radius : float = 1.
 				chance = (1 - (distance / (circle_radius + leaf_cleaning_handler.falloff_threshold))) * leaf_cleaning_handler.base_cleaning_coeff
 			
 			if (randf() <= chance):
+				if (first_index == -1):
+					first_index = i
+
 				_clean_leaf(leaf.instance_index, i)
+				last_index = i
 				cleaned_amount += 1
 		elif (position >= real_position_2d + Vector2.ONE * circle_radius):
 			break
 
 	if (cleaned_amount / 2 > 0):
 		leaf_particle_manager._create_particles_on_real_position(real_position, cleaned_amount / 2)
+
+	Output.print("Cleaned " + str(cleaned_amount) + " leaves, in index range " + str(first_suitable_index) + " to " + str(last_index))

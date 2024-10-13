@@ -502,8 +502,8 @@ sprint_jumping_falloff = 2.0
 camera = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D")
 camera_origin = NodePath("CameraOrigin")
 camera_effect_landing = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding")
-cleaning_radius = 0.8
-jump_cleaning_radius = 1.2
+cleaning_radius = 32.0
+jump_cleaning_radius = 1.5
 sprint_cleaning_cooldown = 0.1
 sprint_cleaning_radius = 0.3
 equipment_viewmodel = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway/BroomViewmodel")
@@ -549,9 +549,10 @@ script = ExtResource("4_feodf")
 
 [node name="ViewmodelOrigin" type="Node3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D"]
 
-[node name="ViewmodelSway" type="Node3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin"]
+[node name="ViewmodelSway" type="Node3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin" node_paths=PackedStringArray("player")]
 script = ExtResource("6_t0wwe")
 sway_strength = 0.1
+player = NodePath("../../../../../..")
 
 [node name="BroomViewmodel" type="Node3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" node_paths=PackedStringArray("animation_tree")]
 script = ExtResource("5_fq1iu")

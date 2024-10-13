@@ -2,6 +2,9 @@ class_name Player extends CharacterBody3D
 
 #TODO: Dustforce/Quake style movement with forces, friction and some sort of boosting
 
+@export_group("Input")
+@export var _block_input : bool = false
+
 @export_group("Movement")
 @export var velocity_component : VelocityComponent = null
 @export var gravity_component : GravityComponent = null
@@ -18,7 +21,6 @@ class_name Player extends CharacterBody3D
 
 @export_group("Leaf Cleaning")
 @export var cleaning_radius : float = 1.0
-@export var leaf_cleaning_handler : LeafCleaningHandler = null
 @export var jump_cleaning_radius : float = 0.5
 @export var sprint_cleaning_cooldown : float = 0.25
 @export var sprint_cleaning_radius : float = 0.25
@@ -31,6 +33,8 @@ var mouse_sensitivity : float = 1.0
 var gamepad_sensitvity : float = 64.0
 var gamepad_deadzone : float = 0.3
 
+var leaf_cleaning_handler : LeafCleaningHandler = null
+
 var current_jump_buffer_ticks : int = 0
 
 var current_sprint_jump_boost : Vector2 = Vector2()
@@ -41,6 +45,8 @@ var wish_jumping : bool = false
 var wish_sprint : bool = false
 
 var is_landing : bool = false
+
+var respawn_transform : Transform3D = Transform3D()
 
 func _ready():
 	mouse_sensitivity = GlobalSettings.mouse_sensitivity
@@ -77,6 +83,12 @@ func on_broom():
 
 func input_process(delta : float):
 	velocity_component.input_direction = Vector2()
+
+	if (_block_input):
+		equipment_viewmodel.wish_brooming = false
+		wish_sprint = false
+		wish_jumping = false
+		return
 
 	match InputDeviceCheck.input_device:
 		InputDeviceCheck.InputDevice.KEYBOARD_MOUSE:
@@ -122,10 +134,14 @@ func clamp_gamepad_input_by_deadzone(input : Vector2) -> Vector2:
 		return input
 
 func _input(event):
+	if (_block_input):
+		return
+
 	if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE && event is InputEventMouseMotion):
 		var mouseMotion = event as InputEventMouseMotion
 		move_camera(-mouseMotion.relative * mouse_sensitivity)
 
+	#TODO: move this to main. somehow.
 	if event is InputEventMouseButton:
 		if (OS.get_name() == "Web"):
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
