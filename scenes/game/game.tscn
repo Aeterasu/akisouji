@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=12 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="PackedScene" uid="uid://dvlleqic8xnpl" path="res://scenes/level/alleyway/level_alleyway.tscn" id="2_lxt2q"]
@@ -7,6 +7,8 @@
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="3_uk65u"]
 [ext_resource type="PackedScene" uid="uid://dcaypqvm8j1yq" path="res://scenes/ui/ui.tscn" id="5_is4j0"]
 [ext_resource type="Script" path="res://scenes/fps_counter.gd" id="6_5ay1t"]
+[ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="8_d3y8h"]
+[ext_resource type="Script" path="res://scenes/ui/ui_completion/ui_completion.gd" id="8_h2dad"]
 
 [sub_resource type="Gradient" id="Gradient_w0mr0"]
 colors = PackedColorArray(0, 0, 0, 1, 0.126179, 0.0169545, 0.0044633, 1)
@@ -17,11 +19,12 @@ width = 320
 height = 180
 fill_to = Vector2(0, 1)
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "level", "loading_screen")]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "level", "loading_screen", "ui_completion")]
 script = ExtResource("1_bcfl2")
 player = NodePath("LevelAlleyway/Player")
 level = NodePath("LevelAlleyway")
 loading_screen = NodePath("CanvasLayer/LoadingScreen")
+ui_completion = NodePath("UICompletionLayer/UICompletion")
 
 [node name="LevelAlleyway" parent="." instance=ExtResource("2_lxt2q")]
 
@@ -30,6 +33,7 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13.25,
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 128
+visible = false
 follow_viewport_enabled = true
 
 [node name="LoadingScreen" type="Control" parent="CanvasLayer"]
@@ -90,3 +94,47 @@ offset_bottom = 31.0
 theme_override_constants/outline_size = 5
 text = "FPS: 00"
 script = ExtResource("6_5ay1t")
+
+[node name="UIUpscaler" type="Node" parent="UILayer/UI"]
+script = ExtResource("8_d3y8h")
+
+[node name="UICompletionLayer" type="CanvasLayer" parent="."]
+layer = 101
+
+[node name="UICompletion" type="Control" parent="UICompletionLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("8_h2dad")
+
+[node name="ColorRect" type="ColorRect" parent="UICompletionLayer/UICompletion"]
+layout_mode = 2
+offset_left = 320.0
+offset_top = 111.0
+offset_right = 960.0
+offset_bottom = 571.0
+color = Color(0, 0, 0, 0.690196)
+
+[node name="Label" type="Label" parent="UICompletionLayer/UICompletion/ColorRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -5.0
+offset_right = 5.0
+offset_bottom = 151.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.337255)
+theme_override_constants/outline_size = 35
+theme_override_constants/shadow_outline_size = 65
+theme_override_fonts/font = ExtResource("3_uk65u")
+theme_override_font_sizes/font_size = 72
+text = "Level Completed!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="UIUpscaler" type="Node" parent="UICompletionLayer/UICompletion"]
+script = ExtResource("8_d3y8h")

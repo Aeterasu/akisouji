@@ -3,6 +3,7 @@ class_name Game extends Node3D
 @export var player : Player
 @export var level : Level
 @export var loading_screen : LoadingScreen
+@export var ui_completion : Control
 
 static var game_instance : Game = null
 
@@ -19,4 +20,5 @@ func _on_loading_ended():
 
 func _on_level_completion():
 	player._block_input = true
+	ui_completion.show()
 	Output.print("Level Completed!")
