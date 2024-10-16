@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctyhi8e1hg8lo"]
+
+[ext_resource type="PackedScene" uid="uid://lcqqs6xwlhew" path="res://assets/mesh/prop/mesh_tree_1.glb" id="1_26ytk"]
+[ext_resource type="Texture2D" uid="uid://dbe3mpbhypbgn" path="res://assets/texture/environment/texture_wood_1_albm.png" id="2_8j3am"]
+[ext_resource type="Material" uid="uid://dixlavsls40kh" path="res://resource/material/material_tree_1.tres" id="3_i1dei"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wfblk"]
+albedo_texture = ExtResource("2_8j3am")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_f7wet"]
+height = 8.0
+
+[node name="Tree1" type="Node3D"]
+
+[node name="mesh_tree_1" parent="." instance=ExtResource("1_26ytk")]
+surface_material_override/0 = SubResource("StandardMaterial3D_wfblk")
+surface_material_override/1 = ExtResource("3_i1dei")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+shape = SubResource("CylinderShape3D_f7wet")

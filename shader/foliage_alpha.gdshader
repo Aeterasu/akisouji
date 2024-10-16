@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode depth_draw_opaque, specular_disabled, depth_prepass_alpha;
+render_mode cull_disabled, depth_draw_opaque, specular_disabled, depth_prepass_alpha;
 //render_mode blend_mix, cull_disabled, depth_draw_opaque, specular_disabled;
 
 uniform sampler2D Texture;

@@ -1,0 +1,29 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://dixlavsls40kh"]
+
+[ext_resource type="Shader" path="res://shader/foliage_alpha.gdshader" id="1_t5ww6"]
+[ext_resource type="Texture2D" uid="uid://dvbveujmk7j8e" path="res://assets/texture/environment/texture_foliage_1_albm.png" id="2_iws4r"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_t5ww6")
+shader_parameter/WindScale = 1.0
+shader_parameter/WindSpeed = 4.0
+shader_parameter/WindStrength = 1.49
+shader_parameter/WindDensity = 5.0
+shader_parameter/ClampTop = 1.0
+shader_parameter/ClampBtm = -1.0
+shader_parameter/MeshScale = -1.602
+shader_parameter/ColorRamp = 0.085
+shader_parameter/FresnelColor = Color(0.58, 0.65, 0.33, 1)
+shader_parameter/FresnelStrength = -0.0949999
+shader_parameter/FresnelBlend = 0.51
+shader_parameter/FaceRoationVariation = 1.0
+shader_parameter/DeactivateGlobalVariation = null
+shader_parameter/WiggleFrequency = 3.0
+shader_parameter/WiggleStrength = 0.1
+shader_parameter/WiggleSpeed = 1.0
+shader_parameter/WiggleScale = 3.0
+shader_parameter/DistanceScale = 0.5
+shader_parameter/DistanceStart = 0.0
+shader_parameter/DistanceScaleRange = 70.0
+shader_parameter/Texture = ExtResource("2_iws4r")

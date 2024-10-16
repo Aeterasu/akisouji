@@ -172,6 +172,14 @@ player_action_secondary={
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":4,"axis_value":1.0,"script":null)
 ]
 }
+player_action_previous_tool={
+"deadzone": 0.5,
+"events": []
+}
+player_action_next_tool={
+"deadzone": 0.5,
+"events": []
+}
 right_stick_left={
 "deadzone": 0.15,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":2,"axis_value":-1.0,"script":null)
@@ -215,4 +223,3 @@ environment/glow/upscale_mode=0
 environment/subsurface_scattering/subsurface_scattering_quality=0
 environment/volumetric_fog/use_filter=0
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
-mesh_lod/lod_change/threshold_pixels=4.0

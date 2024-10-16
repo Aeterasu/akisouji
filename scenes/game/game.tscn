@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=33 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="PackedScene" uid="uid://dvlleqic8xnpl" path="res://scenes/level/alleyway/level_alleyway.tscn" id="2_lxt2q"]
@@ -6,7 +6,9 @@
 [ext_resource type="Script" path="res://scenes/loading_screen.gd" id="3_te81k"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="3_uk65u"]
 [ext_resource type="Script" path="res://scenes/utils/show_canvas_layer_on_ready.gd" id="4_ha1os"]
+[ext_resource type="PackedScene" uid="uid://d1lybxei6fkyd" path="res://scenes/fx/rain_particles.tscn" id="4_mrkga"]
 [ext_resource type="PackedScene" uid="uid://dcaypqvm8j1yq" path="res://scenes/ui/ui.tscn" id="5_is4j0"]
+[ext_resource type="Script" path="res://scenes/fx/rain_particles.gd" id="5_m7spe"]
 [ext_resource type="Script" path="res://scenes/fps_counter.gd" id="6_5ay1t"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="8_d3y8h"]
 [ext_resource type="Script" path="res://scenes/ui/ui_completion/ui_completion.gd" id="8_h2dad"]
@@ -20,6 +22,24 @@
 [ext_resource type="Shader" path="res://shader/wobbly_painting.gdshader" id="16_xdxyp"]
 [ext_resource type="Texture2D" uid="uid://28v8t7axkwfj" path="res://assets/texture/fx/texture_brush_nrmp.png" id="17_khpjf"]
 [ext_resource type="Texture2D" uid="uid://cvtg8bskknog1" path="res://assets/texture/ui/texture_ui_vignette.png" id="18_q3514"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wqoie"]
+emission_shape_scale = Vector3(1, 0, 1)
+emission_shape = 2
+emission_sphere_radius = 24.0
+direction = Vector3(0, -1, 0)
+spread = 0.0
+initial_velocity_min = 24.0
+initial_velocity_max = 24.0
+gravity = Vector3(0, 0, 0)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iukvl"]
+shading_mode = 0
+billboard_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_kv056"]
+material = SubResource("StandardMaterial3D_iukvl")
+size = Vector2(0.05, 1)
 
 [sub_resource type="Gradient" id="Gradient_br6rk"]
 colors = PackedColorArray(0, 0, 0, 1, 0.126179, 0.0169545, 0.0044633, 1)
@@ -73,6 +93,14 @@ ui_completion = NodePath("UICompletionLayer/UICompletion")
 
 [node name="Player" parent="LevelAlleyway" instance=ExtResource("3_ncnfk")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13.25, 1, 3)
+
+[node name="RainParticles" parent="LevelAlleyway" node_paths=PackedStringArray("rain_owner") instance=ExtResource("4_mrkga")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 18, 0)
+amount = 137
+process_material = SubResource("ParticleProcessMaterial_wqoie")
+draw_pass_1 = SubResource("QuadMesh_kv056")
+script = ExtResource("5_m7spe")
+rain_owner = NodePath("../Player")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 128

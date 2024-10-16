@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_3h3uo")
 singleton_name = "Output"
-debug_enabled = false
+debug_enabled = true
 save_logs = false
 log_path = "user://"
 toggle_keybind = ExtResource("2_vnvgg")
