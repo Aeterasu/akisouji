@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://b5hgxft8fqr1w"]
+
+[ext_resource type="PackedScene" uid="uid://6uvo4xhp6i8v" path="res://assets/mesh/prop/mesh_clockpole_1.glb" id="1_0arqf"]
+[ext_resource type="Material" uid="uid://mrdkkmwqr7ls" path="res://resource/material/material_metal_1.tres" id="2_w7pfs"]
+[ext_resource type="Material" uid="uid://ctxs05jdtvba5" path="res://scenes/prop/clock_pole/material_clock_face.tres" id="3_2rkkg"]
+[ext_resource type="Script" path="res://scenes/prop/clock_pole/clock_pole.gd" id="4_nb1hg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fiiyt"]
+albedo_color = Color(0, 0, 0, 1)
+metallic_specular = 0.29
+
+[node name="mesh_clockpole_1" node_paths=PackedStringArray("hour_hand", "minute_hand", "seconds_hand", "hour_hand_back", "minute_hand_back", "seconds_hand_back") instance=ExtResource("1_0arqf")]
+surface_material_override/0 = ExtResource("2_w7pfs")
+surface_material_override/1 = ExtResource("3_2rkkg")
+script = ExtResource("4_nb1hg")
+hour_hand = NodePath("Hour")
+minute_hand = NodePath("Minute")
+seconds_hand = NodePath("Second")
+hour_hand_back = NodePath("Hour_001")
+minute_hand_back = NodePath("Minute_001")
+seconds_hand_back = NodePath("Second_001")
+
+[node name="Hour" parent="." index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fiiyt")
+
+[node name="Hour_001" parent="." index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fiiyt")
+
+[node name="Minute" parent="." index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fiiyt")
+
+[node name="Minute_001" parent="." index="3"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fiiyt")
+
+[node name="Second" parent="." index="4"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fiiyt")
+
+[node name="Second_001" parent="." index="5"]
+surface_material_override/0 = SubResource("StandardMaterial3D_fiiyt")
