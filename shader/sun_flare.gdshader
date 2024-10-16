@@ -25,7 +25,7 @@ void fragment(){
 		vec2 SUV = fract(SCREEN_UV + FlareVector * vec2(float(i)));
 		float Dist = distance(SUV, vec2(0.5));
 		float Weight = 1.0 - smoothstep(0.0, 0.75, Dist);
-		vec3 BlurredScreen = texture(Screen_Sample, SUV).rgb;
+		vec3 BlurredScreen = texture(Screen_Sample, SUV, Blur).rgb;
 		BlurredScreen = ApplyThreshold(BlurredScreen, FlareThreshold);
 		FinalFlare += BlurredScreen * Weight;
 	}
