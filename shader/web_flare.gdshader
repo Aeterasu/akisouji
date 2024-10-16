@@ -7,7 +7,7 @@ uniform lowp sampler2D Screen_Sample : hint_screen_texture, filter_linear_mipmap
 uniform lowp sampler2D FlareMult;
 uniform lowp sampler2D FlareMult2;
 
-uniform float Blur = 2.5;
+uniform float Blur = 0.1;
 uniform float FlareThreshold;
 uniform int Flares;
 uniform float FlareSpacing;
@@ -44,7 +44,18 @@ void fragment(){
 		float Dist = distance(SUV, vec2(0.5));
 		float Weight = 1.0 - smoothstep(0.0, 0.75, Dist);
 		//vec3 BlurredScreen = texture(Screen_Sample, SUV).rgb;
-		vec3 BlurredScreen = texture_xorgaussian(Screen_Sample, SUV, SCREEN_PIXEL_SIZE, 16.0, 16, 4).rgb;
+		//vec3 BlurredScreen = texture_xorgaussian(Screen_Sample, SUV, SCREEN_PIXEL_SIZE, 16.0, 16, 4).rgb;
+		
+		vec2 direction = SUV - vec2( 0.5, 0.5 );
+		vec3 c = vec3( 0.0, 0.0, 0.0 );
+		float f = 1.0 / float(6);
+		for( int i=0; i < 6; i++ ) 
+		{
+			c += texture(Screen_Sample, SUV - Blur * direction * float(i) ).rgb * f;
+		}
+		
+		vec3 BlurredScreen = c;
+		
 		BlurredScreen = ApplyThreshold(BlurredScreen, FlareThreshold);
 		FinalFlare += BlurredScreen * Weight;
 	}

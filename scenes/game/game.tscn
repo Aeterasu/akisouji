@@ -72,9 +72,9 @@ shader_parameter/Saturation_ = 1.435
 shader_parameter/FlareMult = ExtResource("13_tkker")
 shader_parameter/FlareMult2 = ExtResource("14_gpri0")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_trj60"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8sqfa"]
 shader = ExtResource("20_neh2t")
-shader_parameter/Blur = 2.5
+shader_parameter/Blur = 0.05
 shader_parameter/FlareThreshold = 0.9
 shader_parameter/Flares = 16
 shader_parameter/FlareSpacing = 0.125
@@ -241,6 +241,7 @@ vertical_alignment = 1
 script = ExtResource("8_d3y8h")
 
 [node name="SunFlare" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("11_0g5lc")
 
 [node name="SunFlare" type="ColorRect" parent="SunFlare"]
@@ -259,7 +260,7 @@ metadata/_edit_use_anchors_ = true
 script = ExtResource("19_h3rip")
 
 [node name="SunFlare" type="ColorRect" parent="WebFlare"]
-material = SubResource("ShaderMaterial_trj60")
+material = SubResource("ShaderMaterial_8sqfa")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -112,7 +112,6 @@ directional_shadow_fade_start = 1.0
 
 [node name="LeafPopulation" type="Node" parent="." index="11" node_paths=PackedStringArray("target_multimesh_instance", "target_leaf_map", "height_map", "leaf_cleaning_handler", "leaf_color_palette", "leaf_particle_manager")]
 script = ExtResource("7_7ouop")
-enabled = false
 target_multimesh_instance = NodePath("MultiMeshInstance3D")
 leafmap_resolution_fraction = 3.67
 target_leaf_map = NodePath("LeafMap")
