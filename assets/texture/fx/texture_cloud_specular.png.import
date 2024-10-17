@@ -2,24 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d007m2ugjmn01"
-path="res://.godot/imported/texture_leaf_map_3_heightmap.png-cbd8839987652928afcd0d56195e30c2.ctex"
+uid="uid://cdvg0disuaebg"
+path="res://.godot/imported/texture_cloud_specular.png-b2e643af8d0e6ad7df797f3f46e26254.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/leaf_map/texture_leaf_map_3_heightmap.png"
-dest_files=["res://.godot/imported/texture_leaf_map_3_heightmap.png-cbd8839987652928afcd0d56195e30c2.ctex"]
+source_file="res://assets/texture/fx/texture_cloud_specular.png"
+dest_files=["res://.godot/imported/texture_cloud_specular.png-b2e643af8d0e6ad7df797f3f46e26254.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=1
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=0
+compress/normal_map=1
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1

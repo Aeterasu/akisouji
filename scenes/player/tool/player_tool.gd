@@ -1,5 +1,7 @@
 class_name PlayerTool extends Node3D
 
+@export var use_type : UseType = UseType.CLICK
+
 @export var animation_tree : AnimationTree = null
 var state_machine : AnimationNodeStateMachinePlayback = null
 
@@ -11,6 +13,14 @@ var sin_timer : float = 0.0
 
 var is_equipped : bool = false
 var wish_sprint : bool = false
+
+var in_use : bool = false
+
+enum UseType
+{
+	CLICK,
+	HOLD,
+}
 
 func _ready():
 	if (animation_tree):
@@ -29,6 +39,19 @@ func _set_sprint_toggle(toggle : bool) -> void:
 
 func _unequip() -> void:
 	is_equipped = false
+	in_use = false
 
 func _equip() -> void:
 	is_equipped = true
+
+func _use_primary() -> void:
+	pass
+
+func _use_hold_primary() -> void:
+	pass
+
+func _use_secondary() -> void:
+	pass
+
+func _use_hold_secondary() -> void:
+	pass

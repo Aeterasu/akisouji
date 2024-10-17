@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://duvqdrsvvonkd"]
+[gd_scene load_steps=57 format=3 uid="uid://duvqdrsvvonkd"]
 
 [ext_resource type="Script" path="res://scenes/player/tool/broom/broom.gd" id="1_t54q8"]
 [ext_resource type="PackedScene" uid="uid://1rbyx1a81x74" path="res://assets/mesh/tool/mesh_broom.blend" id="2_0flt6"]
@@ -593,6 +593,12 @@ xfade_time = 0.05
 advance_mode = 2
 advance_expression = "is_equipped"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ocdqc"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+advance_expression = "wish_sprint"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_pltc4"]
 states/End/position = Vector2(1067, 145)
 states/Start/position = Vector2(-162, -50)
@@ -616,11 +622,12 @@ states/unequip/node = SubResource("AnimationNodeAnimation_nrt0j")
 states/unequip/position = Vector2(156, -239)
 states/unequip_loop/node = SubResource("AnimationNodeAnimation_2r00t")
 states/unequip_loop/position = Vector2(-95, 145)
-transitions = ["sprint_init", "sprint_loop", SubResource("AnimationNodeStateMachineTransition_cno54"), "sprint_loop", "sprint_end", SubResource("AnimationNodeStateMachineTransition_v7sc1"), "idle", "sprint_init", SubResource("AnimationNodeStateMachineTransition_dbhv6"), "sprint_end", "idle", SubResource("AnimationNodeStateMachineTransition_6gud3"), "sprint_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_awu8l"), "sprint_init", "sprint_end", SubResource("AnimationNodeStateMachineTransition_gp30y"), "brooming_loop_start", "brooming_loop", SubResource("AnimationNodeStateMachineTransition_yxkvm"), "brooming_loop", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_46hi8"), "idle", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_103xs"), "brooming_loop_end", "idle", SubResource("AnimationNodeStateMachineTransition_gsw54"), "brooming_loop_start", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_ybass"), "brooming_loop_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_jklkv"), "sprint_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_fe82q"), "brooming_loop_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_qtnhm"), "brooming_loop", "sprint_init", SubResource("AnimationNodeStateMachineTransition_yht86"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_desuo"), "idle", "unequip", SubResource("AnimationNodeStateMachineTransition_xvp0s"), "brooming_loop_start", "unequip", SubResource("AnimationNodeStateMachineTransition_jjggo"), "brooming_loop", "unequip", SubResource("AnimationNodeStateMachineTransition_n1m58"), "brooming_loop_end", "unequip", SubResource("AnimationNodeStateMachineTransition_q4fnt"), "sprint_init", "unequip", SubResource("AnimationNodeStateMachineTransition_lyf6y"), "sprint_loop", "unequip", SubResource("AnimationNodeStateMachineTransition_gw85u"), "sprint_end", "unequip", SubResource("AnimationNodeStateMachineTransition_r0jex"), "equip", "unequip", SubResource("AnimationNodeStateMachineTransition_ywx3w"), "unequip_loop", "equip", SubResource("AnimationNodeStateMachineTransition_8ek0q"), "unequip", "unequip_loop", SubResource("AnimationNodeStateMachineTransition_c7rwe"), "unequip", "equip", SubResource("AnimationNodeStateMachineTransition_t6hlb")]
-graph_offset = Vector2(-305, -335)
+transitions = ["sprint_init", "sprint_loop", SubResource("AnimationNodeStateMachineTransition_cno54"), "sprint_loop", "sprint_end", SubResource("AnimationNodeStateMachineTransition_v7sc1"), "idle", "sprint_init", SubResource("AnimationNodeStateMachineTransition_dbhv6"), "sprint_end", "idle", SubResource("AnimationNodeStateMachineTransition_6gud3"), "sprint_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_awu8l"), "sprint_init", "sprint_end", SubResource("AnimationNodeStateMachineTransition_gp30y"), "brooming_loop_start", "brooming_loop", SubResource("AnimationNodeStateMachineTransition_yxkvm"), "brooming_loop", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_46hi8"), "idle", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_103xs"), "brooming_loop_end", "idle", SubResource("AnimationNodeStateMachineTransition_gsw54"), "brooming_loop_start", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_ybass"), "brooming_loop_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_jklkv"), "sprint_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_fe82q"), "brooming_loop_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_qtnhm"), "brooming_loop", "sprint_init", SubResource("AnimationNodeStateMachineTransition_yht86"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_desuo"), "idle", "unequip", SubResource("AnimationNodeStateMachineTransition_xvp0s"), "brooming_loop_start", "unequip", SubResource("AnimationNodeStateMachineTransition_jjggo"), "brooming_loop", "unequip", SubResource("AnimationNodeStateMachineTransition_n1m58"), "brooming_loop_end", "unequip", SubResource("AnimationNodeStateMachineTransition_q4fnt"), "sprint_init", "unequip", SubResource("AnimationNodeStateMachineTransition_lyf6y"), "sprint_loop", "unequip", SubResource("AnimationNodeStateMachineTransition_gw85u"), "sprint_end", "unequip", SubResource("AnimationNodeStateMachineTransition_r0jex"), "equip", "unequip", SubResource("AnimationNodeStateMachineTransition_ywx3w"), "unequip_loop", "equip", SubResource("AnimationNodeStateMachineTransition_8ek0q"), "unequip", "unequip_loop", SubResource("AnimationNodeStateMachineTransition_c7rwe"), "unequip", "equip", SubResource("AnimationNodeStateMachineTransition_t6hlb"), "equip", "sprint_init", SubResource("AnimationNodeStateMachineTransition_ocdqc")]
+graph_offset = Vector2(-203, -27)
 
 [node name="Broom" type="Node3D" node_paths=PackedStringArray("animation_tree")]
 script = ExtResource("1_t54q8")
+use_type = 1
 animation_tree = NodePath("AnimationTree")
 walk_cycle_direction = Vector3(0.025, 0.01, 0)
 
@@ -629,6 +636,9 @@ transform = Transform3D(0.0749063, -0.00298185, -0.00226904, -0.00309007, -0.023
 cast_shadow = 0
 surface_material_override/0 = SubResource("StandardMaterial3D_skvaf")
 surface_material_override/1 = SubResource("StandardMaterial3D_cjscd")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+far = 1024.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -639,6 +649,3 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_pltc4")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-far = 1024.0

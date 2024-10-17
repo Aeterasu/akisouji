@@ -1,11 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://ctyhi8e1hg8lo"]
+[gd_scene load_steps=7 format=3 uid="uid://ctyhi8e1hg8lo"]
 
 [ext_resource type="PackedScene" uid="uid://lcqqs6xwlhew" path="res://assets/mesh/prop/mesh_tree_1.glb" id="1_26ytk"]
 [ext_resource type="Texture2D" uid="uid://dbe3mpbhypbgn" path="res://assets/texture/environment/texture_wood_1_albm.png" id="2_8j3am"]
+[ext_resource type="Texture2D" uid="uid://byrfqjkmadft5" path="res://assets/texture/environment/texture_wood_1_rmmp.png" id="3_4lia8"]
 [ext_resource type="Material" uid="uid://dixlavsls40kh" path="res://resource/material/material_tree_1.tres" id="3_i1dei"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wfblk"]
 albedo_texture = ExtResource("2_8j3am")
+roughness_texture = ExtResource("3_4lia8")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_f7wet"]
 height = 8.0

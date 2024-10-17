@@ -27,7 +27,6 @@ class_name Player extends CharacterBody3D
 
 @export_group("Equipment")
 @export var inventory : PlayerToolInventory = null
-#@export var equipment_viewmodel : Broom = null
 @export var cleaning_range : float = 8.0
 
 var mouse_sensitivity : float = 1.0
@@ -61,6 +60,12 @@ func _ready():
 	sprint_cleaning_timer.wait_time = sprint_cleaning_cooldown
 	sprint_cleaning_timer.timeout.connect(_on_sprint_cleaning_timeout)
 	sprint_cleaning_timer.start()
+
+	inventory._set_tool(0)
+
+	for player_tool in inventory.tools:
+		if (player_tool is Broom):
+			player_tool.on_broom.connect(on_broom)
 
 func _physics_process(delta : float):
 	input_process(delta)
@@ -110,7 +115,11 @@ func input_process(delta : float):
 
 	# broom
 
-	#equipment_viewmodel.wish_brooming = Input.is_action_pressed("player_action_primary") && !wish_sprint
+	if (inventory.current_tool.use_type == PlayerTool.UseType.HOLD):
+		inventory.current_tool.in_use = Input.is_action_pressed("player_action_primary") && !wish_sprint
+	elif (inventory.current_tool.use_type == PlayerTool.UseType.CLICK):
+		if (Input.is_action_just_pressed("player_action_primary") && !wish_sprint):
+			inventory.current_tool._use_primary()
 
 	# sprint
 

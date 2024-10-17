@@ -14,5 +14,9 @@ enum BroomingState
 
 signal on_broom
 
+func _physics_process(delta):
+	super(delta)
+	wish_brooming = in_use
+
 func _broom() -> void:
 	on_broom.emit()

@@ -1,5 +1,6 @@
 [gd_resource type="Gradient" format=3 uid="uid://ttiot4er110n"]
 
 [resource]
-offsets = PackedFloat32Array(0.193478, 0.45, 0.541304, 0.641304, 0.908696)
-colors = PackedColorArray(0, 0, 1, 1, 0.282353, 1, 0.811765, 1, 0, 0.992157, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1)
+interpolation_mode = 2
+offsets = PackedFloat32Array(0.194577, 0.414673, 0.588517, 0.728868, 1)
+colors = PackedColorArray(0, 0, 1, 1, 7.70092e-07, 0.880784, 0.699905, 1, 0.494118, 1, 0, 1, 1, 1, 0, 1, 1, 0, 0, 1)

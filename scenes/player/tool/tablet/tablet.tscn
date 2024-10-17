@@ -1,7 +1,14 @@
-[gd_scene load_steps=35 format=3 uid="uid://bxoqoq5jsqjn1"]
+[gd_scene load_steps=38 format=3 uid="uid://bxoqoq5jsqjn1"]
 
-[ext_resource type="Script" path="res://scenes/player/tool/empty_hands/empty_hands.gd" id="1_y5kk6"]
+[ext_resource type="Script" path="res://scenes/player/tool/tablet/tablet.gd" id="1_p7iwi"]
 [ext_resource type="PackedScene" uid="uid://cuyayhqhpqkog" path="res://assets/mesh/tool/mesh_tablet.glb" id="2_0sv8y"]
+[ext_resource type="Texture2D" uid="uid://cdvg0disuaebg" path="res://assets/texture/fx/texture_cloud_specular.png" id="3_aj28x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uy5rv"]
+metallic = 0.22
+metallic_specular = 0.51
+roughness_texture = ExtResource("3_aj28x")
+emission_enabled = true
 
 [sub_resource type="Animation" id="Animation_0lt4f"]
 length = 0.001
@@ -44,7 +51,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_6kcvq"]
 resource_name = "equip"
-length = 0.6
+length = 0.9
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -53,10 +60,10 @@ tracks/0/path = NodePath("mesh_tablet:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(0.5, 0.5),
+"times": PackedFloat32Array(0, 0.5, 0.7, 0.9),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5, 0.5),
 "update": 0,
-"values": [Vector3(0, -0.4, -0.205), Vector3(0, -0.065, -0.205)]
+"values": [Vector3(0, -0.4, -0.205), Vector3(0, -0.05, -0.205), Vector3(0, -0.07, -0.205), Vector3(0, -0.065, -0.205)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -65,10 +72,10 @@ tracks/1/path = NodePath("mesh_tablet:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(0.5, 0.5),
+"times": PackedFloat32Array(0, 0.6, 0.8),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
 "update": 0,
-"values": [Vector3(-1.0472, 0, 0), Vector3(-0.165806, 0, 0)]
+"values": [Vector3(-3.14159, 0, 0), Vector3(-0.0523599, 0, 0), Vector3(-0.165806, 0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -144,7 +151,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_dac30"]
 resource_name = "sprint_init"
 length = 0.3
-step = 0.1
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -152,7 +159,7 @@ tracks/0/path = NodePath("mesh_tablet:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(2, 0.5),
 "update": 0,
 "values": [Vector3(0, -0.065, -0.205), Vector3(0.13, -0.35, -0.205)]
@@ -164,10 +171,10 @@ tracks/1/path = NodePath("mesh_tablet:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector3(-0.165806, 0, 0), Vector3(-0.165806, 0.724312, 0.471239)]
+"values": [Vector3(-0.165806, 0, 0), Vector3(-0.165806, -0.0698132, -0.139626), Vector3(-0.165806, 0.724312, 0.471239)]
 }
 
 [sub_resource type="Animation" id="Animation_qpdhn"]
@@ -185,7 +192,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(0.5),
 "update": 0,
-"values": [Vector3(0.13, -0.35, -0.205)]
+"values": [Vector3(0.13, -0.5, -0.205)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -376,6 +383,13 @@ xfade_time = 0.1
 advance_mode = 2
 advance_expression = "is_equipped"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_djup7"]
+xfade_time = 0.5
+switch_mode = 2
+advance_mode = 2
+advance_expression = "wish_sprint
+"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_rfk7n"]
 states/End/position = Vector2(1067, 145)
 states/Start/position = Vector2(-162, -50)
@@ -392,18 +406,20 @@ states/sprint_loop/position = Vector2(534, 399)
 states/unequip/node = SubResource("AnimationNodeAnimation_nrt0j")
 states/unequip/position = Vector2(324, -38)
 states/unequip_loop/node = SubResource("AnimationNodeAnimation_2r00t")
-states/unequip_loop/position = Vector2(-95, 145)
-transitions = ["sprint_init", "sprint_loop", SubResource("AnimationNodeStateMachineTransition_cno54"), "sprint_loop", "sprint_end", SubResource("AnimationNodeStateMachineTransition_v7sc1"), "idle", "sprint_init", SubResource("AnimationNodeStateMachineTransition_dbhv6"), "sprint_end", "idle", SubResource("AnimationNodeStateMachineTransition_6gud3"), "sprint_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_awu8l"), "sprint_init", "sprint_end", SubResource("AnimationNodeStateMachineTransition_gp30y"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_desuo"), "idle", "unequip", SubResource("AnimationNodeStateMachineTransition_xvp0s"), "sprint_init", "unequip", SubResource("AnimationNodeStateMachineTransition_lyf6y"), "sprint_loop", "unequip", SubResource("AnimationNodeStateMachineTransition_gw85u"), "sprint_end", "unequip", SubResource("AnimationNodeStateMachineTransition_r0jex"), "equip", "unequip", SubResource("AnimationNodeStateMachineTransition_ywx3w"), "unequip_loop", "equip", SubResource("AnimationNodeStateMachineTransition_8ek0q"), "unequip", "unequip_loop", SubResource("AnimationNodeStateMachineTransition_c7rwe"), "unequip", "equip", SubResource("AnimationNodeStateMachineTransition_t6hlb")]
+states/unequip_loop/position = Vector2(-95, 138)
+transitions = ["sprint_init", "sprint_loop", SubResource("AnimationNodeStateMachineTransition_cno54"), "sprint_loop", "sprint_end", SubResource("AnimationNodeStateMachineTransition_v7sc1"), "idle", "sprint_init", SubResource("AnimationNodeStateMachineTransition_dbhv6"), "sprint_end", "idle", SubResource("AnimationNodeStateMachineTransition_6gud3"), "sprint_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_awu8l"), "sprint_init", "sprint_end", SubResource("AnimationNodeStateMachineTransition_gp30y"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_desuo"), "idle", "unequip", SubResource("AnimationNodeStateMachineTransition_xvp0s"), "sprint_init", "unequip", SubResource("AnimationNodeStateMachineTransition_lyf6y"), "sprint_loop", "unequip", SubResource("AnimationNodeStateMachineTransition_gw85u"), "sprint_end", "unequip", SubResource("AnimationNodeStateMachineTransition_r0jex"), "equip", "unequip", SubResource("AnimationNodeStateMachineTransition_ywx3w"), "unequip_loop", "equip", SubResource("AnimationNodeStateMachineTransition_8ek0q"), "unequip", "unequip_loop", SubResource("AnimationNodeStateMachineTransition_c7rwe"), "unequip", "equip", SubResource("AnimationNodeStateMachineTransition_t6hlb"), "equip", "sprint_init", SubResource("AnimationNodeStateMachineTransition_djup7")]
 graph_offset = Vector2(-197, -60)
 
-[node name="Tablet" type="Node3D" node_paths=PackedStringArray("animation_tree")]
-script = ExtResource("1_y5kk6")
+[node name="Tablet" type="Node3D" node_paths=PackedStringArray("mesh", "animation_tree")]
+script = ExtResource("1_p7iwi")
+mesh = NodePath("mesh_tablet")
 animation_tree = NodePath("AnimationTree")
-walk_cycle_direction = Vector3(0.025, 0.01, 0)
+walk_cycle_direction = Vector3(0.01, 0.005, 0)
 
 [node name="mesh_tablet" parent="." instance=ExtResource("2_0sv8y")]
 transform = Transform3D(0.069, 0, 0, 0, 0.0680537, 0.0113883, 0, -0.0113883, 0.0680537, 0, -0.07, -0.205)
 cast_shadow = 0
+surface_material_override/1 = SubResource("StandardMaterial3D_uy5rv")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
