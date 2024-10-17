@@ -23,10 +23,15 @@ func _on_button_pressed(button : PaperButton):
 			return					
 
 func _on_start_pressed() -> void:
-	SceneTransitionHandler.instance._load_scene("res://scenes/game/game.tscn")
+	transition(func(): SceneTransitionHandler.instance._load_scene("res://scenes/game/game.tscn"))
 
 func _on_options_pressed() -> void:
 	pass
 
 func _on_exit_pressed() -> void:
-	get_tree().quit()
+	transition(func(): get_tree().quit())
+
+func transition(callable: Callable):
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0), 0.2)
+	tween.tween_callback(callable).set_delay(0.2)

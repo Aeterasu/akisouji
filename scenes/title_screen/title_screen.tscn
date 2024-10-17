@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxucohptg4lk5"]
+[gd_scene load_steps=10 format=3 uid="uid://bxucohptg4lk5"]
 
 [ext_resource type="Script" path="res://scenes/title_screen/title_screen.gd" id="1_cn1xc"]
 [ext_resource type="Texture2D" uid="uid://dd7euwxcnfdll" path="res://assets/texture/texture_blurred_alleyway.png" id="2_o2re6"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="2_x83vb"]
+[ext_resource type="Texture2D" uid="uid://b2lnr8o27j8ek" path="res://assets/texture/texture_girl_placeholder.png" id="3_bdemh"]
 [ext_resource type="PackedScene" uid="uid://bcrys4arojn37" path="res://scenes/title_screen/paper_button.tscn" id="3_hx8lg"]
 [ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="4_4qwd1"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="4_w7fwc"]
@@ -48,6 +49,14 @@ layout_mode = 0
 scale = Vector2(2, 2)
 texture = ExtResource("2_o2re6")
 metadata/_edit_lock_ = true
+
+[node name="Girl" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 627.0
+offset_top = 18.0
+offset_right = 1302.0
+offset_bottom = 738.0
+texture = ExtResource("3_bdemh")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
