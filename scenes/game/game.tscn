@@ -241,7 +241,6 @@ vertical_alignment = 1
 script = ExtResource("8_d3y8h")
 
 [node name="SunFlare" type="CanvasLayer" parent="."]
-visible = false
 script = ExtResource("11_0g5lc")
 
 [node name="SunFlare" type="ColorRect" parent="SunFlare"]

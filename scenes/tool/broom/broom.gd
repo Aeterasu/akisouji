@@ -11,6 +11,7 @@ var sin_timer : float = 0.0
 
 var brooming_state : BroomingState = BroomingState.NONE
 
+var is_equipped : bool = false
 var wish_brooming : bool = false
 var wish_sprint : bool = false
 

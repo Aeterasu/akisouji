@@ -1,0 +1,440 @@
+[gd_scene load_steps=38 format=3 uid="uid://duvqdrsvvonkd"]
+
+[ext_resource type="Script" path="res://scenes/tool/broom/broom.gd" id="1_t54q8"]
+[ext_resource type="PackedScene" uid="uid://1rbyx1a81x74" path="res://assets/mesh/tool/mesh_broom.blend" id="2_0flt6"]
+[ext_resource type="Texture2D" uid="uid://4qx2h2eyxpqf" path="res://assets/texture/tool/texture_broom_1_albm.png" id="3_51to5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_skvaf"]
+diffuse_mode = 2
+specular_mode = 2
+albedo_texture = ExtResource("3_51to5")
+texture_filter = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cjscd"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(0, 0, 0, 0.552941)
+
+[sub_resource type="Animation" id="Animation_jw8jy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.084, -0.102, -0.154)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.89194, 0.0959931, 0.1309)]
+}
+
+[sub_resource type="Animation" id="Animation_v16ob"]
+resource_name = "brooming_loop"
+length = 1.25
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.25, 0.9),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.05, -0.12, -0.3), Vector3(0.184, -0.12, -0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.35, 0.7, 1.05),
+"transitions": PackedFloat32Array(0.5, -0.5, 0.5),
+"update": 0,
+"values": [Vector3(1.53589, 0.331613, 0.1309), Vector3(1.69297, -0.0785398, 0.1309), Vector3(1.53589, -0.261799, 0.1309)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.15, 0.35, 0.5, 0.7, 0.9, 1.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"_broom"
+}, {
+"args": [],
+"method": &"_broom"
+}, {
+"args": [],
+"method": &"_broom"
+}, {
+"args": [],
+"method": &"_broom"
+}, {
+"args": [],
+"method": &"_broom"
+}, {
+"args": [],
+"method": &"_broom"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_m3125"]
+resource_name = "brooming_loop_end"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(0.5, -2, -2),
+"update": 0,
+"values": [Vector3(0.084, -0.12, -0.3), Vector3(0.084, -0.102, -0.14), Vector3(0.084, -0.102, -0.154)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1, 0.4, 0.75),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(1.53589, 0.0959931, 0.1309), Vector3(2.18166, 0.0959931, 0.1309), Vector3(1.89194, 0.0959931, 0.1309)]
+}
+
+[sub_resource type="Animation" id="Animation_5yecp"]
+resource_name = "brooming_loop_start"
+length = 0.35
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.35),
+"transitions": PackedFloat32Array(0.5, -2),
+"update": 0,
+"values": [Vector3(0.084, -0.102, -0.154), Vector3(0.084, -0.12, -0.3)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(1.89194, 0.0959931, 0.1309), Vector3(1.53589, 0.0959931, 0.1309)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.15),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_broom"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_h5qqg"]
+resource_name = "idle"
+length = 6.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(0.084, -0.102, -0.154), Vector3(0.084, -0.11, -0.154), Vector3(0.084, -0.102, -0.154)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(1.89194, 0.0959931, 0.1309), Vector3(1.74533, 0.139626, 0.1309), Vector3(1.89194, 0.0959931, 0.1309)]
+}
+
+[sub_resource type="Animation" id="Animation_7hoeh"]
+resource_name = "sprint_end"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7, 1),
+"transitions": PackedFloat32Array(-2, -2, 1, 1),
+"update": 0,
+"values": [Vector3(0.2, -0.5, -0.154), Vector3(0.084, -0.08, -0.134), Vector3(0.084, -0.112, -0.154), Vector3(0.084, -0.102, -0.154)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7, 1),
+"transitions": PackedFloat32Array(0.5, 1, 1, 1),
+"update": 0,
+"values": [Vector3(3.14159, 0.0959931, 0.1309), Vector3(1.89194, 0.0959931, 0.1309), Vector3(1.78024, 0.0959931, 0.1309), Vector3(1.89194, 0.0959931, 0.1309)]
+}
+
+[sub_resource type="Animation" id="Animation_7rcfg"]
+resource_name = "sprint_init"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(2, 1),
+"update": 0,
+"values": [Vector3(0.084, -0.102, -0.154), Vector3(0.2, -0.5, -0.154)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(2, 0.5),
+"update": 0,
+"values": [Vector3(1.89194, 0.0959931, 0.1309), Vector3(3.14159, 0.0959931, 0.1309)]
+}
+
+[sub_resource type="Animation" id="Animation_1wmt6"]
+resource_name = "sprint_loop"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.2, -0.5, -0.154)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(3.14159, 0.0959931, 0.1309)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_52egn"]
+_data = {
+"RESET": SubResource("Animation_jw8jy"),
+"brooming_loop": SubResource("Animation_v16ob"),
+"brooming_loop_end": SubResource("Animation_m3125"),
+"brooming_loop_start": SubResource("Animation_5yecp"),
+"idle": SubResource("Animation_h5qqg"),
+"sprint_end": SubResource("Animation_7hoeh"),
+"sprint_init": SubResource("Animation_7rcfg"),
+"sprint_loop": SubResource("Animation_1wmt6")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gb0py"]
+animation = &"brooming_loop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hes0x"]
+animation = &"brooming_loop_end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ghdy0"]
+animation = &"brooming_loop_start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s6ifs"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fg4ie"]
+animation = &"sprint_end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sn25p"]
+animation = &"sprint_init"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rlncc"]
+animation = &"sprint_loop"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cno54"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v7sc1"]
+advance_mode = 2
+advance_expression = "not wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dbhv6"]
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6gud3"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "not wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_awu8l"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gp30y"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yxkvm"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+advance_expression = "wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_46hi8"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_103xs"]
+advance_mode = 2
+advance_expression = "wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gsw54"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "not wish_brooming
+"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ybass"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "not wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jklkv"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fe82q"]
+xfade_time = 0.5
+advance_mode = 2
+advance_expression = "wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qtnhm"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yht86"]
+xfade_time = 0.2
+break_loop_at_end = true
+advance_mode = 2
+advance_expression = "wish_sprinting"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wywd0"]
+states/End/position = Vector2(882, 138)
+states/Start/position = Vector2(65, 144)
+states/brooming_loop/node = SubResource("AnimationNodeAnimation_gb0py")
+states/brooming_loop/position = Vector2(549, -62)
+states/brooming_loop_end/node = SubResource("AnimationNodeAnimation_hes0x")
+states/brooming_loop_end/position = Vector2(834, 29)
+states/brooming_loop_start/node = SubResource("AnimationNodeAnimation_ghdy0")
+states/brooming_loop_start/position = Vector2(324, 29)
+states/idle/node = SubResource("AnimationNodeAnimation_s6ifs")
+states/idle/position = Vector2(184, 138)
+states/sprint_end/node = SubResource("AnimationNodeAnimation_fg4ie")
+states/sprint_end/position = Vector2(753, 299)
+states/sprint_init/node = SubResource("AnimationNodeAnimation_sn25p")
+states/sprint_init/position = Vector2(324, 291)
+states/sprint_loop/node = SubResource("AnimationNodeAnimation_rlncc")
+states/sprint_loop/position = Vector2(534, 399)
+transitions = ["sprint_init", "sprint_loop", SubResource("AnimationNodeStateMachineTransition_cno54"), "sprint_loop", "sprint_end", SubResource("AnimationNodeStateMachineTransition_v7sc1"), "idle", "sprint_init", SubResource("AnimationNodeStateMachineTransition_dbhv6"), "sprint_end", "idle", SubResource("AnimationNodeStateMachineTransition_6gud3"), "sprint_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_awu8l"), "sprint_init", "sprint_end", SubResource("AnimationNodeStateMachineTransition_gp30y"), "brooming_loop_start", "brooming_loop", SubResource("AnimationNodeStateMachineTransition_yxkvm"), "brooming_loop", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_46hi8"), "idle", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_103xs"), "brooming_loop_end", "idle", SubResource("AnimationNodeStateMachineTransition_gsw54"), "brooming_loop_start", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_ybass"), "brooming_loop_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_jklkv"), "sprint_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_fe82q"), "brooming_loop_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_qtnhm"), "brooming_loop", "sprint_init", SubResource("AnimationNodeStateMachineTransition_yht86")]
+graph_offset = Vector2(-305, -183)
+
+[node name="Broom" type="Node3D" node_paths=PackedStringArray("animation_tree")]
+script = ExtResource("1_t54q8")
+animation_tree = NodePath("AnimationTree")
+walk_cycle_direction = Vector3(0.025, 0.01, 0)
+
+[node name="mesh_broom" parent="." instance=ExtResource("2_0flt6")]
+transform = Transform3D(0.0749063, -0.00298185, -0.00226904, -0.00309007, -0.0234714, -0.0711656, 0.0021193, 0.0711702, -0.0235649, 0.084, -0.102, -0.154)
+cast_shadow = 0
+surface_material_override/0 = SubResource("StandardMaterial3D_skvaf")
+surface_material_override/1 = SubResource("StandardMaterial3D_cjscd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_52egn")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_wywd0")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")
