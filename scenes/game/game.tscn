@@ -166,7 +166,6 @@ vertical_alignment = 2
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 layer = 99
-visible = false
 
 [node name="UI" parent="UILayer" instance=ExtResource("5_is4j0")]
 
@@ -194,7 +193,6 @@ script = ExtResource("8_d3y8h")
 
 [node name="SpeedEffectLayer" type="CanvasLayer" parent="."]
 layer = 64
-visible = false
 
 [node name="SpeedEffect" type="TextureRect" parent="SpeedEffectLayer" node_paths=PackedStringArray("player")]
 material = SubResource("CanvasItemMaterial_e7rcr")
@@ -211,7 +209,6 @@ target_color = Color(0.29219, 0.29219, 0.29219, 1)
 
 [node name="UICompletionLayer" type="CanvasLayer" parent="."]
 layer = 101
-visible = false
 
 [node name="UICompletion" type="Control" parent="UICompletionLayer"]
 layout_mode = 3

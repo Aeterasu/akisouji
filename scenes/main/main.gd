@@ -5,8 +5,10 @@ static var instance = null
 func _ready():
 	instance = self
 
-	#SceneTransitionHandler.instance._load_scene("res://scenes/title_screen/title_screen.tscn")
-	SceneTransitionHandler.instance._load_scene("res://scenes/game/game.tscn")
+	TranslationServer.set_locale("en")
+
+	SceneTransitionHandler.instance._load_scene("res://scenes/title_screen/title_screen.tscn")
+	#SceneTransitionHandler.instance._load_scene("res://scenes/game/game.tscn")
 
 func _process(delta) -> void:
 	if (Input.is_action_just_pressed("ui_cancel")):

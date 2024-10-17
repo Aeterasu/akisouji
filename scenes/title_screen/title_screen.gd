@@ -1,13 +1,26 @@
 extends Control
 
-@export var button_start : Button = null
-@export var button_options : Button = null
-@export var button_exit : Button = null
+@export var button_selection_handler : ButtonSelectionHandler = null
+
+@export var start_button : PaperButton = null
+@export var gallery_button : PaperButton = null
+@export var options_button : PaperButton = null
+@export var exit_button : PaperButton = null
 
 func _ready():
-	button_start.pressed.connect(_on_start_pressed)
-	button_options.pressed.connect(_on_options_pressed)
-	button_exit.pressed.connect(_on_exit_pressed)
+	button_selection_handler.on_button_pressed.connect(_on_button_pressed)
+
+func _on_button_pressed(button : PaperButton):
+	match (button):
+		start_button:
+			_on_start_pressed()
+			return
+		options_button:
+			_on_options_pressed()
+			return
+		exit_button:
+			_on_exit_pressed()
+			return					
 
 func _on_start_pressed() -> void:
 	SceneTransitionHandler.instance._load_scene("res://scenes/game/game.tscn")

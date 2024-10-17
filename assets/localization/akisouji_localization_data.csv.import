@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dphqcy2tjsxkr"
+
+[deps]
+
+files=["res://assets/localization/akisouji_localization_data.en.translation", "res://assets/localization/akisouji_localization_data.ru.translation"]
+
+source_file="res://assets/localization/akisouji_localization_data.csv"
+dest_files=["res://assets/localization/akisouji_localization_data.en.translation", "res://assets/localization/akisouji_localization_data.ru.translation"]
+
+[params]
+
+compress=true
+delimiter=0
