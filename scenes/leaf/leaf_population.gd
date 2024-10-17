@@ -112,11 +112,11 @@ func _translate_multimesh() -> void:
 
 	var offset : int = 0
 
-	for u in range(len(white_pixels)):
+	for u in len(white_pixels):
 		var data = leaf_chunk_data_array[u]
 		data.last_clean_index = offset
 
-		for v in (range(data.index_count)):
+		for v in data.index_count:
 			var position_x = clampf((white_pixels[u].x + pixel_offset.x + (randf() - 0.5) * position_disperse) / leafmap_resolution_fraction, 0.0, (viewport_image_size.x / leafmap_resolution_fraction) + pixel_offset.x)
 			var position_y = clampf((white_pixels[u].y + pixel_offset.y + (randf() - 0.5) * position_disperse) / leafmap_resolution_fraction, 0.0, (viewport_image_size.y / leafmap_resolution_fraction) + pixel_offset.y)
 			var height : float = 0.01

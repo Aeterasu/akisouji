@@ -26,7 +26,8 @@ class_name Player extends CharacterBody3D
 @export var sprint_cleaning_radius : float = 0.25
 
 @export_group("Equipment")
-@export var equipment_viewmodel : BroomViewmodel = null
+@export var inventory : PlayerToolInventory = null
+#@export var equipment_viewmodel : Broom = null
 @export var cleaning_range : float = 8.0
 
 var mouse_sensitivity : float = 1.0
@@ -53,7 +54,7 @@ func _ready():
 	gamepad_sensitvity = GlobalSettings.gamepad_sensitvity
 	gamepad_deadzone = GlobalSettings.gamepad_deadzone
 
-	equipment_viewmodel.on_broom.connect(on_broom)
+	#equipment_viewmodel.on_broom.connect(on_broom)
 
 	sprint_cleaning_timer = Timer.new()
 	add_child(sprint_cleaning_timer)
@@ -65,8 +66,8 @@ func _physics_process(delta : float):
 	input_process(delta)
 	movement_process(delta)
 
-	equipment_viewmodel.walk_multiplier = velocity_component.current_velocity.length() / velocity_component.speed
-	equipment_viewmodel._set_sprint_toggle(wish_sprint)
+	inventory.current_tool.walk_multiplier = velocity_component.current_velocity.length() / velocity_component.speed
+	inventory.current_tool._set_sprint_toggle(wish_sprint)
 
 	if (gravity_component.current_velocity < delta - 0.1):
 		is_landing = true
@@ -85,7 +86,7 @@ func input_process(delta : float):
 	velocity_component.input_direction = Vector2()
 
 	if (_block_input):
-		equipment_viewmodel.wish_brooming = false
+		#equipment_viewmodel.wish_brooming = false
 		wish_sprint = false
 		wish_jumping = false
 		return
@@ -109,7 +110,7 @@ func input_process(delta : float):
 
 	# broom
 
-	equipment_viewmodel.wish_brooming = Input.is_action_pressed("player_action_primary") && !wish_sprint
+	#equipment_viewmodel.wish_brooming = Input.is_action_pressed("player_action_primary") && !wish_sprint
 
 	# sprint
 

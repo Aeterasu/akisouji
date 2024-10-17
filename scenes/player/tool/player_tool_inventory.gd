@@ -1,0 +1,58 @@
+class_name PlayerToolInventory extends Node
+
+@export var tool_origin : Node = null
+
+var current_tool : PlayerTool = null
+var current_tool_id : int = 0
+var tools : Array[PlayerTool] = []
+
+func _ready():
+	for node in tool_origin.get_children():
+		if (node is PlayerTool):
+			tools.append(node)
+
+	current_tool = tools[0]
+
+func _physics_process(delta) -> void:
+	if (Input.is_action_just_pressed("player_action_next_tool")):
+		_next_tool()
+		return
+
+	if (Input.is_action_just_pressed("player_action_previous_tool")):
+		_previous_tool()
+		return
+
+	if (Input.is_action_just_pressed("player_action_select_tool_1")):
+		_set_tool(0)
+		return
+
+	if (Input.is_action_just_pressed("player_action_select_tool_2")):
+		_set_tool(1)
+		return		
+
+func _next_tool():
+	current_tool_id += 1
+
+	if (current_tool_id >= len(tools)):
+		current_tool_id = 0
+
+	_update_tool()
+
+func _previous_tool():
+	current_tool_id -= 1
+
+	if (current_tool_id < 0):
+		current_tool_id = len(tools) - 1
+
+	_update_tool()
+
+func _set_tool(id : int):
+	current_tool_id = id
+
+	_update_tool()
+
+func _update_tool():
+	current_tool._unequip() # unequip the previous tool
+
+	current_tool = tools[current_tool_id]
+	current_tool._equip() # equip the new one

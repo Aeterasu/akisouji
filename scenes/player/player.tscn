@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://077fpjam3rlw"]
+[gd_scene load_steps=34 format=3 uid="uid://077fpjam3rlw"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_e0tat"]
 [ext_resource type="Script" path="res://scenes/component/gravity_component/gravity_component.gd" id="2_nr0jr"]
@@ -8,12 +8,13 @@
 [ext_resource type="Script" path="res://scenes/player/move_speed_upgrade_handler.gd" id="4_xp3sh"]
 [ext_resource type="Script" path="res://scenes/player/camera_effect_landing.gd" id="5_1a0oq"]
 [ext_resource type="Resource" uid="uid://bnojv12xi1uio" path="res://scenes/upgrade/move_speed/default_boots.tres" id="5_ggm6b"]
-[ext_resource type="Script" path="res://scenes/tool/viewmodel/viewmodel_sway.gd" id="6_t0wwe"]
-[ext_resource type="Script" path="res://scenes/player/player_tool_inventory.gd" id="7_id8rm"]
+[ext_resource type="Script" path="res://scenes/player/tool/viewmodel/viewmodel_sway.gd" id="6_t0wwe"]
+[ext_resource type="Script" path="res://scenes/player/tool/player_tool_inventory.gd" id="7_id8rm"]
 [ext_resource type="Script" path="res://scenes/player/player_footstep_manager.gd" id="11_le046"]
-[ext_resource type="PackedScene" uid="uid://duvqdrsvvonkd" path="res://scenes/tool/broom/broom.tscn" id="12_gpv6h"]
+[ext_resource type="PackedScene" uid="uid://duvqdrsvvonkd" path="res://scenes/player/tool/broom/broom.tscn" id="12_gpv6h"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/nodes/sound_effect_player.gd" id="12_ws1qt"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/resources/multi_sound_effect_item.gd" id="13_qnret"]
+[ext_resource type="PackedScene" uid="uid://bxoqoq5jsqjn1" path="res://scenes/player/tool/tablet/tablet.tscn" id="14_8cbh7"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/resources/sound_effect_meta.gd" id="16_7g8ho"]
 [ext_resource type="AudioStream" uid="uid://cols2ungsaby3" path="res://assets/audio/sfx_concrete_footstep_1.ogg" id="16_s6ylb"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/resources/multi_sound_effect.gd" id="17_2xuu8"]
@@ -75,7 +76,7 @@ meta = SubResource("Resource_ifbu1")
 play = false
 play_on_change = false
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("velocity_component", "gravity_component", "camera", "camera_origin", "camera_effect_landing", "equipment_viewmodel")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("velocity_component", "gravity_component", "camera", "camera_origin", "camera_effect_landing", "inventory")]
 floor_block_on_wall = false
 script = ExtResource("1_e0tat")
 velocity_component = NodePath("VelocityComponent")
@@ -91,7 +92,7 @@ cleaning_radius = 0.8
 jump_cleaning_radius = 1.5
 sprint_cleaning_cooldown = 0.1
 sprint_cleaning_radius = 0.3
-equipment_viewmodel = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway/Broom")
+inventory = NodePath("PlayerToolInventory")
 cleaning_range = 3.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -117,8 +118,9 @@ script = ExtResource("24_6ndkg")
 player = NodePath("..")
 trouble_threshold = 5.0
 
-[node name="PlayerToolInventory" type="Node" parent="."]
+[node name="PlayerToolInventory" type="Node" parent="." node_paths=PackedStringArray("tool_origin")]
 script = ExtResource("7_id8rm")
+tool_origin = NodePath("../CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway")
 
 [node name="CameraOrigin" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.685927, 0)
@@ -148,6 +150,8 @@ sway_strength = 0.1
 player = NodePath("../../../../../..")
 
 [node name="Broom" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("12_gpv6h")]
+
+[node name="Tablet" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("14_8cbh7")]
 
 [node name="FootstepManager" type="Node3D" parent="." node_paths=PackedStringArray("player", "velocity_component", "concrete_footstep", "grass_footstep")]
 script = ExtResource("11_le046")
