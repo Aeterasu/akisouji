@@ -1,0 +1,208 @@
+[gd_scene load_steps=20 format=3 uid="uid://bfmvy7wmymc2l"]
+
+[ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="1_mdruy"]
+[ext_resource type="Script" path="res://scenes/gallery/gallery.gd" id="1_mortg"]
+[ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="2_ya6i8"]
+[ext_resource type="Texture2D" uid="uid://boq4h7pwnxh70" path="res://assets/texture/ui/texture_ui_border.png" id="4_f3clh"]
+[ext_resource type="Texture2D" uid="uid://dd7euwxcnfdll" path="res://assets/texture/texture_blurred_alleyway.png" id="4_oydno"]
+[ext_resource type="PackedScene" uid="uid://bcrys4arojn37" path="res://scenes/title_screen/paper_button.tscn" id="5_6rj0g"]
+[ext_resource type="PackedScene" uid="uid://teb4p57yamr3" path="res://scenes/title_screen/paper_button_h_flipped.tscn" id="6_tq5qv"]
+[ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="7_jbjr6"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6ipxy"]
+blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_6lad3"]
+colors = PackedColorArray(0, 0, 0, 1, 0.338768, 0.0813456, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lwg7b"]
+gradient = SubResource("Gradient_6lad3")
+width = 8
+height = 8
+fill_to = Vector2(0, 1)
+
+[sub_resource type="Gradient" id="Gradient_g7gg4"]
+offsets = PackedFloat32Array(0, 0.0394537, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.501835, 0.137968, 0, 1, 0.18193, 0.0281259, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_flh8y"]
+gradient = SubResource("Gradient_g7gg4")
+width = 8
+height = 8
+fill_to = Vector2(0, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_niipn"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_pd1am"]
+offsets = PackedFloat32Array(0, 0.443096)
+colors = PackedColorArray(1, 0.7975, 0.55, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_np5xa"]
+gradient = SubResource("Gradient_pd1am")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6yf58"]
+blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_mcqjw"]
+offsets = PackedFloat32Array(0.00151745, 0.00758725, 0.0409712)
+colors = PackedColorArray(0, 0, 0, 1, 0.501961, 0.137255, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4cx3l"]
+gradient = SubResource("Gradient_mcqjw")
+fill_to = Vector2(0, 1)
+
+[node name="Gallery" type="Control" node_paths=PackedStringArray("gallery_base_entry", "gallery_origin", "button_selection_handler", "back_button", "open_folder_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mortg")
+gallery_base_entry = NodePath("ScrollContainer/GridContainer/Outline")
+gallery_origin = NodePath("ScrollContainer/GridContainer")
+button_selection_handler = NodePath("Buttons/ButtonSelectionHandler")
+back_button = NodePath("Buttons/PaperButton")
+open_folder_button = NodePath("Buttons/PaperButtonHFlipped")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mdruy")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+material = SubResource("CanvasItemMaterial_6ipxy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_lwg7b")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = -32.0
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="Outline" type="TextureRect" parent="ScrollContainer/GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(240, 160)
+layout_mode = 2
+texture = ExtResource("4_f3clh")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/GridContainer/Outline"]
+show_behind_parent = true
+texture_filter = 2
+custom_minimum_size = Vector2(120, 80)
+layout_mode = 2
+offset_right = 120.0
+offset_bottom = 80.0
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+texture = ExtResource("4_oydno")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Background2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 570.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("1_mdruy")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Background2"]
+material = SubResource("CanvasItemMaterial_6ipxy")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -38.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_flh8y")
+
+[node name="TextureRect2" type="TextureRect" parent="Background2"]
+modulate = Color(1, 1, 1, 0.0784314)
+material = SubResource("CanvasItemMaterial_niipn")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_np5xa")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("CanvasItemMaterial_6yf58")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_4cx3l")
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PaperButton" parent="Buttons" instance=ExtResource("5_6rj0g")]
+layout_mode = 1
+offset_left = -18.0
+offset_top = 600.0
+offset_right = -18.28
+offset_bottom = 632.96
+text_key = "MENU_BUTTON_BACK"
+
+[node name="PaperButtonHFlipped" parent="Buttons" instance=ExtResource("6_tq5qv")]
+layout_mode = 1
+offset_left = 784.0
+offset_top = 600.0
+offset_right = 783.72
+offset_bottom = 632.96
+text_key = "MENU_BUTTON_GALLERY_FOLDER"
+custom_font_size = 24
+target_selected_position = Vector2(12, 0)
+target_deselected_position = Vector2(96, 0)
+
+[node name="ButtonSelectionHandler" type="Node" parent="Buttons" node_paths=PackedStringArray("buttons_origin")]
+script = ExtResource("7_jbjr6")
+buttons_origin = NodePath("..")
+
+[node name="UIUpscaler" type="Node" parent="."]
+script = ExtResource("2_ya6i8")

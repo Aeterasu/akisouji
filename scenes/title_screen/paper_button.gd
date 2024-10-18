@@ -4,6 +4,7 @@ class_name PaperButton extends Control
 
 @export var text_key : String = ""
 @export var label : Label = null
+@export var custom_font_size : int = -1
 
 @export var animation_origin : Control = null
 @export var target_selected_position : Vector2 = Vector2(0, 0)
@@ -47,6 +48,14 @@ func _ready():
 
 	mouse_area.mouse_entered.connect(func(): on_mouse_selection.emit(self))
 	mouse_area.mouse_exited.connect(func(): on_mouse_deselection.emit(self))
+
+	if (custom_font_size > -1):
+		label.set("theme_override_font_sizes/font_size", custom_font_size)
+		#label.theme_override_font_sizes.outline_size = label.theme_override_font_sizes.outline_size
+
+	animation_origin.position = target_deselected_position
+	current_color_2_1 = gradient_2_color_1
+	current_color_2_2 = gradient_2_color_2
 
 func _process(delta):
 	gradient_1.set_color(0, current_color_1_1)

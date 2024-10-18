@@ -3,4 +3,6 @@ MENU_BUTTON_START,Start,Старт
 MENU_BUTTON_OPTIONS,Options,Настройки
 MENU_BUTTON_GALLERY,Gallery,Галерея
 MENU_BUTTON_EXIT,Quit,Выход
+MENU_BUTTON_BACK,Back,Назад
+MENU_BUTTON_GALLERY_FOLDER,Open screenshot folder,Открыть папку
 CREDITS_1,Game by Matvey Kerov,Игру создал Матвей Керов

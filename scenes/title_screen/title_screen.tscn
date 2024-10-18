@@ -31,6 +31,7 @@ start_button = NodePath("VBoxContainer/StartButton")
 gallery_button = NodePath("VBoxContainer/GalleryButton")
 options_button = NodePath("VBoxContainer/OptionsButton")
 exit_button = NodePath("VBoxContainer/ExitButton")
+metadata/_edit_lock_ = true
 
 [node name="ColorRect" type="TextureRect" parent="."]
 layout_mode = 1

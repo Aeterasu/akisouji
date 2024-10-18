@@ -1,0 +1,68 @@
+extends Control
+
+@export var gallery_base_entry : TextureRect = null
+@export var gallery_origin : Control = null
+
+@export var button_selection_handler : ButtonSelectionHandler = null
+
+@export var back_button : PaperButton = null
+@export var open_folder_button : PaperButton = null
+
+func _ready():
+	var dir = DirAccess.open("user://")
+
+	button_selection_handler.on_button_pressed.connect(_on_button_pressed)
+
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		while file_name != "":
+			if dir.current_is_dir():
+				Output.print("Found directory: " + file_name)
+			else:
+				if (file_name.get_extension() == "png"):
+					var image = Image.new()
+					image.load(ProjectSettings.globalize_path(dir.get_current_dir()) + file_name)
+					var t = ImageTexture.create_from_image(image)
+					var t_rect = gallery_base_entry.duplicate()
+					gallery_origin.add_child(t_rect)
+					t_rect.get_child(0).texture = t
+			file_name = dir.get_next()
+
+		gallery_base_entry.queue_free()
+	else:
+		Output.print("An error occurred when trying to access the path.")
+
+	modulate = Color(0.0, 0.0, 0.0)
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0), 0.3)
+
+func load_image_texture(path: String) -> ImageTexture:
+	
+	var loaded_image := Image.new()
+	var error := loaded_image.load(path)
+	
+	if error != OK:
+		return null
+
+	return ImageTexture.create_from_image(loaded_image)
+
+func _on_button_pressed(button : PaperButton):
+	match (button):
+		back_button:
+			_on_back_pressed()
+			return
+		open_folder_button:
+			_on_open_folder_pressed()
+			return
+
+func _on_back_pressed() -> void:
+	transition(func(): SceneTransitionHandler.instance._load_scene("res://scenes/title_screen/title_screen.tscn"))
+
+func _on_open_folder_pressed() -> void:
+	pass
+
+func transition(callable: Callable):
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0), 0.2)
+	tween.tween_callback(callable).set_delay(0.2)
