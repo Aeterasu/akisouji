@@ -15,6 +15,9 @@ var is_equipped : bool = false
 var wish_sprint : bool = false
 
 var in_use : bool = false
+var in_use_secondary : bool = false
+
+var allow_switch : bool = true
 
 enum UseType
 {
@@ -47,11 +50,5 @@ func _equip() -> void:
 func _use_primary() -> void:
 	pass
 
-func _use_hold_primary() -> void:
-	pass
-
 func _use_secondary() -> void:
-	pass
-
-func _use_hold_secondary() -> void:
 	pass

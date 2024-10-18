@@ -1,0 +1,612 @@
+[gd_scene load_steps=51 format=3 uid="uid://bmmipwucjq6as"]
+
+[ext_resource type="Script" path="res://scenes/player/tool/camera/camera.gd" id="1_dgrk7"]
+[ext_resource type="PackedScene" uid="uid://dchkqghoh07wq" path="res://assets/mesh/tool/mesh_camera.glb" id="2_7bjqe"]
+[ext_resource type="Texture2D" uid="uid://cdvg0disuaebg" path="res://assets/texture/fx/texture_cloud_specular.png" id="3_g1ww4"]
+[ext_resource type="Texture2D" uid="uid://dck3bm0cescg6" path="res://assets/texture/ui/texture_ui_camera.png" id="4_axhma"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pxao4"]
+albedo_color = Color(0.162066, 0.162066, 0.162066, 1)
+roughness_texture = ExtResource("3_g1ww4")
+emission_enabled = true
+emission_energy_multiplier = 0.7
+
+[sub_resource type="Animation" id="Animation_0lt4f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.05, -0.02, -0.06)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_camera:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.139626, 0.0959931)]
+}
+
+[sub_resource type="Animation" id="Animation_6kcvq"]
+resource_name = "equip"
+length = 0.9
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(0.2, -0.2, -0.105), Vector3(0.09, -0.033, -0.105), Vector3(0.09, -0.038, -0.105)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_camera:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.9),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(-2.61799, 0.139626, 0.0959931), Vector3(0.0872665, 0.139626, 0.0959931), Vector3(0, 0.139626, 0.0959931)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_mrlpj"]
+resource_name = "idle"
+length = 2.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0.09, -0.038, -0.105), Vector3(0.09, -0.04, -0.105), Vector3(0.09, -0.038, -0.105)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_camera:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.4, 2.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0.139626, 0.0959931), Vector3(-0.0174533, 0.20944, 0.139626), Vector3(0, 0.139626, 0.0959931)]
+}
+
+[sub_resource type="Animation" id="Animation_0niuf"]
+resource_name = "photo_mode_enter"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(2, 0.5, -0.5),
+"update": 0,
+"values": [Vector3(0.09, -0.038, -0.105), Vector3(0.068, -0.05, -0.08), Vector3(0.025, -0.006, -0.03)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_camera:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(2, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(0, 0.139626, 0.0959931), Vector3(-0.261799, 0.139626, 0.0959931), Vector3(0, 0, 0)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_enter_photo_mode"
+}, {
+"args": [],
+"method": &"hide"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_21033"]
+resource_name = "photo_mode_exit"
+length = 0.65
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.65),
+"transitions": PackedFloat32Array(-2, -2, 0.5, -2),
+"update": 0,
+"values": [Vector3(0.025, -0.006, -0.03), Vector3(0.025, -0.05, -0.03), Vector3(0.09, -0.038, -0.12), Vector3(0.09, -0.038, -0.105)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_camera:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.45, 0.55),
+"transitions": PackedFloat32Array(-2, -2, 1, -2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.610865, 0.139626, 0.0959931), Vector3(0, 0.139626, 0.261799), Vector3(0, 0.139626, 0.0959931)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_exit_photo_mode"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"show"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_3prxh"]
+resource_name = "sprint_end"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(0.2, -0.2, -0.105), Vector3(0.09, -0.035, -0.105), Vector3(0.09, -0.038, -0.105)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_camera:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.8),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(-3.14159, 0.139626, 3.14159), Vector3(0.139626, 0.139626, 0.0959931), Vector3(0, 0.139626, 0.0959931)]
+}
+
+[sub_resource type="Animation" id="Animation_dac30"]
+resource_name = "sprint_init"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(0.09, -0.038, -0.105), Vector3(0.2, -0.2, -0.105)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_camera:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5, 1),
+"update": 0,
+"values": [Vector3(0, 0.139626, 0.0959931), Vector3(0, 0.139626, 0.261799), Vector3(0, 0.139626, 3.14159)]
+}
+
+[sub_resource type="Animation" id="Animation_qpdhn"]
+resource_name = "sprint_loop"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(0.2, -0.2, -0.105)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_camera:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(-3.14159, 0.139626, 3.14159)]
+}
+
+[sub_resource type="Animation" id="Animation_6vjfr"]
+resource_name = "unequip"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(0.09, -0.038, -0.105), Vector3(0.2, -0.2, -0.105)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_camera:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(0, 0.139626, 0.0959931), Vector3(-2.61799, 0.139626, 0.0959931)]
+}
+
+[sub_resource type="Animation" id="Animation_hx6k0"]
+resource_name = "unequip_loop"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_camera:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(0.2, -0.2, -0.105)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_camera:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(-2.61799, 0.139626, 0.0959931)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hide"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ay5cn"]
+_data = {
+"RESET": SubResource("Animation_0lt4f"),
+"equip": SubResource("Animation_6kcvq"),
+"idle": SubResource("Animation_mrlpj"),
+"photo_mode_enter": SubResource("Animation_0niuf"),
+"photo_mode_exit": SubResource("Animation_21033"),
+"sprint_end": SubResource("Animation_3prxh"),
+"sprint_init": SubResource("Animation_dac30"),
+"sprint_loop": SubResource("Animation_qpdhn"),
+"unequip": SubResource("Animation_6vjfr"),
+"unequip_loop": SubResource("Animation_hx6k0")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1q5rf"]
+animation = &"equip"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s6ifs"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4vht3"]
+animation = &"photo_mode_enter"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p015q"]
+animation = &"photo_mode_exit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fg4ie"]
+animation = &"sprint_end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sn25p"]
+animation = &"sprint_init"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rlncc"]
+animation = &"sprint_loop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nrt0j"]
+animation = &"unequip"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2r00t"]
+animation = &"unequip_loop"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cno54"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v7sc1"]
+advance_mode = 2
+advance_expression = "not wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dbhv6"]
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6gud3"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "not wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_awu8l"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gp30y"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_desuo"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xvp0s"]
+xfade_time = 0.05
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lyf6y"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gw85u"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r0jex"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ywx3w"]
+xfade_time = 0.05
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8ek0q"]
+advance_mode = 2
+advance_expression = "is_equipped
+"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c7rwe"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t6hlb"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_djup7"]
+xfade_time = 0.5
+switch_mode = 2
+advance_mode = 2
+advance_expression = "wish_sprint
+"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3s4k8"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "wish_photo_mode"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c1rmi"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "wish_photo_mode"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3ixd7"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "wish_photo_mode"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x437a"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "wish_photo_mode"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o7fmi"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "wish_photo_mode"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_deken"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "wish_photo_mode"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4li0p"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not wish_photo_mode"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4pjk8"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wjiwp"]
+states/End/position = Vector2(1067, 145)
+states/Start/position = Vector2(-162, -50)
+states/equip/node = SubResource("AnimationNodeAnimation_1q5rf")
+states/equip/position = Vector2(59, 138)
+states/idle/node = SubResource("AnimationNodeAnimation_s6ifs")
+states/idle/position = Vector2(184, 138)
+states/photo_mode_enter/node = SubResource("AnimationNodeAnimation_4vht3")
+states/photo_mode_enter/position = Vector2(22, -225)
+states/photo_mode_exit/node = SubResource("AnimationNodeAnimation_p015q")
+states/photo_mode_exit/position = Vector2(253, -225)
+states/sprint_end/node = SubResource("AnimationNodeAnimation_fg4ie")
+states/sprint_end/position = Vector2(753, 299)
+states/sprint_init/node = SubResource("AnimationNodeAnimation_sn25p")
+states/sprint_init/position = Vector2(324, 291)
+states/sprint_loop/node = SubResource("AnimationNodeAnimation_rlncc")
+states/sprint_loop/position = Vector2(534, 399)
+states/unequip/node = SubResource("AnimationNodeAnimation_nrt0j")
+states/unequip/position = Vector2(324, -38)
+states/unequip_loop/node = SubResource("AnimationNodeAnimation_2r00t")
+states/unequip_loop/position = Vector2(-95, 138)
+transitions = ["sprint_init", "sprint_loop", SubResource("AnimationNodeStateMachineTransition_cno54"), "sprint_loop", "sprint_end", SubResource("AnimationNodeStateMachineTransition_v7sc1"), "idle", "sprint_init", SubResource("AnimationNodeStateMachineTransition_dbhv6"), "sprint_end", "idle", SubResource("AnimationNodeStateMachineTransition_6gud3"), "sprint_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_awu8l"), "sprint_init", "sprint_end", SubResource("AnimationNodeStateMachineTransition_gp30y"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_desuo"), "idle", "unequip", SubResource("AnimationNodeStateMachineTransition_xvp0s"), "sprint_init", "unequip", SubResource("AnimationNodeStateMachineTransition_lyf6y"), "sprint_loop", "unequip", SubResource("AnimationNodeStateMachineTransition_gw85u"), "sprint_end", "unequip", SubResource("AnimationNodeStateMachineTransition_r0jex"), "equip", "unequip", SubResource("AnimationNodeStateMachineTransition_ywx3w"), "unequip_loop", "equip", SubResource("AnimationNodeStateMachineTransition_8ek0q"), "unequip", "unequip_loop", SubResource("AnimationNodeStateMachineTransition_c7rwe"), "unequip", "equip", SubResource("AnimationNodeStateMachineTransition_t6hlb"), "equip", "sprint_init", SubResource("AnimationNodeStateMachineTransition_djup7"), "equip", "photo_mode_enter", SubResource("AnimationNodeStateMachineTransition_3s4k8"), "idle", "photo_mode_enter", SubResource("AnimationNodeStateMachineTransition_c1rmi"), "sprint_init", "photo_mode_enter", SubResource("AnimationNodeStateMachineTransition_3ixd7"), "sprint_loop", "photo_mode_enter", SubResource("AnimationNodeStateMachineTransition_x437a"), "sprint_end", "photo_mode_enter", SubResource("AnimationNodeStateMachineTransition_o7fmi"), "unequip", "photo_mode_enter", SubResource("AnimationNodeStateMachineTransition_deken"), "photo_mode_enter", "photo_mode_exit", SubResource("AnimationNodeStateMachineTransition_4li0p"), "photo_mode_exit", "idle", SubResource("AnimationNodeStateMachineTransition_4pjk8")]
+graph_offset = Vector2(-202, -336)
+
+[node name="Camera" type="Node3D" node_paths=PackedStringArray("sub_viewport", "mesh", "camera", "animation_tree")]
+script = ExtResource("1_dgrk7")
+sub_viewport = NodePath("mesh_camera/SubViewport")
+mesh = NodePath("mesh_camera")
+camera = NodePath("mesh_camera/SubViewport/Camera3D")
+animation_tree = NodePath("AnimationTree")
+walk_cycle_direction = Vector3(0.01, 0.005, 0)
+
+[node name="mesh_camera" parent="." instance=ExtResource("2_7bjqe")]
+transform = Transform3D(0.0985709, -0.0094913, 0.0139173, 0.00958457, 0.0995396, 0, -0.0138532, 0.00133391, 0.0990268, 0.05, -0.02, -0.06)
+layers = 2
+cast_shadow = 0
+surface_material_override/1 = SubResource("StandardMaterial3D_pxao4")
+
+[node name="SubViewport" type="SubViewport" parent="mesh_camera"]
+mesh_lod_threshold = 4.0
+scaling_3d_scale = 0.25
+positional_shadow_atlas_size = 256
+positional_shadow_atlas_quad_0 = 0
+positional_shadow_atlas_quad_1 = 0
+positional_shadow_atlas_quad_2 = 0
+positional_shadow_atlas_quad_3 = 0
+size = Vector2i(320, 180)
+render_target_update_mode = 1
+
+[node name="Camera3D" type="Camera3D" parent="mesh_camera/SubViewport"]
+transform = Transform3D(0.985709, -0.094913, 0.139173, 0.0958458, 0.995396, 4.47231e-08, -0.138532, 0.0133391, 0.990268, 0.066694, -0.0503785, -0.188999)
+cull_mask = 1048573
+fov = 15.0
+far = 256.0
+
+[node name="TextureRect" type="TextureRect" parent="mesh_camera/SubViewport"]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_axhma")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+near = 0.009
+far = 1024.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ay5cn")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_wjiwp")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")

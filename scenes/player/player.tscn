@@ -8,13 +8,13 @@
 [ext_resource type="Script" path="res://scenes/player/move_speed_upgrade_handler.gd" id="4_xp3sh"]
 [ext_resource type="Script" path="res://scenes/player/camera_effect_landing.gd" id="5_1a0oq"]
 [ext_resource type="Resource" uid="uid://bnojv12xi1uio" path="res://scenes/upgrade/move_speed/default_boots.tres" id="5_ggm6b"]
-[ext_resource type="Script" path="res://scenes/player/tool/viewmodel/viewmodel_sway.gd" id="6_t0wwe"]
+[ext_resource type="Script" path="res://scenes/player/tool/viewmodel_sway.gd" id="6_t0wwe"]
 [ext_resource type="Script" path="res://scenes/player/tool/player_tool_inventory.gd" id="7_id8rm"]
 [ext_resource type="Script" path="res://scenes/player/player_footstep_manager.gd" id="11_le046"]
 [ext_resource type="PackedScene" uid="uid://duvqdrsvvonkd" path="res://scenes/player/tool/broom/broom.tscn" id="12_gpv6h"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/nodes/sound_effect_player.gd" id="12_ws1qt"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/resources/multi_sound_effect_item.gd" id="13_qnret"]
-[ext_resource type="PackedScene" uid="uid://bxoqoq5jsqjn1" path="res://scenes/player/tool/tablet/tablet.tscn" id="14_8cbh7"]
+[ext_resource type="PackedScene" uid="uid://bmmipwucjq6as" path="res://scenes/player/tool/camera/camera.tscn" id="14_yl1fb"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/resources/sound_effect_meta.gd" id="16_7g8ho"]
 [ext_resource type="AudioStream" uid="uid://cols2ungsaby3" path="res://assets/audio/sfx_concrete_footstep_1.ogg" id="16_s6ylb"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/resources/multi_sound_effect.gd" id="17_2xuu8"]
@@ -139,6 +139,7 @@ script = ExtResource("5_1a0oq")
 direction = Vector3(0, -0.15, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding"]
+near = 0.003
 far = 1024.0
 script = ExtResource("4_feodf")
 
@@ -151,7 +152,7 @@ player = NodePath("../../../../../..")
 
 [node name="Broom" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("12_gpv6h")]
 
-[node name="Tablet" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("14_8cbh7")]
+[node name="Camera" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("14_yl1fb")]
 
 [node name="FootstepManager" type="Node3D" parent="." node_paths=PackedStringArray("player", "velocity_component", "concrete_footstep", "grass_footstep")]
 script = ExtResource("11_le046")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bxucohptg4lk5"]
+[gd_scene load_steps=11 format=3 uid="uid://bxucohptg4lk5"]
 
 [ext_resource type="Script" path="res://scenes/title_screen/title_screen.gd" id="1_cn1xc"]
 [ext_resource type="Texture2D" uid="uid://dd7euwxcnfdll" path="res://assets/texture/texture_blurred_alleyway.png" id="2_o2re6"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bcrys4arojn37" path="res://scenes/title_screen/paper_button.tscn" id="3_hx8lg"]
 [ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="4_4qwd1"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="4_w7fwc"]
+[ext_resource type="Script" path="res://scenes/utils/mouse_capture_handler.gd" id="8_osiqa"]
 
 [sub_resource type="Gradient" id="Gradient_w0mr0"]
 colors = PackedColorArray(0, 0, 0, 1, 0.126179, 0.0169545, 0.0044633, 1)
@@ -51,6 +52,7 @@ texture = ExtResource("2_o2re6")
 metadata/_edit_lock_ = true
 
 [node name="Girl" type="TextureRect" parent="."]
+modulate = Color(0.89, 0.80189, 0.6942, 1)
 layout_mode = 0
 offset_left = 627.0
 offset_top = 18.0
@@ -106,3 +108,6 @@ theme_override_font_sizes/font_size = 24
 text = "CREDITS_1"
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="MouseCaptureHandler" type="Node" parent="."]
+script = ExtResource("8_osiqa")

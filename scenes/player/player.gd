@@ -15,7 +15,7 @@ class_name Player extends CharacterBody3D
 @export var sprint_jumping_falloff : float = 4.0
 
 @export_group("Camera")
-@export var camera : Camera3D = null
+@export var camera : PlayerCamera = null
 @export var camera_origin : Node3D = null
 @export var camera_effect_landing : CameraEffectLanding = null
 
@@ -48,6 +48,9 @@ var is_landing : bool = false
 
 var respawn_transform : Transform3D = Transform3D()
 
+var is_in_photo_mode : bool = false
+var default_fov : float = 75.0
+
 func _ready():
 	mouse_sensitivity = GlobalSettings.mouse_sensitivity
 	gamepad_sensitvity = GlobalSettings.gamepad_sensitvity
@@ -66,6 +69,10 @@ func _ready():
 	for player_tool in inventory.tools:
 		if (player_tool is Broom):
 			player_tool.on_broom.connect(on_broom)
+
+	var camera_tool = inventory._get_camera()
+	camera_tool.on_enter_photo_mode.connect(_on_enter_photo_mode)
+	camera_tool.on_exit_photo_mode.connect(_on_exit_photo_mode)
 
 func _physics_process(delta : float):
 	input_process(delta)
@@ -120,6 +127,8 @@ func input_process(delta : float):
 	elif (inventory.current_tool.use_type == PlayerTool.UseType.CLICK):
 		if (Input.is_action_just_pressed("player_action_primary") && !wish_sprint):
 			inventory.current_tool._use_primary()
+		if (Input.is_action_just_pressed("player_action_secondary") && !wish_sprint):
+			inventory.current_tool._use_secondary()
 
 	# sprint
 
@@ -209,3 +218,30 @@ func _on_sprint_cleaning_timeout():
 		return
 
 	leaf_cleaning_handler._on_player_cleaning_on_position(global_position + Vector3.DOWN, sprint_cleaning_radius)
+
+func _on_enter_photo_mode():
+	is_in_photo_mode = true
+	UI.ui_instance.hide()
+
+	#inventory._get_camera().hide()
+	CameraUI.instance.show()
+	camera._enter_photo_mode()
+	
+	var tween = create_tween()
+	tween.tween_property(BlackoutLayer.instance.black_rect, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.1)
+	tween.tween_property(BlackoutLayer.instance.black_rect, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.1).set_delay(0.1)
+
+func _on_exit_photo_mode():
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(BlackoutLayer.instance.black_rect, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.1)
+	tween.tween_property(BlackoutLayer.instance.black_rect, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.1).set_delay(0.1)
+	tween.tween_callback(_photo_mode_exit_callback).set_delay(0.1)
+	
+func _photo_mode_exit_callback() -> void:
+	is_in_photo_mode = false
+	UI.ui_instance.show()
+
+	#inventory._get_camera().show()
+	CameraUI.instance.hide()
+	camera._exit_photo_mode()

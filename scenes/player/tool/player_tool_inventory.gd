@@ -14,6 +14,9 @@ func _ready():
 	current_tool = tools[0]
 
 func _physics_process(delta) -> void:
+	if (current_tool and !current_tool.allow_switch):
+		return
+
 	if (Input.is_action_just_pressed("player_action_next_tool")):
 		_next_tool()
 		return
@@ -29,6 +32,10 @@ func _physics_process(delta) -> void:
 	if (Input.is_action_just_pressed("player_action_select_tool_2")):
 		_set_tool(1)
 		return		
+
+	#if (Input.is_action_just_pressed("player_action_select_tool_3")):
+		#_set_tool(2)
+		#return		
 
 func _next_tool():
 	current_tool_id += 1
@@ -56,3 +63,10 @@ func _update_tool():
 
 	current_tool = tools[current_tool_id]
 	current_tool._equip() # equip the new one
+
+func _get_camera() -> CameraTool:
+	for node in tools:
+		if node is CameraTool:
+			return node as CameraTool
+
+	return null

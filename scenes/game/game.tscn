@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=44 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_highlight_handler.gd" id="2_74dy0"]
@@ -20,6 +20,8 @@
 [ext_resource type="Script" path="res://scenes/utils/delete_in_web.gd" id="11_0g5lc"]
 [ext_resource type="Script" path="res://scenes/fx/speed_effect.gd" id="11_e6qqw"]
 [ext_resource type="Shader" path="res://shader/sun_flare.gdshader" id="12_ceytl"]
+[ext_resource type="Script" path="res://scenes/player/tool/camera/camera_ui.gd" id="13_d2xbq"]
+[ext_resource type="Texture2D" uid="uid://dck3bm0cescg6" path="res://assets/texture/ui/texture_ui_camera.png" id="13_fykye"]
 [ext_resource type="Texture2D" uid="uid://1kechv03r57s" path="res://assets/texture/fx/texture_sun_halo.png" id="13_tkker"]
 [ext_resource type="Texture2D" uid="uid://diwf3xbj3nljl" path="res://assets/texture/fx/texture_sun_flare.png" id="14_gpri0"]
 [ext_resource type="Shader" path="res://shader/kuwahara_screen.gdshader" id="15_xpwit"]
@@ -28,6 +30,8 @@
 [ext_resource type="Texture2D" uid="uid://cvtg8bskknog1" path="res://assets/texture/ui/texture_ui_vignette.png" id="18_q3514"]
 [ext_resource type="Script" path="res://scenes/utils/web_only.gd" id="19_h3rip"]
 [ext_resource type="Shader" path="res://shader/web_flare.gdshader" id="20_neh2t"]
+[ext_resource type="Script" path="res://scenes/utils/mouse_capture_handler.gd" id="29_q7iw6"]
+[ext_resource type="Script" path="res://scenes/ui/blackout_layer.gd" id="31_te3wo"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wqoie"]
 emission_shape_scale = Vector3(1, 0, 1)
@@ -171,6 +175,19 @@ theme_override_font_sizes/font_size = 48
 text = "Loading..."
 horizontal_alignment = 2
 vertical_alignment = 2
+
+[node name="CameraUI" type="CanvasLayer" parent="."]
+layer = 98
+script = ExtResource("13_d2xbq")
+
+[node name="TextureRect" type="TextureRect" parent="CameraUI"]
+modulate = Color(0.73, 0.73, 0.73, 0.760784)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("13_fykye")
+
+[node name="UIUpscaler" type="Node" parent="CameraUI/TextureRect"]
+script = ExtResource("8_d3y8h")
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 layer = 99
@@ -317,3 +334,30 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("18_q3514")
+
+[node name="BlackoutLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("black_rect", "white_rect")]
+layer = 128
+script = ExtResource("31_te3wo")
+black_rect = NodePath("BlackRect")
+white_rect = NodePath("WhiteRect")
+
+[node name="BlackRect" type="ColorRect" parent="BlackoutLayer"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="WhiteRect" type="ColorRect" parent="BlackoutLayer"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MouseCaptureHandler" type="Node" parent="."]
+script = ExtResource("29_q7iw6")
+mode = 2
