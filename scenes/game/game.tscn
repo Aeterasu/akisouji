@@ -109,7 +109,7 @@ ui_completion = NodePath("UICompletionLayer/UICompletion")
 [node name="LeafHighlightHandler" type="Node" parent="."]
 script = ExtResource("2_74dy0")
 leaf_material = ExtResource("3_ys06x")
-highlight_color = Color(0.976471, 0.894118, 0.737255, 1)
+highlight_color = Color(0.97, 0.786347, 0.2813, 0.215686)
 
 [node name="LevelAlleyway" parent="." instance=ExtResource("2_lxt2q")]
 
