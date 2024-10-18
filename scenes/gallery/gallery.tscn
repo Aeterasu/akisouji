@@ -94,16 +94,18 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 32.0
+offset_left = 96.0
 offset_top = 32.0
-offset_right = -32.0
+offset_right = -96.0
 offset_bottom = -150.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
 layout_mode = 2
-columns = 5
+theme_override_constants/h_separation = 32
+theme_override_constants/v_separation = 16
+columns = 4
 
 [node name="Outline" type="TextureRect" parent="ScrollContainer/GridContainer"]
 clip_contents = true
@@ -202,6 +204,7 @@ target_deselected_position = Vector2(96, 0)
 
 [node name="ButtonSelectionHandler" type="Node" parent="Buttons" node_paths=PackedStringArray("buttons_origin")]
 script = ExtResource("7_jbjr6")
+horizontal = true
 buttons_origin = NodePath("..")
 
 [node name="UIUpscaler" type="Node" parent="."]

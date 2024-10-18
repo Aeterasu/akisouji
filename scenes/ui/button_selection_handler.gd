@@ -1,9 +1,10 @@
 class_name ButtonSelectionHandler extends Node
 
+@export var horizontal : bool = false
 @export var buttons_origin : Node = null
 
 var current_button : PaperButton = null
-var current_selection_id : int = 0
+var current_selection_id : int = -999
 var buttons : Array[PaperButton] = []
 
 signal on_button_pressed
@@ -18,17 +19,28 @@ func _ready():
 				node.on_mouse_deselection.connect(_on_button_mouse_deselection)
 
 func _process(delta):
-	if (Input.is_action_just_pressed("player_move_forward")):
+	var next_key : String = ""
+	var previous_key : String = ""
+
+	if horizontal:
+		next_key = "player_move_left"
+		previous_key = "player_move_right"
+	else:
+		next_key = "player_move_backwards"
+		previous_key = "player_move_forward"		
+
+	if (Input.is_action_just_pressed(previous_key)):
 		_previous_button()
 	
-	if (Input.is_action_just_pressed("player_move_backwards")):
+	if (Input.is_action_just_pressed(next_key)):
 		_next_button()
-
+		
 	if (Input.is_action_just_pressed("menu_confirm")):
 		on_button_pressed.emit(current_button)
 
 func _next_button():
-	if (!current_button):
+	if (current_selection_id <= -999):
+		current_selection_id = 0
 		current_button = buttons[0]
 		_update_button()
 		return
@@ -41,7 +53,8 @@ func _next_button():
 	_update_button()
 
 func _previous_button():
-	if (!current_button):
+	if (current_selection_id <= -999):
+		current_selection_id = 0
 		current_button = buttons[0]
 		_update_button()
 		return
@@ -57,13 +70,18 @@ func _update_button():
 	if (current_button):
 		current_button._deselect()
 
-	current_button = buttons[current_selection_id]
-
-	current_button._select()
+	if (current_selection_id > -999):
+		current_button = buttons[current_selection_id]
+		current_button._select()
+		return
+	else:
+		current_button = null
+		current_selection_id = -999
 
 func _on_button_mouse_selection(button : PaperButton):
 	current_selection_id = buttons.find(button)
 	_update_button()
 
 func _on_button_mouse_deselection(button : PaperButton):
-	pass
+	current_selection_id = -999
+	_update_button()
