@@ -42,8 +42,9 @@ fill_to = Vector2(0, 0)
 
 [node name="PaperButton" type="Control" node_paths=PackedStringArray("mouse_area", "label", "animation_origin", "selected_gradient", "deselected_gradient", "audio_accent_1", "audio_accent_2")]
 layout_mode = 3
-anchor_right = 1.0
-anchor_bottom = 0.111111
+anchor_bottom = 0.111
+offset_right = 1280.0
+offset_bottom = 0.0799179
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
@@ -95,6 +96,7 @@ anchor_bottom = 1.0
 offset_left = -80.0
 offset_top = -23.0
 offset_bottom = 31.0
+grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("4_h47s2")
 stretch_mode = 2
@@ -151,6 +153,7 @@ anchor_bottom = 1.0
 offset_left = -80.0
 offset_top = -23.0
 offset_bottom = 31.0
+grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("4_h47s2")
 stretch_mode = 2

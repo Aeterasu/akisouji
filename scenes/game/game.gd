@@ -18,6 +18,8 @@ func _ready():
 
 	pause_menu.is_displayed = get_tree().paused
 
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 func _process(delta):
 	if (Input.is_action_just_pressed("pause")):
 		toggle_pause()

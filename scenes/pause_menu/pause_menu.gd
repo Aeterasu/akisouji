@@ -16,11 +16,13 @@ var is_displayed : bool = false:
 		if (is_displayed):
 			tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
 			for node in button_selection_handler.buttons:
-				node._enable()		
+				node._enable()
+			UI.ui_instance.hide()
 		else:
 			tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.2)
 			for node in button_selection_handler.buttons:
-				node._disable()			
+				node._disable()		
+			UI.ui_instance.show()
 
 func _ready():
 	button_selection_handler.on_button_pressed.connect(_on_button_pressed)
@@ -55,5 +57,7 @@ func _on_options_pressed():
 	pass
 
 func _on_exit_pressed():
-	SceneTransitionHandler.instance._load_scene("res://scenes/title_screen/title_screen.tscn")
+	var tween = create_tween()
+	tween.tween_property(BlackoutLayer.instance.black_rect, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.1)
+	tween.tween_callback(func(): SceneTransitionHandler.instance._load_scene("res://scenes/title_screen/title_screen.tscn")).set_delay(0.1)
 	get_tree().paused = false

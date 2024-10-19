@@ -35,12 +35,15 @@ LEFT TO DO:
 + add gallery zoom-in on picture
 + fix crash. start game, pause, exit to menu, start game again. boom, crash.
 + add pause menu. resume, gallery, settings, quit.
++ redesign pause menu
 
 = DON'T ADD ANY MORE FEATURES. PERIOD. =
 
+- prevent broom from activating when clicking in pause menu
+- add input delay to button manager to prevent accidental clicks
+- fix pause menu horizontal scaling
 - add pause menu functionality. gallery, options, exit fade out.
 - localize poems
-- redesign pause menu
 - fix html cursor capture on pause menu etc
 - fix null checks, replace them with is_instance_valid()
 - fix ui disappearing on restart
