@@ -13,6 +13,11 @@ class_name PaperButton extends Control
 @export var selected_gradient : TextureRect = null
 @export var deselected_gradient : TextureRect = null
 
+@export var audio_accent_1 : AudioStreamPlayer = null
+@export var audio_accent_2 : AudioStreamPlayer = null
+
+var is_selected : bool = false
+
 var gradient_1 : Gradient = null
 var gradient_1_color_1 : Color = Color(1.0, 1.0, 1.0, 1.0)
 var gradient_1_color_2 : Color = Color(1.0, 1.0, 1.0, 1.0)
@@ -67,6 +72,9 @@ func _process(delta):
 	label.text = tr(text_key)
 
 func _select():
+	if (is_selected):
+		return
+
 	if (tween):
 		tween.kill()
 
@@ -79,8 +87,15 @@ func _select():
 
 	tween.tween_property(self, "current_color_2_1", Color.WHITE, 0.2)
 	tween.tween_property(self, "current_color_2_2", Color.WHITE, 0.2)
+
+	SfxDeconflicter.play(audio_accent_1)
+
+	is_selected = true
 	
 func _deselect():
+	if (!is_selected):
+		return
+
 	if (tween):
 		tween.kill()
 
@@ -93,3 +108,5 @@ func _deselect():
 
 	tween.tween_property(self, "current_color_2_1", gradient_2_color_1, 0.1)
 	tween.tween_property(self, "current_color_2_2", gradient_2_color_2, 0.1)
+
+	is_selected = false

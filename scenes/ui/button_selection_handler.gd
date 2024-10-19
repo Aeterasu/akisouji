@@ -35,8 +35,13 @@ func _process(delta):
 	if (Input.is_action_just_pressed(next_key)):
 		_next_button()
 		
-	if (Input.is_action_just_pressed("menu_confirm")):
+	if (Input.is_action_just_pressed("menu_confirm") && current_button):
 		on_button_pressed.emit(current_button)
+		
+		var sfx = current_button.audio_accent_2.duplicate() as AudioStreamPlayer
+		get_tree().root.add_child(sfx)
+		SfxDeconflicter.call_deferred("play", sfx)
+		sfx.finished.connect(sfx.queue_free)
 
 func _next_button():
 	if (current_selection_id <= -999):
