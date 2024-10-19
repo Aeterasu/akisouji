@@ -44,6 +44,9 @@ func _ready():
 
 func _process(delta):
 	gallery_origin.columns = max(floor(get_viewport_rect().size.x / get_viewport_rect().size.y * 3) - 1, 1)
+
+	#scroll bar hugs the gallery entries in non 16:9 resolution. no, I don't know how to fix that.
+
 	#var vscroll = (gallery_origin.get_parent() as ScrollContainer).get_v_scroll_bar()
 	#vscroll.top_level = true
 	#vscroll.z_index = -1
@@ -77,7 +80,10 @@ func _on_back_pressed() -> void:
 	transition(func(): SceneTransitionHandler.instance._load_scene("res://scenes/title_screen/title_screen.tscn"))
 
 func _on_open_folder_pressed() -> void:
-	pass
+	if (OS.get_name() == "Web"):
+		return
+
+	OS.shell_open(ProjectSettings.globalize_path("user://"))
 
 func transition(callable: Callable):
 	var tween = create_tween()
