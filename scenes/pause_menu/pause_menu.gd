@@ -1,0 +1,59 @@
+class_name PauseMenu extends Control
+
+@export var button_selection_handler : ButtonSelectionHandler = null
+
+@export var resume_button : PaperButton = null
+@export var gallery_button : PaperButton = null
+@export var options_button : PaperButton = null
+@export var exit_button : PaperButton = null
+
+var is_displayed : bool = false:
+	set(value):
+		is_displayed = value
+
+		var tween = create_tween()
+		
+		if (is_displayed):
+			tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
+			for node in button_selection_handler.buttons:
+				node._enable()		
+		else:
+			tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.2)
+			for node in button_selection_handler.buttons:
+				node._disable()			
+
+func _ready():
+	button_selection_handler.on_button_pressed.connect(_on_button_pressed)
+	
+func _on_button_pressed(button : PaperButton):
+	for node in button_selection_handler.buttons:
+		node._disable()
+
+	match (button):
+		resume_button:
+			_on_resume_pressed()
+			return
+		gallery_button:
+			_on_gallery_pressed()
+			return			
+		options_button:
+			_on_options_pressed()
+			return
+		exit_button:
+			_on_exit_pressed()
+			return
+
+func _on_resume_pressed():
+	Game.game_instance.toggle_pause()
+	button_selection_handler.current_selection_id = -999
+	button_selection_handler._update_button()
+
+func _on_gallery_pressed():
+	pass
+
+func _on_options_pressed():
+	pass
+
+func _on_exit_pressed():
+	SceneTransitionHandler.instance._load_scene("res://scenes/title_screen/title_screen.tscn")
+	get_tree().paused = false

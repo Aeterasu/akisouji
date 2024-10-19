@@ -1,10 +1,14 @@
-,en,ru
-MENU_BUTTON_START,Start,Старт
-MENU_BUTTON_OPTIONS,Options,Настройки
-MENU_BUTTON_GALLERY,Gallery,Галерея
-MENU_BUTTON_EXIT,Quit,Выход
-MENU_BUTTON_BACK,Back,Назад
-MENU_BUTTON_GALLERY_FOLDER,Open screenshot folder,Открыть папку
-CREDITS_1,Game by Matvey Kerov,Игру создал Матвей Керов
-GALLERY_LABEL,Gallery,Галерея
-GALLERY_TIP,"Take photos using your camera, and they will appear here!","Делайте фото с помощью камеры, и они отобразятся здесь!"
+,en,ru,ja
+MENU_BUTTON_START,Start,Старт,
+MENU_BUTTON_OPTIONS,Options,Настройки,
+MENU_BUTTON_GALLERY,Gallery,Галерея,
+MENU_BUTTON_EXIT,Quit,Выход,
+MENU_BUTTON_BACK,Back,Назад,
+MENU_BUTTON_GALLERY_FOLDER,Open screenshot folder,Открыть папку,
+MENU_BUTTON_RESUME,Resume,Продолжить,
+CREDITS_1,Game by Matvey Kerov,Игра Матвей Керов,
+CREDITS_2,Character art by Tanya Corsac,2D-арт Тани Корсак,
+CREDITS_3,Music by,Музыка,
+GALLERY_LABEL,Gallery,Галерея,
+GALLERY_TIP,"Take photos using your camera, and they will appear here!","Делайте фото с помощью камеры, и они отобразятся здесь!",
+PAUSE_LABEL,PAUSED,ПАУЗА,

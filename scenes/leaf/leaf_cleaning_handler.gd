@@ -39,7 +39,7 @@ func _on_player_cleaning_on_position(position : Vector3, circle_radius : float =
 func _update_cleaned_leaves_progress() -> void:
 	var ui = UI._get_ui()
 
-	if (ui and ui.progress):
+	if (is_instance_valid(ui) and ui.progress):
 		ui.progress.max_value = leaves_amount
 		ui.progress.current_value = cleaned_leaves_amount
 

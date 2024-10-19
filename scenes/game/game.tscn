@@ -30,7 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://cvtg8bskknog1" path="res://assets/texture/ui/texture_ui_vignette.png" id="18_q3514"]
 [ext_resource type="Script" path="res://scenes/utils/web_only.gd" id="19_h3rip"]
 [ext_resource type="Shader" path="res://shader/web_flare.gdshader" id="20_neh2t"]
-[ext_resource type="Script" path="res://scenes/utils/mouse_capture_handler.gd" id="29_q7iw6"]
+[ext_resource type="PackedScene" uid="uid://d0r5a5kwi5eoo" path="res://scenes/pause_menu/pause_menu.tscn" id="22_yntas"]
 [ext_resource type="Script" path="res://scenes/ui/blackout_layer.gd" id="31_te3wo"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wqoie"]
@@ -103,28 +103,29 @@ shader_parameter/speed = null
 shader_parameter/frames = null
 shader_parameter/flowMap = ExtResource("17_khpjf")
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "level", "loading_screen", "ui_completion")]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "level", "loading_screen", "ui_completion", "pause_menu")]
+process_mode = 3
 script = ExtResource("1_bcfl2")
-player = NodePath("LevelAlleyway/Player")
-level = NodePath("LevelAlleyway")
+player = NodePath("Pausable/LevelAlleyway/Player")
+level = NodePath("Pausable/LevelAlleyway")
 loading_screen = NodePath("CanvasLayer/LoadingScreen")
 ui_completion = NodePath("UICompletionLayer/UICompletion")
-
-[node name="MouseCaptureHandler" type="Node" parent="."]
-script = ExtResource("29_q7iw6")
-mode = 2
+pause_menu = NodePath("PauseLayer/PauseMenu")
 
 [node name="LeafHighlightHandler" type="Node" parent="."]
 script = ExtResource("2_74dy0")
 leaf_material = ExtResource("3_ys06x")
 highlight_color = Color(0.97, 0.786347, 0.2813, 0.215686)
 
-[node name="LevelAlleyway" parent="." instance=ExtResource("2_lxt2q")]
+[node name="Pausable" type="Node" parent="."]
+process_mode = 1
 
-[node name="Player" parent="LevelAlleyway" instance=ExtResource("3_ncnfk")]
+[node name="LevelAlleyway" parent="Pausable" instance=ExtResource("2_lxt2q")]
+
+[node name="Player" parent="Pausable/LevelAlleyway" instance=ExtResource("3_ncnfk")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13.25, 1, 3)
 
-[node name="RainParticles" parent="LevelAlleyway" node_paths=PackedStringArray("rain_owner") instance=ExtResource("4_mrkga")]
+[node name="RainParticles" parent="Pausable/LevelAlleyway" node_paths=PackedStringArray("rain_owner") instance=ExtResource("4_mrkga")]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 18, 0)
 amount = 137
 process_material = SubResource("ParticleProcessMaterial_wqoie")
@@ -180,19 +181,6 @@ text = "Loading..."
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="CameraUI" type="CanvasLayer" parent="."]
-layer = 98
-script = ExtResource("13_d2xbq")
-
-[node name="TextureRect" type="TextureRect" parent="CameraUI"]
-modulate = Color(0.73, 0.73, 0.73, 0.760784)
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("13_fykye")
-
-[node name="UIUpscaler" type="Node" parent="CameraUI/TextureRect"]
-script = ExtResource("8_d3y8h")
-
 [node name="UILayer" type="CanvasLayer" parent="."]
 layer = 99
 
@@ -205,6 +193,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="FPSCounter" type="Label" parent="UILayer/UI/Control"]
 modulate = Color(0.458405, 0.458405, 0.458405, 1)
@@ -220,6 +209,19 @@ script = ExtResource("6_5ay1t")
 [node name="UIUpscaler" type="Node" parent="UILayer/UI"]
 script = ExtResource("8_d3y8h")
 
+[node name="CameraUI" type="CanvasLayer" parent="."]
+layer = 98
+script = ExtResource("13_d2xbq")
+
+[node name="TextureRect" type="TextureRect" parent="CameraUI"]
+modulate = Color(0.73, 0.73, 0.73, 0.760784)
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("13_fykye")
+
+[node name="UIUpscaler" type="Node" parent="CameraUI/TextureRect"]
+script = ExtResource("8_d3y8h")
+
 [node name="SpeedEffectLayer" type="CanvasLayer" parent="."]
 layer = 64
 
@@ -232,7 +234,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_dvkjl")
 script = ExtResource("11_e6qqw")
-player = NodePath("../../LevelAlleyway/Player")
+player = NodePath("../../Pausable/LevelAlleyway/Player")
 fps = 12.0
 target_color = Color(0.29219, 0.29219, 0.29219, 1)
 
@@ -255,6 +257,7 @@ offset_left = 320.0
 offset_top = 111.0
 offset_right = 960.0
 offset_bottom = 571.0
+mouse_filter = 2
 color = Color(0, 0, 0, 0.690196)
 
 [node name="Label" type="Label" parent="UICompletionLayer/UICompletion/ColorRect"]
@@ -277,6 +280,12 @@ vertical_alignment = 1
 [node name="UIUpscaler" type="Node" parent="UICompletionLayer/UICompletion"]
 script = ExtResource("8_d3y8h")
 
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+layer = 102
+
+[node name="PauseMenu" parent="PauseLayer" instance=ExtResource("22_yntas")]
+process_mode = 3
+
 [node name="SunFlare" type="CanvasLayer" parent="."]
 script = ExtResource("11_0g5lc")
 
@@ -290,7 +299,7 @@ offset_bottom = -480.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
-metadata/_edit_use_anchors_ = true
+mouse_filter = 2
 
 [node name="WebFlare" type="CanvasLayer" parent="."]
 script = ExtResource("19_h3rip")
@@ -305,7 +314,7 @@ offset_bottom = -480.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
-metadata/_edit_use_anchors_ = true
+mouse_filter = 2
 
 [node name="KuwaharaLayer" type="CanvasLayer" parent="."]
 
@@ -316,6 +325,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="PaintingLayer" type="CanvasLayer" parent="."]
 script = ExtResource("11_0g5lc")
@@ -327,6 +337,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Vignette" type="CanvasLayer" parent="."]
 
@@ -337,6 +348,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("18_q3514")
 
 [node name="BlackoutLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("black_rect", "white_rect")]
@@ -352,6 +364,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="WhiteRect" type="ColorRect" parent="BlackoutLayer"]
@@ -361,3 +374,4 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2

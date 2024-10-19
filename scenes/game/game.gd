@@ -4,6 +4,7 @@ class_name Game extends Node3D
 @export var level : Level
 @export var loading_screen : LoadingScreen
 @export var ui_completion : Control
+@export var pause_menu : PauseMenu
 
 static var game_instance : Game = null
 
@@ -15,6 +16,12 @@ func _ready():
 	player.respawn_transform = level.player_spawn_position.global_transform
 	player.leaf_cleaning_handler = level.leaf_population.leaf_cleaning_handler
 
+	pause_menu.is_displayed = get_tree().paused
+
+func _process(delta):
+	if (Input.is_action_just_pressed("pause")):
+		toggle_pause()
+
 func _on_loading_ended():
 	loading_screen._on_timeout()
 
@@ -23,3 +30,12 @@ func _on_level_completion():
 	#player._block_input = true
 	ui_completion.show()
 	Output.print("Level Completed!")
+
+func toggle_pause():
+	get_tree().paused = !get_tree().paused
+	pause_menu.is_displayed = !pause_menu.is_displayed
+
+	if (get_tree().paused):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

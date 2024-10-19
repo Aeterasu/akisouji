@@ -23,26 +23,33 @@ func _process(delta):
 	var next_key : String = ""
 	var previous_key : String = ""
 
+	var next_gamepad : String = ""
+	var previous_gamepad : String = ""
+
 	if horizontal:
 		next_key = "player_move_left"
 		previous_key = "player_move_right"
+		next_gamepad = "gamepad_dpad_left"
+		previous_gamepad = "gamepad_dpad_right"
 	else:
 		next_key = "player_move_backwards"
-		previous_key = "player_move_forward"		
+		previous_key = "player_move_forward"
+		next_gamepad = "gamepad_dpad_down"
+		previous_gamepad = "gamepad_dpad_up"
 
-	if (Input.is_action_just_pressed(previous_key)):
+	if (Input.is_action_just_pressed(previous_key) or Input.is_action_just_pressed(previous_gamepad)):
 		_previous_button()
 	
-	if (Input.is_action_just_pressed(next_key)):
+	if (Input.is_action_just_pressed(next_key) or Input.is_action_just_pressed(next_gamepad)):
 		_next_button()
 		
 	if (Input.is_action_just_pressed("menu_confirm") && current_button):
-		on_button_pressed.emit(current_button)
-		
 		var sfx = current_button.audio_accent_2.duplicate() as AudioStreamPlayer
 		get_tree().root.add_child(sfx)
 		SfxDeconflicter.call_deferred("play", sfx)
 		sfx.finished.connect(sfx.queue_free)
+
+		on_button_pressed.emit(current_button)
 
 func _next_button():
 	if (current_selection_id <= -999):

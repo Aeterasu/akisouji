@@ -28,19 +28,31 @@ LEFT TO DO:
 + added sprint ui effect
 + fix web lens flares
 + add player tool swap
++ leaf highlighting
 + implement working camera! photo mode
 + add title screen
 + add working gallery screen
 + add gallery zoom-in on picture
++ fix crash. start game, pause, exit to menu, start game again. boom, crash.
++ add pause menu. resume, gallery, settings, quit.
 
 = DON'T ADD ANY MORE FEATURES. PERIOD. =
 
+- add pause menu functionality. gallery, options, exit fade out.
+- localize poems
+- redesign pause menu
+- fix html cursor capture on pause menu etc
+- fix null checks, replace them with is_instance_valid()
+- fix ui disappearing on restart
+- set locale on first launch
+- disable menu buttons during transition
 - COME UP WITH A NAME FOR THE GAME!!!
 - come up with a name for a chara.
 - work on economy :D
 - make in-game UI
 - in-game UI should have control tooltips with gamepad glyphs
-- add completion UI, with our chara holding thumbs up! add a grade based on time. D, C, B, A, A+, S. Each grade has a cash bonus.
+- add completion UI, with our chara holding thumbs up! add a grade based on time. D, C, B, A, A+, S. Each grade has a cash bonus. 
+- during completion, you can move and look at the results of your work. the completion is initially just a text popup (Press blah to finish)
 - beautify gallery scroll wheel
 - gallery gamepad controls
 - add some sort of download screenshots from web version
@@ -52,7 +64,6 @@ LEFT TO DO:
 - draw camera texture
 - add settings menu. master, sfx, ambience, music volume. fullscreen/windowed. language. leaf higlight color setting. fov - 70-100. controls. -AUDIO, -VISUALS, -GAMEPLAY, -KEY BINDINGS, -GAMEPAD BINDINGS
 - settings saving
-- add pause menu
 - finish alleway stage
 - add fountain stage
 - add park stage
@@ -70,6 +81,7 @@ LEFT TO DO:
 - fix that annoying gate texture that currently uses deafault metal and looks ugly
 - force tanya to draw our pretty chara
 - add chibis
+- sunflower-like tutorial
 - rework loading screen
 - add music
 - balance out the 'fun' numbers

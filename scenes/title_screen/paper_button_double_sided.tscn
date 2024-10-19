@@ -1,0 +1,215 @@
+[gd_scene load_steps=16 format=3 uid="uid://civm4tg15jr0q"]
+
+[ext_resource type="Script" path="res://scenes/title_screen/paper_button.gd" id="1_q8kh2"]
+[ext_resource type="Texture2D" uid="uid://coicweuvyjnya" path="res://assets/texture/ui/title_screen/texture_ui_title_screen_button_double_sided_center.png" id="2_if4rd"]
+[ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="3_bjtei"]
+[ext_resource type="Texture2D" uid="uid://b36tehvutlvct" path="res://assets/texture/ui/title_screen/texture_ui_title_screen_button_double_sided_left.png" id="4_h47s2"]
+[ext_resource type="Texture2D" uid="uid://djdisrglonqbw" path="res://assets/texture/ui/title_screen/texture_ui_title_screen_button_double_sided_right.png" id="5_rmksl"]
+[ext_resource type="AudioStream" uid="uid://dgodvr5gurqrs" path="res://assets/audio/sfx_menu_accent_1.ogg" id="5_tkoag"]
+[ext_resource type="AudioStream" uid="uid://bb5kges32g0ld" path="res://assets/audio/sfx_menu_accent_2.ogg" id="6_2fnho"]
+[ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="6_pntvj"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_t4r4y"]
+blend_mode = 3
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1v15l"]
+blend_mode = 3
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_rxy4u"]
+colors = PackedColorArray(1, 0.356863, 0, 1, 1, 0.833333, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8034o"]
+gradient = SubResource("Gradient_rxy4u")
+width = 8
+height = 8
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_aqan4"]
+blend_mode = 3
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_urc54"]
+colors = PackedColorArray(0.29, 0.0754, 0.121897, 1, 0.556863, 0.156863, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0r24s"]
+gradient = SubResource("Gradient_urc54")
+width = 8
+height = 8
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[node name="PaperButton" type="Control" node_paths=PackedStringArray("mouse_area", "label", "animation_origin", "selected_gradient", "deselected_gradient", "audio_accent_1", "audio_accent_2")]
+layout_mode = 3
+anchor_right = 1.0
+anchor_bottom = 0.111111
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("1_q8kh2")
+mouse_area = NodePath("MouseArea")
+label = NodePath("Label")
+custom_font_size = 32
+animation_type = 1
+animation_origin = NodePath("SubViewportContainer/SubViewport/PaperMaskCenter")
+selected_gradient = NodePath("SubViewportContainer/SelectedGradient")
+deselected_gradient = NodePath("SubViewportContainer/DeselectedGradient")
+audio_accent_1 = NodePath("Accent1")
+audio_accent_2 = NodePath("Accent2")
+metadata/_edit_use_anchors_ = true
+
+[node name="PaperMaskCenter2" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 0.54902)
+layout_mode = 2
+offset_left = 500.0
+offset_top = 49.005
+offset_right = 778.0
+offset_bottom = 91.005
+size_flags_horizontal = 3
+mouse_filter = 2
+texture = ExtResource("2_if4rd")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="PaperMaskRight" type="TextureRect" parent="PaperMaskCenter2"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_right = 80.0
+offset_bottom = 23.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_rmksl")
+stretch_mode = 2
+
+[node name="PaperMaskLeft" type="TextureRect" parent="PaperMaskCenter2"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -23.0
+offset_bottom = 31.0
+mouse_filter = 2
+texture = ExtResource("4_h47s2")
+stretch_mode = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+clip_children = 2
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 80.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+canvas_item_default_texture_repeat = 1
+gui_disable_input = true
+gui_snap_controls_to_pixels = false
+size = Vector2i(1280, 108)
+render_target_update_mode = 4
+
+[node name="PaperMaskCenter" type="TextureRect" parent="SubViewportContainer/SubViewport"]
+top_level = true
+offset_left = 500.0
+offset_top = 24.0
+offset_right = 778.0
+offset_bottom = 66.0
+size_flags_horizontal = 3
+mouse_filter = 2
+texture = ExtResource("2_if4rd")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="PaperMaskRight" type="TextureRect" parent="SubViewportContainer/SubViewport/PaperMaskCenter"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_right = 80.0
+offset_bottom = 23.0
+grow_horizontal = 0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_rmksl")
+stretch_mode = 2
+
+[node name="PaperMaskLeft" type="TextureRect" parent="SubViewportContainer/SubViewport/PaperMaskCenter"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -23.0
+offset_bottom = 31.0
+mouse_filter = 2
+texture = ExtResource("4_h47s2")
+stretch_mode = 2
+
+[node name="LeafPattern" type="TextureRect" parent="SubViewportContainer"]
+texture_repeat = 2
+material = SubResource("CanvasItemMaterial_t4r4y")
+custom_minimum_size = Vector2(1280, 90)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("3_bjtei")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="SelectedGradient" type="TextureRect" parent="SubViewportContainer"]
+material = SubResource("CanvasItemMaterial_1v15l")
+custom_minimum_size = Vector2(1280, 90)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_8034o")
+
+[node name="DeselectedGradient" type="TextureRect" parent="SubViewportContainer"]
+material = SubResource("CanvasItemMaterial_aqan4")
+custom_minimum_size = Vector2(1280, 90)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_0r24s")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_top = 24.0
+offset_right = 1280.0
+offset_bottom = 67.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.337255)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_constants/shadow_outline_size = 45
+theme_override_fonts/font = ExtResource("6_pntvj")
+theme_override_font_sizes/font_size = 24
+text = "Button"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MouseArea" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 86.0
+grow_horizontal = 2
+
+[node name="Accent1" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("5_tkoag")
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Accent2" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("6_2fnho")
+volume_db = -3.0
+max_polyphony = 2
+bus = &"SFX"
