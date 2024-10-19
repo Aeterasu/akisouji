@@ -2,6 +2,7 @@ extends TextureRect
 
 @export var highlight : TextureRect = null
 @export var magnifying_glass : TextureRect = null
+@export var audio_selection_accent : AudioStreamPlayer = null
 
 var is_selected : bool = false
 
@@ -22,6 +23,8 @@ func _on_mouse_entered():
 	tween.set_parallel(true)
 	tween.tween_property(highlight, "modulate", Color(1.0, 1.0, 1.0), 0.2)
 	tween.tween_property(magnifying_glass, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
+
+	audio_selection_accent.play()
 
 func _on_mouse_exited():
 	if (tween):

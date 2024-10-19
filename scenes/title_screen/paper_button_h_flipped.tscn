@@ -134,5 +134,6 @@ bus = &"SFX"
 
 [node name="Accent2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_kvh4t")
+volume_db = -3.0
 max_polyphony = 2
 bus = &"SFX"

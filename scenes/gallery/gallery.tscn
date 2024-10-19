@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bfmvy7wmymc2l"]
+[gd_scene load_steps=27 format=3 uid="uid://bfmvy7wmymc2l"]
 
 [ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="1_mdruy"]
 [ext_resource type="Script" path="res://scenes/gallery/gallery.gd" id="1_mortg"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://teb4p57yamr3" path="res://scenes/title_screen/paper_button_h_flipped.tscn" id="6_tq5qv"]
 [ext_resource type="Texture2D" uid="uid://sdl8j5jl2imb" path="res://assets/texture/ui/texture_ui_magnifying_glass.png" id="7_a6ulm"]
 [ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="7_jbjr6"]
+[ext_resource type="AudioStream" uid="uid://bjx1cljsycx7w" path="res://assets/audio/sfx_gallery_entry_accent_1.ogg" id="12_pel3b"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6ipxy"]
 blend_mode = 3
@@ -144,7 +145,7 @@ theme_override_constants/h_separation = 32
 theme_override_constants/v_separation = 16
 columns = 4
 
-[node name="GalleryEntry" type="TextureRect" parent="ScrollContainer/GridContainer" node_paths=PackedStringArray("highlight", "magnifying_glass")]
+[node name="GalleryEntry" type="TextureRect" parent="ScrollContainer/GridContainer" node_paths=PackedStringArray("highlight", "magnifying_glass", "audio_selection_accent")]
 clip_contents = true
 custom_minimum_size = Vector2(240, 160)
 layout_mode = 2
@@ -154,6 +155,7 @@ expand_mode = 1
 script = ExtResource("4_5tap1")
 highlight = NodePath("Highlight")
 magnifying_glass = NodePath("TextureRect2")
+audio_selection_accent = NodePath("../../../GalleryEntryAccent")
 
 [node name="TextureRect" type="TextureRect" parent="ScrollContainer/GridContainer/GalleryEntry"]
 show_behind_parent = true
@@ -339,3 +341,10 @@ buttons_origin = NodePath("..")
 
 [node name="UIUpscaler" type="Node" parent="."]
 script = ExtResource("2_ya6i8")
+
+[node name="GalleryEntryAccent" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_pel3b")
+volume_db = -4.0
+pitch_scale = 0.9
+max_polyphony = 6
+bus = &"SFX"
