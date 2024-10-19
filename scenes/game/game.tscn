@@ -360,4 +360,3 @@ grow_vertical = 2
 
 [node name="MouseCaptureHandler" type="Node" parent="."]
 script = ExtResource("29_q7iw6")
-mode = 2

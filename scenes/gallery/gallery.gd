@@ -1,7 +1,7 @@
 extends Control
 
 @export var gallery_base_entry : TextureRect = null
-@export var gallery_origin : Control = null
+@export var gallery_origin : GridContainer = null
 
 @export var tip_label : Label = null
 
@@ -41,6 +41,18 @@ func _ready():
 	modulate = Color(0.0, 0.0, 0.0)
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0), 0.3)
+
+func _process(delta):
+	gallery_origin.columns = max(floor(get_viewport_rect().size.x / get_viewport_rect().size.y * 3) - 1, 1)
+	#var vscroll = (gallery_origin.get_parent() as ScrollContainer).get_v_scroll_bar()
+	#vscroll.top_level = true
+	#vscroll.z_index = -1
+	#vscroll.position.x = get_viewport_rect().size.x - (32.0 * (get_viewport_rect().size.x / 1280.0))
+	#vscroll.position.y = 64.0
+	#vscroll.size.y = (gallery_origin.get_parent() as ScrollContainer).size.y * 2
+	#var x_margin = 32.0 + gallery_origin.size / gallery_origin.columns
+	#gallery_origin.set("theme_override_constants/h_separation", x_margin)
+	#print(x_margin)
 
 func load_image_texture(path: String) -> ImageTexture:
 	

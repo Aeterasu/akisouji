@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bxucohptg4lk5"]
+[gd_scene load_steps=9 format=3 uid="uid://bxucohptg4lk5"]
 
 [ext_resource type="Script" path="res://scenes/title_screen/title_screen.gd" id="1_cn1xc"]
 [ext_resource type="Texture2D" uid="uid://dd7euwxcnfdll" path="res://assets/texture/texture_blurred_alleyway.png" id="2_o2re6"]
@@ -8,15 +8,6 @@
 [ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="4_4qwd1"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="4_w7fwc"]
 [ext_resource type="Script" path="res://scenes/utils/mouse_capture_handler.gd" id="8_osiqa"]
-
-[sub_resource type="Gradient" id="Gradient_w0mr0"]
-colors = PackedColorArray(0, 0, 0, 1, 0.126179, 0.0169545, 0.0044633, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_2ip2r"]
-gradient = SubResource("Gradient_w0mr0")
-width = 320
-height = 180
-fill_to = Vector2(0, 1)
 
 [node name="TitleScreen" type="Control" node_paths=PackedStringArray("button_selection_handler", "start_button", "gallery_button", "options_button", "exit_button")]
 layout_mode = 3
@@ -31,41 +22,45 @@ start_button = NodePath("VBoxContainer/StartButton")
 gallery_button = NodePath("VBoxContainer/GalleryButton")
 options_button = NodePath("VBoxContainer/OptionsButton")
 exit_button = NodePath("VBoxContainer/ExitButton")
-metadata/_edit_lock_ = true
 
-[node name="ColorRect" type="TextureRect" parent="."]
+[node name="Sprite2D" type="TextureRect" parent="."]
+modulate = Color(0.378822, 0.233864, 0.152343, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 1280.0
-offset_bottom = 720.0
+offset_right = -640.0
+offset_bottom = -360.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_2ip2r")
-metadata/_edit_lock_ = true
-
-[node name="Sprite2D" type="TextureRect" parent="."]
-modulate = Color(0.378822, 0.233864, 0.152343, 1)
-layout_mode = 0
 scale = Vector2(2, 2)
 texture = ExtResource("2_o2re6")
-metadata/_edit_lock_ = true
+stretch_mode = 6
 
 [node name="Girl" type="TextureRect" parent="."]
 modulate = Color(0.89, 0.80189, 0.6942, 1)
-layout_mode = 0
-offset_left = 627.0
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.675
+anchor_right = 0.675
+anchor_bottom = 1.0
+offset_left = -237.0
 offset_top = 18.0
-offset_right = 1302.0
-offset_bottom = 738.0
+offset_right = 438.0
+offset_bottom = 18.0
+grow_horizontal = 0
+grow_vertical = 2
 texture = ExtResource("3_bdemh")
+stretch_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_top = 187.0
-offset_right = 1280.0
-offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="StartButton" parent="VBoxContainer" instance=ExtResource("3_hx8lg")]
 layout_mode = 2
