@@ -10,10 +10,18 @@ extends Control
 @export var back_button : PaperButton = null
 @export var open_folder_button : PaperButton = null
 
+@export var gallery_entry_zoom : GalleryEntryZoom = null
+
+var selected_entry : GalleryEntry = null
+
 func _ready():
 	var dir = DirAccess.open("user://")
 
 	button_selection_handler.on_button_pressed.connect(_on_button_pressed)
+	button_selection_handler.on_button_selected.connect(func(): 
+		if (selected_entry):
+			selected_entry._deselect()
+		selected_entry = null)
 
 	if dir:
 		dir.list_dir_begin()
@@ -29,6 +37,10 @@ func _ready():
 					var t_rect = gallery_base_entry.duplicate()
 					gallery_origin.add_child(t_rect)
 					t_rect.get_child(0).texture = t
+
+					if (t_rect is GalleryEntry):
+						(t_rect as GalleryEntry).on_mouse_selection.connect(_on_entry_mouse_selection)
+						(t_rect as GalleryEntry).on_mouse_deselection.connect(_on_entry_mouse_deselection)
 			file_name = dir.get_next()
 
 		gallery_base_entry.queue_free()
@@ -43,6 +55,16 @@ func _ready():
 	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0), 0.3)
 
 func _process(delta):
+	if (!gallery_entry_zoom.is_displayed and selected_entry and Input.is_action_just_pressed("menu_confirm")):
+		gallery_entry_zoom._display(selected_entry.get_child(0).texture)
+		selected_entry._deselect()
+		selected_entry = null
+		return
+
+	if (gallery_entry_zoom.is_displayed and (Input.is_action_just_pressed("menu_confirm") or Input.is_action_just_pressed("menu_cancel"))):
+		gallery_entry_zoom._undisplay()
+		return		
+
 	gallery_origin.columns = max(floor(get_viewport_rect().size.x / get_viewport_rect().size.y * 3) - 1, 1)
 
 	#scroll bar hugs the gallery entries in non 16:9 resolution. no, I don't know how to fix that.
@@ -92,3 +114,12 @@ func transition(callable: Callable):
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0), 0.2)
 	tween.tween_callback(callable).set_delay(0.2)
+
+func _on_entry_mouse_selection(entry : GalleryEntry):
+	button_selection_handler.current_selection_id = -999
+	button_selection_handler._update_button()	
+	selected_entry = entry
+	entry._select()
+
+func _on_entry_mouse_deselection(entry : GalleryEntry):
+	entry._deselect()

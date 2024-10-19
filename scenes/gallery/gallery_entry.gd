@@ -1,4 +1,4 @@
-extends TextureRect
+class_name GalleryEntry extends TextureRect
 
 @export var highlight : TextureRect = null
 @export var magnifying_glass : TextureRect = null
@@ -8,14 +8,17 @@ var is_selected : bool = false
 
 var tween : Tween = null
 
+signal on_mouse_selection
+signal on_mouse_deselection
+
 func _ready():
-	mouse_entered.connect(_on_mouse_entered)
-	mouse_exited.connect(_on_mouse_exited)
+	mouse_entered.connect(func(): on_mouse_selection.emit(self))
+	mouse_exited.connect(func(): on_mouse_deselection.emit(self))
 
 	highlight.modulate = Color(0.0, 0.0, 0.0)
 	magnifying_glass.modulate = Color(0.0, 0.0, 0.0, 0.0)
 
-func _on_mouse_entered():
+func _select():
 	if (tween):
 		tween.kill()
 
@@ -26,7 +29,7 @@ func _on_mouse_entered():
 
 	audio_selection_accent.play()
 
-func _on_mouse_exited():
+func _deselect():
 	if (tween):
 		tween.kill()
 

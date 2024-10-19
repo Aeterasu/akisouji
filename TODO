@@ -31,6 +31,9 @@ LEFT TO DO:
 + implement working camera! photo mode
 + add title screen
 + add working gallery screen
++ add gallery zoom-in on picture
+
+= DON'T ADD ANY MORE FEATURES. PERIOD. =
 
 - COME UP WITH A NAME FOR THE GAME!!!
 - come up with a name for a chara.
@@ -39,7 +42,7 @@ LEFT TO DO:
 - in-game UI should have control tooltips with gamepad glyphs
 - add completion UI, with our chara holding thumbs up! add a grade based on time. D, C, B, A, A+, S. Each grade has a cash bonus.
 - beautify gallery scroll wheel
-- add gallery zoom-in on picture
+- gallery gamepad controls
 - add some sort of download screenshots from web version
 - beautify leafs. new texture, maybe random texture
 - optimize leaf generation via gdextension
@@ -47,7 +50,7 @@ LEFT TO DO:
 - check out TODOs in code and implement them 🥺🥺🥺
 - figure out some sort of way to prevent leaf spawning under props. heightmaps do that, but are a hassle. maybe we could generate heightmaps via raycast or some sort of other method?
 - draw camera texture
-- add settings menu. sound, ambience, music volume. fullscreen/windowed. language. leaf higlight color setting. fov - 70-100. controls. -AUDIO, -VISUALS, -GAMEPLAY, -KEY BINDINGS, -GAMEPAD BINDINGS
+- add settings menu. master, sfx, ambience, music volume. fullscreen/windowed. language. leaf higlight color setting. fov - 70-100. controls. -AUDIO, -VISUALS, -GAMEPLAY, -KEY BINDINGS, -GAMEPAD BINDINGS
 - settings saving
 - add pause menu
 - finish alleway stage

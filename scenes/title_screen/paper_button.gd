@@ -13,6 +13,8 @@ class_name PaperButton extends Control
 @export var selected_gradient : TextureRect = null
 @export var deselected_gradient : TextureRect = null
 
+@export var entry_zoom : GalleryEntryZoom = null
+
 @export var audio_accent_1 : AudioStreamPlayer = null
 @export var audio_accent_2 : AudioStreamPlayer = null
 
@@ -119,3 +121,6 @@ func _deselect():
 func _disable():
 	is_disabled = true
 	_deselect()
+
+func _enable():
+	is_disabled = false

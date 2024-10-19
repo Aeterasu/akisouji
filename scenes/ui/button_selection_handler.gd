@@ -8,6 +8,7 @@ var current_selection_id : int = -999
 var buttons : Array[PaperButton] = []
 
 signal on_button_pressed
+signal on_button_selected
 
 func _ready():
 	if (buttons_origin):
@@ -78,6 +79,7 @@ func _update_button():
 	if (current_selection_id > -999):
 		current_button = buttons[current_selection_id]
 		current_button._select()
+		on_button_selected.emit()
 		return
 	else:
 		current_button = null
