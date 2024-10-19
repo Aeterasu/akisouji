@@ -30,7 +30,8 @@ func _ready():
 			if dir.current_is_dir():
 				Output.print("Found directory: " + file_name)
 			else:
-				if (file_name.get_extension() == "png"):
+				var extension = file_name.get_extension()
+				if (extension == "png" or extension == "jpg"):
 					var image = Image.new()
 					image.load(ProjectSettings.globalize_path(dir.get_current_dir()) + file_name)
 					var t = ImageTexture.create_from_image(image)
