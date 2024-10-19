@@ -6,3 +6,5 @@ MENU_BUTTON_EXIT,Quit,Выход
 MENU_BUTTON_BACK,Back,Назад
 MENU_BUTTON_GALLERY_FOLDER,Open screenshot folder,Открыть папку
 CREDITS_1,Game by Matvey Kerov,Игру создал Матвей Керов
+GALLERY_LABEL,Gallery,Галерея
+GALLERY_TIP,"Take photos using your camera, and they will appear here!","Делайте фото с помощью камеры, и они отобразятся здесь!"

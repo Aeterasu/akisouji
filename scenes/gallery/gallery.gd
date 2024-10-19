@@ -3,6 +3,8 @@ extends Control
 @export var gallery_base_entry : TextureRect = null
 @export var gallery_origin : Control = null
 
+@export var tip_label : Label = null
+
 @export var button_selection_handler : ButtonSelectionHandler = null
 
 @export var back_button : PaperButton = null
@@ -32,6 +34,9 @@ func _ready():
 		gallery_base_entry.queue_free()
 	else:
 		Output.print("An error occurred when trying to access the path.")
+
+	if (gallery_origin.get_child_count() >= 1):
+		tip_label.hide()
 
 	modulate = Color(0.0, 0.0, 0.0)
 	var tween = create_tween()

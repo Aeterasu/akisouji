@@ -1,12 +1,15 @@
-[gd_scene load_steps=20 format=3 uid="uid://bfmvy7wmymc2l"]
+[gd_scene load_steps=26 format=3 uid="uid://bfmvy7wmymc2l"]
 
 [ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="1_mdruy"]
 [ext_resource type="Script" path="res://scenes/gallery/gallery.gd" id="1_mortg"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="2_ya6i8"]
+[ext_resource type="Script" path="res://scenes/gallery/gallery_entry.gd" id="4_5tap1"]
 [ext_resource type="Texture2D" uid="uid://boq4h7pwnxh70" path="res://assets/texture/ui/texture_ui_border.png" id="4_f3clh"]
 [ext_resource type="Texture2D" uid="uid://dd7euwxcnfdll" path="res://assets/texture/texture_blurred_alleyway.png" id="4_oydno"]
 [ext_resource type="PackedScene" uid="uid://bcrys4arojn37" path="res://scenes/title_screen/paper_button.tscn" id="5_6rj0g"]
+[ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="6_df0lg"]
 [ext_resource type="PackedScene" uid="uid://teb4p57yamr3" path="res://scenes/title_screen/paper_button_h_flipped.tscn" id="6_tq5qv"]
+[ext_resource type="Texture2D" uid="uid://sdl8j5jl2imb" path="res://assets/texture/ui/texture_ui_magnifying_glass.png" id="7_a6ulm"]
 [ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="7_jbjr6"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6ipxy"]
@@ -19,6 +22,16 @@ colors = PackedColorArray(0, 0, 0, 1, 0.338768, 0.0813456, 0, 1)
 gradient = SubResource("Gradient_6lad3")
 width = 8
 height = 8
+fill_to = Vector2(0, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_covmy"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_ofvwy"]
+colors = PackedColorArray(0, 0, 0, 1, 0.768596, 0.504942, 0.275338, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_68vjm"]
+gradient = SubResource("Gradient_ofvwy")
 fill_to = Vector2(0, 1)
 
 [sub_resource type="Gradient" id="Gradient_g7gg4"]
@@ -46,14 +59,14 @@ fill_to = Vector2(0, 1)
 blend_mode = 3
 
 [sub_resource type="Gradient" id="Gradient_mcqjw"]
-offsets = PackedFloat32Array(0.00151745, 0.00758725, 0.0409712)
+offsets = PackedFloat32Array(0.0273141, 0.0500759, 0.116844)
 colors = PackedColorArray(0, 0, 0, 1, 0.501961, 0.137255, 0, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4cx3l"]
 gradient = SubResource("Gradient_mcqjw")
 fill_to = Vector2(0, 1)
 
-[node name="Gallery" type="Control" node_paths=PackedStringArray("gallery_base_entry", "gallery_origin", "button_selection_handler", "back_button", "open_folder_button")]
+[node name="Gallery" type="Control" node_paths=PackedStringArray("gallery_base_entry", "gallery_origin", "tip_label", "button_selection_handler", "back_button", "open_folder_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,8 +74,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_mortg")
-gallery_base_entry = NodePath("ScrollContainer/GridContainer/Outline")
+gallery_base_entry = NodePath("ScrollContainer/GridContainer/GalleryEntry")
 gallery_origin = NodePath("ScrollContainer/GridContainer")
+tip_label = NodePath("TipLabel")
 button_selection_handler = NodePath("Buttons/ButtonSelectionHandler")
 back_button = NodePath("Buttons/PaperButton")
 open_folder_button = NodePath("Buttons/PaperButtonHFlipped")
@@ -88,6 +102,25 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_lwg7b")
 
+[node name="TipLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 128.0
+offset_top = 47.0
+offset_right = -96.0
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 18
+theme_override_fonts/font = ExtResource("6_df0lg")
+theme_override_font_sizes/font_size = 24
+text = "GALLERY_TIP"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 clip_contents = false
 layout_mode = 1
@@ -95,7 +128,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 96.0
-offset_top = 32.0
+offset_top = 69.0
 offset_right = -96.0
 offset_bottom = -150.0
 grow_horizontal = 2
@@ -107,14 +140,18 @@ theme_override_constants/h_separation = 32
 theme_override_constants/v_separation = 16
 columns = 4
 
-[node name="Outline" type="TextureRect" parent="ScrollContainer/GridContainer"]
+[node name="GalleryEntry" type="TextureRect" parent="ScrollContainer/GridContainer" node_paths=PackedStringArray("highlight", "magnifying_glass")]
 clip_contents = true
 custom_minimum_size = Vector2(240, 160)
 layout_mode = 2
+mouse_filter = 0
 texture = ExtResource("4_f3clh")
 expand_mode = 1
+script = ExtResource("4_5tap1")
+highlight = NodePath("Highlight")
+magnifying_glass = NodePath("TextureRect2")
 
-[node name="TextureRect" type="TextureRect" parent="ScrollContainer/GridContainer/Outline"]
+[node name="TextureRect" type="TextureRect" parent="ScrollContainer/GridContainer/GalleryEntry"]
 show_behind_parent = true
 texture_filter = 2
 custom_minimum_size = Vector2(120, 80)
@@ -123,9 +160,35 @@ offset_right = 120.0
 offset_bottom = 80.0
 scale = Vector2(2, 2)
 size_flags_horizontal = 4
+mouse_filter = 2
 texture = ExtResource("4_oydno")
 expand_mode = 1
+
+[node name="Highlight" type="TextureRect" parent="ScrollContainer/GridContainer/GalleryEntry"]
+show_behind_parent = true
+texture_filter = 2
+material = SubResource("CanvasItemMaterial_covmy")
+custom_minimum_size = Vector2(120, 80)
+layout_mode = 2
+offset_right = 120.0
+offset_bottom = 80.0
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_68vjm")
+expand_mode = 1
 stretch_mode = 6
+
+[node name="TextureRect2" type="TextureRect" parent="ScrollContainer/GridContainer/GalleryEntry"]
+texture_filter = 2
+layout_mode = 0
+offset_left = 214.0
+offset_top = 134.0
+offset_right = 254.0
+offset_bottom = 174.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("7_a6ulm")
+stretch_mode = 5
 
 [node name="Background2" type="TextureRect" parent="."]
 layout_mode = 1
@@ -173,6 +236,20 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = SubResource("GradientTexture2D_4cx3l")
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 8.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_df0lg")
+theme_override_font_sizes/font_size = 24
+text = "GALLERY_LABEL"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Buttons" type="Control" parent="."]
 layout_mode = 1
