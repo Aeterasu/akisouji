@@ -32,10 +32,12 @@ var gradient_2_color_2 : Color = Color(1.0, 1.0, 1.0, 1.0)
 var current_color_2_1 : Color = Color(1.0, 1.0, 1.0, 1.0)
 var current_color_2_2 : Color = Color(1.0, 1.0, 1.0, 1.0)
 
+var tween : Tween = null
+
+var is_disabled : bool = false
+
 signal on_mouse_selection
 signal on_mouse_deselection
-
-var tween : Tween = null
 
 func _ready():
 	selected_gradient.texture = selected_gradient.texture.duplicate()	
@@ -72,6 +74,9 @@ func _process(delta):
 	label.text = tr(text_key)
 
 func _select():
+	if (is_disabled):
+		return
+
 	if (is_selected):
 		return
 
@@ -110,3 +115,7 @@ func _deselect():
 	tween.tween_property(self, "current_color_2_2", gradient_2_color_2, 0.1)
 
 	is_selected = false
+
+func _disable():
+	is_disabled = true
+	_deselect()

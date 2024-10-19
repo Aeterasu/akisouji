@@ -15,6 +15,9 @@ func _ready():
 	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0), 0.3)
 
 func _on_button_pressed(button : PaperButton):
+	for node in button_selection_handler.buttons:
+		node._disable()
+
 	match (button):
 		start_button:
 			_on_start_pressed()
@@ -27,7 +30,7 @@ func _on_button_pressed(button : PaperButton):
 			return
 		exit_button:
 			_on_exit_pressed()
-			return					
+			return
 
 func _on_start_pressed() -> void:
 	transition(func(): SceneTransitionHandler.instance._load_scene("res://scenes/game/game.tscn"))
