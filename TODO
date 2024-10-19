@@ -1,0 +1,75 @@
+LEFT TO DO:
+
++ start work :)
++ add player movement
++ add general leaf population via multimesh
++ implement randomized leaves
++ implement leaf maps
++ add basic leaf cleaning
++ add upgraded leaf cleaning
++ add broom
++ add broom animations
++ add sprint
++ add painting filters
++ implement jump buffer
++ sprint and jump cleaning
++ add props
++ implement progress tracking
++ add viewmodel sway
++ added basic footstep audio (files courtesy of vlad) (needs reworking!)
++ base cash reward
++ figure out your level design workflow
++ add trees and tree shader
++ add working camera
++ implement output console
++ add oob rescue
++ ui upscaling
++ rudimentary completion ui
++ added sprint ui effect
++ fix web lens flares
++ add player tool swap
++ implement working camera! photo mode
++ add title screen
++ add working gallery screen
+
+- COME UP WITH A NAME FOR THE GAME!!!
+- come up with a name for a chara.
+- work on economy :D
+- make in-game UI
+- in-game UI should have control tooltips with gamepad glyphs
+- add completion UI, with our chara holding thumbs up! add a grade based on time. D, C, B, A, A+, S. Each grade has a cash bonus.
+- beautify gallery scroll wheel
+- add gallery zoom-in on picture
+- add some sort of download screenshots from web version
+- beautify leafs. new texture, maybe random texture
+- optimize leaf generation via gdextension
+- maybe implement optimization via cluster of multimeshes
+- check out TODOs in code and implement them 🥺🥺🥺
+- figure out some sort of way to prevent leaf spawning under props. heightmaps do that, but are a hassle. maybe we could generate heightmaps via raycast or some sort of other method?
+- draw camera texture
+- add settings menu. sound, ambience, music volume. fullscreen/windowed. language. leaf higlight color setting. fov - 70-100. controls. -AUDIO, -VISUALS, -GAMEPLAY, -KEY BINDINGS, -GAMEPAD BINDINGS
+- settings saving
+- add pause menu
+- finish alleway stage
+- add fountain stage
+- add park stage
+- add props by necessity
+- add stage select menu
+- add broom upgrades
+- add upgrade purchase menu
+- cash and purchases saving
+- add crunchy cleaning sounds
+- add general sound
+- rework footstep sound
+- add camera sound
+- add ambience
+- redo brooming animations
+- force tanya to draw our pretty chara
+- add chibis
+- rework loading screen
+- add music
+- balance out the 'fun' numbers
+- convert meshes to glb to save space
+- some sort of music playlist manager
+- web optimizations
+- cut out everything unused
