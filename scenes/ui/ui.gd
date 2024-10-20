@@ -5,7 +5,7 @@ class_name UI extends Control
 static var ui_instance : UI
 
 func _ready():
-	if (ui_instance):
+	if (is_instance_valid(ui_instance)):
 		self.queue_free()
 	else:
 		ui_instance = self

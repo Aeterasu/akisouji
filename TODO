@@ -36,6 +36,7 @@ LEFT TO DO:
 + fix crash. start game, pause, exit to menu, start game again. boom, crash.
 + add pause menu. resume, gallery, settings, quit.
 + redesign pause menu
++ fix ui disappearing on restart
 
 = DON'T ADD ANY MORE FEATURES. PERIOD. =
 
@@ -54,7 +55,6 @@ CURRENT WORKING NAME - LEAF SWEEPER
 - add pause menu functionality. gallery, options, exit fade out. gallery and options - add an enum that determines whether to go to title or just queuefree and return to pause menu etc
 - fix html cursor capture on pause menu etc
 - fix null checks, replace them with is_instance_valid()
-- fix ui disappearing on restart
 - set locale on first launch
 - disable menu buttons during transition
 - COME UP WITH A NAME FOR THE GAME!!!
