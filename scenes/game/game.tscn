@@ -283,8 +283,12 @@ script = ExtResource("8_d3y8h")
 [node name="PauseLayer" type="CanvasLayer" parent="."]
 layer = 102
 
-[node name="PauseMenu" parent="PauseLayer" instance=ExtResource("22_yntas")]
+[node name="PauseMenu" parent="PauseLayer" node_paths=PackedStringArray("gallery_origin") instance=ExtResource("22_yntas")]
 process_mode = 3
+gallery_origin = NodePath("../../GalleryLayer")
+
+[node name="GalleryLayer" type="CanvasLayer" parent="."]
+layer = 103
 
 [node name="SunFlare" type="CanvasLayer" parent="."]
 script = ExtResource("11_0g5lc")

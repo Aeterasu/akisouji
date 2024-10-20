@@ -8,6 +8,8 @@ class_name Game extends Node3D
 
 static var game_instance : Game = null
 
+var is_pausable : bool = true
+
 func _ready():
 	game_instance = self
 
@@ -34,6 +36,9 @@ func _on_level_completion():
 	Output.print("Level Completed!")
 
 func toggle_pause():
+	if (!is_pausable):
+		return
+
 	get_tree().paused = !get_tree().paused
 	pause_menu.is_displayed = !pause_menu.is_displayed
 

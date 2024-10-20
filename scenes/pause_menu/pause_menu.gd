@@ -7,6 +7,9 @@ class_name PauseMenu extends Control
 @export var options_button : PaperButton = null
 @export var exit_button : PaperButton = null
 
+@export var gallery_scene : PackedScene = null
+@export var gallery_origin : Node = null
+
 var is_displayed : bool = false:
 	set(value):
 		is_displayed = value
@@ -51,7 +54,13 @@ func _on_resume_pressed():
 	button_selection_handler._update_button()
 
 func _on_gallery_pressed():
-	pass
+	var gallery = gallery_scene.instantiate()
+	gallery.on_back_pressed_type = Gallery.OnBackPressedType.QUEUE_FREE
+	gallery.on_gallery_freed.connect(_on_gallery_closed) 
+
+	gallery_origin.add_child(gallery)
+
+	Game.game_instance.is_pausable = false
 
 func _on_options_pressed():
 	pass
@@ -61,3 +70,9 @@ func _on_exit_pressed():
 	tween.tween_property(BlackoutLayer.instance.black_rect, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.1)
 	tween.tween_callback(func(): SceneTransitionHandler.instance._load_scene("res://scenes/title_screen/title_screen.tscn")).set_delay(0.1)
 	get_tree().paused = false
+
+func _on_gallery_closed() -> void:
+	for node in button_selection_handler.buttons:
+		node._enable()
+
+	Game.game_instance.is_pausable = true

@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0r5a5kwi5eoo"]
+[gd_scene load_steps=12 format=3 uid="uid://d0r5a5kwi5eoo"]
 
 [ext_resource type="Script" path="res://scenes/pause_menu/pause_menu.gd" id="1_j0qui"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="1_y26lm"]
 [ext_resource type="PackedScene" uid="uid://civm4tg15jr0q" path="res://scenes/title_screen/paper_button_double_sided.tscn" id="2_jcbm4"]
 [ext_resource type="Shader" path="res://shader/multiply.gdshader" id="2_karch"]
+[ext_resource type="PackedScene" uid="uid://bfmvy7wmymc2l" path="res://scenes/gallery/gallery.tscn" id="2_lhctp"]
 [ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="2_nwcox"]
 [ext_resource type="FontFile" uid="uid://c5kqanfa0j1nl" path="res://assets/font/DancingScript-VariableFont_wght.ttf" id="3_tc3ds"]
 [ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="3_trrex"]
@@ -27,6 +28,7 @@ resume_button = NodePath("Control/PaperButton")
 gallery_button = NodePath("Control/PaperButton2")
 options_button = NodePath("Control/PaperButton3")
 exit_button = NodePath("Control/PaperButton4")
+gallery_scene = ExtResource("2_lhctp")
 
 [node name="ScrollingBackground" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.694118)

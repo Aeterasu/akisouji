@@ -1,4 +1,6 @@
-extends Control
+class_name Gallery extends Control
+
+@export var on_back_pressed_type : OnBackPressedType = OnBackPressedType.GO_TO_TITLE
 
 @export var gallery_base_entry : TextureRect = null
 @export var gallery_origin : GridContainer = null
@@ -13,6 +15,14 @@ extends Control
 @export var gallery_entry_zoom : GalleryEntryZoom = null
 
 var selected_entry : GalleryEntry = null
+
+enum OnBackPressedType
+{
+	GO_TO_TITLE,
+	QUEUE_FREE,
+}
+
+signal on_gallery_freed
 
 func _ready():
 	var dir = DirAccess.open("user://")
@@ -68,6 +78,9 @@ func _process(delta):
 
 	gallery_origin.columns = max(floor(get_viewport_rect().size.x / get_viewport_rect().size.y * 3) - 1, 1)
 
+	if (Input.is_action_just_pressed("pause")):
+		_on_back_pressed()
+
 	#scroll bar hugs the gallery entries in non 16:9 resolution. no, I don't know how to fix that.
 
 	#var vscroll = (gallery_origin.get_parent() as ScrollContainer).get_v_scroll_bar()
@@ -103,7 +116,12 @@ func _on_button_pressed(button : PaperButton):
 			return
 
 func _on_back_pressed() -> void:
-	transition(func(): SceneTransitionHandler.instance._load_scene("res://scenes/title_screen/title_screen.tscn"))
+	match on_back_pressed_type:
+		OnBackPressedType.GO_TO_TITLE:
+			transition(func(): SceneTransitionHandler.instance._load_scene("res://scenes/title_screen/title_screen.tscn"))
+		OnBackPressedType.QUEUE_FREE:
+			on_gallery_freed.emit()
+			self.queue_free()
 
 func _on_open_folder_pressed() -> void:
 	if (OS.get_name() == "Web"):

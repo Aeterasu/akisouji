@@ -39,11 +39,19 @@ LEFT TO DO:
 
 = DON'T ADD ANY MORE FEATURES. PERIOD. =
 
+CURRENT WORKING NAME - LEAF SWEEPER
+
+- consider reworking the sweeping mechanic. what if instead of disappearing, leaves would instead pile up? hold lmb and move forward to stack leaves. leaves can be put into a garbage bag - one by one or as a part of pile. put all leaves into garbage bags! bags can hold a certain amount of leaves
+- add 'new upgrade notification'
+- add the ability to throw your broom. it will then proceed to sweep all the leaves as it slides across the ground. 
+- each broom has it's own secondary attack. broom - throw, 
+- strong broom - slide. you hold rmb and accelerate in a selected direction,
+- feather duster -
+- vacuum - powerful aoe leaf blow!
 - prevent broom from activating when clicking in pause menu
 - add input delay to button manager to prevent accidental clicks
 - fix pause menu horizontal scaling
-- add pause menu functionality. gallery, options, exit fade out.
-- localize poems
+- add pause menu functionality. gallery, options, exit fade out. gallery and options - add an enum that determines whether to go to title or just queuefree and return to pause menu etc
 - fix html cursor capture on pause menu etc
 - fix null checks, replace them with is_instance_valid()
 - fix ui disappearing on restart
@@ -54,11 +62,11 @@ LEFT TO DO:
 - work on economy :D
 - make in-game UI
 - in-game UI should have control tooltips with gamepad glyphs
-- add completion UI, with our chara holding thumbs up! add a grade based on time. D, C, B, A, A+, S. Each grade has a cash bonus. 
+- add completion UI, with our chara holding thumbs up! add a grade based on time. D, C, B, A, A+, S. Each grade has a cash bonus. info shown - grade, time, level name
 - during completion, you can move and look at the results of your work. the completion is initially just a text popup (Press blah to finish)
 - beautify gallery scroll wheel
 - gallery gamepad controls
-- add some sort of download screenshots from web version
+- add some sort of download screenshots from web version. also hide folder button in web
 - beautify leafs. new texture, maybe random texture
 - optimize leaf generation via gdextension
 - maybe implement optimization via cluster of multimeshes
@@ -67,7 +75,7 @@ LEFT TO DO:
 - draw camera texture
 - add settings menu. master, sfx, ambience, music volume. fullscreen/windowed. language. leaf higlight color setting. fov - 70-100. controls. -AUDIO, -VISUALS, -GAMEPLAY, -KEY BINDINGS, -GAMEPAD BINDINGS
 - settings saving
-- finish alleway stage
+- finish alleway stage. patch holes, really.
 - add fountain stage
 - add park stage
 - add props by necessity
@@ -84,11 +92,11 @@ LEFT TO DO:
 - fix that annoying gate texture that currently uses deafault metal and looks ugly
 - force tanya to draw our pretty chara
 - add chibis
-- sunflower-like tutorial
+- sunflower-like tutorial. mention leaf highlighting
 - rework loading screen
 - add music
-- balance out the 'fun' numbers
 - convert meshes to glb to save space
-- some sort of music playlist manager
+- some sort of music playlist manager and music ui
 - web optimizations
 - cut out everything unused
+- add russian, and if possible, japanese localization
