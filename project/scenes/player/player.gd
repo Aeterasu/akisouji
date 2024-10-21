@@ -218,7 +218,8 @@ func _on_sprint_cleaning_timeout():
 	if (!wish_sprint or !is_on_floor()):
 		return
 
-	leaf_cleaning_handler._on_player_cleaning_on_position(global_position + Vector3.DOWN, sprint_cleaning_radius)
+	if (is_instance_valid(leaf_cleaning_handler)):
+		leaf_cleaning_handler._on_player_cleaning_on_position(global_position + Vector3.DOWN, sprint_cleaning_radius)
 
 func _on_enter_photo_mode():
 	is_in_photo_mode = true
