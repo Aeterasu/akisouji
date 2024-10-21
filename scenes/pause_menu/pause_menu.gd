@@ -1,5 +1,7 @@
 class_name PauseMenu extends Control
 
+@export var scrolling_background : Control = null
+
 @export var button_selection_handler : ButtonSelectionHandler = null
 
 @export var resume_button : PaperButton = null
@@ -7,8 +9,10 @@ class_name PauseMenu extends Control
 @export var options_button : PaperButton = null
 @export var exit_button : PaperButton = null
 
+@export var submenu_origin : Node = null
+
 @export var gallery_scene : PackedScene = null
-@export var gallery_origin : Node = null
+@export var settings_scene : PackedScene = null
 
 var is_displayed : bool = false:
 	set(value):
@@ -21,6 +25,7 @@ var is_displayed : bool = false:
 			for node in button_selection_handler.buttons:
 				node._enable()
 			UI.ui_instance.hide()
+			button_selection_handler._enable_all_buttons()
 		else:
 			tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.2)
 			for node in button_selection_handler.buttons:
@@ -31,8 +36,7 @@ func _ready():
 	button_selection_handler.on_button_pressed.connect(_on_button_pressed)
 	
 func _on_button_pressed(button : PaperButton):
-	for node in button_selection_handler.buttons:
-		node._disable()
+	button_selection_handler._disable_all_buttons()
 
 	match (button):
 		resume_button:
@@ -42,7 +46,7 @@ func _on_button_pressed(button : PaperButton):
 			_on_gallery_pressed()
 			return			
 		options_button:
-			_on_options_pressed()
+			_on_settings_pressed()
 			return
 		exit_button:
 			_on_exit_pressed()
@@ -56,14 +60,25 @@ func _on_resume_pressed():
 func _on_gallery_pressed():
 	var gallery = gallery_scene.instantiate()
 	gallery.on_back_pressed_type = Gallery.OnBackPressedType.QUEUE_FREE
-	gallery.on_gallery_freed.connect(_on_gallery_closed) 
+	gallery.on_gallery_freed.connect(_on_submenu_closed) 
 
-	gallery_origin.add_child(gallery)
+	submenu_origin.add_child(gallery)
 
 	Game.game_instance.is_pausable = false
 
-func _on_options_pressed():
-	pass
+func _on_settings_pressed():
+	self.hide()
+
+	var settings = settings_scene.instantiate()
+	settings.on_back_pressed_type = SettingsMenu.OnBackPressedType.QUEUE_FREE
+	settings.on_settings_menu_freed.connect(_on_submenu_closed) 
+
+	submenu_origin.add_child(settings)
+
+	#settings.background.hide()
+	settings.scrolling_background.position = scrolling_background.position
+
+	Game.game_instance.is_pausable = false
 
 func _on_exit_pressed():
 	var tween = create_tween()
@@ -71,8 +86,11 @@ func _on_exit_pressed():
 	tween.tween_callback(func(): SceneTransitionHandler.instance._load_scene("res://scenes/title_screen/title_screen.tscn")).set_delay(0.1)
 	get_tree().paused = false
 
-func _on_gallery_closed() -> void:
+func _on_submenu_closed() -> void:
 	for node in button_selection_handler.buttons:
 		node._enable()
 
 	Game.game_instance.is_pausable = true
+	button_selection_handler._enable_all_buttons()
+
+	self.show()

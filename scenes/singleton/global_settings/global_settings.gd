@@ -29,3 +29,5 @@ extends Node
 @export var camera_wobble_enabled : bool = true
 
 @export var show_fps_counter : bool = true
+
+@export var leaf_highlight_color : Color = Color(0.988, 0.525, 0.259, 1.0)

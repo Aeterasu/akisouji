@@ -1,17 +1,22 @@
 extends Node
 
 @export var leaf_material : StandardMaterial3D = null
-@export var highlight_color : Color = Color(1.0, 1.0, 1.0, 1.0)
 @export var highlight_fade_duration = 0.3
 @export var highlight_linger_duration = 0.1
+
+var highlight_color : Color = Color(1.0, 1.0, 1.0, 1.0)
 
 var highlight_target_alpha : float = 1.0
 
 func _ready():
-	highlight_target_alpha = highlight_color.a
+	highlight_color = GlobalSettings.leaf_highlight_color
+	highlight_target_alpha = GlobalSettings.leaf_highlight_color.a
 	highlight_color.a = 0.0
 
 func _physics_process(delta):
+	#highlight_color = GlobalSettings.leaf_highlight_color
+	# TODO: update on settings change
+
 	if (Input.is_action_just_pressed("hint_highlight")):
 		_highlight()
 

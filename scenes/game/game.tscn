@@ -115,7 +115,6 @@ pause_menu = NodePath("PauseLayer/PauseMenu")
 [node name="LeafHighlightHandler" type="Node" parent="."]
 script = ExtResource("2_74dy0")
 leaf_material = ExtResource("3_ys06x")
-highlight_color = Color(0.97, 0.786347, 0.2813, 0.215686)
 
 [node name="Pausable" type="Node" parent="."]
 process_mode = 1
@@ -283,11 +282,11 @@ script = ExtResource("8_d3y8h")
 [node name="PauseLayer" type="CanvasLayer" parent="."]
 layer = 102
 
-[node name="PauseMenu" parent="PauseLayer" node_paths=PackedStringArray("gallery_origin") instance=ExtResource("22_yntas")]
+[node name="PauseMenu" parent="PauseLayer" node_paths=PackedStringArray("submenu_origin") instance=ExtResource("22_yntas")]
 process_mode = 3
-gallery_origin = NodePath("../../GalleryLayer")
+submenu_origin = NodePath("../../SubmenuLayer")
 
-[node name="GalleryLayer" type="CanvasLayer" parent="."]
+[node name="SubmenuLayer" type="CanvasLayer" parent="."]
 layer = 103
 
 [node name="SunFlare" type="CanvasLayer" parent="."]

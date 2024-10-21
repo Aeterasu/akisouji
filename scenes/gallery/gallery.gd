@@ -104,8 +104,7 @@ func load_image_texture(path: String) -> ImageTexture:
 	return ImageTexture.create_from_image(loaded_image)
 
 func _on_button_pressed(button : PaperButton):
-	for node in button_selection_handler.buttons:
-		node._disable()
+	button_selection_handler._disable_all_buttons()
 
 	match (button):
 		back_button:

@@ -17,11 +17,11 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6ipxy"]
 blend_mode = 3
 
-[sub_resource type="Gradient" id="Gradient_6lad3"]
+[sub_resource type="Gradient" id="Gradient_58f71"]
 colors = PackedColorArray(0, 0, 0, 1, 0.338768, 0.0813456, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_lwg7b"]
-gradient = SubResource("Gradient_6lad3")
+gradient = SubResource("Gradient_58f71")
 width = 8
 height = 8
 fill_to = Vector2(0, 1)

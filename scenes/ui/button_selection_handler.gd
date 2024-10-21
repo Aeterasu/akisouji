@@ -1,5 +1,7 @@
 class_name ButtonSelectionHandler extends Node
 
+@export var enabled : bool = true
+
 @export var horizontal : bool = false
 @export var buttons_origin : Node = null
 
@@ -20,6 +22,12 @@ func _ready():
 				node.on_mouse_deselection.connect(_on_button_mouse_deselection)
 
 func _process(delta):
+	if (!enabled):
+		if (current_button):
+			current_selection_id = -999
+			_update_button()
+		return
+
 	var next_key : String = ""
 	var previous_key : String = ""
 
@@ -99,3 +107,9 @@ func _on_button_mouse_selection(button : PaperButton):
 func _on_button_mouse_deselection(button : PaperButton):
 	current_selection_id = -999
 	_update_button()
+
+func _disable_all_buttons():
+	enabled = false
+
+func _enable_all_buttons():
+	enabled = true

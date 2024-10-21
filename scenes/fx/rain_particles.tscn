@@ -19,10 +19,11 @@ material = SubResource("StandardMaterial3D_iukvl")
 size = Vector2(0.05, 1)
 
 [node name="RainParticles" type="GPUParticles3D"]
+process_mode = 3
 cast_shadow = 0
 custom_aabb = AABB(-32, -32, -32, 64, 64, 64)
 amount = 512
 preprocess = 4.0
-fixed_fps = 15
+fixed_fps = 10
 process_material = SubResource("ParticleProcessMaterial_d2wsc")
 draw_pass_1 = SubResource("QuadMesh_0oog4")
