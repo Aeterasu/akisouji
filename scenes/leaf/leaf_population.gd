@@ -39,9 +39,9 @@ func _ready() -> void:
 		Game.game_instance._on_loading_ended()
 		return
 
-	await get_tree().create_timer(0.5).timeout # TODO: this has a potential to go VERY sour. replace with something better later
+	await get_tree().create_timer(0.1).timeout # TODO: this has a potential to go VERY sour. replace with something better later
 	_populate_multimesh()
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.1).timeout
 	_translate_multimesh()
 	Game.game_instance._on_loading_ended()
 

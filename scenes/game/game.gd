@@ -16,7 +16,11 @@ func _ready():
 	level.on_level_completion.connect(_on_level_completion)
 	player.global_transform = level.player_spawn_position.global_transform
 	player.respawn_transform = level.player_spawn_position.global_transform
-	player.leaf_cleaning_handler = level.leaf_population.leaf_cleaning_handler
+
+	if (is_instance_valid(level.leaf_population)):
+		player.leaf_cleaning_handler = level.leaf_population.leaf_cleaning_handler
+	else:
+		loading_screen._on_timeout()
 
 	pause_menu.is_displayed = get_tree().paused
 

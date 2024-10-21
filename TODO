@@ -42,6 +42,7 @@ LEFT TO DO:
 
 CURRENT WORKING NAME - LEAF SWEEPER
 
+- add credits to main menu
 - smooth transitions in settings menu
 - consider reworking the sweeping mechanic. what if instead of disappearing, leaves would instead pile up? hold lmb and move forward to stack leaves. leaves can be put into a garbage bag - one by one or as a part of pile. put all leaves into garbage bags! bags can hold a certain amount of leaves
 - add 'new upgrade notification'
