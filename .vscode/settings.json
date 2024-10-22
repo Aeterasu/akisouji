@@ -1,5 +1,5 @@
 {
     "godotTools.editorPath.godot4": "e:\\Godot_v.4.3\\Godot_v4.3-stable_win64.exe",
     "cmake.ignoreCMakeListsMissing": true,
-    "C_Cpp.errorSquiggles": "disabled"
+    "C_Cpp.errorSquiggles": "enabled"
 }

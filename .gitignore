@@ -17,3 +17,7 @@ mono_crash.*.json
 # VS Code ignores
 
 .VSCodeCounter
+
+# GD Extension ignores
+
+godot-cpp/
