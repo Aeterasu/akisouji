@@ -1,6 +1,7 @@
 #include "register_types.h"
 
 #include "gdexample.h"
+#include "cpp_cube_performance_test.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -16,6 +17,7 @@ void initialize_example_module(ModuleInitializationLevel p_level)
 	}
 
 	GDREGISTER_CLASS(GDExample);
+    GDREGISTER_CLASS(CppCubePerformanceTest);
 }
 
 void uninitialize_example_module(ModuleInitializationLevel p_level) 

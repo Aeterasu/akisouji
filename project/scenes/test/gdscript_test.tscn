@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cxmmqt31t7mef"]
+
+[ext_resource type="Script" path="res://scenes/test/gdscript_cube_rotation_performance_test.gd" id="1_0q66p"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mybpd"]
+
+[node name="GdExtensionPerformanceTest" type="Node3D"]
+
+[node name="GdscriptCube" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09, 0, 0)
+mesh = SubResource("BoxMesh_mybpd")
+script = ExtResource("1_0q66p")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.962682, 0.270634, 0, -0.270634, 0.962682, 0, 1.5, 4.46)
+
+[node name="Label" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 36
+text = "GDScript:
+C++:"

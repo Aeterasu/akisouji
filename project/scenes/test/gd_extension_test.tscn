@@ -5,5 +5,5 @@
 [node name="GdExtensionTest" type="Node2D"]
 
 [node name="GDExample" type="GDExample" parent="."]
-position = Vector2(8.73343, 2.28849)
+position = Vector2(9.72363, 10.2073)
 texture = ExtResource("1_3rvld")
