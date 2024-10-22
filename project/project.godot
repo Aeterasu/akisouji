@@ -16,7 +16,7 @@ warnings/check_angle_interpolation_type_conflicting=false
 [application]
 
 config/name="akisouji"
-run/main_scene="res://scenes/main/main.tscn"
+run/main_scene="res://scenes/test/gd_extension_test.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 run/max_fps=60
 boot_splash/show_image=false
