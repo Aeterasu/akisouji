@@ -34,6 +34,7 @@ namespace godot
             int final_instance_count = 0;
 
             TypedArray<Vector3> leafPositions = {};
+            TypedArray<Color> leafColors = {};
 
             void PopulateLeaves();
         protected:
@@ -57,6 +58,9 @@ namespace godot
 
             void setNodePathMultimeshInstance(NodePath pNodePath);
             NodePath getNodePathMultimeshInstance();
+
+            void setLeafColors(TypedArray<Color> pLeafColors);
+            TypedArray<Color> getLeafColors();
     };
 }
 

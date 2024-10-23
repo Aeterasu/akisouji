@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://bddqywxip4ion"]
+
+[ext_resource type="Texture2D" uid="uid://b8yoeufsj1v0a" path="res://scenes/test/leaf_noise_test.tres" id="1_0p0ah"]
+[ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://resource/mesh/leaf_mesh.tres" id="2_ktogu"]
+
+[sub_resource type="MultiMesh" id="MultiMesh_5xmeq"]
+transform_format = 1
+use_colors = true
+mesh = ExtResource("2_ktogu")
+
+[node name="LeafPopulator" type="LeafPopulator"]
+leavesPerPixel = 64
+leafmap = ExtResource("1_0p0ah")
+nodePathMultimeshInstance = NodePath("MultiMeshInstance3D")
+leafColors = Array[Color]([Color(0.831373, 0.254902, 0.215686, 1), Color(0.831373, 0.678431, 0.32549, 1), Color(0.988235, 0.45098, 0.137255, 1), Color(0.941176, 0.647059, 0.235294, 1), Color(0.65098, 0.301961, 0.196078, 1), Color(0.988235, 0.45098, 0.137255, 1), Color(0.831373, 0.254902, 0.215686, 1), Color(0.988235, 0.45098, 0.137255, 1)])
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]
+multimesh = SubResource("MultiMesh_5xmeq")

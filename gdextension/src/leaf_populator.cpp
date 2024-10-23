@@ -21,6 +21,10 @@ void LeafPopulator::_bind_methods()
     ClassDB::bind_method(D_METHOD("getNodePathMultimeshInstance"), &LeafPopulator::getNodePathMultimeshInstance);
     ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "nodePathMultimeshInstance"), "setNodePathMultimeshInstance", "getNodePathMultimeshInstance");
 
+    ClassDB::bind_method(D_METHOD("setLeafColors", "pNodePath"), &LeafPopulator::setLeafColors);
+    ClassDB::bind_method(D_METHOD("getLeafColors"), &LeafPopulator::getLeafColors);
+    ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "leafColors", PROPERTY_HINT_ARRAY_TYPE, "Color"), "setLeafColors", "getLeafColors");
+
     ClassDB::bind_method(D_METHOD("PopulateLeaves"), &LeafPopulator::PopulateLeaves);
 }
 
@@ -35,7 +39,7 @@ LeafPopulator::LeafPopulator()
 LeafPopulator::~LeafPopulator()
 {
     this->leafPositions.clear();
-    multimesh->set_instance_count(0);
+    //multimesh->set_instance_count(0);
 }
 
 void LeafPopulator::_ready()
@@ -68,6 +72,7 @@ void LeafPopulator::PopulateLeaves()
     multimeshInstance = get_node<MultiMeshInstance3D>(this->nodePathMultimeshInstance);
     multimesh = multimeshInstance->get_multimesh();
     multimesh->set_transform_format(MultiMesh::TRANSFORM_3D);
+    multimesh->set_use_colors(true);
 
     // get our image data from leaf map
 
@@ -115,11 +120,13 @@ void LeafPopulator::PopulateLeaves()
     {
         multimesh->set_instance_transform(i, Transform3D()
             .rotated(Vector3(0.0f, 1, 0.0f), random->randf() * 3.14f * 2)
-            .rotated(Vector3(random->randf(), 0, random->randf()), random->randf() * 3.14f * 0.25f)
+            .rotated(Vector3((0.5f - random->randf()) * 2.0f, 0, (0.5f - random->randf()) * 2.0f), random->randf() * 3.14f * 0.25f)
             .translated(leafPositions[i]));
+
+        multimesh->set_instance_color(i, leafColors[random->randi() % leafColors.size()]);
     }
 
-    UtilityFunctions::print(multimesh->get_instance_count());
+    UtilityFunctions::print(multimesh->get_instance_count(), " leaves");
 
     // after we've done, disconnect the callable
 
@@ -130,12 +137,7 @@ void LeafPopulator::PopulateLeaves()
     uint64_t endTime = Time::get_singleton()->get_ticks_msec();
     uint64_t duration = endTime - startTime;
 
-    UtilityFunctions::prints("Time taken with C++:", duration, "ms");
-    
-    for (int i = 0; i < 15; i++)
-    {
-        UtilityFunctions::prints(leafPositions[i]);
-    }
+    UtilityFunctions::prints("Leaves generated in:", duration, "ms");
 }
 
 void LeafPopulator::_physics_process(double p_delta)
@@ -181,4 +183,14 @@ void LeafPopulator::setNodePathMultimeshInstance(NodePath pNodePath)
 NodePath LeafPopulator::getNodePathMultimeshInstance()
 {
     return nodePathMultimeshInstance;
+}
+
+void LeafPopulator::setLeafColors(TypedArray<Color> pLeafColors)
+{
+    leafColors = pLeafColors;
+}
+
+TypedArray<Color> LeafPopulator::getLeafColors()
+{
+    return leafColors;
 }

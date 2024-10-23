@@ -1,18 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://bxyb5mugpluu5"]
+[gd_scene load_steps=6 format=3 uid="uid://bxyb5mugpluu5"]
 
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_li6ex"]
 [ext_resource type="Script" path="res://scenes/utils/mouse_capture_handler.gd" id="2_6thpy"]
-[ext_resource type="Texture2D" uid="uid://b8yoeufsj1v0a" path="res://scenes/test/leaf_noise_test.tres" id="3_5gpiv"]
-[ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://resource/mesh/leaf_mesh.tres" id="3_tvtcs"]
+[ext_resource type="PackedScene" uid="uid://bddqywxip4ion" path="res://scenes/leaf/leaf_populator.tscn" id="3_x25up"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dj6jh"]
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Environment" id="Environment_iuakf"]
-
-[sub_resource type="MultiMesh" id="MultiMesh_5xmeq"]
-transform_format = 1
-mesh = ExtResource("3_tvtcs")
 
 [node name="NewLeafPopulatorTest" type="Node3D" node_paths=PackedStringArray("player_spawn_position")]
 script = ExtResource("1_li6ex")
@@ -40,13 +35,7 @@ transform = Transform3D(1, 0, 0, 0, 0.291921, 0.956442, 0, -0.956442, 0.291921, 
 script = ExtResource("2_6thpy")
 mode = 2
 
-[node name="LeafPopulator" type="LeafPopulator" parent="."]
-leavesPerPixel = 64
-leafmap = ExtResource("3_5gpiv")
-nodePathMultimeshInstance = NodePath("MultiMeshInstance3D")
-
-[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="LeafPopulator"]
-multimesh = SubResource("MultiMesh_5xmeq")
+[node name="LeafPopulator" parent="." instance=ExtResource("3_x25up")]
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
