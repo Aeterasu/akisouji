@@ -25,7 +25,14 @@ void LeafPopulator::_bind_methods()
     ClassDB::bind_method(D_METHOD("getLeafColors"), &LeafPopulator::getLeafColors);
     ADD_PROPERTY(PropertyInfo(Variant::ARRAY, "leafColors", PROPERTY_HINT_ARRAY_TYPE, "Color"), "setLeafColors", "getLeafColors");
 
+    ClassDB::bind_method(D_METHOD("setNodePathLeafCleaningHandler", "pNodePath"), &LeafPopulator::setNodePathLeafCleaningHandler);
+    ClassDB::bind_method(D_METHOD("getNodePathLeafCleaningHandler"), &LeafPopulator::getNodePathLeafCleaningHandler);
+    ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "nodePathLeafCleaningHandler"), "setNodePathLeafCleaningHandler", "getNodePathLeafCleaningHandler");
+
     ClassDB::bind_method(D_METHOD("PopulateLeaves"), &LeafPopulator::PopulateLeaves);
+
+    ClassDB::bind_method(D_METHOD("getMultimesh"), &LeafPopulator::getMultimesh);
+    ClassDB::bind_method(D_METHOD("getLeafCleaningHandler"), &LeafPopulator::getLeafCleaningHandler);
 }
 
 LeafPopulator::LeafPopulator()
@@ -39,7 +46,6 @@ LeafPopulator::LeafPopulator()
 LeafPopulator::~LeafPopulator()
 {
     this->leafPositions.clear();
-    //multimesh->set_instance_count(0);
 }
 
 void LeafPopulator::_ready()
@@ -48,6 +54,8 @@ void LeafPopulator::_ready()
     {
         return;
     }
+
+    leafCleaningHandler = get_node<LeafCleaningHandler>(this->nodePathLeafCleaningHandler);
 
     leafmap->connect("changed", Callable(this, "PopulateLeaves"));
 }
@@ -71,6 +79,7 @@ void LeafPopulator::PopulateLeaves()
 
     multimeshInstance = get_node<MultiMeshInstance3D>(this->nodePathMultimeshInstance);
     multimesh = multimeshInstance->get_multimesh();
+    multimesh->set_instance_count(0);
     multimesh->set_transform_format(MultiMesh::TRANSFORM_3D);
     multimesh->set_use_colors(true);
 
@@ -108,9 +117,11 @@ void LeafPopulator::PopulateLeaves()
         }        
     }
 
+    // sort the array
+
     leafPositions.resize(final_instance_count);
 
-    leafPositions.sort();
+    leafPositions.sort(); // TODO: figure out a way to distribute array as already sorted, without this unnecessary expensive step
 
     // transform our leaves!
 
@@ -125,6 +136,8 @@ void LeafPopulator::PopulateLeaves()
 
         multimesh->set_instance_color(i, leafColors[random->randi() % leafColors.size()]);
     }
+
+    leafCleaningHandler->setMultimesh(multimesh);
 
     UtilityFunctions::print(multimesh->get_instance_count(), " leaves");
 
@@ -193,4 +206,24 @@ void LeafPopulator::setLeafColors(TypedArray<Color> pLeafColors)
 TypedArray<Color> LeafPopulator::getLeafColors()
 {
     return leafColors;
+}
+
+Ref<MultiMesh> LeafPopulator::getMultimesh()
+{
+    return multimesh;
+}
+
+LeafCleaningHandler* LeafPopulator::getLeafCleaningHandler()
+{
+    return leafCleaningHandler;
+}
+
+void LeafPopulator::setNodePathLeafCleaningHandler(NodePath pNodePath)
+{
+    nodePathLeafCleaningHandler = pNodePath;
+}
+
+NodePath LeafPopulator::getNodePathLeafCleaningHandler()
+{
+    return nodePathLeafCleaningHandler;
 }

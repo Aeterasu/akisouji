@@ -29,11 +29,11 @@ class_name Player extends CharacterBody3D
 @export var inventory : PlayerToolInventory = null
 @export var cleaning_range : float = 8.0
 
+var leaf_cleaning_handler : LeafCleaningHandler = null
+
 var mouse_sensitivity : float = 1.0
 var gamepad_sensitvity : float = 64.0
 var gamepad_deadzone : float = 0.3
-
-var leaf_cleaning_handler : LeafCleaningHandler = null
 
 var current_jump_buffer_ticks : int = 0
 
@@ -92,7 +92,11 @@ func on_broom():
 	if (!leaf_cleaning_handler):
 		return
 
-	leaf_cleaning_handler._on_player_cleaning_input(cleaning_radius, cleaning_range)
+	#leaf_cleaning_handler._on_player_cleaning_input(cleaning_radius, cleaning_range)
+
+	#leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), 2.0)
+
+	pass
 
 func input_process(delta : float):
 	velocity_component.input_direction = Vector2()
@@ -209,17 +213,25 @@ func _on_landing():
 	if (wish_sprint):
 		multiplier = 1.2
 
-	if (is_instance_valid(leaf_cleaning_handler)):
-		leaf_cleaning_handler._on_player_cleaning_on_position(global_position + Vector3.DOWN, jump_cleaning_radius * multiplier)
+	#if (is_instance_valid(leaf_cleaning_handler)):
+		#leaf_cleaning_handler._on_player_cleaning_on_position(global_position + Vector3.DOWN, jump_cleaning_radius * multiplier)
 
 	camera_effect_landing._animate()
 
 func _on_sprint_cleaning_timeout():
-	if (!wish_sprint or !is_on_floor()):
+	#if (!wish_sprint or !is_on_floor()):
+	#	return
+
+	if (velocity_component.input_direction.length() < 0.1 or !is_on_floor()):
 		return
 
-	if (is_instance_valid(leaf_cleaning_handler)):
-		leaf_cleaning_handler._on_player_cleaning_on_position(global_position + Vector3.DOWN, sprint_cleaning_radius)
+	leaf_cleaning_handler.RequestCleaningAtPosition(
+		Vector2(global_position.x, global_position.z), 
+		velocity_component.input_direction,
+		1.0)		
+
+	#if (is_instance_valid(leaf_cleaning_handler)):
+		#leaf_cleaning_handler._on_player_cleaning_on_position(global_position + Vector3.DOWN, sprint_cleaning_radius)
 
 func _on_enter_photo_mode():
 	is_in_photo_mode = true

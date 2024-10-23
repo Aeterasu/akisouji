@@ -6,7 +6,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "cd gdextension; scons platform=windows"
+            "command": "cd gdextension; scons platform=windows debug_symbols=yes"
         }
     ]
 }

@@ -12,8 +12,8 @@
 #include <godot_cpp/variant/typed_array.hpp>
 #include <godot_cpp/classes/time.hpp>
 #include <godot_cpp/classes/scene_tree.hpp>
-#include <godot_cpp/classes/node.hpp>
 #include <godot_cpp/classes/random_number_generator.hpp>
+#include "leaf_cleaning_handler.h"
 
 namespace godot
 {
@@ -35,6 +35,9 @@ namespace godot
 
             TypedArray<Vector3> leafPositions = {};
             TypedArray<Color> leafColors = {};
+
+            NodePath nodePathLeafCleaningHandler;
+            LeafCleaningHandler* leafCleaningHandler;
 
             void PopulateLeaves();
         protected:
@@ -61,6 +64,12 @@ namespace godot
 
             void setLeafColors(TypedArray<Color> pLeafColors);
             TypedArray<Color> getLeafColors();
+
+            Ref<MultiMesh> getMultimesh();
+
+            void setNodePathLeafCleaningHandler(NodePath pNodePath);
+            NodePath getNodePathLeafCleaningHandler();
+            LeafCleaningHandler* getLeafCleaningHandler();
     };
 }
 

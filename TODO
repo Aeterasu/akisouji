@@ -43,6 +43,8 @@ LEFT TO DO:
 
 CURRENT WORKING NAME - LEAF SWEEPER
 
+- pressing lmb on scroll bar in gallery opens an image. plsfix.
+- fix pause menu horizontal scaling
 - remove output console, as it's kind of pointless now that we use GDExtension. 
 - add credits to main menu
 - smooth transitions in settings menu
