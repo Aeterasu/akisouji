@@ -19,6 +19,7 @@ namespace godot
 		int rot_count;
         Ref<RandomNumberGenerator> random;
 		Label* label;
+		NodePath label_path;
 
 	protected:
 		static void _bind_methods();
@@ -32,6 +33,9 @@ namespace godot
 
         void set_rot_count(const int p_rot_count);
         int get_rot_count() const;
+
+		void set_label_path(NodePath p_nodepath);
+		NodePath get_label_path();
 	};
 
 }

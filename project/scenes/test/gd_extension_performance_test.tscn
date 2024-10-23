@@ -12,10 +12,13 @@
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09, 0, 0)
 mesh = SubResource("BoxMesh_mybpd")
 script = ExtResource("1_7jqu3")
+rot_count = 2500000
 label = NodePath("../Label")
 
 [node name="CppCube" type="CppCubePerformanceTest" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.245, 0, 0)
+rot_count = 2500000
+label_path = NodePath("../Label")
+transform = Transform3D(0.00764948, -0.139792, 0.990151, -0.0711149, -0.987749, -0.138903, 0.997439, -0.069352, -0.017497, 2.245, 0, 0)
 mesh = SubResource("BoxMesh_cu4vm")
 
 [node name="Camera3D" type="Camera3D" parent="."]

@@ -2,6 +2,7 @@
 
 #include "gdexample.h"
 #include "cpp_cube_performance_test.h"
+#include "leaf_populator.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -18,6 +19,7 @@ void initialize_example_module(ModuleInitializationLevel p_level)
 
 	GDREGISTER_CLASS(GDExample);
     GDREGISTER_CLASS(CppCubePerformanceTest);
+    GDREGISTER_CLASS(LeafPopulator);
 }
 
 void uninitialize_example_module(ModuleInitializationLevel p_level) 

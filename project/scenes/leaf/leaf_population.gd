@@ -39,11 +39,18 @@ func _ready() -> void:
 		Game.game_instance._on_loading_ended()
 		return
 
+	var start_time : int = Time.get_ticks_msec()		
+
 	await get_tree().create_timer(0.1).timeout # TODO: this has a potential to go VERY sour. replace with something better later
 	_populate_multimesh()
 	await get_tree().create_timer(0.1).timeout
 	_translate_multimesh()
 	Game.game_instance._on_loading_ended()
+
+	var end_time : int = Time.get_ticks_msec()
+	var duration : int = end_time - start_time
+
+	prints("Time taken with GDScript: ", duration, "ms")
 
 	leaf_cleaning_handler.leaves_amount = int(round(len(cleaned_leaves) * leaf_cleaning_handler.target_cleaned_amount_leeway))
 	leaf_cleaning_handler.on_cleaning_request_at_global_position.connect(_on_clean_origin_position_updated)

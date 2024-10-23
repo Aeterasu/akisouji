@@ -8,7 +8,11 @@ void CppCubePerformanceTest::_bind_methods()
 	ClassDB::bind_method(D_METHOD("get_rot_count"), &CppCubePerformanceTest::get_rot_count);
 	ClassDB::bind_method(D_METHOD("set_rot_count", "p_rot_count"), &CppCubePerformanceTest::set_rot_count);
 
+	ClassDB::bind_method(D_METHOD("get_label_path"), &CppCubePerformanceTest::get_label_path);
+	ClassDB::bind_method(D_METHOD("set_label_path", "p_nodepath"), &CppCubePerformanceTest::set_label_path);   
+
 	ADD_PROPERTY(PropertyInfo(Variant::INT, "rot_count"), "set_rot_count", "get_rot_count");
+    ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "label_path"), "set_label_path", "get_label_path");
 }
 
 CppCubePerformanceTest::CppCubePerformanceTest() 
@@ -28,7 +32,9 @@ CppCubePerformanceTest::~CppCubePerformanceTest()
 
 void CppCubePerformanceTest::_ready()
 {
-    CppCubePerformanceTest::label=get_node<Label>(NodePath("../Label"));
+    //CppCubePerformanceTest::label=get_node<Label>(NodePath("../Label"));
+    CppCubePerformanceTest::label = get_node<Label>(label_path);
+
     uint64_t startTime = Time::get_singleton()->get_ticks_msec();
 
     for (int i = 0; i < rot_count; i++)
@@ -59,4 +65,14 @@ void CppCubePerformanceTest::set_rot_count(const int p_rot_count)
 int CppCubePerformanceTest::get_rot_count() const
 {
     return CppCubePerformanceTest::rot_count;
+}
+
+void CppCubePerformanceTest::set_label_path(NodePath p_nodepath)
+{
+    CppCubePerformanceTest::label_path = p_nodepath;
+}
+
+NodePath CppCubePerformanceTest::get_label_path()
+{
+    return CppCubePerformanceTest::label_path;
 }

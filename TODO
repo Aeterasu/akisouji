@@ -37,11 +37,13 @@ LEFT TO DO:
 + add pause menu. resume, gallery, settings, quit.
 + redesign pause menu
 + fix ui disappearing on restart
++ disable menu buttons during transition
 
 = DON'T ADD ANY MORE FEATURES. PERIOD. =
 
 CURRENT WORKING NAME - LEAF SWEEPER
 
+- remove output console, as it's kind of pointless now that we use GDExtension. 
 - add credits to main menu
 - smooth transitions in settings menu
 - consider reworking the sweeping mechanic. what if instead of disappearing, leaves would instead pile up? hold lmb and move forward to stack leaves. leaves can be put into a garbage bag - one by one or as a part of pile. put all leaves into garbage bags! bags can hold a certain amount of leaves
@@ -56,9 +58,8 @@ CURRENT WORKING NAME - LEAF SWEEPER
 - fix pause menu horizontal scaling
 - add pause menu functionality. gallery, options, exit fade out. gallery and options - add an enum that determines whether to go to title or just queuefree and return to pause menu etc
 - fix html cursor capture on pause menu etc
-- fix null checks, replace them with is_instance_valid()
+- fix null checks, replace them with is_instance_valid
 - set locale on first launch
-- disable menu buttons during transition
 - COME UP WITH A NAME FOR THE GAME!!!
 - come up with a name for a chara.
 - work on economy :D
