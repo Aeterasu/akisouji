@@ -1,0 +1,92 @@
+[gd_scene load_steps=7 format=3 uid="uid://mpmgcwiytdco"]
+
+[ext_resource type="Script" path="res://scenes/level/level.gd" id="1_ntmoa"]
+[ext_resource type="Script" path="res://scenes/utils/mouse_capture_handler.gd" id="2_cat4b"]
+[ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://resource/mesh/leaf_mesh.tres" id="2_s8x46"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yvuwb"]
+particle_flag_rotate_y = true
+emission_shape = 3
+emission_box_extents = Vector3(16, 1, 16)
+angle_min = -117.0
+angle_max = 58.5
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dj6jh"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Environment" id="Environment_iuakf"]
+
+[node name="LeafParticleTest" type="Node3D" node_paths=PackedStringArray("player_spawn_position")]
+script = ExtResource("1_ntmoa")
+player_spawn_position = NodePath("Level/PlayerSpawnPosition")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 104, -0.5, 104)
+size = Vector3(256, 1, 256)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 16, 0.5, 16)
+amount = 131072
+lifetime = 999999.0
+explosiveness = 1.0
+visibility_aabb = AABB(-16, -16, -16, 32, 32, 32)
+process_material = SubResource("ParticleProcessMaterial_yvuwb")
+draw_pass_1 = ExtResource("2_s8x46")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 48, 0.5, 16)
+amount = 131072
+lifetime = 999999.0
+explosiveness = 1.0
+visibility_aabb = AABB(-16, -16, -16, 32, 32, 32)
+process_material = SubResource("ParticleProcessMaterial_yvuwb")
+draw_pass_1 = ExtResource("2_s8x46")
+
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="."]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 16, 0.5, 48)
+amount = 131072
+lifetime = 999999.0
+explosiveness = 1.0
+visibility_aabb = AABB(-16, -16, -16, 32, 32, 32)
+process_material = SubResource("ParticleProcessMaterial_yvuwb")
+draw_pass_1 = ExtResource("2_s8x46")
+
+[node name="GPUParticles3D4" type="GPUParticles3D" parent="."]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 48, 0.5, 48)
+amount = 131072
+lifetime = 999999.0
+explosiveness = 1.0
+visibility_aabb = AABB(-16, -16, -16, 32, 32, 32)
+process_material = SubResource("ParticleProcessMaterial_yvuwb")
+draw_pass_1 = ExtResource("2_s8x46")
+
+[node name="Level" type="Node3D" parent="."]
+transform = Transform3D(-2.18557e-07, 0, 1, 0, 1, 0, -1, 0, -2.18557e-07, 0, 0, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -128, -0.75, 128)
+use_collision = true
+size = Vector3(256, 1, 256)
+material = SubResource("StandardMaterial3D_dj6jh")
+
+[node name="PlayerSpawnPosition" type="Marker3D" parent="Level"]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -19.25, 2.20963, 19)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Level"]
+environment = SubResource("Environment_iuakf")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Level"]
+transform = Transform3D(1, 0, 0, 0, 0.291921, 0.956442, 0, -0.956442, 0.291921, 0, 0, 0)
+
+[node name="MouseCaptureHandler" type="Node" parent="."]
+script = ExtResource("2_cat4b")
+mode = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0

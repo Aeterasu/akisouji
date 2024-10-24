@@ -9,7 +9,7 @@ transparency = 1
 cull_mode = 2
 no_depth_test = true
 shading_mode = 0
-albedo_color = Color(0, 1, 0.883333, 1)
+albedo_color = Color(0, 1, 0.883, 1)
 albedo_texture = ExtResource("2_o5ypd")
 
 [resource]

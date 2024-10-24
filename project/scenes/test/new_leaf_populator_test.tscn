@@ -37,7 +37,6 @@ script = ExtResource("2_6thpy")
 mode = 2
 
 [node name="LeafPopulator" parent="." instance=ExtResource("3_x25up")]
-leavesPerPixel = 16
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

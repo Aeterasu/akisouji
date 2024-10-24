@@ -13,11 +13,11 @@ var is_pausable : bool = true
 func _ready():
 	game_instance = self
 
-	level.on_level_completion.connect(_on_level_completion)
+	#level.on_level_completion.connect(_on_level_completion)
 	player.global_transform = level.player_spawn_position.global_transform
 	player.respawn_transform = level.player_spawn_position.global_transform
 
-	player.leaf_cleaning_handler = level.leaf_populator.getLeafCleaningHandler()
+	#player.leaf_cleaning_handler = level.leaf_populator.getLeafCleaningHandler()
 
 	loading_screen._on_timeout()
 

@@ -102,7 +102,6 @@ process_mode = 1
 [node name="NewLeafPopulatorTest" parent="Pausable" instance=ExtResource("4_uu4wi")]
 
 [node name="Player" parent="Pausable/NewLeafPopulatorTest" instance=ExtResource("3_ncnfk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="TabletScreen" type="SubViewport" parent="."]
 size = Vector2i(320, 180)

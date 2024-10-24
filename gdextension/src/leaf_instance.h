@@ -17,16 +17,16 @@ namespace godot
             Vector3 offset = Vector3(0, 0, 0);
             int index = 0;
 
-            LeafInstance::LeafInstance(){}
+            LeafInstance(){}
 
-            LeafInstance::LeafInstance(Vector3 pPosition, Vector3 pOffset, int pIndex)
+            LeafInstance(Vector3 pPosition, Vector3 pOffset, int pIndex)
             {
                 this->position = pPosition;
                 this->offset = pOffset;
                 this->index = pIndex;
             }
 
-            LeafInstance::~LeafInstance(){}
+            ~LeafInstance(){}
 
             void setPosition(Vector3 pPosition);
             Vector3 getPosition();

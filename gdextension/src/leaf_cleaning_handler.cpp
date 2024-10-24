@@ -86,7 +86,6 @@ void LeafCleaningHandler::UpdateTicks(double delta)
 
     for (int i = requests.size() - 1; i > 0; i--)
     {
-        int suitableLeaves = 0;
         CleaningRequest *request = Object::cast_to<CleaningRequest>(requests[i]);
 
         Vector2 requestPosition = request->getRequestPosition();
@@ -115,8 +114,6 @@ void LeafCleaningHandler::UpdateTicks(double delta)
                     0.0f,
                     request->getRequestDirection().y * request->getRequestSize());
                 requestedLeafIndexes.append(leaf->index);
-
-                suitableLeaves += 1;
             }
 
             if (transform.origin.z > requestPosition.y + request->getRequestSize() + 0.1f)
@@ -130,10 +127,7 @@ void LeafCleaningHandler::UpdateTicks(double delta)
             }
         }
 
-        if (suitableLeaves <= 0)
-        {
-            requests.remove_at(i);
-        }
+        requests.remove_at(i);
     }
 
     tickCount++;

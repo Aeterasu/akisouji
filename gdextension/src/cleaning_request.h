@@ -23,18 +23,18 @@ namespace godot
             static void _bind_methods();
 
         public:
-            CleaningRequest::CleaningRequest(){}
+            CleaningRequest(){}
 
-            CleaningRequest::CleaningRequest(Vector2 pPosition, Vector2 pDirection, float pSize)
+            CleaningRequest(Vector2 pPosition, Vector2 pDirection, float pSize)
             {
                 this->position = pPosition;
                 this->direction = pDirection;
                 this->size = pSize;
             }
 
-            CleaningRequest::~CleaningRequest(){} 
+            ~CleaningRequest(){} 
 
-            void CleaningRequest::Complete();
+            void Complete();
 
             Vector2 getRequestPosition() const;
             Vector2 getRequestDirection() const;
