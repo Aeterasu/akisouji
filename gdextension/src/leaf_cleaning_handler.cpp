@@ -41,8 +41,41 @@ void LeafCleaningHandler::_physics_process(double delta)
         UpdateTicks(delta);
         ticks = tickRate;
     }
-}
 
+    if (requestedLeafIndexes.size() > 0)
+    {
+        for (int i = requestedLeafIndexes.size() - 1; i > 0; i--)
+        {
+            Ref<LeafInstance> leaf = Object::cast_to<LeafInstance>(leafInstances[requestedLeafIndexes[i]]);
+
+            Ref<Tween> tween = create_tween();
+            tween->set_parallel(true);
+            tween->tween_property(*leaf, "position", leaf->position + leaf->offset, 0.3f);
+            tween->tween_property(*leaf, "offset", Vector3(0, 0, 0), 0.3f);
+            tween.unref();
+
+            movingLeafIndexes.append(requestedLeafIndexes[i]);
+            requestedLeafIndexes.remove_at(i);
+        }
+    }
+
+    if (movingLeafIndexes.size() > 0)
+    {
+        for (int i = movingLeafIndexes.size() - 1; i > 0; i--)
+        {
+            Ref<LeafInstance> leaf = Object::cast_to<LeafInstance>(leafInstances[movingLeafIndexes[i]]);
+
+            Transform3D transform = multimesh->get_instance_transform(movingLeafIndexes[i]);
+            transform.origin = leaf->position;
+            multimesh->set_instance_transform(movingLeafIndexes[i], transform);
+
+            if (leaf->offset.length() <= 0.02f)
+            {
+                movingLeafIndexes.remove_at(i);
+            }
+        }
+    }
+}
 
 void LeafCleaningHandler::UpdateTicks(double delta)
 {
@@ -58,9 +91,14 @@ void LeafCleaningHandler::UpdateTicks(double delta)
 
         Vector2 requestPosition = request->getRequestPosition();
 
-        int firstSuitableIndex = leafInstances.bsearch_custom(requestPosition, Callable(this, "LeafPositionSort"));
-
         int firstSuitableIndex = 0;
+
+        firstSuitableIndex = leafInstances.bsearch_custom(
+            memnew(LeafInstance(
+                Vector3(requestPosition.x - request->getRequestSize() / 2, 0.0f, requestPosition.y - request->getRequestSize() / 2), 
+                Vector3(0.0f, 0.0f, 0.0f), 
+                0)), 
+            Callable(this, "LeafPositionSort"));
 
         if (firstSuitableIndex > 0)
         {
@@ -70,17 +108,25 @@ void LeafCleaningHandler::UpdateTicks(double delta)
         for (int j = firstSuitableIndex; j < multimesh->get_instance_count(); j++)
         {
             Transform3D transform = multimesh->get_instance_transform(j);
-            if (Vector2(transform.origin.x, transform.origin.z).distance_to(requestPosition) < request->getRequestSize())
+            if (Vector2(transform.origin.x, transform.origin.z).distance_squared_to(requestPosition) < request->getRequestSize())
             {
-                multimesh->set_instance_transform(j, transform.translated(Vector3(
-                    request->getRequestDirection().x * delta, 
-                    0.0f, 
-                    request->getRequestDirection().y * delta)
-                    ));
-
-                //leafInstances[]
+                Ref<LeafInstance> leaf = leafInstances[j];
+                leaf->offset = Vector3(request->getRequestDirection().x * request->getRequestSize(),
+                    0.0f,
+                    request->getRequestDirection().y * request->getRequestSize());
+                requestedLeafIndexes.append(leaf->index);
 
                 suitableLeaves += 1;
+            }
+
+            if (transform.origin.z > requestPosition.y + request->getRequestSize() + 0.1f)
+            {
+                j += mapSize.y;
+
+                if (transform.origin.x > requestPosition.x + request->getRequestSize() + 0.1f)
+                {
+                    break;
+                }
             }
         }
 

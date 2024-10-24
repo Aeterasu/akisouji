@@ -7,6 +7,8 @@
 #include <godot_cpp/classes/multi_mesh.hpp>
 #include <godot_cpp/variant/node_path.hpp>
 #include <godot_cpp/variant/typed_array.hpp>
+#include <godot_cpp/classes/tween.hpp>
+#include <godot_cpp/classes/property_tweener.hpp>
 #include "cleaning_request.h"
 
 namespace godot
@@ -23,6 +25,8 @@ namespace godot
             Ref<MultiMesh> multimesh;
 
             TypedArray<CleaningRequest> requests;
+            TypedArray<int> requestedLeafIndexes;
+            TypedArray<int> movingLeafIndexes;
             
             void UpdateTicks(double delta);
 
@@ -43,6 +47,7 @@ namespace godot
 
             TypedArray<LeafInstance> leafInstances;
             Vector2 mapSize = Vector2(1, 1);
+            int pixelDensity = 4;
 
             void setMultimesh(Ref<MultiMesh> pMultimesh);
 

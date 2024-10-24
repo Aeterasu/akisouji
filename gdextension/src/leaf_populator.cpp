@@ -150,6 +150,7 @@ void LeafPopulator::PopulateLeaves()
     leafCleaningHandler->setMultimesh(multimesh);
     leafCleaningHandler->leafInstances = leafInstances;
     leafCleaningHandler->mapSize = imageSize;
+    leafCleaningHandler->pixelDensity = leavesPerPixel;
 
     UtilityFunctions::print(multimesh->get_instance_count(), " leaves");
 

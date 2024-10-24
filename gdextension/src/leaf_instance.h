@@ -27,6 +27,15 @@ namespace godot
             }
 
             LeafInstance::~LeafInstance(){}
+
+            void setPosition(Vector3 pPosition);
+            Vector3 getPosition();
+
+            void setOffset(Vector3 pOffset);
+            Vector3 getOffset();
+
+            void setIndex(int pIndex);
+            int getIndex();
     };
 }
 

@@ -134,6 +134,11 @@ func input_process(delta : float):
 		if (Input.is_action_just_pressed("player_action_secondary") && !wish_sprint):
 			inventory.current_tool._use_secondary()
 
+	if (Input.is_action_just_pressed("player_action_primary")):
+		leaf_cleaning_handler.RequestCleaningAtPosition(
+				Vector2(global_position.x, global_position.z), 
+				-Vector2(transform.basis.z.x, transform.basis.z.z),
+				1.0)	
 	# sprint
 
 	if (Input.is_action_just_pressed("player_action_sprint") && velocity_component.input_direction.length() > 0.0 && is_on_floor()):
@@ -228,7 +233,7 @@ func _on_sprint_cleaning_timeout():
 	leaf_cleaning_handler.RequestCleaningAtPosition(
 		Vector2(global_position.x, global_position.z), 
 		velocity_component.input_direction,
-		1.0)		
+		1.0)
 
 	#if (is_instance_valid(leaf_cleaning_handler)):
 		#leaf_cleaning_handler._on_player_cleaning_on_position(global_position + Vector3.DOWN, sprint_cleaning_radius)
