@@ -14,6 +14,7 @@
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/classes/random_number_generator.hpp>
 #include "leaf_cleaning_handler.h"
+#include "leaf_instance.h"
 
 namespace godot
 {
@@ -33,11 +34,12 @@ namespace godot
             Ref<MultiMesh> multimesh;
             int final_instance_count = 0;
 
-            TypedArray<Vector3> leafPositions = {};
             TypedArray<Color> leafColors = {};
 
             NodePath nodePathLeafCleaningHandler;
             LeafCleaningHandler* leafCleaningHandler;
+
+            TypedArray<LeafInstance> leafInstances = {};
 
             void PopulateLeaves();
         protected:

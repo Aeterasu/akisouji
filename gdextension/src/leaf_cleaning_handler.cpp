@@ -13,6 +13,8 @@ void LeafCleaningHandler::_bind_methods()
 
     ClassDB::bind_method(D_METHOD("UpdateTicks", "delta"), &LeafCleaningHandler::UpdateTicks);
     ClassDB::bind_method(D_METHOD("RequestCleaningAtPosition", "pCleaningRequest"), &LeafCleaningHandler::RequestCleaningAtPosition);
+
+    ClassDB::bind_method(D_METHOD("LeafPositionSort", "a", "b"), &LeafCleaningHandler::LeafPositionSort);
 }
 
 LeafCleaningHandler::LeafCleaningHandler()
@@ -52,21 +54,34 @@ void LeafCleaningHandler::UpdateTicks(double delta)
     for (int i = requests.size() - 1; i > 0; i--)
     {
         int suitableLeaves = 0;
+        CleaningRequest *request = Object::cast_to<CleaningRequest>(requests[i]);
 
-        for (int j = 0; j < multimesh->get_instance_count(); j++)
+        Vector2 requestPosition = request->getRequestPosition();
+
+        int firstSuitableIndex = leafInstances.bsearch_custom(requestPosition, Callable(this, "LeafPositionSort"));
+
+        int firstSuitableIndex = 0;
+
+        if (firstSuitableIndex > 0)
         {
-
+            firstSuitableIndex -= 1;
+        }
+        
+        for (int j = firstSuitableIndex; j < multimesh->get_instance_count(); j++)
+        {
             Transform3D transform = multimesh->get_instance_transform(j);
-            CleaningRequest *request = Object::cast_to<CleaningRequest>(requests[i]);
-
-            if (Vector2(transform.origin.x, transform.origin.z).distance_to(request->getRequestPosition()) > request->getRequestSize())
+            if (Vector2(transform.origin.x, transform.origin.z).distance_to(requestPosition) < request->getRequestSize())
             {
-                continue;
+                multimesh->set_instance_transform(j, transform.translated(Vector3(
+                    request->getRequestDirection().x * delta, 
+                    0.0f, 
+                    request->getRequestDirection().y * delta)
+                    ));
+
+                //leafInstances[]
+
+                suitableLeaves += 1;
             }
-
-            multimesh->set_instance_transform(j, transform.translated(Vector3(request->getRequestDirection().x * delta, 0.0f, request->getRequestDirection().y * delta)));
-
-            suitableLeaves += 1;
         }
 
         if (suitableLeaves <= 0)
@@ -76,6 +91,11 @@ void LeafCleaningHandler::UpdateTicks(double delta)
     }
 
     tickCount++;
+}
+
+bool LeafCleaningHandler::LeafPositionSort(Ref<LeafInstance> a, Ref<LeafInstance> b)
+{
+    return Vector2(a->position.x, a->position.z) < Vector2(b->position.x, b->position.z);
 }
 
 void LeafCleaningHandler::setTickRate(int pTickrate)

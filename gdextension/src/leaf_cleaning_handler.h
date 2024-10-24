@@ -25,6 +25,9 @@ namespace godot
             TypedArray<CleaningRequest> requests;
             
             void UpdateTicks(double delta);
+
+            bool LeafPositionSort(Ref<LeafInstance> a, Ref<LeafInstance> b);
+
         protected:
             static void _bind_methods();
 
@@ -37,6 +40,9 @@ namespace godot
 
             void setTickRate(int pTickRate);
             int getTickRate();
+
+            TypedArray<LeafInstance> leafInstances;
+            Vector2 mapSize = Vector2(1, 1);
 
             void setMultimesh(Ref<MultiMesh> pMultimesh);
 

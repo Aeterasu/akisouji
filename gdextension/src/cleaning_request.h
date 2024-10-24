@@ -2,6 +2,7 @@
 #define CLEANINGREQUEST_H
 
 #include <godot_cpp/classes/ref_counted.hpp>
+#include "leaf_instance.h"
 
 namespace godot
 {
@@ -15,6 +16,8 @@ namespace godot
             float size;
 
             bool isCompleted;
+
+            TypedArray<LeafInstance> *leafInstances;
 
         protected:
             static void _bind_methods();
