@@ -9,8 +9,6 @@ void LeafCleaningHandler::_bind_methods()
     ClassDB::bind_method(D_METHOD("getTickRate"), &LeafCleaningHandler::getTickRate);
     ADD_PROPERTY(PropertyInfo(Variant::INT, "tickRate", PROPERTY_HINT_RANGE, "0, 60"), "setTickRate", "getTickRate");
 
-    ClassDB::bind_method(D_METHOD("setMultimesh", "pMultimesh"), &LeafCleaningHandler::setMultimesh);
-
     ClassDB::bind_method(D_METHOD("UpdateTicks", "delta"), &LeafCleaningHandler::UpdateTicks);
     ClassDB::bind_method(D_METHOD("RequestCleaningAtPosition", "pCleaningRequest"), &LeafCleaningHandler::RequestCleaningAtPosition);
 
@@ -29,7 +27,8 @@ LeafCleaningHandler::~LeafCleaningHandler(){}
 
 void LeafCleaningHandler::_ready()
 {
-
+    indexesQueuedForCleaning.resize(cleaningQueueIndexBuffer);
+    indexesQueuedForCleaning.fill(-1);
 }
 
 void LeafCleaningHandler::_physics_process(double delta)
@@ -40,45 +39,45 @@ void LeafCleaningHandler::_physics_process(double delta)
     {
         UpdateTicks(delta);
         ticks = tickRate;
-    }
 
-    if (requestedLeafIndexes.size() > 0)
-    {
-        for (int i = requestedLeafIndexes.size() - 1; i > 0; i--)
+        int i = 0;
+        int sweeps = 0;
+
+        while (sweeps < sweepPerTick)
         {
-            Ref<LeafInstance> leaf = Object::cast_to<LeafInstance>(leafInstances[requestedLeafIndexes[i]]);
+            i++;
 
-            Ref<Tween> tween = create_tween();
-            tween->set_parallel(true);
-            tween->tween_property(*leaf, "position", leaf->position + leaf->offset, 0.3f);
-            tween->tween_property(*leaf, "offset", Vector3(0, 0, 0), 0.3f);
-            tween.unref();
-
-            movingLeafIndexes.append(requestedLeafIndexes[i]);
-            requestedLeafIndexes.remove_at(i);
-        }
-    }
-
-    if (movingLeafIndexes.size() > 0)
-    {
-        for (int i = movingLeafIndexes.size() - 1; i > 0; i--)
-        {
-            Ref<LeafInstance> leaf = Object::cast_to<LeafInstance>(leafInstances[movingLeafIndexes[i]]);
-
-            Transform3D transform = multimesh->get_instance_transform(movingLeafIndexes[i]);
-            transform.origin = leaf->position;
-            multimesh->set_instance_transform(movingLeafIndexes[i], transform);
-
-            if (leaf->offset.length() <= 0.02f)
+            if (i > cleaningQueueIndexBuffer - 1)
             {
-                movingLeafIndexes.remove_at(i);
+                break;
+            }
+
+            if (int(indexesQueuedForCleaning[i]) < 0)
+            {
+                continue;
+            }
+            else
+            {
+                sweeps++;
+                int req = int(indexesQueuedForCleaning[i]);
+                (*transforms)[req] = Transform3D().translated(Vector3(999.0f, 999.0f, 999.0f));
+                multimesh->set_instance_transform(req, (*transforms)[req]);
+                
+                indexesQueuedForCleaning[i] = int(-1);
             }
         }
     }
 }
 
+void LeafCleaningHandler::UpdateRequestIndex()
+{
+
+}
+
 void LeafCleaningHandler::UpdateTicks(double delta)
 {
+    tickCount++;
+
     if (requests.size() <= 0)
     {
         return;
@@ -86,56 +85,39 @@ void LeafCleaningHandler::UpdateTicks(double delta)
 
     for (int i = requests.size() - 1; i > 0; i--)
     {
-        CleaningRequest *request = Object::cast_to<CleaningRequest>(requests[i]);
-
+        Ref<CleaningRequest> request = requests[i];
         Vector2 requestPosition = request->getRequestPosition();
 
-        int firstSuitableIndex = 0;
-
-        firstSuitableIndex = leafInstances.bsearch_custom(
-            memnew(LeafInstance(
-                Vector3(requestPosition.x - request->getRequestSize() / 2, 0.0f, requestPosition.y - request->getRequestSize() / 2), 
-                Vector3(0.0f, 0.0f, 0.0f), 
-                0)), 
-            Callable(this, "LeafPositionSort"));
-
-        if (firstSuitableIndex > 0)
+        for (int j = 0; j < instanceCount; j++)
         {
-            firstSuitableIndex -= 1;
-        }
-        
-        for (int j = firstSuitableIndex; j < multimesh->get_instance_count(); j++)
-        {
-            Transform3D transform = multimesh->get_instance_transform(j);
-            if (Vector2(transform.origin.x, transform.origin.z).distance_squared_to(requestPosition) < request->getRequestSize())
+            Vector3 origin = Transform3D((*transforms)[j]).origin;
+
+            if (origin.x > requestPosition.x + request->getRequestSize() && origin.z > requestPosition.y + request->getRequestSize())
             {
-                Ref<LeafInstance> leaf = leafInstances[j];
-                leaf->offset = Vector3(request->getRequestDirection().x * request->getRequestSize(),
-                    0.0f,
-                    request->getRequestDirection().y * request->getRequestSize());
-                requestedLeafIndexes.append(leaf->index);
+                break;
             }
-
-            if (transform.origin.z > requestPosition.y + request->getRequestSize() + 0.1f)
+            else if (Vector2(origin.x, origin.z).distance_squared_to(requestPosition) <= request->getRequestSize())
             {
-                j += mapSize.y;
+                indexesQueuedForCleaning[lastFreeRequestedQueueIndex] = int(j);
 
-                if (transform.origin.x > requestPosition.x + request->getRequestSize() + 0.1f)
+                if (lastFreeRequestedQueueIndex < cleaningQueueIndexBuffer - 1)
                 {
-                    break;
+                    lastFreeRequestedQueueIndex += 1;
+                }
+                else
+                {
+                    lastFreeRequestedQueueIndex = 0;
                 }
             }
         }
 
         requests.remove_at(i);
     }
-
-    tickCount++;
 }
 
-bool LeafCleaningHandler::LeafPositionSort(Ref<LeafInstance> a, Ref<LeafInstance> b)
+bool LeafCleaningHandler::LeafPositionSort(Transform3D a, Transform3D b)
 {
-    return Vector2(a->position.x, a->position.z) < Vector2(b->position.x, b->position.z);
+    return Vector2(a.origin.x, a.origin.z).length_squared() < Vector2(b.origin.x, b.origin.z).length_squared();
 }
 
 void LeafCleaningHandler::setTickRate(int pTickrate)
@@ -150,11 +132,5 @@ int LeafCleaningHandler::getTickRate()
 
 void LeafCleaningHandler::RequestCleaningAtPosition(Vector2 pPosition, Vector2 pDirection, float pSize)
 {
-    Ref<CleaningRequest> cleaningRequest = memnew(CleaningRequest(pPosition, pDirection, pSize));
-    requests.append(cleaningRequest);
-}
-
-void LeafCleaningHandler::setMultimesh(Ref<MultiMesh> pMultimesh)
-{
-    multimesh = pMultimesh;
+    requests.append(memnew(CleaningRequest(pPosition, pDirection, pSize)));
 }

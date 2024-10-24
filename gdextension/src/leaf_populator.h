@@ -14,7 +14,6 @@
 #include <godot_cpp/classes/scene_tree.hpp>
 #include <godot_cpp/classes/random_number_generator.hpp>
 #include "leaf_cleaning_handler.h"
-#include "leaf_instance.h"
 
 namespace godot
 {
@@ -28,6 +27,7 @@ namespace godot
             float pixelFraction = 1.0f;
             
             Ref<Texture2D> leafmap;
+            Vector2 imageSize;
 
             NodePath nodePathMultimeshInstance;
             MultiMeshInstance3D* multimeshInstance;
@@ -39,7 +39,9 @@ namespace godot
             NodePath nodePathLeafCleaningHandler;
             LeafCleaningHandler* leafCleaningHandler;
 
-            TypedArray<LeafInstance> leafInstances = {};
+            TypedArray<Transform3D> transforms;
+            TypedArray<Transform3D> offsets;
+            TypedArray<int> indexes;
 
             void PopulateLeaves();
         protected:
@@ -72,6 +74,8 @@ namespace godot
             void setNodePathLeafCleaningHandler(NodePath pNodePath);
             NodePath getNodePathLeafCleaningHandler();
             LeafCleaningHandler* getLeafCleaningHandler();
+
+            bool LeafPositionSort(Transform3D a, Transform3D b);
     };
 }
 

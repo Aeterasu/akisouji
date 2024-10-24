@@ -21,16 +21,8 @@ namespace godot
             int tickRate = 1;
             int ticks = 0;
             int tickCount = 0;
-
-            Ref<MultiMesh> multimesh;
-
-            TypedArray<CleaningRequest> requests;
-            TypedArray<int> requestedLeafIndexes;
-            TypedArray<int> movingLeafIndexes;
             
             void UpdateTicks(double delta);
-
-            bool LeafPositionSort(Ref<LeafInstance> a, Ref<LeafInstance> b);
 
         protected:
             static void _bind_methods();
@@ -45,13 +37,26 @@ namespace godot
             void setTickRate(int pTickRate);
             int getTickRate();
 
-            TypedArray<LeafInstance> leafInstances;
-            Vector2 mapSize = Vector2(1, 1);
-            int pixelDensity = 4;
+            TypedArray<CleaningRequest> requests;
 
-            void setMultimesh(Ref<MultiMesh> pMultimesh);
+            Vector2 mapSize;
+            int pixelDensity = 4;
+            Ref<MultiMesh> multimesh;
+
+            TypedArray<Transform3D> *transforms;
+            TypedArray<Transform3D> *offsets;
+            TypedArray<int> *indexes;
+
+            TypedArray<int> indexesQueuedForCleaning;
+            int cleaningQueueIndexBuffer = 256;
+            int sweepPerTick = 128;
+            int lastFreeRequestedQueueIndex = 0;
+            void UpdateRequestIndex();
+
+            int instanceCount = 0;       
 
             void RequestCleaningAtPosition(Vector2 pPosition, Vector2 pDirection, float pSize);
+            bool LeafPositionSort(Transform3D a, Transform3D b);
     };
 }
 

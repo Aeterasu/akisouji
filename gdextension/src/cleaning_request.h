@@ -2,7 +2,6 @@
 #define CLEANINGREQUEST_H
 
 #include <godot_cpp/classes/ref_counted.hpp>
-#include "leaf_instance.h"
 
 namespace godot
 {
@@ -14,10 +13,6 @@ namespace godot
             Vector2 position;
             Vector2 direction;
             float size;
-
-            bool isCompleted;
-
-            TypedArray<LeafInstance> *leafInstances;
 
         protected:
             static void _bind_methods();
@@ -33,8 +28,6 @@ namespace godot
             }
 
             ~CleaningRequest(){} 
-
-            void Complete();
 
             Vector2 getRequestPosition() const;
             Vector2 getRequestDirection() const;

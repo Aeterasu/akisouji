@@ -17,7 +17,8 @@ func _ready():
 	player.global_transform = level.player_spawn_position.global_transform
 	player.respawn_transform = level.player_spawn_position.global_transform
 
-	#player.leaf_cleaning_handler = level.leaf_populator.getLeafCleaningHandler()
+	if (is_instance_valid(level.leaf_populator)):
+		player.leaf_cleaning_handler = level.leaf_populator.getLeafCleaningHandler()
 
 	loading_screen._on_timeout()
 

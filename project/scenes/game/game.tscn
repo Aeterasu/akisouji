@@ -102,6 +102,7 @@ process_mode = 1
 [node name="NewLeafPopulatorTest" parent="Pausable" instance=ExtResource("4_uu4wi")]
 
 [node name="Player" parent="Pausable/NewLeafPopulatorTest" instance=ExtResource("3_ncnfk")]
+sprint_cleaning_cooldown = 0.1
 
 [node name="TabletScreen" type="SubViewport" parent="."]
 size = Vector2i(320, 180)

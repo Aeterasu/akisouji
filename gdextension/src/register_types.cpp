@@ -5,7 +5,6 @@
 #include "leaf_populator.h"
 #include "leaf_cleaning_handler.h"
 #include "cleaning_request.h"
-#include "leaf_instance.h"
 
 #include <gdextension_interface.h>
 #include <godot_cpp/core/defs.hpp>
@@ -25,7 +24,6 @@ void initialize_example_module(ModuleInitializationLevel p_level)
     GDREGISTER_CLASS(LeafPopulator);
     GDREGISTER_CLASS(LeafCleaningHandler);
     GDREGISTER_CLASS(CleaningRequest);
-    GDREGISTER_CLASS(LeafInstance);
 }
 
 void uninitialize_example_module(ModuleInitializationLevel p_level) 

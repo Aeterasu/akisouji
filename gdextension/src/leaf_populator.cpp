@@ -33,6 +33,8 @@ void LeafPopulator::_bind_methods()
 
     ClassDB::bind_method(D_METHOD("getMultimesh"), &LeafPopulator::getMultimesh);
     ClassDB::bind_method(D_METHOD("getLeafCleaningHandler"), &LeafPopulator::getLeafCleaningHandler);
+
+    ClassDB::bind_method(D_METHOD("LeafPositionSort", "a", "b"), &LeafPopulator::LeafPositionSort);    
 }
 
 LeafPopulator::LeafPopulator()
@@ -45,7 +47,9 @@ LeafPopulator::LeafPopulator()
 
 LeafPopulator::~LeafPopulator()
 {
-    this->leafInstances.clear();
+    this->transforms.clear();
+    this->offsets.clear();
+    this->indexes.clear();
 }
 
 void LeafPopulator::_ready()
@@ -54,6 +58,8 @@ void LeafPopulator::_ready()
     {
         return;
     }
+
+    //multimesh->set_instance_count(0);
 
     leafCleaningHandler = get_node<LeafCleaningHandler>(this->nodePathLeafCleaningHandler);
 
@@ -86,13 +92,16 @@ void LeafPopulator::PopulateLeaves()
     // get our image data from leaf map
 
     Ref<Image> image = leafmap->get_image();
-    Vector2i imageSize = image->get_size();
+    imageSize = image->get_size();
 
     const float threshold = 0.01f;
 
     // read the image data. get the color (intensity) value, and create an array of positions.
 
-    leafInstances.resize(imageSize.x * imageSize.y * leavesPerPixel);
+    int size = imageSize.x * imageSize.y * leavesPerPixel;
+    transforms.resize(size);
+    offsets.resize(size);
+    indexes.resize(size);
 
     uint32_t offset = 0;
 
@@ -107,18 +116,13 @@ void LeafPopulator::PopulateLeaves()
                 int currentPixelDensity = (int)ceil(pixel * leavesPerPixel);
 
                 for (int u = 0; u < currentPixelDensity; u++)
-                {                    
-                    // create leaf data
-
-                    LeafInstance* instance = memnew(LeafInstance(
-                        Vector3(i + random->randf() * 1.0, 0.0f, j + random->randf() * 1.0),
-                        Vector3(0, 0, 0),
-                        offset));
-                    
-                    leafInstances[offset] = Object::cast_to<LeafInstance>(instance);
-
-                    // next!               
-
+                {
+                    transforms[offset] = Transform3D()
+                        .rotated(Vector3(0.0f, 1, 0.0f), random->randf() * 3.14f * 2)
+                        .rotated(Vector3((0.5f - random->randf()) * 2.0f, 0, (0.5f - random->randf()) * 2.0f), random->randf() * 3.14f * 0.25f)                    
+                        .translated(Vector3(i + random->randf() * 1.0, 0.0f, j + random->randf() * 1.0));
+                    offsets[offset] = Transform3D();
+                    indexes[offset] = offset;
                     offset++;
                 }
 
@@ -129,9 +133,11 @@ void LeafPopulator::PopulateLeaves()
 
     // sort the array
 
-    leafInstances.resize(final_instance_count);
+    transforms.resize(final_instance_count);
+    offsets.resize(final_instance_count);
+    indexes.resize(final_instance_count);
 
-    //leafInstances.sort(); // TODO: figure out a way to distribute array as already sorted, without this unnecessary expensive step
+    transforms.sort_custom(Callable(this, "LeafPositionSort"));
 
     // transform our leaves!
 
@@ -139,18 +145,17 @@ void LeafPopulator::PopulateLeaves()
 
     for (int i = 0; i < final_instance_count; i++)
     {
-        multimesh->set_instance_transform(i, Transform3D()
-            .rotated(Vector3(0.0f, 1, 0.0f), random->randf() * 3.14f * 2)
-            .rotated(Vector3((0.5f - random->randf()) * 2.0f, 0, (0.5f - random->randf()) * 2.0f), random->randf() * 3.14f * 0.25f)
-            .translated(Object::cast_to<LeafInstance>(leafInstances[i])->position));
-
+        multimesh->set_instance_transform(i, transforms[i]);
         multimesh->set_instance_color(i, leafColors[random->randi() % leafColors.size()]);
     }   
 
-    leafCleaningHandler->setMultimesh(multimesh);
-    leafCleaningHandler->leafInstances = leafInstances;
     leafCleaningHandler->mapSize = imageSize;
     leafCleaningHandler->pixelDensity = leavesPerPixel;
+    leafCleaningHandler->multimesh = multimesh;
+    leafCleaningHandler->transforms = &transforms;
+    leafCleaningHandler->offsets = &offsets;
+    leafCleaningHandler->indexes = &indexes;
+    leafCleaningHandler->instanceCount = multimesh->get_instance_count();
 
     UtilityFunctions::print(multimesh->get_instance_count(), " leaves");
 
@@ -164,6 +169,21 @@ void LeafPopulator::PopulateLeaves()
     uint64_t duration = endTime - startTime;
 
     UtilityFunctions::prints("Leaves generated in:", duration, "ms");
+
+    for (int i = 0; i < 15; i++)
+    {
+        UtilityFunctions::prints("Origin:", Transform3D(transforms[i]).origin, "Distance:", Vector2(Transform3D(transforms[i]).origin.x, Transform3D(transforms[i]).origin.z).distance_squared_to(Vector2(0, 0)));
+    }
+}
+
+//bool LeafPopulator::LeafPositionSort(Transform3D a, Transform3D b)
+//{
+    //return Vector2(a.origin.x, a.origin.z).length_squared() < Vector2(b.origin.x, b.origin.z).length_squared();
+//}
+
+bool LeafPopulator::LeafPositionSort(Transform3D a, Transform3D b)
+{
+    return Vector2(a.origin.x, a.origin.z).length_squared() < Vector2(b.origin.x, b.origin.z).length_squared();
 }
 
 void LeafPopulator::_physics_process(double p_delta)
