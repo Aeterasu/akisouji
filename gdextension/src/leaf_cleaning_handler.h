@@ -46,10 +46,12 @@ namespace godot
             TypedArray<Transform3D> *transforms;
             TypedArray<Transform3D> *offsets;
             TypedArray<int> *indexes;
+            TypedArray<bool> skips;
+            int lastIndex = 0;
 
             TypedArray<int> indexesQueuedForCleaning;
-            int cleaningQueueIndexBuffer = 256;
-            int sweepPerTick = 128;
+            int cleaningQueueIndexBuffer = 512;
+            int sweepPerTick = 512;
             int lastFreeRequestedQueueIndex = 0;
             void UpdateRequestIndex();
 

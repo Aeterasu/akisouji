@@ -19,4 +19,4 @@ nodePathLeafCleaningHandler = NodePath("LeafCleaningHandler")
 multimesh = SubResource("MultiMesh_5xmeq")
 
 [node name="LeafCleaningHandler" type="LeafCleaningHandler" parent="."]
-tickRate = 3
+tickRate = 2

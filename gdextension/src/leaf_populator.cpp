@@ -136,12 +136,11 @@ void LeafPopulator::PopulateLeaves()
     transforms.resize(final_instance_count);
     offsets.resize(final_instance_count);
     indexes.resize(final_instance_count);
+    multimesh->set_instance_count(final_instance_count);
 
     transforms.sort_custom(Callable(this, "LeafPositionSort"));
 
     // transform our leaves!
-
-    multimesh->set_instance_count(final_instance_count);
 
     for (int i = 0; i < final_instance_count; i++)
     {
@@ -155,9 +154,12 @@ void LeafPopulator::PopulateLeaves()
     leafCleaningHandler->transforms = &transforms;
     leafCleaningHandler->offsets = &offsets;
     leafCleaningHandler->indexes = &indexes;
-    leafCleaningHandler->instanceCount = multimesh->get_instance_count();
+    leafCleaningHandler->instanceCount = final_instance_count;
+    leafCleaningHandler->skips.resize(final_instance_count);
+    leafCleaningHandler->skips.fill(bool(false));
+    leafCleaningHandler->lastIndex = final_instance_count;
 
-    UtilityFunctions::print(multimesh->get_instance_count(), " leaves");
+    UtilityFunctions::print(final_instance_count, " leaves");
 
     // after we've done, disconnect the callable
 
@@ -183,7 +185,7 @@ void LeafPopulator::PopulateLeaves()
 
 bool LeafPopulator::LeafPositionSort(Transform3D a, Transform3D b)
 {
-    return Vector2(a.origin.x, a.origin.z).length_squared() < Vector2(b.origin.x, b.origin.z).length_squared();
+    return a.origin.x < b.origin.x;
 }
 
 void LeafPopulator::_physics_process(double p_delta)

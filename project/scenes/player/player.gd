@@ -230,9 +230,10 @@ func _on_sprint_cleaning_timeout():
 	if (velocity_component.input_direction.length() < 0.1 or !is_on_floor()):
 		return
 
-	leaf_cleaning_handler.RequestCleaningAtPosition(
+	if (is_instance_valid(leaf_cleaning_handler)):
+		leaf_cleaning_handler.RequestCleaningAtPosition(
 			Vector2(global_position.x, global_position.z), 
-			-Vector2(transform.basis.z.x, transform.basis.z.z),
+			Vector2(velocity.x, velocity.z),
 			1.0)
 	
 	#if (is_instance_valid(leaf_cleaning_handler)):
