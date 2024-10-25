@@ -43,6 +43,7 @@ LEFT TO DO:
 + add pause menu functionality. gallery, options, exit fade out. gallery and options - add an enum that determines whether to go to title or just queuefree and return to pause menu etc
 + fix html cursor capture on pause menu etc
 + gallery gamepad controls
++ fix pause menu horizontal scaling
 
 = DON'T ADD ANY MORE FEATURES. PERIOD. =
 
@@ -56,7 +57,6 @@ CURRENT WORKING NAME - LEAF SWEEPER
 
 - port map completion, leaf interpolation and particles from gdscript leaf cleaning to C++
 - pressing lmb on scroll bar in gallery opens an image. plsfix.
-- fix pause menu horizontal scaling
 - remove output console, as it's kind of pointless now that we use GDExtension. 
 - add credits to main menu
 - smooth transitions in settings menu
@@ -68,7 +68,6 @@ CURRENT WORKING NAME - LEAF SWEEPER
 - vacuum - powerful aoe leaf blow!
 - prevent broom from activating when clicking in pause menu
 - add input delay to button manager to prevent accidental clicks
-- fix pause menu horizontal scaling
 - fix null checks, replace them with is_instance_valid
 - set locale on first launch
 - COME UP WITH A NAME FOR THE GAME!!!

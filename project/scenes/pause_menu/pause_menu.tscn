@@ -25,11 +25,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_j0qui")
 scrolling_background = NodePath("ScrollingBackground")
-button_selection_handler = NodePath("Control/ButtonSelectionHandler")
-resume_button = NodePath("Control/PaperButton")
-gallery_button = NodePath("Control/PaperButton2")
-options_button = NodePath("Control/PaperButton3")
-exit_button = NodePath("Control/PaperButton4")
+button_selection_handler = NodePath("CenterContainer/Control/ButtonSelectionHandler")
+resume_button = NodePath("CenterContainer/Control/PaperButton")
+gallery_button = NodePath("CenterContainer/Control/PaperButton2")
+options_button = NodePath("CenterContainer/Control/PaperButton3")
+exit_button = NodePath("CenterContainer/Control/PaperButton4")
 gallery_scene = ExtResource("2_lhctp")
 settings_scene = ExtResource("3_6ylju")
 
@@ -37,14 +37,11 @@ settings_scene = ExtResource("3_6ylju")
 modulate = Color(1, 1, 1, 0.694118)
 material = SubResource("ShaderMaterial_5ebs4")
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.5
 offset_left = -1280.0
-offset_right = -1280.0
-offset_bottom = -360.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = -640.0
 scale = Vector2(2, 2)
 texture = ExtResource("2_nwcox")
 stretch_mode = 1
@@ -62,12 +59,11 @@ color = Color(0, 0, 0, 0.678431)
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
+anchors_preset = -1
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -306.0
-offset_bottom = -223.0
+anchor_bottom = 0.19
+offset_top = 54.0
+offset_bottom = 0.199997
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/outline_size = 24
@@ -166,8 +162,7 @@ And gathering swallows twitter in the skies."
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="Control" type="Control" parent="."]
-process_mode = 2
+[node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -175,29 +170,34 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="PaperButton" parent="Control" instance=ExtResource("2_jcbm4")]
+[node name="Control" type="Control" parent="CenterContainer"]
+process_mode = 2
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 2
+
+[node name="PaperButton" parent="CenterContainer/Control" instance=ExtResource("2_jcbm4")]
 layout_mode = 2
 anchors_preset = 0
 anchor_top = 0.315
 anchor_right = 1.0
 anchor_bottom = 0.431
-offset_top = 0.199982
+offset_top = 0.199997
 offset_right = 0.0
 offset_bottom = -0.320007
 text_key = "MENU_BUTTON_RESUME"
 
-[node name="PaperButton2" parent="Control" instance=ExtResource("2_jcbm4")]
+[node name="PaperButton2" parent="CenterContainer/Control" instance=ExtResource("2_jcbm4")]
 layout_mode = 2
 anchors_preset = 0
 anchor_top = 0.436
 anchor_right = 1.0
 anchor_bottom = 0.553
-offset_top = 0.0799866
+offset_top = 0.0800171
 offset_right = 0.0
-offset_bottom = -0.160034
+offset_bottom = -0.160004
 text_key = "MENU_BUTTON_GALLERY"
 
-[node name="PaperButton3" parent="Control" instance=ExtResource("2_jcbm4")]
+[node name="PaperButton3" parent="CenterContainer/Control" instance=ExtResource("2_jcbm4")]
 layout_mode = 2
 anchors_preset = 0
 anchor_top = 0.558
@@ -208,7 +208,7 @@ offset_right = 0.0
 offset_bottom = -0.280029
 text_key = "MENU_BUTTON_OPTIONS"
 
-[node name="PaperButton4" parent="Control" instance=ExtResource("2_jcbm4")]
+[node name="PaperButton4" parent="CenterContainer/Control" instance=ExtResource("2_jcbm4")]
 layout_mode = 2
 anchors_preset = 0
 anchor_top = 0.679
@@ -219,7 +219,7 @@ offset_right = 0.0
 offset_bottom = -0.120056
 text_key = "MENU_BUTTON_EXIT"
 
-[node name="ButtonSelectionHandler" type="Node" parent="Control" node_paths=PackedStringArray("buttons_origin")]
+[node name="ButtonSelectionHandler" type="Node" parent="CenterContainer/Control" node_paths=PackedStringArray("buttons_origin")]
 script = ExtResource("3_trrex")
 buttons_origin = NodePath("..")
 

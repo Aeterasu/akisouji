@@ -105,7 +105,8 @@ func on_broom():
 
 	#leaf_cleaning_handler._on_player_cleaning_input(cleaning_radius, cleaning_range)
 
-	leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(result["position"].x, result["position"].z), Vector2.ZERO, cleaning_radius)
+	if (result and result.has("position")):
+		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(result["position"].x, result["position"].z), Vector2.ZERO, cleaning_radius)
 
 	pass
 
