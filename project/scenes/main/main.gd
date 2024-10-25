@@ -5,7 +5,7 @@ static var instance = null
 func _ready():
 	instance = self
 
-	TranslationServer.set_locale("en")
+	TranslationServer.set_locale("ru")
 
 	Output.print(OS.get_data_dir())
 

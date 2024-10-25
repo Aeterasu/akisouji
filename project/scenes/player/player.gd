@@ -92,9 +92,20 @@ func on_broom():
 	if (!leaf_cleaning_handler):
 		return
 
+	var screen_size = get_viewport().size
+	var screen_center = Vector2(screen_size.x * 0.5, screen_size.y * 0.5)
+
+	var active_camera = get_viewport().get_camera_3d()
+	var space_state = active_camera.get_world_3d().direct_space_state
+	var from = active_camera.project_ray_origin(screen_center)
+	var to = from + active_camera.project_ray_normal(screen_center) * cleaning_range
+	var query = PhysicsRayQueryParameters3D.create(from, to)
+	
+	var result = space_state.intersect_ray(query)
+
 	#leaf_cleaning_handler._on_player_cleaning_input(cleaning_radius, cleaning_range)
 
-	#leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), 2.0)
+	leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(result["position"].x, result["position"].z), Vector2.ZERO, cleaning_radius)
 
 	pass
 
@@ -134,11 +145,6 @@ func input_process(delta : float):
 		if (Input.is_action_just_pressed("player_action_secondary") && !wish_sprint):
 			inventory.current_tool._use_secondary()
 
-	if (Input.is_action_just_pressed("player_action_primary") && is_instance_valid(leaf_cleaning_handler)):
-		leaf_cleaning_handler.RequestCleaningAtPosition(
-				Vector2(global_position.x, global_position.z), 
-				-Vector2(transform.basis.z.x, transform.basis.z.z),
-				1.0)
 	# sprint
 
 	if (Input.is_action_just_pressed("player_action_sprint") && velocity_component.input_direction.length() > 0.0 && is_on_floor()):
@@ -218,26 +224,18 @@ func _on_landing():
 	if (wish_sprint):
 		multiplier = 1.2
 
-	#if (is_instance_valid(leaf_cleaning_handler)):
+	if (is_instance_valid(leaf_cleaning_handler)):
 		#leaf_cleaning_handler._on_player_cleaning_on_position(global_position + Vector3.DOWN, jump_cleaning_radius * multiplier)
+		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), Vector2.ZERO, jump_cleaning_radius * multiplier)
 
 	camera_effect_landing._animate()
 
 func _on_sprint_cleaning_timeout():
-	#if (!wish_sprint or !is_on_floor()):
-	#	return
-
-	if (velocity_component.input_direction.length() < 0.1 or !is_on_floor()):
+	if (!wish_sprint or !is_on_floor()):
 		return
-
-	if (is_instance_valid(leaf_cleaning_handler)):
-		leaf_cleaning_handler.RequestCleaningAtPosition(
-			Vector2(global_position.x, global_position.z), 
-			Vector2(velocity.x, velocity.z),
-			1.0)
 	
-	#if (is_instance_valid(leaf_cleaning_handler)):
-		#leaf_cleaning_handler._on_player_cleaning_on_position(global_position + Vector3.DOWN, sprint_cleaning_radius)
+	if (is_instance_valid(leaf_cleaning_handler)):
+		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), Vector2.ZERO, sprint_cleaning_radius)
 
 func _on_enter_photo_mode():
 	is_in_photo_mode = true

@@ -38,17 +38,28 @@ LEFT TO DO:
 + redesign pause menu
 + fix ui disappearing on restart
 + disable menu buttons during transition
++ fix gallery not showing hint
++ optimize leaf generation via gdextension
++ add pause menu functionality. gallery, options, exit fade out. gallery and options - add an enum that determines whether to go to title or just queuefree and return to pause menu etc
++ fix html cursor capture on pause menu etc
++ gallery gamepad controls
 
 = DON'T ADD ANY MORE FEATURES. PERIOD. =
 
+= consider reworking the sweeping mechanic. 
+what if instead of disappearing, leaves would instead pile up? hold lmb and move forward to stack leaves. 
+leaves can be put into a garbage bag - one by one or as a part of pile. put all leaves into garbage bags! bags can hold a certain amount of leaves
+
+=this died due to optimization. i will give it another try with gpu leaves and using shader parameters as input and output
+
 CURRENT WORKING NAME - LEAF SWEEPER
 
+- port map completion, leaf interpolation and particles from gdscript leaf cleaning to C++
 - pressing lmb on scroll bar in gallery opens an image. plsfix.
 - fix pause menu horizontal scaling
 - remove output console, as it's kind of pointless now that we use GDExtension. 
 - add credits to main menu
 - smooth transitions in settings menu
-- consider reworking the sweeping mechanic. what if instead of disappearing, leaves would instead pile up? hold lmb and move forward to stack leaves. leaves can be put into a garbage bag - one by one or as a part of pile. put all leaves into garbage bags! bags can hold a certain amount of leaves
 - add 'new upgrade notification'
 - add the ability to throw your broom. it will then proceed to sweep all the leaves as it slides across the ground. 
 - each broom has it's own secondary attack. broom - throw, 
@@ -58,8 +69,6 @@ CURRENT WORKING NAME - LEAF SWEEPER
 - prevent broom from activating when clicking in pause menu
 - add input delay to button manager to prevent accidental clicks
 - fix pause menu horizontal scaling
-- add pause menu functionality. gallery, options, exit fade out. gallery and options - add an enum that determines whether to go to title or just queuefree and return to pause menu etc
-- fix html cursor capture on pause menu etc
 - fix null checks, replace them with is_instance_valid
 - set locale on first launch
 - COME UP WITH A NAME FOR THE GAME!!!
@@ -70,10 +79,8 @@ CURRENT WORKING NAME - LEAF SWEEPER
 - add completion UI, with our chara holding thumbs up! add a grade based on time. D, C, B, A, A+, S. Each grade has a cash bonus. info shown - grade, time, level name. grade is an enum where -1 means no grade, otherwise grade.
 - during completion, you can move and look at the results of your work. the completion is initially just a text popup (Press blah to finish)
 - beautify gallery scroll wheel
-- gallery gamepad controls
 - add some sort of download screenshots from web version. also hide folder button in web
 - beautify leafs. new texture, maybe random texture
-- optimize leaf generation via gdextension
 - maybe implement optimization via cluster of multimeshes
 - check out TODOs in code and implement them 🥺🥺🥺
 - figure out some sort of way to prevent leaf spawning under props. heightmaps do that, but are a hassle. maybe we could generate heightmaps via raycast or some sort of other method?
@@ -89,7 +96,7 @@ CURRENT WORKING NAME - LEAF SWEEPER
 - add upgrade purchase menu
 - cash and purchases saving
 - add crunchy cleaning sounds
-- add general sound
+- add general sound. now that I think about it, there won't be much sound in the game, will it?
 - rework footstep sound
 - add camera sound
 - add ambience
@@ -103,5 +110,6 @@ CURRENT WORKING NAME - LEAF SWEEPER
 - convert meshes to glb to save space
 - some sort of music playlist manager and music ui
 - web optimizations
+- optimize mesh loading for web, cut out the blend files.
 - cut out everything unused
 - add russian, and if possible, japanese localization
