@@ -1,24 +1,37 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxyb5mugpluu5"]
+[gd_scene load_steps=8 format=3 uid="uid://bxyb5mugpluu5"]
 
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_li6ex"]
 [ext_resource type="Script" path="res://scenes/utils/mouse_capture_handler.gd" id="2_6thpy"]
+[ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://resource/mesh/leaf_mesh.tres" id="3_30t64"]
+[ext_resource type="Script" path="res://scenes/leaf/particle_leaf/gpu_leaves.gd" id="4_qdaiq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dj6jh"]
 albedo_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Environment" id="Environment_iuakf"]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n2pux"]
+particle_flag_rotate_y = true
+emission_shape = 3
+emission_box_extents = Vector3(127, 0.2, 127)
+angle_min = -720.0
+angle_max = 720.0
+collision_mode = 1
+collision_friction = 0.1
+collision_bounce = 0.0
+
 [node name="NewLeafPopulatorTest" type="Node3D" node_paths=PackedStringArray("player_spawn_position")]
 script = ExtResource("1_li6ex")
 player_spawn_position = NodePath("PlayerSpawnPosition")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 0, 128)
 use_collision = true
-size = Vector3(24, 1, 24)
+size = Vector3(256, 1, 256)
 material = SubResource("StandardMaterial3D_dj6jh")
 
 [node name="PlayerSpawnPosition" type="Marker3D" parent="."]
-transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 4.75, 2.20963, 3)
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 128, 2, 128)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_iuakf")
@@ -29,3 +42,19 @@ mode = 2
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.291921, 0.956442, 0, -0.956442, 0.291921, 0, 0, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, 31, 128)
+emitting = false
+amount = 999999
+lifetime = 1e+09
+explosiveness = 1.0
+fixed_fps = 15
+visibility_aabb = AABB(-128, -32, -128, 256, 64, 256)
+process_material = SubResource("ParticleProcessMaterial_n2pux")
+draw_pass_1 = ExtResource("3_30t64")
+script = ExtResource("4_qdaiq")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 128, -0.5, 128)
+size = Vector3(256, 2, 256)

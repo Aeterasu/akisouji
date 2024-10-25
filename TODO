@@ -40,11 +40,14 @@ LEFT TO DO:
 
 = DON'T ADD ANY MORE FEATURES. PERIOD. =
 
+= consider reworking the sweeping mechanic. what if instead of disappearing, leaves would instead pile up? hold lmb and move forward to stack leaves. leaves can be put into a garbage bag - one by one or as a part of pile. put all leaves into garbage bags! bags can hold a certain amount of leaves
+= gdextension experiments were a failure, unfortunately.
+= optimize leaf generation via gdextension
+
 CURRENT WORKING NAME - LEAF SWEEPER
 
 - add credits to main menu
 - smooth transitions in settings menu
-- consider reworking the sweeping mechanic. what if instead of disappearing, leaves would instead pile up? hold lmb and move forward to stack leaves. leaves can be put into a garbage bag - one by one or as a part of pile. put all leaves into garbage bags! bags can hold a certain amount of leaves
 - add 'new upgrade notification'
 - add the ability to throw your broom. it will then proceed to sweep all the leaves as it slides across the ground. 
 - each broom has it's own secondary attack. broom - throw, 
@@ -70,7 +73,6 @@ CURRENT WORKING NAME - LEAF SWEEPER
 - gallery gamepad controls
 - add some sort of download screenshots from web version. also hide folder button in web
 - beautify leafs. new texture, maybe random texture
-- optimize leaf generation via gdextension
 - maybe implement optimization via cluster of multimeshes
 - check out TODOs in code and implement them 🥺🥺🥺
 - figure out some sort of way to prevent leaf spawning under props. heightmaps do that, but are a hassle. maybe we could generate heightmaps via raycast or some sort of other method?

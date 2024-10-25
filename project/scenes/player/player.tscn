@@ -151,8 +151,10 @@ sway_strength = 0.1
 player = NodePath("../../../../../..")
 
 [node name="Broom" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("12_gpv6h")]
+visible = false
 
 [node name="Camera" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("14_yl1fb")]
+visible = false
 
 [node name="FootstepManager" type="Node3D" parent="." node_paths=PackedStringArray("player", "velocity_component", "concrete_footstep", "grass_footstep")]
 script = ExtResource("11_le046")
