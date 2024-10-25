@@ -40,7 +40,6 @@ namespace godot
             LeafCleaningHandler* leafCleaningHandler;
 
             TypedArray<Transform3D> transforms;
-            TypedArray<Transform3D> offsets;
             TypedArray<int> indexes;
 
             void PopulateLeaves();
@@ -59,6 +58,9 @@ namespace godot
 
             void setLeavesPerPixel(const int pLeavesPerPixel);
             int getLeavesPerPixel() const;
+
+            void setPixelFraction(const float pPixelFraction);
+            float getPixelFraction() const;
 
             void setLeafmap(Ref<Texture2D> pLeafmap);
             Ref<Texture2D> getLeafmap();

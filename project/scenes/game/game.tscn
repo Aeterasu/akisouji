@@ -7,7 +7,7 @@
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="3_uk65u"]
 [ext_resource type="Material" uid="uid://dnl0j7w1x0eod" path="res://resource/mesh/leaf_material.tres" id="3_ys06x"]
 [ext_resource type="Script" path="res://scenes/utils/show_canvas_layer_on_ready.gd" id="4_ha1os"]
-[ext_resource type="PackedScene" uid="uid://bxyb5mugpluu5" path="res://scenes/test/new_leaf_populator_test.tscn" id="4_uu4wi"]
+[ext_resource type="PackedScene" uid="uid://dvlleqic8xnpl" path="res://scenes/level/alleyway/level_alleyway.tscn" id="4_wwfh1"]
 [ext_resource type="PackedScene" uid="uid://dcaypqvm8j1yq" path="res://scenes/ui/ui.tscn" id="5_is4j0"]
 [ext_resource type="Script" path="res://scenes/player/tool/tablet/tablet_screen.gd" id="6_1n01a"]
 [ext_resource type="Script" path="res://scenes/fps_counter.gd" id="6_5ay1t"]
@@ -86,8 +86,8 @@ shader_parameter/flowMap = ExtResource("17_khpjf")
 [node name="Game" type="Node3D" node_paths=PackedStringArray("player", "level", "loading_screen", "ui_completion", "pause_menu")]
 process_mode = 3
 script = ExtResource("1_bcfl2")
-player = NodePath("Pausable/NewLeafPopulatorTest/Player")
-level = NodePath("Pausable/NewLeafPopulatorTest")
+player = NodePath("Pausable/LevelAlleyway/Player")
+level = NodePath("Pausable/LevelAlleyway")
 loading_screen = NodePath("CanvasLayer/LoadingScreen")
 ui_completion = NodePath("UICompletionLayer/UICompletion")
 pause_menu = NodePath("PauseLayer/PauseMenu")
@@ -99,9 +99,9 @@ leaf_material = ExtResource("3_ys06x")
 [node name="Pausable" type="Node" parent="."]
 process_mode = 1
 
-[node name="NewLeafPopulatorTest" parent="Pausable" instance=ExtResource("4_uu4wi")]
+[node name="LevelAlleyway" parent="Pausable" instance=ExtResource("4_wwfh1")]
 
-[node name="Player" parent="Pausable/NewLeafPopulatorTest" instance=ExtResource("3_ncnfk")]
+[node name="Player" parent="Pausable/LevelAlleyway" instance=ExtResource("3_ncnfk")]
 sprint_cleaning_cooldown = 0.1
 
 [node name="TabletScreen" type="SubViewport" parent="."]
@@ -205,7 +205,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_dvkjl")
 script = ExtResource("11_e6qqw")
-player = NodePath("../../Pausable/NewLeafPopulatorTest/Player")
+player = NodePath("../../Pausable/LevelAlleyway/Player")
 fps = 12.0
 target_color = Color(0.29219, 0.29219, 0.29219, 1)
 

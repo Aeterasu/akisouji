@@ -13,6 +13,10 @@ void LeafPopulator::_bind_methods()
     ClassDB::bind_method(D_METHOD("getLeavesPerPixel"), &LeafPopulator::getLeavesPerPixel);
     ADD_PROPERTY(PropertyInfo(Variant::INT, "leavesPerPixel", PROPERTY_HINT_RANGE, "0, 64"), "setLeavesPerPixel", "getLeavesPerPixel");
 
+    ClassDB::bind_method(D_METHOD("setPixelFraction", "pPixelFraction"), &LeafPopulator::setPixelFraction);
+    ClassDB::bind_method(D_METHOD("getPixelFraction"), &LeafPopulator::getPixelFraction);
+    ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "pixelFraction"), "setPixelFraction", "getPixelFraction");
+
     ClassDB::bind_method(D_METHOD("setLeafmap", "pLeafmap"), &LeafPopulator::setLeafmap);
     ClassDB::bind_method(D_METHOD("getLeafmap"), &LeafPopulator::getLeafmap);    
     ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "leafmap", PROPERTY_HINT_RESOURCE_TYPE, "Texture2D"), "setLeafmap", "getLeafmap");
@@ -48,7 +52,6 @@ LeafPopulator::LeafPopulator()
 LeafPopulator::~LeafPopulator()
 {
     this->transforms.clear();
-    this->offsets.clear();
     this->indexes.clear();
 }
 
@@ -63,12 +66,24 @@ void LeafPopulator::_ready()
 
     leafCleaningHandler = get_node<LeafCleaningHandler>(this->nodePathLeafCleaningHandler);
 
-    leafmap->connect("changed", Callable(this, "PopulateLeaves"));
+    if (leafmap->is_class("NoiseTexture2D"))
+    {
+        leafmap->connect("changed", Callable(this, "PopulateLeaves"));
+    }
+    else
+    {
+        PopulateLeaves();
+    }
 }
 
 void LeafPopulator::PopulateLeaves()
 {
     // add null checks here
+
+    if (Engine::get_singleton()->is_editor_hint())
+    {
+        return;
+    }
 
     if (leafmap == nullptr)
     {
@@ -100,41 +115,38 @@ void LeafPopulator::PopulateLeaves()
 
     int size = imageSize.x * imageSize.y * leavesPerPixel;
     transforms.resize(size);
-    offsets.resize(size);
     indexes.resize(size);
 
     uint32_t offset = 0;
 
+    // TODO: implement heightmaps
     for (int i = 0; i < imageSize.x; i++)
     {
         for (int j = 0; j < imageSize.y; j++)
         {
             float pixel = image->get_pixel(i, j).r;
 
-            if (pixel > threshold)
+            int currentPixelDensity = floor(pixel * leavesPerPixel);
+
+            for (int u = 0; u < currentPixelDensity; u++)
             {
-                int currentPixelDensity = (int)ceil(pixel * leavesPerPixel);
-
-                for (int u = 0; u < currentPixelDensity; u++)
-                {
-                    transforms[offset] = Transform3D()
-                        .rotated(Vector3(0.0f, 1, 0.0f), random->randf() * 3.14f * 2)
-                        .rotated(Vector3((0.5f - random->randf()) * 2.0f, 0, (0.5f - random->randf()) * 2.0f), random->randf() * 3.14f * 0.25f)                    
-                        .translated(Vector3(i + random->randf() * 1.0, 0.0f, j + random->randf() * 1.0));
-                    offsets[offset] = Transform3D();
-                    indexes[offset] = offset;
-                    offset++;
-                }
-
-                final_instance_count += currentPixelDensity;
+                transforms[offset] = Transform3D()
+                    .rotated(Vector3(0.0f, 1, 0.0f), random->randf() * 3.14f * 2)
+                    .rotated(Vector3((0.5f - random->randf()) * 2.0f, 0, (0.5f - random->randf()) * 2.0f), random->randf() * 3.14f * 0.25f)
+                    .translated(Vector3((i + random->randf() * 1.0) / pixelFraction, 0.05f, (j + random->randf() * 1.0) / pixelFraction));
+                indexes[offset] = offset;
+                offset++;
             }
+
+            final_instance_count += currentPixelDensity;
         }        
     }
+
+    final_instance_count = offset; 
 
     // sort the array
 
     transforms.resize(final_instance_count);
-    offsets.resize(final_instance_count);
     indexes.resize(final_instance_count);
     multimesh->set_instance_count(final_instance_count);
 
@@ -152,7 +164,6 @@ void LeafPopulator::PopulateLeaves()
     leafCleaningHandler->pixelDensity = leavesPerPixel;
     leafCleaningHandler->multimesh = multimesh;
     leafCleaningHandler->transforms = &transforms;
-    leafCleaningHandler->offsets = &offsets;
     leafCleaningHandler->indexes = &indexes;
     leafCleaningHandler->instanceCount = final_instance_count;
     leafCleaningHandler->skips.resize(final_instance_count);
@@ -163,7 +174,10 @@ void LeafPopulator::PopulateLeaves()
 
     // after we've done, disconnect the callable
 
-    leafmap->disconnect("changed", Callable(this, "PopulateLeaves"));
+    if (leafmap->is_class("NoiseTexture2D"))
+    {
+        leafmap->disconnect("changed", Callable(this, "PopulateLeaves"));
+    }
 
     // benchmark
 
@@ -171,11 +185,6 @@ void LeafPopulator::PopulateLeaves()
     uint64_t duration = endTime - startTime;
 
     UtilityFunctions::prints("Leaves generated in:", duration, "ms");
-
-    for (int i = 0; i < 15; i++)
-    {
-        UtilityFunctions::prints("Origin:", Transform3D(transforms[i]).origin, "Distance:", Vector2(Transform3D(transforms[i]).origin.x, Transform3D(transforms[i]).origin.z).distance_squared_to(Vector2(0, 0)));
-    }
 }
 
 //bool LeafPopulator::LeafPositionSort(Transform3D a, Transform3D b)
@@ -185,7 +194,7 @@ void LeafPopulator::PopulateLeaves()
 
 bool LeafPopulator::LeafPositionSort(Transform3D a, Transform3D b)
 {
-    return a.origin.x < b.origin.x;
+    return Vector2(a.origin.x, a.origin.z) < Vector2(b.origin.x, b.origin.z);
 }
 
 void LeafPopulator::_physics_process(double p_delta)
@@ -211,6 +220,16 @@ void LeafPopulator::setLeavesPerPixel(const int pLeavesPerPixel)
 int LeafPopulator::getLeavesPerPixel() const
 {
     return leavesPerPixel;
+}
+
+void LeafPopulator::setPixelFraction(const float pPixelFraction)
+{
+    pixelFraction = pPixelFraction;
+}
+
+float LeafPopulator::getPixelFraction() const
+{
+    return pixelFraction;
 }
 
 void LeafPopulator::setLeafmap(Ref<Texture2D> pLeafmap)

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_li6ex"]
 [ext_resource type="Script" path="res://scenes/utils/mouse_capture_handler.gd" id="2_6thpy"]
-[ext_resource type="PackedScene" uid="uid://bddqywxip4ion" path="res://scenes/leaf/leaf_populator.tscn" id="3_x25up"]
+[ext_resource type="PackedScene" uid="uid://b83v1plx4lqpw" path="res://scenes/leaf/leaf_populator.tscn" id="3_x25up"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dj6jh"]
 albedo_color = Color(0, 0, 0, 1)
@@ -37,7 +37,6 @@ script = ExtResource("2_6thpy")
 mode = 2
 
 [node name="LeafPopulator" parent="." instance=ExtResource("3_x25up")]
-leavesPerPixel = 16
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3

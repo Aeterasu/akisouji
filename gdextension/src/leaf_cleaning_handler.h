@@ -44,14 +44,13 @@ namespace godot
             Ref<MultiMesh> multimesh;
 
             TypedArray<Transform3D> *transforms;
-            TypedArray<Transform3D> *offsets;
             TypedArray<int> *indexes;
             TypedArray<bool> skips;
             int lastIndex = 0;
 
             TypedArray<int> indexesQueuedForCleaning;
-            int cleaningQueueIndexBuffer = 512;
-            int sweepPerTick = 512;
+            int cleaningQueueIndexBuffer = 256;
+            int sweepPerTick = 64;
             int lastFreeRequestedQueueIndex = 0;
             void UpdateRequestIndex();
 

@@ -61,25 +61,15 @@ void LeafCleaningHandler::_physics_process(double delta)
         {
             sweeps++;
             int req = int(indexesQueuedForCleaning[i]);
-            Vector3 offset = Transform3D((*offsets)[req]).origin;
             Transform3D t = Transform3D((*transforms)[req]);
-            offset = offset.lerp(Vector3(0, 0, 0), 6.0 * delta);
+            // TODO: BRING BACK SCALE LERPING
+            (*transforms)[req] = Transform3D().translated(Vector3(999.0, 999.0, 999.0));
+            skips[req] = true;
 
-            (*offsets)[req] = Transform3D().translated(offset);
-            (*transforms)[req] = t.translated(offset * delta);
-
-            if (offset.length() <= 0.08)
-            {
-                indexesQueuedForCleaning[i] = int(-1);
-            }
+            indexesQueuedForCleaning[i] = int(-1);
 
             multimesh->set_instance_transform(req, (*transforms)[req]);
         }
-    }
-
-    if (sweeps > 0)
-    {
-        //(*transforms).sort_custom(Callable(this, "LeafPositionSort"));
     }
 }
 
@@ -102,26 +92,29 @@ void LeafCleaningHandler::UpdateTicks(double delta)
         Ref<CleaningRequest> request = requests[i];
         Vector2 requestPosition = request->getRequestPosition();
 
+        int firstSuitableIndex = (*transforms).bsearch_custom(Transform3D()
+            .translated(Vector3(requestPosition.x, 0.0f, requestPosition.y)), 
+            Callable(this, "LeafPositionSort")
+            );
+
         for (int j = 0; j < instanceCount; j++)
         {
-            //if (skips[j])
-            //{
-            //    continue;
-            //}
+            if (skips[j])
+            {
+                continue;
+            }
 
             Vector3 origin = Transform3D((*transforms)[j]).origin;
             float size = request->getRequestSize();
 
             if (origin.x > requestPosition.x + size)
             {
-                //UtilityFunctions::print("Break at", origin.x, ", request at: ", requestPosition.x + size);
-                //break;
+                break;
             }
             else if (Vector2(origin.x, origin.z).distance_squared_to(requestPosition) <= size)
             {
                 Vector2 direction = request->getRequestDirection();
                 indexesQueuedForCleaning[lastFreeRequestedQueueIndex] = int(j);
-                (*offsets)[j] = Transform3D().translated(Vector3(direction.x, 0.0f, direction.y));
 
                 if (lastFreeRequestedQueueIndex < cleaningQueueIndexBuffer - 1)
                 {
@@ -140,7 +133,7 @@ void LeafCleaningHandler::UpdateTicks(double delta)
 
 bool LeafCleaningHandler::LeafPositionSort(Transform3D a, Transform3D b)
 {
-    return a.origin.x < b.origin.x;
+    return Vector2(a.origin.x, a.origin.z) < Vector2(b.origin.x, b.origin.z);
 }
 
 void LeafCleaningHandler::setTickRate(int pTickrate)
