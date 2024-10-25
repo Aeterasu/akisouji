@@ -19,8 +19,6 @@ class_name Gallery extends Control
 
 @export var gamepad_tooltip : Control = null
 
-@export var gamepad_hint_label : RichTextLabel = null
-
 var selected_entry_id : int = 0
 var entries : Array[GalleryEntry] = []
 var selected_entry : GalleryEntry = null
@@ -48,9 +46,6 @@ func _ready():
 		selected_entry = null)
 
 	var hide_tip : bool = false
-
-	var glyph_image = ControlGlyphHandler._get_glyph_image_path()
-	gamepad_hint_label.text = "[right][img region=0,32,32,32]" + glyph_image + "[/img]" + " - " + tr("MENU_TIP_NAVIGATION") + " " + "[img region=0,0,32,32]" + glyph_image + "[/img]" + " - " + tr("MENU_TIP_CONFIRM") + " " + "[img region=32,0,32,32]" + glyph_image + "[/img]" + " - " + tr("MENU_TIP_BACK")
 
 	if dir:
 		dir.list_dir_begin()
@@ -208,6 +203,7 @@ func _on_entry_mouse_selection(entry : GalleryEntry):
 	entry._select()
 
 func _on_entry_mouse_deselection(entry : GalleryEntry):
+	selected_entry = null
 	entry._deselect()
 
 func _on_input_device_change():
@@ -217,8 +213,8 @@ func _on_input_device_change():
 	if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD):
 		button_selection_handler._disable_all_buttons()
 		button_selection_handler.buttons_origin.hide()
-		gamepad_tooltip.show()
+		scroll_container.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_SHOW_NEVER
 	elif (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE):
 		button_selection_handler._enable_all_buttons()
 		button_selection_handler.buttons_origin.show()
-		gamepad_tooltip.hide()
+		scroll_container.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO

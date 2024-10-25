@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyaqutbexr62l"]
+
+[ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="1_arsx5"]
+[ext_resource type="Script" path="res://scenes/ui/gamepad_tooltip/gamepad_tooltip.gd" id="1_qyg4v"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bcpsj"]
+blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_j5dsx"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.0784708, 0.185111, 1)
+colors = PackedColorArray(0.355314, 0.355314, 0.355314, 1, 0.513233, 0.513233, 0.513233, 1, 1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p56e3"]
+gradient = SubResource("Gradient_j5dsx")
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[node name="GamepadTooltip" type="Control" node_paths=PackedStringArray("label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_qyg4v")
+label = NodePath("RichTextLabel")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("CanvasItemMaterial_bcpsj")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_p56e3")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 161.0
+offset_top = 669.0
+offset_right = -36.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("1_arsx5")
+theme_override_font_sizes/normal_font_size = 26
+bbcode_enabled = true
+text = "[right][img region=0,32,32,32]res://assets/texture/ui/texture_button_glyphs.png[/img] - NAVIGATION,  [img region=0,0,32,32]res://assets/texture/ui/texture_button_glyphs.png[/img] - CONFIRM, [img region=32,0,32,32]res://assets/texture/ui/texture_button_glyphs.png[/img] - BACK[/right]"

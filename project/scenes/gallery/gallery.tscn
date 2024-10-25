@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bfmvy7wmymc2l"]
+[gd_scene load_steps=29 format=3 uid="uid://bfmvy7wmymc2l"]
 
 [ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="1_mdruy"]
 [ext_resource type="Script" path="res://scenes/gallery/gallery.gd" id="1_mortg"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://sdl8j5jl2imb" path="res://assets/texture/ui/texture_ui_magnifying_glass.png" id="7_a6ulm"]
 [ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="7_jbjr6"]
 [ext_resource type="Script" path="res://scenes/gallery/gallery_entry_zoom.gd" id="11_821sk"]
+[ext_resource type="PackedScene" uid="uid://cyaqutbexr62l" path="res://scenes/ui/gamepad_tooltip/gamepad_tooltip.tscn" id="12_5tthr"]
 [ext_resource type="AudioStream" uid="uid://bjx1cljsycx7w" path="res://assets/audio/sfx_gallery_entry_accent_1.ogg" id="12_pel3b"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6ipxy"]
@@ -68,20 +69,7 @@ colors = PackedColorArray(1, 0.7975, 0.55, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_pd1am")
 fill_to = Vector2(0, 1)
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_bcpsj"]
-blend_mode = 3
-
-[sub_resource type="Gradient" id="Gradient_j5dsx"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.0784708, 0.185111, 1)
-colors = PackedColorArray(0.355314, 0.355314, 0.355314, 1, 0.513233, 0.513233, 0.513233, 1, 1, 1, 1, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_p56e3"]
-gradient = SubResource("Gradient_j5dsx")
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0)
-
-[node name="Gallery" type="Control" node_paths=PackedStringArray("gallery_base_entry", "gallery_origin", "tip_label", "button_selection_handler", "back_button", "open_folder_button", "scroll_container", "gallery_entry_origin", "gallery_entry_zoom", "gamepad_tooltip", "gamepad_hint_label")]
+[node name="Gallery" type="Control" node_paths=PackedStringArray("gallery_base_entry", "gallery_origin", "tip_label", "button_selection_handler", "back_button", "open_folder_button", "scroll_container", "gallery_entry_origin", "gallery_entry_zoom", "gamepad_tooltip")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -99,7 +87,6 @@ scroll_container = NodePath("ScrollContainer")
 gallery_entry_origin = NodePath("ScrollContainer/GridContainer")
 gallery_entry_zoom = NodePath("GalleryEntryZoom")
 gamepad_tooltip = NodePath("GamepadTooltip")
-gamepad_hint_label = NodePath("GamepadTooltip/RichTextLabel")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -8
@@ -326,42 +313,6 @@ script = ExtResource("7_jbjr6")
 horizontal = true
 buttons_origin = NodePath("..")
 
-[node name="GamepadTooltip" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="TextureRect" type="TextureRect" parent="GamepadTooltip"]
-material = SubResource("CanvasItemMaterial_bcpsj")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_p56e3")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="GamepadTooltip"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 161.0
-offset_top = 669.0
-offset_right = -36.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 16
-theme_override_fonts/normal_font = ExtResource("6_df0lg")
-theme_override_font_sizes/normal_font_size = 26
-bbcode_enabled = true
-text = "[right][img region=0,32,32,32]res://assets/texture/ui/texture_button_glyphs.png[/img] - NAVIGATION,  [img region=0,0,32,32]res://assets/texture/ui/texture_button_glyphs.png[/img] - CONFIRM, [img region=32,0,32,32]res://assets/texture/ui/texture_button_glyphs.png[/img] - BACK[/right]"
-
 [node name="GalleryEntryZoom" type="Control" parent="." node_paths=PackedStringArray("entry_origin")]
 layout_mode = 1
 anchors_preset = 15
@@ -405,6 +356,9 @@ mouse_filter = 2
 texture = ExtResource("4_oydno")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="GamepadTooltip" parent="." instance=ExtResource("12_5tthr")]
+layout_mode = 1
 
 [node name="UIUpscaler" type="Node" parent="."]
 script = ExtResource("2_ya6i8")

@@ -44,6 +44,7 @@ LEFT TO DO:
 + fix html cursor capture on pause menu etc
 + gallery gamepad controls
 + fix pause menu horizontal scaling
++ pressing lmb on scroll bar in gallery opens an image. plsfix.
 
 = DON'T ADD ANY MORE FEATURES. PERIOD. =
 
@@ -56,7 +57,6 @@ leaves can be put into a garbage bag - one by one or as a part of pile. put all 
 CURRENT WORKING NAME - LEAF SWEEPER
 
 - port map completion, leaf interpolation and particles from gdscript leaf cleaning to C++
-- pressing lmb on scroll bar in gallery opens an image. plsfix.
 - remove output console, as it's kind of pointless now that we use GDExtension. 
 - add credits to main menu
 - smooth transitions in settings menu
