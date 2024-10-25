@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_li6ex"]
 [ext_resource type="Script" path="res://scenes/utils/mouse_capture_handler.gd" id="2_6thpy"]
 [ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://resource/mesh/leaf_mesh.tres" id="3_30t64"]
-[ext_resource type="Script" path="res://scenes/leaf/particle_leaf/gpu_leaves.gd" id="4_qdaiq"]
+[ext_resource type="Script" path="res://scenes/leaf/gpu_leaf/gpu_leaves.gd" id="4_qdaiq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dj6jh"]
 albedo_color = Color(0, 0, 0, 1)
