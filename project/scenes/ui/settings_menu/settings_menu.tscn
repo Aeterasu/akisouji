@@ -21,7 +21,7 @@
 shader = ExtResource("1_rhq0f")
 shader_parameter/speed = -0.25
 
-[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("scrolling_background", "button_selection_handler", "back_button", "button_general", "button_language", "settings_category_general", "settings_category_language")]
+[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("scrolling_background", "button_selection_handler", "back_button", "button_general", "button_language", "settings_category_general", "settings_category_language", "category_name_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,6 +36,7 @@ button_general = NodePath("CategoryButtons/GeneralButton")
 button_language = NodePath("CategoryButtons/LanguageButton")
 settings_category_general = NodePath("GeneralSettings")
 settings_category_language = NodePath("LanguageSettings")
+category_name_label = NodePath("SettingsLabel/CategoryLabel")
 
 [node name="ScrollingBackground" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.694118)
@@ -190,6 +191,7 @@ offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("10_i323x")
+category_name_key = "SETTINGS_GENERAL"
 button_selection_handler = NodePath("ButtonSelectionHandler")
 back_button = NodePath("BackButton")
 
@@ -247,6 +249,7 @@ offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("10_i323x")
+category_name_key = "SETTINGS_LANGUAGE"
 button_selection_handler = NodePath("ButtonSelectionHandler")
 back_button = NodePath("BackButton")
 
@@ -269,6 +272,7 @@ text_key = "SETTINGS_PROPERTY_LANGUAGE"
 script = ExtResource("15_07bbl")
 
 [node name="ToggleLabel" parent="LanguageSettings/LanguageButton" instance=ExtResource("14_g18rr")]
+layout_mode = 0
 offset_left = 613.0
 offset_right = 660.0
 text = ""

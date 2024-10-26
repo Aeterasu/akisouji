@@ -14,6 +14,8 @@ class_name SettingsMenu extends Control
 @export var settings_category_general : SettingsCategory = null
 @export var settings_category_language : SettingsCategory = null
 
+@export var category_name_label : Label = null
+
 @export var category_selected_alpha : float = 1.0
 @export var category_unselected_alpha : float = 0.25
 
@@ -37,7 +39,7 @@ func _ready():
 	settings_category_language.hide()
 
 func _process(delta):
-	if (Input.is_action_just_pressed("pause")):
+	if (Input.is_action_just_pressed("pause") || (!is_in_category and Input.is_action_just_pressed("menu_cancel"))):
 		_on_back_pressed()
 
 	if (!is_in_category and button_selection_handler.current_button):
@@ -54,6 +56,7 @@ func _process(delta):
 		button_selection_handler.buttons_origin.modulate = Color(1.0, 1.0, 1.0, category_unselected_alpha)
 	else:
 		button_selection_handler.buttons_origin.modulate = Color(1.0, 1.0, 1.0, category_selected_alpha)
+		category_name_label.hide()
 
 func _on_button_pressed(button : UIButton):
 	if (button == back_button):
@@ -75,17 +78,29 @@ func _on_back_pressed() -> void:
 func _on_category_button_pressed(button : UIButton):
 	button_selection_handler._disable_all_buttons()
 
+	var current_category = null
+
 	match (button):
 		button_general:
 			settings_category_general.button_selection_handler._enable_all_buttons()
 			settings_category_general.on_back_button_pressed.connect(_on_category_leave)
 			settings_category_general.target_alpha = category_selected_alpha
+
 			is_in_category = true
+
+			current_category = settings_category_general
 		button_language:
 			settings_category_language.button_selection_handler._enable_all_buttons()
 			settings_category_language.on_back_button_pressed.connect(_on_category_leave)
 			settings_category_language.target_alpha = category_selected_alpha
+
 			is_in_category = true
+
+			current_category = settings_category_language
+
+	if (current_category):
+		category_name_label.text = current_category.category_name_key
+		category_name_label.show()
 
 func _on_category_leave(category : SettingsCategory) -> void:
 	button_selection_handler._enable_all_buttons()

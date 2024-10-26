@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bxucohptg4lk5"]
+[gd_scene load_steps=18 format=3 uid="uid://bxucohptg4lk5"]
 
 [ext_resource type="Script" path="res://scenes/ui/title_screen/title_screen.gd" id="1_cn1xc"]
 [ext_resource type="PackedScene" uid="uid://dj6rqqv2dxh8t" path="res://scenes/ui/settings_menu/settings_menu.tscn" id="2_aqpct"]
@@ -7,10 +7,40 @@
 [ext_resource type="Texture2D" uid="uid://bsw8iompyvt2c" path="res://assets/texture/texture_girl_placeholder_1.png" id="3_55f8g"]
 [ext_resource type="PackedScene" uid="uid://bcrys4arojn37" path="res://scenes/ui/paper_button.tscn" id="3_hx8lg"]
 [ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="4_4qwd1"]
+[ext_resource type="Texture2D" uid="uid://b1bfiqrigg32h" path="res://assets/texture/leaf/texture_leaf_particle_title_screen_1.png" id="4_5oa8g"]
 [ext_resource type="FontFile" uid="uid://c5kqanfa0j1nl" path="res://assets/font/DancingScript-VariableFont_wght.ttf" id="4_thwtb"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="4_w7fwc"]
+[ext_resource type="Script" path="res://scenes/ui/title_screen/leaf_particle_upscale.gd" id="5_2dycv"]
 [ext_resource type="PackedScene" uid="uid://cyaqutbexr62l" path="res://scenes/ui/gamepad_tooltip/gamepad_tooltip.tscn" id="6_4lgo6"]
 [ext_resource type="Script" path="res://scenes/utils/mouse_capture_handler.gd" id="8_osiqa"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nph5e"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_lctta"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.342246, 0.379333), 0.822377, 0.822377, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_etor3"]
+curve = SubResource("Curve_lctta")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_43yqt"]
+particle_flag_rotate_y = true
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(640, 1, 1)
+direction = Vector3(-1, 1, 0)
+initial_velocity_min = 102.19
+initial_velocity_max = 139.03
+angular_velocity_min = -79.6
+angular_velocity_max = 101.31
+gravity = Vector3(0, 0, 0)
+scale_max = 1.55
+alpha_curve = SubResource("CurveTexture_etor3")
+anim_offset_max = 1.0
 
 [node name="TitleScreen" type="Control" node_paths=PackedStringArray("button_selection_handler", "start_button", "gallery_button", "options_button", "exit_button", "submenu_origin")]
 layout_mode = 3
@@ -41,6 +71,19 @@ grow_vertical = 2
 scale = Vector2(2, 2)
 texture = ExtResource("2_o2re6")
 stretch_mode = 6
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="." node_paths=PackedStringArray("parent_control")]
+material = SubResource("CanvasItemMaterial_nph5e")
+position = Vector2(1085, -16)
+amount = 96
+process_material = SubResource("ParticleProcessMaterial_43yqt")
+texture = ExtResource("4_5oa8g")
+lifetime = 8.0
+preprocess = 1.0
+fixed_fps = 15
+visibility_rect = Rect2(-2048, 0, 4096, 4096)
+script = ExtResource("5_2dycv")
+parent_control = NodePath("..")
 
 [node name="Girl" type="TextureRect" parent="."]
 modulate = Color(0.89, 0.80189, 0.6942, 1)

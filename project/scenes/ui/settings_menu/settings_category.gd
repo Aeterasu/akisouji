@@ -1,5 +1,7 @@
 class_name SettingsCategory extends Control
 
+@export var category_name_key : String = ""
+
 @export var button_selection_handler : ButtonSelectionHandler = null
 @export var back_button : UIButton = null
 
@@ -12,6 +14,9 @@ func _ready() -> void:
 
 func _process(delta):
     modulate = modulate.lerp(Color(1.0, 1.0, 1.0, target_alpha), 6.0 * delta)
+
+    if (Input.is_action_just_pressed("pause") or Input.is_action_just_pressed("menu_cancel")):
+        on_back_button_pressed.emit(self)
 
 func _on_button_pressed(button : UIButton) -> void:
     if (button is SettingsButton):
