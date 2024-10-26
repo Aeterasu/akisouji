@@ -16,6 +16,8 @@ void LeafCleaningHandler::_bind_methods()
 
     ClassDB::bind_method(D_METHOD("getInstanceCount"), &LeafCleaningHandler::getInstanceCount);
     ClassDB::bind_method(D_METHOD("getCleanedInstanceCount"), &LeafCleaningHandler::getCleanedInstanceCount);
+
+    ADD_SIGNAL(MethodInfo("on_leaves_cleaned", PropertyInfo(Variant::INT, "amount")));
 }
 
 LeafCleaningHandler::LeafCleaningHandler()
@@ -46,6 +48,7 @@ void LeafCleaningHandler::_physics_process(double delta)
 
     int i = 0;
     int sweeps = 0;
+    int cleaned = 0;
 
     while (sweeps < sweepPerTick)
     {
@@ -71,10 +74,16 @@ void LeafCleaningHandler::_physics_process(double delta)
 
             indexesQueuedForCleaning[i] = int(-1);
 
+            cleaned += 1;
             cleanedInstancesCount += 1;
 
             multimesh->set_instance_transform(req, (*transforms)[req]);
         }
+    }
+
+    if (cleaned > 0)
+    {
+        emit_signal("on_leaves_cleaned", cleaned);
     }
 }
 

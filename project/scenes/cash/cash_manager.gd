@@ -29,3 +29,6 @@ func _grant_cash(amount : float = base_cash_reward) -> void:
 func _on_buffer_timeout():
 	cash += round(cash_buffer)
 	cash_buffer = 0
+
+func _reward_leaf_cleaning(leaf_amount : int):
+	_grant_cash(round(leaf_amount * base_cash_reward))

@@ -6,6 +6,8 @@ var cleaning_handler : LeafCleaningHandler
 
 var is_completed : bool = false
 
+var last_leaf_count : int = 0
+
 signal on_completion
 
 func _physics_process(delta):
@@ -21,3 +23,6 @@ func _physics_process(delta):
 
 	if (UI.instance):
 		UI.instance.progress.current_value = progress
+
+func _on_leaves_cleaned(amount : int):
+	CashManager._reward_leaf_cleaning(amount)

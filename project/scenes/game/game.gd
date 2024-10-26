@@ -27,6 +27,7 @@ func _ready():
 		leaf_populator = level.leaf_populator
 		cleaning_handler = leaf_populator.getLeafCleaningHandler()
 		progress_tracker.cleaning_handler = cleaning_handler
+		cleaning_handler.on_leaves_cleaned.connect(progress_tracker._on_leaves_cleaned)
 		player.leaf_cleaning_handler = cleaning_handler
 
 	progress_tracker.on_completion.connect(_on_level_completion)
