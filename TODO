@@ -126,7 +126,6 @@ GALLERY:
 
 PAUSE MENU:
 
-
 MISC:
     - remove output console, as it's kind of pointless now that we use GDExtension. 
     - set locale on first launch

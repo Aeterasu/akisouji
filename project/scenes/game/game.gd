@@ -49,5 +49,8 @@ func toggle_pause():
 
 	if (get_tree().paused):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		pause_menu.button_selection_handler._disable_all_buttons()
+		await get_tree().create_timer(0.05).timeout
+		pause_menu.button_selection_handler._enable_all_buttons()
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
