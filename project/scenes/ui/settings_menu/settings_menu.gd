@@ -10,9 +10,11 @@ class_name SettingsMenu extends Control
 @export var back_button : UIButton = null
 @export var button_general : UIButton = null
 @export var button_language : UIButton = null
+@export var button_keyboard : UIButton = null
 
 @export var settings_category_general : SettingsCategory = null
 @export var settings_category_language : SettingsCategory = null
+@export var settings_category_keyboard : SettingsCategory = null
 
 @export var category_name_label : Label = null
 
@@ -38,6 +40,9 @@ func _ready():
 	settings_category_language.target_alpha = category_unselected_alpha
 	settings_category_language.hide()
 
+	settings_category_keyboard.target_alpha = category_unselected_alpha
+	settings_category_keyboard.hide()
+
 func _process(delta):
 	if (Input.is_action_just_pressed("pause") || (!is_in_category and Input.is_action_just_pressed("menu_cancel"))):
 		_on_back_pressed()
@@ -45,12 +50,16 @@ func _process(delta):
 	if (!is_in_category and button_selection_handler.current_button):
 		settings_category_general.hide()
 		settings_category_language.hide()
+		settings_category_keyboard.hide()
 
 		match (button_selection_handler.current_button):
 			button_general:
 				settings_category_general.show()
 			button_language:
 				settings_category_language.show()
+			button_keyboard:
+				settings_category_keyboard.show()
+
 
 	if (is_in_category):
 		button_selection_handler.buttons_origin.modulate = Color(1.0, 1.0, 1.0, category_unselected_alpha)
@@ -97,6 +106,14 @@ func _on_category_button_pressed(button : UIButton):
 			is_in_category = true
 
 			current_category = settings_category_language
+		button_keyboard:
+			settings_category_keyboard.button_selection_handler._enable_all_buttons()
+			settings_category_keyboard.on_back_button_pressed.connect(_on_category_leave)
+			settings_category_keyboard.target_alpha = category_selected_alpha
+
+			is_in_category = true
+
+			current_category = settings_category_keyboard
 
 	if (current_category):
 		category_name_label.text = current_category.category_name_key

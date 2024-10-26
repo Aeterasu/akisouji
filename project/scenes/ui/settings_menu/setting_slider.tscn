@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfs0qq21n0dtc"]
+
+[ext_resource type="Texture2D" uid="uid://chx18mmni45o7" path="res://assets/texture/ui/settings_screen/texture_settings_slider_grabber.png" id="1_m1jf5"]
+[ext_resource type="Texture2D" uid="uid://yw63jqnkuqxt" path="res://assets/texture/ui/settings_screen/texture_settings_slider.png" id="2_snkiv"]
+[ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_function/settings_mouse_sensitivity_slider.gd" id="3_yt7ki"]
+[ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="4_lx014"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gj8s2"]
+texture = ExtResource("2_snkiv")
+expand_margin_top = 22.0
+expand_margin_bottom = 22.0
+
+[node name="HSlider" type="HSlider"]
+offset_left = 444.0
+offset_top = 4.0
+offset_right = 754.0
+offset_bottom = 54.0
+mouse_filter = 1
+theme_override_icons/grabber = ExtResource("1_m1jf5")
+theme_override_icons/grabber_highlight = ExtResource("1_m1jf5")
+theme_override_icons/grabber_disabled = ExtResource("1_m1jf5")
+theme_override_styles/slider = SubResource("StyleBoxTexture_gj8s2")
+max_value = 999999.0
+value = 70.0
+script = ExtResource("3_yt7ki")
+gamepad_step = 0.1
+
+[node name="ValueLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_right = 368.0
+offset_bottom = 47.0
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("4_lx014")
+theme_override_font_sizes/font_size = 24
+text = "75"
+vertical_alignment = 1

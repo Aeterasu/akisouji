@@ -21,12 +21,17 @@ extends Node
 
 @export_range(0.01, 1.0) var mouse_sensitivity : float = 0.125:
     set(value):
-        if (value < 0.01):
-            value = 0.01
-        elif (value > 1.0):
-            value = 1.0
+        if (value < min_mouse_sensitivity):
+            value = min_mouse_sensitivity
+        elif (value > max_mouse_senitivity):
+            value = max_mouse_senitivity
 
         mouse_sensitivity = value
+    get:
+        return mouse_sensitivity
+
+@export var min_mouse_sensitivity : float = 0.01
+@export var max_mouse_senitivity : float = 1.0
 
 @export_range(1.0, 256.0) var gamepad_sensitvity : float = 64.0
 @export_range(0.0, 1.0) var gamepad_deadzone : float = 0.3

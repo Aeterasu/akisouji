@@ -31,10 +31,6 @@ class_name Player extends CharacterBody3D
 
 var leaf_cleaning_handler : LeafCleaningHandler = null
 
-var mouse_sensitivity : float = 1.0
-var gamepad_sensitvity : float = 64.0
-var gamepad_deadzone : float = 0.3
-
 var current_jump_buffer_ticks : int = 0
 
 var current_sprint_jump_boost : Vector2 = Vector2()
@@ -52,10 +48,6 @@ var is_in_photo_mode : bool = false
 var default_fov : float = 75.0
 
 func _ready():
-	mouse_sensitivity = GlobalSettings.mouse_sensitivity
-	gamepad_sensitvity = GlobalSettings.gamepad_sensitvity
-	gamepad_deadzone = GlobalSettings.gamepad_deadzone
-
 	#equipment_viewmodel.on_broom.connect(on_broom)
 
 	sprint_cleaning_timer = Timer.new()
@@ -160,10 +152,10 @@ func get_input_direction() -> Vector2:
 
 func move_camera_gamepad(delta : float):
 	var right_stick = CameraControls._get_gamepad_camera_input_vector()
-	move_camera(clamp_gamepad_input_by_deadzone(right_stick) * gamepad_sensitvity * delta)
+	move_camera(clamp_gamepad_input_by_deadzone(right_stick) * GlobalSettings.gamepad_sensitvity * delta)
 
 func clamp_gamepad_input_by_deadzone(input : Vector2) -> Vector2:
-	if (input.length() < gamepad_deadzone):
+	if (input.length() < GlobalSettings.gamepad_deadzone):
 		return Vector2.ZERO
 	else:
 		return input
@@ -174,7 +166,7 @@ func _input(event):
 
 	if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE && event is InputEventMouseMotion):
 		var mouseMotion = event as InputEventMouseMotion
-		move_camera(-mouseMotion.relative * mouse_sensitivity)
+		move_camera(-mouseMotion.relative * GlobalSettings.mouse_sensitivity)
 
 	#TODO: move this to main. somehow.
 	if event is InputEventMouseButton:

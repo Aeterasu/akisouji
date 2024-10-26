@@ -22,11 +22,15 @@ func _process(delta):
 		var slider = (button_selection_handler.current_button as SettingsButton).setting_slider
 		if (slider):
 			if (Input.is_action_just_pressed("gamepad_dpad_left") or Input.is_action_just_pressed("player_move_left")):
+				slider.is_dragging = true
 				slider.value -= slider.gamepad_step
 				slider._on_drag(0.0)
+				slider.set_deferred("is_dragging", false)
 			if (Input.is_action_just_pressed("gamepad_dpad_right") or Input.is_action_just_pressed("player_move_right")):
+				slider.is_dragging = true
 				slider.value += slider.gamepad_step
 				slider._on_drag(0.0)
+				slider.set_deferred("is_dragging", false)
 
 func _on_button_pressed(button : UIButton) -> void:
 	if (button is SettingsButton):

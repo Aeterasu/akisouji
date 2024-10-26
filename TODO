@@ -88,7 +88,7 @@ CURRENT WORKING NAME - LEAF SWEEPER
 - check out TODOs in code and implement them 🥺🥺🥺
 - figure out some sort of way to prevent leaf spawning under props. heightmaps do that, but are a hassle. maybe we could generate heightmaps via raycast or some sort of other method?
 - draw camera texture
-- add settings menu. master, sfx, ambience, music volume. fullscreen/windowed. language. leaf higlight color setting. fov - 70-100. controls. -AUDIO, -VISUALS, -GAMEPLAY, -KEY BINDINGS, -GAMEPAD BINDINGS
+- add settings menu. master, sfx, ambience, music volume. fullscreen/windowed. language. leaf higlight color setting. fov - 70-100. controls. mouse sensitivity, gamepad sensitivity. -AUDIO, -VISUALS, -GAMEPLAY, -KEY BINDINGS, -GAMEPAD BINDINGS
 - settings saving
 - finish alleway stage. patch holes, really.
 - add fountain stage
