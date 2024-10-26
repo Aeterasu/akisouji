@@ -7,7 +7,7 @@ var leaf_populator : LeafPopulator = null
 var current_value : float = 0
 
 func _process(delta) -> void:
-	if (leaf_populator):
-		current_value = leaf_populator.getLeafCleaningHandler().getProgress()
+	#if (leaf_populator):
+		#current_value = leaf_populator.getLeafCleaningHandler().getProgress()
 
-	label.text = "Progress: " + str(round(current_value * 100)) + "%"
+	label.text = "Progress: " + str(clamp(round(current_value * 100), 0, 100)) + "%"

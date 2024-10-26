@@ -6,6 +6,12 @@ class_name Game extends Node3D
 @export var ui_completion : Control
 @export var pause_menu : PauseMenu
 
+@export var progress_tracker : LeafProgressTracker = null
+
+var leaf_populator : LeafPopulator = null
+var cleaning_handler : LeafCleaningHandler = null
+
+
 static var game_instance : Game = null
 
 var is_pausable : bool = true
@@ -18,7 +24,12 @@ func _ready():
 	player.respawn_transform = level.player_spawn_position.global_transform
 
 	if (is_instance_valid(level.leaf_populator)):
-		player.leaf_cleaning_handler = level.leaf_populator.getLeafCleaningHandler()
+		leaf_populator = level.leaf_populator
+		cleaning_handler = leaf_populator.getLeafCleaningHandler()
+		progress_tracker.cleaning_handler = cleaning_handler
+		player.leaf_cleaning_handler = cleaning_handler
+
+	progress_tracker.on_completion.connect(_on_level_completion)
 
 	loading_screen._on_timeout()
 

@@ -14,7 +14,8 @@ void LeafCleaningHandler::_bind_methods()
 
     ClassDB::bind_method(D_METHOD("LeafPositionSort", "a", "b"), &LeafCleaningHandler::LeafPositionSort);
 
-    ClassDB::bind_method(D_METHOD("getProgress"), &LeafCleaningHandler::getProgress);
+    ClassDB::bind_method(D_METHOD("getInstanceCount"), &LeafCleaningHandler::getInstanceCount);
+    ClassDB::bind_method(D_METHOD("getCleanedInstanceCount"), &LeafCleaningHandler::getCleanedInstanceCount);
 }
 
 LeafCleaningHandler::LeafCleaningHandler()
@@ -75,8 +76,6 @@ void LeafCleaningHandler::_physics_process(double delta)
             multimesh->set_instance_transform(req, (*transforms)[req]);
         }
     }
-
-    progress = float(cleanedInstancesCount) / float(instanceCount);
 }
 
 void LeafCleaningHandler::UpdateRequestIndex()
@@ -157,7 +156,12 @@ void LeafCleaningHandler::RequestCleaningAtPosition(Vector2 pPosition, Vector2 p
     requests.append(memnew(CleaningRequest(pPosition, pDirection, pSize)));
 }
 
-float LeafCleaningHandler::getProgress() const
+int LeafCleaningHandler::getInstanceCount() const
 {
-    return progress;
+    return instanceCount;
+}
+
+int LeafCleaningHandler::getCleanedInstanceCount() const
+{
+    return cleanedInstancesCount;
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=40 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_highlight_handler.gd" id="2_74dy0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scenes/loading_screen.gd" id="3_te81k"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="3_uk65u"]
 [ext_resource type="Material" uid="uid://dnl0j7w1x0eod" path="res://resource/mesh/leaf_material.tres" id="3_ys06x"]
+[ext_resource type="Script" path="res://scenes/leaf/leaf_progress_tracker.gd" id="4_deeln"]
 [ext_resource type="Script" path="res://scenes/utils/show_canvas_layer_on_ready.gd" id="4_ha1os"]
 [ext_resource type="PackedScene" uid="uid://dvlleqic8xnpl" path="res://scenes/level/alleyway/level_alleyway.tscn" id="4_wwfh1"]
 [ext_resource type="PackedScene" uid="uid://dcaypqvm8j1yq" path="res://scenes/ui/hud/ui.tscn" id="5_is4j0"]
@@ -83,7 +84,7 @@ shader_parameter/speed = null
 shader_parameter/frames = null
 shader_parameter/flowMap = ExtResource("17_khpjf")
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "level", "loading_screen", "ui_completion", "pause_menu")]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "level", "loading_screen", "ui_completion", "pause_menu", "progress_tracker")]
 process_mode = 3
 script = ExtResource("1_bcfl2")
 player = NodePath("Pausable/LevelAlleyway/Player")
@@ -91,10 +92,14 @@ level = NodePath("Pausable/LevelAlleyway")
 loading_screen = NodePath("CanvasLayer/LoadingScreen")
 ui_completion = NodePath("UICompletionLayer/UICompletion")
 pause_menu = NodePath("PauseLayer/PauseMenu")
+progress_tracker = NodePath("LeafProgressTracker")
 
 [node name="LeafHighlightHandler" type="Node" parent="."]
 script = ExtResource("2_74dy0")
 leaf_material = ExtResource("3_ys06x")
+
+[node name="LeafProgressTracker" type="Node" parent="."]
+script = ExtResource("4_deeln")
 
 [node name="Pausable" type="Node" parent="."]
 process_mode = 1
@@ -102,6 +107,7 @@ process_mode = 1
 [node name="LevelAlleyway" parent="Pausable" instance=ExtResource("4_wwfh1")]
 
 [node name="Player" parent="Pausable/LevelAlleyway" instance=ExtResource("3_ncnfk")]
+cleaning_radius = 1.0
 sprint_cleaning_cooldown = 0.1
 
 [node name="TabletScreen" type="SubViewport" parent="."]

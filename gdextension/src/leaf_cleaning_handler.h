@@ -25,7 +25,6 @@ namespace godot
             void UpdateTicks(double delta);
 
             int cleanedInstancesCount = 0;
-            float progress = 0.0f;
 
         protected:
             static void _bind_methods();
@@ -40,7 +39,8 @@ namespace godot
             void setTickRate(int pTickRate);
             int getTickRate();
 
-            float getProgress() const; 
+            int getInstanceCount() const;
+            int getCleanedInstanceCount() const;
 
             TypedArray<CleaningRequest> requests;
 
