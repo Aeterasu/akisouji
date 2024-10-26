@@ -12,6 +12,6 @@ func _alt_toggle() -> void:
 
 func _update_text():
     if (GlobalSettings.fullscreen):
-        setting_text = "SETTINGS_KEY_ON"
+        setting_text = tr("SETTINGS_KEY_ON")
     else:
-        setting_text = "SETTINGS_KEY_OFF"
+        setting_text = tr("SETTINGS_KEY_OFF")

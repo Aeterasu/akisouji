@@ -139,11 +139,13 @@ script = ExtResource("5_1a0oq")
 direction = Vector3(0, -0.15, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding"]
+process_mode = 3
 near = 0.003
 far = 1024.0
 script = ExtResource("4_feodf")
 
 [node name="ViewmodelOrigin" type="Node3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D"]
+process_mode = 1
 
 [node name="ViewmodelSway" type="Node3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin" node_paths=PackedStringArray("player")]
 script = ExtResource("6_t0wwe")

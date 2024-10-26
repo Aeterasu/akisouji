@@ -15,4 +15,4 @@ func _toggle() -> void:
 	_update_text()
 
 func _update_text():
-	setting_text = LocaleManager._locale_to_text_key(GlobalSettings.locale)
+	setting_text = tr(LocaleManager._locale_to_text_key(GlobalSettings.locale))

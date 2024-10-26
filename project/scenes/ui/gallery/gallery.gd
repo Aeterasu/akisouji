@@ -105,21 +105,24 @@ func _process(delta):
 		_on_back_pressed()
 
 	if (!gallery_entry_zoom.is_displayed and InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD):
-		if (Input.is_action_just_pressed("gamepad_dpad_right")):
+		if (Input.is_action_just_pressed("gamepad_dpad_right") or Input.is_action_just_pressed("player_move_right")):
 			selected_entry_id += 1
 			_update_selected_entry_id()
-		if (Input.is_action_just_pressed("gamepad_dpad_left")):
+		if (Input.is_action_just_pressed("gamepad_dpad_left") or Input.is_action_just_pressed("player_move_left")):
 			selected_entry_id -= 1
 			_update_selected_entry_id()
-		if (Input.is_action_just_pressed("gamepad_dpad_up")):
+		if (Input.is_action_just_pressed("gamepad_dpad_up") or Input.is_action_just_pressed("player_move_forward")):
 			selected_entry_id -= gallery_origin.columns
 			_update_selected_entry_id()
-		if (Input.is_action_just_pressed("gamepad_dpad_down")):
+		if (Input.is_action_just_pressed("gamepad_dpad_down") or Input.is_action_just_pressed("player_move_backwards")):
 			selected_entry_id += gallery_origin.columns
 			_update_selected_entry_id()
 
 		current_scroll = lerp(current_scroll, target_scroll, 6.0 * delta)
 		scroll_container.scroll_vertical = int(current_scroll)
+	
+	if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD):
+		current_scroll = scroll_container.scroll_vertical
 
 func _update_selected_entry_id():
 	if (is_instance_valid(selected_entry)):

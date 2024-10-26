@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dj6rqqv2dxh8t"]
+[gd_scene load_steps=22 format=3 uid="uid://dj6rqqv2dxh8t"]
 
 [ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_menu.gd" id="1_c7jnn"]
 [ext_resource type="Shader" path="res://shader/multiply.gdshader" id="1_rhq0f"]
@@ -16,10 +16,18 @@
 [ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_function/settings_function_fullscreen.gd" id="13_blidx"]
 [ext_resource type="PackedScene" uid="uid://5x2w4kgdeaiw" path="res://scenes/ui/settings_menu/button_toggle_label.tscn" id="14_g18rr"]
 [ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_function/settings_function_language.gd" id="15_07bbl"]
+[ext_resource type="Texture2D" uid="uid://chx18mmni45o7" path="res://assets/texture/ui/settings_screen/texture_settings_slider_grabber.png" id="15_k2reo"]
+[ext_resource type="Texture2D" uid="uid://yw63jqnkuqxt" path="res://assets/texture/ui/settings_screen/texture_settings_slider.png" id="16_4lnsw"]
+[ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_fov_slider.gd" id="17_abun6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eamcj"]
 shader = ExtResource("1_rhq0f")
 shader_parameter/speed = -0.25
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gj8s2"]
+texture = ExtResource("16_4lnsw")
+expand_margin_top = 22.0
+expand_margin_bottom = 22.0
 
 [node name="SettingsMenu" type="Control" node_paths=PackedStringArray("scrolling_background", "button_selection_handler", "back_button", "button_general", "button_language", "settings_category_general", "settings_category_language", "category_name_label")]
 layout_mode = 3
@@ -218,6 +226,48 @@ offset_left = 613.0
 offset_right = 660.0
 text = ""
 
+[node name="FovButton" parent="GeneralSettings" node_paths=PackedStringArray("setting_label", "setting_slider") instance=ExtResource("10_heo66")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 128.0
+offset_right = 816.0
+offset_bottom = 236.0
+mouse_filter = 1
+setting_label = NodePath("MouseArea/HSlider/ValueLabel")
+setting_slider = NodePath("MouseArea/HSlider")
+text_key = "SETTINGS_PROPERTY_FOV"
+
+[node name="HSlider" type="HSlider" parent="GeneralSettings/FovButton/MouseArea" index="0"]
+layout_mode = 0
+offset_left = 463.0
+offset_top = 4.0
+offset_right = 773.0
+offset_bottom = 54.0
+mouse_filter = 1
+theme_override_icons/grabber = ExtResource("15_k2reo")
+theme_override_icons/grabber_highlight = ExtResource("15_k2reo")
+theme_override_icons/grabber_disabled = ExtResource("15_k2reo")
+theme_override_styles/slider = SubResource("StyleBoxTexture_gj8s2")
+min_value = 70.0
+value = 75.0
+script = ExtResource("17_abun6")
+
+[node name="ValueLabel" type="Label" parent="GeneralSettings/FovButton/MouseArea/HSlider"]
+layout_mode = 0
+offset_left = 320.0
+offset_right = 368.0
+offset_bottom = 47.0
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("6_j37ya")
+theme_override_font_sizes/font_size = 24
+text = "75"
+vertical_alignment = 1
+
 [node name="BackButton" parent="GeneralSettings" instance=ExtResource("10_heo66")]
 layout_mode = 2
 anchors_preset = 0
@@ -299,3 +349,4 @@ buttons_origin = NodePath("..")
 script = ExtResource("5_1o7a7")
 
 [editable path="GamepadTooltip"]
+[editable path="GeneralSettings/FovButton"]

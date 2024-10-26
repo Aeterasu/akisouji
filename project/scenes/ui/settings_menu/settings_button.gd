@@ -9,6 +9,8 @@ class_name SettingsButton extends UIButton
 
 @export var setting_toggle : SettingsFunction = null
 
+@export var setting_slider : SettingsSlider = null
+
 func _ready():
 	mouse_area.mouse_entered.connect(func(): on_mouse_selection.emit(self))
 	mouse_area.mouse_exited.connect(func(): on_mouse_deselection.emit(self))
@@ -22,7 +24,10 @@ func _process(delta):
 	label.text = tr(text_key)
 	
 	if (setting_toggle):
-		setting_label.text = tr(setting_toggle.setting_text)
+		setting_label.text = setting_toggle.setting_text
+
+	if (setting_slider):
+		setting_label.text = setting_slider.setting_text
 
 func _select():
 	if (is_disabled):
