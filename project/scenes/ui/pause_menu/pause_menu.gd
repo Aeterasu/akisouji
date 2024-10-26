@@ -24,13 +24,13 @@ var is_displayed : bool = false:
 			tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
 			for node in button_selection_handler.buttons:
 				node._enable()
-			UI.ui_instance.hide()
+			UI.instance.hide()
 			button_selection_handler._enable_all_buttons()
 		else:
 			tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.2)
 			for node in button_selection_handler.buttons:
 				node._disable()		
-			UI.ui_instance.show()
+			UI.instance.show()
 
 func _ready():
 	button_selection_handler.on_button_pressed.connect(_on_button_pressed)

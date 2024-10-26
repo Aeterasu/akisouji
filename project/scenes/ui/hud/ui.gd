@@ -2,16 +2,13 @@ class_name UI extends Control
 
 @export var progress : UIProgress = null
 
-static var ui_instance : UI
+static var instance : UI
 
 func _ready():
-	if (is_instance_valid(ui_instance)):
+	if (is_instance_valid(instance)):
 		self.queue_free()
 	else:
-		ui_instance = self
-
-static func _get_ui() -> UI:
-	return ui_instance
+		instance = self
 
 func _hide_ui_for_time(duration : float = 0.1) -> void:
 	visible = false

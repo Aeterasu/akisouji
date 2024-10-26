@@ -24,6 +24,9 @@ namespace godot
             
             void UpdateTicks(double delta);
 
+            int cleanedInstancesCount = 0;
+            float progress = 0.0f;
+
         protected:
             static void _bind_methods();
 
@@ -36,6 +39,8 @@ namespace godot
 
             void setTickRate(int pTickRate);
             int getTickRate();
+
+            float getProgress() const; 
 
             TypedArray<CleaningRequest> requests;
 
@@ -54,7 +59,7 @@ namespace godot
             int lastFreeRequestedQueueIndex = 0;
             void UpdateRequestIndex();
 
-            int instanceCount = 0;       
+            int instanceCount = 0;
 
             void RequestCleaningAtPosition(Vector2 pPosition, Vector2 pDirection, float pSize);
             bool LeafPositionSort(Transform3D a, Transform3D b);

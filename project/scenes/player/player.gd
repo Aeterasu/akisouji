@@ -238,7 +238,7 @@ func _on_sprint_cleaning_timeout():
 
 func _on_enter_photo_mode():
 	is_in_photo_mode = true
-	UI.ui_instance.hide()
+	UI.instance.hide()
 
 	#inventory._get_camera().hide()
 	CameraUI.instance.show()
@@ -257,7 +257,7 @@ func _on_exit_photo_mode():
 	
 func _photo_mode_exit_callback() -> void:
 	is_in_photo_mode = false
-	UI.ui_instance.show()
+	UI.instance.show()
 
 	#inventory._get_camera().show()
 	CameraUI.instance.hide()

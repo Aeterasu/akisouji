@@ -117,6 +117,7 @@ SETTINGS:
     - settings horizontal scaling
     - smooth transitions in settings menu
     - add sound on slider interaction (use blit sound from field of sunflowers?)
+    - add 'show tutorials' settings
 
 GALLERY:
     - (?) gallery keyboard controls
@@ -135,6 +136,8 @@ MISC:
     - web optimizations
     - optimize mesh loading for web, cut out the blend files.
     - cut out everything unused
+
+    - IMPORTANT! RECOMPILE C++ TO RELEASE TEMPLATE
 
 FLUFF:
     - add chibis
