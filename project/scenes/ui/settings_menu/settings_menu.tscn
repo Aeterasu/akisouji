@@ -306,7 +306,7 @@ offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("10_i323x")
-category_name_key = "SETTINGS_GENERAL"
+category_name_key = "SETTINGS_AUDIO"
 button_selection_handler = NodePath("ButtonSelectionHandler")
 back_button = NodePath("BackButton")
 
@@ -578,7 +578,7 @@ offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("10_i323x")
-category_name_key = "SETTINGS_GENERAL"
+category_name_key = "SETTINGS_KEYBOARD"
 button_selection_handler = NodePath("ButtonSelectionHandler")
 back_button = NodePath("BackButton")
 

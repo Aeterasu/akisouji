@@ -44,6 +44,8 @@ var is_landing : bool = false
 
 var respawn_transform : Transform3D = Transform3D()
 
+var block_brooming_until_key_is_released : bool = false
+
 var is_in_photo_mode : bool = false
 var default_fov : float = 75.0
 
@@ -130,13 +132,17 @@ func input_process(delta : float):
 
 	# broom
 
-	if (inventory.current_tool.use_type == PlayerTool.UseType.HOLD):
-		inventory.current_tool.in_use = Input.is_action_pressed("player_action_primary") && !wish_sprint
-	elif (inventory.current_tool.use_type == PlayerTool.UseType.CLICK):
-		if (Input.is_action_just_pressed("player_action_primary") && !wish_sprint):
-			inventory.current_tool._use_primary()
-		if (Input.is_action_just_pressed("player_action_secondary") && !wish_sprint):
-			inventory.current_tool._use_secondary()
+	if (!block_brooming_until_key_is_released):
+		if (inventory.current_tool.use_type == PlayerTool.UseType.HOLD):
+			inventory.current_tool.in_use = Input.is_action_pressed("player_action_primary") && !wish_sprint
+		elif (inventory.current_tool.use_type == PlayerTool.UseType.CLICK):
+			if (Input.is_action_just_pressed("player_action_primary") && !wish_sprint):
+				inventory.current_tool._use_primary()
+			if (Input.is_action_just_pressed("player_action_secondary") && !wish_sprint):
+				inventory.current_tool._use_secondary()
+
+	if (Input.is_action_just_released("player_action_primary")):
+		block_brooming_until_key_is_released = false
 
 	# sprint
 

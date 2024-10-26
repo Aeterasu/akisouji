@@ -34,6 +34,11 @@ var is_displayed : bool = false:
 
 func _ready():
 	button_selection_handler.on_button_pressed.connect(_on_button_pressed)
+
+	button_selection_handler._disable_all_buttons()
+
+	await get_tree().create_timer(0.05).timeout
+	button_selection_handler._enable_all_buttons()
 	
 func _on_button_pressed(button : UIButton):
 	button_selection_handler._disable_all_buttons()

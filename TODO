@@ -45,6 +45,7 @@ LEFT TO DO:
 + gallery gamepad controls
 + fix pause menu horizontal scaling
 + pressing lmb on scroll bar in gallery opens an image. plsfix.
++ prevent broom from activating when clicking in pause menu
 
 = DON'T ADD ANY MORE FEATURES. PERIOD. =
 
@@ -107,6 +108,9 @@ AUDIO:
     - add music
 
 SETTINGS:
+    - make keybinds and controller binds
+    - make slider unclickable
+    - fix mouse overlap with toggle buttons, make directonal toggles usable
     - fix menu button selection while dragging a slider
     - hold gamepad button to change slider settings
     - add settings menu. master, sfx, ambience, music volume. fullscreen/windowed. language. leaf higlight color setting. fov - 70-100. controls. mouse sensitivity, gamepad sensitivity. -AUDIO, -VISUALS, -GAMEPLAY, -KEY BINDINGS, -GAMEPAD BINDINGS
@@ -120,7 +124,7 @@ GALLERY:
     - add some sort of download screenshots from web version. also hide folder button in web
 
 PAUSE MENU:
-    - prevent broom from activating when clicking in pause menu
+
 
 MISC:
     - remove output console, as it's kind of pointless now that we use GDExtension. 

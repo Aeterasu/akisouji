@@ -29,6 +29,7 @@ func _ready():
 func _process(delta):
 	if (Input.is_action_just_pressed("pause")):
 		toggle_pause()
+		player.block_brooming_until_key_is_released = true
 
 func _on_loading_ended():
 	loading_screen._on_timeout()
