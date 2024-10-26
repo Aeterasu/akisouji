@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsedcejo05qib"
-path="res://.godot/imported/texture_leaf_pattern_premalpha.png-95df23ee30fc5174ec7c341b4fc82f18.ctex"
+uid="uid://bsrojin87a67a"
+path="res://.godot/imported/texture_settings_selector.png-1d8c3cd538d869ce24d3c52e8e51577f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/texture_leaf_pattern_premalpha.png"
-dest_files=["res://.godot/imported/texture_leaf_pattern_premalpha.png-95df23ee30fc5174ec7c341b4fc82f18.ctex"]
+source_file="res://assets/texture/ui/settings_screen/texture_settings_selector.png"
+dest_files=["res://.godot/imported/texture_settings_selector.png-1d8c3cd538d869ce24d3c52e8e51577f.ctex"]
 
 [params]
 

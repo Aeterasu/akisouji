@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsedcejo05qib"
-path="res://.godot/imported/texture_leaf_pattern_premalpha.png-95df23ee30fc5174ec7c341b4fc82f18.ctex"
+uid="uid://crtgkr27jp11e"
+path="res://.godot/imported/texture_ui_title_screen_button_2.png-24dda1ded95db53a985c3bdd40ac371e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/texture_leaf_pattern_premalpha.png"
-dest_files=["res://.godot/imported/texture_leaf_pattern_premalpha.png-95df23ee30fc5174ec7c341b4fc82f18.ctex"]
+source_file="res://assets/texture/ui/texture_ui_title_screen_button_2.png"
+dest_files=["res://.godot/imported/texture_ui_title_screen_button_2.png-24dda1ded95db53a985c3bdd40ac371e.ctex"]
 
 [params]
 

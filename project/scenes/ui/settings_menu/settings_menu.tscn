@@ -1,0 +1,297 @@
+[gd_scene load_steps=18 format=3 uid="uid://dj6rqqv2dxh8t"]
+
+[ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_menu.gd" id="1_c7jnn"]
+[ext_resource type="Shader" path="res://shader/multiply.gdshader" id="1_rhq0f"]
+[ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="2_r5tj4"]
+[ext_resource type="Script" path="res://scenes/ui/pause_menu/scrolling_background.gd" id="3_5d0or"]
+[ext_resource type="Texture2D" uid="uid://canfsmbl7q678" path="res://assets/texture/ui/settings_screen/texture_settings_menu_borders.png" id="4_1bm48"]
+[ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="5_1o7a7"]
+[ext_resource type="PackedScene" uid="uid://bcrys4arojn37" path="res://scenes/ui/paper_button.tscn" id="6_dunw8"]
+[ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="6_j37ya"]
+[ext_resource type="FontFile" uid="uid://c5kqanfa0j1nl" path="res://assets/font/DancingScript-VariableFont_wght.ttf" id="6_ng8cy"]
+[ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="7_fgs88"]
+[ext_resource type="PackedScene" uid="uid://svhygbkl4071" path="res://scenes/ui/settings_menu/settings_button.tscn" id="10_heo66"]
+[ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_category.gd" id="10_i323x"]
+[ext_resource type="PackedScene" uid="uid://cyaqutbexr62l" path="res://scenes/ui/gamepad_tooltip/gamepad_tooltip.tscn" id="12_f6tbt"]
+[ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_function/settings_function_fullscreen.gd" id="13_blidx"]
+[ext_resource type="PackedScene" uid="uid://5x2w4kgdeaiw" path="res://scenes/ui/settings_menu/button_toggle_label.tscn" id="14_g18rr"]
+[ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_function/settings_function_language.gd" id="15_07bbl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eamcj"]
+shader = ExtResource("1_rhq0f")
+shader_parameter/speed = -0.25
+
+[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("scrolling_background", "button_selection_handler", "back_button", "button_general", "button_language", "settings_category_general", "settings_category_language")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c7jnn")
+scrolling_background = NodePath("ScrollingBackground")
+button_selection_handler = NodePath("CategoryButtons/ButtonSelectionHandler")
+back_button = NodePath("CategoryButtons/BackButton")
+button_general = NodePath("CategoryButtons/GeneralButton")
+button_language = NodePath("CategoryButtons/LanguageButton")
+settings_category_general = NodePath("GeneralSettings")
+settings_category_language = NodePath("LanguageSettings")
+
+[node name="ScrollingBackground" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.694118)
+material = SubResource("ShaderMaterial_eamcj")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1280.0
+offset_right = -640.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("2_r5tj4")
+stretch_mode = 1
+script = ExtResource("3_5d0or")
+speed = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.678431)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_1bm48")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="SettingsLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.164
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 25.0
+offset_bottom = -24.08
+theme_override_constants/outline_size = 18
+theme_override_fonts/font = ExtResource("6_j37ya")
+theme_override_font_sizes/font_size = 54
+text = "SETTINGS_LABEL"
+vertical_alignment = 2
+
+[node name="CategoryLabel" type="Label" parent="SettingsLabel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.072
+anchor_right = 2.072
+anchor_bottom = 1.0
+offset_left = -2.82401
+offset_right = -2.82404
+theme_override_constants/outline_size = 18
+theme_override_fonts/font = ExtResource("6_j37ya")
+theme_override_font_sizes/font_size = 36
+text = "CATEGORY_LABEL"
+vertical_alignment = 2
+
+[node name="Blake" type="Label" parent="."]
+modulate = Color(0.359069, 0.359069, 0.359069, 0.509804)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.159
+anchor_right = 1.0
+anchor_bottom = 0.159
+offset_left = 16.0
+offset_top = -104.48
+offset_right = -17.0
+offset_bottom = 16.52
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("6_ng8cy")
+theme_override_font_sizes/font_size = 22
+text = "Listen, with faint dry sound,
+Like steps of passing ghosts,
+The leaves, frost-crisp'd, break from the trees - And fall.
+
+"
+horizontal_alignment = 2
+
+[node name="GamepadTooltip" parent="." instance=ExtResource("12_f6tbt")]
+layout_mode = 1
+
+[node name="RichTextLabel" parent="GamepadTooltip" index="1"]
+z_index = 4096
+
+[node name="CategoryButtons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.17
+anchor_right = 0.331
+anchor_bottom = 0.17
+offset_left = -6.0
+offset_top = 17.6
+offset_right = -3.68005
+offset_bottom = 863.6
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.675, 0.675)
+alignment = 2
+
+[node name="GeneralButton" parent="CategoryButtons" instance=ExtResource("6_dunw8")]
+layout_mode = 2
+text_key = "SETTINGS_GENERAL"
+
+[node name="AudioButton" parent="CategoryButtons" instance=ExtResource("6_dunw8")]
+layout_mode = 2
+text_key = "SETTINGS_AUDIO"
+
+[node name="KeyboardButton" parent="CategoryButtons" instance=ExtResource("6_dunw8")]
+layout_mode = 2
+text_key = "SETTINGS_KEYBOARD"
+
+[node name="GamepadButton" parent="CategoryButtons" instance=ExtResource("6_dunw8")]
+layout_mode = 2
+text_key = "SETTINGS_CONTROLLER"
+
+[node name="LanguageButton" parent="CategoryButtons" instance=ExtResource("6_dunw8")]
+layout_mode = 2
+text_key = "SETTINGS_LANGUAGE"
+
+[node name="Control" type="Control" parent="CategoryButtons"]
+custom_minimum_size = Vector2(0, 45.81)
+layout_mode = 2
+
+[node name="BackButton" parent="CategoryButtons" instance=ExtResource("6_dunw8")]
+layout_mode = 2
+text_key = "MENU_BUTTON_BACK"
+
+[node name="ButtonSelectionHandler" type="Node" parent="CategoryButtons" node_paths=PackedStringArray("buttons_origin")]
+script = ExtResource("7_fgs88")
+buttons_origin = NodePath("..")
+
+[node name="GeneralSettings" type="Control" parent="." node_paths=PackedStringArray("button_selection_handler", "back_button")]
+layout_mode = 1
+anchor_left = 0.337
+anchor_top = 0.169
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.360016
+offset_top = 29.32
+offset_right = -33.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_i323x")
+button_selection_handler = NodePath("ButtonSelectionHandler")
+back_button = NodePath("BackButton")
+
+[node name="FullscreenButton" parent="GeneralSettings" node_paths=PackedStringArray("setting_label", "setting_toggle") instance=ExtResource("10_heo66")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 816.0
+offset_bottom = 108.0
+setting_label = NodePath("ToggleLabel")
+setting_toggle = NodePath("FullscreenFunction")
+
+[node name="FullscreenFunction" type="Node" parent="GeneralSettings/FullscreenButton"]
+script = ExtResource("13_blidx")
+
+[node name="ToggleLabel" parent="GeneralSettings/FullscreenButton" instance=ExtResource("14_g18rr")]
+layout_mode = 0
+offset_left = 613.0
+offset_right = 660.0
+text = ""
+
+[node name="BackButton" parent="GeneralSettings" instance=ExtResource("10_heo66")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 413.0
+offset_right = 816.0
+offset_bottom = 521.0
+text_key = "MENU_BUTTON_BACK"
+
+[node name="ButtonSelectionHandler" type="Node" parent="GeneralSettings" node_paths=PackedStringArray("buttons_origin")]
+script = ExtResource("7_fgs88")
+enabled = false
+buttons_origin = NodePath("..")
+
+[node name="LanguageSettings" type="Control" parent="." node_paths=PackedStringArray("button_selection_handler", "back_button")]
+layout_mode = 1
+anchor_left = 0.337
+anchor_top = 0.169
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.360016
+offset_top = 29.32
+offset_right = -33.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("10_i323x")
+button_selection_handler = NodePath("ButtonSelectionHandler")
+back_button = NodePath("BackButton")
+
+[node name="LanguageButton" parent="LanguageSettings" node_paths=PackedStringArray("setting_label", "setting_toggle") instance=ExtResource("10_heo66")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 816.0
+offset_bottom = 108.0
+setting_label = NodePath("ToggleLabel")
+setting_toggle = NodePath("LanguageFunction")
+text_key = "SETTINGS_PROPERTY_LANGUAGE"
+
+[node name="LanguageFunction" type="Node" parent="LanguageSettings/LanguageButton"]
+script = ExtResource("15_07bbl")
+
+[node name="ToggleLabel" parent="LanguageSettings/LanguageButton" instance=ExtResource("14_g18rr")]
+offset_left = 613.0
+offset_right = 660.0
+text = ""
+
+[node name="BackButton" parent="LanguageSettings" instance=ExtResource("10_heo66")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 413.0
+offset_right = 816.0
+offset_bottom = 521.0
+text_key = "MENU_BUTTON_BACK"
+
+[node name="ButtonSelectionHandler" type="Node" parent="LanguageSettings" node_paths=PackedStringArray("buttons_origin")]
+script = ExtResource("7_fgs88")
+enabled = false
+buttons_origin = NodePath("..")
+
+[node name="UIUpscaler" type="Node" parent="."]
+script = ExtResource("5_1o7a7")
+
+[editable path="GamepadTooltip"]

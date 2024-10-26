@@ -3,11 +3,11 @@ class_name ButtonSelectionHandler extends Node
 @export var enabled : bool = true
 
 @export var horizontal : bool = false
-@export var buttons_origin : Node = null
+@export var buttons_origin : Control = null
 
-var current_button : PaperButton = null
+var current_button : UIButton = null
 var current_selection_id : int = -999
-var buttons : Array[PaperButton] = []
+var buttons : Array[UIButton] = []
 
 signal on_button_pressed
 signal on_button_selected
@@ -15,17 +15,19 @@ signal on_button_selected
 func _ready():
 	if (buttons_origin):
 		for node in buttons_origin.get_children():
-			if (node is PaperButton):
+			if (node is UIButton):
 				buttons.append(node)
 				node._deselect()
 				node.on_mouse_selection.connect(_on_button_mouse_selection)
 				node.on_mouse_deselection.connect(_on_button_mouse_deselection)
 
+	if (!enabled):
+		_disable_all_buttons()
+
 func _process(delta):
 	if (!enabled):
-		if (current_button):
-			current_selection_id = -999
-			_update_button()
+		current_selection_id = -999
+		_update_button()
 		return
 
 	var next_key : String = ""
@@ -100,16 +102,22 @@ func _update_button():
 		current_button = null
 		current_selection_id = -999
 
-func _on_button_mouse_selection(button : PaperButton):
+func _on_button_mouse_selection(button : UIButton):
 	current_selection_id = buttons.find(button)
 	_update_button()
 
-func _on_button_mouse_deselection(button : PaperButton):
+func _on_button_mouse_deselection(button : UIButton):
 	current_selection_id = -999
 	_update_button()
 
 func _disable_all_buttons():
 	enabled = false
 
+	for button in buttons:
+		button._disable()
+
 func _enable_all_buttons():
 	enabled = true
+
+	for button in buttons:
+		button._enable()

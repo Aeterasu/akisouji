@@ -56,6 +56,9 @@ leaves can be put into a garbage bag - one by one or as a part of pile. put all 
 
 CURRENT WORKING NAME - LEAF SWEEPER
 
+- settings horizontal scaling
+- add interpolations to ui
+- add playstation glyphs
 - port map completion, leaf interpolation and particles from gdscript leaf cleaning to C++
 - remove output console, as it's kind of pointless now that we use GDExtension. 
 - add credits to main menu

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsedcejo05qib"
-path="res://.godot/imported/texture_leaf_pattern_premalpha.png-95df23ee30fc5174ec7c341b4fc82f18.ctex"
+uid="uid://dbqwuevdtqyjl"
+path="res://.godot/imported/texture_ui_crosshair_dot.png-8bb204e632eda8b7818f79236cea06a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/texture_leaf_pattern_premalpha.png"
-dest_files=["res://.godot/imported/texture_leaf_pattern_premalpha.png-95df23ee30fc5174ec7c341b4fc82f18.ctex"]
+source_file="res://assets/texture/ui/hud/texture_ui_crosshair_dot.png"
+dest_files=["res://.godot/imported/texture_ui_crosshair_dot.png-8bb204e632eda8b7818f79236cea06a7.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -31,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

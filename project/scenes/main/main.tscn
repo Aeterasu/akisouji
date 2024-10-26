@@ -1,10 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://d28lh7c58l5qv"]
+[gd_scene load_steps=4 format=3 uid="uid://d28lh7c58l5qv"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_bkdub"]
 [ext_resource type="Script" path="res://scenes/main/scene_transition_handler.gd" id="2_7iqhl"]
+[ext_resource type="PackedScene" uid="uid://bxucohptg4lk5" path="res://scenes/ui/title_screen/title_screen.tscn" id="2_sd2kd"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_bkdub")
+title_screen_scene = ExtResource("2_sd2kd")
 
 [node name="SceneTransitionHandler" type="Node" parent="."]
 script = ExtResource("2_7iqhl")

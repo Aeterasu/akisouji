@@ -1,5 +1,19 @@
 extends Node
 
+@export var fullscreen : bool = false:
+    set(value):
+        if (value):
+            DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_FULLSCREEN)
+        else:
+            DisplayServer.window_set_mode(DisplayServer.WindowMode.WINDOW_MODE_WINDOWED)
+
+        fullscreen = value
+
+@export var locale : String = "en":
+    set (value):
+        TranslationServer.set_locale(value)
+        locale = value
+
 @export var master_volume : float = 1.0
 @export var sfx_volume : float = 1.0
 @export var ambience_volume : float = 1.0

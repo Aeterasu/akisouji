@@ -1,15 +1,20 @@
 class_name Main extends Node
 
+@export var title_screen_scene : PackedScene = null
+
 static var instance = null
 
 func _ready():
 	instance = self
 
-	TranslationServer.set_locale("ru")
+	GlobalSettings.locale = GlobalSettings.locale
+	TranslationServer.set_locale(GlobalSettings.locale)
 
 	Output.print(OS.get_data_dir())
 
-	SceneTransitionHandler.instance._load_scene("res://scenes/title_screen/title_screen.tscn")
+	SceneTransitionHandler.instance._load_scene(title_screen_scene.resource_path)
+
+	GlobalSettings.fullscreen = GlobalSettings.fullscreen
 
 func _take_screenshot() -> void:
 	var capture = get_viewport().get_texture().get_image()
