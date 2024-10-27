@@ -4,4 +4,4 @@
 
 [node name="cash_manager" type="Node"]
 script = ExtResource("1_8exi0")
-base_cash_reward = 0.05
+base_cash_reward = 0.03

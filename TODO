@@ -144,6 +144,7 @@ LEFT TO DO:
         - optimize mesh loading for web, cut out the blend files.
         - cut out everything unused
     
+        - replace default godot loading image in web
         - IMPORTANT! BEFORE RELEASE, RECOMPILE C++ TO RELEASE TEMPLATE
     
     FLUFF:
