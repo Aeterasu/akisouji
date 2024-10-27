@@ -26,6 +26,8 @@ var selected_entry : GalleryEntry = null
 var target_scroll : float = 0.0
 var current_scroll : float = 0.0
 
+var enter_keyboard_mode : bool = false
+
 var back_pressed : bool = false
 
 enum OnBackPressedType
@@ -89,13 +91,13 @@ func _process(delta):
 	if (!gallery_entry_zoom.is_displayed and selected_entry and Input.is_action_just_pressed("menu_confirm")):
 		gallery_entry_zoom._display(selected_entry.get_child(0).texture)
 
-		if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE):
+		if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE and !enter_keyboard_mode):
 			selected_entry._deselect()
 			selected_entry = null
 
 		return
 
-	if (gallery_entry_zoom.is_displayed and (Input.is_action_just_pressed("menu_confirm") or Input.is_action_just_pressed("menu_cancel"))):
+	if (gallery_entry_zoom.is_displayed and (Input.is_action_just_pressed("pause") or Input.is_action_just_pressed("menu_confirm") or Input.is_action_just_pressed("menu_cancel"))):
 		gallery_entry_zoom._undisplay()
 		return		
 
@@ -104,7 +106,11 @@ func _process(delta):
 	if (Input.is_action_just_pressed("pause") or Input.is_action_just_pressed("menu_cancel")):
 		_on_back_pressed()
 
-	if (!gallery_entry_zoom.is_displayed and InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD):
+	if (!enter_keyboard_mode and Input.is_action_just_pressed("player_move_forward") and InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE):
+		enter_keyboard_mode = true
+		_on_input_device_change()
+
+	if (!gallery_entry_zoom.is_displayed and (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD or (enter_keyboard_mode and InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE))):
 		if (Input.is_action_just_pressed("gamepad_dpad_right") or Input.is_action_just_pressed("player_move_right")):
 			selected_entry_id += 1
 			_update_selected_entry_id()
@@ -121,7 +127,7 @@ func _process(delta):
 		current_scroll = lerp(current_scroll, target_scroll, 6.0 * delta)
 		scroll_container.scroll_vertical = int(current_scroll)
 	
-	if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD):
+	if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD or (enter_keyboard_mode and InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE)):
 		current_scroll = scroll_container.scroll_vertical
 
 func _update_selected_entry_id():
@@ -142,20 +148,6 @@ func _update_selected_entry_id():
 		target_scroll = selected_entry.position.y - y_offset
 	elif (selected_entry.position.y < target_scroll):
 		target_scroll = selected_entry.position.y
-
-	#scroll_container.scroll_vertical = selected_entry.position.y
-
-	#scroll bar hugs the gallery entries in non 16:9 resolution. no, I don't know how to fix that.
-
-	#var vscroll = (gallery_origin.get_parent() as ScrollContainer).get_v_scroll_bar()
-	#vscroll.top_level = true
-	#vscroll.z_index = -1
-	#vscroll.position.x = get_viewport_rect().size.x - (32.0 * (get_viewport_rect().size.x / 1280.0))
-	#vscroll.position.y = 64.0
-	#vscroll.size.y = (gallery_origin.get_parent() as ScrollContainer).size.y * 2
-	#var x_margin = 32.0 + gallery_origin.size / gallery_origin.columns
-	#gallery_origin.set("theme_override_constants/h_separation", x_margin)
-	#print(x_margin)
 
 func load_image_texture(path: String) -> ImageTexture:
 	
@@ -179,6 +171,15 @@ func _on_button_pressed(button : UIButton):
 			return
 
 func _on_back_pressed() -> void:
+	if (enter_keyboard_mode):
+		if (selected_entry):
+			selected_entry._deselect()
+			selected_entry = null
+
+		enter_keyboard_mode = false
+		_on_input_device_change()
+		return
+
 	InputDeviceCheck.on_device_change.disconnect(_on_input_device_change)
 
 	match on_back_pressed_type:
@@ -214,6 +215,11 @@ func _on_input_device_change():
 		return
 
 	if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD):
+		button_selection_handler._disable_all_buttons()
+		button_selection_handler.buttons_origin.hide()
+		scroll_container.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_SHOW_NEVER
+		enter_keyboard_mode = false
+	elif (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE and enter_keyboard_mode):
 		button_selection_handler._disable_all_buttons()
 		button_selection_handler.buttons_origin.hide()
 		scroll_container.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_SHOW_NEVER
