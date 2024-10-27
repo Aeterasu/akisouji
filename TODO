@@ -50,7 +50,8 @@ LEFT TO DO:
     + add in-game progress bar
     + add in-game cash ui
     + fix language change needing to be clicked twice on menu reopen
- 
+    + hold gamepad button to change slider settings
+
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
     = consider reworking the sweeping mechanic. 
@@ -119,7 +120,6 @@ LEFT TO DO:
         - make slider unclickable
         - fix mouse overlap with toggle buttons, make directonal toggles usable
         - fix menu button selection while dragging a slider
-        - hold gamepad button to change slider settings
         - add settings menu. master, sfx, ambience, music volume. fullscreen/windowed. language. leaf higlight color setting. fov - 70-100. controls. mouse sensitivity, gamepad sensitivity. -AUDIO, -VISUALS, -GAMEPLAY, -KEY BINDINGS, -GAMEPAD BINDINGS
         - settings horizontal scaling
         - smooth transitions in settings menu
