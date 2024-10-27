@@ -122,6 +122,7 @@ LEFT TO DO:
         - add sound on slider interaction (use blit sound from field of sunflowers?)
         - add 'show tutorials' settings
         - disable certain settings in web. make an (unavailable in web) splash
+        - fix language change needing to be clicked twice on menu reopen
     
     GALLERY:
         - (?) gallery keyboard controls
@@ -140,7 +141,7 @@ LEFT TO DO:
         - optimize mesh loading for web, cut out the blend files.
         - cut out everything unused
     
-        - IMPORTANT! RECOMPILE C++ TO RELEASE TEMPLATE
+        - IMPORTANT! BEFORE RELEASE, RECOMPILE C++ TO RELEASE TEMPLATE
     
     FLUFF:
         - add chibis

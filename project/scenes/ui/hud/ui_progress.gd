@@ -1,13 +1,11 @@
 class_name UIProgress extends Control
 
 @export var label : Label = null
-
-var leaf_populator : LeafPopulator = null
+@export var progress_bar : TextureProgressBar = null
+@export var percent_label : Label = null
 
 var current_value : float = 0
 
 func _process(delta) -> void:
-	#if (leaf_populator):
-		#current_value = leaf_populator.getLeafCleaningHandler().getProgress()
-
-	label.text = "Progress: " + str(clamp(round(current_value * 100), 0, 100)) + "%"
+	percent_label.text = str(clamp(round(current_value * 100), 0, 100)) + "%"
+	progress_bar.value = current_value * 100

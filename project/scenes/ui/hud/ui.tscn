@@ -1,11 +1,20 @@
-[gd_scene load_steps=7 format=3 uid="uid://dcaypqvm8j1yq"]
+[gd_scene load_steps=12 format=3 uid="uid://dcaypqvm8j1yq"]
 
 [ext_resource type="Script" path="res://scenes/ui/hud/ui.gd" id="1_7l35m"]
 [ext_resource type="Texture2D" uid="uid://dbqwuevdtqyjl" path="res://assets/texture/ui/hud/texture_ui_crosshair_dot.png" id="2_sidhx"]
 [ext_resource type="Texture2D" uid="uid://dfvylguh5grfg" path="res://assets/texture/ui/hud/texture_ui_dark_corner.png" id="3_qygll"]
 [ext_resource type="Script" path="res://scenes/ui/hud/ui_progress.gd" id="5_nsbia"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="6_j3p5c"]
+[ext_resource type="Texture2D" uid="uid://px5nsuya2plm" path="res://assets/texture/ui/hud/texture_ui_progress_bar_under.png" id="6_uwo0g"]
 [ext_resource type="Script" path="res://scenes/ui/hud/ui_cash.gd" id="7_2ui8l"]
+[ext_resource type="Texture2D" uid="uid://vr36vghxgove" path="res://assets/texture/ui/hud/texture_ui_progress_bar_fill.png" id="7_q0gs6"]
+[ext_resource type="Texture2D" uid="uid://bglihemvg77k8" path="res://assets/texture/ui/hud/texture_ui_cash_symbol.png" id="9_gbwyk"]
+
+[sub_resource type="Gradient" id="Gradient_yvgdn"]
+colors = PackedColorArray(0, 0, 0, 0.578, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_25j5i"]
+gradient = SubResource("Gradient_yvgdn")
 
 [node name="UI" type="Control" node_paths=PackedStringArray("progress")]
 process_priority = -1
@@ -53,7 +62,7 @@ texture = ExtResource("3_qygll")
 stretch_mode = 4
 flip_h = true
 
-[node name="UIProgress" type="Control" parent="." node_paths=PackedStringArray("label")]
+[node name="UIProgress" type="Control" parent="." node_paths=PackedStringArray("label", "progress_bar", "percent_label")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,6 +71,23 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_nsbia")
 label = NodePath("Label")
+progress_bar = NodePath("TextureProgressBar")
+percent_label = NodePath("TextureProgressBar/PercentLabel")
+
+[node name="TextureRect" type="TextureRect" parent="UIProgress"]
+layout_mode = 0
+offset_right = 302.0
+offset_bottom = 56.0
+texture = SubResource("GradientTexture2D_25j5i")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="UIProgress"]
+layout_mode = 0
+offset_top = 56.0
+offset_right = 454.0
+offset_bottom = 108.0
+texture = SubResource("GradientTexture2D_25j5i")
+expand_mode = 1
 
 [node name="Label" type="Label" parent="UIProgress"]
 layout_mode = 0
@@ -71,11 +97,33 @@ offset_right = 240.0
 offset_bottom = 63.0
 theme_override_constants/outline_size = 16
 theme_override_fonts/font = ExtResource("6_j3p5c")
-theme_override_font_sizes/font_size = 36
-text = "Progress: 0%"
+theme_override_font_sizes/font_size = 24
+text = "HUD_LABEL_PROGRESS"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UIProgress"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 64.0
+offset_right = 307.0
+offset_bottom = 104.0
+step = 0.0
+value = 100.0
+texture_under = ExtResource("6_uwo0g")
+texture_progress = ExtResource("7_q0gs6")
+texture_progress_offset = Vector2(4, 5)
+
+[node name="PercentLabel" type="Label" parent="UIProgress/TextureProgressBar"]
+layout_mode = 0
+offset_left = 302.0
+offset_right = 357.0
+offset_bottom = 34.0
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_j3p5c")
+theme_override_font_sizes/font_size = 18
+text = "100%"
 vertical_alignment = 1
 
-[node name="UICash" type="Control" parent="." node_paths=PackedStringArray("cash_label")]
+[node name="UICash" type="Control" parent="." node_paths=PackedStringArray("cash_label", "cash_reward_label")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -84,20 +132,83 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_2ui8l")
 cash_label = NodePath("Label")
+animation_speed = 0.01
+cash_reward_label = NodePath("AppendedCashLabel")
+
+[node name="TextureRect3" type="TextureRect" parent="UICash"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -217.0
+offset_bottom = 144.0
+grow_horizontal = 0
+texture = SubResource("GradientTexture2D_25j5i")
+expand_mode = 1
+flip_h = true
+
+[node name="Label3" type="Label" parent="UICash"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -282.0
+offset_top = 16.0
+offset_right = -16.0
+offset_bottom = 63.0
+grow_horizontal = 0
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("6_j3p5c")
+theme_override_font_sizes/font_size = 24
+text = "HUD_LABEL_CASH"
+horizontal_alignment = 2
 
 [node name="Label" type="Label" parent="UICash"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -248.0
-offset_top = 16.0
-offset_right = -24.0
-offset_bottom = 63.0
+offset_left = -103.0
+offset_top = 60.0
+offset_right = -84.0
+offset_bottom = 133.0
 grow_horizontal = 0
-theme_override_constants/outline_size = 16
+theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("6_j3p5c")
-theme_override_font_sizes/font_size = 36
-text = "0$"
+theme_override_font_sizes/font_size = 28
+text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="AppendedCashLabel" type="Label" parent="UICash"]
+visible = false
+modulate = Color(0.34392, 0.48, 0.0912, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -103.0
+offset_top = 60.0
+offset_right = -84.0
+offset_bottom = 133.0
+grow_horizontal = 0
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_j3p5c")
+theme_override_font_sizes/font_size = 28
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UICash"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -74.0
+offset_top = 58.0
+offset_right = -10.0
+offset_bottom = 133.0
+grow_horizontal = 0
+texture = ExtResource("9_gbwyk")
+expand_mode = 1
+stretch_mode = 5

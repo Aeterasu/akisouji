@@ -8,6 +8,8 @@ var cash : int = 0
 var cash_buffer : float = 0
 var timer : Timer = Timer.new()
 
+signal on_cash_rewarded
+
 func _ready() -> void:
 	add_child(timer)
 	timer.wait_time = buffer_clean_time
@@ -27,8 +29,11 @@ func _grant_cash(amount : float = base_cash_reward) -> void:
 		timer.start()
 
 func _on_buffer_timeout():
-	cash += round(cash_buffer)
+	var amount = round(cash_buffer)
+	cash += amount
 	cash_buffer = 0
+
+	on_cash_rewarded.emit(amount)
 
 func _reward_leaf_cleaning(leaf_amount : int):
 	_grant_cash(round(leaf_amount * base_cash_reward))
