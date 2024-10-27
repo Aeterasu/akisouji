@@ -3,6 +3,8 @@ extends SettingsFunction
 var current_lang : int = 0
 
 func _ready():
+	current_lang = LocaleManager._locale_to_int(GlobalSettings.locale)
+
 	_update_text()
 
 func _toggle() -> void:
