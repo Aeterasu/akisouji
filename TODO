@@ -107,6 +107,7 @@ LEFT TO DO:
         - fix that annoying gate texture that currently uses deafault metal and looks ugly
         - another pass to alleyway level. patch holes, really.
         - add props by necessity
+        - add pavement border texture
     
     AUDIO:
         - add crunchy cleaning sounds
@@ -152,6 +153,8 @@ LEFT TO DO:
         - COME UP WITH A NAME FOR THE GAME!!!
         - come up with a name for a chara.
         - force tanya to draw our pretty chara
+
+        - tutorial should have chibi in it!!!
     
     LOCALIZATION:
         - add russian, and if possible, japanese localization

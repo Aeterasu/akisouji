@@ -93,12 +93,12 @@ transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13.25,
 environment = ExtResource("6_ah06a")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="11"]
-transform = Transform3D(0.999658, -0.00432044, 0.0258179, 0, 0.986286, 0.165048, -0.026177, -0.164991, 0.985948, 0, 0, 0)
+transform = Transform3D(-0.942642, -0.143708, -0.301289, -7.89066e-08, -0.902586, 0.430511, -0.333807, 0.405818, 0.850814, 0, 0, 0)
 light_color = Color(0.889898, 0.773551, 0.728656, 1)
 light_energy = 2.0
 light_bake_mode = 1
 shadow_enabled = true
-shadow_opacity = 0.91
+shadow_opacity = 0.93
 directional_shadow_mode = 0
 directional_shadow_fade_start = 1.0
 

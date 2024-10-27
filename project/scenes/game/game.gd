@@ -7,10 +7,12 @@ class_name Game extends Node3D
 @export var pause_menu : PauseMenu
 
 @export var progress_tracker : LeafProgressTracker = null
+@export var particle_handler : LeafParticleHandler = null
 
 var leaf_populator : LeafPopulator = null
 var cleaning_handler : LeafCleaningHandler = null
-
+var last_cleaning_position : Vector3 = Vector3()
+var last_cleaning_radius : float = 1.0
 
 static var game_instance : Game = null
 
@@ -26,9 +28,13 @@ func _ready():
 	if (is_instance_valid(level.leaf_populator)):
 		leaf_populator = level.leaf_populator
 		cleaning_handler = leaf_populator.getLeafCleaningHandler()
+
 		progress_tracker.cleaning_handler = cleaning_handler
 		cleaning_handler.on_leaves_cleaned.connect(progress_tracker._on_leaves_cleaned)
+
 		player.leaf_cleaning_handler = cleaning_handler
+
+		cleaning_handler.on_leaves_cleaned.connect(particle_handler._on_leaves_cleaned)
 
 	progress_tracker.on_completion.connect(_on_level_completion)
 

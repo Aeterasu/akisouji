@@ -100,6 +100,8 @@ func on_broom():
 	#leaf_cleaning_handler._on_player_cleaning_input(cleaning_radius, cleaning_range)
 
 	if (result and result.has("position")):
+		Game.game_instance.last_cleaning_position = result["position"]
+		Game.game_instance.last_cleaning_radius = cleaning_radius
 		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(result["position"].x, result["position"].z), Vector2.ZERO, cleaning_radius)
 
 	pass
@@ -224,7 +226,8 @@ func _on_landing():
 		multiplier = 1.2
 
 	if (is_instance_valid(leaf_cleaning_handler)):
-		#leaf_cleaning_handler._on_player_cleaning_on_position(global_position + Vector3.DOWN, jump_cleaning_radius * multiplier)
+		Game.game_instance.last_cleaning_position = global_position + Vector3.DOWN * 0.5
+		Game.game_instance.last_cleaning_radius = jump_cleaning_radius * multiplier
 		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), Vector2.ZERO, jump_cleaning_radius * multiplier)
 
 	camera_effect_landing._animate()
@@ -234,6 +237,8 @@ func _on_sprint_cleaning_timeout():
 		return
 	
 	if (is_instance_valid(leaf_cleaning_handler)):
+		Game.game_instance.last_cleaning_position = global_position + Vector3.DOWN * 0.5
+		Game.game_instance.last_cleaning_radius = sprint_cleaning_radius
 		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), Vector2.ZERO, sprint_cleaning_radius)
 
 func _on_enter_photo_mode():
