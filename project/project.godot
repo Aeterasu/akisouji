@@ -350,6 +350,11 @@ locale/translations=PackedStringArray("res://assets/localization/akisouji_locali
 3d_physics/layer_1="Default"
 3d_physics/layer_2="Player"
 
+[physics]
+
+common/max_physics_steps_per_frame=4
+common/physics_interpolation=true
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

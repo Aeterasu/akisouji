@@ -18,6 +18,7 @@ shader = ExtResource("2_karch")
 shader_parameter/speed = -0.25
 
 [node name="PauseMenu" type="Control" node_paths=PackedStringArray("scrolling_background", "button_selection_handler", "resume_button", "gallery_button", "options_button", "exit_button")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -164,6 +165,7 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
+process_mode = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

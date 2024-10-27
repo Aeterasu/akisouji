@@ -40,7 +40,7 @@ height = 8
 fill_from = Vector2(0, 1)
 fill_to = Vector2(0, 0)
 
-[node name="PaperButton" type="Control" node_paths=PackedStringArray("mouse_area", "label", "animation_origin", "selected_gradient", "deselected_gradient", "audio_accent_1", "audio_accent_2")]
+[node name="PaperButton" type="Control" node_paths=PackedStringArray("animation_origin", "selected_gradient", "deselected_gradient", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 layout_mode = 3
 anchor_bottom = 0.111
 offset_right = 1280.0
@@ -50,13 +50,13 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("1_q8kh2")
-mouse_area = NodePath("MouseArea")
-label = NodePath("Label")
-custom_font_size = 32
 animation_type = 1
 animation_origin = NodePath("SubViewportContainer/SubViewport/PaperMaskCenter")
 selected_gradient = NodePath("SubViewportContainer/SelectedGradient")
 deselected_gradient = NodePath("SubViewportContainer/DeselectedGradient")
+mouse_area = NodePath("MouseArea")
+label = NodePath("Label")
+custom_font_size = 32
 audio_accent_1 = NodePath("Accent1")
 audio_accent_2 = NodePath("Accent2")
 metadata/_edit_use_anchors_ = true
@@ -111,6 +111,7 @@ grow_horizontal = 2
 mouse_filter = 2
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
 transparent_bg = true
 handle_input_locally = false
 canvas_item_default_texture_repeat = 1

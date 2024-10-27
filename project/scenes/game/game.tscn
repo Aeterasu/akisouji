@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=41 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_highlight_handler.gd" id="2_74dy0"]
@@ -11,10 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://dvlleqic8xnpl" path="res://scenes/level/alleyway/level_alleyway.tscn" id="4_wwfh1"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_particle_handler.gd" id="5_5xq02"]
 [ext_resource type="PackedScene" uid="uid://dcaypqvm8j1yq" path="res://scenes/ui/hud/ui.tscn" id="5_is4j0"]
-[ext_resource type="Script" path="res://scenes/player/tool/tablet/tablet_screen.gd" id="6_1n01a"]
 [ext_resource type="Script" path="res://scenes/fps_counter.gd" id="6_5ay1t"]
 [ext_resource type="PackedScene" uid="uid://biun1d1hu4wq4" path="res://scenes/fx/leaf_particles.tscn" id="6_hdiec"]
-[ext_resource type="PackedScene" uid="uid://b5626cm62nt2n" path="res://scenes/player/tool/tablet/tablet_screen_node.tscn" id="7_miktt"]
 [ext_resource type="PackedScene" uid="uid://d1lybxei6fkyd" path="res://scenes/fx/rain_particles.tscn" id="7_wptpp"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="8_d3y8h"]
 [ext_resource type="Script" path="res://scenes/ui/ui_completion/ui_completion.gd" id="8_h2dad"]
@@ -119,13 +117,6 @@ process_mode = 1
 
 [node name="RainParticles" parent="Pausable/LevelAlleyway/Player" instance=ExtResource("7_wptpp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.5, 0)
-
-[node name="TabletScreen" type="SubViewport" parent="."]
-size = Vector2i(320, 180)
-render_target_update_mode = 0
-script = ExtResource("6_1n01a")
-
-[node name="TabletScreenNode" parent="TabletScreen" instance=ExtResource("7_miktt")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 128
@@ -271,7 +262,6 @@ script = ExtResource("8_d3y8h")
 layer = 102
 
 [node name="PauseMenu" parent="PauseLayer" node_paths=PackedStringArray("submenu_origin") instance=ExtResource("22_yntas")]
-process_mode = 3
 submenu_origin = NodePath("../../SubmenuLayer")
 
 [node name="SubmenuLayer" type="CanvasLayer" parent="."]

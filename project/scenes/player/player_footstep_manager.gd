@@ -3,6 +3,7 @@ extends Node3D
 @export var player : Player = null
 @export var velocity_component : VelocityComponent = null
 
+@export var raycast : RayCast3D = null
 @export var step_rate : float = 0.0
 
 @export var concrete_footstep : SoundEffectPlayer = null
@@ -20,7 +21,8 @@ func _physics_process(delta):
 		cur_step_rate -= delta * velocity_component.current_velocity.length()
 
 	if (cur_step_rate <= 0):
-		var collider = _get_raycast_collider()
+		raycast.force_raycast_update()
+		var collider = raycast.get_collider()
 
 		if (collider):
 			if (collider.is_in_group("Material-Concrete")):
@@ -30,16 +32,3 @@ func _physics_process(delta):
 
 		current_footstep.play()
 		cur_step_rate = step_rate
-
-func _get_raycast_collider():
-	var space_state = get_world_3d().direct_space_state
-
-	var origin = global_position + Vector3.UP
-	var end = origin + 4 * Vector3.DOWN
-	var query = PhysicsRayQueryParameters3D.create(origin, end, 4294967295, [player.get_rid()])
-
-	var result = space_state.intersect_ray(query)
-
-	if (result):
-		return result["collider"]
-	

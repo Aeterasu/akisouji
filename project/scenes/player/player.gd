@@ -7,7 +7,7 @@ class_name Player extends CharacterBody3D
 
 @export_group("Movement")
 @export var velocity_component : VelocityComponent = null
-@export var gravity_component : GravityComponent = null
+@export var gravity : float = 9.8
 @export var jump_strength : float = 2.0
 @export_range(0, 30) var jump_buffer_size : int = 3
 @export_range(1.0, 2.0) var sprint_speed_multiplier : float = 1.5
@@ -20,6 +20,7 @@ class_name Player extends CharacterBody3D
 @export var camera_effect_landing : CameraEffectLanding = null
 
 @export_group("Leaf Cleaning")
+@export var cleaning_raycast : RayCast3D = null
 @export var cleaning_radius : float = 1.0
 @export var jump_cleaning_radius : float = 0.5
 @export var sprint_cleaning_cooldown : float = 0.25
@@ -75,7 +76,7 @@ func _physics_process(delta : float):
 	inventory.current_tool.walk_multiplier = velocity_component.current_velocity.length() / velocity_component.speed
 	inventory.current_tool._set_sprint_toggle(wish_sprint)
 
-	if (gravity_component.current_velocity < delta - 0.1):
+	if (velocity.y < delta - 0.1):
 		is_landing = true
 
 	if (is_landing && is_on_floor()):
@@ -89,20 +90,15 @@ func on_broom():
 	var screen_size = get_viewport().size
 	var screen_center = Vector2(screen_size.x * 0.5, screen_size.y * 0.5)
 
-	var active_camera = get_viewport().get_camera_3d()
-	var space_state = active_camera.get_world_3d().direct_space_state
-	var from = active_camera.project_ray_origin(screen_center)
-	var to = from + active_camera.project_ray_normal(screen_center) * cleaning_range
-	var query = PhysicsRayQueryParameters3D.create(from, to)
-	
-	var result = space_state.intersect_ray(query)
+	cleaning_raycast.force_raycast_update()
 
 	#leaf_cleaning_handler._on_player_cleaning_input(cleaning_radius, cleaning_range)
 
-	if (result and result.has("position")):
-		Game.game_instance.last_cleaning_position = result["position"]
+	if (cleaning_raycast.get_collider()):
+		var cleaning_point = cleaning_raycast.get_collision_point()
+		Game.game_instance.last_cleaning_position = cleaning_point
 		Game.game_instance.last_cleaning_radius = cleaning_radius
-		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(result["position"].x, result["position"].z), Vector2.ZERO, cleaning_radius)
+		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(cleaning_point.x, cleaning_point.z), Vector2.ZERO, cleaning_radius)
 
 	pass
 
@@ -189,12 +185,17 @@ func move_camera(input : Vector2) -> void:
 func movement_process(delta):
 	current_sprint_jump_boost = current_sprint_jump_boost.lerp(Vector2.ZERO, sprint_jumping_falloff * delta)
 
+	velocity.y -= gravity * delta
+
+	if (is_on_floor()):
+		velocity.y = 0
+
 	if (wish_jumping):
 		if (is_on_floor()):
 			if (current_jump_buffer_ticks > 0 and wish_sprint):
 				current_sprint_jump_boost += velocity_component.current_velocity.normalized() * sprint_jumping_boost_amount		
 
-			gravity_component.hop(jump_strength)
+			velocity.y = jump_strength
 			current_jump_buffer_ticks = 0
 			wish_jumping = false
 		else:
@@ -209,12 +210,9 @@ func movement_process(delta):
 	else:
 		velocity_component.speed_multiplier = 1.0
 
-	velocity = Vector3(velocity_component.current_velocity.x, gravity_component.current_velocity, velocity_component.current_velocity.y) + Vector3(current_sprint_jump_boost.x, 0.0, current_sprint_jump_boost.y)
+	velocity = Vector3(velocity_component.current_velocity.x, velocity.y, velocity_component.current_velocity.y) + Vector3(current_sprint_jump_boost.x, 0.0, current_sprint_jump_boost.y)
 
 	move_and_slide()
-
-	if (is_on_floor()):
-		gravity_component.current_velocity = -delta	
 
 func is_walking() -> bool:
 	return velocity_component.current_velocity.length() > 0.0
