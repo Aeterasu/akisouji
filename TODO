@@ -52,6 +52,7 @@ LEFT TO DO:
     + fix language change needing to be clicked twice on menu reopen
     + hold gamepad button to change slider settings
     + gallery keyboard controls
+    + beautify gallery scroll wheel
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -89,7 +90,7 @@ LEFT TO DO:
         - fix cleaning request queue
     
     GENERAL UI:
-        - add interpolations to ui (gallery, settings, etc)
+        - add interpolations to ui (gallery. gallery down panel missing interpolations on mode switch, settings, pause etc)
         - add playstation glyphs
         - add credits to main menu
         - add input delay to button manager to prevent accidental clicks
@@ -129,7 +130,6 @@ LEFT TO DO:
         - disable certain settings in web. make an (unavailable in web) splash
     
     GALLERY:
-        - beautify gallery scroll wheel
         - add some sort of download screenshots from web version. also hide folder button in web
     
     PAUSE MENU:

@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://bfmvy7wmymc2l"]
+[gd_scene load_steps=30 format=3 uid="uid://bfmvy7wmymc2l"]
 
 [ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="1_mdruy"]
 [ext_resource type="Script" path="res://scenes/ui/gallery/gallery.gd" id="1_mortg"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="2_ya6i8"]
 [ext_resource type="Script" path="res://scenes/ui/gallery/gallery_entry.gd" id="4_5tap1"]
+[ext_resource type="Theme" uid="uid://cjbn10bkr6ldk" path="res://resource/custom_scroll_bar.tres" id="4_70f6a"]
 [ext_resource type="Texture2D" uid="uid://boq4h7pwnxh70" path="res://assets/texture/ui/texture_ui_border.png" id="4_f3clh"]
 [ext_resource type="Texture2D" uid="uid://dd7euwxcnfdll" path="res://assets/texture/texture_blurred_alleyway.png" id="4_oydno"]
 [ext_resource type="PackedScene" uid="uid://bcrys4arojn37" path="res://scenes/ui/paper_button.tscn" id="5_6rj0g"]
@@ -142,6 +143,7 @@ offset_right = -96.0
 offset_bottom = -164.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("4_70f6a")
 horizontal_scroll_mode = 0
 
 [node name="GridContainer" type="GridContainer" parent="ScrollContainer"]
@@ -303,10 +305,10 @@ offset_left = -496.0
 offset_top = 0.239929
 offset_right = 17.0
 offset_bottom = 0.0799561
-text_key = "MENU_BUTTON_GALLERY_FOLDER"
-custom_font_size = 24
 target_selected_position = Vector2(12, 0)
 target_deselected_position = Vector2(96, 0)
+text_key = "MENU_BUTTON_GALLERY_FOLDER"
+custom_font_size = 24
 
 [node name="ButtonSelectionHandler" type="Node" parent="Buttons" node_paths=PackedStringArray("buttons_origin")]
 script = ExtResource("7_jbjr6")
@@ -314,6 +316,7 @@ horizontal = true
 buttons_origin = NodePath("..")
 
 [node name="GalleryEntryZoom" type="Control" parent="." node_paths=PackedStringArray("entry_origin")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
