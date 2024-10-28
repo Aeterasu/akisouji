@@ -80,9 +80,9 @@ shader_parameter/offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n65bv"]
 shader = ExtResource("16_xdxyp")
-shader_parameter/strength = null
-shader_parameter/speed = null
-shader_parameter/frames = null
+shader_parameter/strength = 0.001
+shader_parameter/speed = 0.35
+shader_parameter/frames = 1
 shader_parameter/flowMap = ExtResource("17_khpjf")
 
 [node name="Game" type="Node3D" node_paths=PackedStringArray("player", "level", "loading_screen", "ui_completion", "pause_menu", "progress_tracker", "particle_handler")]
@@ -117,7 +117,6 @@ process_mode = 1
 
 [node name="RainParticles" parent="Pausable/LevelAlleyway/Player" instance=ExtResource("7_wptpp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.5, 0)
-visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 128
@@ -299,17 +298,22 @@ scale = Vector2(3, 3)
 mouse_filter = 2
 
 [node name="KuwaharaLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="KuwaharaLayer"]
 material = SubResource("ShaderMaterial_5tcod")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -640.0
+offset_bottom = -360.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 mouse_filter = 2
 
 [node name="PaintingLayer" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("11_0g5lc")
 
 [node name="ColorRect" type="ColorRect" parent="PaintingLayer"]

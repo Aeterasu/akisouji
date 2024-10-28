@@ -147,7 +147,6 @@ LEFT TO DO:
     PAUSE MENU:
     
     MISC:
-        - remove output console, as it's kind of pointless now that we use GDExtension. 
         - set locale on first launch
         - fix null checks, replace them with is_instance_valid
         - check out TODOs in code and implement them 🥺🥺🥺
@@ -156,6 +155,7 @@ LEFT TO DO:
         - optimize mesh loading for web, cut out the blend files.
         - cut out everything unused
     
+        - disable console before release
         - replace default godot loading image in web
         - IMPORTANT! BEFORE RELEASE, RECOMPILE C++ TO RELEASE TEMPLATE
     
@@ -171,5 +171,5 @@ LEFT TO DO:
         - add russian, and if possible, japanese localization
         - ask sensenko about spanish translation
 
-SAD TRUTH : 
-    - is web off the table?
+    SAD TRUTH : 
+        - is web off the table?

@@ -172,11 +172,6 @@ func _input(event):
 		var mouseMotion = event as InputEventMouseMotion
 		move_camera(-mouseMotion.relative * GlobalSettings.mouse_sensitivity)
 
-	#TODO: move this to main. somehow.
-	if event is InputEventMouseButton:
-		if (OS.get_name() == "Web"):
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-
 func move_camera(input : Vector2) -> void:
 	rotate_y(deg_to_rad(input.x))
 	camera_origin.rotate_x(deg_to_rad(input.y))

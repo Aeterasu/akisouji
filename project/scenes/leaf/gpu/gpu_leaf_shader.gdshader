@@ -5,7 +5,13 @@ render_mode disable_velocity;
 
 uniform vec3 current_cleaning_position = vec3(0.0, 0.0, 0.0);
 uniform float cleaning_radius = 1.0;
-uniform int cleaned_leaves_count = 0;
+
+uniform vec4 random_color_1 : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 random_color_2 : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 random_color_3 : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 random_color_4 : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 random_color_5 : source_color = vec4(1.0, 1.0, 1.0, 1.0);
+uniform vec4 random_color_6 : source_color = vec4(1.0, 1.0, 1.0, 1.0);
 
 uniform vec3 direction;
 uniform float spread;
@@ -280,6 +286,33 @@ void start()
 	
 	TRANSFORM[1].z = r3;
 	TRANSFORM[2].y = -r3;
+	
+	float r_color = rand_from_seed_m1_p1(base_number) * 6.0;
+	
+	if (r_color <= 1.0)
+	{
+		COLOR = random_color_1;
+	}
+	else if (r_color <= 2.0)
+	{
+		COLOR = random_color_2;
+	}
+	else if (r_color <= 3.0)
+	{
+		COLOR = random_color_3;
+	}
+	else if (r_color <= 4.0)
+	{
+		COLOR = random_color_4;
+	}
+	else if (r_color <= 5.0)
+	{
+		COLOR = random_color_5;
+	}
+	else if (r_color <= 6.1)
+	{
+		COLOR = random_color_6;
+	}
 }
 
 void process() 
@@ -370,7 +403,7 @@ void process()
 	float base_angle = dynamic_params.angle;
 	base_angle += CUSTOM.y * LIFETIME * dynamic_params.angular_velocity;
 	CUSTOM.x = base_angle * degree_to_rad;
-	COLOR = params.color;
+	//COLOR = params.color;
 
 	TRANSFORM[0].xyz = normalize(TRANSFORM[0].xyz);
 	TRANSFORM[1].xyz = normalize(TRANSFORM[1].xyz);
