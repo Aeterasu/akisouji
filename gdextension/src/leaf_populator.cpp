@@ -57,11 +57,6 @@ LeafPopulator::~LeafPopulator()
 
 void LeafPopulator::_ready()
 {
-    if (!isEnabled)
-    {
-        return;
-    }
-
     //multimesh->set_instance_count(0);
 
     leafCleaningHandler = get_node<LeafCleaningHandler>(this->nodePathLeafCleaningHandler);
@@ -79,6 +74,11 @@ void LeafPopulator::_ready()
 void LeafPopulator::PopulateLeaves()
 {
     // add null checks here
+
+    if (!isEnabled)
+    {
+        return;
+    }
 
     if (Engine::get_singleton()->is_editor_hint())
     {

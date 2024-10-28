@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=43 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_highlight_handler.gd" id="2_74dy0"]
@@ -8,15 +8,16 @@
 [ext_resource type="Material" uid="uid://dnl0j7w1x0eod" path="res://resource/mesh/leaf_material.tres" id="3_ys06x"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_progress_tracker.gd" id="4_deeln"]
 [ext_resource type="Script" path="res://scenes/utils/show_canvas_layer_on_ready.gd" id="4_ha1os"]
-[ext_resource type="PackedScene" uid="uid://dvlleqic8xnpl" path="res://scenes/level/alleyway/level_alleyway.tscn" id="4_wwfh1"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_particle_handler.gd" id="5_5xq02"]
 [ext_resource type="PackedScene" uid="uid://dcaypqvm8j1yq" path="res://scenes/ui/hud/ui.tscn" id="5_is4j0"]
 [ext_resource type="Script" path="res://scenes/fps_counter.gd" id="6_5ay1t"]
 [ext_resource type="PackedScene" uid="uid://biun1d1hu4wq4" path="res://scenes/fx/leaf_particles.tscn" id="6_hdiec"]
+[ext_resource type="PackedScene" uid="uid://cq02pwenerh4r" path="res://scenes/test/gpu_leaves_test/gpu_leaves_test.tscn" id="7_n72qc"]
 [ext_resource type="PackedScene" uid="uid://d1lybxei6fkyd" path="res://scenes/fx/rain_particles.tscn" id="7_wptpp"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="8_d3y8h"]
 [ext_resource type="Script" path="res://scenes/ui/ui_completion/ui_completion.gd" id="8_h2dad"]
 [ext_resource type="Texture2D" uid="uid://csspljpa4mobh" path="res://assets/texture/fx/texture_speed.png" id="10_0auwo"]
+[ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://resource/mesh/leaf_mesh.tres" id="10_kpjye"]
 [ext_resource type="Script" path="res://scenes/utils/delete_in_web.gd" id="11_0g5lc"]
 [ext_resource type="Script" path="res://scenes/fx/speed_effect.gd" id="11_e6qqw"]
 [ext_resource type="Shader" path="res://shader/sun_flare.gdshader" id="12_ceytl"]
@@ -32,6 +33,13 @@
 [ext_resource type="Shader" path="res://shader/web_flare.gdshader" id="20_neh2t"]
 [ext_resource type="PackedScene" uid="uid://d0r5a5kwi5eoo" path="res://scenes/ui/pause_menu/pause_menu.tscn" id="22_yntas"]
 [ext_resource type="Script" path="res://scenes/ui/blackout_layer.gd" id="31_te3wo"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8qwac"]
+emission_shape = 3
+emission_box_extents = Vector3(16, 1, 16)
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
 
 [sub_resource type="Gradient" id="Gradient_br6rk"]
 colors = PackedColorArray(0, 0, 0, 1, 0.126179, 0.0169545, 0.0044633, 1)
@@ -88,8 +96,8 @@ shader_parameter/flowMap = ExtResource("17_khpjf")
 [node name="Game" type="Node3D" node_paths=PackedStringArray("player", "level", "loading_screen", "ui_completion", "pause_menu", "progress_tracker", "particle_handler")]
 process_mode = 3
 script = ExtResource("1_bcfl2")
-player = NodePath("Pausable/LevelAlleyway/Player")
-level = NodePath("Pausable/LevelAlleyway")
+player = NodePath("Pausable/GpuLeavesTest/Player")
+level = NodePath("Pausable/GpuLeavesTest")
 loading_screen = NodePath("CanvasLayer/LoadingScreen")
 ui_completion = NodePath("UICompletionLayer/UICompletion")
 pause_menu = NodePath("PauseLayer/PauseMenu")
@@ -111,12 +119,20 @@ particles_scene = ExtResource("6_hdiec")
 [node name="Pausable" type="Node" parent="."]
 process_mode = 1
 
-[node name="LevelAlleyway" parent="Pausable" instance=ExtResource("4_wwfh1")]
+[node name="GpuLeavesTest" parent="Pausable" instance=ExtResource("7_n72qc")]
 
-[node name="Player" parent="Pausable/LevelAlleyway" instance=ExtResource("3_ncnfk")]
+[node name="Player" parent="Pausable/GpuLeavesTest" instance=ExtResource("3_ncnfk")]
 
-[node name="RainParticles" parent="Pausable/LevelAlleyway/Player" instance=ExtResource("7_wptpp")]
+[node name="RainParticles" parent="Pausable/GpuLeavesTest/Player" instance=ExtResource("7_wptpp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.5, 0)
+visible = false
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="Pausable/GpuLeavesTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+amount = 2048
+visibility_aabb = AABB(-128, -32, -128, 256, 64, 256)
+process_material = SubResource("ParticleProcessMaterial_8qwac")
+draw_pass_1 = ExtResource("10_kpjye")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 128
@@ -212,7 +228,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_dvkjl")
 script = ExtResource("11_e6qqw")
-player = NodePath("../../Pausable/LevelAlleyway/Player")
+player = NodePath("../../Pausable/GpuLeavesTest/Player")
 fps = 12.0
 target_color = Color(0.29219, 0.29219, 0.29219, 1)
 

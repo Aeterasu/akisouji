@@ -53,6 +53,7 @@ LEFT TO DO:
     + hold gamepad button to change slider settings
     + gallery keyboard controls
     + beautify gallery scroll wheel
+    + port leaf particles to C++
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -65,9 +66,11 @@ LEFT TO DO:
     CURRENT WORKING NAME - LEAF SWEEPER
     
     GAMEPLAY:
-        - port leaf interpolation and particles from gdscript leaf cleaning to C++    
+        - disabled leaf populator completely breaks the game, pls add safety checks
+        - port leaf interpolation from gdscript leaf cleaning to C++    
         - add 'new upgrade notification'
         - add completion UI, with our chara holding thumbs up! add a grade based on time. D, C, B, A, A+, S. Each grade has a cash bonus. info shown - grade, time, level name. grade is an enum where -1 means no grade, otherwise grade.
+		- save best grades and show them in stage select
         - during completion, you can move and look at the results of your work. the completion is initially just a text popup (Press blah to finish)
         - maybe implement optimization via cluster of multimeshes
         - figure out some sort of way to prevent leaf spawning under props. heightmaps do that, but are a hassle. maybe we could generate heightmaps via raycast or some sort of other method?
@@ -88,6 +91,9 @@ LEFT TO DO:
         - cash and purchases saving
         - clean up all of the remaining leaves on level completion.
         - fix cleaning request queue
+        - fix not being able to leave photo mode
+        - add photo mode zoom, and tilt
+		- strong broom should sweep in a thin-rectangle
     
     GENERAL UI:
         - add interpolations to ui (gallery. gallery down panel missing interpolations on mode switch, settings, pause etc)
@@ -95,6 +101,7 @@ LEFT TO DO:
         - add credits to main menu
         - add input delay to button manager to prevent accidental clicks
         - rework loading screen
+        - add timer
     
     IN-GAME HUD:
         - redraw textures for in-game ui
@@ -108,6 +115,7 @@ LEFT TO DO:
         - another pass to alleyway level. patch holes, really.
         - add props by necessity
         - add pavement border texture
+		- remodel trees
     
     AUDIO:
         - add crunchy cleaning sounds
@@ -119,6 +127,8 @@ LEFT TO DO:
         - add music
     
     SETTINGS:
+		- lerp for sliders
+        - add separator to settings category label
         - make keybinds and controller binds
         - make slider unclickable
         - fix mouse overlap with toggle buttons, make directonal toggles usable
@@ -129,6 +139,7 @@ LEFT TO DO:
         - add sound on slider interaction (use blit sound from field of sunflowers?)
         - add 'show tutorials' settings
         - disable certain settings in web. make an (unavailable in web) splash
+		- add 'show fps' setting
     
     GALLERY:
         - add some sort of download screenshots from web version. also hide folder button in web
@@ -159,3 +170,6 @@ LEFT TO DO:
     LOCALIZATION:
         - add russian, and if possible, japanese localization
         - ask sensenko about spanish translation
+
+SAD TRUTH : 
+    - is web off the table?

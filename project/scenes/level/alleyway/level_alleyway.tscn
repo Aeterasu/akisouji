@@ -1,10 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://dvlleqic8xnpl"]
+[gd_scene load_steps=26 format=3 uid="uid://dvlleqic8xnpl"]
 
 [ext_resource type="PackedScene" uid="uid://bqtapora2wl4e" path="res://assets/mesh/level_design/mesh_alleyway.blend" id="1_yq5x8"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="2_akrc7"]
 [ext_resource type="Material" uid="uid://cjtw4ylyq480t" path="res://resource/material/material_stone_pavement.tres" id="2_o4ob6"]
-[ext_resource type="PackedScene" uid="uid://b83v1plx4lqpw" path="res://scenes/leaf/leaf_populator.tscn" id="3_c46s6"]
-[ext_resource type="Texture2D" uid="uid://ckp0n0vr7luqv" path="res://assets/texture/leaf_map/texture_leafmap_alleyway_1.png" id="4_5sgs6"]
 [ext_resource type="Environment" uid="uid://dfi8f6n3mi0ob" path="res://resource/environment_base_autumn.tres" id="6_ah06a"]
 [ext_resource type="Material" uid="uid://c4kdvxtxf6qht" path="res://resource/material/material_grass_1.tres" id="16_l6vd3"]
 [ext_resource type="Material" uid="uid://bnwne1764whql" path="res://resource/material/material_soil_1.tres" id="17_ok7y4"]
@@ -38,37 +36,33 @@ uv1_triplanar = true
 
 [node name="LevelAlleyway" node_paths=PackedStringArray("leaf_populator", "player_spawn_position") instance=ExtResource("1_yq5x8")]
 script = ExtResource("2_akrc7")
-leaf_populator = NodePath("LeafPopulator")
+leaf_populator = NodePath("")
 player_spawn_position = NodePath("PlayerSpawnPosition")
 
-[node name="LeafPopulator" parent="." index="0" instance=ExtResource("3_c46s6")]
-pixelFraction = 3.67
-leafmap = ExtResource("4_5sgs6")
-
-[node name="Pavement" parent="." index="1"]
+[node name="Pavement" parent="." index="0"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13, 0, 0)
 surface_material_override/0 = ExtResource("2_o4ob6")
 
-[node name="PavementWithBush" parent="." index="2"]
+[node name="PavementWithBush" parent="." index="1"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13, 0, 8)
 surface_material_override/0 = ExtResource("2_o4ob6")
 
-[node name="PavementCollision " parent="." index="3" groups=["Material-Concrete"]]
+[node name="PavementCollision " parent="." index="2" groups=["Material-Concrete"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 13, 0, 0)
 
-[node name="GrassCollision " parent="." index="4" groups=["Material-Grass"]]
+[node name="GrassCollision " parent="." index="3" groups=["Material-Grass"]]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 13, 0, 0)
 
-[node name="Pavement_001" parent="." index="5"]
+[node name="Pavement_001" parent="." index="4"]
 surface_material_override/0 = ExtResource("16_l6vd3")
 
-[node name="PavementWithBush_001" parent="." index="6"]
+[node name="PavementWithBush_001" parent="." index="5"]
 surface_material_override/0 = ExtResource("16_l6vd3")
 
-[node name="PavementWithBush_002" parent="." index="7"]
+[node name="PavementWithBush_002" parent="." index="6"]
 surface_material_override/0 = ExtResource("17_ok7y4")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." index="8"]
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="7"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 7.5, 52)
@@ -86,13 +80,13 @@ shape = SubResource("BoxShape3D_ygy0i")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.5, 7.5, 52)
 shape = SubResource("BoxShape3D_qdx78")
 
-[node name="PlayerSpawnPosition" type="Marker3D" parent="." index="9"]
+[node name="PlayerSpawnPosition" type="Marker3D" parent="." index="8"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13.25, 1, 3)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="10"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="9"]
 environment = ExtResource("6_ah06a")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="11"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="10"]
 transform = Transform3D(-0.942642, -0.143708, -0.301289, -7.89066e-08, -0.902586, 0.430511, -0.333807, 0.405818, 0.850814, 0, 0, 0)
 light_color = Color(0.889898, 0.773551, 0.728656, 1)
 light_energy = 2.0
@@ -102,7 +96,7 @@ shadow_opacity = 0.93
 directional_shadow_mode = 0
 directional_shadow_fade_start = 1.0
 
-[node name="Props" type="Node3D" parent="." index="12"]
+[node name="Props" type="Node3D" parent="." index="11"]
 
 [node name="Bushes" type="Node3D" parent="Props" index="0"]
 
@@ -682,54 +676,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 101)
 [node name="PropStreetLight23" parent="Props" index="61" instance=ExtResource("23_ek4ka")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16, 0, 101)
 
-[node name="Pavement_002" parent="." index="13"]
+[node name="Pavement_002" parent="." index="12"]
 surface_material_override/0 = ExtResource("2_o4ob6")
 surface_material_override/1 = SubResource("StandardMaterial3D_8e08r")
 surface_material_override/2 = ExtResource("16_l6vd3")
 
-[node name="FenceGate_001" parent="." index="14"]
+[node name="FenceGate_001" parent="." index="13"]
 surface_material_override/0 = ExtResource("25_y88bx")
 surface_material_override/1 = ExtResource("26_fqjk2")
 surface_material_override/2 = ExtResource("27_5wex2")
 
-[node name="FenceGate" parent="." index="15"]
+[node name="FenceGate" parent="." index="14"]
 surface_material_override/0 = ExtResource("25_y88bx")
 surface_material_override/1 = ExtResource("26_fqjk2")
 surface_material_override/2 = ExtResource("27_5wex2")
 
-[node name="FenceGate_002" parent="." index="16"]
+[node name="FenceGate_002" parent="." index="15"]
 surface_material_override/0 = ExtResource("26_fqjk2")
 surface_material_override/1 = ExtResource("27_5wex2")
 
-[node name="Fence_002" parent="." index="17"]
+[node name="Fence_002" parent="." index="16"]
 surface_material_override/0 = ExtResource("25_y88bx")
 
-[node name="Fence" parent="." index="18"]
+[node name="Fence" parent="." index="17"]
 surface_material_override/0 = ExtResource("25_y88bx")
 
-[node name="Fence_001" parent="." index="19"]
+[node name="Fence_001" parent="." index="18"]
 surface_material_override/0 = ExtResource("25_y88bx")
 
-[node name="Fence_003" parent="." index="21"]
+[node name="Fence_003" parent="." index="20"]
 surface_material_override/0 = ExtResource("25_y88bx")
 
-[node name="Fence_004" parent="." index="22"]
+[node name="Fence_004" parent="." index="21"]
 surface_material_override/0 = ExtResource("25_y88bx")
 
-[node name="Fence_005" parent="." index="23"]
+[node name="Fence_005" parent="." index="22"]
 surface_material_override/0 = ExtResource("25_y88bx")
 
-[node name="Fence_006" parent="." index="24"]
+[node name="Fence_006" parent="." index="23"]
 surface_material_override/0 = ExtResource("25_y88bx")
 
-[node name="CityHorizon" parent="." index="26" instance=ExtResource("27_c2rv4")]
+[node name="CityHorizon" parent="." index="25" instance=ExtResource("27_c2rv4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
 
-[node name="Horizon" parent="." index="27" instance=ExtResource("28_mloy2")]
+[node name="Horizon" parent="." index="26" instance=ExtResource("28_mloy2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.665, 0)
 
-[node name="Plains" parent="." index="28"]
+[node name="Plains" parent="." index="27"]
 surface_material_override/0 = ExtResource("16_l6vd3")
 
-[node name="Gates" parent="." index="29"]
+[node name="Gates" parent="." index="28"]
 surface_material_override/0 = ExtResource("25_y88bx")

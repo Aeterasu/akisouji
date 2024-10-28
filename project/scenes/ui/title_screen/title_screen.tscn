@@ -1,17 +1,19 @@
-[gd_scene load_steps=18 format=3 uid="uid://bxucohptg4lk5"]
+[gd_scene load_steps=22 format=3 uid="uid://bxucohptg4lk5"]
 
 [ext_resource type="Script" path="res://scenes/ui/title_screen/title_screen.gd" id="1_cn1xc"]
 [ext_resource type="PackedScene" uid="uid://dj6rqqv2dxh8t" path="res://scenes/ui/settings_menu/settings_menu.tscn" id="2_aqpct"]
 [ext_resource type="Texture2D" uid="uid://dd7euwxcnfdll" path="res://assets/texture/texture_blurred_alleyway.png" id="2_o2re6"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="2_x83vb"]
-[ext_resource type="Texture2D" uid="uid://bsw8iompyvt2c" path="res://assets/texture/texture_girl_placeholder_1.png" id="3_55f8g"]
 [ext_resource type="PackedScene" uid="uid://bcrys4arojn37" path="res://scenes/ui/paper_button.tscn" id="3_hx8lg"]
 [ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="4_4qwd1"]
 [ext_resource type="Texture2D" uid="uid://b1bfiqrigg32h" path="res://assets/texture/leaf/texture_leaf_particle_title_screen_1.png" id="4_5oa8g"]
 [ext_resource type="FontFile" uid="uid://c5kqanfa0j1nl" path="res://assets/font/DancingScript-VariableFont_wght.ttf" id="4_thwtb"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="4_w7fwc"]
-[ext_resource type="Script" path="res://scenes/ui/title_screen/leaf_particle_upscale.gd" id="5_2dycv"]
+[ext_resource type="Shader" path="res://shader/2d_flag.gdshader" id="6_1fc8w"]
 [ext_resource type="PackedScene" uid="uid://cyaqutbexr62l" path="res://scenes/ui/gamepad_tooltip/gamepad_tooltip.tscn" id="6_4lgo6"]
+[ext_resource type="Texture2D" uid="uid://jw2nop55mmd8" path="res://assets/texture/girl/girl1_1.png" id="6_4n4mv"]
+[ext_resource type="Texture2D" uid="uid://c2gi0x0ml64uf" path="res://assets/texture/girl/girl1_2.png" id="7_docbu"]
+[ext_resource type="Texture2D" uid="uid://cxi2udxes477p" path="res://assets/texture/girl/girl1_blur.png" id="8_2nckq"]
 [ext_resource type="Script" path="res://scenes/utils/mouse_capture_handler.gd" id="8_osiqa"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nph5e"]
@@ -21,7 +23,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 
 [sub_resource type="Curve" id="Curve_lctta"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.342246, 0.379333), 0.822377, 0.822377, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 0.397492), 0.0, 0.0, 0, 0, Vector2(0.369748, 0.681025), 0.822377, 0.822377, 0, 0, Vector2(0.997199, 0.36205), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="CurveTexture" id="CurveTexture_etor3"]
@@ -38,9 +40,17 @@ initial_velocity_max = 139.03
 angular_velocity_min = -79.6
 angular_velocity_max = 101.31
 gravity = Vector3(0, 0, 0)
-scale_max = 1.55
+scale_min = 0.8
+scale_max = 1.1
 alpha_curve = SubResource("CurveTexture_etor3")
 anim_offset_max = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_de581"]
+shader = ExtResource("6_1fc8w")
+shader_parameter/modulate = Color(0.890196, 0.8, 0.694118, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ia864"]
+blend_mode = 1
 
 [node name="TitleScreen" type="Control" node_paths=PackedStringArray("button_selection_handler", "start_button", "gallery_button", "options_button", "exit_button", "submenu_origin")]
 layout_mode = 3
@@ -72,7 +82,28 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_o2re6")
 stretch_mode = 6
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="." node_paths=PackedStringArray("parent_control")]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_right = -640.0
+offset_bottom = -360.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(640, 360)
+render_target_update_mode = 4
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="SubViewportContainer/SubViewport"]
 material = SubResource("CanvasItemMaterial_nph5e")
 position = Vector2(1085, -16)
 amount = 96
@@ -82,26 +113,55 @@ lifetime = 8.0
 preprocess = 1.0
 fixed_fps = 15
 visibility_rect = Rect2(-2048, 0, 4096, 4096)
-script = ExtResource("5_2dycv")
-parent_control = NodePath("..")
 
 [node name="Girl" type="TextureRect" parent="."]
-modulate = Color(0.89, 0.80189, 0.6942, 1)
+modulate = Color(0.851747, 0.743695, 0.610534, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.73
 anchor_top = 1.0
 anchor_right = 0.73
 anchor_bottom = 1.0
-offset_left = -429.4
-offset_top = -749.0
-offset_right = 850.6
-offset_bottom = 386.0
+offset_left = -786.4
+offset_top = -713.0
+offset_right = 1133.6
+offset_bottom = 422.0
 scale = Vector2(0.67, 0.67)
-texture = ExtResource("3_55f8g")
+texture = ExtResource("6_4n4mv")
+stretch_mode = 2
+
+[node name="Scarf" type="TextureRect" parent="Girl"]
+modulate = Color(0.89, 0.80189, 0.6942, 1)
+show_behind_parent = true
+material = SubResource("ShaderMaterial_de581")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_docbu")
+stretch_mode = 2
+
+[node name="Bloom" type="TextureRect" parent="Girl"]
+modulate = Color(0.85, 0.7429, 0.612, 0.176471)
+material = SubResource("CanvasItemMaterial_ia864")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -220.896
+offset_top = -10.4478
+offset_right = -1660.9
+offset_bottom = -875.448
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+texture = ExtResource("8_2nckq")
 stretch_mode = 2
 
 [node name="Title" type="Label" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.267

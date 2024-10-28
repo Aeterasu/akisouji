@@ -45,7 +45,7 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process(delta):
-	if (Input.is_action_just_pressed("pause")):
+	if (Input.is_action_just_pressed("pause") or (Input.is_action_just_pressed("menu_cancel") and get_tree().paused)):
 		toggle_pause()
 		player.block_brooming_until_key_is_released = true
 

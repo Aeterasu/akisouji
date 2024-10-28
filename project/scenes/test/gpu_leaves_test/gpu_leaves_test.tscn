@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://cq02pwenerh4r"]
+
+[ext_resource type="Script" path="res://scenes/level/level.gd" id="1_dfblh"]
+[ext_resource type="Material" uid="uid://cjtw4ylyq480t" path="res://resource/material/material_stone_pavement.tres" id="2_2awk1"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_a3m6e"]
+material = ExtResource("2_2awk1")
+size = Vector3(256, 0.1, 256)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sm1t8"]
+size = Vector3(256, 0.1, 256)
+
+[sub_resource type="Environment" id="Environment_mn3xd"]
+
+[node name="GpuLeavesTest" type="Node3D" node_paths=PackedStringArray("player_spawn_position")]
+script = ExtResource("1_dfblh")
+player_spawn_position = NodePath("Marker3D")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+mesh = SubResource("BoxMesh_a3m6e")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+size = Vector3(256, 1, 256)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0)
+shape = SubResource("BoxShape3D_sm1t8")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mn3xd")
