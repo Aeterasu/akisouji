@@ -52,7 +52,7 @@ shader_parameter/modulate = Color(0.890196, 0.8, 0.694118, 1)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ia864"]
 blend_mode = 1
 
-[node name="TitleScreen" type="Control" node_paths=PackedStringArray("button_selection_handler", "start_button", "gallery_button", "options_button", "exit_button", "submenu_origin")]
+[node name="TitleScreen" type="Control" node_paths=PackedStringArray("button_selection_handler", "start_button", "gallery_button", "options_button", "exit_button", "submenu_origin", "blackout")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -67,9 +67,11 @@ options_button = NodePath("VBoxContainer/OptionsButton")
 exit_button = NodePath("VBoxContainer/ExitButton")
 submenu_origin = NodePath("SubmenuLayer")
 settings_scene = ExtResource("2_aqpct")
+blackout = NodePath("Blackout")
 
 [node name="Sprite2D" type="TextureRect" parent="."]
 modulate = Color(0.378822, 0.233864, 0.152343, 1)
+z_index = -425
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -83,6 +85,7 @@ texture = ExtResource("2_o2re6")
 stretch_mode = 6
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+z_index = -120
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -133,6 +136,7 @@ stretch_mode = 2
 [node name="Scarf" type="TextureRect" parent="Girl"]
 modulate = Color(0.89, 0.80189, 0.6942, 1)
 show_behind_parent = true
+z_index = -2
 material = SubResource("ShaderMaterial_de581")
 layout_mode = 1
 anchors_preset = 15
@@ -241,3 +245,13 @@ horizontal_alignment = 2
 vertical_alignment = 2
 
 [node name="SubmenuLayer" type="CanvasLayer" parent="."]
+
+[node name="Blackout" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)

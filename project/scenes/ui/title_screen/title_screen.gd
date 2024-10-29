@@ -11,12 +11,14 @@ extends Control
 
 @export var settings_scene : PackedScene = null
 
+@export var blackout : ColorRect = null
+
 func _ready():
 	button_selection_handler.on_button_pressed.connect(_on_button_pressed)
 
-	modulate = Color(0.0, 0.0, 0.0)
+	blackout.color = Color(0.0, 0.0, 0.0, 1.0)
 	var tween = create_tween()
-	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0), 0.3)
+	tween.tween_property(blackout, "color", Color(0.0, 0.0, 0.0, 0.0), 0.3)
 
 func _on_button_pressed(button : UIButton):
 	button_selection_handler._disable_all_buttons()
@@ -60,7 +62,7 @@ func _on_exit_pressed() -> void:
 
 func transition(callable: Callable):
 	var tween = create_tween()
-	tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0), 0.2)
+	tween.tween_property(blackout, "color", Color(0.0, 0.0, 0.0, 1.0), 0.2)
 	tween.tween_callback(callable).set_delay(0.2)
 
 func _on_submenu_closed() -> void:

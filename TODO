@@ -54,7 +54,8 @@ LEFT TO DO:
     + gallery keyboard controls
     + beautify gallery scroll wheel
     + port leaf particles to C++
-    + port leaf interpolation from gdscript leaf cleaning to C++    
+    + port leaf interpolation from gdscript leaf cleaning to C++
+    + smooth transitions in settings menu 
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -74,8 +75,8 @@ LEFT TO DO:
         - during completion, you can move and look at the results of your work. the completion is initially just a text popup (Press blah to finish)
         - maybe implement optimization via cluster of multimeshes
         - figure out some sort of way to prevent leaf spawning under props. heightmaps do that, but are a hassle. maybe we could generate heightmaps via raycast or some sort of other method?
-        - draw camera texture
-        - sunflower-like tutorial. mention leaf highlighting
+        - draw camera texture (don't forget the outline!)
+        - sunflower-like tutorial. mention leaf highlighting (could tutorial be a dialogue with the girl?)
         - redo brooming animations
         - add the ability to throw your broom. it will then proceed to sweep all the leaves as it slides across the ground. 
         - each broom has it's own secondary attack. broom - throw, 
@@ -83,7 +84,7 @@ LEFT TO DO:
         - feather duster -
         - vacuum - powerful aoe leaf blow!
         - work on economy :D
-        - add fountain stage
+        - add fountain stage (make it night/evening!)
         - add park stage
         - add stage select menu
         - add broom upgrades
@@ -94,6 +95,8 @@ LEFT TO DO:
         - fix not being able to leave photo mode
         - add photo mode zoom, and tilt
 		- strong broom should sweep in a thin-rectangle
+        - tool swap cooldown
+        - prohibit camera rotation while loading
     
     GENERAL UI:
         - add interpolations to ui (gallery. gallery down panel missing interpolations on mode switch, settings, pause etc)
@@ -110,7 +113,6 @@ LEFT TO DO:
     
     VISUAL:
         - beautify leafs. new texture, maybe random texture
-        - settings saving
         - fix that annoying gate texture that currently uses deafault metal and looks ugly
         - another pass to alleyway level. patch holes, really.
         - add props by necessity
@@ -135,11 +137,11 @@ LEFT TO DO:
         - fix menu button selection while dragging a slider
         - add settings menu. master, sfx, ambience, music volume. fullscreen/windowed. language. leaf higlight color setting. fov - 70-100. controls. mouse sensitivity, gamepad sensitivity. -AUDIO, -VISUALS, -GAMEPLAY, -KEY BINDINGS, -GAMEPAD BINDINGS
         - settings horizontal scaling
-        - smooth transitions in settings menu
         - add sound on slider interaction (use blit sound from field of sunflowers?)
         - add 'show tutorials' settings
         - disable certain settings in web. make an (unavailable in web) splash
 		- add 'show fps' setting
+        - settings saving
     
     GALLERY:
         - add some sort of download screenshots from web version. also hide folder button in web
