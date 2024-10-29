@@ -16,6 +16,10 @@ void LeafCleaningHandler::_bind_methods()
 
     ClassDB::bind_method(D_METHOD("getInstanceCount"), &LeafCleaningHandler::getInstanceCount);
     ClassDB::bind_method(D_METHOD("getCleanedInstanceCount"), &LeafCleaningHandler::getCleanedInstanceCount);
+    
+    ClassDB::bind_method(D_METHOD("setLeafInterpolationWeight", "pWeight"), &LeafCleaningHandler::setLeafInterpolationWeight);
+    ClassDB::bind_method(D_METHOD("getLeafInterpolationWeight"), &LeafCleaningHandler::getLeafInterpolationWeight);
+    ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "leafInterpolationWeight"), "setLeafInterpolationWeight", "getLeafInterpolationWeight");
 
     ADD_SIGNAL(MethodInfo("on_leaves_cleaned", PropertyInfo(Variant::INT, "amount")));
 }
@@ -48,7 +52,6 @@ void LeafCleaningHandler::_physics_process(double delta)
 
     int i = 0;
     int sweeps = 0;
-    int cleaned = 0;
 
     while (sweeps < sweepPerTick)
     {
@@ -67,23 +70,24 @@ void LeafCleaningHandler::_physics_process(double delta)
         {
             sweeps++;
             int req = int(indexesQueuedForCleaning[i]);
-            Transform3D t = Transform3D((*transforms)[req]);
-            // TODO: BRING BACK SCALE LERPING
-            (*transforms)[req] = Transform3D().translated(Vector3(999.0, 999.0, 999.0));
+
+            Transform3D t = Transform3D((*transforms)[req]).scaled_local(Vector3(1, 1, 1) - (Vector3(1, 1, 1) * leafInterpolationWeight * delta));
+
+            (*transforms)[req] = t;
+
             skips[req] = true;
 
-            indexesQueuedForCleaning[i] = int(-1);
+            if (t.basis.get_scale().length() <= 0.1f)
+            {
+                t = Transform3D().scaled(Vector3(0, 0, 0));
 
-            cleaned += 1;
-            cleanedInstancesCount += 1;
+                indexesQueuedForCleaning[i] = int(-1);
 
-            multimesh->set_instance_transform(req, (*transforms)[req]);
+                cleanedInstancesCount += 1;
+            }
+
+            multimesh->set_instance_transform(req, t);
         }
-    }
-
-    if (cleaned > 0)
-    {
-        emit_signal("on_leaves_cleaned", cleaned);
     }
 }
 
@@ -101,10 +105,12 @@ void LeafCleaningHandler::UpdateTicks(double delta)
         return;
     }
 
+    int cleaned = 0;
+
     for (int i = requests.size() - 1; i > 0; i--)
     {
         Ref<CleaningRequest> request = requests[i];
-        Vector2 requestPosition = request->getRequestPosition();
+        Vector2 requestPosition = request->getRequestPosition().rotated(request->getRequestDirection().angle());
 
         int firstSuitableIndex = (*transforms).bsearch_custom(Transform3D()
             .translated(Vector3(requestPosition.x, 0.0f, requestPosition.y)), 
@@ -130,6 +136,8 @@ void LeafCleaningHandler::UpdateTicks(double delta)
                 Vector2 direction = request->getRequestDirection();
                 indexesQueuedForCleaning[lastFreeRequestedQueueIndex] = int(j);
 
+                cleaned += 1;
+
                 if (lastFreeRequestedQueueIndex < cleaningQueueIndexBuffer - 1)
                 {
                     lastFreeRequestedQueueIndex += 1;
@@ -139,6 +147,11 @@ void LeafCleaningHandler::UpdateTicks(double delta)
                     lastFreeRequestedQueueIndex = 0;
                 }
             }
+        }
+
+        if (cleaned > 0)
+        {
+            emit_signal("on_leaves_cleaned", cleaned);
         }
 
         requests.remove_at(i);
@@ -173,4 +186,14 @@ int LeafCleaningHandler::getInstanceCount() const
 int LeafCleaningHandler::getCleanedInstanceCount() const
 {
     return cleanedInstancesCount;
+}
+
+void LeafCleaningHandler::setLeafInterpolationWeight(const float pWeight)
+{
+    leafInterpolationWeight = pWeight;
+}
+
+float LeafCleaningHandler::getLeafInterpolationWeight() const
+{
+    return leafInterpolationWeight;
 }

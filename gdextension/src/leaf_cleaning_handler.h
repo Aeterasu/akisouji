@@ -21,6 +21,8 @@ namespace godot
             int tickRate = 1;
             int ticks = 0;
             int tickCount = 0;
+
+            float leafInterpolationWeight = 0.1f;
             
             void UpdateTicks(double delta);
 
@@ -41,6 +43,9 @@ namespace godot
 
             int getInstanceCount() const;
             int getCleanedInstanceCount() const;
+
+            void setLeafInterpolationWeight(const float pWeight);
+            float getLeafInterpolationWeight() const;
 
             TypedArray<CleaningRequest> requests;
 

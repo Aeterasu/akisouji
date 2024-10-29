@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvd3qmy51ttb8"]
+
+[ext_resource type="Script" path="res://scenes/test/transform_test.gd" id="1_qurxt"]
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 0.407381, -0.19, -1.52037)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.26498e-06, 0, 7.7486e-07)
+script = ExtResource("1_qurxt")
+factor = 1.0
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-0.258819, 0, 0.965926, 0, 1, 0, -0.965926, 0, -0.258819, 1.574, 0.19, 0)
