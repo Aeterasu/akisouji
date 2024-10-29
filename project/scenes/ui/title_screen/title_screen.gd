@@ -66,4 +66,7 @@ func transition(callable: Callable):
 func _on_submenu_closed() -> void:
 	button_selection_handler._enable_all_buttons()
 
-	button_selection_handler.buttons_origin.show()
+	button_selection_handler.buttons_origin.modulate = Color(0.0, 0.0, 0.0, 0.0)
+	var tween = create_tween().tween_property(button_selection_handler.buttons_origin, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
+
+	button_selection_handler.buttons_origin.call_deferred("show")

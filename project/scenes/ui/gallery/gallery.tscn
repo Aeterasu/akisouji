@@ -71,6 +71,7 @@ gradient = SubResource("Gradient_pd1am")
 fill_to = Vector2(0, 1)
 
 [node name="Gallery" type="Control" node_paths=PackedStringArray("gallery_base_entry", "gallery_origin", "tip_label", "button_selection_handler", "back_button", "open_folder_button", "scroll_container", "gallery_entry_origin", "gallery_entry_zoom", "gamepad_tooltip")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

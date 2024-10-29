@@ -32,6 +32,7 @@ expand_margin_top = 22.0
 expand_margin_bottom = 22.0
 
 [node name="SettingsMenu" type="Control" node_paths=PackedStringArray("scrolling_background", "button_selection_handler", "back_button", "button_general", "button_language", "button_keyboard", "button_audio", "settings_category_general", "settings_category_language", "settings_category_keyboard", "settings_category_audio", "category_name_label")]
+modulate = Color(0, 0, 0, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

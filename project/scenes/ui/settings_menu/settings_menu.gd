@@ -48,6 +48,9 @@ func _ready():
 	settings_category_audio.target_alpha = category_unselected_alpha
 	settings_category_audio.hide()
 
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.3)
+
 func _process(delta):
 	if (Input.is_action_just_pressed("pause") || (!is_in_category and Input.is_action_just_pressed("menu_cancel"))):
 		_on_back_pressed()
@@ -84,11 +87,16 @@ func _on_button_pressed(button : UIButton):
 
 
 func _on_back_pressed() -> void:
+	on_settings_menu_freed.emit()
+	var duration : float = 0.2
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0, 0.0), duration)
+	await get_tree().create_timer(duration).timeout
+
 	match on_back_pressed_type:
 		OnBackPressedType.GO_TO_TITLE:
 			transition(func(): SceneTransitionHandler.instance._load_scene("res://scenes/title_screen/title_screen.tscn"))
 		OnBackPressedType.QUEUE_FREE:
-			on_settings_menu_freed.emit()
 			self.queue_free()
 
 func _on_category_button_pressed(button : UIButton):

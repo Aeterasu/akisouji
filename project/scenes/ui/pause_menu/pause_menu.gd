@@ -58,20 +58,38 @@ func _on_resume_pressed():
 	button_selection_handler._update_button()
 
 func _on_gallery_pressed():
+	var tween = create_tween()
+	tween.tween_property(BlackoutLayer.instance.black_rect, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
+
+	await get_tree().create_timer(0.2).timeout
+
+	tween.kill()
+	BlackoutLayer.instance.black_rect.set_deferred("modulate", Color(0.0, 0.0, 0.0, 0.0))
+
 	var gallery = gallery_scene.instantiate()
 	gallery.on_back_pressed_type = Gallery.OnBackPressedType.QUEUE_FREE
-	gallery.on_gallery_freed.connect(_on_submenu_closed) 
+	gallery.on_gallery_freed.connect(_on_gallery_transition)
 
 	submenu_origin.add_child(gallery)
 
 	Game.game_instance.is_pausable = false
 
+func _on_gallery_transition():
+	var tween = create_tween()
+	tween.tween_property(BlackoutLayer.instance.black_rect, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
+	tween.tween_property(BlackoutLayer.instance.black_rect, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.4)
+
+	await get_tree().create_timer(0.2).timeout
+
+	_on_submenu_closed()
+
 func _on_settings_pressed():
-	self.hide()
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.2)
 
 	var settings = settings_scene.instantiate()
 	settings.on_back_pressed_type = SettingsMenu.OnBackPressedType.QUEUE_FREE
-	settings.on_settings_menu_freed.connect(_on_submenu_closed) 
+	settings.on_settings_menu_freed.connect(_on_settings_transition) 
 
 	submenu_origin.add_child(settings)
 
@@ -86,6 +104,13 @@ func _on_exit_pressed():
 	tween.tween_callback(func(): SceneTransitionHandler.instance._load_scene("res://scenes/ui/title_screen/title_screen.tscn")).set_delay(0.1)
 	get_tree().paused = false
 
+func _on_settings_transition():
+	self.modulate = Color(0.0, 0.0, 0.0, 0.0)
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
+
+	_on_submenu_closed()
+
 func _on_submenu_closed() -> void:
 	for node in button_selection_handler.buttons:
 		node._enable()
@@ -93,4 +118,4 @@ func _on_submenu_closed() -> void:
 	Game.game_instance.is_pausable = true
 	button_selection_handler._enable_all_buttons()
 
-	self.show()
+	self.call_deferred("show")

@@ -79,13 +79,16 @@ func _ready():
 	if (hide_tip):
 		tip_label.hide()
 
-	modulate = Color(0.0, 0.0, 0.0)
-	var tween = create_tween()
-	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0), 0.3)
+	_fade_in()
 
 	InputDeviceCheck.on_device_change.connect(_on_input_device_change)
 
 	_on_input_device_change()
+
+func _fade_in():
+	modulate = Color(0.0, 0.0, 0.0)
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0), 0.3)
 
 func _process(delta):
 	if (!gallery_entry_zoom.is_displayed and selected_entry and Input.is_action_just_pressed("menu_confirm")):
@@ -187,6 +190,7 @@ func _on_back_pressed() -> void:
 			transition(func(): SceneTransitionHandler.instance._load_scene("res://scenes/ui/title_screen/title_screen.tscn"))
 		OnBackPressedType.QUEUE_FREE:
 			on_gallery_freed.emit()
+			await get_tree().create_timer(0.2).timeout
 			self.queue_free()
 
 func _on_open_folder_pressed() -> void:
