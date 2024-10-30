@@ -95,7 +95,7 @@ func _on_back_pressed() -> void:
 
 	match on_back_pressed_type:
 		OnBackPressedType.GO_TO_TITLE:
-			transition(func(): SceneTransitionHandler.instance._load_scene("res://scenes/title_screen/title_screen.tscn"))
+			transition(func(): SceneTransitionHandler.instance._load_title_screen_scene())
 		OnBackPressedType.QUEUE_FREE:
 			self.queue_free()
 

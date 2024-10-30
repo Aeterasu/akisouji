@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bxucohptg4lk5"]
+[gd_scene load_steps=24 format=3 uid="uid://bxucohptg4lk5"]
 
 [ext_resource type="Script" path="res://scenes/ui/title_screen/title_screen.gd" id="1_cn1xc"]
 [ext_resource type="PackedScene" uid="uid://dj6rqqv2dxh8t" path="res://scenes/ui/settings_menu/settings_menu.tscn" id="2_aqpct"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b1bfiqrigg32h" path="res://assets/texture/leaf/texture_leaf_particle_title_screen_1.png" id="4_5oa8g"]
 [ext_resource type="FontFile" uid="uid://c5kqanfa0j1nl" path="res://assets/font/DancingScript-VariableFont_wght.ttf" id="4_thwtb"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="4_w7fwc"]
+[ext_resource type="Shader" path="res://shader/wind_sway.gdshader" id="5_6112o"]
 [ext_resource type="Shader" path="res://shader/2d_flag.gdshader" id="6_1fc8w"]
 [ext_resource type="PackedScene" uid="uid://cyaqutbexr62l" path="res://scenes/ui/gamepad_tooltip/gamepad_tooltip.tscn" id="6_4lgo6"]
 [ext_resource type="Texture2D" uid="uid://jw2nop55mmd8" path="res://assets/texture/girl/girl1_1.png" id="6_4n4mv"]
@@ -44,6 +45,18 @@ scale_min = 0.8
 scale_max = 1.1
 alpha_curve = SubResource("CurveTexture_etor3")
 anim_offset_max = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_agrww"]
+shader = ExtResource("5_6112o")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.3
+shader_parameter/strengthScale = 156.695
+shader_parameter/interval = 4.0
+shader_parameter/detail = 1.0
+shader_parameter/distortion = 1.0
+shader_parameter/heightOffset = 0.0
+shader_parameter/offset = 12.95
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_de581"]
 shader = ExtResource("6_1fc8w")
@@ -119,6 +132,7 @@ visibility_rect = Rect2(-2048, 0, 4096, 4096)
 
 [node name="Girl" type="TextureRect" parent="."]
 modulate = Color(0.851747, 0.743695, 0.610534, 1)
+material = SubResource("ShaderMaterial_agrww")
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.73

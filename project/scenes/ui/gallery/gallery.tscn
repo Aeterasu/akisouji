@@ -19,11 +19,11 @@
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6ipxy"]
 blend_mode = 3
 
-[sub_resource type="Gradient" id="Gradient_58f71"]
+[sub_resource type="Gradient" id="Gradient_v4ool"]
 colors = PackedColorArray(0, 0, 0, 1, 0.338768, 0.0813456, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_lwg7b"]
-gradient = SubResource("Gradient_58f71")
+gradient = SubResource("Gradient_v4ool")
 width = 8
 height = 8
 fill_to = Vector2(0, 1)
@@ -317,6 +317,7 @@ horizontal = true
 buttons_origin = NodePath("..")
 
 [node name="GalleryEntryZoom" type="Control" parent="." node_paths=PackedStringArray("entry_origin")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

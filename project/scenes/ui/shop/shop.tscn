@@ -1,0 +1,154 @@
+[gd_scene load_steps=12 format=3 uid="uid://71lkn3s6kfqi"]
+
+[ext_resource type="Script" path="res://scenes/ui/shop/shop.gd" id="1_87sb4"]
+[ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="1_rawln"]
+[ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="2_yb51t"]
+[ext_resource type="PackedScene" uid="uid://bcrys4arojn37" path="res://scenes/ui/paper_button.tscn" id="3_xgq7m"]
+[ext_resource type="PackedScene" uid="uid://teb4p57yamr3" path="res://scenes/ui/paper_button_h_flipped.tscn" id="4_ucvo5"]
+[ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="5_bijnc"]
+[ext_resource type="PackedScene" uid="uid://c15cmbbg5nyn0" path="res://scenes/ui/hud/ui_cash.tscn" id="6_acpaq"]
+[ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="7_fg3im"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_43j8k"]
+blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_ggmsm"]
+colors = PackedColorArray(0, 0, 0, 1, 0.18193, 0.028126, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b4rmi"]
+gradient = SubResource("Gradient_ggmsm")
+width = 8
+height = 8
+fill_to = Vector2(0, 1)
+
+[node name="Shop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_87sb4")
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -8
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_rawln")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+material = SubResource("CanvasItemMaterial_43j8k")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_b4rmi")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 18.0
+offset_right = 297.0
+offset_bottom = 78.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_yb51t")
+theme_override_font_sizes/font_size = 46
+text = "SHOP_LABEL"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 115.0
+offset_bottom = -151.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="ShopCategory1" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 216)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ShopCategory1"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_yb51t")
+theme_override_font_sizes/font_size = 26
+text = "SHOP_CATEGORY_TOOLS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShopCategory2" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 216)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/ShopCategory2"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_yb51t")
+theme_override_font_sizes/font_size = 26
+text = "SHOP_CATEGORY_TOOLS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NavigationButtons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PaperButton" parent="NavigationButtons" instance=ExtResource("3_xgq7m")]
+layout_mode = 1
+anchor_top = 0.833
+anchor_right = 0.0
+anchor_bottom = 1.011
+offset_left = -18.0
+offset_top = 0.239929
+offset_right = 495.0
+offset_bottom = 0.079895
+text_key = "MENU_BUTTON_BACK"
+
+[node name="PaperButtonHFlipped" parent="NavigationButtons" instance=ExtResource("4_ucvo5")]
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 0.833
+anchor_right = 1.0
+anchor_bottom = 1.011
+offset_left = -496.0
+offset_top = 0.239929
+offset_right = 17.0
+offset_bottom = 0.079895
+target_selected_position = Vector2(12, 0)
+target_deselected_position = Vector2(96, 0)
+text_key = "MENU_BUTTON_GALLERY_FOLDER"
+custom_font_size = 24
+
+[node name="ButtonSelectionHandler" type="Node" parent="NavigationButtons" node_paths=PackedStringArray("buttons_origin")]
+script = ExtResource("5_bijnc")
+horizontal = true
+buttons_origin = NodePath("..")
+
+[node name="UICash" parent="." instance=ExtResource("6_acpaq")]
+layout_mode = 1
+
+[node name="UIUpscaler" type="Node" parent="."]
+script = ExtResource("7_fg3im")

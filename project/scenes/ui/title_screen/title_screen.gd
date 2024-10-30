@@ -38,10 +38,10 @@ func _on_button_pressed(button : UIButton):
 			return
 
 func _on_start_pressed() -> void:
-	transition(func(): SceneTransitionHandler.instance._load_scene("res://scenes/game/game.tscn"))
+	transition(func(): SceneTransitionHandler.instance._load_game_scene())
 
 func _on_gallery_pressed() -> void:
-	transition(func(): SceneTransitionHandler.instance._load_scene("res://scenes/ui/gallery/gallery.tscn"))
+	transition(func(): SceneTransitionHandler.instance._load_gallery_scene())
 
 func _on_settings_pressed() -> void:
 	button_selection_handler.buttons_origin.hide()

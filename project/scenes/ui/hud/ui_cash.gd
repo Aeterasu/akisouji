@@ -26,3 +26,6 @@ func _on_cash_rewarded(amount : float):
 	tween.tween_callback(new_label.queue_free).set_delay(1.5)
 
 	tween.tween_property(self, "current_cash", CashManager.cash, animation_duration)
+
+func _on_cash_substracted(amount : float):
+	pass

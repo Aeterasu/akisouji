@@ -132,7 +132,7 @@ void LeafPopulator::PopulateLeaves()
             {
                 transforms[offset] = Transform3D()
                     .rotated(Vector3(0.0f, 1, 0.0f), random->randf() * 3.14f * 2)
-                    .rotated(Vector3((0.5f - random->randf()) * 2.0f, 0, (0.5f - random->randf()) * 2.0f), random->randf() * 3.14f * 0.25f)
+                    .rotated(Vector3((0.5f - random->randf()) * 2.0f, 0, (0.5f - random->randf()) * 2.0f), random->randf() * 3.14f * 0.35f)
                     .translated(Vector3((i + random->randf() * 1.0) / pixelFraction, 0.05f, (j + random->randf() * 1.0) / pixelFraction));
                 indexes[offset] = offset;
                 offset++;

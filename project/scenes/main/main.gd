@@ -1,7 +1,5 @@
 class_name Main extends Node
 
-@export var title_screen_scene : PackedScene = null
-
 static var instance = null
 
 func _ready():
@@ -12,7 +10,7 @@ func _ready():
 
 	Output.print(OS.get_data_dir())
 
-	SceneTransitionHandler.instance._load_scene(title_screen_scene.resource_path)
+	SceneTransitionHandler.instance._load_title_screen_scene()
 
 	GlobalSettings.fullscreen = GlobalSettings.fullscreen
 

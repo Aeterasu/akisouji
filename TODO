@@ -97,9 +97,10 @@ LEFT TO DO:
 		- strong broom should sweep in a thin-rectangle
         - tool swap cooldown
         - prohibit camera rotation while loading
+        - suggestion - make the leaf highlight not an inherent mechanic, but an upgrade?
     
     GENERAL UI:
-        - add interpolations to ui (gallery. gallery down panel missing interpolations on mode switch, settings, pause etc)
+        - add interpolations to ui (gallery. gallery down panel missing interpolations on mode switch)
         - add playstation glyphs
         - add credits to main menu
         - add input delay to button manager to prevent accidental clicks
@@ -112,6 +113,7 @@ LEFT TO DO:
         - in-game UI should have control tooltips with gamepad glyphs
     
     VISUAL:
+		- update game palette to match the girl
         - beautify leafs. new texture, maybe random texture
         - fix that annoying gate texture that currently uses deafault metal and looks ugly
         - another pass to alleyway level. patch holes, really.
@@ -157,6 +159,7 @@ LEFT TO DO:
         - optimize mesh loading for web, cut out the blend files.
         - cut out everything unused
     
+		- debug reference counts in C++
         - disable console before release
         - replace default godot loading image in web
         - IMPORTANT! BEFORE RELEASE, RECOMPILE C++ TO RELEASE TEMPLATE
