@@ -32,7 +32,9 @@ func _ready():
 
 func _physics_process(delta):
 	sin_timer += delta * walk_cycle_speed * walk_multiplier
-	position = Vector3(walk_cycle_direction.x * sin(sin_timer), walk_cycle_direction.y * sin(sin_timer * 2), walk_cycle_direction.z * sin(sin_timer)) * walk_multiplier
+	var direction = walk_cycle_direction
+
+	position = Vector3(direction.x * sin(sin_timer), direction.y * sin(sin_timer * 2), direction.z * sin(sin_timer)) * walk_multiplier
 
 func _set_sprint_toggle(toggle : bool) -> void:
 	if (wish_sprint == toggle):

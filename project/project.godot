@@ -32,12 +32,13 @@ bmod/default_sfx_bus=&"SFX"
 
 InputDeviceCheck="*res://scenes/singleton/input_device_check.gd"
 GlobalSettings="*res://scenes/singleton/global_settings/global_settings.tscn"
-CashManager="*res://scenes/cash/cash_manager.tscn"
 BMOD="*res://addons/bmod/autoloads/bmod/bmod.tscn"
 Output="*res://addons/onscreen_output/output.tscn"
 SfxDeconflicter="*res://scenes/utils/sfx_deconflicter/sfx_deconflicter.gd"
 ControlGlyphHandler="*res://scenes/singleton/control_glyph_handler/control_glyph_handler.tscn"
 LocaleManager="*res://scenes/singleton/locale_manager.gd"
+CashManager="*res://scenes/cash/cash_manager.tscn"
+UpgradeManager="*res://scenes/upgrade/upgrade_manager.tscn"
 
 [debug]
 
@@ -365,5 +366,4 @@ environment/ssil/quality=0
 environment/glow/upscale_mode=0
 environment/subsurface_scattering/subsurface_scattering_quality=0
 environment/volumetric_fog/use_filter=0
-environment/defaults/default_clear_color=Color(0, 0, 0, 1)
 lights_and_shadows/positional_shadow/atlas_size=2048

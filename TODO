@@ -100,6 +100,7 @@ LEFT TO DO:
         - suggestion - make the leaf highlight not an inherent mechanic, but an upgrade?
     
     GENERAL UI:
+        - are you sure? (on level exit)
         - add interpolations to ui (gallery. gallery down panel missing interpolations on mode switch)
         - add playstation glyphs
         - add credits to main menu
@@ -146,11 +147,14 @@ LEFT TO DO:
         - settings saving
     
     GALLERY:
+        - press horizontal buttons to swipe pictures
         - add some sort of download screenshots from web version. also hide folder button in web
     
     PAUSE MENU:
     
     MISC:
+        - add some sort of intro seq
+        
         - set locale on first launch
         - fix null checks, replace them with is_instance_valid
         - check out TODOs in code and implement them 🥺🥺🥺

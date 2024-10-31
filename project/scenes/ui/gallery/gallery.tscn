@@ -317,7 +317,6 @@ horizontal = true
 buttons_origin = NodePath("..")
 
 [node name="GalleryEntryZoom" type="Control" parent="." node_paths=PackedStringArray("entry_origin")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

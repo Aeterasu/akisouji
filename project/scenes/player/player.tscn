@@ -75,7 +75,7 @@ meta = SubResource("Resource_ifbu1")
 play = false
 play_on_change = false
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("velocity_component", "camera", "camera_origin", "camera_effect_landing", "cleaning_raycast", "inventory")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("velocity_component", "camera", "camera_origin", "camera_effect_landing", "cleaning_raycast", "inventory", "move_speed_upgrade_handler")]
 floor_block_on_wall = false
 script = ExtResource("1_e0tat")
 velocity_component = NodePath("VelocityComponent")
@@ -92,6 +92,7 @@ sprint_cleaning_cooldown = 0.1
 sprint_cleaning_radius = 0.1
 inventory = NodePath("PlayerToolInventory")
 cleaning_range = 3.0
+move_speed_upgrade_handler = NodePath("VelocityComponent/MoveSpeedUpgradeHandler")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_dq522")

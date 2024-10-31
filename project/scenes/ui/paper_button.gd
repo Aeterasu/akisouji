@@ -24,6 +24,7 @@ var current_color_2_2 : Color = Color(1.0, 1.0, 1.0, 1.0)
 
 enum AnimationType
 {
+	NONE,
 	DEFAULT,
 	DOUBLE_SIDED,
 }
@@ -92,6 +93,8 @@ func _select():
 	SfxDeconflicter.play(audio_accent_1)
 
 	is_selected = true
+
+	on_selected.emit(self)
 	
 func _deselect():
 	if (!is_selected):
@@ -116,6 +119,8 @@ func _deselect():
 	tween.tween_property(self, "current_color_2_2", gradient_2_color_2, 0.1)
 
 	is_selected = false
+
+	on_deselected.emit(self)
 
 func _disable():
 	is_disabled = true

@@ -38,7 +38,7 @@ func _on_button_pressed(button : UIButton):
 			return
 
 func _on_start_pressed() -> void:
-	transition(func(): SceneTransitionHandler.instance._load_game_scene())
+	transition(func(): SceneTransitionHandler.instance._load_shop_scene())
 
 func _on_gallery_pressed() -> void:
 	transition(func(): SceneTransitionHandler.instance._load_gallery_scene())

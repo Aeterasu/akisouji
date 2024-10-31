@@ -5,3 +5,5 @@
 [resource]
 script = ExtResource("1_3xsj6")
 speed_multiplier = 1.5
+cost = 2500
+name_key = "ITEM_NAME_SEVENLEAGUES"

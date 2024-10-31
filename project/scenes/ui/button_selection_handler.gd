@@ -15,7 +15,13 @@ signal on_button_selected
 func _ready():
 	if (buttons_origin):
 		for node in buttons_origin.get_children():
-			if (node is UIButton):
+			if (node is ShopEntry):
+				var entry = node as ShopEntry
+				buttons.append(entry.button)
+				entry.button._deselect()
+				entry.button.on_mouse_selection.connect(_on_button_mouse_selection)
+				entry.button.on_mouse_deselection.connect(_on_button_mouse_deselection)
+			elif (node is UIButton):
 				buttons.append(node)
 				node._deselect()
 				node.on_mouse_selection.connect(_on_button_mouse_selection)
@@ -37,10 +43,10 @@ func _process(delta):
 	var previous_gamepad : String = ""
 
 	if horizontal:
-		next_key = "player_move_left"
-		previous_key = "player_move_right"
-		next_gamepad = "gamepad_dpad_left"
-		previous_gamepad = "gamepad_dpad_right"
+		next_key = "player_move_right"
+		previous_key = "player_move_left"
+		next_gamepad = "gamepad_dpad_right"
+		previous_gamepad = "gamepad_dpad_left"
 	else:
 		next_key = "player_move_backwards"
 		previous_key = "player_move_forward"
@@ -54,38 +60,45 @@ func _process(delta):
 		_next_button()
 		
 	if (Input.is_action_just_pressed("menu_confirm") && current_button):
-		var sfx = current_button.audio_accent_2.duplicate() as AudioStreamPlayer
-		get_tree().root.add_child(sfx)
-		SfxDeconflicter.call_deferred("play", sfx)
-		sfx.finished.connect(sfx.queue_free)
+		
+		if (current_button.audio_accent_2):
+			var sfx = current_button.audio_accent_2.duplicate() as AudioStreamPlayer
+
+			get_tree().root.add_child(sfx)
+			SfxDeconflicter.call_deferred("play", sfx)
+			sfx.finished.connect(sfx.queue_free)
 
 		on_button_pressed.emit(current_button)
 
 func _next_button():
 	if (current_selection_id <= -999):
-		current_selection_id = 0
-		current_button = buttons[0]
-		_update_button()
+		_select_first_button()
 		return
 
-	current_selection_id += 1
+	while (true):
+		current_selection_id += 1
 
-	if (current_selection_id > len(buttons) - 1):
-		current_selection_id = 0
+		if (current_selection_id > len(buttons) - 1):
+			current_selection_id = 0
+
+		if (!buttons[current_selection_id].is_blocked):
+			break
 
 	_update_button()
 
 func _previous_button():
 	if (current_selection_id <= -999):
-		current_selection_id = 0
-		current_button = buttons[0]
-		_update_button()
+		_select_first_button()
 		return
 
-	current_selection_id -= 1
+	while (true):
+		current_selection_id -= 1
 
-	if (current_selection_id < 0):
-		current_selection_id = len(buttons) - 1
+		if (current_selection_id < 0):
+			current_selection_id = len(buttons) - 1
+
+		if (!buttons[current_selection_id].is_blocked):
+			break
 
 	_update_button()
 
@@ -120,4 +133,21 @@ func _enable_all_buttons():
 	enabled = true
 
 	for button in buttons:
-		button._enable()
+		if (!button.is_blocked):
+			button._enable()
+
+func _select_first_button():
+	current_selection_id = -1
+
+	while (true):
+		current_selection_id += 1
+
+		if (current_selection_id > len(buttons) - 1):
+			current_selection_id = 0
+
+		if (!buttons[current_selection_id].is_blocked):
+			break
+
+	current_button = buttons[current_selection_id]
+
+	_update_button()

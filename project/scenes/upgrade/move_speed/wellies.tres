@@ -5,3 +5,5 @@
 [resource]
 script = ExtResource("1_tkd7m")
 speed_multiplier = 0.8
+cost = 600
+name_key = "ITEM_NAME_WELLIES"

@@ -187,6 +187,7 @@ anchor_bottom = 0.431
 offset_top = 0.199997
 offset_right = 0.0
 offset_bottom = -0.320007
+animation_type = 2
 text_key = "MENU_BUTTON_RESUME"
 
 [node name="PaperButton2" parent="CenterContainer/Control" instance=ExtResource("2_jcbm4")]
@@ -198,6 +199,7 @@ anchor_bottom = 0.553
 offset_top = 0.0800171
 offset_right = 0.0
 offset_bottom = -0.160004
+animation_type = 2
 text_key = "MENU_BUTTON_GALLERY"
 
 [node name="PaperButton3" parent="CenterContainer/Control" instance=ExtResource("2_jcbm4")]
@@ -209,6 +211,7 @@ anchor_bottom = 0.674
 offset_top = 0.23999
 offset_right = 0.0
 offset_bottom = -0.280029
+animation_type = 2
 text_key = "MENU_BUTTON_OPTIONS"
 
 [node name="PaperButton4" parent="CenterContainer/Control" instance=ExtResource("2_jcbm4")]
@@ -220,6 +223,7 @@ anchor_bottom = 0.796
 offset_top = 0.119995
 offset_right = 0.0
 offset_bottom = -0.120056
+animation_type = 2
 text_key = "MENU_BUTTON_EXIT"
 
 [node name="ButtonSelectionHandler" type="Node" parent="CenterContainer/Control" node_paths=PackedStringArray("buttons_origin")]

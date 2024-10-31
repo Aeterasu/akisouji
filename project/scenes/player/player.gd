@@ -29,6 +29,7 @@ class_name Player extends CharacterBody3D
 @export_group("Equipment")
 @export var inventory : PlayerToolInventory = null
 @export var cleaning_range : float = 8.0
+@export var move_speed_upgrade_handler : MoveSpeedUpgradeHandler = null
 
 var leaf_cleaning_handler : LeafCleaningHandler = null
 
@@ -69,11 +70,21 @@ func _ready():
 	camera_tool.on_enter_photo_mode.connect(_on_enter_photo_mode)
 	camera_tool.on_exit_photo_mode.connect(_on_exit_photo_mode)
 
+	# upgrade handling
+
+	UpgradeManager.on_boots_update.connect(_on_boots_upgrade_update)
+	_on_boots_upgrade_update()
+
 func _physics_process(delta : float):
 	input_process(delta)
 	movement_process(delta)
 
-	inventory.current_tool.walk_multiplier = velocity_component.current_velocity.length() / velocity_component.speed
+	if (velocity_component.target_velocty.length() > 0.0):
+		inventory.current_tool.walk_multiplier = velocity_component.current_velocity.length() / velocity_component.target_velocty.length()
+	else:
+		inventory.current_tool.walk_multiplier = lerp(inventory.current_tool.walk_multiplier, 0.0, velocity_component.decel_weight * delta)
+
+
 	inventory.current_tool._set_sprint_toggle(wish_sprint)
 
 	if (velocity.y < delta - 0.1):
@@ -260,3 +271,6 @@ func _photo_mode_exit_callback() -> void:
 	#inventory._get_camera().show()
 	CameraUI.instance.hide()
 	camera._exit_photo_mode()
+
+func _on_boots_upgrade_update():
+	move_speed_upgrade_handler.current_upgrade = UpgradeManager.current_boots

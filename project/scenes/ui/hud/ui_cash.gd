@@ -8,7 +8,10 @@ extends Control
 var current_cash : float = 0
 
 func _ready():
+	current_cash = CashManager.cash
+
 	CashManager.on_cash_rewarded.connect(_on_cash_rewarded)
+	CashManager.on_cash_substracted.connect(_on_cash_substracted)
 
 func _process(delta : float):
 	cash_label.text = CashManager.format_currency(current_cash)
@@ -28,4 +31,7 @@ func _on_cash_rewarded(amount : float):
 	tween.tween_property(self, "current_cash", CashManager.cash, animation_duration)
 
 func _on_cash_substracted(amount : float):
-	pass
+	var tween : Tween = get_tree().create_tween()
+	tween.set_parallel(true)
+
+	tween.tween_property(self, "current_cash", CashManager.cash, animation_duration)

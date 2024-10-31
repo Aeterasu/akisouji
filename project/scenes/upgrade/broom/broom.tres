@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="BroomUpgrade" load_steps=2 format=3 uid="uid://c7sbyg4ns7pi2"]
+
+[ext_resource type="Script" path="res://scenes/upgrade/broom/broom_upgrade.gd" id="1_cojc1"]
+
+[resource]
+script = ExtResource("1_cojc1")
+cost = 0
+name_key = "ITEM_NAME_BROOM"

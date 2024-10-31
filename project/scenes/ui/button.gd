@@ -2,7 +2,6 @@ class_name UIButton extends Control
 
 @export var mouse_area : Control = null
 
-
 @export var text_key : String = ""
 @export var label : Label = null
 @export var custom_font_size : int = -1
@@ -16,8 +15,13 @@ var tween : Tween = null
 
 var is_disabled : bool = false
 
+var is_blocked : bool = false
+
 signal on_mouse_selection
 signal on_mouse_deselection
+
+signal on_selected
+signal on_deselected
 
 func _ready():
 	mouse_area.mouse_entered.connect(func(): on_mouse_selection.emit(self))
@@ -39,6 +43,8 @@ func _select():
 	SfxDeconflicter.play(audio_accent_1)
 
 	is_selected = true
+
+	on_selected.emit(self)
 	
 func _deselect():
 	if (!is_selected):
@@ -46,9 +52,14 @@ func _deselect():
 
 	is_selected = false
 
+	on_deselected.emit(self)
+
 func _disable():
 	is_disabled = true
 	_deselect()
 
 func _enable():
+	if (is_blocked):
+		return
+
 	is_disabled = false
