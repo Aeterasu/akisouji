@@ -56,6 +56,7 @@ LEFT TO DO:
     + port leaf particles to C++
     + port leaf interpolation from gdscript leaf cleaning to C++
     + smooth transitions in settings menu 
+    + prohibit camera rotation while loading
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -96,7 +97,6 @@ LEFT TO DO:
         - add photo mode zoom, and tilt
 		- strong broom should sweep in a thin-rectangle
         - tool swap cooldown
-        - prohibit camera rotation while loading
         - suggestion - make the leaf highlight not an inherent mechanic, but an upgrade?
     
     GENERAL UI:
@@ -114,6 +114,7 @@ LEFT TO DO:
         - in-game UI should have control tooltips with gamepad glyphs
     
     VISUAL:
+        - fix camera state transition disabling viewport (something's going fucky-wucky)
 		- update game palette to match the girl
         - beautify leafs. new texture, maybe random texture
         - fix that annoying gate texture that currently uses deafault metal and looks ugly
@@ -132,6 +133,8 @@ LEFT TO DO:
         - add music
     
     SETTINGS:
+        - disable black fade-in fade-out when entering settings menu from pause menu
+        - fix settings menu flashing
 		- lerp for sliders
         - add separator to settings category label
         - make keybinds and controller binds
@@ -145,6 +148,9 @@ LEFT TO DO:
         - disable certain settings in web. make an (unavailable in web) splash
 		- add 'show fps' setting
         - settings saving
+
+    SHOP:
+        - make it so that the shop can be opened from the game by pressing tab (move highlighting to another button)
     
     GALLERY:
         - press horizontal buttons to swipe pictures

@@ -105,6 +105,7 @@ process_mode = 1
 [node name="LevelAlleyway" parent="Pausable" instance=ExtResource("7_y02y1")]
 
 [node name="Player" parent="Pausable/LevelAlleyway" instance=ExtResource("3_ncnfk")]
+_block_input = true
 
 [node name="RainParticles" parent="Pausable/LevelAlleyway/Player" instance=ExtResource("7_wptpp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.5, 0)

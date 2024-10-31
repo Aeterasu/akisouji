@@ -21,6 +21,8 @@ var is_pausable : bool = true
 func _ready():
 	game_instance = self
 
+	player._block_input = true
+
 	#level.on_level_completion.connect(_on_level_completion)
 	player.global_transform = level.player_spawn_position.global_transform
 	player.respawn_transform = level.player_spawn_position.global_transform
@@ -43,6 +45,10 @@ func _ready():
 	pause_menu.is_displayed = get_tree().paused
 
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+	await get_tree().create_timer(0.4).timeout
+
+	player._block_input = false
 
 func _process(delta):
 	if (Input.is_action_just_pressed("pause") or (Input.is_action_just_pressed("menu_cancel") and get_tree().paused)):
