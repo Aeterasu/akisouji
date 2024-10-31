@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/player/tool/camera/camera.gd" id="1_dgrk7"]
 [ext_resource type="PackedScene" uid="uid://dchkqghoh07wq" path="res://assets/mesh/tool/mesh_camera.glb" id="2_7bjqe"]
 [ext_resource type="Texture2D" uid="uid://cdvg0disuaebg" path="res://assets/texture/fx/texture_cloud_specular.png" id="3_g1ww4"]
-[ext_resource type="Texture2D" uid="uid://dck3bm0cescg6" path="res://assets/texture/ui/texture_ui_camera.png" id="4_axhma"]
+[ext_resource type="Texture2D" uid="uid://dck3bm0cescg6" path="res://assets/texture/ui/hud/texture_ui_camera.png" id="4_axhma"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pxao4"]
 albedo_color = Color(0.162066, 0.162066, 0.162066, 1)
@@ -36,6 +36,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector3(0, 0.139626, 0.0959931)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:viewport_visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_6kcvq"]
@@ -80,6 +92,18 @@ tracks/2/keys = {
 "method": &"show"
 }]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:viewport_visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_mrlpj"]
 resource_name = "idle"
@@ -109,6 +133,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector3(0, 0.139626, 0.0959931), Vector3(-0.0174533, 0.20944, 0.139626), Vector3(0, 0.139626, 0.0959931)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:viewport_visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_0niuf"]
@@ -155,6 +191,18 @@ tracks/2/keys = {
 "args": [],
 "method": &"hide"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:viewport_visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.55),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="Animation" id="Animation_21033"]
@@ -212,6 +260,18 @@ tracks/3/keys = {
 "args": [],
 "method": &"show"
 }]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:viewport_visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_3prxh"]
@@ -330,6 +390,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector3(0, 0.139626, 0.0959931), Vector3(-2.61799, 0.139626, 0.0959931)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:viewport_visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_hx6k0"]
 resource_name = "unequip_loop"
@@ -373,6 +445,18 @@ tracks/2/keys = {
 "args": [],
 "method": &"hide"
 }]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:viewport_visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ay5cn"]
@@ -582,7 +666,7 @@ positional_shadow_atlas_quad_1 = 0
 positional_shadow_atlas_quad_2 = 0
 positional_shadow_atlas_quad_3 = 0
 size = Vector2i(320, 180)
-render_target_update_mode = 1
+render_target_update_mode = 0
 
 [node name="Camera3D" type="Camera3D" parent="mesh_camera/SubViewport"]
 transform = Transform3D(0.985709, -0.094913, 0.139173, 0.0958458, 0.995396, 4.47231e-08, -0.138532, 0.0133391, 0.990268, 0.066694, -0.0503785, -0.188999)

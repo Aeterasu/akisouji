@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://svhygbkl4071"]
+
+[ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_button.gd" id="1_yxlva"]
+[ext_resource type="Texture2D" uid="uid://cuwioumcw346w" path="res://assets/texture/ui/settings_screen/texture_settings_property_highlight_1.png" id="2_gawfm"]
+[ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="3_lbym4"]
+[ext_resource type="AudioStream" uid="uid://dgodvr5gurqrs" path="res://assets/audio/sfx_menu_accent_1.ogg" id="4_7lmfr"]
+[ext_resource type="AudioStream" uid="uid://bb5kges32g0ld" path="res://assets/audio/sfx_menu_accent_2.ogg" id="5_yxxkk"]
+
+[node name="PropertyButton" type="Control" node_paths=PackedStringArray("highlight", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 3
+anchor_left = 0.337
+anchor_top = 0.169
+anchor_right = 1.0
+anchor_bottom = 0.247
+offset_left = -0.360016
+offset_top = 0.319992
+offset_bottom = 0.159988
+script = ExtResource("1_yxlva")
+highlight = NodePath("TextureRect")
+mouse_area = NodePath("MouseArea")
+text_key = "SETTINGS_PROPERTY_FULLSCREEN"
+label = NodePath("Label")
+audio_accent_1 = NodePath("Accent1")
+audio_accent_2 = NodePath("Accent2")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.042
+offset_right = -810.272
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("2_gawfm")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 48.0
+offset_right = -415.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("3_lbym4")
+theme_override_font_sizes/font_size = 33
+text = "PROPERTY_NAME"
+vertical_alignment = 1
+
+[node name="MouseArea" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Accent1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_7lmfr")
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Accent2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_yxxkk")
+volume_db = -3.0
+max_polyphony = 2
+bus = &"SFX"

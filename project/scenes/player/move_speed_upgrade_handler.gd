@@ -1,4 +1,4 @@
-extends Node
+class_name MoveSpeedUpgradeHandler extends Node
 
 @export var current_upgrade : MoveSpeedUpgrade = null
 @export var velocity_component : VelocityComponent = null

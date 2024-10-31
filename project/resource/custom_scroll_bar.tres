@@ -1,0 +1,33 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://cjbn10bkr6ldk"]
+
+[ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="1_l46uv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_yu2dc"]
+texture = ExtResource("1_l46uv")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2td5x"]
+texture = ExtResource("1_l46uv")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+modulate_color = Color(1, 0.8625, 0.67, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y1ybo"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0, 0, 0.756863)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 1
+
+[resource]
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_yu2dc")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_2td5x")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_2td5x")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_y1ybo")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_y1ybo")

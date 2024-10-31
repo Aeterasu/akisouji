@@ -5,11 +5,20 @@ static var instance = null
 func _ready():
 	instance = self
 
-	TranslationServer.set_locale("en")
+	GlobalSettings.locale = GlobalSettings.locale
+	TranslationServer.set_locale(GlobalSettings.locale)
 
 	Output.print(OS.get_data_dir())
 
-	SceneTransitionHandler.instance._load_scene("res://scenes/title_screen/title_screen.tscn")
+	SceneTransitionHandler.instance._load_title_screen_scene()
+
+	GlobalSettings.fullscreen = GlobalSettings.fullscreen
+
+func _process(delta):
+	AudioServer.set_bus_volume_db(0, linear_to_db(GlobalSettings.master_volume))
+	AudioServer.set_bus_volume_db(1, linear_to_db(GlobalSettings.sfx_volume))
+	AudioServer.set_bus_volume_db(2, linear_to_db(GlobalSettings.ambience_volume))
+	AudioServer.set_bus_volume_db(3, linear_to_db(GlobalSettings.music_volume))
 
 func _take_screenshot() -> void:
 	var capture = get_viewport().get_texture().get_image()

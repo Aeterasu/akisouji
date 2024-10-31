@@ -1,7 +1,6 @@
-[gd_scene load_steps=34 format=3 uid="uid://077fpjam3rlw"]
+[gd_scene load_steps=33 format=3 uid="uid://077fpjam3rlw"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_e0tat"]
-[ext_resource type="Script" path="res://scenes/component/gravity_component/gravity_component.gd" id="2_nr0jr"]
 [ext_resource type="Script" path="res://scenes/component/velocity_component/velocity_component.gd" id="3_umteq"]
 [ext_resource type="Script" path="res://scenes/player/player_camera.gd" id="4_feodf"]
 [ext_resource type="Script" path="res://scenes/player/camera_effect_head_wobble.gd" id="4_nfr6p"]
@@ -76,11 +75,10 @@ meta = SubResource("Resource_ifbu1")
 play = false
 play_on_change = false
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("velocity_component", "gravity_component", "camera", "camera_origin", "camera_effect_landing", "inventory")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("velocity_component", "camera", "camera_origin", "camera_effect_landing", "cleaning_raycast", "inventory", "move_speed_upgrade_handler")]
 floor_block_on_wall = false
 script = ExtResource("1_e0tat")
 velocity_component = NodePath("VelocityComponent")
-gravity_component = NodePath("GravityComponent")
 jump_strength = 5.0
 jump_buffer_size = 10
 sprint_jumping_boost_amount = 4.0
@@ -88,18 +86,16 @@ sprint_jumping_falloff = 2.0
 camera = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D")
 camera_origin = NodePath("CameraOrigin")
 camera_effect_landing = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding")
-cleaning_radius = 0.8
-jump_cleaning_radius = 1.5
+cleaning_raycast = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/CleaningRayCast3D")
+cleaning_radius = 0.25
 sprint_cleaning_cooldown = 0.1
-sprint_cleaning_radius = 0.3
+sprint_cleaning_radius = 0.1
 inventory = NodePath("PlayerToolInventory")
 cleaning_range = 3.0
+move_speed_upgrade_handler = NodePath("VelocityComponent/MoveSpeedUpgradeHandler")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_dq522")
-
-[node name="GravityComponent" type="Node" parent="."]
-script = ExtResource("2_nr0jr")
 
 [node name="VelocityComponent" type="Node" parent="."]
 script = ExtResource("3_umteq")
@@ -139,11 +135,13 @@ script = ExtResource("5_1a0oq")
 direction = Vector3(0, -0.15, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding"]
+process_mode = 3
 near = 0.003
 far = 1024.0
 script = ExtResource("4_feodf")
 
 [node name="ViewmodelOrigin" type="Node3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D"]
+process_mode = 1
 
 [node name="ViewmodelSway" type="Node3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin" node_paths=PackedStringArray("player")]
 script = ExtResource("6_t0wwe")
@@ -154,10 +152,17 @@ player = NodePath("../../../../../..")
 
 [node name="Camera" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("14_yl1fb")]
 
-[node name="FootstepManager" type="Node3D" parent="." node_paths=PackedStringArray("player", "velocity_component", "concrete_footstep", "grass_footstep")]
+[node name="CleaningRayCast3D" type="RayCast3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D"]
+enabled = false
+target_position = Vector3(0, 0, -3)
+debug_shape_custom_color = Color(0.393541, 0.550201, 3.85046e-07, 1)
+debug_shape_thickness = 3
+
+[node name="FootstepManager" type="Node3D" parent="." node_paths=PackedStringArray("player", "velocity_component", "raycast", "concrete_footstep", "grass_footstep")]
 script = ExtResource("11_le046")
 player = NodePath("..")
 velocity_component = NodePath("../VelocityComponent")
+raycast = NodePath("RayCast3D")
 step_rate = 2.1
 concrete_footstep = NodePath("ConcreteFootstep")
 grass_footstep = NodePath("GrassFootstep")
@@ -173,3 +178,9 @@ script = ExtResource("12_ws1qt")
 sound_effect = SubResource("Resource_8e0gb")
 bus = &"SFX"
 max_polyphony = 4
+
+[node name="RayCast3D" type="RayCast3D" parent="FootstepManager"]
+enabled = false
+target_position = Vector3(0, -2, 0)
+debug_shape_custom_color = Color(1, 1, 1, 1)
+debug_shape_thickness = 5

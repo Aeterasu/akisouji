@@ -5,3 +5,5 @@
 [resource]
 script = ExtResource("1_mg2js")
 speed_multiplier = 1.0
+cost = 250
+name_key = "ITEM_NAME_SNEAKERS"

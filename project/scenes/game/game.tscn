@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=38 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_highlight_handler.gd" id="2_74dy0"]
@@ -6,12 +6,14 @@
 [ext_resource type="Script" path="res://scenes/loading_screen.gd" id="3_te81k"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="3_uk65u"]
 [ext_resource type="Material" uid="uid://dnl0j7w1x0eod" path="res://resource/mesh/leaf_material.tres" id="3_ys06x"]
+[ext_resource type="Script" path="res://scenes/leaf/leaf_progress_tracker.gd" id="4_deeln"]
 [ext_resource type="Script" path="res://scenes/utils/show_canvas_layer_on_ready.gd" id="4_ha1os"]
-[ext_resource type="PackedScene" uid="uid://bxyb5mugpluu5" path="res://scenes/test/new_leaf_populator_test.tscn" id="4_uu4wi"]
-[ext_resource type="PackedScene" uid="uid://dcaypqvm8j1yq" path="res://scenes/ui/ui.tscn" id="5_is4j0"]
-[ext_resource type="Script" path="res://scenes/player/tool/tablet/tablet_screen.gd" id="6_1n01a"]
+[ext_resource type="Script" path="res://scenes/leaf/leaf_particle_handler.gd" id="5_5xq02"]
+[ext_resource type="PackedScene" uid="uid://dcaypqvm8j1yq" path="res://scenes/ui/hud/ui.tscn" id="5_is4j0"]
 [ext_resource type="Script" path="res://scenes/fps_counter.gd" id="6_5ay1t"]
-[ext_resource type="PackedScene" uid="uid://b5626cm62nt2n" path="res://scenes/player/tool/tablet/tablet_screen_node.tscn" id="7_miktt"]
+[ext_resource type="PackedScene" uid="uid://biun1d1hu4wq4" path="res://scenes/fx/leaf_particles.tscn" id="6_hdiec"]
+[ext_resource type="PackedScene" uid="uid://d1lybxei6fkyd" path="res://scenes/fx/rain_particles.tscn" id="7_wptpp"]
+[ext_resource type="PackedScene" uid="uid://dvlleqic8xnpl" path="res://scenes/level/alleyway/level_alleyway.tscn" id="7_y02y1"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="8_d3y8h"]
 [ext_resource type="Script" path="res://scenes/ui/ui_completion/ui_completion.gd" id="8_h2dad"]
 [ext_resource type="Texture2D" uid="uid://csspljpa4mobh" path="res://assets/texture/fx/texture_speed.png" id="10_0auwo"]
@@ -19,16 +21,14 @@
 [ext_resource type="Script" path="res://scenes/fx/speed_effect.gd" id="11_e6qqw"]
 [ext_resource type="Shader" path="res://shader/sun_flare.gdshader" id="12_ceytl"]
 [ext_resource type="Script" path="res://scenes/player/tool/camera/camera_ui.gd" id="13_d2xbq"]
-[ext_resource type="Texture2D" uid="uid://dck3bm0cescg6" path="res://assets/texture/ui/texture_ui_camera.png" id="13_fykye"]
+[ext_resource type="Texture2D" uid="uid://dck3bm0cescg6" path="res://assets/texture/ui/hud/texture_ui_camera.png" id="13_fykye"]
 [ext_resource type="Texture2D" uid="uid://1kechv03r57s" path="res://assets/texture/fx/texture_sun_halo.png" id="13_tkker"]
 [ext_resource type="Texture2D" uid="uid://diwf3xbj3nljl" path="res://assets/texture/fx/texture_sun_flare.png" id="14_gpri0"]
 [ext_resource type="Shader" path="res://shader/kuwahara_screen.gdshader" id="15_xpwit"]
-[ext_resource type="Shader" path="res://shader/wobbly_painting.gdshader" id="16_xdxyp"]
-[ext_resource type="Texture2D" uid="uid://28v8t7axkwfj" path="res://assets/texture/fx/texture_brush_nrmp.png" id="17_khpjf"]
-[ext_resource type="Texture2D" uid="uid://cvtg8bskknog1" path="res://assets/texture/ui/texture_ui_vignette.png" id="18_q3514"]
+[ext_resource type="Texture2D" uid="uid://cvtg8bskknog1" path="res://assets/texture/ui/hud/texture_ui_vignette.png" id="18_q3514"]
 [ext_resource type="Script" path="res://scenes/utils/web_only.gd" id="19_h3rip"]
 [ext_resource type="Shader" path="res://shader/web_flare.gdshader" id="20_neh2t"]
-[ext_resource type="PackedScene" uid="uid://d0r5a5kwi5eoo" path="res://scenes/pause_menu/pause_menu.tscn" id="22_yntas"]
+[ext_resource type="PackedScene" uid="uid://d0r5a5kwi5eoo" path="res://scenes/ui/pause_menu/pause_menu.tscn" id="22_yntas"]
 [ext_resource type="Script" path="res://scenes/ui/blackout_layer.gd" id="31_te3wo"]
 
 [sub_resource type="Gradient" id="Gradient_br6rk"]
@@ -76,40 +76,38 @@ shader = ExtResource("15_xpwit")
 shader_parameter/radius = 2
 shader_parameter/offset = Vector3(0, 0, 0)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_n65bv"]
-shader = ExtResource("16_xdxyp")
-shader_parameter/strength = null
-shader_parameter/speed = null
-shader_parameter/frames = null
-shader_parameter/flowMap = ExtResource("17_khpjf")
-
-[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "level", "loading_screen", "ui_completion", "pause_menu")]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "level", "loading_screen", "ui_completion", "pause_menu", "progress_tracker", "particle_handler")]
 process_mode = 3
 script = ExtResource("1_bcfl2")
-player = NodePath("Pausable/NewLeafPopulatorTest/Player")
-level = NodePath("Pausable/NewLeafPopulatorTest")
+player = NodePath("Pausable/LevelAlleyway/Player")
+level = NodePath("Pausable/LevelAlleyway")
 loading_screen = NodePath("CanvasLayer/LoadingScreen")
 ui_completion = NodePath("UICompletionLayer/UICompletion")
 pause_menu = NodePath("PauseLayer/PauseMenu")
+progress_tracker = NodePath("LeafProgressTracker")
+particle_handler = NodePath("LeafParticleHandler")
 
 [node name="LeafHighlightHandler" type="Node" parent="."]
 script = ExtResource("2_74dy0")
 leaf_material = ExtResource("3_ys06x")
 
+[node name="LeafProgressTracker" type="Node" parent="."]
+script = ExtResource("4_deeln")
+leeway = 0.001
+
+[node name="LeafParticleHandler" type="Node" parent="."]
+script = ExtResource("5_5xq02")
+particles_scene = ExtResource("6_hdiec")
+
 [node name="Pausable" type="Node" parent="."]
 process_mode = 1
 
-[node name="NewLeafPopulatorTest" parent="Pausable" instance=ExtResource("4_uu4wi")]
+[node name="LevelAlleyway" parent="Pausable" instance=ExtResource("7_y02y1")]
 
-[node name="Player" parent="Pausable/NewLeafPopulatorTest" instance=ExtResource("3_ncnfk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+[node name="Player" parent="Pausable/LevelAlleyway" instance=ExtResource("3_ncnfk")]
 
-[node name="TabletScreen" type="SubViewport" parent="."]
-size = Vector2i(320, 180)
-render_target_update_mode = 0
-script = ExtResource("6_1n01a")
-
-[node name="TabletScreenNode" parent="TabletScreen" instance=ExtResource("7_miktt")]
+[node name="RainParticles" parent="Pausable/LevelAlleyway/Player" instance=ExtResource("7_wptpp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.5, 0)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 128
@@ -205,7 +203,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("AtlasTexture_dvkjl")
 script = ExtResource("11_e6qqw")
-player = NodePath("../../Pausable/NewLeafPopulatorTest/Player")
+player = NodePath("../../Pausable/LevelAlleyway/Player")
 fps = 12.0
 target_color = Color(0.29219, 0.29219, 0.29219, 1)
 
@@ -255,7 +253,6 @@ script = ExtResource("8_d3y8h")
 layer = 102
 
 [node name="PauseMenu" parent="PauseLayer" node_paths=PackedStringArray("submenu_origin") instance=ExtResource("22_yntas")]
-process_mode = 3
 submenu_origin = NodePath("../../SubmenuLayer")
 
 [node name="SubmenuLayer" type="CanvasLayer" parent="."]
@@ -298,20 +295,11 @@ material = SubResource("ShaderMaterial_5tcod")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = -640.0
+offset_bottom = -360.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
-
-[node name="PaintingLayer" type="CanvasLayer" parent="."]
-script = ExtResource("11_0g5lc")
-
-[node name="ColorRect" type="ColorRect" parent="PaintingLayer"]
-material = SubResource("ShaderMaterial_n65bv")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+scale = Vector2(2, 2)
 mouse_filter = 2
 
 [node name="Vignette" type="CanvasLayer" parent="."]

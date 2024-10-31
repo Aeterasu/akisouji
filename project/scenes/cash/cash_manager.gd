@@ -1,12 +1,15 @@
 extends Node
 
+@export_range(0.0, 999999.0) var cash : float = 0
+
 @export var base_cash_reward : float = 0.1
 @export var buffer_clean_time : float = 2.0
 
-var cash : int = 0
-
 var cash_buffer : float = 0
 var timer : Timer = Timer.new()
+
+signal on_cash_rewarded
+signal on_cash_substracted
 
 func _ready() -> void:
 	add_child(timer)
@@ -26,6 +29,30 @@ func _grant_cash(amount : float = base_cash_reward) -> void:
 	if (timer.is_stopped()):
 		timer.start()
 
+func _substract_cash(amount : float):
+	if (amount <= 0):
+		return
+
+	cash = max(cash - amount, 0.0)
+
+	on_cash_substracted.emit(amount)
+
 func _on_buffer_timeout():
-	cash += round(cash_buffer)
+	var amount : float = cash_buffer
+	cash += amount
 	cash_buffer = 0
+
+	on_cash_rewarded.emit(amount)
+
+func _reward_leaf_cleaning(leaf_amount : float):
+	_grant_cash(leaf_amount * base_cash_reward)
+
+func format_currency(number : float) -> String:
+	
+	# Place the decimal separator
+	var txt_numb = "%.2f" % number
+	
+	# Place the thousands separator
+	for idx in range(txt_numb.find(".") - 3, 0, -3):
+		txt_numb = txt_numb.insert(idx, ",")
+	return(txt_numb)

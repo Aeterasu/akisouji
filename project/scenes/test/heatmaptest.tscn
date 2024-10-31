@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bjkemyfeym11a"]
-
-[ext_resource type="Texture2D" uid="uid://lwu723gmcycw" path="res://resource/heatmapnoise.tres" id="1_euxnl"]
-
-[node name="Heatmaptest" type="Sprite2D"]
-texture = ExtResource("1_euxnl")
-centered = false

@@ -15,7 +15,7 @@ uniform vec4 color : source_color = vec4( 0.01, 0.5866666666666666, 1.0, 1.0 );
 uniform vec4 light_color : source_color = vec4( 1.0, 1.0, 1.0, 1.0 );
 
 vec2 random( vec2 pos )
-{ 
+{
 	return fract(
 		sin(
 			vec2(

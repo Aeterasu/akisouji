@@ -29,7 +29,7 @@ void fragment(){
 		BlurredScreen = ApplyThreshold(BlurredScreen, FlareThreshold);
 		FinalFlare += BlurredScreen * Weight;
 	}
-	
+
 	FinalFlare *= texture(FlareMult, SCREEN_UV).rgb;
 	FinalFlare *= texture(FlareMult2, SCREEN_UV).rgb;
 	COLOR.rgb = FinalFlare * Intensity;

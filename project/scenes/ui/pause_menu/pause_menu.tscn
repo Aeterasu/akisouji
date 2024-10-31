@@ -1,0 +1,237 @@
+[gd_scene load_steps=14 format=3 uid="uid://d0r5a5kwi5eoo"]
+
+[ext_resource type="Script" path="res://scenes/ui/pause_menu/pause_menu.gd" id="1_j0qui"]
+[ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="1_y26lm"]
+[ext_resource type="PackedScene" uid="uid://civm4tg15jr0q" path="res://scenes/ui/paper_button_double_sided.tscn" id="2_jcbm4"]
+[ext_resource type="Shader" path="res://shader/multiply.gdshader" id="2_karch"]
+[ext_resource type="PackedScene" uid="uid://bfmvy7wmymc2l" path="res://scenes/ui/gallery/gallery.tscn" id="2_lhctp"]
+[ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="2_nwcox"]
+[ext_resource type="PackedScene" uid="uid://dj6rqqv2dxh8t" path="res://scenes/ui/settings_menu/settings_menu.tscn" id="3_6ylju"]
+[ext_resource type="FontFile" uid="uid://c5kqanfa0j1nl" path="res://assets/font/DancingScript-VariableFont_wght.ttf" id="3_tc3ds"]
+[ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="3_trrex"]
+[ext_resource type="Script" path="res://scenes/ui/pause_menu/scrolling_background.gd" id="4_s0stg"]
+[ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="6_qdgdp"]
+[ext_resource type="PackedScene" uid="uid://cyaqutbexr62l" path="res://scenes/ui/gamepad_tooltip/gamepad_tooltip.tscn" id="12_5o1ui"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ebs4"]
+shader = ExtResource("2_karch")
+shader_parameter/speed = -0.25
+
+[node name="PauseMenu" type="Control" node_paths=PackedStringArray("scrolling_background", "button_selection_handler", "resume_button", "gallery_button", "options_button", "exit_button")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_j0qui")
+scrolling_background = NodePath("ScrollingBackground")
+button_selection_handler = NodePath("CenterContainer/Control/ButtonSelectionHandler")
+resume_button = NodePath("CenterContainer/Control/PaperButton")
+gallery_button = NodePath("CenterContainer/Control/PaperButton2")
+options_button = NodePath("CenterContainer/Control/PaperButton3")
+exit_button = NodePath("CenterContainer/Control/PaperButton4")
+gallery_scene = ExtResource("2_lhctp")
+settings_scene = ExtResource("3_6ylju")
+
+[node name="ScrollingBackground" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.694118)
+material = SubResource("ShaderMaterial_5ebs4")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1280.0
+offset_right = -640.0
+scale = Vector2(2, 2)
+texture = ExtResource("2_nwcox")
+stretch_mode = 1
+script = ExtResource("4_s0stg")
+speed = 1.0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.678431)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.19
+offset_top = 54.0
+offset_bottom = 0.199997
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("1_y26lm")
+theme_override_font_sizes/font_size = 64
+text = "PAUSE_LABEL"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Blake" type="Label" parent="."]
+modulate = Color(0.359069, 0.359069, 0.359069, 0.509804)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = -863.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_tc3ds")
+theme_override_font_sizes/font_size = 22
+text = "O Autumn, laden with fruit, and stained
+With the blood of the grape, pass not, but sit
+Beneath my shady roof; there thou mayst rest,
+And tune thy jolly voice to my fresh pipe,
+And all the daughters of the year shall dance!
+Sing now the lusty song of fruits and flowers.
+
+\"The narrow bud opens her beauties to
+The sun, and love runs in her thrilling veins;
+Blossoms hang round the brows of Morning, and
+Flourish down the bright cheek of modest Eve,
+Till clust'ring Summer breaks forth into singing,
+And feather'd clouds strew flowers round her head.
+
+\"The spirits of the air live on the smells
+Of fruit; and Joy, with pinions light, roves round
+The gardens, or sits singing in the trees.\"
+Thus sang the jolly Autumn as he sat;
+Then rose, girded himself, and o'er the bleak
+Hills fled from our sight; but left his golden load."
+vertical_alignment = 1
+
+[node name="Happy" type="Label" parent="."]
+modulate = Color(0.359069, 0.359069, 0.359069, 0.509804)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.206
+anchor_right = 1.0
+anchor_bottom = 0.289
+offset_top = -0.320007
+offset_bottom = -0.0800018
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_tc3ds")
+theme_override_font_sizes/font_size = 67
+text = "Happy cleaning!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Keats" type="Label" parent="."]
+modulate = Color(0.359069, 0.359069, 0.359069, 0.509804)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 863.0
+offset_right = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("3_tc3ds")
+theme_override_font_sizes/font_size = 22
+text = "Season of mists and mellow fruitfulness,
+Close bosom-friend of the maturing sun;
+Conspiring with him how to load and bless
+With fruit the vines that round the thatch-eves run;
+To bend with apples the moss'd cottage-trees,
+And fill all fruit with ripeness to the core;
+To swell the gourd, and plump the hazel shells
+With a sweet kernel; to set budding more,
+And still more, later flowers for the bees,
+Until they think warm days will never cease,
+For Summer has o'er-brimm'd their clammy cells...
+Where are the songs of Spring? Ay, where are they?
+Think not of them, thou hast thy music too,—
+While barred clouds bloom the soft-dying day,
+And touch the stubble-plains with rosy hue;
+Then in a wailful choir the small gnats mourn
+Among the river sallows, borne aloft
+Or sinking as the light wind lives or dies;
+And full-grown lambs loud bleat from hilly bourn;
+Hedge-crickets sing; and now with treble soft
+The red-breast whistles from a garden-croft;
+And gathering swallows twitter in the skies."
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+process_mode = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="CenterContainer"]
+process_mode = 2
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 2
+
+[node name="PaperButton" parent="CenterContainer/Control" instance=ExtResource("2_jcbm4")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.315
+anchor_right = 1.0
+anchor_bottom = 0.431
+offset_top = 0.199997
+offset_right = 0.0
+offset_bottom = -0.320007
+animation_type = 2
+text_key = "MENU_BUTTON_RESUME"
+
+[node name="PaperButton2" parent="CenterContainer/Control" instance=ExtResource("2_jcbm4")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.436
+anchor_right = 1.0
+anchor_bottom = 0.553
+offset_top = 0.0800171
+offset_right = 0.0
+offset_bottom = -0.160004
+animation_type = 2
+text_key = "MENU_BUTTON_GALLERY"
+
+[node name="PaperButton3" parent="CenterContainer/Control" instance=ExtResource("2_jcbm4")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.558
+anchor_right = 1.0
+anchor_bottom = 0.674
+offset_top = 0.23999
+offset_right = 0.0
+offset_bottom = -0.280029
+animation_type = 2
+text_key = "MENU_BUTTON_OPTIONS"
+
+[node name="PaperButton4" parent="CenterContainer/Control" instance=ExtResource("2_jcbm4")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.679
+anchor_right = 1.0
+anchor_bottom = 0.796
+offset_top = 0.119995
+offset_right = 0.0
+offset_bottom = -0.120056
+animation_type = 2
+text_key = "MENU_BUTTON_EXIT"
+
+[node name="ButtonSelectionHandler" type="Node" parent="CenterContainer/Control" node_paths=PackedStringArray("buttons_origin")]
+script = ExtResource("3_trrex")
+buttons_origin = NodePath("..")
+
+[node name="UIUpscaler" type="Node" parent="."]
+script = ExtResource("6_qdgdp")
+
+[node name="GamepadTooltip" parent="." instance=ExtResource("12_5o1ui")]
+layout_mode = 1

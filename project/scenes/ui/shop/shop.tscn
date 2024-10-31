@@ -1,0 +1,284 @@
+[gd_scene load_steps=24 format=3 uid="uid://71lkn3s6kfqi"]
+
+[ext_resource type="Script" path="res://scenes/ui/shop/shop.gd" id="1_87sb4"]
+[ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="1_rawln"]
+[ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="2_yb51t"]
+[ext_resource type="PackedScene" uid="uid://bcrys4arojn37" path="res://scenes/ui/paper_button.tscn" id="3_xgq7m"]
+[ext_resource type="PackedScene" uid="uid://d1rn3y4kijnhy" path="res://scenes/ui/shop/shop_entry.tscn" id="4_a8w7q"]
+[ext_resource type="PackedScene" uid="uid://d2gvydsg23b1i" path="res://scenes/ui/shop/shop_category_button.tscn" id="4_jda8f"]
+[ext_resource type="PackedScene" uid="uid://teb4p57yamr3" path="res://scenes/ui/paper_button_h_flipped.tscn" id="4_ucvo5"]
+[ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="5_bijnc"]
+[ext_resource type="Texture2D" uid="uid://co1bvf3oxphxj" path="res://assets/texture/ui/shop/texture_shop_category_boots.png" id="5_nq0wb"]
+[ext_resource type="Resource" uid="uid://bnojv12xi1uio" path="res://scenes/upgrade/move_speed/default_boots.tres" id="5_r8g5d"]
+[ext_resource type="Script" path="res://scenes/ui/shop/shop_category.gd" id="6_7edpc"]
+[ext_resource type="PackedScene" uid="uid://c15cmbbg5nyn0" path="res://scenes/ui/hud/ui_cash.tscn" id="6_acpaq"]
+[ext_resource type="Resource" uid="uid://dm1aayb6i2p5a" path="res://scenes/upgrade/move_speed/sneakers.tres" id="6_aii5i"]
+[ext_resource type="Resource" uid="uid://cc7kdcc5fh4wk" path="res://scenes/upgrade/move_speed/wellies.tres" id="7_bq3o6"]
+[ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="7_fg3im"]
+[ext_resource type="Resource" uid="uid://c37g3k5d2emhn" path="res://scenes/upgrade/move_speed/sevenleagues.tres" id="8_httmv"]
+[ext_resource type="Resource" uid="uid://c7sbyg4ns7pi2" path="res://scenes/upgrade/broom/broom.tres" id="11_sc14h"]
+[ext_resource type="Resource" uid="uid://bi0qxjmyixrxb" path="res://scenes/upgrade/broom/strong_broom.tres" id="12_ti5lq"]
+[ext_resource type="Resource" uid="uid://dcwhwjrx83toj" path="res://scenes/upgrade/broom/feather_duster.tres" id="13_oaano"]
+[ext_resource type="Resource" uid="uid://c7wg1nuu7ajn5" path="res://scenes/upgrade/broom/leaf_blower.tres" id="14_fdjp1"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_43j8k"]
+blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_ggmsm"]
+colors = PackedColorArray(0, 0, 0, 1, 0.237536, 0.0462933, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_b4rmi"]
+gradient = SubResource("Gradient_ggmsm")
+width = 8
+height = 8
+fill_to = Vector2(0, 1)
+
+[node name="Shop" type="Control" node_paths=PackedStringArray("button_selection_handler", "back_button", "lets_sweep_button", "category_select_screen", "category_select_button_handler", "category_tools", "category_boots", "button_category_tools", "button_category_boots")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_87sb4")
+button_selection_handler = NodePath("NavigationButtons/ButtonSelectionHandler")
+back_button = NodePath("NavigationButtons/PaperButton")
+lets_sweep_button = NodePath("NavigationButtons/PaperButtonHFlipped")
+category_select_screen = NodePath("CategorySelect")
+category_select_button_handler = NodePath("CategorySelect/ButtonSelectionHandler")
+category_tools = NodePath("Categories/ShopCategoryTools")
+category_boots = NodePath("Categories/ShopCategoryBoots")
+button_category_tools = NodePath("CategorySelect/ShopCategoryButtonTools")
+button_category_boots = NodePath("CategorySelect/ShopCategoryButtonBoots")
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -8
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_rawln")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="Background"]
+material = SubResource("CanvasItemMaterial_43j8k")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_b4rmi")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 18.0
+offset_right = 297.0
+offset_bottom = 78.0
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_yb51t")
+theme_override_font_sizes/font_size = 46
+text = "SHOP_LABEL"
+
+[node name="Categories" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="ShopCategoryBoots" type="Control" parent="Categories" node_paths=PackedStringArray("entries_origin", "button_selection_handler")]
+custom_minimum_size = Vector2(0, 216)
+layout_mode = 2
+anchors_preset = 0
+offset_top = 192.0
+offset_right = 1280.0
+offset_bottom = 408.0
+mouse_filter = 1
+script = ExtResource("6_7edpc")
+entries_origin = NodePath("HBoxContainer")
+button_selection_handler = NodePath("ButtonSelectionHandler")
+
+[node name="Label" type="Label" parent="Categories/ShopCategoryBoots"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -59.0
+offset_bottom = -17.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_yb51t")
+theme_override_font_sizes/font_size = 32
+text = "SHOP_CATEGORY_BOOTS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Categories/ShopCategoryBoots"]
+layout_mode = 0
+offset_top = 34.0
+offset_right = 1280.0
+offset_bottom = 162.0
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="ShopEntry" parent="Categories/ShopCategoryBoots/HBoxContainer" instance=ExtResource("4_a8w7q")]
+layout_mode = 2
+upgrade_item = ExtResource("5_r8g5d")
+
+[node name="ShopEntry2" parent="Categories/ShopCategoryBoots/HBoxContainer" instance=ExtResource("4_a8w7q")]
+layout_mode = 2
+upgrade_item = ExtResource("6_aii5i")
+
+[node name="ShopEntry3" parent="Categories/ShopCategoryBoots/HBoxContainer" instance=ExtResource("4_a8w7q")]
+layout_mode = 2
+upgrade_item = ExtResource("7_bq3o6")
+
+[node name="ShopEntry4" parent="Categories/ShopCategoryBoots/HBoxContainer" instance=ExtResource("4_a8w7q")]
+layout_mode = 2
+upgrade_item = ExtResource("8_httmv")
+
+[node name="ButtonSelectionHandler" type="Node" parent="Categories/ShopCategoryBoots" node_paths=PackedStringArray("buttons_origin")]
+script = ExtResource("5_bijnc")
+enabled = false
+horizontal = true
+buttons_origin = NodePath("../HBoxContainer")
+
+[node name="ShopCategoryTools" type="Control" parent="Categories" node_paths=PackedStringArray("entries_origin", "button_selection_handler")]
+custom_minimum_size = Vector2(0, 216)
+layout_mode = 2
+anchors_preset = 0
+offset_top = 192.0
+offset_right = 1280.0
+offset_bottom = 408.0
+mouse_filter = 2
+script = ExtResource("6_7edpc")
+entries_origin = NodePath("HBoxContainer")
+button_selection_handler = NodePath("ButtonSelectionHandler")
+
+[node name="Label" type="Label" parent="Categories/ShopCategoryTools"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -59.0
+offset_bottom = -17.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_yb51t")
+theme_override_font_sizes/font_size = 32
+text = "SHOP_CATEGORY_TOOLS
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Categories/ShopCategoryTools"]
+layout_mode = 0
+offset_top = 34.0
+offset_right = 1280.0
+offset_bottom = 162.0
+theme_override_constants/separation = 128
+alignment = 1
+
+[node name="ShopEntry" parent="Categories/ShopCategoryTools/HBoxContainer" instance=ExtResource("4_a8w7q")]
+layout_mode = 2
+upgrade_item = ExtResource("11_sc14h")
+
+[node name="ShopEntry2" parent="Categories/ShopCategoryTools/HBoxContainer" instance=ExtResource("4_a8w7q")]
+layout_mode = 2
+upgrade_item = ExtResource("12_ti5lq")
+
+[node name="ShopEntry3" parent="Categories/ShopCategoryTools/HBoxContainer" instance=ExtResource("4_a8w7q")]
+layout_mode = 2
+upgrade_item = ExtResource("13_oaano")
+
+[node name="ShopEntry4" parent="Categories/ShopCategoryTools/HBoxContainer" instance=ExtResource("4_a8w7q")]
+layout_mode = 2
+upgrade_item = ExtResource("14_fdjp1")
+
+[node name="ButtonSelectionHandler" type="Node" parent="Categories/ShopCategoryTools" node_paths=PackedStringArray("buttons_origin")]
+script = ExtResource("5_bijnc")
+enabled = false
+horizontal = true
+buttons_origin = NodePath("../HBoxContainer")
+
+[node name="CategorySelect" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 144.0
+offset_bottom = -167.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 96
+alignment = 1
+
+[node name="ShopCategoryButtonTools" parent="CategorySelect" instance=ExtResource("4_jda8f")]
+layout_mode = 2
+
+[node name="ShopCategoryButtonBoots" parent="CategorySelect" instance=ExtResource("4_jda8f")]
+layout_mode = 2
+text_key = "SHOP_CATEGORY_BOOTS"
+
+[node name="TextureRect" parent="CategorySelect/ShopCategoryButtonBoots/AnimationOrigin" index="0"]
+texture = ExtResource("5_nq0wb")
+
+[node name="ButtonSelectionHandler" type="Node" parent="CategorySelect" node_paths=PackedStringArray("buttons_origin")]
+script = ExtResource("5_bijnc")
+horizontal = true
+buttons_origin = NodePath("..")
+
+[node name="NavigationButtons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PaperButtonHFlipped" parent="NavigationButtons" instance=ExtResource("4_ucvo5")]
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 0.833
+anchor_right = 1.0
+anchor_bottom = 1.011
+offset_left = -368.0
+offset_top = 17.24
+offset_right = 145.0
+offset_bottom = 17.08
+target_selected_position = Vector2(12, 0)
+target_deselected_position = Vector2(96, 0)
+text_key = "LETS_SWEEP"
+custom_font_size = 24
+
+[node name="PaperButton" parent="NavigationButtons" instance=ExtResource("3_xgq7m")]
+layout_mode = 1
+anchor_top = 0.833
+anchor_right = 0.0
+anchor_bottom = 1.011
+offset_left = -146.0
+offset_top = 17.24
+offset_right = 367.0
+offset_bottom = 17.08
+text_key = "MENU_BUTTON_BACK"
+
+[node name="ButtonSelectionHandler" type="Node" parent="NavigationButtons" node_paths=PackedStringArray("buttons_origin")]
+script = ExtResource("5_bijnc")
+horizontal = true
+buttons_origin = NodePath("..")
+
+[node name="UICash" parent="." instance=ExtResource("6_acpaq")]
+layout_mode = 1
+
+[node name="UIUpscaler" type="Node" parent="."]
+script = ExtResource("7_fg3im")
+
+[editable path="CategorySelect/ShopCategoryButtonBoots"]

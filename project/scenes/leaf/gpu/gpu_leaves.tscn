@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://difndcqou56pf"]
+
+[ext_resource type="Shader" path="res://scenes/leaf/gpu/gpu_leaf_shader.gdshader" id="1_43gnc"]
+[ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://resource/mesh/leaf_mesh.tres" id="2_a8648"]
+[ext_resource type="Script" path="res://scenes/leaf/gpu/gpu_leaves.gd" id="3_w2wsm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wq66f"]
+shader = ExtResource("1_43gnc")
+shader_parameter/current_cleaning_position = Vector3(0, 999, 0)
+shader_parameter/cleaning_radius = 1.0
+shader_parameter/random_color_1 = Color(0.831373, 0.254902, 0.215686, 1)
+shader_parameter/random_color_2 = Color(0.831373, 0.678431, 0.32549, 1)
+shader_parameter/random_color_3 = Color(0.988235, 0.45098, 0.137255, 1)
+shader_parameter/random_color_4 = Color(0.701961, 0.737255, 0.270588, 1)
+shader_parameter/random_color_5 = Color(0.65098, 0.301961, 0.196078, 1)
+shader_parameter/random_color_6 = Color(0.701961, 0.737255, 0.270588, 1)
+shader_parameter/direction = Vector3(1, 0, 0)
+shader_parameter/spread = 45.0
+shader_parameter/flatness = 0.0
+shader_parameter/inherit_emitter_velocity_ratio = 0.0
+shader_parameter/initial_linear_velocity_min = 0.0
+shader_parameter/initial_linear_velocity_max = 0.0
+shader_parameter/directional_velocity_min = 1.0
+shader_parameter/directional_velocity_max = 1.0
+shader_parameter/angular_velocity_min = 0.0
+shader_parameter/angular_velocity_max = 0.0
+shader_parameter/orbit_velocity_min = 0.0
+shader_parameter/orbit_velocity_max = 0.0
+shader_parameter/radial_velocity_min = null
+shader_parameter/radial_velocity_max = null
+shader_parameter/linear_accel_min = 0.0
+shader_parameter/linear_accel_max = 0.0
+shader_parameter/radial_accel_min = 0.0
+shader_parameter/radial_accel_max = 0.0
+shader_parameter/tangent_accel_min = 0.0
+shader_parameter/tangent_accel_max = 0.0
+shader_parameter/damping_min = 0.0
+shader_parameter/damping_max = 0.0
+shader_parameter/initial_angle_min = 0.0
+shader_parameter/initial_angle_max = 0.0
+shader_parameter/scale_min = 1.0
+shader_parameter/scale_max = 1.0
+shader_parameter/hue_variation_min = 0.0
+shader_parameter/hue_variation_max = 0.0
+shader_parameter/anim_speed_min = 0.0
+shader_parameter/anim_speed_max = 0.0
+shader_parameter/anim_offset_min = 0.0
+shader_parameter/anim_offset_max = 0.0
+shader_parameter/lifetime_randomness = 0.0
+shader_parameter/emission_shape_offset = Vector3(0, 0, 0)
+shader_parameter/emission_shape_scale = Vector3(1, 1, 1)
+shader_parameter/velocity_pivot = Vector3(0, 0, 0)
+shader_parameter/emission_box_extents = Vector3(16, 1, 16)
+shader_parameter/color_value = Color(1, 1, 1, 1)
+shader_parameter/gravity = Vector3(0, -9.8, 0)
+shader_parameter/collision_friction = 0.0
+shader_parameter/collision_bounce = 0.0
+
+[node name="GPULeaves" type="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+amount = 1
+lifetime = 9999.0
+explosiveness = 1.0
+fixed_fps = 15
+visibility_aabb = AABB(-128, -32, -128, 256, 64, 256)
+process_material = SubResource("ShaderMaterial_wq66f")
+draw_pass_1 = ExtResource("2_a8648")
+script = ExtResource("3_w2wsm")
+map_size = Vector3(12, 0, 53)

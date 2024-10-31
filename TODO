@@ -1,0 +1,184 @@
+LEFT TO DO:
+
+    + start work :)
+    + add player movement
+    + add general leaf population via multimesh
+    + implement randomized leaves
+    + implement leaf maps
+    + add basic leaf cleaning
+    + add upgraded leaf cleaning
+    + add broom
+    + add broom animations
+    + add sprint
+    + add painting filters
+    + implement jump buffer
+    + sprint and jump cleaning
+    + add props
+    + implement progress tracking
+    + add viewmodel sway
+    + added basic footstep audio (files courtesy of vlad) (needs reworking!)
+    + base cash reward
+    + figure out your level design workflow
+    + add trees and tree shader
+    + add working camera
+    + implement output console
+    + add oob rescue
+    + ui upscaling
+    + rudimentary completion ui
+    + added sprint ui effect
+    + fix web lens flares
+    + add player tool swap
+    + leaf highlighting
+    + implement working camera! photo mode
+    + add title screen
+    + add working gallery screen
+    + add gallery zoom-in on picture
+    + fix crash. start game, pause, exit to menu, start game again. boom, crash.
+    + add pause menu. resume, gallery, settings, quit.
+    + redesign pause menu
+    + fix ui disappearing on restart
+    + disable menu buttons during transition
+    + fix gallery not showing hint
+    + optimize leaf generation via gdextension
+    + add pause menu functionality. gallery, options, exit fade out. gallery and options - add an enum that determines whether to go to title or just queuefree and return to pause menu etc
+    + fix html cursor capture on pause menu etc
+    + gallery gamepad controls
+    + fix pause menu horizontal scaling
+    + pressing lmb on scroll bar in gallery opens an image. plsfix.
+    + prevent broom from activating when clicking in pause menu
+    + ported map completion to C++
+    + add in-game progress bar
+    + add in-game cash ui
+    + fix language change needing to be clicked twice on menu reopen
+    + hold gamepad button to change slider settings
+    + gallery keyboard controls
+    + beautify gallery scroll wheel
+    + port leaf particles to C++
+    + port leaf interpolation from gdscript leaf cleaning to C++
+    + smooth transitions in settings menu 
+
+    = DON'T ADD ANY MORE FEATURES. PERIOD. =
+    
+    = consider reworking the sweeping mechanic. 
+    what if instead of disappearing, leaves would instead pile up? hold lmb and move forward to stack leaves. 
+    leaves can be put into a garbage bag - one by one or as a part of pile. put all leaves into garbage bags! bags can hold a certain amount of leaves
+    
+    =this died due to optimization. i will give it another try with gpu leaves and using shader parameters as input and output
+    
+    CURRENT WORKING NAME - LEAF SWEEPER
+    
+    GAMEPLAY:
+        - disabled leaf populator completely breaks the game, pls add safety checks
+        - add 'new upgrade notification'
+        - add completion UI, with our chara holding thumbs up! add a grade based on time. D, C, B, A, A+, S. Each grade has a cash bonus. info shown - grade, time, level name. grade is an enum where -1 means no grade, otherwise grade.
+		- save best grades and show them in stage select
+        - during completion, you can move and look at the results of your work. the completion is initially just a text popup (Press blah to finish)
+        - maybe implement optimization via cluster of multimeshes
+        - figure out some sort of way to prevent leaf spawning under props. heightmaps do that, but are a hassle. maybe we could generate heightmaps via raycast or some sort of other method?
+        - draw camera texture (don't forget the outline!)
+        - sunflower-like tutorial. mention leaf highlighting (could tutorial be a dialogue with the girl?)
+        - redo brooming animations
+        - add the ability to throw your broom. it will then proceed to sweep all the leaves as it slides across the ground. 
+        - each broom has it's own secondary attack. broom - throw, 
+        - strong broom - slide. you hold rmb and accelerate in a selected direction,
+        - feather duster -
+        - vacuum - powerful aoe leaf blow!
+        - work on economy :D
+        - add fountain stage (make it night/evening!)
+        - add park stage
+        - add stage select menu
+        - add broom upgrades
+        - add upgrade purchase menu
+        - cash and purchases saving
+        - clean up all of the remaining leaves on level completion.
+        - fix cleaning request queue
+        - fix not being able to leave photo mode
+        - add photo mode zoom, and tilt
+		- strong broom should sweep in a thin-rectangle
+        - tool swap cooldown
+        - prohibit camera rotation while loading
+        - suggestion - make the leaf highlight not an inherent mechanic, but an upgrade?
+    
+    GENERAL UI:
+        - are you sure? (on level exit)
+        - add interpolations to ui (gallery. gallery down panel missing interpolations on mode switch)
+        - add playstation glyphs
+        - add credits to main menu
+        - add input delay to button manager to prevent accidental clicks
+        - rework loading screen
+        - add timer
+    
+    IN-GAME HUD:
+        - redraw textures for in-game ui
+        - add in-game tool panel ui
+        - in-game UI should have control tooltips with gamepad glyphs
+    
+    VISUAL:
+		- update game palette to match the girl
+        - beautify leafs. new texture, maybe random texture
+        - fix that annoying gate texture that currently uses deafault metal and looks ugly
+        - another pass to alleyway level. patch holes, really.
+        - add props by necessity
+        - add pavement border texture
+		- remodel trees
+    
+    AUDIO:
+        - add crunchy cleaning sounds
+        - add general sound. now that I think about it, there won't be much sound in the game, will it?
+        - rework footstep sound
+        - add camera sound
+        - add ambience
+        - some sort of music playlist manager and music ui
+        - add music
+    
+    SETTINGS:
+		- lerp for sliders
+        - add separator to settings category label
+        - make keybinds and controller binds
+        - make slider unclickable
+        - fix mouse overlap with toggle buttons, make directonal toggles usable
+        - fix menu button selection while dragging a slider
+        - add settings menu. master, sfx, ambience, music volume. fullscreen/windowed. language. leaf higlight color setting. fov - 70-100. controls. mouse sensitivity, gamepad sensitivity. -AUDIO, -VISUALS, -GAMEPLAY, -KEY BINDINGS, -GAMEPAD BINDINGS
+        - settings horizontal scaling
+        - add sound on slider interaction (use blit sound from field of sunflowers?)
+        - add 'show tutorials' settings
+        - disable certain settings in web. make an (unavailable in web) splash
+		- add 'show fps' setting
+        - settings saving
+    
+    GALLERY:
+        - press horizontal buttons to swipe pictures
+        - add some sort of download screenshots from web version. also hide folder button in web
+    
+    PAUSE MENU:
+    
+    MISC:
+        - add some sort of intro seq
+        
+        - set locale on first launch
+        - fix null checks, replace them with is_instance_valid
+        - check out TODOs in code and implement them 🥺🥺🥺
+        - convert meshes to glb to save space
+        - web optimizations
+        - optimize mesh loading for web, cut out the blend files.
+        - cut out everything unused
+    
+		- debug reference counts in C++
+        - disable console before release
+        - replace default godot loading image in web
+        - IMPORTANT! BEFORE RELEASE, RECOMPILE C++ TO RELEASE TEMPLATE
+    
+    FLUFF:
+        - add chibis
+        - COME UP WITH A NAME FOR THE GAME!!!
+        - come up with a name for a chara.
+        - force tanya to draw our pretty chara
+
+        - tutorial should have chibi in it!!!
+    
+    LOCALIZATION:
+        - add russian, and if possible, japanese localization
+        - ask sensenko about spanish translation
+
+    SAD TRUTH : 
+        - is web off the table?

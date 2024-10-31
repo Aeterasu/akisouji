@@ -1,0 +1,135 @@
+[gd_scene load_steps=13 format=3 uid="uid://bcrys4arojn37"]
+
+[ext_resource type="Texture2D" uid="uid://dsdj6e2cue4jc" path="res://assets/texture/ui/texture_ui_title_screen_button_1.png" id="1_25kpj"]
+[ext_resource type="Script" path="res://scenes/ui/paper_button.gd" id="1_y7ipm"]
+[ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="2_mdsy3"]
+[ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="3_expwq"]
+[ext_resource type="AudioStream" uid="uid://dgodvr5gurqrs" path="res://assets/audio/sfx_menu_accent_1.ogg" id="5_w55mv"]
+[ext_resource type="AudioStream" uid="uid://bb5kges32g0ld" path="res://assets/audio/sfx_menu_accent_2.ogg" id="6_mg215"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1omue"]
+blend_mode = 3
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_pnugo"]
+colors = PackedColorArray(1, 0.356863, 0, 1, 1, 0.833333, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pk5ei"]
+gradient = SubResource("Gradient_pnugo")
+width = 8
+height = 8
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rup1a"]
+blend_mode = 3
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_6qmtg"]
+colors = PackedColorArray(0.29, 0.0754, 0.121897, 1, 0.556863, 0.156863, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rc7j3"]
+gradient = SubResource("Gradient_6qmtg")
+width = 8
+height = 8
+
+[node name="PaperButton" type="Control" node_paths=PackedStringArray("animation_origin", "selected_gradient", "deselected_gradient", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 3
+anchor_right = 0.401
+anchor_bottom = 0.132
+offset_right = -0.280029
+offset_bottom = 32.96
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+script = ExtResource("1_y7ipm")
+animation_origin = NodePath("AnimationOrigin")
+target_selected_position = Vector2(-12, 0)
+selected_gradient = NodePath("AnimationOrigin/PaperMask/SelectedGradient")
+deselected_gradient = NodePath("AnimationOrigin/PaperMask/DeselectedGradient")
+mouse_area = NodePath("MouseArea")
+label = NodePath("AnimationOrigin/Label")
+audio_accent_1 = NodePath("Accent1")
+audio_accent_2 = NodePath("Accent2")
+
+[node name="AnimationOrigin" type="Control" parent="."]
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="PaperMask" type="TextureRect" parent="AnimationOrigin"]
+clip_children = 1
+layout_mode = 0
+offset_right = 510.0
+offset_bottom = 79.0
+mouse_filter = 2
+texture = ExtResource("1_25kpj")
+
+[node name="LeafPattern" type="TextureRect" parent="AnimationOrigin/PaperMask"]
+texture_repeat = 2
+layout_mode = 0
+offset_right = 513.0
+offset_bottom = 81.0
+mouse_filter = 2
+texture = ExtResource("2_mdsy3")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="SelectedGradient" type="TextureRect" parent="AnimationOrigin/PaperMask"]
+material = SubResource("CanvasItemMaterial_1omue")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_pk5ei")
+
+[node name="DeselectedGradient" type="TextureRect" parent="AnimationOrigin/PaperMask"]
+material = SubResource("CanvasItemMaterial_rup1a")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_rc7j3")
+
+[node name="PaperShadow" type="TextureRect" parent="AnimationOrigin"]
+modulate = Color(0, 0, 0, 0.4)
+show_behind_parent = true
+layout_mode = 0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = 522.0
+offset_bottom = 91.0
+texture = ExtResource("1_25kpj")
+
+[node name="Label" type="Label" parent="AnimationOrigin"]
+layout_mode = 0
+offset_left = 153.0
+offset_right = 460.0
+offset_bottom = 77.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.337255)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 21
+theme_override_constants/shadow_outline_size = 70
+theme_override_fonts/font = ExtResource("3_expwq")
+theme_override_font_sizes/font_size = 48
+text = "Button"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MouseArea" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 523.0
+offset_bottom = 77.0
+
+[node name="Accent1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_w55mv")
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Accent2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_mg215")
+volume_db = -3.0
+max_polyphony = 2
+bus = &"SFX"

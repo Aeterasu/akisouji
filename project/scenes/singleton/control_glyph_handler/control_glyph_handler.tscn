@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://ck5etgu1cpkxl"]
+
+[ext_resource type="Script" path="res://scenes/singleton/control_glyph_handler/control_glyph_handler.gd" id="1_hi3eu"]
+[ext_resource type="Texture2D" uid="uid://cjaenyf2uwcc" path="res://assets/texture/ui/texture_button_glyphs.png" id="2_r26u6"]
+
+[node name="ControlGlyphHandler" type="Node"]
+script = ExtResource("1_hi3eu")
+glyph_image = ExtResource("2_r26u6")

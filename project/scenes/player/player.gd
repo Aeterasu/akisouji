@@ -7,7 +7,7 @@ class_name Player extends CharacterBody3D
 
 @export_group("Movement")
 @export var velocity_component : VelocityComponent = null
-@export var gravity_component : GravityComponent = null
+@export var gravity : float = 9.8
 @export var jump_strength : float = 2.0
 @export_range(0, 30) var jump_buffer_size : int = 3
 @export_range(1.0, 2.0) var sprint_speed_multiplier : float = 1.5
@@ -20,6 +20,7 @@ class_name Player extends CharacterBody3D
 @export var camera_effect_landing : CameraEffectLanding = null
 
 @export_group("Leaf Cleaning")
+@export var cleaning_raycast : RayCast3D = null
 @export var cleaning_radius : float = 1.0
 @export var jump_cleaning_radius : float = 0.5
 @export var sprint_cleaning_cooldown : float = 0.25
@@ -28,10 +29,7 @@ class_name Player extends CharacterBody3D
 @export_group("Equipment")
 @export var inventory : PlayerToolInventory = null
 @export var cleaning_range : float = 8.0
-
-var mouse_sensitivity : float = 1.0
-var gamepad_sensitvity : float = 64.0
-var gamepad_deadzone : float = 0.3
+@export var move_speed_upgrade_handler : MoveSpeedUpgradeHandler = null
 
 var leaf_cleaning_handler : LeafCleaningHandler = null
 
@@ -48,14 +46,12 @@ var is_landing : bool = false
 
 var respawn_transform : Transform3D = Transform3D()
 
+var block_brooming_until_key_is_released : bool = false
+
 var is_in_photo_mode : bool = false
 var default_fov : float = 75.0
 
 func _ready():
-	mouse_sensitivity = GlobalSettings.mouse_sensitivity
-	gamepad_sensitvity = GlobalSettings.gamepad_sensitvity
-	gamepad_deadzone = GlobalSettings.gamepad_deadzone
-
 	#equipment_viewmodel.on_broom.connect(on_broom)
 
 	sprint_cleaning_timer = Timer.new()
@@ -74,14 +70,20 @@ func _ready():
 	camera_tool.on_enter_photo_mode.connect(_on_enter_photo_mode)
 	camera_tool.on_exit_photo_mode.connect(_on_exit_photo_mode)
 
+	# upgrade handling
+
+	UpgradeManager.on_boots_update.connect(_on_boots_upgrade_update)
+	_on_boots_upgrade_update()
+
 func _physics_process(delta : float):
 	input_process(delta)
 	movement_process(delta)
 
 	inventory.current_tool.walk_multiplier = velocity_component.current_velocity.length() / velocity_component.speed
+
 	inventory.current_tool._set_sprint_toggle(wish_sprint)
 
-	if (gravity_component.current_velocity < delta - 0.1):
+	if (velocity.y < delta - 0.1):
 		is_landing = true
 
 	if (is_landing && is_on_floor()):
@@ -92,7 +94,20 @@ func on_broom():
 	if (!leaf_cleaning_handler):
 		return
 
-	leaf_cleaning_handler._on_player_cleaning_input(cleaning_radius, cleaning_range)
+	var screen_size = get_viewport().size
+	var screen_center = Vector2(screen_size.x * 0.5, screen_size.y * 0.5)
+
+	cleaning_raycast.force_raycast_update()
+
+	#leaf_cleaning_handler._on_player_cleaning_input(cleaning_radius, cleaning_range)
+
+	if (cleaning_raycast.get_collider()):
+		var cleaning_point = cleaning_raycast.get_collision_point()
+		Game.game_instance.last_cleaning_position = cleaning_point
+		Game.game_instance.last_cleaning_radius = cleaning_radius
+		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(cleaning_point.x, cleaning_point.z), Vector2.ZERO, cleaning_radius)
+
+	pass
 
 func input_process(delta : float):
 	velocity_component.input_direction = Vector2()
@@ -122,13 +137,17 @@ func input_process(delta : float):
 
 	# broom
 
-	if (inventory.current_tool.use_type == PlayerTool.UseType.HOLD):
-		inventory.current_tool.in_use = Input.is_action_pressed("player_action_primary") && !wish_sprint
-	elif (inventory.current_tool.use_type == PlayerTool.UseType.CLICK):
-		if (Input.is_action_just_pressed("player_action_primary") && !wish_sprint):
-			inventory.current_tool._use_primary()
-		if (Input.is_action_just_pressed("player_action_secondary") && !wish_sprint):
-			inventory.current_tool._use_secondary()
+	if (!block_brooming_until_key_is_released):
+		if (inventory.current_tool.use_type == PlayerTool.UseType.HOLD):
+			inventory.current_tool.in_use = Input.is_action_pressed("player_action_primary") && !wish_sprint
+		elif (inventory.current_tool.use_type == PlayerTool.UseType.CLICK):
+			if (Input.is_action_just_pressed("player_action_primary") && !wish_sprint):
+				inventory.current_tool._use_primary()
+			if (Input.is_action_just_pressed("player_action_secondary") && !wish_sprint):
+				inventory.current_tool._use_secondary()
+
+	if (Input.is_action_just_released("player_action_primary")):
+		block_brooming_until_key_is_released = false
 
 	# sprint
 
@@ -144,10 +163,10 @@ func get_input_direction() -> Vector2:
 
 func move_camera_gamepad(delta : float):
 	var right_stick = CameraControls._get_gamepad_camera_input_vector()
-	move_camera(clamp_gamepad_input_by_deadzone(right_stick) * gamepad_sensitvity * delta)
+	move_camera(clamp_gamepad_input_by_deadzone(right_stick) * GlobalSettings.gamepad_sensitvity * delta)
 
 func clamp_gamepad_input_by_deadzone(input : Vector2) -> Vector2:
-	if (input.length() < gamepad_deadzone):
+	if (input.length() < GlobalSettings.gamepad_deadzone):
 		return Vector2.ZERO
 	else:
 		return input
@@ -158,12 +177,7 @@ func _input(event):
 
 	if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE && event is InputEventMouseMotion):
 		var mouseMotion = event as InputEventMouseMotion
-		move_camera(-mouseMotion.relative * mouse_sensitivity)
-
-	#TODO: move this to main. somehow.
-	if event is InputEventMouseButton:
-		if (OS.get_name() == "Web"):
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		move_camera(-mouseMotion.relative * GlobalSettings.mouse_sensitivity)
 
 func move_camera(input : Vector2) -> void:
 	rotate_y(deg_to_rad(input.x))
@@ -173,12 +187,17 @@ func move_camera(input : Vector2) -> void:
 func movement_process(delta):
 	current_sprint_jump_boost = current_sprint_jump_boost.lerp(Vector2.ZERO, sprint_jumping_falloff * delta)
 
+	velocity.y -= gravity * delta
+
+	if (is_on_floor()):
+		velocity.y = 0
+
 	if (wish_jumping):
 		if (is_on_floor()):
 			if (current_jump_buffer_ticks > 0 and wish_sprint):
 				current_sprint_jump_boost += velocity_component.current_velocity.normalized() * sprint_jumping_boost_amount		
 
-			gravity_component.hop(jump_strength)
+			velocity.y = jump_strength
 			current_jump_buffer_ticks = 0
 			wish_jumping = false
 		else:
@@ -193,12 +212,9 @@ func movement_process(delta):
 	else:
 		velocity_component.speed_multiplier = 1.0
 
-	velocity = Vector3(velocity_component.current_velocity.x, gravity_component.current_velocity, velocity_component.current_velocity.y) + Vector3(current_sprint_jump_boost.x, 0.0, current_sprint_jump_boost.y)
+	velocity = Vector3(velocity_component.current_velocity.x, velocity.y, velocity_component.current_velocity.y) + Vector3(current_sprint_jump_boost.x, 0.0, current_sprint_jump_boost.y)
 
 	move_and_slide()
-
-	if (is_on_floor()):
-		gravity_component.current_velocity = -delta	
 
 func is_walking() -> bool:
 	return velocity_component.current_velocity.length() > 0.0
@@ -210,20 +226,24 @@ func _on_landing():
 		multiplier = 1.2
 
 	if (is_instance_valid(leaf_cleaning_handler)):
-		leaf_cleaning_handler._on_player_cleaning_on_position(global_position + Vector3.DOWN, jump_cleaning_radius * multiplier)
+		Game.game_instance.last_cleaning_position = global_position + Vector3.DOWN * 0.5
+		Game.game_instance.last_cleaning_radius = jump_cleaning_radius * multiplier
+		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), Vector2.ZERO, jump_cleaning_radius * multiplier)
 
 	camera_effect_landing._animate()
 
 func _on_sprint_cleaning_timeout():
 	if (!wish_sprint or !is_on_floor()):
 		return
-
+	
 	if (is_instance_valid(leaf_cleaning_handler)):
-		leaf_cleaning_handler._on_player_cleaning_on_position(global_position + Vector3.DOWN, sprint_cleaning_radius)
+		Game.game_instance.last_cleaning_position = global_position + Vector3.DOWN * 0.5
+		Game.game_instance.last_cleaning_radius = sprint_cleaning_radius
+		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), Vector2.ZERO, sprint_cleaning_radius)
 
 func _on_enter_photo_mode():
 	is_in_photo_mode = true
-	UI.ui_instance.hide()
+	UI.instance.hide()
 
 	#inventory._get_camera().hide()
 	CameraUI.instance.show()
@@ -242,8 +262,11 @@ func _on_exit_photo_mode():
 	
 func _photo_mode_exit_callback() -> void:
 	is_in_photo_mode = false
-	UI.ui_instance.show()
+	UI.instance.show()
 
 	#inventory._get_camera().show()
 	CameraUI.instance.hide()
 	camera._exit_photo_mode()
+
+func _on_boots_upgrade_update():
+	move_speed_upgrade_handler.current_upgrade = UpgradeManager.current_boots
