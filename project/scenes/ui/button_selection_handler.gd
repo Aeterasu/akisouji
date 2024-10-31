@@ -1,6 +1,7 @@
 class_name ButtonSelectionHandler extends Node
 
 @export var enabled : bool = true
+@export var allow_mouse_selection_when_disabled : bool = false
 
 @export var horizontal : bool = false
 @export var buttons_origin : Control = null
@@ -100,6 +101,10 @@ func _previous_button():
 		if (!buttons[current_selection_id].is_blocked):
 			break
 
+	_update_button()
+
+func _select_button(id : int):
+	current_selection_id = id
 	_update_button()
 
 func _update_button():

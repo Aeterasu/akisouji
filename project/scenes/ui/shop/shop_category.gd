@@ -4,6 +4,8 @@ class_name ShopCategory extends Control
 
 @export var button_selection_handler : ButtonSelectionHandler = null
 
+#var entries : Array[ShopEntry] = []
+
 func _ready():
 	_deselect()
 
@@ -12,6 +14,7 @@ func _ready():
 	for entry in entries_origin.get_children():
 		if (entry is ShopEntry):
 			entry.on_state_update.connect(_on_entry_state_update)
+			#entries.append(entry)
 
 func _on_shop_entry_button_pressed(button : UIButton):
 	var parent = button.get_parent()

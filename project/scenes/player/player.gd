@@ -79,11 +79,7 @@ func _physics_process(delta : float):
 	input_process(delta)
 	movement_process(delta)
 
-	if (velocity_component.target_velocty.length() > 0.0):
-		inventory.current_tool.walk_multiplier = velocity_component.current_velocity.length() / velocity_component.target_velocty.length()
-	else:
-		inventory.current_tool.walk_multiplier = lerp(inventory.current_tool.walk_multiplier, 0.0, velocity_component.decel_weight * delta)
-
+	inventory.current_tool.walk_multiplier = velocity_component.current_velocity.length() / velocity_component.speed
 
 	inventory.current_tool._set_sprint_toggle(wish_sprint)
 
