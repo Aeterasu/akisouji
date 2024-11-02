@@ -46,6 +46,7 @@ var is_landing : bool = false
 
 var respawn_transform : Transform3D = Transform3D()
 
+var input_delay : float = 0.0
 var block_brooming_until_key_is_released : bool = false
 
 var is_in_photo_mode : bool = false
@@ -90,6 +91,8 @@ func _physics_process(delta : float):
 		is_landing = false
 		_on_landing()
 
+	input_delay = max(input_delay - delta, 0.0)
+
 func on_broom():
 	if (!leaf_cleaning_handler):
 		return
@@ -112,7 +115,10 @@ func on_broom():
 func input_process(delta : float):
 	velocity_component.input_direction = Vector2()
 
-	if (_block_input):
+	if (Input.is_action_just_released("player_action_primary")):
+		block_brooming_until_key_is_released = false
+
+	if (_block_input or input_delay > 0.0):
 		#equipment_viewmodel.wish_brooming = false
 		wish_sprint = false
 		wish_jumping = false
@@ -145,9 +151,6 @@ func input_process(delta : float):
 				inventory.current_tool._use_primary()
 			if (Input.is_action_just_pressed("player_action_secondary") && !wish_sprint):
 				inventory.current_tool._use_secondary()
-
-	if (Input.is_action_just_released("player_action_primary")):
-		block_brooming_until_key_is_released = false
 
 	# sprint
 

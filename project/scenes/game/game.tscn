@@ -1,7 +1,8 @@
-[gd_scene load_steps=38 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=39 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_highlight_handler.gd" id="2_74dy0"]
+[ext_resource type="PackedScene" uid="uid://71lkn3s6kfqi" path="res://scenes/ui/shop/shop.tscn" id="2_cewtf"]
 [ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="3_ncnfk"]
 [ext_resource type="Script" path="res://scenes/loading_screen.gd" id="3_te81k"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="3_uk65u"]
@@ -76,7 +77,7 @@ shader = ExtResource("15_xpwit")
 shader_parameter/radius = 2
 shader_parameter/offset = Vector3(0, 0, 0)
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "level", "loading_screen", "ui_completion", "pause_menu", "progress_tracker", "particle_handler")]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "level", "loading_screen", "ui_completion", "pause_menu", "shop_origin", "progress_tracker", "particle_handler")]
 process_mode = 3
 script = ExtResource("1_bcfl2")
 player = NodePath("Pausable/LevelAlleyway/Player")
@@ -84,6 +85,8 @@ level = NodePath("Pausable/LevelAlleyway")
 loading_screen = NodePath("CanvasLayer/LoadingScreen")
 ui_completion = NodePath("UICompletionLayer/UICompletion")
 pause_menu = NodePath("PauseLayer/PauseMenu")
+shop_menu_scene = ExtResource("2_cewtf")
+shop_origin = NodePath("ShopLayer")
 progress_tracker = NodePath("LeafProgressTracker")
 particle_handler = NodePath("LeafParticleHandler")
 
@@ -254,7 +257,12 @@ script = ExtResource("8_d3y8h")
 layer = 102
 
 [node name="PauseMenu" parent="PauseLayer" node_paths=PackedStringArray("submenu_origin") instance=ExtResource("22_yntas")]
+mouse_filter = 2
 submenu_origin = NodePath("../../SubmenuLayer")
+
+[node name="ShopLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+layer = 102
 
 [node name="SubmenuLayer" type="CanvasLayer" parent="."]
 layer = 103

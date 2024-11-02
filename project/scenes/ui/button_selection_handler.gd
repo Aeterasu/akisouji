@@ -14,19 +14,7 @@ signal on_button_pressed
 signal on_button_selected
 
 func _ready():
-	if (buttons_origin):
-		for node in buttons_origin.get_children():
-			if (node is ShopEntry):
-				var entry = node as ShopEntry
-				buttons.append(entry.button)
-				entry.button._deselect()
-				entry.button.on_mouse_selection.connect(_on_button_mouse_selection)
-				entry.button.on_mouse_deselection.connect(_on_button_mouse_deselection)
-			elif (node is UIButton):
-				buttons.append(node)
-				node._deselect()
-				node.on_mouse_selection.connect(_on_button_mouse_selection)
-				node.on_mouse_deselection.connect(_on_button_mouse_deselection)
+	_retrieve_buttons()
 
 	if (!enabled):
 		_disable_all_buttons()
@@ -70,6 +58,28 @@ func _process(delta):
 			sfx.finished.connect(sfx.queue_free)
 
 		on_button_pressed.emit(current_button)
+
+func _retrieve_buttons():
+	if (len(buttons) > 0):
+		for button in buttons:
+			button.on_mouse_selection.disconnect(_on_button_mouse_selection)
+			button.on_mouse_deselection.disconnect(_on_button_mouse_deselection)			
+
+	buttons.clear()
+
+	if (buttons_origin):
+		for node in buttons_origin.get_children():
+			if (node is ShopEntry):
+				var entry = node as ShopEntry
+				buttons.append(entry.button)
+				entry.button._deselect()
+				entry.button.on_mouse_selection.connect(_on_button_mouse_selection)
+				entry.button.on_mouse_deselection.connect(_on_button_mouse_deselection)
+			elif (node is UIButton):
+				buttons.append(node)
+				node._deselect()
+				node.on_mouse_selection.connect(_on_button_mouse_selection)
+				node.on_mouse_deselection.connect(_on_button_mouse_deselection)
 
 func _next_button():
 	if (current_selection_id <= -999):

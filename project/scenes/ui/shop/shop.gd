@@ -46,6 +46,8 @@ var is_in_category : bool = false
 
 var reset_entry_selection : bool = true
 
+signal on_shop_closed
+
 enum TransitionType
 {
 	FROM_TITLE,
@@ -53,6 +55,11 @@ enum TransitionType
 }
 
 func _ready():
+	if (transition_type == TransitionType.FROM_GAME):
+		lets_sweep_button.get_parent().remove_child(lets_sweep_button)
+		lets_sweep_button.queue_free()
+		button_selection_handler.call_deferred("_retrieve_buttons")
+
 	button_selection_handler.on_button_pressed.connect(_on_button_pressed)
 	
 	category_select_button_handler.on_button_pressed.connect(_on_category_button_pressed)
@@ -127,3 +134,8 @@ func _on_back_button_pressed():
 		is_in_category = false
 
 	# TODO: back to stage select/close inventory
+
+	on_shop_closed.emit()
+
+	if (transition_type == TransitionType.FROM_TITLE):
+		SceneTransitionHandler.instance._load_title_screen_scene()

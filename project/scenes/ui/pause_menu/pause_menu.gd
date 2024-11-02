@@ -14,6 +14,15 @@ class_name PauseMenu extends Control
 @export var gallery_scene : PackedScene = null
 @export var settings_scene : PackedScene = null
 
+var allow_input : bool = false:
+	set(value):
+		if (value):
+			button_selection_handler._enable_all_buttons()
+		else:
+			button_selection_handler._disable_all_buttons()
+
+		allow_input = value
+
 var is_displayed : bool = false:
 	set(value):
 		is_displayed = value

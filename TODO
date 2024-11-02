@@ -69,6 +69,7 @@ LEFT TO DO:
     CURRENT WORKING NAME - LEAF SWEEPER
     
     GAMEPLAY:
+        - do not count shop time towards progress
         - disabled leaf populator completely breaks the game, pls add safety checks
         - add 'new upgrade notification'
         - add completion UI, with our chara holding thumbs up! add a grade based on time. D, C, B, A, A+, S. Each grade has a cash bonus. info shown - grade, time, level name. grade is an enum where -1 means no grade, otherwise grade.
@@ -98,6 +99,7 @@ LEFT TO DO:
 		- strong broom should sweep in a thin-rectangle
         - tool swap cooldown
         - suggestion - make the leaf highlight not an inherent mechanic, but an upgrade?
+        - fix leaves sometimes being stuck in scale interpolation
     
     GENERAL UI:
         - are you sure? (on level exit)
@@ -122,6 +124,7 @@ LEFT TO DO:
         - add props by necessity
         - add pavement border texture
 		- remodel trees
+		- Rain drop texture
     
     AUDIO:
         - add crunchy cleaning sounds
@@ -159,6 +162,9 @@ LEFT TO DO:
     PAUSE MENU:
     
     MISC:
+		- Add cleanable surface tag so that we can't exactly clean lampposts etc
+	
+		- allow 'godot-cpp' folder in git
         - add some sort of intro seq
         
         - set locale on first launch

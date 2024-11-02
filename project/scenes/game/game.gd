@@ -5,6 +5,8 @@ class_name Game extends Node3D
 @export var loading_screen : LoadingScreen
 @export var ui_completion : Control
 @export var pause_menu : PauseMenu
+@export var shop_menu_scene : PackedScene = null
+@export var shop_origin : Node = null
 
 @export var progress_tracker : LeafProgressTracker = null
 @export var particle_handler : LeafParticleHandler = null
@@ -17,6 +19,19 @@ var last_cleaning_radius : float = 1.0
 static var game_instance : Game = null
 
 var is_pausable : bool = true
+
+var shop : Shop = null
+var is_in_shop : bool = false:
+	set(value):
+		if (is_in_shop == value):
+			return
+		
+		is_in_shop = value
+
+		if (value):
+			_open_shop()
+		else:
+			_close_shop()
 
 func _ready():
 	game_instance = self
@@ -51,16 +66,24 @@ func _ready():
 	player._block_input = false
 
 func _process(delta):
-	if (Input.is_action_just_pressed("pause") or (Input.is_action_just_pressed("menu_cancel") and get_tree().paused)):
+	if ((not is_in_shop) and Input.is_action_just_pressed("pause") or (Input.is_action_just_pressed("menu_cancel") and get_tree().paused)):
 		toggle_pause()
-		player.block_brooming_until_key_is_released = true
+		player.input_delay = 0.3
+		return
+
+	if (!get_tree().paused and Input.is_action_just_pressed("open_inventory")):
+		is_in_shop = not is_in_shop
+		return
+
+	if (is_in_shop and Input.is_action_just_pressed("open_inventory")):
+		_close_shop()
+		return
 
 func _on_loading_ended():
 	loading_screen._on_timeout()
 
 func _on_level_completion():
 	#TODO: Hide broom on level completion, but allow movement.
-	#player._block_input = true
 	ui_completion.show()
 	Output.print("Level Completed!")
 
@@ -78,3 +101,31 @@ func toggle_pause():
 		pause_menu.button_selection_handler._enable_all_buttons()
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+func _open_shop():
+	pause_menu.allow_input = false
+	get_tree().paused = true
+
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+	shop = shop_menu_scene.instantiate()
+	shop.transition_type = Shop.TransitionType.FROM_GAME
+	shop_origin.add_child(shop)
+
+	shop.on_shop_closed.connect(_close_shop)
+
+func _close_shop():
+	get_tree().paused = false
+
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
+	is_in_shop = false
+
+	if (!shop):
+		return
+
+	shop.queue_free()
+
+	pause_menu.allow_input = true
+
+	player.input_delay = 0.3
