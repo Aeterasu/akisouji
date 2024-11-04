@@ -66,7 +66,7 @@ func _ready():
 	player._block_input = false
 
 func _process(delta):
-	if ((not is_in_shop) and Input.is_action_just_pressed("pause") or (Input.is_action_just_pressed("menu_cancel") and get_tree().paused)):
+	if ((not is_in_shop) and (Input.is_action_just_pressed("pause") or (Input.is_action_just_pressed("menu_cancel") and get_tree().paused))):
 		toggle_pause()
 		player.input_delay = 0.3
 		return

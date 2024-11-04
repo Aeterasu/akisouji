@@ -8,6 +8,9 @@ func _ready():
 	glyph_image = ControlGlyphHandler._get_glyph_image_path()
 
 func _physics_process(delta):
-	visible = InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD
+	#visible = InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD
 
-	label.text = "[right][img region=0,32,32,32]" + glyph_image + "[/img]" + " - " + tr("MENU_TIP_NAVIGATION") + " " + "[img region=0,0,32,32]" + glyph_image + "[/img]" + " - " + tr("MENU_TIP_CONFIRM") + " " + "[img region=32,0,32,32]" + glyph_image + "[/img]" + " - " + tr("MENU_TIP_BACK")
+	if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD):
+		label.text = "[right][img region=0,32,32,32]" + glyph_image + "[/img]" + " - " + tr("MENU_TIP_NAVIGATION") + " " + "[img region=0,0,32,32]" + glyph_image + "[/img]" + " - " + tr("MENU_TIP_CONFIRM") + " " + "[img region=32,0,32,32]" + glyph_image + "[/img]" + " - " + tr("MENU_TIP_BACK")
+	else:
+		label.text = "[right][img region=128,128,32,32]" + glyph_image + "[/img]" + " - " + tr("MENU_TIP_NAVIGATION") + " " + "[img region=32,128,32,32]" + glyph_image + "[/img]" + " - " + tr("MENU_TIP_CONFIRM") + " " + "[img region=64,128,32,32]" + glyph_image + "[/img]" + " - " + tr("MENU_TIP_BACK")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d28lh7c58l5qv"]
+[gd_scene load_steps=8 format=3 uid="uid://d28lh7c58l5qv"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_bkdub"]
 [ext_resource type="Script" path="res://scenes/main/scene_transition_handler.gd" id="2_7iqhl"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://6ngiuq2e3o7u" path="res://scenes/game/game.tscn" id="4_3un4g"]
 [ext_resource type="PackedScene" uid="uid://71lkn3s6kfqi" path="res://scenes/ui/shop/shop.tscn" id="5_b672d"]
 [ext_resource type="PackedScene" uid="uid://bfmvy7wmymc2l" path="res://scenes/ui/gallery/gallery.tscn" id="6_b588i"]
+[ext_resource type="PackedScene" uid="uid://gcdsoumbb7v1" path="res://scenes/ui/stage_select/stage_select.tscn" id="7_ti7n1"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_bkdub")
@@ -16,3 +17,4 @@ title_screen_scene = ExtResource("2_sd2kd")
 game_scene = ExtResource("4_3un4g")
 shop_scene = ExtResource("5_b672d")
 gallery_scene = ExtResource("6_b588i")
+stage_select_scene = ExtResource("7_ti7n1")

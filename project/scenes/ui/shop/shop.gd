@@ -133,9 +133,7 @@ func _on_back_button_pressed():
 		category_select_screen.show()
 		is_in_category = false
 
-	# TODO: back to stage select/close inventory
-
 	on_shop_closed.emit()
 
 	if (transition_type == TransitionType.FROM_TITLE):
-		SceneTransitionHandler.instance._load_title_screen_scene()
+		SceneTransitionHandler.instance._load_previous_scene()

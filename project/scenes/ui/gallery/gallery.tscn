@@ -41,12 +41,12 @@ fill_to = Vector2(0, 1)
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6yf58"]
 blend_mode = 3
 
-[sub_resource type="Gradient" id="Gradient_mcqjw"]
+[sub_resource type="Gradient" id="Gradient_vcwdi"]
 offsets = PackedFloat32Array(0.0273141, 0.0500759, 0.116844)
 colors = PackedColorArray(0, 0, 0, 1, 0.501961, 0.137255, 0, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4cx3l"]
-gradient = SubResource("Gradient_mcqjw")
+gradient = SubResource("Gradient_vcwdi")
 fill_to = Vector2(0, 1)
 
 [sub_resource type="Gradient" id="Gradient_g7gg4"]
@@ -88,7 +88,7 @@ open_folder_button = NodePath("Buttons/PaperButtonHFlipped")
 scroll_container = NodePath("ScrollContainer")
 gallery_entry_origin = NodePath("ScrollContainer/GridContainer")
 gallery_entry_zoom = NodePath("GalleryEntryZoom")
-gamepad_tooltip = NodePath("GamepadTooltip")
+gamepad_tooltip = NodePath("Buttons/GamepadTooltip")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -8
@@ -254,7 +254,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 570.0
+offset_top = 559.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
@@ -285,15 +285,18 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_np5xa")
 
+[node name="GamepadTooltip" parent="Buttons" instance=ExtResource("12_5tthr")]
+layout_mode = 1
+
 [node name="PaperButton" parent="Buttons" instance=ExtResource("5_6rj0g")]
 layout_mode = 1
 anchor_top = 0.833
 anchor_right = 0.0
 anchor_bottom = 1.011
 offset_left = -18.0
-offset_top = 0.239929
+offset_top = -22.7601
 offset_right = 495.0
-offset_bottom = 0.0799561
+offset_bottom = -22.9201
 text_key = "MENU_BUTTON_BACK"
 
 [node name="PaperButtonHFlipped" parent="Buttons" instance=ExtResource("6_tq5qv")]
@@ -303,9 +306,9 @@ anchor_top = 0.833
 anchor_right = 1.0
 anchor_bottom = 1.011
 offset_left = -496.0
-offset_top = 0.239929
+offset_top = -22.7601
 offset_right = 17.0
-offset_bottom = 0.0799561
+offset_bottom = -22.9201
 target_selected_position = Vector2(12, 0)
 target_deselected_position = Vector2(96, 0)
 text_key = "MENU_BUTTON_GALLERY_FOLDER"
@@ -359,9 +362,6 @@ mouse_filter = 2
 texture = ExtResource("4_oydno")
 expand_mode = 1
 stretch_mode = 5
-
-[node name="GamepadTooltip" parent="." instance=ExtResource("12_5tthr")]
-layout_mode = 1
 
 [node name="UIUpscaler" type="Node" parent="."]
 script = ExtResource("2_ya6i8")

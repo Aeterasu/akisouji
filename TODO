@@ -57,6 +57,7 @@ LEFT TO DO:
     + port leaf interpolation from gdscript leaf cleaning to C++
     + smooth transitions in settings menu 
     + prohibit camera rotation while loading
+    + make it so that the shop can be opened from the game by pressing tab (move highlighting to another button)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -116,6 +117,7 @@ LEFT TO DO:
         - in-game UI should have control tooltips with gamepad glyphs
     
     VISUAL:
+        - consider doing a pixel art retexture
         - fix camera state transition disabling viewport (something's going fucky-wucky)
 		- update game palette to match the girl
         - beautify leafs. new texture, maybe random texture
@@ -148,16 +150,14 @@ LEFT TO DO:
         - settings horizontal scaling
         - add sound on slider interaction (use blit sound from field of sunflowers?)
         - add 'show tutorials' settings
-        - disable certain settings in web. make an (unavailable in web) splash
 		- add 'show fps' setting
         - settings saving
 
     SHOP:
-        - make it so that the shop can be opened from the game by pressing tab (move highlighting to another button)
+        
     
     GALLERY:
         - press horizontal buttons to swipe pictures
-        - add some sort of download screenshots from web version. also hide folder button in web
     
     PAUSE MENU:
     
@@ -171,13 +171,10 @@ LEFT TO DO:
         - fix null checks, replace them with is_instance_valid
         - check out TODOs in code and implement them 🥺🥺🥺
         - convert meshes to glb to save space
-        - web optimizations
-        - optimize mesh loading for web, cut out the blend files.
         - cut out everything unused
     
 		- debug reference counts in C++
         - disable console before release
-        - replace default godot loading image in web
         - IMPORTANT! BEFORE RELEASE, RECOMPILE C++ TO RELEASE TEMPLATE
     
     FLUFF:
@@ -191,6 +188,3 @@ LEFT TO DO:
     LOCALIZATION:
         - add russian, and if possible, japanese localization
         - ask sensenko about spanish translation
-
-    SAD TRUTH : 
-        - is web off the table?

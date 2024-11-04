@@ -4,8 +4,11 @@ class_name SceneTransitionHandler extends Node
 @export var game_scene : PackedScene = null
 @export var shop_scene : PackedScene = null
 @export var gallery_scene : PackedScene = null
+@export var stage_select_scene : PackedScene = null
 
 var initialized_scenes : Array[Node] = []
+
+var previous_scene : PackedScene = null
 
 static var instance : SceneTransitionHandler = null
 
@@ -22,7 +25,12 @@ func _clear_scenes() -> void:
 func _load_scene(path) -> void:
 	_clear_scenes()
 
-	var title_screen = (load(path) as PackedScene).instantiate()
+	var scene = load(path) as PackedScene
+
+	if (!previous_scene):
+		previous_scene = scene
+
+	var title_screen = scene.instantiate()
 	get_parent().add_child(title_screen)
 	initialized_scenes.append(title_screen)
 
@@ -37,3 +45,9 @@ func _load_shop_scene() -> void:
 
 func _load_gallery_scene() -> void:
 	_load_scene(gallery_scene.resource_path)
+
+func _load_stage_select_scene() -> void:
+	_load_scene(stage_select_scene.resource_path)
+
+func _load_previous_scene() -> void:
+	_load_scene(previous_scene.resource_path)
