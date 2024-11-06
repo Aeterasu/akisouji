@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://clr88rwhe5dva" path="res://assets/texture/stage/texture_stage_alleyway.png" id="2_nieu1"]
 
 [node name="StageButton" type="Control"]
-custom_minimum_size = Vector2(570, 362)
+custom_minimum_size = Vector2(652, 362)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 570.0
+offset_right = 652.0
 offset_bottom = 362.0
 
 [node name="Frame" type="TextureRect" parent="."]

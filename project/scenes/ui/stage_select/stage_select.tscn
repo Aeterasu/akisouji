@@ -1,13 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://gcdsoumbb7v1"]
+[gd_scene load_steps=21 format=3 uid="uid://gcdsoumbb7v1"]
 
 [ext_resource type="Script" path="res://scenes/ui/stage_select/stage_select.gd" id="1_66fed"]
 [ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="1_dorsv"]
 [ext_resource type="PackedScene" uid="uid://cyaqutbexr62l" path="res://scenes/ui/gamepad_tooltip/gamepad_tooltip.tscn" id="2_gj8ga"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="2_yaed8"]
 [ext_resource type="PackedScene" uid="uid://0rans78oywx2" path="res://scenes/ui/stage_select/stage_button.tscn" id="3_wm72o"]
+[ext_resource type="Shader" path="res://shader/alpha_mask.gdshader" id="5_3202m"]
 [ext_resource type="PackedScene" uid="uid://teb4p57yamr3" path="res://scenes/ui/paper_button_h_flipped.tscn" id="5_ggckk"]
 [ext_resource type="PackedScene" uid="uid://bcrys4arojn37" path="res://scenes/ui/paper_button.tscn" id="6_kbe54"]
 [ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="7_dni56"]
+[ext_resource type="PackedScene" uid="uid://b4bw4uryofcbx" path="res://scenes/ui/stage_select/stage_navigation_arrow.tscn" id="10_avlww"]
+[ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="10_v364h"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h23r4"]
 blend_mode = 3
@@ -32,11 +35,17 @@ colors = PackedColorArray(0, 0, 0, 1, 0.501961, 0.137255, 0, 1, 1, 1, 1, 1)
 gradient = SubResource("Gradient_mcqjw")
 fill_to = Vector2(0, 1)
 
-[sub_resource type="Gradient" id="Gradient_2skik"]
-colors = PackedColorArray(0.169025, 0.0246951, 0, 1, 0, 0, 0, 0)
+[sub_resource type="Gradient" id="Gradient_7qmm5"]
+offsets = PackedFloat32Array(0, 0.2, 0.8, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+metadata/_snap_enabled = true
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_tmwk4"]
-gradient = SubResource("Gradient_2skik")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kqnhk"]
+gradient = SubResource("Gradient_7qmm5")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nlj8g"]
+shader = ExtResource("5_3202m")
+shader_parameter/mask = SubResource("GradientTexture2D_kqnhk")
 
 [node name="StageSelect" type="Control" node_paths=PackedStringArray("button_selection_handler", "back_button", "proceed_button")]
 layout_mode = 3
@@ -105,48 +114,53 @@ anchor_top = 1.0
 offset_top = -720.0
 grow_vertical = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+material = SubResource("ShaderMaterial_nlj8g")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+disable_3d = true
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
+
+[node name="Control" type="Control" parent="SubViewportContainer/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/Control"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 96.0
+offset_left = 360.0
 offset_top = -240.0
-offset_right = 2388.0
+offset_right = 2980.0
 offset_bottom = 122.0
 grow_vertical = 2
 
-[node name="StageButton1" parent="HBoxContainer" instance=ExtResource("3_wm72o")]
+[node name="StageButton1" parent="SubViewportContainer/SubViewport/Control/HBoxContainer" instance=ExtResource("3_wm72o")]
 layout_mode = 2
 
-[node name="StageButton2" parent="HBoxContainer" instance=ExtResource("3_wm72o")]
+[node name="StageButton2" parent="SubViewportContainer/SubViewport/Control/HBoxContainer" instance=ExtResource("3_wm72o")]
 layout_mode = 2
 
-[node name="StageButton3" parent="HBoxContainer" instance=ExtResource("3_wm72o")]
+[node name="StageButton3" parent="SubViewportContainer/SubViewport/Control/HBoxContainer" instance=ExtResource("3_wm72o")]
 layout_mode = 2
 
-[node name="StageButton4" parent="HBoxContainer" instance=ExtResource("3_wm72o")]
+[node name="StageButton4" parent="SubViewportContainer/SubViewport/Control/HBoxContainer" instance=ExtResource("3_wm72o")]
 layout_mode = 2
-
-[node name="Border1" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 138.0
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_tmwk4")
-
-[node name="Border2" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -138.0
-grow_horizontal = 0
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_tmwk4")
-flip_h = true
 
 [node name="NavigationButtons" type="Control" parent="."]
 z_index = 1035
@@ -188,3 +202,33 @@ text_key = "MENU_BUTTON_BACK"
 script = ExtResource("7_dni56")
 horizontal = true
 buttons_origin = NodePath("..")
+
+[node name="StageNavigation" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="StageNavigationArrow" parent="StageNavigation" instance=ExtResource("10_avlww")]
+layout_mode = 1
+offset_left = -146.0
+offset_top = -131.0
+offset_right = 0.0
+offset_bottom = 15.0
+
+[node name="StageNavigationArrow2" parent="StageNavigation" instance=ExtResource("10_avlww")]
+layout_mode = 1
+anchors_preset = 4
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 0.0
+offset_top = -131.0
+offset_right = 146.0
+offset_bottom = 15.0
+grow_horizontal = 1
+
+[node name="UIUpscaler" type="Node" parent="."]
+script = ExtResource("10_v364h")

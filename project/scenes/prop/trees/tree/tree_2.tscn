@@ -1,14 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://d11xopjdvpgrw"]
+[gd_scene load_steps=7 format=3 uid="uid://d11xopjdvpgrw"]
 
 [ext_resource type="PackedScene" uid="uid://bbnwfqoe1ab6i" path="res://assets/mesh/prop/mesh_tree_2.glb" id="1_44p24"]
-[ext_resource type="Texture2D" uid="uid://dbe3mpbhypbgn" path="res://assets/texture/environment/texture_wood_1_albm.png" id="2_an4hq"]
-[ext_resource type="Texture2D" uid="uid://byrfqjkmadft5" path="res://assets/texture/environment/texture_wood_1_rmmp.png" id="3_4kewh"]
+[ext_resource type="Material" uid="uid://dx34skvhw6nkc" path="res://resource/material/material_tree_trunk.tres" id="2_esn4x"]
 [ext_resource type="Shader" path="res://shader/foliage_alpha.gdshader" id="3_s1rj0"]
 [ext_resource type="Texture2D" uid="uid://dvbveujmk7j8e" path="res://assets/texture/environment/texture_foliage_1_albm.png" id="4_tjgb4"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_56q2q"]
-albedo_texture = ExtResource("2_an4hq")
-roughness_texture = ExtResource("3_4kewh")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_32u0l"]
 render_priority = 0
@@ -41,7 +36,7 @@ height = 8.0
 [node name="Tree2" type="Node3D"]
 
 [node name="mesh_tree_2" parent="." instance=ExtResource("1_44p24")]
-surface_material_override/0 = SubResource("StandardMaterial3D_56q2q")
+surface_material_override/0 = ExtResource("2_esn4x")
 surface_material_override/1 = SubResource("ShaderMaterial_32u0l")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
