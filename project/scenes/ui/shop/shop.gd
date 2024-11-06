@@ -37,7 +37,6 @@ var focus_level : int = 0:
 				category_select_button_handler._enable_all_buttons()
 			else:
 				current_category.button_selection_handler._enable_all_buttons()
-				#current_category.button_selection_handler._select_first_button()
 
 		focus_level = value
 
@@ -136,4 +135,4 @@ func _on_back_button_pressed():
 	on_shop_closed.emit()
 
 	if (transition_type == TransitionType.FROM_TITLE):
-		SceneTransitionHandler.instance._load_previous_scene()
+		SceneTransitionHandler.instance._load_stage_select_scene()

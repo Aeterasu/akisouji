@@ -1,33 +1,53 @@
-[gd_scene load_steps=2 format=3 uid="uid://b4bw4uryofcbx"]
+[gd_scene load_steps=5 format=3 uid="uid://b4bw4uryofcbx"]
 
+[ext_resource type="Script" path="res://scenes/ui/stage_select/stage_select_arrow_button.gd" id="1_n7dwv"]
 [ext_resource type="Texture2D" uid="uid://c3smfca7fgslx" path="res://assets/texture/ui/stage_select/texture_ui_arrow.png" id="1_s63fq"]
+[ext_resource type="Texture2D" uid="uid://4n7m4ydiorvi" path="res://assets/texture/ui/shop/texture_ui_shop_highlight.png" id="2_a8237"]
 
-[node name="StageNavigationArrow" type="Control"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qyy1v"]
+blend_mode = 1
+
+[node name="StageNavigationArrow" type="Control" node_paths=PackedStringArray("animation_origin", "highlight", "mouse_area")]
 custom_minimum_size = Vector2(146, 146)
 layout_mode = 3
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -1280.0
-offset_top = -360.0
-offset_right = -1134.0
-offset_bottom = -214.0
-grow_horizontal = 0
-grow_vertical = 2
+anchor_right = 0.114
+anchor_bottom = 0.203
+offset_right = 0.0799866
+offset_bottom = -0.160004
+mouse_filter = 2
+script = ExtResource("1_n7dwv")
+animation_origin = NodePath("AnimationOrigin")
+highlight = NodePath("AnimationOrigin/Highlight")
+mouse_area = NodePath("MouseArea")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="AnimationOrigin" type="Control" parent="."]
+custom_minimum_size = Vector2(125, 146)
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Highlight" type="TextureRect" parent="AnimationOrigin"]
+material = SubResource("CanvasItemMaterial_qyy1v")
+layout_mode = 0
+offset_left = -47.0
+offset_top = -36.0
+offset_right = 159.0
+offset_bottom = 174.0
+texture = ExtResource("2_a8237")
+expand_mode = 1
+
+[node name="TextureRect" type="TextureRect" parent="AnimationOrigin"]
+custom_minimum_size = Vector2(125, 146)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -62.5
-offset_top = -73.0
-offset_right = 62.5
-offset_bottom = 73.0
+offset_right = 125.0
+offset_bottom = 146.0
+texture = ExtResource("1_s63fq")
+
+[node name="MouseArea" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_s63fq")

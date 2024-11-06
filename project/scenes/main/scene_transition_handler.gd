@@ -10,6 +10,8 @@ var initialized_scenes : Array[Node] = []
 
 var previous_scene : PackedScene = null
 
+var current_scene : PackedScene = null
+
 static var instance : SceneTransitionHandler = null
 
 #TODO: make some sort of enum for scene paths
@@ -23,16 +25,18 @@ func _clear_scenes() -> void:
 	initialized_scenes.clear()
 
 func _load_scene(path) -> void:
+	#current_scene = scene
+
+	previous_scene = current_scene
+
 	_clear_scenes()
 
 	var scene = load(path) as PackedScene
 
-	if (!previous_scene):
-		previous_scene = scene
-
-	var title_screen = scene.instantiate()
-	get_parent().add_child(title_screen)
-	initialized_scenes.append(title_screen)
+	var node = scene.instantiate()
+	get_parent().add_child(node)
+	initialized_scenes.append(node)
+	current_scene = scene
 
 func _load_title_screen_scene() -> void:
 	_load_scene(title_screen_scene.resource_path)

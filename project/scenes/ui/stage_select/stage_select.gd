@@ -4,8 +4,76 @@ class_name StageSelect extends Control
 @export var back_button : UIButton = null
 @export var proceed_button : UIButton = null
 
+@export var navigation_button_selection_handler : ButtonSelectionHandler = null
+@export var stages_container : Control = null
+@export var right_button : UIButton = null
+@export var left_button : UIButton = null
+
+@export var edge_size : float = 360.0
+@export var jump_size : float = 652.0
+
+@export var scroll_lerp_weight : float = 4.0
+
+var target_scroll : float = 0.0
+var current_scroll : float = 0.0
+
+var focus_level : int = 0:
+	set(value):
+		if (value > 1):
+			value = 0
+
+		if (value == 0):
+			button_selection_handler._enable_all_buttons()
+			navigation_button_selection_handler._disable_all_buttons()
+
+		elif (value > 0):
+			button_selection_handler._disable_all_buttons()
+			navigation_button_selection_handler._enable_all_buttons()
+
+		focus_level = value
+
 func _ready():
 	button_selection_handler.on_button_pressed.connect(_on_button_pressed)
+
+	navigation_button_selection_handler.on_button_pressed.connect(_on_navigation_button_pressed)
+
+	target_scroll = edge_size
+	current_scroll = edge_size
+
+	focus_level = 1
+
+	for button in button_selection_handler.buttons:
+		button.on_mouse_selection.connect(_on_button_mouse_selection)
+		button.on_mouse_deselection.connect(_on_button_mouse_deselection)
+
+func _on_button_mouse_selection(button : UIButton):
+	navigation_button_selection_handler._select_button(-999)
+
+	button_selection_handler._enable_all_buttons()
+	button_selection_handler._select_button(button_selection_handler.buttons.find(button))
+
+func _on_button_mouse_deselection(button : UIButton):
+	button_selection_handler._disable_all_buttons()
+	button_selection_handler._select_button(-999)
+	focus_level = 1
+
+func _process(delta):
+	if (Input.is_action_just_pressed("gamepad_dpad_up") or Input.is_action_just_pressed("player_move_forward") or Input.is_action_just_pressed("gamepad_dpad_down") or Input.is_action_just_pressed("player_move_backwards")):
+		focus_level += 1
+
+		if (focus_level == 0):
+			button_selection_handler._next_button()
+		else:
+			if (navigation_button_selection_handler.previous_button_id > -999):
+				navigation_button_selection_handler.current_selection_id = navigation_button_selection_handler.previous_button_id
+				navigation_button_selection_handler._update_button()
+			else:
+				navigation_button_selection_handler.current_selection_id = 0
+				navigation_button_selection_handler._update_button()
+
+	target_scroll = clamp(target_scroll, -stages_container.size.x + jump_size + edge_size, edge_size)
+	current_scroll = lerp(current_scroll, target_scroll, scroll_lerp_weight * delta)
+	stages_container.position.x = current_scroll
 
 func _on_button_pressed(button : UIButton):
 	match (button):
@@ -15,4 +83,11 @@ func _on_button_pressed(button : UIButton):
 			SceneTransitionHandler.instance._load_shop_scene()
 
 func _on_back_button_pressed():
-	SceneTransitionHandler.instance._load_previous_scene()
+	SceneTransitionHandler.instance._load_title_screen_scene()
+
+func _on_navigation_button_pressed(button : UIButton):
+	match (button):
+		right_button:
+			target_scroll -= jump_size
+		left_button:
+			target_scroll += jump_size
