@@ -17,6 +17,9 @@ class_name StageSelect extends Control
 
 @export var scroll_lerp_weight : float = 4.0
 
+@export var stage_name_label : Label = null
+@export var stage_description_label : Label = null
+
 var current_selected_stage_id : int = 0
 var stage_amount : int = 0
 
@@ -89,6 +92,11 @@ func _process(delta):
 
 	if (Input.is_action_just_pressed("player_action_jump")):
 		_on_button_pressed(proceed_button)
+
+	var s = stages_container.get_child(current_selected_stage_id) as StageButton
+
+	stage_name_label.text = tr(s.name_key)
+	stage_description_label.text = tr(s.description_key)
 
 func _on_button_pressed(button : UIButton):
 	match (button):

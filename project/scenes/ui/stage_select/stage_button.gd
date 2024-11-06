@@ -4,6 +4,9 @@ class_name StageButton extends Control
 
 @export var highlight : Control = null
 
+@export var name_key : String = ""
+@export var description_key : String = ""
+
 var is_selected : bool = false
 
 func _ready():

@@ -58,6 +58,9 @@ LEFT TO DO:
     + smooth transitions in settings menu 
     + prohibit camera rotation while loading
     + make it so that the shop can be opened from the game by pressing tab (move highlighting to another button)
+    + add stage select menu
+    + allow 'godot-cpp' folder in git
+    + add stage name, descriptions
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -89,7 +92,6 @@ LEFT TO DO:
         - work on economy :D
         - add fountain stage (make it night/evening!)
         - add park stage
-        - add stage select menu
         - add broom upgrades
         - add upgrade purchase menu
         - cash and purchases saving
@@ -103,11 +105,11 @@ LEFT TO DO:
         - fix leaves sometimes being stuck in scale interpolation
     
     GENERAL UI:
+        - figure out the order - stage select/shop or reverse. perhaps, add a shop button to stage select
         - are you sure? (on level exit)
         - add interpolations to ui (gallery. gallery down panel missing interpolations on mode switch)
         - add playstation glyphs
         - add credits to main menu
-        - add input delay to button manager to prevent accidental clicks
         - rework loading screen
         - add timer
     
@@ -155,6 +157,8 @@ LEFT TO DO:
 
     SHOP:
         
+    STAGE SELECT:
+        - add stage textures
     
     GALLERY:
         - press horizontal buttons to swipe pictures
@@ -164,7 +168,6 @@ LEFT TO DO:
     MISC:
 		- Add cleanable surface tag so that we can't exactly clean lampposts etc
 	
-		- allow 'godot-cpp' folder in git
         - add some sort of intro seq
         
         - set locale on first launch
