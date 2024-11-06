@@ -61,6 +61,9 @@ LEFT TO DO:
     + add stage select menu
     + allow 'godot-cpp' folder in git
     + add stage name, descriptions
+    + add upgrade purchase menu
+    + Rain drop texture
+    + tool swap cooldown
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -93,14 +96,12 @@ LEFT TO DO:
         - add fountain stage (make it night/evening!)
         - add park stage
         - add broom upgrades
-        - add upgrade purchase menu
         - cash and purchases saving
         - clean up all of the remaining leaves on level completion.
         - fix cleaning request queue
         - fix not being able to leave photo mode
         - add photo mode zoom, and tilt
 		- strong broom should sweep in a thin-rectangle
-        - tool swap cooldown
         - suggestion - make the leaf highlight not an inherent mechanic, but an upgrade?
         - fix leaves sometimes being stuck in scale interpolation
     
@@ -128,7 +129,6 @@ LEFT TO DO:
         - add props by necessity
         - add pavement border texture
 		- remodel trees
-		- Rain drop texture
     
     AUDIO:
         - add crunchy cleaning sounds

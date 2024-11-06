@@ -1,10 +1,13 @@
 class_name PlayerToolInventory extends Node
 
 @export var tool_origin : Node = null
+@export var swap_cooldown : float = 0.1
 
 var current_tool : PlayerTool = null
 var current_tool_id : int = 0
 var tools : Array[PlayerTool] = []
+
+var swap_cooldown_timer : Timer = Timer.new()
 
 func _ready():
 	for node in tool_origin.get_children():
@@ -12,6 +15,9 @@ func _ready():
 			tools.append(node)
 
 	current_tool = tools[0]
+
+	add_child(swap_cooldown_timer)
+	swap_cooldown_timer.one_shot = true
 
 func _physics_process(delta) -> void:
 	if (current_tool and !current_tool.allow_switch):
@@ -59,6 +65,11 @@ func _set_tool(id : int):
 	_update_tool()
 
 func _update_tool():
+	if (!swap_cooldown_timer.is_stopped()):
+		return
+
+	swap_cooldown_timer.start(swap_cooldown)
+
 	current_tool._unequip() # unequip the previous tool
 
 	current_tool = tools[current_tool_id]
