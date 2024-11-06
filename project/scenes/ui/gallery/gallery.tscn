@@ -88,7 +88,7 @@ open_folder_button = NodePath("Buttons/PaperButtonHFlipped")
 scroll_container = NodePath("ScrollContainer")
 gallery_entry_origin = NodePath("ScrollContainer/GridContainer")
 gallery_entry_zoom = NodePath("GalleryEntryZoom")
-gamepad_tooltip = NodePath("Buttons/GamepadTooltip")
+gamepad_tooltip = NodePath("GamepadTooltip")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -8
@@ -285,9 +285,6 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_np5xa")
 
-[node name="GamepadTooltip" parent="Buttons" instance=ExtResource("12_5tthr")]
-layout_mode = 1
-
 [node name="PaperButton" parent="Buttons" instance=ExtResource("5_6rj0g")]
 layout_mode = 1
 anchor_top = 0.833
@@ -318,6 +315,9 @@ custom_font_size = 24
 script = ExtResource("7_jbjr6")
 horizontal = true
 buttons_origin = NodePath("..")
+
+[node name="GamepadTooltip" parent="." instance=ExtResource("12_5tthr")]
+layout_mode = 1
 
 [node name="GalleryEntryZoom" type="Control" parent="." node_paths=PackedStringArray("entry_origin")]
 layout_mode = 1

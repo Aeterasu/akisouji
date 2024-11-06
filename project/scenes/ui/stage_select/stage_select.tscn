@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://gcdsoumbb7v1"]
+[gd_scene load_steps=21 format=3 uid="uid://gcdsoumbb7v1"]
 
 [ext_resource type="Script" path="res://scenes/ui/stage_select/stage_select.gd" id="1_66fed"]
 [ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="1_dorsv"]
@@ -12,18 +12,7 @@
 [ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="7_dni56"]
 [ext_resource type="PackedScene" uid="uid://b4bw4uryofcbx" path="res://scenes/ui/stage_select/stage_navigation_arrow.tscn" id="10_avlww"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="10_v364h"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_h23r4"]
-blend_mode = 3
-
-[sub_resource type="Gradient" id="Gradient_ggmsm"]
-colors = PackedColorArray(0, 0, 0, 1, 0.237536, 0.0462933, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ui2j6"]
-gradient = SubResource("Gradient_ggmsm")
-width = 8
-height = 8
-fill_to = Vector2(0, 1)
+[ext_resource type="Script" path="res://scenes/ui/button.gd" id="12_6pdp1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xyu36"]
 shader = ExtResource("4_ho324")
@@ -52,7 +41,7 @@ gradient = SubResource("Gradient_7qmm5")
 shader = ExtResource("5_3202m")
 shader_parameter/mask = SubResource("GradientTexture2D_kqnhk")
 
-[node name="StageSelect" type="Control" node_paths=PackedStringArray("button_selection_handler", "back_button", "navigation_button_selection_handler", "stages_container", "right_button", "left_button")]
+[node name="StageSelect" type="Control" node_paths=PackedStringArray("button_selection_handler", "back_button", "navigation_button_selection_handler", "stages_container", "right_button", "left_button", "stage_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,36 +49,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_66fed")
-button_selection_handler = NodePath("NavigationButtons/ButtonSelectionHandler")
-back_button = NodePath("NavigationButtons/PaperButton")
+button_selection_handler = NodePath("Buttons/ButtonSelectionHandler")
+back_button = NodePath("Buttons/PaperButton")
 navigation_button_selection_handler = NodePath("StageNavigation/ButtonSelectionHandler")
 stages_container = NodePath("SubViewportContainer/SubViewport/Control/HBoxContainer")
 right_button = NodePath("StageNavigation/Right")
 left_button = NodePath("StageNavigation/Left")
+stage_button = NodePath("StageNavigation/StageSelection")
 scroll_lerp_weight = 5.5
-
-[node name="Background" type="TextureRect" parent="."]
-visible = false
-z_index = -8
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_dorsv")
-expand_mode = 1
-stretch_mode = 1
-
-[node name="TextureRect" type="TextureRect" parent="Background"]
-material = SubResource("CanvasItemMaterial_h23r4")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_ui2j6")
 
 [node name="StageBackground" type="TextureRect" parent="."]
 self_modulate = Color(0.239216, 0.172549, 0.156863, 1)
@@ -195,7 +162,7 @@ layout_mode = 2
 [node name="StageButton4" parent="SubViewportContainer/SubViewport/Control/HBoxContainer" instance=ExtResource("3_wm72o")]
 layout_mode = 2
 
-[node name="NavigationButtons" type="Control" parent="."]
+[node name="Buttons" type="Control" parent="."]
 z_index = 1035
 layout_mode = 1
 anchors_preset = 15
@@ -205,7 +172,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PaperButton" parent="NavigationButtons" instance=ExtResource("6_kbe54")]
+[node name="PaperButton" parent="Buttons" instance=ExtResource("6_kbe54")]
 layout_mode = 1
 anchor_top = 0.833
 anchor_right = 0.0
@@ -216,7 +183,7 @@ offset_right = 367.0
 offset_bottom = -35.92
 text_key = "MENU_BUTTON_BACK"
 
-[node name="ButtonSelectionHandler" type="Node" parent="NavigationButtons" node_paths=PackedStringArray("buttons_origin")]
+[node name="ButtonSelectionHandler" type="Node" parent="Buttons" node_paths=PackedStringArray("buttons_origin")]
 script = ExtResource("7_dni56")
 horizontal = true
 buttons_origin = NodePath("..")
@@ -229,6 +196,43 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="Left" parent="StageNavigation" instance=ExtResource("10_avlww")]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_right = 0.0
+anchor_bottom = 0.5
+offset_left = 178.0
+offset_top = -126.0
+offset_right = 324.0
+offset_bottom = 20.0
+grow_vertical = 2
+scale = Vector2(-1, 1)
+animation_target_offset = Vector2(16, 0)
+
+[node name="StageSelection" type="Control" parent="StageNavigation" node_paths=PackedStringArray("mouse_area")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("12_6pdp1")
+mouse_area = NodePath("StageSelectMouseArea")
+
+[node name="StageSelectMouseArea" type="Control" parent="StageNavigation/StageSelection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 383.0
+offset_top = 141.0
+offset_right = -371.0
+offset_bottom = -255.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Right" parent="StageNavigation" instance=ExtResource("10_avlww")]
 layout_mode = 1
@@ -243,20 +247,6 @@ offset_right = -32.0
 offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
-animation_target_offset = Vector2(16, 0)
-
-[node name="Left" parent="StageNavigation" instance=ExtResource("10_avlww")]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_right = 0.0
-anchor_bottom = 0.5
-offset_left = 178.0
-offset_top = -126.0
-offset_right = 324.0
-offset_bottom = 20.0
-grow_vertical = 2
-scale = Vector2(-1, 1)
 animation_target_offset = Vector2(16, 0)
 
 [node name="ButtonSelectionHandler" type="Node" parent="StageNavigation" node_paths=PackedStringArray("buttons_origin")]
