@@ -52,7 +52,7 @@ gradient = SubResource("Gradient_7qmm5")
 shader = ExtResource("5_3202m")
 shader_parameter/mask = SubResource("GradientTexture2D_kqnhk")
 
-[node name="StageSelect" type="Control" node_paths=PackedStringArray("button_selection_handler", "back_button", "proceed_button", "navigation_button_selection_handler", "stages_container", "right_button", "left_button")]
+[node name="StageSelect" type="Control" node_paths=PackedStringArray("button_selection_handler", "back_button", "navigation_button_selection_handler", "stages_container", "right_button", "left_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -62,12 +62,11 @@ grow_vertical = 2
 script = ExtResource("1_66fed")
 button_selection_handler = NodePath("NavigationButtons/ButtonSelectionHandler")
 back_button = NodePath("NavigationButtons/PaperButton")
-proceed_button = NodePath("")
 navigation_button_selection_handler = NodePath("StageNavigation/ButtonSelectionHandler")
 stages_container = NodePath("SubViewportContainer/SubViewport/Control/HBoxContainer")
 right_button = NodePath("StageNavigation/Right")
 left_button = NodePath("StageNavigation/Left")
-scroll_lerp_weight = 6.0
+scroll_lerp_weight = 5.5
 
 [node name="Background" type="TextureRect" parent="."]
 visible = false

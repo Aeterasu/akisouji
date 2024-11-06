@@ -14,6 +14,9 @@ class_name StageSelect extends Control
 
 @export var scroll_lerp_weight : float = 4.0
 
+var current_selected_stage_id : int = 0
+var stage_amount : int = 0
+
 var target_scroll : float = 0.0
 var current_scroll : float = 0.0
 
@@ -46,6 +49,8 @@ func _ready():
 		button.on_mouse_selection.connect(_on_button_mouse_selection)
 		button.on_mouse_deselection.connect(_on_button_mouse_deselection)
 
+	stage_amount = stages_container.get_child_count()
+
 func _on_button_mouse_selection(button : UIButton):
 	navigation_button_selection_handler._select_button(-999)
 
@@ -71,15 +76,20 @@ func _process(delta):
 				navigation_button_selection_handler.current_selection_id = 0
 				navigation_button_selection_handler._update_button()
 
-	target_scroll = clamp(target_scroll, -stages_container.size.x + jump_size + edge_size, edge_size)
+	#target_scroll = clamp(target_scroll, -stages_container.size.x + jump_size + edge_size, edge_size)
+	target_scroll = -(stages_container.get_child(current_selected_stage_id) as Control).position.x + edge_size
 	current_scroll = lerp(current_scroll, target_scroll, scroll_lerp_weight * delta)
 	stages_container.position.x = current_scroll
+
+	if (Input.is_action_just_pressed("player_action_jump")):
+		_on_button_pressed(proceed_button)
 
 func _on_button_pressed(button : UIButton):
 	match (button):
 		back_button:
 			_on_back_button_pressed()
 		proceed_button:
+			Main.instance.current_stashed_level = (stages_container.get_child(current_selected_stage_id) as StageButton).stage_scene
 			SceneTransitionHandler.instance._load_shop_scene()
 
 func _on_back_button_pressed():
@@ -88,6 +98,8 @@ func _on_back_button_pressed():
 func _on_navigation_button_pressed(button : UIButton):
 	match (button):
 		right_button:
-			target_scroll -= jump_size
+			#target_scroll -= jump_size
+			current_selected_stage_id = min(current_selected_stage_id + 1, stage_amount - 1)
 		left_button:
-			target_scroll += jump_size
+			#target_scroll += jump_size
+			current_selected_stage_id = max(current_selected_stage_id - 1, 0)

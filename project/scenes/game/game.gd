@@ -8,6 +8,8 @@ class_name Game extends Node3D
 @export var shop_menu_scene : PackedScene = null
 @export var shop_origin : Node = null
 
+@export var pausable : Node = null
+
 @export var progress_tracker : LeafProgressTracker = null
 @export var particle_handler : LeafParticleHandler = null
 
@@ -15,6 +17,8 @@ var leaf_populator : LeafPopulator = null
 var cleaning_handler : LeafCleaningHandler = null
 var last_cleaning_position : Vector3 = Vector3()
 var last_cleaning_radius : float = 1.0
+
+var current_level_scene : PackedScene = null
 
 static var game_instance : Game = null
 
@@ -37,6 +41,11 @@ func _ready():
 	game_instance = self
 
 	player._block_input = true
+
+	if (!level):
+		var node = current_level_scene.instantiate()
+		pausable.add_child(node)
+		level = node as Level
 
 	#level.on_level_completion.connect(_on_level_completion)
 	player.global_transform = level.player_spawn_position.global_transform

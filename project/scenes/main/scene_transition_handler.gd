@@ -24,9 +24,7 @@ func _clear_scenes() -> void:
 
 	initialized_scenes.clear()
 
-func _load_scene(path) -> void:
-	#current_scene = scene
-
+func _load_scene(path, is_game : bool = false, level_scene : PackedScene = null) -> void:
 	previous_scene = current_scene
 
 	_clear_scenes()
@@ -34,6 +32,10 @@ func _load_scene(path) -> void:
 	var scene = load(path) as PackedScene
 
 	var node = scene.instantiate()
+
+	if (node is Game):
+		node.current_level_scene = level_scene
+
 	get_parent().add_child(node)
 	initialized_scenes.append(node)
 	current_scene = scene
@@ -41,8 +43,8 @@ func _load_scene(path) -> void:
 func _load_title_screen_scene() -> void:
 	_load_scene(title_screen_scene.resource_path)
 
-func _load_game_scene() -> void:
-	_load_scene(game_scene.resource_path)
+func _load_game_scene(level : PackedScene) -> void:
+	_load_scene(game_scene.resource_path, true, level)
 
 func _load_shop_scene() -> void:
 	_load_scene(shop_scene.resource_path)

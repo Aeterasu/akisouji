@@ -109,7 +109,7 @@ func _on_button_pressed(button : UIButton):
 			_on_back_button_pressed()
 		lets_sweep_button:
 			if (transition_type == TransitionType.FROM_TITLE):
-				SceneTransitionHandler.instance._load_game_scene()
+				SceneTransitionHandler.instance._load_game_scene(Main.instance.current_stashed_level)
 
 func _on_category_button_pressed(button : UIButton):
 	if (current_category):

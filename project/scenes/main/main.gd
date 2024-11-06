@@ -1,5 +1,7 @@
 class_name Main extends Node
 
+var current_stashed_level : PackedScene = null
+
 static var instance = null
 
 func _ready():
