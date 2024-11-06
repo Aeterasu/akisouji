@@ -64,6 +64,7 @@ LEFT TO DO:
     + add upgrade purchase menu
     + Rain drop texture
     + tool swap cooldown
+    + clean up all of the remaining leaves on level completion.
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -76,6 +77,8 @@ LEFT TO DO:
     CURRENT WORKING NAME - LEAF SWEEPER
     
     GAMEPLAY:
+        - level-specific leaf cleaning leeway
+        - make it so that the leaf sweeping starts FROM THE CENTER of the request, and has a square form
         - do not count shop time towards progress
         - disabled leaf populator completely breaks the game, pls add safety checks
         - add 'new upgrade notification'
@@ -91,13 +94,12 @@ LEFT TO DO:
         - each broom has it's own secondary attack. broom - throw, 
         - strong broom - slide. you hold rmb and accelerate in a selected direction,
         - feather duster -
-        - vacuum - powerful aoe leaf blow!
+        - vacuum - powerful aoe leaf blow! (4-5 radius)
         - work on economy :D
         - add fountain stage (make it night/evening!)
         - add park stage
         - add broom upgrades
         - cash and purchases saving
-        - clean up all of the remaining leaves on level completion.
         - fix cleaning request queue
         - fix not being able to leave photo mode
         - add photo mode zoom, and tilt
@@ -156,6 +158,7 @@ LEFT TO DO:
         - settings saving
 
     SHOP:
+        - green background
         
     STAGE SELECT:
         - add stage textures

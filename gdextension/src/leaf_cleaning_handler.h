@@ -22,6 +22,9 @@ namespace godot
             int ticks = 0;
             int tickCount = 0;
 
+            int cleaningQueueIndexBuffer = 65536;
+            int sweepPerTick = 64;
+
             float leafInterpolationWeight = 0.1f;
             
             void UpdateTicks(double delta);
@@ -44,6 +47,12 @@ namespace godot
             int getInstanceCount() const;
             int getCleanedInstanceCount() const;
 
+            int getCleaningQueueIndexBuffer() const;
+            void setCleaningQueueIndexBuffer(const int pBufferSize);
+
+            int getSweepPerTick() const;
+            void setSweepPerTick(const int pSweeps);
+
             void setLeafInterpolationWeight(const float pWeight);
             float getLeafInterpolationWeight() const;
 
@@ -59,8 +68,6 @@ namespace godot
             int lastIndex = 0;
 
             TypedArray<int> indexesQueuedForCleaning;
-            int cleaningQueueIndexBuffer = 256;
-            int sweepPerTick = 64;
             int lastFreeRequestedQueueIndex = 0;
             void UpdateRequestIndex();
 
@@ -68,6 +75,8 @@ namespace godot
 
             void RequestCleaningAtPosition(Vector2 pPosition, Vector2 pDirection, float pSize);
             bool LeafPositionSort(Transform3D a, Transform3D b);
+
+            void ClearAllLeaves();
     };
 }
 

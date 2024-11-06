@@ -1,6 +1,6 @@
 class_name LeafProgressTracker extends Node
 
-@export var leeway : float = 0.01
+@export var leeway : int = 150
 
 var cleaning_handler : LeafCleaningHandler
 
@@ -14,11 +14,13 @@ func _physics_process(delta):
 	if (!cleaning_handler):
 		return
 
-	var progress : float = float(cleaning_handler.getCleanedInstanceCount()) / (float(cleaning_handler.getInstanceCount()) - float(cleaning_handler.getInstanceCount()) * leeway)
+	var target = max(cleaning_handler.getInstanceCount() - leeway, 1)
+	var progress : float = float(cleaning_handler.getCleanedInstanceCount()) / float(target)
 
 	if (!is_completed and progress >= 1.0):
 		is_completed = true
 		on_completion.emit()
+		cleaning_handler.ClearAllLeaves()
 		prints(progress)
 
 	if (UI.instance):

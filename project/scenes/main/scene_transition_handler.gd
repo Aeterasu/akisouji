@@ -14,7 +14,6 @@ var current_scene : PackedScene = null
 
 static var instance : SceneTransitionHandler = null
 
-#TODO: make some sort of enum for scene paths
 func _ready():
 	instance = self
 

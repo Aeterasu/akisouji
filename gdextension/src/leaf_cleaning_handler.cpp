@@ -9,10 +9,20 @@ void LeafCleaningHandler::_bind_methods()
     ClassDB::bind_method(D_METHOD("getTickRate"), &LeafCleaningHandler::getTickRate);
     ADD_PROPERTY(PropertyInfo(Variant::INT, "tickRate", PROPERTY_HINT_RANGE, "0, 60"), "setTickRate", "getTickRate");
 
+    ClassDB::bind_method(D_METHOD("setCleaningQueueIndexBuffer", "pBufferSize"), &LeafCleaningHandler::setCleaningQueueIndexBuffer);
+    ClassDB::bind_method(D_METHOD("getCleaningQueueIndexBuffer"), &LeafCleaningHandler::getCleaningQueueIndexBuffer);
+    ADD_PROPERTY(PropertyInfo(Variant::INT, "cleaningQueueIndexBuffer"), "setCleaningQueueIndexBuffer", "getCleaningQueueIndexBuffer");
+
+    ClassDB::bind_method(D_METHOD("setSweepPerTick", "pSweeps"), &LeafCleaningHandler::setSweepPerTick);
+    ClassDB::bind_method(D_METHOD("getSweepPerTick"), &LeafCleaningHandler::getSweepPerTick);
+    ADD_PROPERTY(PropertyInfo(Variant::INT, "sweepPerTick"), "setSweepPerTick", "getSweepPerTick");
+
     ClassDB::bind_method(D_METHOD("UpdateTicks", "delta"), &LeafCleaningHandler::UpdateTicks);
     ClassDB::bind_method(D_METHOD("RequestCleaningAtPosition", "pCleaningRequest"), &LeafCleaningHandler::RequestCleaningAtPosition);
 
     ClassDB::bind_method(D_METHOD("LeafPositionSort", "a", "b"), &LeafCleaningHandler::LeafPositionSort);
+
+    ClassDB::bind_method(D_METHOD("ClearAllLeaves"), &LeafCleaningHandler::ClearAllLeaves);
 
     ClassDB::bind_method(D_METHOD("getInstanceCount"), &LeafCleaningHandler::getInstanceCount);
     ClassDB::bind_method(D_METHOD("getCleanedInstanceCount"), &LeafCleaningHandler::getCleanedInstanceCount);
@@ -158,6 +168,37 @@ void LeafCleaningHandler::UpdateTicks(double delta)
     }
 }
 
+void LeafCleaningHandler::ClearAllLeaves()
+{
+    int cleaned = 0;
+
+    for (int i = 0; i < instanceCount; i++)
+    {
+        if (skips[i])
+        {
+            continue;
+        }
+
+        indexesQueuedForCleaning[lastFreeRequestedQueueIndex] = int(i);
+
+        cleaned += 1;
+
+        if (lastFreeRequestedQueueIndex < cleaningQueueIndexBuffer - 1)
+        {
+            lastFreeRequestedQueueIndex += 1;
+        }
+        else
+        {
+            lastFreeRequestedQueueIndex = 0;
+        }
+    }
+
+    if (cleaned > 0)
+    {
+        emit_signal("on_leaves_cleaned", cleaned);
+    }
+}
+
 bool LeafCleaningHandler::LeafPositionSort(Transform3D a, Transform3D b)
 {
     return Vector2(a.origin.x, a.origin.z) < Vector2(b.origin.x, b.origin.z);
@@ -196,4 +237,24 @@ void LeafCleaningHandler::setLeafInterpolationWeight(const float pWeight)
 float LeafCleaningHandler::getLeafInterpolationWeight() const
 {
     return leafInterpolationWeight;
+}
+
+void LeafCleaningHandler::setCleaningQueueIndexBuffer(const int pBufferSize)
+{
+    cleaningQueueIndexBuffer = pBufferSize;
+}
+
+int LeafCleaningHandler::getCleaningQueueIndexBuffer() const
+{
+    return cleaningQueueIndexBuffer;
+}
+
+void LeafCleaningHandler::setSweepPerTick(const int pSweeps)
+{
+    sweepPerTick = pSweeps;
+}
+
+int LeafCleaningHandler::getSweepPerTick() const
+{
+    return sweepPerTick;
 }

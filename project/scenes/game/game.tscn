@@ -82,7 +82,7 @@ leaf_material = ExtResource("3_ys06x")
 
 [node name="LeafProgressTracker" type="Node" parent="."]
 script = ExtResource("4_deeln")
-leeway = 0.001
+leeway = 25
 
 [node name="LeafParticleHandler" type="Node" parent="."]
 script = ExtResource("5_5xq02")
