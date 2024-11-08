@@ -87,7 +87,6 @@ camera = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D")
 camera_origin = NodePath("CameraOrigin")
 camera_effect_landing = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding")
 cleaning_raycast = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/CleaningRayCast3D")
-cleaning_radius = 0.25
 sprint_cleaning_cooldown = 0.1
 sprint_cleaning_radius = 0.1
 inventory = NodePath("PlayerToolInventory")

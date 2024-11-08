@@ -3,6 +3,13 @@
 @export var leaf_populator : LeafPopulator = null
 @export var player_spawn_position : Marker3D = null
 
+@export var cash_reward : float = 1000.0:
+    set(value):
+        if (value < 0.0):
+            value = 1.0
+
+        cash_reward = value
+
 @export var s_rank_target_time : float = 100.0:
     get():
         return s_rank_target_time
@@ -73,3 +80,6 @@ signal on_level_completion
 
 func _on_completion_signal_received() -> void:
     on_level_completion.emit()
+
+    CashManager._grant_cash(cash_reward)
+    CashManager._on_buffer_timeout()

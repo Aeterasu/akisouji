@@ -85,15 +85,11 @@ void LeafCleaningHandler::_physics_process(double delta)
 
             (*transforms)[req] = t;
 
-            skips[req] = true;
-
             if (t.basis.get_scale().length() <= 0.1f)
             {
                 t = Transform3D().scaled(Vector3(0, 0, 0));
-
                 indexesQueuedForCleaning[i] = int(-1);
-
-                cleanedInstancesCount += 1;
+                cleanedInstancesCount++;
             }
 
             multimesh->set_instance_transform(req, t);
@@ -147,6 +143,7 @@ void LeafCleaningHandler::UpdateTicks(double delta)
                 indexesQueuedForCleaning[lastFreeRequestedQueueIndex] = int(j);
 
                 cleaned += 1;
+                skips[j] = true;
 
                 if (lastFreeRequestedQueueIndex < cleaningQueueIndexBuffer - 1)
                 {
