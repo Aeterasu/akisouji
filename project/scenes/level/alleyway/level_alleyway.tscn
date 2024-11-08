@@ -1,10 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://dvlleqic8xnpl"]
+[gd_scene load_steps=29 format=3 uid="uid://dvlleqic8xnpl"]
 
 [ext_resource type="PackedScene" uid="uid://bqtapora2wl4e" path="res://assets/mesh/level_design/mesh_alleyway.blend" id="1_yq5x8"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="2_akrc7"]
 [ext_resource type="Material" uid="uid://cjtw4ylyq480t" path="res://resource/material/material_stone_pavement.tres" id="2_o4ob6"]
 [ext_resource type="PackedScene" uid="uid://b83v1plx4lqpw" path="res://scenes/leaf/leaf_populator.tscn" id="3_c46s6"]
 [ext_resource type="Texture2D" uid="uid://ckp0n0vr7luqv" path="res://assets/texture/leaf_map/texture_leafmap_alleyway_1.png" id="4_5sgs6"]
+[ext_resource type="Texture2D" uid="uid://cp87vhu3s4gt8" path="res://assets/texture/leaf_map/texture_leafmap_alleyway_1_heightmap.png" id="5_sqrfh"]
 [ext_resource type="Environment" uid="uid://dfi8f6n3mi0ob" path="res://resource/environment_base_autumn.tres" id="6_ah06a"]
 [ext_resource type="Material" uid="uid://c4kdvxtxf6qht" path="res://resource/material/material_grass_1.tres" id="16_l6vd3"]
 [ext_resource type="Material" uid="uid://bnwne1764whql" path="res://resource/material/material_soil_1.tres" id="17_ok7y4"]
@@ -45,6 +46,7 @@ player_spawn_position = NodePath("PlayerSpawnPosition")
 leavesPerPixel = 8
 pixelFraction = 3.67
 leafmap = ExtResource("4_5sgs6")
+heightmap = ExtResource("5_sqrfh")
 
 [node name="Pavement" parent="." index="1"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13, 0, 0)

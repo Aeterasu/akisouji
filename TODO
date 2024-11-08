@@ -127,7 +127,7 @@ LEFT TO DO:
 		- update game palette to match the girl
         - beautify leafs. new texture, maybe random texture
         - fix that annoying gate texture that currently uses deafault metal and looks ugly
-        - another pass to alleyway level. patch holes, really.
+        - another pass to alleyway level. make the road wider with a separation of bushes in the center. patch holes, really.
         - add props by necessity
         - add pavement border texture
 		- remodel trees
@@ -139,7 +139,7 @@ LEFT TO DO:
         - add camera sound
         - add ambience
         - some sort of music playlist manager and music ui
-        - add music
+        - add music. incase, fallback to classical music
     
     SETTINGS:
         - disable black fade-in fade-out when entering settings menu from pause menu

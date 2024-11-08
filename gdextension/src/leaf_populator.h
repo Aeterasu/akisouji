@@ -27,6 +27,7 @@ namespace godot
             float pixelFraction = 1.0f;
             
             Ref<Texture2D> leafmap;
+            Ref<Texture2D> heightmap;
             Vector2 imageSize;
 
             NodePath nodePathMultimeshInstance;
@@ -64,6 +65,9 @@ namespace godot
 
             void setLeafmap(Ref<Texture2D> pLeafmap);
             Ref<Texture2D> getLeafmap();
+        
+            void setHeightmap(Ref<Texture2D> pHeightmap);
+            Ref<Texture2D> getHeightmap();
 
             void setNodePathMultimeshInstance(NodePath pNodePath);
             NodePath getNodePathMultimeshInstance();

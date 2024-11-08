@@ -21,6 +21,10 @@ void LeafPopulator::_bind_methods()
     ClassDB::bind_method(D_METHOD("getLeafmap"), &LeafPopulator::getLeafmap);    
     ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "leafmap", PROPERTY_HINT_RESOURCE_TYPE, "Texture2D"), "setLeafmap", "getLeafmap");
 
+    ClassDB::bind_method(D_METHOD("setHeightmap", "pHeightmap"), &LeafPopulator::setHeightmap);
+    ClassDB::bind_method(D_METHOD("getHeightmap"), &LeafPopulator::getHeightmap);    
+    ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "heightmap", PROPERTY_HINT_RESOURCE_TYPE, "Texture2D"), "setHeightmap", "getHeightmap");
+
     ClassDB::bind_method(D_METHOD("setNodePathMultimeshInstance", "pNodePath"), &LeafPopulator::setNodePathMultimeshInstance);
     ClassDB::bind_method(D_METHOD("getNodePathMultimeshInstance"), &LeafPopulator::getNodePathMultimeshInstance);
     ADD_PROPERTY(PropertyInfo(Variant::NODE_PATH, "nodePathMultimeshInstance"), "setNodePathMultimeshInstance", "getNodePathMultimeshInstance");
@@ -119,6 +123,16 @@ void LeafPopulator::PopulateLeaves()
 
     uint32_t offset = 0;
 
+    bool hasHeightmap = false;
+    hasHeightmap = UtilityFunctions::is_instance_valid(heightmap);
+
+    Ref<Image> heightmapData = nullptr;
+
+    if (hasHeightmap)
+    {
+        heightmapData = heightmap->get_image();
+    }
+
     // TODO: implement heightmaps
     for (int i = 0; i < imageSize.x; i++)
     {
@@ -130,10 +144,18 @@ void LeafPopulator::PopulateLeaves()
 
             for (int u = 0; u < currentPixelDensity; u++)
             {
+                float y = 0.05f;
+
+                if (hasHeightmap)
+                {
+                    y += heightmapData->get_pixel(i, j).get_r8() * 0.01f;
+                }
+
                 transforms[offset] = Transform3D()
                     .rotated(Vector3(0.0f, 1, 0.0f), random->randf() * 3.14f * 2)
                     .rotated(Vector3((0.5f - random->randf()) * 2.0f, 0, (0.5f - random->randf()) * 2.0f), random->randf() * 3.14f * 0.35f)
-                    .translated(Vector3((i + random->randf() * 1.0) / pixelFraction, 0.05f, (j + random->randf() * 1.0) / pixelFraction));
+                    .translated(Vector3((i + random->randf() * 1.0) / pixelFraction, y, (j + random->randf() * 1.0) / pixelFraction));
+
                 indexes[offset] = offset;
                 offset++;
             }
@@ -240,6 +262,16 @@ void LeafPopulator::setLeafmap(Ref<Texture2D> pLeafmap)
 Ref<Texture2D> LeafPopulator::getLeafmap()
 {
     return leafmap;
+}
+
+void LeafPopulator::setHeightmap(Ref<Texture2D> pHeightmap)
+{
+    heightmap = pHeightmap;
+}
+
+Ref<Texture2D> LeafPopulator::getHeightmap()
+{
+    return heightmap;
 }
 
 void LeafPopulator::setNodePathMultimeshInstance(NodePath pNodePath)
