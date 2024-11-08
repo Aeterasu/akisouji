@@ -8,6 +8,8 @@ extends Node
 var cash_buffer : float = 0
 var timer : Timer = Timer.new()
 
+var is_buffer_paused : bool = false
+
 signal on_cash_rewarded
 signal on_cash_substracted
 
@@ -15,10 +17,10 @@ func _ready() -> void:
 	add_child(timer)
 	timer.wait_time = buffer_clean_time
 	timer.one_shot = true
-	timer.timeout.connect(_on_buffer_timeout)
+	timer.timeout.connect(_clean_buffer)
 
 func _physics_process(delta) -> void:
-	pass
+	timer.paused = is_buffer_paused
 
 func _grant_cash(amount : float = base_cash_reward) -> void:
 	if (amount <= 0.0):
@@ -37,12 +39,14 @@ func _substract_cash(amount : float):
 
 	on_cash_substracted.emit(amount)
 
-func _on_buffer_timeout():
+func _clean_buffer():
 	var amount : float = cash_buffer
 	cash += amount
 	cash_buffer = 0
 
 	on_cash_rewarded.emit(amount)
+
+	is_buffer_paused = false
 
 func _reward_leaf_cleaning(leaf_amount : float):
 	_grant_cash(leaf_amount * base_cash_reward)
@@ -56,3 +60,6 @@ func format_currency(number : float) -> String:
 	for idx in range(txt_numb.find(".") - 3, 0, -3):
 		txt_numb = txt_numb.insert(idx, ",")
 	return(txt_numb)
+
+func _pause_buffer() -> void:
+	is_buffer_paused = true

@@ -65,8 +65,6 @@ void LeafCleaningHandler::_physics_process(double delta)
 
     while (sweeps < sweepPerTick)
     {
-        i++;
-
         if (i > cleaningQueueIndexBuffer - 1)
         {
             break;
@@ -74,6 +72,7 @@ void LeafCleaningHandler::_physics_process(double delta)
 
         if (int(indexesQueuedForCleaning[i]) < 0)
         {
+            i++;
             continue;
         }
         else
@@ -94,6 +93,8 @@ void LeafCleaningHandler::_physics_process(double delta)
 
             multimesh->set_instance_transform(req, t);
         }
+
+        i++;
     }
 }
 

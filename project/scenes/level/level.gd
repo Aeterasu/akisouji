@@ -80,6 +80,3 @@ signal on_level_completion
 
 func _on_completion_signal_received() -> void:
     on_level_completion.emit()
-
-    CashManager._grant_cash(cash_reward)
-    CashManager._on_buffer_timeout()

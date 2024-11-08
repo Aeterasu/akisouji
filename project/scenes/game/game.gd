@@ -97,6 +97,14 @@ func _on_loading_ended():
 
 func _on_level_completion():
 	#TODO: Hide broom on level completion, but allow movement.
+
+	CashManager._pause_buffer()
+	CashManager._grant_cash(level.cash_reward)
+
+	await get_tree().create_timer(1).timeout
+
+	CashManager._clean_buffer()
+
 	ui_completion.show()
 	Output.print("Level Completed!")
 

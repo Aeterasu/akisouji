@@ -66,6 +66,9 @@ LEFT TO DO:
     + tool swap cooldown
     + clean up all of the remaining leaves on level completion.
     + port heightmaps to C++
+    + fix cleaning request queue
+    + do not count shop time towards progress
+    + fix leaves sometimes being stuck in scale interpolation
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -78,9 +81,9 @@ LEFT TO DO:
     CURRENT WORKING NAME - LEAF SWEEPER
     
     GAMEPLAY:
+        = cash based broom that uses cash to clean ?
         - level-specific leaf cleaning leeway
         - make it so that the leaf sweeping starts FROM THE CENTER of the request, and has a square form
-        - do not count shop time towards progress
         - disabled leaf populator completely breaks the game, pls add safety checks
         - add 'new upgrade notification'
         - add completion UI, with our chara holding thumbs up! add a grade based on time. D, C, B, A, A+, S. Each grade has a cash bonus. info shown - grade, time, level name. grade is an enum where -1 means no grade, otherwise grade.
@@ -101,12 +104,10 @@ LEFT TO DO:
         - add park stage
         - add broom upgrades
         - cash and purchases saving
-        - fix cleaning request queue
         - fix not being able to leave photo mode
         - add photo mode zoom, and tilt
 		- strong broom should sweep in a thin-rectangle
         - suggestion - make the leaf highlight not an inherent mechanic, but an upgrade?
-        - fix leaves sometimes being stuck in scale interpolation
         - set ranking times on levels !!!
     
     GENERAL UI:
@@ -124,6 +125,8 @@ LEFT TO DO:
         - in-game UI should have control tooltips with gamepad glyphs
     
     VISUAL:
+        GOLDEN AUTUMN MUCH?
+
         - consider doing a pixel art retexture
         - fix camera state transition disabling viewport (something's going fucky-wucky)
 		- update game palette to match the girl
