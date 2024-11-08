@@ -65,6 +65,7 @@ LEFT TO DO:
     + Rain drop texture
     + tool swap cooldown
     + clean up all of the remaining leaves on level completion.
+    + port heightmaps to C++
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -106,6 +107,7 @@ LEFT TO DO:
 		- strong broom should sweep in a thin-rectangle
         - suggestion - make the leaf highlight not an inherent mechanic, but an upgrade?
         - fix leaves sometimes being stuck in scale interpolation
+        - set ranking times on levels !!!
     
     GENERAL UI:
         - figure out the order - stage select/shop or reverse. perhaps, add a shop button to stage select

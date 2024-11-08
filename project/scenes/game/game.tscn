@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=36 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_highlight_handler.gd" id="2_74dy0"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scenes/fps_counter.gd" id="6_5ay1t"]
 [ext_resource type="PackedScene" uid="uid://biun1d1hu4wq4" path="res://scenes/fx/leaf_particles.tscn" id="6_hdiec"]
 [ext_resource type="PackedScene" uid="uid://d1lybxei6fkyd" path="res://scenes/fx/rain_particles.tscn" id="7_wptpp"]
+[ext_resource type="Script" path="res://scenes/leaf/ranking_manager.gd" id="8_18ngi"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="8_d3y8h"]
 [ext_resource type="Script" path="res://scenes/ui/ui_completion/ui_completion.gd" id="8_h2dad"]
 [ext_resource type="Texture2D" uid="uid://csspljpa4mobh" path="res://assets/texture/fx/texture_speed.png" id="10_0auwo"]
@@ -63,7 +64,7 @@ shader = ExtResource("15_xpwit")
 shader_parameter/radius = 2
 shader_parameter/offset = Vector3(0, 0, 0)
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "loading_screen", "ui_completion", "pause_menu", "shop_origin", "pausable", "progress_tracker", "particle_handler")]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "loading_screen", "ui_completion", "pause_menu", "shop_origin", "pausable", "progress_tracker", "particle_handler", "ranking_manager")]
 process_mode = 3
 script = ExtResource("1_bcfl2")
 player = NodePath("Pausable/Player")
@@ -75,6 +76,7 @@ shop_origin = NodePath("ShopLayer")
 pausable = NodePath("Pausable")
 progress_tracker = NodePath("LeafProgressTracker")
 particle_handler = NodePath("LeafParticleHandler")
+ranking_manager = NodePath("RankingManager")
 
 [node name="LeafHighlightHandler" type="Node" parent="."]
 script = ExtResource("2_74dy0")
@@ -87,6 +89,10 @@ leeway = 25
 [node name="LeafParticleHandler" type="Node" parent="."]
 script = ExtResource("5_5xq02")
 particles_scene = ExtResource("6_hdiec")
+
+[node name="RankingManager" type="Node" parent="."]
+process_mode = 1
+script = ExtResource("8_18ngi")
 
 [node name="Pausable" type="Node" parent="."]
 process_mode = 1

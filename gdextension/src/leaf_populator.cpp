@@ -144,7 +144,7 @@ void LeafPopulator::PopulateLeaves()
 
             for (int u = 0; u < currentPixelDensity; u++)
             {
-                float y = 0.05f;
+                float y = 0.01f;
 
                 if (hasHeightmap)
                 {

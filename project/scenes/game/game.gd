@@ -13,6 +13,8 @@ class_name Game extends Node3D
 @export var progress_tracker : LeafProgressTracker = null
 @export var particle_handler : LeafParticleHandler = null
 
+@export var ranking_manager : RankingManager = null
+
 var leaf_populator : LeafPopulator = null
 var cleaning_handler : LeafCleaningHandler = null
 var last_cleaning_position : Vector3 = Vector3()
@@ -50,6 +52,8 @@ func _ready():
 	#level.on_level_completion.connect(_on_level_completion)
 	player.global_transform = level.player_spawn_position.global_transform
 	player.respawn_transform = level.player_spawn_position.global_transform
+
+	ranking_manager.level = level
 
 	if (is_instance_valid(level.leaf_populator)):
 		leaf_populator = level.leaf_populator
