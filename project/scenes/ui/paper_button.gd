@@ -46,7 +46,7 @@ func _ready():
 	mouse_area.mouse_entered.connect(func(): on_mouse_selection.emit(self))
 	mouse_area.mouse_exited.connect(func(): on_mouse_deselection.emit(self))
 
-	if (custom_font_size > -1):
+	if (label and custom_font_size > -1):
 		label.set("theme_override_font_sizes/font_size", custom_font_size)
 		#label.theme_override_font_sizes.outline_size = label.theme_override_font_sizes.outline_size
 
@@ -63,7 +63,8 @@ func _process(delta):
 	gradient_2.set_color(0, current_color_2_1)
 	gradient_2.set_color(1, current_color_2_2)
 
-	label.text = tr(text_key)
+	if (label):
+		label.text = tr(text_key)
 
 func _select():
 	if (is_disabled):

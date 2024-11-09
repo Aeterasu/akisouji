@@ -90,19 +90,20 @@ func _process(delta):
 	current_scroll = lerp(current_scroll, target_scroll, scroll_lerp_weight * delta)
 	stages_container.position.x = current_scroll
 
-	if (Input.is_action_just_pressed("player_action_jump")):
-		_on_button_pressed(proceed_button)
-
 	var s = stages_container.get_child(current_selected_stage_id) as StageButton
 
 	stage_name_label.text = tr(s.name_key)
 	stage_description_label.text = tr(s.description_key)
 
+	if (Input.is_action_just_pressed("pause") or Input.is_action_just_pressed("menu_cancel")):
+		_on_back_button_pressed()
+
 func _on_button_pressed(button : UIButton):
 	match (button):
 		back_button:
 			_on_back_button_pressed()
-
+		proceed_button:
+			SceneTransitionHandler.instance._load_shop_scene()
 
 func _on_back_button_pressed():
 	SceneTransitionHandler.instance._load_title_screen_scene()
@@ -126,4 +127,4 @@ func _on_navigation_button_pressed(button : UIButton):
 			current_selected_stage_id = max(current_selected_stage_id - 1, 0)
 		stage_button:
 			Main.instance.current_stashed_level = (stages_container.get_child(current_selected_stage_id) as StageButton).stage_scene
-			SceneTransitionHandler.instance._load_shop_scene()
+			SceneTransitionHandler.instance._load_game_scene(Main.instance.current_stashed_level)

@@ -71,6 +71,7 @@ LEFT TO DO:
     + fix leaves sometimes being stuck in scale interpolation
     + strong broom should sweep in a thin-rectangle
     + make it so that the leaf sweeping starts FROM THE CENTER of the request, and has a square form
+    + figure out the order - stage select/shop or reverse. perhaps, add a shop button to stage select
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -111,7 +112,9 @@ LEFT TO DO:
         - set ranking times on levels !!!
     
     GENERAL UI:
-        - figure out the order - stage select/shop or reverse. perhaps, add a shop button to stage select
+        = ? add shop button to title screen ?
+        - ADD STYLISTIC POEMS TO OTHER MENUS!!! shop, stage select, gallery etc
+
         - are you sure? (on level exit)
         - add interpolations to ui (gallery. gallery down panel missing interpolations on mode switch)
         - add playstation glyphs
@@ -163,9 +166,11 @@ LEFT TO DO:
         - settings saving
 
     SHOP:
+        - fix horizontal scaling
         - green background
         
     STAGE SELECT:
+        - fix horizontal scaling
         - add stage textures
     
     GALLERY:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://71lkn3s6kfqi"]
+[gd_scene load_steps=24 format=3 uid="uid://71lkn3s6kfqi"]
 
 [ext_resource type="Script" path="res://scenes/ui/shop/shop.gd" id="1_87sb4"]
 [ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="1_rawln"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bcrys4arojn37" path="res://scenes/ui/paper_button.tscn" id="3_xgq7m"]
 [ext_resource type="PackedScene" uid="uid://d1rn3y4kijnhy" path="res://scenes/ui/shop/shop_entry.tscn" id="4_a8w7q"]
 [ext_resource type="PackedScene" uid="uid://d2gvydsg23b1i" path="res://scenes/ui/shop/shop_category_button.tscn" id="4_jda8f"]
-[ext_resource type="PackedScene" uid="uid://teb4p57yamr3" path="res://scenes/ui/paper_button_h_flipped.tscn" id="4_ucvo5"]
 [ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="5_bijnc"]
 [ext_resource type="Texture2D" uid="uid://co1bvf3oxphxj" path="res://assets/texture/ui/shop/texture_shop_category_boots.png" id="5_nq0wb"]
 [ext_resource type="Resource" uid="uid://bnojv12xi1uio" path="res://scenes/upgrade/move_speed/default_boots.tres" id="5_r8g5d"]
@@ -34,7 +33,7 @@ width = 8
 height = 8
 fill_to = Vector2(0, 1)
 
-[node name="Shop" type="Control" node_paths=PackedStringArray("button_selection_handler", "back_button", "lets_sweep_button", "category_select_screen", "category_select_button_handler", "category_tools", "category_boots", "button_category_tools", "button_category_boots")]
+[node name="Shop" type="Control" node_paths=PackedStringArray("button_selection_handler", "back_button", "category_select_screen", "category_select_button_handler", "category_tools", "category_boots", "button_category_tools", "button_category_boots")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -45,7 +44,6 @@ mouse_filter = 2
 script = ExtResource("1_87sb4")
 button_selection_handler = NodePath("NavigationButtons/ButtonSelectionHandler")
 back_button = NodePath("NavigationButtons/PaperButton")
-lets_sweep_button = NodePath("NavigationButtons/PaperButtonHFlipped")
 category_select_screen = NodePath("CategorySelect")
 category_select_button_handler = NodePath("CategorySelect/ButtonSelectionHandler")
 category_tools = NodePath("Categories/ShopCategoryTools")
@@ -248,21 +246,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="PaperButtonHFlipped" parent="NavigationButtons" instance=ExtResource("4_ucvo5")]
-layout_mode = 1
-anchor_left = 1.0
-anchor_top = 0.833
-anchor_right = 1.0
-anchor_bottom = 1.011
-offset_left = -368.0
-offset_top = -35.76
-offset_right = 145.0
-offset_bottom = -35.92
-target_selected_position = Vector2(12, 0)
-target_deselected_position = Vector2(96, 0)
-text_key = "LETS_SWEEP"
-custom_font_size = 24
 
 [node name="PaperButton" parent="NavigationButtons" instance=ExtResource("3_xgq7m")]
 layout_mode = 1

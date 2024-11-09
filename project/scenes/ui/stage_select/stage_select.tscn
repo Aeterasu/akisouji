@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://gcdsoumbb7v1"]
+[gd_scene load_steps=33 format=3 uid="uid://gcdsoumbb7v1"]
 
 [ext_resource type="Script" path="res://scenes/ui/stage_select/stage_select.gd" id="1_66fed"]
 [ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="1_dorsv"]
@@ -12,7 +12,13 @@
 [ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="7_dni56"]
 [ext_resource type="PackedScene" uid="uid://b4bw4uryofcbx" path="res://scenes/ui/stage_select/stage_navigation_arrow.tscn" id="10_avlww"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="10_v364h"]
+[ext_resource type="Script" path="res://scenes/ui/paper_button.gd" id="11_7qeyb"]
 [ext_resource type="Script" path="res://scenes/ui/button.gd" id="12_6pdp1"]
+[ext_resource type="Texture2D" uid="uid://ceghh11taklj3" path="res://assets/texture/ui/shop/texture_ui_shopping_cart.png" id="12_e0bnt"]
+[ext_resource type="Texture2D" uid="uid://dsdj6e2cue4jc" path="res://assets/texture/ui/texture_ui_title_screen_button_1.png" id="12_uro6y"]
+[ext_resource type="AudioStream" uid="uid://dgodvr5gurqrs" path="res://assets/audio/sfx_menu_accent_1.ogg" id="14_f1cvk"]
+[ext_resource type="AudioStream" uid="uid://bb5kges32g0ld" path="res://assets/audio/sfx_menu_accent_2.ogg" id="15_n3af2"]
+[ext_resource type="Script" path="res://scenes/ui/stage_select/shop_button_appearing_label.gd" id="19_r5y7g"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xyu36"]
 shader = ExtResource("4_ho324")
@@ -41,7 +47,31 @@ gradient = SubResource("Gradient_7qmm5")
 shader = ExtResource("5_3202m")
 shader_parameter/mask = SubResource("GradientTexture2D_kqnhk")
 
-[node name="StageSelect" type="Control" node_paths=PackedStringArray("button_selection_handler", "back_button", "navigation_button_selection_handler", "stages_container", "right_button", "left_button", "stage_button", "stage_name_label", "stage_description_label")]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1omue"]
+blend_mode = 3
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_pnugo"]
+colors = PackedColorArray(1, 0.356863, 0, 1, 1, 0.833333, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pk5ei"]
+gradient = SubResource("Gradient_pnugo")
+width = 8
+height = 8
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rup1a"]
+blend_mode = 3
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_6qmtg"]
+colors = PackedColorArray(0.29, 0.0754, 0.121897, 1, 0.556863, 0.156863, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rc7j3"]
+gradient = SubResource("Gradient_6qmtg")
+width = 8
+height = 8
+
+[node name="StageSelect" type="Control" node_paths=PackedStringArray("button_selection_handler", "back_button", "proceed_button", "navigation_button_selection_handler", "stages_container", "right_button", "left_button", "stage_button", "stage_name_label", "stage_description_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,6 +81,7 @@ grow_vertical = 2
 script = ExtResource("1_66fed")
 button_selection_handler = NodePath("Buttons/ButtonSelectionHandler")
 back_button = NodePath("Buttons/PaperButton")
+proceed_button = NodePath("Buttons/PaperButtonHFlipped")
 navigation_button_selection_handler = NodePath("StageNavigation/ButtonSelectionHandler")
 stages_container = NodePath("SubViewportContainer/SubViewport/Control/HBoxContainer")
 right_button = NodePath("StageNavigation/Right")
@@ -224,6 +255,126 @@ script = ExtResource("7_dni56")
 horizontal = true
 buttons_origin = NodePath("..")
 
+[node name="PaperButtonHFlipped" type="Control" parent="Buttons" node_paths=PackedStringArray("animation_origin", "selected_gradient", "deselected_gradient", "mouse_area", "audio_accent_1", "audio_accent_2")]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 0.833
+anchor_right = 1.0
+anchor_bottom = 1.011
+offset_left = -178.0
+offset_top = -30.76
+offset_right = 335.0
+offset_bottom = -30.92
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+script = ExtResource("11_7qeyb")
+animation_origin = NodePath("AnimationOrigin")
+target_selected_position = Vector2(-144, 0)
+target_deselected_position = Vector2(0, 0)
+selected_gradient = NodePath("AnimationOrigin/PaperMask/SelectedGradient")
+deselected_gradient = NodePath("AnimationOrigin/PaperMask/DeselectedGradient")
+mouse_area = NodePath("MouseArea")
+text_key = "SHOP_LABEL"
+custom_font_size = 24
+audio_accent_1 = NodePath("Accent1")
+audio_accent_2 = NodePath("Accent2")
+
+[node name="AnimationOrigin" type="Control" parent="Buttons/PaperButtonHFlipped"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PaperMask" type="TextureRect" parent="Buttons/PaperButtonHFlipped/AnimationOrigin"]
+clip_children = 1
+layout_mode = 0
+offset_top = -44.0
+offset_right = 510.0
+offset_bottom = 79.0
+mouse_filter = 2
+texture = ExtResource("12_uro6y")
+expand_mode = 1
+flip_h = true
+
+[node name="LeafPattern" type="TextureRect" parent="Buttons/PaperButtonHFlipped/AnimationOrigin/PaperMask"]
+texture_repeat = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_dorsv")
+expand_mode = 1
+stretch_mode = 1
+flip_h = true
+
+[node name="SelectedGradient" type="TextureRect" parent="Buttons/PaperButtonHFlipped/AnimationOrigin/PaperMask"]
+material = SubResource("CanvasItemMaterial_1omue")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_pk5ei")
+flip_h = true
+
+[node name="DeselectedGradient" type="TextureRect" parent="Buttons/PaperButtonHFlipped/AnimationOrigin/PaperMask"]
+material = SubResource("CanvasItemMaterial_rup1a")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_rc7j3")
+flip_h = true
+
+[node name="PaperShadow" type="TextureRect" parent="Buttons/PaperButtonHFlipped/AnimationOrigin"]
+modulate = Color(0, 0, 0, 0.4)
+show_behind_parent = true
+layout_mode = 0
+offset_left = -10.0
+offset_top = 12.0
+offset_right = 500.0
+offset_bottom = 91.0
+texture = ExtResource("12_uro6y")
+flip_h = true
+
+[node name="Cart" type="TextureRect" parent="Buttons/PaperButtonHFlipped/AnimationOrigin"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = -21.0
+offset_right = 192.0
+offset_bottom = 103.0
+scale = Vector2(0.63, 0.63)
+texture = ExtResource("12_e0bnt")
+
+[node name="MouseArea" type="Control" parent="Buttons/PaperButtonHFlipped"]
+anchors_preset = 0
+offset_left = -25.0
+offset_top = -43.0
+offset_right = 523.0
+offset_bottom = 77.0
+
+[node name="Accent1" type="AudioStreamPlayer" parent="Buttons/PaperButtonHFlipped"]
+stream = ExtResource("14_f1cvk")
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Accent2" type="AudioStreamPlayer" parent="Buttons/PaperButtonHFlipped"]
+stream = ExtResource("15_n3af2")
+volume_db = -3.0
+max_polyphony = 2
+bus = &"SFX"
+
 [node name="StageNavigation" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -292,3 +443,29 @@ buttons_origin = NodePath("..")
 
 [node name="UIUpscaler" type="Node" parent="."]
 script = ExtResource("10_v364h")
+
+[node name="Label" type="Label" parent="." node_paths=PackedStringArray("shop_button")]
+z_index = 1055
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.812
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -352.0
+offset_top = -38.64
+offset_right = -45.0
+offset_bottom = -97.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.337255)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 21
+theme_override_constants/shadow_outline_size = 70
+theme_override_fonts/font = ExtResource("2_yaed8")
+theme_override_font_sizes/font_size = 48
+text = "SHOP_LABEL"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("19_r5y7g")
+shop_button = NodePath("../Buttons/PaperButtonHFlipped")

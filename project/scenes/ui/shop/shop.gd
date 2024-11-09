@@ -54,10 +54,10 @@ enum TransitionType
 }
 
 func _ready():
-	if (transition_type == TransitionType.FROM_GAME):
-		lets_sweep_button.get_parent().remove_child(lets_sweep_button)
-		lets_sweep_button.queue_free()
-		button_selection_handler.call_deferred("_retrieve_buttons")
+	#if (transition_type == TransitionType.FROM_GAME):
+		#lets_sweep_button.get_parent().remove_child(lets_sweep_button)
+		#lets_sweep_button.queue_free()
+		#button_selection_handler.call_deferred("_retrieve_buttons")
 
 	button_selection_handler.on_button_pressed.connect(_on_button_pressed)
 	
