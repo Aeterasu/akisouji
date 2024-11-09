@@ -20,7 +20,7 @@ Vector2 CleaningRequest::getRequestDirection() const
     return direction;
 }
 
-float CleaningRequest::getRequestSize() const
+Vector2 CleaningRequest::getRequestSize() const
 {
     return size;
 }

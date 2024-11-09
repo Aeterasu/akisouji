@@ -11,7 +11,7 @@ mesh = ExtResource("2_ktogu")
 [node name="LeafPopulator" type="LeafPopulator"]
 leafmap = ExtResource("1_0p0ah")
 nodePathMultimeshInstance = NodePath("MultiMeshInstance3D")
-leafColors = Array[Color]([Color(0.831373, 0.254902, 0.215686, 1), Color(0.831373, 0.678431, 0.32549, 1), Color(0.988235, 0.45098, 0.137255, 1), Color(0.941176, 0.647059, 0.235294, 1), Color(0.65098, 0.301961, 0.196078, 1), Color(0.988235, 0.45098, 0.137255, 1), Color(0.831373, 0.254902, 0.215686, 1), Color(0.988235, 0.45098, 0.137255, 1), Color(0.701239, 0.736999, 0.269074, 1), Color(0.701961, 0.737255, 0.270588, 1)])
+leafColors = Array[Color]([Color(0.831373, 0.254902, 0.215686, 1), Color(0.831373, 0.678431, 0.32549, 1), Color(0.988235, 0.45098, 0.137255, 1), Color(0.941176, 0.647059, 0.235294, 1), Color(0.65098, 0.301961, 0.196078, 1), Color(0.941176, 0.647059, 0.235294, 1), Color(0.831373, 0.254902, 0.215686, 1), Color(0.988235, 0.45098, 0.137255, 1), Color(0.701239, 0.736999, 0.269074, 1), Color(0.701961, 0.737255, 0.270588, 1)])
 nodePathLeafCleaningHandler = NodePath("LeafCleaningHandler")
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="."]

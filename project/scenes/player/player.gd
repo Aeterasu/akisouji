@@ -21,7 +21,7 @@ class_name Player extends CharacterBody3D
 
 @export_group("Leaf Cleaning")
 @export var cleaning_raycast : RayCast3D = null
-@export var cleaning_radius : float = 1.0
+@export var cleaning_area : Vector2 = Vector2.ONE
 @export var jump_cleaning_radius : float = 0.5
 @export var sprint_cleaning_cooldown : float = 0.25
 @export var sprint_cleaning_radius : float = 0.25
@@ -107,8 +107,8 @@ func on_broom():
 	if (cleaning_raycast.get_collider()):
 		var cleaning_point = cleaning_raycast.get_collision_point()
 		Game.game_instance.last_cleaning_position = cleaning_point
-		Game.game_instance.last_cleaning_radius = cleaning_radius
-		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(cleaning_point.x, cleaning_point.z), Vector2.ZERO, cleaning_radius)
+		Game.game_instance.last_cleaning_radius = cleaning_area.length()
+		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(cleaning_point.x, cleaning_point.z), Vector2(sin(rotation.y), cos(rotation.y)), cleaning_area)
 
 	pass
 
@@ -231,7 +231,7 @@ func _on_landing():
 	if (is_instance_valid(leaf_cleaning_handler)):
 		Game.game_instance.last_cleaning_position = global_position + Vector3.DOWN * 0.5
 		Game.game_instance.last_cleaning_radius = jump_cleaning_radius * multiplier
-		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), Vector2.ZERO, jump_cleaning_radius * multiplier)
+		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), Vector2(cos(rotation.y), sin(rotation.y)), Vector2.ONE * jump_cleaning_radius * multiplier)
 
 	camera_effect_landing._animate()
 
@@ -242,7 +242,7 @@ func _on_sprint_cleaning_timeout():
 	if (is_instance_valid(leaf_cleaning_handler)):
 		Game.game_instance.last_cleaning_position = global_position + Vector3.DOWN * 0.5
 		Game.game_instance.last_cleaning_radius = sprint_cleaning_radius
-		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), Vector2.ZERO, sprint_cleaning_radius)
+		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), Vector2(cos(rotation.y), sin(rotation.y)), Vector2.ONE * sprint_cleaning_radius)
 
 func _on_enter_photo_mode():
 	is_in_photo_mode = true

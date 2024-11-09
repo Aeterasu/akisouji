@@ -117,12 +117,31 @@ void LeafCleaningHandler::UpdateTicks(double delta)
     for (int i = requests.size() - 1; i > 0; i--)
     {
         Ref<CleaningRequest> request = requests[i];
-        Vector2 requestPosition = request->getRequestPosition().rotated(request->getRequestDirection().angle());
+        Vector2 requestPosition = request->getRequestPosition();
+        Vector2 requestDirection = request->getRequestDirection();
+        Vector2 requestSize = request->getRequestSize();
 
         int firstSuitableIndex = (*transforms).bsearch_custom(Transform3D()
             .translated(Vector3(requestPosition.x, 0.0f, requestPosition.y)), 
             Callable(this, "LeafPositionSort")
             );
+
+        Vector2 A = Vector2(-requestSize.x * 0.5f, -requestSize.y * 0.5f);
+        Vector2 B = Vector2(requestSize.x * 0.5f, -requestSize.y * 0.5f);
+        Vector2 C = Vector2(requestSize.x * 0.5f, requestSize.y * 0.5f);
+        Vector2 D = Vector2(-requestSize.x * 0.5f, requestSize.y * 0.5f);
+
+        float angle = requestDirection.angle();
+
+        A = Vector2(A.x * Math::cos(angle) - A.y * Math::sin(angle), A.x * Math::sin(angle) + A.y * Math::cos(angle));
+        B = Vector2(B.x * Math::cos(angle) - B.y * Math::sin(angle), B.x * Math::sin(angle) + B.y * Math::cos(angle));
+        C = Vector2(C.x * Math::cos(angle) - C.y * Math::sin(angle), C.x * Math::sin(angle) + C.y * Math::cos(angle));
+        D = Vector2(D.x * Math::cos(angle) - D.y * Math::sin(angle), D.x * Math::sin(angle) + D.y * Math::cos(angle));
+
+        A += requestPosition;
+        B += requestPosition;
+        C += requestPosition;
+        D += requestPosition;
 
         for (int j = 0; j < instanceCount; j++)
         {
@@ -132,15 +151,13 @@ void LeafCleaningHandler::UpdateTicks(double delta)
             }
 
             Vector3 origin = Transform3D((*transforms)[j]).origin;
-            float size = request->getRequestSize();
 
-            if (origin.x > requestPosition.x + size)
+            if (origin.x > requestPosition.x + requestSize.x)
             {
                 break;
             }
-            else if (Vector2(origin.x, origin.z).distance_squared_to(requestPosition) <= size)
+            else if (IsPointInRectangle(A, B, C, D, Vector2(origin.x, origin.z)))
             {
-                Vector2 direction = request->getRequestDirection();
                 indexesQueuedForCleaning[lastFreeRequestedQueueIndex] = int(j);
 
                 cleaned += 1;
@@ -212,7 +229,7 @@ int LeafCleaningHandler::getTickRate()
     return tickRate;
 }
 
-void LeafCleaningHandler::RequestCleaningAtPosition(Vector2 pPosition, Vector2 pDirection, float pSize)
+void LeafCleaningHandler::RequestCleaningAtPosition(Vector2 pPosition, Vector2 pDirection, Vector2 pSize)
 {
     requests.append(memnew(CleaningRequest(pPosition, pDirection, pSize)));
 }

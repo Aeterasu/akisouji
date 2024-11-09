@@ -12,7 +12,7 @@ namespace godot
         private:
             Vector2 position;
             Vector2 direction;
-            float size;
+            Vector2 size;
 
         protected:
             static void _bind_methods();
@@ -20,7 +20,7 @@ namespace godot
         public:
             CleaningRequest(){}
 
-            CleaningRequest(Vector2 pPosition, Vector2 pDirection, float pSize)
+            CleaningRequest(Vector2 pPosition, Vector2 pDirection, Vector2 pSize)
             {
                 this->position = pPosition;
                 this->direction = pDirection;
@@ -31,7 +31,7 @@ namespace godot
 
             Vector2 getRequestPosition() const;
             Vector2 getRequestDirection() const;
-            float getRequestSize() const;
+            Vector2 getRequestSize() const;
     };
 }
 

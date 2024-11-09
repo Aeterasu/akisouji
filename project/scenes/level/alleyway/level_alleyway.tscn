@@ -97,7 +97,7 @@ environment = ExtResource("6_ah06a")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="11"]
 transform = Transform3D(-0.942642, -0.143708, -0.301289, -7.89066e-08, -0.902586, 0.430511, -0.333807, 0.405818, 0.850814, 0, 0, 0)
-light_color = Color(0.993219, 0.74653, 0.490366, 1)
+light_color = Color(0.99, 0.860805, 0.7227, 1)
 light_energy = 2.0
 light_bake_mode = 1
 shadow_enabled = true

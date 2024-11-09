@@ -9,6 +9,7 @@
 #include <godot_cpp/variant/typed_array.hpp>
 #include <godot_cpp/classes/tween.hpp>
 #include <godot_cpp/classes/property_tweener.hpp>
+#include <godot_cpp/core/math.hpp>
 #include "cleaning_request.h"
 
 namespace godot
@@ -73,10 +74,25 @@ namespace godot
 
             int instanceCount = 0;
 
-            void RequestCleaningAtPosition(Vector2 pPosition, Vector2 pDirection, float pSize);
+            void RequestCleaningAtPosition(Vector2 pPosition, Vector2 pDirection, Vector2 pSize);
             bool LeafPositionSort(Transform3D a, Transform3D b);
 
             void ClearAllLeaves();
+
+            float ManhattanDistance(Vector2 a, Vector2 b)
+            {
+                return Math::abs(a.x - b.x) + Math::abs(a.y - b.y);
+            }
+
+            float IsLeft(Vector2 p0, Vector2 p1, Vector2 p2 )
+            {
+                return ((p1.x - p0.x) * (p2.y - p0.y) - (p2.x - p0.x) * (p1.y - p0.y));
+            }
+
+            bool IsPointInRectangle(Vector2 X, Vector2 Y, Vector2 Z, Vector2 W, Vector2 P)
+            {
+                return (IsLeft(X, Y, P) > 0 && IsLeft(Y, Z, P) > 0 && IsLeft(Z, W, P) > 0 && IsLeft(W, X, P) > 0);
+            }
     };
 }
 
