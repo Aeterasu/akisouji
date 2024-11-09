@@ -69,6 +69,8 @@ LEFT TO DO:
     + fix cleaning request queue
     + do not count shop time towards progress
     + fix leaves sometimes being stuck in scale interpolation
+    + strong broom should sweep in a thin-rectangle
+    + make it so that the leaf sweeping starts FROM THE CENTER of the request, and has a square form
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -83,7 +85,6 @@ LEFT TO DO:
     GAMEPLAY:
         = cash based broom that uses cash to clean ?
         - level-specific leaf cleaning leeway
-        - make it so that the leaf sweeping starts FROM THE CENTER of the request, and has a square form
         - disabled leaf populator completely breaks the game, pls add safety checks
         - add 'new upgrade notification'
         - add completion UI, with our chara holding thumbs up! add a grade based on time. D, C, B, A, A+, S. Each grade has a cash bonus. info shown - grade, time, level name. grade is an enum where -1 means no grade, otherwise grade.
@@ -106,7 +107,6 @@ LEFT TO DO:
         - cash and purchases saving
         - fix not being able to leave photo mode
         - add photo mode zoom, and tilt
-		- strong broom should sweep in a thin-rectangle
         - suggestion - make the leaf highlight not an inherent mechanic, but an upgrade?
         - set ranking times on levels !!!
     
