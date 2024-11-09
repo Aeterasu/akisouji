@@ -286,6 +286,7 @@ grow_vertical = 2
 texture = SubResource("GradientTexture2D_np5xa")
 
 [node name="PaperButton" parent="Buttons" instance=ExtResource("5_6rj0g")]
+z_index = 1655
 layout_mode = 1
 anchor_top = 0.833
 anchor_right = 0.0
@@ -297,6 +298,7 @@ offset_bottom = -22.9201
 text_key = "MENU_BUTTON_BACK"
 
 [node name="PaperButtonHFlipped" parent="Buttons" instance=ExtResource("6_tq5qv")]
+z_index = 1425
 layout_mode = 1
 anchor_left = 1.0
 anchor_top = 0.833
@@ -320,6 +322,7 @@ buttons_origin = NodePath("..")
 layout_mode = 1
 
 [node name="GalleryEntryZoom" type="Control" parent="." node_paths=PackedStringArray("entry_origin")]
+z_index = 4096
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
