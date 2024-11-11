@@ -150,3 +150,7 @@ func _close_shop():
 	pause_menu.allow_input = true
 
 	player.input_delay = 0.3
+
+	pause_menu.button_selection_handler._disable_all_buttons()
+	await get_tree().create_timer(0.2).timeout
+	pause_menu.button_selection_handler._enable_all_buttons()

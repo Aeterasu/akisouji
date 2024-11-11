@@ -2,6 +2,8 @@ class_name Player extends CharacterBody3D
 
 #TODO: Dustforce/Quake style movement with forces, friction and some sort of boosting
 
+const CAMERA_ROTATION_LIMIT : float = 80.0
+
 @export_group("Input")
 @export var _block_input : bool = false
 
@@ -13,6 +15,8 @@ class_name Player extends CharacterBody3D
 @export_range(1.0, 2.0) var sprint_speed_multiplier : float = 1.5
 @export var sprint_jumping_boost_amount : float = 1.0
 @export var sprint_jumping_falloff : float = 4.0
+@export_range(0.0, 90.0) var look_down_slowdown_threshold : float = 30.0
+@export_range(0.1, 1.0) var look_down_slowdown_coeff : float = 0.2
 
 @export_group("Camera")
 @export var camera : PlayerCamera = null
@@ -185,7 +189,7 @@ func _input(event):
 func move_camera(input : Vector2) -> void:
 	rotate_y(deg_to_rad(input.x))
 	camera_origin.rotate_x(deg_to_rad(input.y))
-	camera_origin.rotation_degrees.x = clampf(camera_origin.rotation_degrees.x, -80.0, 80.0)
+	camera_origin.rotation_degrees.x = clampf(camera_origin.rotation_degrees.x, -CAMERA_ROTATION_LIMIT, CAMERA_ROTATION_LIMIT)
 
 func movement_process(delta):
 	current_sprint_jump_boost = current_sprint_jump_boost.lerp(Vector2.ZERO, sprint_jumping_falloff * delta)
@@ -214,6 +218,13 @@ func movement_process(delta):
 		velocity_component.speed_multiplier = sprint_speed_multiplier
 	else:
 		velocity_component.speed_multiplier = 1.0
+
+	# camera rotation slowdown
+
+	var coeff : float = clamp((clamp(abs(clamp(camera_origin.rotation_degrees.x, -CAMERA_ROTATION_LIMIT, 0.0)), look_down_slowdown_threshold, CAMERA_ROTATION_LIMIT) - look_down_slowdown_threshold) / (CAMERA_ROTATION_LIMIT - look_down_slowdown_threshold), look_down_slowdown_coeff, 1.0)
+	velocity_component.speed_multiplier *= 1.0 + look_down_slowdown_coeff - coeff
+
+	# apply movement
 
 	velocity = Vector3(velocity_component.current_velocity.x, velocity.y, velocity_component.current_velocity.y) + Vector3(current_sprint_jump_boost.x, 0.0, current_sprint_jump_boost.y)
 

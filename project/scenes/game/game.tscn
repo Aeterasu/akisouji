@@ -25,9 +25,9 @@
 [ext_resource type="Texture2D" uid="uid://dck3bm0cescg6" path="res://assets/texture/ui/hud/texture_ui_camera.png" id="13_fykye"]
 [ext_resource type="Texture2D" uid="uid://1kechv03r57s" path="res://assets/texture/fx/texture_sun_halo.png" id="13_tkker"]
 [ext_resource type="Texture2D" uid="uid://diwf3xbj3nljl" path="res://assets/texture/fx/texture_sun_flare.png" id="14_gpri0"]
-[ext_resource type="Shader" path="res://shader/kuwahara_screen.gdshader" id="15_xpwit"]
 [ext_resource type="Texture2D" uid="uid://cvtg8bskknog1" path="res://assets/texture/ui/hud/texture_ui_vignette.png" id="18_q3514"]
 [ext_resource type="PackedScene" uid="uid://d0r5a5kwi5eoo" path="res://scenes/ui/pause_menu/pause_menu.tscn" id="22_yntas"]
+[ext_resource type="Shader" path="res://shader/kuwahara_screen.gdshader" id="27_ktbah"]
 [ext_resource type="Script" path="res://scenes/ui/blackout_layer.gd" id="31_te3wo"]
 
 [sub_resource type="Gradient" id="Gradient_br6rk"]
@@ -55,12 +55,12 @@ shader_parameter/FlareThreshold = 0.9
 shader_parameter/Flares = 16
 shader_parameter/FlareSpacing = 0.125
 shader_parameter/Intensity = 1.425
-shader_parameter/Saturation_ = 1.425
+shader_parameter/Saturation_ = 1.0
 shader_parameter/FlareMult = ExtResource("13_tkker")
 shader_parameter/FlareMult2 = ExtResource("14_gpri0")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5tcod"]
-shader = ExtResource("15_xpwit")
+shader = ExtResource("27_ktbah")
 shader_parameter/radius = 2
 shader_parameter/offset = Vector3(0, 0, 0)
 
