@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dbkj0mfcvbu5e"]
+
+[ext_resource type="Texture2D" uid="uid://lwu723gmcycw" path="res://scenes/test/noise/heatmapnoise.tres" id="1_m7xn3"]
+[ext_resource type="Script" path="res://scenes/test/noise_export.gd" id="2_kihy3"]
+
+[node name="Cloud" type="Node3D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_m7xn3")
+script = ExtResource("2_kihy3")

@@ -55,7 +55,7 @@ uniform vec3 gravity;
 uniform float collision_friction;
 uniform float collision_bounce;
 
-vec4 rotate_hue(vec4 current_color, float hue_rot_angle) 
+vec4 rotate_hue(vec4 current_color, float hue_rot_angle)
 {
 	float hue_rot_c = cos(hue_rot_angle);
 	float hue_rot_s = sin(hue_rot_angle);
@@ -77,7 +77,7 @@ vec4 rotate_hue(vec4 current_color, float hue_rot_angle)
 	return hue_rot_mat * current_color;
 }
 
-float rand_from_seed(inout uint seed) 
+float rand_from_seed(inout uint seed)
 {
 	int k;
 	int s = int(seed);
@@ -93,12 +93,12 @@ float rand_from_seed(inout uint seed)
 	return float(seed % uint(65536)) / 65535.0;
 }
 
-float rand_from_seed_m1_p1(inout uint seed) 
+float rand_from_seed_m1_p1(inout uint seed)
 {
 	return rand_from_seed(seed) * 2.0 - 1.0;
 }
 
-uint hash(uint x) 
+uint hash(uint x)
 {
 	x = ((x >> uint(16)) ^ x) * uint(73244475);
 	x = ((x >> uint(16)) ^ x) * uint(73244475);
@@ -106,7 +106,7 @@ uint hash(uint x)
 	return x;
 }
 
-struct DisplayParameters 
+struct DisplayParameters
 {
 	vec3 scale;
 	float hue_rotation;
@@ -116,7 +116,7 @@ struct DisplayParameters
 	vec4 color;
 };
 
-struct DynamicsParameters 
+struct DynamicsParameters
 {
 	float angle;
 	float angular_velocity;
@@ -126,7 +126,7 @@ struct DynamicsParameters
 	float orbit_velocity;
 };
 
-struct PhysicalParameters 
+struct PhysicalParameters
 {
 	float linear_accel;
 	float radial_accel;
@@ -134,7 +134,7 @@ struct PhysicalParameters
 	float damping;
 };
 
-void calculate_initial_physical_params(inout PhysicalParameters params, inout uint alt_seed) 
+void calculate_initial_physical_params(inout PhysicalParameters params, inout uint alt_seed)
 {
 	params.linear_accel = mix(linear_accel_min, linear_accel_max, rand_from_seed(alt_seed));
 	params.radial_accel = mix(radial_accel_min, radial_accel_max, rand_from_seed(alt_seed));
@@ -142,7 +142,7 @@ void calculate_initial_physical_params(inout PhysicalParameters params, inout ui
 	params.damping = mix(damping_min, damping_max, rand_from_seed(alt_seed));
 }
 
-void calculate_initial_dynamics_params(inout DynamicsParameters params, inout uint alt_seed) 
+void calculate_initial_dynamics_params(inout DynamicsParameters params, inout uint alt_seed)
 {
 	// -------------------- DO NOT REORDER OPERATIONS, IT BREAKS VISUAL COMPATIBILITY
 	// -------------------- ADD NEW OPERATIONS AT THE BOTTOM
@@ -154,7 +154,7 @@ void calculate_initial_dynamics_params(inout DynamicsParameters params, inout ui
 	params.orbit_velocity = mix(orbit_velocity_min, orbit_velocity_max, rand_from_seed(alt_seed));
 }
 
-void calculate_initial_display_params(inout DisplayParameters params, inout uint alt_seed) 
+void calculate_initial_display_params(inout DisplayParameters params, inout uint alt_seed)
 {
 	// -------------------- DO NOT REORDER OPERATIONS, IT BREAKS VISUAL COMPATIBILITY
 	// -------------------- ADD NEW OPERATIONS AT THE BOTTOM
@@ -168,13 +168,13 @@ void calculate_initial_display_params(inout DisplayParameters params, inout uint
 	params.color = color_value;
 }
 
-void process_display_param(inout DisplayParameters parameters, float lifetime) 
+void process_display_param(inout DisplayParameters parameters, float lifetime)
 {
 	// Compile-time add textures.
 	parameters.color = rotate_hue(parameters.color, parameters.hue_rotation);
 }
 
-vec3 calculate_initial_position(inout uint alt_seed) 
+vec3 calculate_initial_position(inout uint alt_seed)
 {
 	float pi = 3.14159;
 	vec3 pos = vec3(0.0);
@@ -184,7 +184,7 @@ vec3 calculate_initial_position(inout uint alt_seed)
 	return pos * emission_shape_scale + emission_shape_offset;
 }
 
-vec3 get_random_direction_from_spread(inout uint alt_seed, float spread_angle) 
+vec3 get_random_direction_from_spread(inout uint alt_seed, float spread_angle)
 {
 	float pi = 3.14159;
 	float degree_to_rad = pi / 180.0;
@@ -227,11 +227,11 @@ vec3 process_radial_displacement(DynamicsParameters param, float lifetime, inout
 	return radial_displacement;
 }
 
-void process_physical_parameters(inout PhysicalParameters params, float lifetime_percent) 
+void process_physical_parameters(inout PhysicalParameters params, float lifetime_percent)
 {
 }
 
-void start() 
+void start()
 {
 	uint base_number = NUMBER;
 	uint alt_seed = hash(base_number + uint(1) + RANDOM_SEED);
@@ -273,22 +273,22 @@ void start()
 
 	VELOCITY = (EMISSION_TRANSFORM * vec4(VELOCITY, 0.0)).xyz;
 	VELOCITY += EMITTER_VELOCITY * inherit_emitter_velocity_ratio;
-	
+
 	float r1 = rand_from_seed_m1_p1(base_number) * 1.0;
 	float r2 = rand_from_seed_m1_p1(base_number) * 0.8;
 	float r3 = rand_from_seed_m1_p1(base_number) * 0.8;
-	
+
 	TRANSFORM[0].z = r1;
 	TRANSFORM[2].x = -r1;
-	
+
 	TRANSFORM[0].y = r2;
 	TRANSFORM[1].x = -r2;
-	
+
 	TRANSFORM[1].z = r3;
 	TRANSFORM[2].y = -r3;
-	
+
 	float r_color = rand_from_seed_m1_p1(base_number) * 6.0;
-	
+
 	if (r_color <= 1.0)
 	{
 		COLOR = random_color_1;
@@ -315,13 +315,13 @@ void start()
 	}
 }
 
-void process() 
+void process()
 {
 	if (distance(TRANSFORM[3].xyz, current_cleaning_position) <= cleaning_radius)
 	{
 		ACTIVE = false;
-	}	
-	
+	}
+
 	uint base_number = NUMBER;
 	//if (repeatable) {
 	//	base_number = INDEX;

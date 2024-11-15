@@ -72,6 +72,14 @@ LEFT TO DO:
     + strong broom should sweep in a thin-rectangle
     + make it so that the leaf sweeping starts FROM THE CENTER of the request, and has a square form
     + figure out the order - stage select/shop or reverse. perhaps, add a shop button to stage select
+    + consider doing a pixel art retexture
+    + fix that annoying gate texture that currently uses deafault metal and looks ugly
+    + another pass to alleyway level. make the road wider with a separation of bushes in the center. patch holes, really.
+    + pressing 'back' while in category in-game throws you out of menu
+    + slowdown upon looking at the floor, aking to powerwash simulator
+    + draw camera texture (don't forget the outline!)
+    + model pavement border
+    + add pavement border texture
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -93,7 +101,6 @@ LEFT TO DO:
         - during completion, you can move and look at the results of your work. the completion is initially just a text popup (Press blah to finish)
         - maybe implement optimization via cluster of multimeshes
         - figure out some sort of way to prevent leaf spawning under props. heightmaps do that, but are a hassle. maybe we could generate heightmaps via raycast or some sort of other method?
-        - draw camera texture (don't forget the outline!)
         - sunflower-like tutorial. mention leaf highlighting (could tutorial be a dialogue with the girl?)
         - redo brooming animations
         - add the ability to throw your broom. it will then proceed to sweep all the leaves as it slides across the ground. 
@@ -130,14 +137,11 @@ LEFT TO DO:
     VISUAL:
         GOLDEN AUTUMN MUCH?
 
-        - consider doing a pixel art retexture
+        - retexture leaves
         - fix camera state transition disabling viewport (something's going fucky-wucky)
 		- update game palette to match the girl
         - beautify leafs. new texture, maybe random texture
-        - fix that annoying gate texture that currently uses deafault metal and looks ugly
-        - another pass to alleyway level. make the road wider with a separation of bushes in the center. patch holes, really.
         - add props by necessity
-        - add pavement border texture
 		- remodel trees
     
     AUDIO:
@@ -166,6 +170,9 @@ LEFT TO DO:
         - settings saving
 
     SHOP:
+        - shop should just add tools to your inventory, no need for equipping
+        - add sounds for purchasing/purchase failure
+        - add like a 'bought' and 'equipped\ rectangle stamp
         - fix horizontal scaling
         - green background
         
@@ -174,6 +181,7 @@ LEFT TO DO:
         - add stage textures
     
     GALLERY:
+        - using keyboard blocks mouse buttons forever and ever - fix pls
         - press horizontal buttons to swipe pictures
     
     PAUSE MENU:

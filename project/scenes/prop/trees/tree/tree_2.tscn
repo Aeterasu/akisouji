@@ -5,7 +5,7 @@
 [ext_resource type="Shader" path="res://shader/foliage_alpha.gdshader" id="3_s1rj0"]
 [ext_resource type="Texture2D" uid="uid://dvbveujmk7j8e" path="res://assets/texture/environment/texture_foliage_1_albm.png" id="4_tjgb4"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_32u0l"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0kue1"]
 render_priority = 0
 shader = ExtResource("3_s1rj0")
 shader_parameter/WindScale = 1.0
@@ -13,14 +13,14 @@ shader_parameter/WindSpeed = 4.0
 shader_parameter/WindStrength = 1.49
 shader_parameter/WindDensity = 5.0
 shader_parameter/ClampTop = 1.0
-shader_parameter/ClampBtm = -1.0
-shader_parameter/MeshScale = 0.751
-shader_parameter/ColorRamp = 0.085
-shader_parameter/FresnelColor = Color(0.58, 0.65, 0.33, 1)
-shader_parameter/FresnelStrength = -0.0949999
-shader_parameter/FresnelBlend = 0.51
+shader_parameter/ClampBtm = 0.0
+shader_parameter/MeshScale = 1.376
+shader_parameter/ColorRamp = 0.05
+shader_parameter/FresnelColor = Color(0.501961, 0.215686, 0, 1)
+shader_parameter/FresnelStrength = -0.396
+shader_parameter/FresnelBlend = 1.0
 shader_parameter/FaceRoationVariation = 1.0
-shader_parameter/DeactivateGlobalVariation = null
+shader_parameter/DeactivateGlobalVariation = false
 shader_parameter/WiggleFrequency = 3.0
 shader_parameter/WiggleStrength = 0.1
 shader_parameter/WiggleSpeed = 1.0
@@ -37,7 +37,7 @@ height = 8.0
 
 [node name="mesh_tree_2" parent="." instance=ExtResource("1_44p24")]
 surface_material_override/0 = ExtResource("2_esn4x")
-surface_material_override/1 = SubResource("ShaderMaterial_32u0l")
+surface_material_override/1 = SubResource("ShaderMaterial_0kue1")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

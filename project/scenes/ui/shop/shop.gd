@@ -128,10 +128,14 @@ func _on_category_button_pressed(button : UIButton):
 
 func _on_back_button_pressed():
 	if (current_category):
+		current_category.button_selection_handler._disable_all_buttons()
 		current_category._deselect()
 		category_select_screen.show()
+		current_category = null
 		is_in_category = false
+		return
 
+	button_selection_handler._disable_all_buttons()
 	on_shop_closed.emit()
 
 	if (transition_type == TransitionType.FROM_TITLE):

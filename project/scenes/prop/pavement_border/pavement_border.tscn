@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhfjydch4ru0a"]
+
+[ext_resource type="PackedScene" uid="uid://bbwrjaoqelxyt" path="res://assets/mesh/prop/mesh_pavement_border.blend" id="1_b8xbe"]
+[ext_resource type="Texture2D" uid="uid://dwt50ek0k78jr" path="res://assets/texture/prop/texture_pavement_border_1_albm.png" id="2_i48c8"]
+[ext_resource type="Texture2D" uid="uid://c3r3q4eduupr8" path="res://assets/texture/environment/texture_brushstrokes_nrmp.png" id="3_2dkvb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8qtcy"]
+albedo_texture = ExtResource("2_i48c8")
+normal_enabled = true
+normal_scale = 0.2
+normal_texture = ExtResource("3_2dkvb")
+
+[node name="PavementBorder" type="Node3D"]
+
+[node name="mesh_pavement_border" parent="." instance=ExtResource("1_b8xbe")]
+transform = Transform3D(0.3, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_8qtcy")

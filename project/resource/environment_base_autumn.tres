@@ -1,76 +1,38 @@
-[gd_resource type="Environment" load_steps=10 format=3 uid="uid://dfi8f6n3mi0ob"]
+[gd_resource type="Environment" load_steps=5 format=3 uid="uid://dfi8f6n3mi0ob"]
 
-[ext_resource type="Shader" path="res://shader/stylized_sky.gdshader" id="1_v4yjd"]
+[sub_resource type="Gradient" id="Gradient_b23kf"]
+offsets = PackedFloat32Array(0, 0.442815, 0.953079, 1)
+colors = PackedColorArray(0.116396, 0.0654409, 0, 1, 0.564706, 0.529412, 0.466667, 1, 0.98, 0.85897, 0.5978, 1, 1, 1, 1, 1)
 
-[sub_resource type="Gradient" id="Gradient_c6i27"]
-colors = PackedColorArray(0, 0, 0, 1, 0.7, 0.7, 0.7, 1)
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tbmu0"]
+gradient = SubResource("Gradient_b23kf")
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_vq76j"]
-noise_type = 0
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7h7gc"]
+sky_top_color = Color(0.2948, 0.40128, 0.44, 1)
+sky_horizon_color = Color(1, 0.664167, 0.35, 1)
+sky_curve = 0.212132
+ground_bottom_color = Color(0.435294, 0.192157, 0.231373, 1)
+ground_horizon_color = Color(1, 0.6, 0.231373, 1)
+sun_angle_max = 360.0
+sun_curve = 0.0152298
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m5mft"]
-width = 256
-height = 256
-seamless = true
-color_ramp = SubResource("Gradient_c6i27")
-noise = SubResource("FastNoiseLite_vq76j")
-
-[sub_resource type="Gradient" id="Gradient_dxbm3"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_jd06u"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nk0ul"]
-width = 256
-height = 256
-seamless = true
-color_ramp = SubResource("Gradient_dxbm3")
-noise = SubResource("FastNoiseLite_jd06u")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bwbl4"]
-shader = ExtResource("1_v4yjd")
-shader_parameter/day_bottom_color = Color(0.133333, 0.180392, 0.219608, 1)
-shader_parameter/day_top_color = Color(0.133333, 0.180392, 0.219608, 1)
-shader_parameter/sunset_bottom_color = Color(0.658824, 0.188235, 0.0823529, 1)
-shader_parameter/sunset_top_color = Color(0.133333, 0.180392, 0.219608, 1)
-shader_parameter/night_bottom_color = Color(0.560784, 0.294118, 0.168627, 1)
-shader_parameter/night_top_color = Color(0.657795, 0.188592, 0.0804462, 1)
-shader_parameter/horizon_color_day = Color(0.560784, 0.294118, 0.168627, 1)
-shader_parameter/horizon_color_sunset = Color(0.560784, 0.294118, 0.168627, 1)
-shader_parameter/horizon_color_night = Color(0.560784, 0.294118, 0.168627, 1)
-shader_parameter/horizon_falloff = 0.3
-shader_parameter/sun_col = Color(0.844955, 0.652724, 0.478639, 1)
-shader_parameter/sun_size = 0.37
-shader_parameter/sun_blur = 1.0
-shader_parameter/moon_col = Color(0.560784, 0.294118, 0.168627, 1)
-shader_parameter/moon_size = 0.115
-shader_parameter/moon_crescent_offset = -0.207
-shader_parameter/clouds_main_color = Color(0.606417, 0.401212, 0.377964, 1)
-shader_parameter/clouds_edge_color = Color(0.133333, 0.180392, 0.219608, 1)
-shader_parameter/clouds_speed = 0.1
-shader_parameter/clouds_scale = 0.6
-shader_parameter/clouds_cutoff = 0.1
-shader_parameter/clouds_fuzziness = 0.3
-shader_parameter/stars_cutoff = 0.315
-shader_parameter/stars_speed = 0.025
-shader_parameter/clouds_texture = SubResource("NoiseTexture2D_nk0ul")
-shader_parameter/clouds_noise_texture = SubResource("NoiseTexture2D_m5mft")
-
-[sub_resource type="Sky" id="Sky_ng8uf"]
-sky_material = SubResource("ShaderMaterial_bwbl4")
+[sub_resource type="Sky" id="Sky_mef7a"]
+sky_material = SubResource("ProceduralSkyMaterial_7h7gc")
 
 [resource]
 background_mode = 2
-sky = SubResource("Sky_ng8uf")
+sky = SubResource("Sky_mef7a")
 ambient_light_source = 2
 ambient_light_color = Color(0.277998, 0.202001, 0.137741, 1)
 ambient_light_energy = 0.87
 reflected_light_source = 1
 glow_enabled = true
+glow_bloom = 0.05
 fog_mode = 1
 fog_light_color = Color(0.713726, 0.392157, 0.301961, 1)
 fog_density = 0.3253
 fog_depth_begin = 48.5
 fog_depth_end = 106.5
 adjustment_enabled = true
-adjustment_brightness = 1.2
-adjustment_contrast = 0.9
+adjustment_brightness = 1.06
+adjustment_color_correction = SubResource("GradientTexture1D_tbmu0")

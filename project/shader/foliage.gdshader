@@ -2,6 +2,8 @@ shader_type spatial;
 render_mode depth_draw_opaque, specular_disabled, depth_prepass_alpha;
 //render_mode blend_mix, cull_disabled, depth_draw_opaque, specular_disabled;
 
+uniform sampler2D NormalTexture;
+
 uniform vec4 TopColor : source_color = vec4(0.24, 0.47, 0.27, 1.0);
 uniform vec4 BottomColor : source_color = vec4(0.13, 0.33, 0.25, 1.0);
 uniform sampler2D Alpha;
@@ -138,4 +140,6 @@ void fragment()
 	METALLIC = 0.0;
 	ALPHA = alpha;
 	EMISSION = fres_col;
+	
+	NORMAL_MAP = texture(NormalTexture, uv.xy).rgb;
 }

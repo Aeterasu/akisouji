@@ -37,7 +37,7 @@ shadow_mesh = SubResource("ArrayMesh_sre53")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ih5hy"]
 transparency = 1
 shading_mode = 0
-albedo_color = Color(0.83, 0.51958, 0.4067, 0.231373)
+albedo_color = Color(1, 0.769, 0.58, 0.34902)
 albedo_texture = ExtResource("1_ohwmj")
 uv1_scale = Vector3(1, 1.965, 1)
 uv1_triplanar = true

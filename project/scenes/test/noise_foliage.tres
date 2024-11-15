@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b456mrlokyo81"]
+
+[ext_resource type="Texture2D" uid="uid://con7pxtq7lkaj" path="res://scenes/test/noise/new_noise_texture_2d.tres" id="1_tx3d4"]
+
+[resource]
+transparency = 1
+cull_mode = 1
+shading_mode = 0
+albedo_texture = ExtResource("1_tx3d4")
+uv1_scale = Vector3(4, 4, 4)

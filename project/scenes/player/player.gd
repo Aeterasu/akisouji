@@ -218,11 +218,9 @@ func movement_process(delta):
 		velocity_component.speed_multiplier = sprint_speed_multiplier
 	else:
 		velocity_component.speed_multiplier = 1.0
-
-	# camera rotation slowdown
-
-	var coeff : float = clamp((clamp(abs(clamp(camera_origin.rotation_degrees.x, -CAMERA_ROTATION_LIMIT, 0.0)), look_down_slowdown_threshold, CAMERA_ROTATION_LIMIT) - look_down_slowdown_threshold) / (CAMERA_ROTATION_LIMIT - look_down_slowdown_threshold), look_down_slowdown_coeff, 1.0)
-	velocity_component.speed_multiplier *= 1.0 + look_down_slowdown_coeff - coeff
+		# camera rotation slowdown
+		var coeff : float = clamp((clamp(abs(clamp(camera_origin.rotation_degrees.x, -CAMERA_ROTATION_LIMIT, 0.0)), look_down_slowdown_threshold, CAMERA_ROTATION_LIMIT) - look_down_slowdown_threshold) / (CAMERA_ROTATION_LIMIT - look_down_slowdown_threshold), look_down_slowdown_coeff, 1.0)
+		velocity_component.speed_multiplier *= 1.0 + look_down_slowdown_coeff - coeff
 
 	# apply movement
 

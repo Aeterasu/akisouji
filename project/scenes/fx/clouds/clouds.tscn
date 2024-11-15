@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bod4t1bel2nh5"]
+
+[ext_resource type="Material" uid="uid://s3fb87n24665" path="res://resource/clouds.tres" id="1_jr10w"]
+[ext_resource type="Script" path="res://scenes/fx/clouds/clouds.gd" id="2_7ssro"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lxrjr"]
+material = ExtResource("1_jr10w")
+size = Vector2(4096, 4096)
+
+[node name="Clouds" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 227.117, 0)
+mesh = SubResource("PlaneMesh_lxrjr")
+script = ExtResource("2_7ssro")
+direction = Vector3(-0.002, -0.002, 0)

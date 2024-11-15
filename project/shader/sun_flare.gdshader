@@ -1,5 +1,5 @@
 shader_type canvas_item;
-render_mode blend_add;
+render_mode unshaded, blend_add;
 
 #include "res://shader/CLREDIT.gdshaderinc"
 
@@ -15,7 +15,8 @@ uniform float FlareSpacing;
 uniform float Intensity;
 uniform float Saturation_;
 
-void fragment(){
+void fragment()
+{
 	vec2 FlippedUV = vec2(1.0) - SCREEN_UV;
 	vec2 FlareVector = (vec2(0.5) - SCREEN_UV) * FlareSpacing;
 	vec3 FinalFlare = vec3(0.0);

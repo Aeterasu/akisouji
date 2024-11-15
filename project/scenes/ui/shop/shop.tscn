@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://71lkn3s6kfqi"]
+[gd_scene load_steps=25 format=3 uid="uid://71lkn3s6kfqi"]
 
 [ext_resource type="Script" path="res://scenes/ui/shop/shop.gd" id="1_87sb4"]
 [ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="1_rawln"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="2_yb51t"]
+[ext_resource type="Texture2D" uid="uid://ceghh11taklj3" path="res://assets/texture/ui/shop/texture_ui_shopping_cart.png" id="3_o7shq"]
 [ext_resource type="PackedScene" uid="uid://bcrys4arojn37" path="res://scenes/ui/paper_button.tscn" id="3_xgq7m"]
 [ext_resource type="PackedScene" uid="uid://d1rn3y4kijnhy" path="res://scenes/ui/shop/shop_entry.tscn" id="4_a8w7q"]
 [ext_resource type="PackedScene" uid="uid://d2gvydsg23b1i" path="res://scenes/ui/shop/shop_category_button.tscn" id="4_jda8f"]
@@ -73,11 +74,20 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_b4rmi")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+offset_left = 16.0
+offset_top = 8.0
+offset_right = 159.0
+offset_bottom = 132.0
+scale = Vector2(0.755, 0.755)
+texture = ExtResource("3_o7shq")
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 16.0
+offset_left = 138.0
 offset_top = 18.0
-offset_right = 297.0
+offset_right = 419.0
 offset_bottom = 78.0
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_yb51t")

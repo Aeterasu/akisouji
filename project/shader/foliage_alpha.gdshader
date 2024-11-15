@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode cull_disabled, depth_draw_opaque, specular_disabled, depth_prepass_alpha;
+render_mode cull_disabled, depth_prepass_alpha, depth_draw_opaque, specular_disabled;
 //render_mode blend_mix, cull_disabled, depth_draw_opaque, specular_disabled;
 
 uniform sampler2D Texture;
@@ -130,6 +130,6 @@ void fragment()
 	ALBEDO = tex.rgb;
 	ROUGHNESS = 1.0;
 	METALLIC = 0.0;
-	ALPHA = tex.a;
+	ALPHA = clamp(tex.a, 0.0, 1.0);
 	EMISSION = fres_col;
 }

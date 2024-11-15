@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://s3fb87n24665"]
+
+[ext_resource type="Texture2D" uid="uid://lwu723gmcycw" path="res://scenes/test/noise/heatmapnoise.tres" id="1_51s57"]
+[ext_resource type="Texture2D" uid="uid://bb24ivlwgabv" path="res://assets/texture/fx/texture_fx_oil_clouds_nrmp.png" id="2_g40k3"]
+
+[resource]
+blend_mode = 1
+cull_mode = 1
+albedo_texture = ExtResource("1_51s57")
+normal_enabled = true
+normal_scale = 0.92
+normal_texture = ExtResource("2_g40k3")
+uv1_scale = Vector3(4, 4, 4)
