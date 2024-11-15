@@ -1,5 +1,7 @@
 class_name Broom extends PlayerTool
 
+@export var data : BroomData = null
+
 var brooming_state : BroomingState = BroomingState.NONE
 
 var wish_brooming : bool = false

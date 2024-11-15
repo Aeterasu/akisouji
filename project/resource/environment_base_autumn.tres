@@ -35,4 +35,5 @@ fog_depth_begin = 48.5
 fog_depth_end = 106.5
 adjustment_enabled = true
 adjustment_brightness = 1.06
+adjustment_contrast = 0.95
 adjustment_color_correction = SubResource("GradientTexture1D_tbmu0")

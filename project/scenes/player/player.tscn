@@ -90,12 +90,10 @@ camera = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D")
 camera_origin = NodePath("CameraOrigin")
 camera_effect_landing = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding")
 cleaning_raycast = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/CleaningRayCast3D")
-cleaning_area = Vector2(0.8, 1)
 jump_cleaning_radius = 0.8
 sprint_cleaning_cooldown = 0.1
 sprint_cleaning_radius = 0.5
 inventory = NodePath("PlayerToolInventory")
-cleaning_range = 3.0
 move_speed_upgrade_handler = NodePath("VelocityComponent/MoveSpeedUpgradeHandler")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -153,13 +151,11 @@ script = ExtResource("6_t0wwe")
 sway_strength = 0.1
 player = NodePath("../../../../../..")
 
-[node name="LeafBlower" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("11_rfdeu")]
-visible = false
+[node name="Broom" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("12_gpv6h")]
 
 [node name="BroomStrong" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("11_fl86n")]
-visible = false
 
-[node name="Broom" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("12_gpv6h")]
+[node name="LeafBlower" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("11_rfdeu")]
 
 [node name="Camera" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("14_yl1fb")]
 

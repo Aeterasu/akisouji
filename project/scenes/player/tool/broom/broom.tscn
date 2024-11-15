@@ -1,7 +1,8 @@
-[gd_scene load_steps=59 format=4 uid="uid://duvqdrsvvonkd"]
+[gd_scene load_steps=60 format=4 uid="uid://duvqdrsvvonkd"]
 
 [ext_resource type="Script" path="res://scenes/player/tool/broom/broom.gd" id="1_t54q8"]
 [ext_resource type="PackedScene" uid="uid://1rbyx1a81x74" path="res://assets/mesh/tool/mesh_broom.blend" id="2_0flt6"]
+[ext_resource type="Resource" uid="uid://dutbixiv74hpe" path="res://scenes/player/tool/broom_data/broom.tres" id="2_y3qo4"]
 [ext_resource type="Texture2D" uid="uid://4qx2h2eyxpqf" path="res://assets/texture/tool/texture_broom_1_albm.png" id="3_51to5"]
 [ext_resource type="Texture2D" uid="uid://p3jbw8i3hjqu" path="res://assets/texture/tool/texture_broom_1_nrmp.png" id="4_a36m4"]
 [ext_resource type="Material" uid="uid://cwaw45fhmm7wj" path="res://resource/material/material_broom_outline.tres" id="5_12mtx"]
@@ -643,6 +644,7 @@ graph_offset = Vector2(-203, -27)
 
 [node name="Broom" type="Node3D" node_paths=PackedStringArray("animation_tree")]
 script = ExtResource("1_t54q8")
+data = ExtResource("2_y3qo4")
 use_type = 1
 animation_tree = NodePath("AnimationTree")
 walk_cycle_direction = Vector3(0.025, 0.01, 0)

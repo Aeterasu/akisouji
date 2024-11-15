@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=4 uid="uid://dqwotfhhj3x3"]
+[gd_scene load_steps=60 format=4 uid="uid://dqwotfhhj3x3"]
 
 [ext_resource type="PackedScene" uid="uid://j6k6m7mkrpjv" path="res://assets/mesh/tool/mesh_broom_strong.blend" id="1_05fyr"]
+[ext_resource type="Script" path="res://scenes/player/tool/broom/broom.gd" id="1_jcyrh"]
+[ext_resource type="Resource" uid="uid://cfqsngjs2o6jp" path="res://scenes/player/tool/broom_data/broom_strong.tres" id="2_ds0fv"]
 [ext_resource type="Texture2D" uid="uid://dsbs3rnamnmhr" path="res://assets/texture/tool/texture_broom_strong_albm.png" id="2_hqhcf"]
 [ext_resource type="Texture2D" uid="uid://c3r3q4eduupr8" path="res://assets/texture/environment/texture_brushstrokes_nrmp.png" id="4_1wwa0"]
 [ext_resource type="Material" uid="uid://cwaw45fhmm7wj" path="res://resource/material/material_broom_outline.tres" id="4_31t54"]
@@ -29,15 +31,597 @@ _surfaces = [{
 "vertex_data": PackedByteArray("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")
 }]
 
-[node name="BroomStrong" type="Node3D"]
+[sub_resource type="Animation" id="Animation_jw8jy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.069, -0.062, -0.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.148353, 1.60221, 1.58825)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mesh_broom:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
-[node name="mesh_broom_strong" parent="." instance=ExtResource("1_05fyr")]
-transform = Transform3D(0.045, 0, 0, 0, -0.0241785, -0.0379526, 0, 0.0379526, -0.0241785, 0.084, -0.062, -0.249)
+[sub_resource type="Animation" id="Animation_v16ob"]
+resource_name = "brooming_loop"
+length = 1.25
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
+"update": 0,
+"values": [Vector3(0.069, -0.062, -0.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
+"update": 0,
+"values": [Vector3(-0.148353, 1.60221, 1.58825)]
+}
+
+[sub_resource type="Animation" id="Animation_m3125"]
+resource_name = "brooming_loop_end"
+length = 0.8
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
+"update": 0,
+"values": [Vector3(0.069, -0.062, -0.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
+"update": 0,
+"values": [Vector3(-0.148353, 1.60221, 1.58825)]
+}
+
+[sub_resource type="Animation" id="Animation_5yecp"]
+resource_name = "brooming_loop_start"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
+"update": 0,
+"values": [Vector3(0.069, -0.062, -0.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(-2),
+"update": 0,
+"values": [Vector3(-0.148353, 1.60221, 1.58825)]
+}
+
+[sub_resource type="Animation" id="Animation_15rol"]
+resource_name = "equip"
+length = 0.6
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.5, -2),
+"update": 0,
+"values": [Vector3(0.4, -0.4, -0.154), Vector3(0.069, -0.062, -0.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.466517, -2),
+"update": 0,
+"values": [Vector3(2.75587, 1.44862, 0.1309), Vector3(-0.148353, 1.60221, 1.58825)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mesh_broom:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_h5qqg"]
+resource_name = "idle"
+length = 6.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(0.069, -0.062, -0.15), Vector3(0.069, -0.07, -0.15), Vector3(0.069, -0.062, -0.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 6),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(-0.148353, 1.60221, 1.58825), Vector3(-0.279253, 1.53589, 1.48353), Vector3(-0.148353, 1.60221, 1.58825)]
+}
+
+[sub_resource type="Animation" id="Animation_7hoeh"]
+resource_name = "sprint_end"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(0.2, -0.5, -0.154), Vector3(0.069, -0.062, -0.15)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.5, -2),
+"update": 0,
+"values": [Vector3(3.14159, 0.0959931, 0.1309), Vector3(-0.148353, 1.60221, 1.58825)]
+}
+
+[sub_resource type="Animation" id="Animation_7rcfg"]
+resource_name = "sprint_init"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(0.069, -0.062, -0.15), Vector3(0.2, -0.5, -0.154)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, 0.5),
+"update": 0,
+"values": [Vector3(-0.148353, 1.60221, 1.58825), Vector3(3.14159, 0.0959931, 0.1309)]
+}
+
+[sub_resource type="Animation" id="Animation_1wmt6"]
+resource_name = "sprint_loop"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.2, -0.5, -0.154)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(3.14159, 0.0959931, 0.1309)]
+}
+
+[sub_resource type="Animation" id="Animation_onxp5"]
+resource_name = "unequip"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(0.069, -0.062, -0.15), Vector3(0.084, -0.4, -0.154)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(-2, 1),
+"update": 0,
+"values": [Vector3(-0.148353, 1.60221, 1.58825), Vector3(1.89194, 1.44862, 0.1309)]
+}
+
+[sub_resource type="Animation" id="Animation_x4j3k"]
+resource_name = "unequip_loop"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.084, -0.4, -0.154)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.89194, 1.44862, 0.1309)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mesh_broom:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_52egn"]
+_data = {
+"RESET": SubResource("Animation_jw8jy"),
+"brooming_loop": SubResource("Animation_v16ob"),
+"brooming_loop_end": SubResource("Animation_m3125"),
+"brooming_loop_start": SubResource("Animation_5yecp"),
+"equip": SubResource("Animation_15rol"),
+"idle": SubResource("Animation_h5qqg"),
+"sprint_end": SubResource("Animation_7hoeh"),
+"sprint_init": SubResource("Animation_7rcfg"),
+"sprint_loop": SubResource("Animation_1wmt6"),
+"unequip": SubResource("Animation_onxp5"),
+"unequip_loop": SubResource("Animation_x4j3k")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gb0py"]
+animation = &"brooming_loop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hes0x"]
+animation = &"brooming_loop_end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ghdy0"]
+animation = &"brooming_loop_start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1q5rf"]
+animation = &"equip"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s6ifs"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fg4ie"]
+animation = &"sprint_end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sn25p"]
+animation = &"sprint_init"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rlncc"]
+animation = &"sprint_loop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nrt0j"]
+animation = &"unequip"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2r00t"]
+animation = &"unequip_loop"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cno54"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v7sc1"]
+advance_mode = 2
+advance_expression = "not wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dbhv6"]
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6gud3"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "not wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_awu8l"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gp30y"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yxkvm"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+advance_expression = "wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_46hi8"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_103xs"]
+advance_mode = 2
+advance_expression = "wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gsw54"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "not wish_brooming
+"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ybass"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "not wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jklkv"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fe82q"]
+xfade_time = 0.5
+advance_mode = 2
+advance_expression = "wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qtnhm"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yht86"]
+xfade_time = 0.2
+break_loop_at_end = true
+advance_mode = 2
+advance_expression = "wish_sprinting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_desuo"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xvp0s"]
+xfade_time = 0.05
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jjggo"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n1m58"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q4fnt"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lyf6y"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gw85u"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r0jex"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ywx3w"]
+xfade_time = 0.05
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8ek0q"]
+advance_mode = 2
+advance_expression = "is_equipped
+"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c7rwe"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t6hlb"]
+xfade_time = 0.05
+advance_mode = 2
+advance_expression = "is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ocdqc"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jxgcu"]
+states/End/position = Vector2(1067, 145)
+states/Start/position = Vector2(-162, -50)
+states/brooming_loop/node = SubResource("AnimationNodeAnimation_gb0py")
+states/brooming_loop/position = Vector2(549, -62)
+states/brooming_loop_end/node = SubResource("AnimationNodeAnimation_hes0x")
+states/brooming_loop_end/position = Vector2(834, 29)
+states/brooming_loop_start/node = SubResource("AnimationNodeAnimation_ghdy0")
+states/brooming_loop_start/position = Vector2(324, 29)
+states/equip/node = SubResource("AnimationNodeAnimation_1q5rf")
+states/equip/position = Vector2(62, 138)
+states/idle/node = SubResource("AnimationNodeAnimation_s6ifs")
+states/idle/position = Vector2(184, 138)
+states/sprint_end/node = SubResource("AnimationNodeAnimation_fg4ie")
+states/sprint_end/position = Vector2(753, 299)
+states/sprint_init/node = SubResource("AnimationNodeAnimation_sn25p")
+states/sprint_init/position = Vector2(324, 291)
+states/sprint_loop/node = SubResource("AnimationNodeAnimation_rlncc")
+states/sprint_loop/position = Vector2(534, 399)
+states/unequip/node = SubResource("AnimationNodeAnimation_nrt0j")
+states/unequip/position = Vector2(156, -239)
+states/unequip_loop/node = SubResource("AnimationNodeAnimation_2r00t")
+states/unequip_loop/position = Vector2(-95, 145)
+transitions = ["sprint_init", "sprint_loop", SubResource("AnimationNodeStateMachineTransition_cno54"), "sprint_loop", "sprint_end", SubResource("AnimationNodeStateMachineTransition_v7sc1"), "idle", "sprint_init", SubResource("AnimationNodeStateMachineTransition_dbhv6"), "sprint_end", "idle", SubResource("AnimationNodeStateMachineTransition_6gud3"), "sprint_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_awu8l"), "sprint_init", "sprint_end", SubResource("AnimationNodeStateMachineTransition_gp30y"), "brooming_loop_start", "brooming_loop", SubResource("AnimationNodeStateMachineTransition_yxkvm"), "brooming_loop", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_46hi8"), "idle", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_103xs"), "brooming_loop_end", "idle", SubResource("AnimationNodeStateMachineTransition_gsw54"), "brooming_loop_start", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_ybass"), "brooming_loop_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_jklkv"), "sprint_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_fe82q"), "brooming_loop_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_qtnhm"), "brooming_loop", "sprint_init", SubResource("AnimationNodeStateMachineTransition_yht86"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_desuo"), "idle", "unequip", SubResource("AnimationNodeStateMachineTransition_xvp0s"), "brooming_loop_start", "unequip", SubResource("AnimationNodeStateMachineTransition_jjggo"), "brooming_loop", "unequip", SubResource("AnimationNodeStateMachineTransition_n1m58"), "brooming_loop_end", "unequip", SubResource("AnimationNodeStateMachineTransition_q4fnt"), "sprint_init", "unequip", SubResource("AnimationNodeStateMachineTransition_lyf6y"), "sprint_loop", "unequip", SubResource("AnimationNodeStateMachineTransition_gw85u"), "sprint_end", "unequip", SubResource("AnimationNodeStateMachineTransition_r0jex"), "equip", "unequip", SubResource("AnimationNodeStateMachineTransition_ywx3w"), "unequip_loop", "equip", SubResource("AnimationNodeStateMachineTransition_8ek0q"), "unequip", "unequip_loop", SubResource("AnimationNodeStateMachineTransition_c7rwe"), "unequip", "equip", SubResource("AnimationNodeStateMachineTransition_t6hlb"), "equip", "sprint_init", SubResource("AnimationNodeStateMachineTransition_ocdqc")]
+graph_offset = Vector2(-259, -137)
+
+[node name="BroomStrong" type="Node3D" node_paths=PackedStringArray("animation_tree")]
+script = ExtResource("1_jcyrh")
+data = ExtResource("2_ds0fv")
+use_type = 1
+animation_tree = NodePath("AnimationTree")
+walk_cycle_direction = Vector3(0.025, 0.01, 0)
+
+[node name="mesh_broom" parent="." instance=ExtResource("1_05fyr")]
+transform = Transform3D(-0.00662246, 0.0015292, 0.0444838, 0.0444989, -0.000776751, 0.00665142, 0.00099387, 0.0449673, -0.00139786, 0.069, -0.062, -0.15)
 surface_material_override/0 = SubResource("StandardMaterial3D_m2dbm")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="mesh_broom_strong"]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="mesh_broom"]
 mesh = SubResource("ArrayMesh_6cl7y")
 surface_material_override/0 = ExtResource("4_31t54")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 far = 1024.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_52egn")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_jxgcu")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")

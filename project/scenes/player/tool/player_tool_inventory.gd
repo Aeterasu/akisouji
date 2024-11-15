@@ -31,19 +31,19 @@ func _physics_process(delta) -> void:
 		_previous_tool()
 		return
 
-	if (Input.is_action_just_pressed("player_action_select_tool_1")):
-		_set_tool(0)
-		return
+	#if (Input.is_action_just_pressed("player_action_select_tool_1")):
+		#_set_tool(0)
+		#return
 
-	if (Input.is_action_just_pressed("player_action_select_tool_2")):
-		_set_tool(1)
-		return		
+	#if (Input.is_action_just_pressed("player_action_select_tool_2")):
+		#_set_tool(1)
+		#return		
 
 	#if (Input.is_action_just_pressed("player_action_select_tool_3")):
 		#_set_tool(2)
 		#return		
 
-func _next_tool():
+func _previous_tool():
 	current_tool_id += 1
 
 	if (current_tool_id >= len(tools)):
@@ -51,7 +51,7 @@ func _next_tool():
 
 	_update_tool()
 
-func _previous_tool():
+func _next_tool():
 	current_tool_id -= 1
 
 	if (current_tool_id < 0):

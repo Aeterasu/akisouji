@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=36 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_highlight_handler.gd" id="2_74dy0"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://diwf3xbj3nljl" path="res://assets/texture/fx/texture_sun_flare.png" id="14_gpri0"]
 [ext_resource type="Texture2D" uid="uid://cvtg8bskknog1" path="res://assets/texture/ui/hud/texture_ui_vignette.png" id="18_q3514"]
 [ext_resource type="PackedScene" uid="uid://d0r5a5kwi5eoo" path="res://scenes/ui/pause_menu/pause_menu.tscn" id="22_yntas"]
+[ext_resource type="Texture2D" uid="uid://dhgy85uah6kgp" path="res://assets/texture/fx/texture_sun_flare_1.png" id="25_5i5i2"]
 [ext_resource type="Shader" path="res://shader/kuwahara_screen.gdshader" id="27_ktbah"]
 [ext_resource type="Script" path="res://scenes/ui/blackout_layer.gd" id="31_te3wo"]
 
@@ -47,13 +48,6 @@ atlas = ExtResource("10_0auwo")
 region = Rect2(0, 0, 320, 540)
 margin = Rect2(0, 0, 0, -360)
 
-[sub_resource type="Gradient" id="Gradient_m8k4v"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(1, 0.937, 0.73, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ums4d"]
-gradient = SubResource("Gradient_m8k4v")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2fb3w"]
 shader = ExtResource("12_ceytl")
 shader_parameter/Blur = 4.0
@@ -62,7 +56,7 @@ shader_parameter/Flares = 16
 shader_parameter/FlareSpacing = 0.125
 shader_parameter/Intensity = 1.0
 shader_parameter/Saturation_ = 2.0
-shader_parameter/FlareMult = SubResource("GradientTexture2D_ums4d")
+shader_parameter/FlareMult = ExtResource("25_5i5i2")
 shader_parameter/FlareMult2 = ExtResource("14_gpri0")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5tcod"]

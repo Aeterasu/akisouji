@@ -25,17 +25,17 @@ const CAMERA_ROTATION_LIMIT : float = 80.0
 
 @export_group("Leaf Cleaning")
 @export var cleaning_raycast : RayCast3D = null
-@export var cleaning_area : Vector2 = Vector2.ONE
 @export var jump_cleaning_radius : float = 0.5
 @export var sprint_cleaning_cooldown : float = 0.25
 @export var sprint_cleaning_radius : float = 0.25
 
 @export_group("Equipment")
 @export var inventory : PlayerToolInventory = null
-@export var cleaning_range : float = 8.0
 @export var move_speed_upgrade_handler : MoveSpeedUpgradeHandler = null
 
 var leaf_cleaning_handler : LeafCleaningHandler = null
+var broom_data : BroomData = null
+var brooming_tick_cooldown : int = 0
 
 var current_jump_buffer_ticks : int = 0
 
@@ -84,6 +84,10 @@ func _physics_process(delta : float):
 	input_process(delta)
 	movement_process(delta)
 
+	if (inventory.current_tool is Broom):
+		broom_data = (inventory.current_tool as Broom).data
+		cleaning_raycast.target_position = Vector3(0, 0, -1) * broom_data.cleaning_range
+
 	inventory.current_tool.walk_multiplier = velocity_component.current_velocity.length() / velocity_component.speed
 
 	inventory.current_tool._set_sprint_toggle(wish_sprint)
@@ -97,6 +101,13 @@ func _physics_process(delta : float):
 
 	input_delay = max(input_delay - delta, 0.0)
 
+	if (inventory.current_tool.in_use):
+		brooming_tick_cooldown -= 1
+
+		if (brooming_tick_cooldown < 0):
+			brooming_tick_cooldown = broom_data.brooming_tickrate
+			on_broom()
+
 func on_broom():
 	if (!leaf_cleaning_handler):
 		return
@@ -106,13 +117,11 @@ func on_broom():
 
 	cleaning_raycast.force_raycast_update()
 
-	#leaf_cleaning_handler._on_player_cleaning_input(cleaning_radius, cleaning_range)
-
 	if (cleaning_raycast.get_collider()):
 		var cleaning_point = cleaning_raycast.get_collision_point()
 		Game.game_instance.last_cleaning_position = cleaning_point
-		Game.game_instance.last_cleaning_radius = cleaning_area.length()
-		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(cleaning_point.x, cleaning_point.z), Vector2(sin(rotation.y), cos(rotation.y)), cleaning_area)
+		Game.game_instance.last_cleaning_radius = broom_data.cleaning_area.length()
+		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(cleaning_point.x, cleaning_point.z), Vector2(sin(rotation.y), cos(rotation.y)), broom_data.cleaning_area)
 
 	pass
 
