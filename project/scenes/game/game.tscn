@@ -64,7 +64,7 @@ shader = ExtResource("27_ktbah")
 shader_parameter/radius = 2
 shader_parameter/offset = Vector3(0, 0, 0)
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "loading_screen", "ui_completion", "pause_menu", "shop_origin", "pausable", "progress_tracker", "particle_handler", "ranking_manager")]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "loading_screen", "ui_completion", "pause_menu", "shop_origin", "pausable", "progress_tracker", "particle_handler", "ranking_manager", "rain_effect")]
 process_mode = 3
 script = ExtResource("1_bcfl2")
 player = NodePath("Pausable/Player")
@@ -77,6 +77,7 @@ pausable = NodePath("Pausable")
 progress_tracker = NodePath("LeafProgressTracker")
 particle_handler = NodePath("LeafParticleHandler")
 ranking_manager = NodePath("RankingManager")
+rain_effect = NodePath("Pausable/Player/RainParticles")
 
 [node name="LeafHighlightHandler" type="Node" parent="."]
 script = ExtResource("2_74dy0")

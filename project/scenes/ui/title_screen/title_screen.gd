@@ -5,6 +5,7 @@ extends Control
 @export var start_button : UIButton = null
 @export var gallery_button : UIButton = null
 @export var options_button : UIButton = null
+@export var credits_button : UIButton = null
 @export var exit_button : UIButton = null
 
 @export var submenu_origin : Node = null
@@ -12,6 +13,10 @@ extends Control
 @export var settings_scene : PackedScene = null
 
 @export var blackout : ColorRect = null
+
+@export var credits_splash_scene : PackedScene = null
+
+var credits_splash : Credits = null
 
 func _ready():
 	button_selection_handler.on_button_pressed.connect(_on_button_pressed)
@@ -32,6 +37,9 @@ func _on_button_pressed(button : UIButton):
 			return			
 		options_button:
 			_on_settings_pressed()
+			return
+		credits_button:
+			_on_credits_pressed()
 			return
 		exit_button:
 			_on_exit_pressed()
@@ -72,3 +80,12 @@ func _on_submenu_closed() -> void:
 	var tween = create_tween().tween_property(button_selection_handler.buttons_origin, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
 
 	button_selection_handler.buttons_origin.call_deferred("show")
+
+func _on_credits_pressed() -> void:
+	var node = credits_splash_scene.instantiate() as Credits
+	add_child(node)
+
+	node.on_credits_closed.connect(_on_credits_closed)
+
+func _on_credits_closed() -> void:
+	button_selection_handler._enable_all_buttons()

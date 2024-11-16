@@ -80,6 +80,7 @@ LEFT TO DO:
     + draw camera texture (don't forget the outline!)
     + model pavement border
     + add pavement border texture
+    + add credits to main menu
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -93,6 +94,7 @@ LEFT TO DO:
     
     GAMEPLAY:
         = cash based broom that uses cash to clean ?
+        = GARBAGE BAGS FILLING UP BY SWEEPING? YOU CAN THEN THROW IT, MOVE IT, ETC
         - level-specific leaf cleaning leeway
         - disabled leaf populator completely breaks the game, pls add safety checks
         - add 'new upgrade notification'. a little '!' should appear on the category
@@ -100,14 +102,11 @@ LEFT TO DO:
 		- save best grades and show them in stage select
         - during completion, you can move and look at the results of your work. the completion is initially just a text popup (Press blah to finish)
         - maybe implement optimization via cluster of multimeshes
-        - figure out some sort of way to prevent leaf spawning under props. heightmaps do that, but are a hassle. maybe we could generate heightmaps via raycast or some sort of other method?
-        - sunflower-like tutorial. mention leaf highlighting (could tutorial be a dialogue with the girl?)
+        - dialogue box tutorial. mention leaf highlighting (could tutorial be a dialogue with the girl?)
         - redo brooming animations
         - add the ability to throw your broom. it will then proceed to sweep all the leaves as it slides across the ground. 
-        - each broom has it's own secondary attack. broom - throw, 
-        - strong broom - slide. you hold rmb and accelerate in a selected direction,
-        - feather duster - auto cleaning ?
-        - vacuum - powerful aoe leaf blow! (4-5 radius)
+        - feather duster - auto cleaning
+        - vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
         - work on economy :D (boots should be dirt cheap, brooms more costly)
         - add fountain stage (make it night/evening!)
         - add park stage
@@ -125,7 +124,6 @@ LEFT TO DO:
         - are you sure? (on level exit)
         - add interpolations to ui (gallery. gallery down panel missing interpolations on mode switch)
         - add playstation glyphs
-        - add credits to main menu
         - rework loading screen
         - add timer
     
@@ -139,7 +137,6 @@ LEFT TO DO:
 
         - retexture leaves
         - fix camera state transition disabling viewport (something's going fucky-wucky)
-		- update game palette to match the girl
         - beautify leafs. new texture, maybe random texture
         - add props by necessity
 		- remodel trees
@@ -187,6 +184,8 @@ LEFT TO DO:
     PAUSE MENU:
     
     MISC:
+        - GAME NAME AND LOGO IN TITLE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 		- Add cleanable surface tag so that we can't exactly clean lampposts etc
 	
         - add some sort of intro seq

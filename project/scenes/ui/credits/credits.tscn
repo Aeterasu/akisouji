@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://ny888yxasr8u"]
+
+[ext_resource type="Texture2D" uid="uid://c585bqlmijm63" path="res://assets/texture/ui/texture_ui_credits_splash.png" id="1_6nn83"]
+[ext_resource type="Script" path="res://scenes/ui/credits/credits.gd" id="1_trmkh"]
+[ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="3_gcx8m"]
+
+[node name="Credits" type="Control" node_paths=PackedStringArray("splash", "label")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_trmkh")
+font_size_1 = 34.02
+font_size_2 = 36.55
+font_color_1 = Color(0.450647, 0.450649, 0.450648, 1)
+splash = NodePath("TextureRect")
+label = NodePath("TextureRect/Label")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.854902)
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(640, 360)
+texture = ExtResource("1_6nn83")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="RichTextLabel" parent="TextureRect"]
+custom_minimum_size = Vector2(960, 360)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -190.0
+offset_right = 480.0
+offset_bottom = 170.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("3_gcx8m")
+bbcode_enabled = true
+scroll_active = false
