@@ -1,0 +1,210 @@
+[gd_scene load_steps=10 format=3 uid="uid://clbhy8rora05f"]
+
+[ext_resource type="PackedScene" uid="uid://8xryiyqywwk0" path="res://assets/mesh/level_design/mesh_fountain.blend" id="1_xjuuk"]
+[ext_resource type="Script" path="res://scenes/level/level.gd" id="2_mcqjm"]
+[ext_resource type="PackedScene" uid="uid://b83v1plx4lqpw" path="res://scenes/leaf/leaf_populator.tscn" id="3_atajh"]
+[ext_resource type="Texture2D" uid="uid://dqj56pye2mtt7" path="res://assets/texture/leaf_map/texture_leafmap_fountain_1.png" id="4_h57q1"]
+[ext_resource type="Texture2D" uid="uid://calp0mb2ip1sp" path="res://assets/texture/leaf_map/texture_leafmap_fountain_1_heightmap.png" id="5_tp8bi"]
+[ext_resource type="Material" uid="uid://cjtw4ylyq480t" path="res://resource/material/material_stone_pavement.tres" id="6_i44yf"]
+[ext_resource type="Material" uid="uid://c4kdvxtxf6qht" path="res://resource/material/material_grass_1.tres" id="7_e3bhq"]
+[ext_resource type="PackedScene" uid="uid://kpwwl8o1ui05" path="res://scenes/prop/street_light/prop_street_light_bright.tscn" id="8_4apcy"]
+[ext_resource type="Environment" uid="uid://2i6l3m3u6pj8" path="res://resource/environment_night_autumn.tres" id="8_jvlfx"]
+
+[node name="LevelFountain" node_paths=PackedStringArray("leaf_populator", "player_spawn_position") instance=ExtResource("1_xjuuk")]
+script = ExtResource("2_mcqjm")
+leaf_populator = NodePath("LeafPopulator")
+player_spawn_position = NodePath("Marker3D")
+
+[node name="LeafPopulator" parent="." index="0" instance=ExtResource("3_atajh")]
+leavesPerPixel = 64
+leafmap = ExtResource("4_h57q1")
+heightmap = ExtResource("5_tp8bi")
+
+[node name="Marker3D" type="Marker3D" parent="." index="1"]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 30, 2, 56)
+
+[node name="Pavement" parent="." index="4" groups=["Material-Concrete"]]
+surface_material_override/0 = ExtResource("6_i44yf")
+
+[node name="Grass" parent="." index="5" groups=["Material-Grass"]]
+surface_material_override/0 = ExtResource("7_e3bhq")
+
+[node name="Light" type="Node3D" parent="." index="8"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Light" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4, 30)
+light_color = Color(0.86, 0.609167, 0.43, 1)
+light_energy = 2.0
+shadow_enabled = true
+shadow_opacity = 0.65
+omni_range = 24.0
+omni_attenuation = 0.365
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="Light" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 53, 4, 30)
+light_color = Color(0.86, 0.609167, 0.43, 1)
+light_energy = 2.0
+shadow_opacity = 0.65
+omni_range = 16.0
+omni_attenuation = 0.365
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="Light" index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 4, 30)
+light_color = Color(0.86, 0.609167, 0.43, 1)
+light_energy = 2.0
+shadow_opacity = 0.65
+omni_range = 16.0
+omni_attenuation = 0.365
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="Light" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4, 53)
+light_color = Color(0.86, 0.609167, 0.43, 1)
+light_energy = 2.0
+shadow_opacity = 0.65
+omni_range = 16.0
+omni_attenuation = 0.365
+
+[node name="OmniLight3D5" type="OmniLight3D" parent="Light" index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 4, 7)
+light_color = Color(0.86, 0.609167, 0.43, 1)
+light_energy = 2.0
+shadow_opacity = 0.65
+omni_range = 16.0
+omni_attenuation = 0.365
+
+[node name="Prop" type="Node3D" parent="." index="9"]
+
+[node name="PropStreetLight" parent="Prop" index="0" instance=ExtResource("8_4apcy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 2)
+
+[node name="PropStreetLight2" parent="Prop" index="1" instance=ExtResource("8_4apcy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 6)
+
+[node name="PropStreetLight3" parent="Prop" index="2" instance=ExtResource("8_4apcy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 10)
+
+[node name="PropStreetLight4" parent="Prop" index="3" instance=ExtResource("8_4apcy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 14)
+
+[node name="PropStreetLight5" parent="Prop" index="4" instance=ExtResource("8_4apcy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 17.5)
+
+[node name="PropStreetLight6" parent="Prop" index="5" instance=ExtResource("8_4apcy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.5, 0, 15.5)
+
+[node name="PropStreetLight7" parent="Prop" index="6" instance=ExtResource("8_4apcy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.5, 0, 21)
+
+[node name="PropStreetLight8" parent="Prop" index="7" instance=ExtResource("8_4apcy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.5, 0, 25)
+
+[node name="PropStreetLight9" parent="Prop" index="8" instance=ExtResource("8_4apcy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 0, 25)
+
+[node name="PropStreetLight10" parent="Prop" index="9" instance=ExtResource("8_4apcy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, 25)
+
+[node name="PropStreetLight11" parent="Prop" index="10" instance=ExtResource("8_4apcy")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 25)
+
+[node name="PropStreetLight12" parent="Prop" index="11" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 58.2273, 0, 25.0909)
+
+[node name="PropStreetLight13" parent="Prop" index="12" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 54.2273, 0, 25.0909)
+
+[node name="PropStreetLight14" parent="Prop" index="13" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 50.2273, 0, 25.0909)
+
+[node name="PropStreetLight15" parent="Prop" index="14" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 46.2273, 0, 25.0909)
+
+[node name="PropStreetLight16" parent="Prop" index="15" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 42.7273, 0, 18.0909)
+
+[node name="PropStreetLight17" parent="Prop" index="16" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 44.7273, 0, 21.5909)
+
+[node name="PropStreetLight18" parent="Prop" index="17" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 39.2273, 0, 15.5909)
+
+[node name="PropStreetLight19" parent="Prop" index="18" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 35.2273, 0, 13.5909)
+
+[node name="PropStreetLight20" parent="Prop" index="19" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 35.2273, 0, 9.59091)
+
+[node name="PropStreetLight21" parent="Prop" index="20" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 35.2273, 0, 5.59091)
+
+[node name="PropStreetLight22" parent="Prop" index="21" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 35.2273, 0, 1.59091)
+
+[node name="PropStreetLight23" parent="Prop" index="22" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 35.1364, 0, 58.3182)
+
+[node name="PropStreetLight24" parent="Prop" index="23" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 35.1364, 0, 54.3182)
+
+[node name="PropStreetLight25" parent="Prop" index="24" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 35.1364, 0, 50.3182)
+
+[node name="PropStreetLight26" parent="Prop" index="25" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 35.1364, 0, 46.3182)
+
+[node name="PropStreetLight27" parent="Prop" index="26" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 42.1364, 0, 42.8182)
+
+[node name="PropStreetLight28" parent="Prop" index="27" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 38.6364, 0, 44.8182)
+
+[node name="PropStreetLight29" parent="Prop" index="28" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 44.6364, 0, 39.3182)
+
+[node name="PropStreetLight30" parent="Prop" index="29" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 46.6364, 0, 35.3182)
+
+[node name="PropStreetLight31" parent="Prop" index="30" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 50.6364, 0, 35.3182)
+
+[node name="PropStreetLight32" parent="Prop" index="31" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 54.6364, 0, 35.3182)
+
+[node name="PropStreetLight33" parent="Prop" index="32" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 58.6364, 0, 35.3182)
+
+[node name="PropStreetLight34" parent="Prop" index="33" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 1.9091, 0, 35.2273)
+
+[node name="PropStreetLight35" parent="Prop" index="34" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 5.9091, 0, 35.2273)
+
+[node name="PropStreetLight36" parent="Prop" index="35" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 9.9091, 0, 35.2273)
+
+[node name="PropStreetLight37" parent="Prop" index="36" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 13.9091, 0, 35.2273)
+
+[node name="PropStreetLight38" parent="Prop" index="37" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 17.4091, 0, 42.2273)
+
+[node name="PropStreetLight39" parent="Prop" index="38" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 15.4091, 0, 38.7273)
+
+[node name="PropStreetLight40" parent="Prop" index="39" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20.9091, 0, 44.7273)
+
+[node name="PropStreetLight41" parent="Prop" index="40" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.9091, 0, 46.7273)
+
+[node name="PropStreetLight42" parent="Prop" index="41" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.9091, 0, 50.7273)
+
+[node name="PropStreetLight43" parent="Prop" index="42" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.9091, 0, 54.7273)
+
+[node name="PropStreetLight44" parent="Prop" index="43" instance=ExtResource("8_4apcy")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 24.9091, 0, 58.7273)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="10"]
+environment = ExtResource("8_jvlfx")

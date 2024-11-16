@@ -95,7 +95,7 @@ LEFT TO DO:
         = cash based broom that uses cash to clean ?
         - level-specific leaf cleaning leeway
         - disabled leaf populator completely breaks the game, pls add safety checks
-        - add 'new upgrade notification'
+        - add 'new upgrade notification'. a little '!' should appear on the category
         - add completion UI, with our chara holding thumbs up! add a grade based on time. D, C, B, A, A+, S. Each grade has a cash bonus. info shown - grade, time, level name. grade is an enum where -1 means no grade, otherwise grade.
 		- save best grades and show them in stage select
         - during completion, you can move and look at the results of your work. the completion is initially just a text popup (Press blah to finish)
@@ -108,7 +108,7 @@ LEFT TO DO:
         - strong broom - slide. you hold rmb and accelerate in a selected direction,
         - feather duster - auto cleaning ?
         - vacuum - powerful aoe leaf blow! (4-5 radius)
-        - work on economy :D
+        - work on economy :D (boots should be dirt cheap, brooms more costly)
         - add fountain stage (make it night/evening!)
         - add park stage
         - add broom upgrades
@@ -178,7 +178,7 @@ LEFT TO DO:
         
     STAGE SELECT:
         - fix horizontal scaling
-        - add stage textures
+        - add stage textures (reshoot them with a freecam)
     
     GALLERY:
         - using keyboard blocks mouse buttons forever and ever - fix pls

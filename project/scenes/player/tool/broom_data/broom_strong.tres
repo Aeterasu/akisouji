@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_8duio")
-brooming_tickrate = 3
-cleaning_area = Vector2(0.5, 2)
+brooming_tickrate = 5
+cleaning_area = Vector2(0.8, 2.5)
 cleaning_range = 5.0

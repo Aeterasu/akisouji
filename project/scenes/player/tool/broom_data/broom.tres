@@ -5,4 +5,5 @@
 [resource]
 script = ExtResource("1_fmaxt")
 brooming_tickrate = 12
-cleaning_area = Vector2(0.8, 1)
+cleaning_area = Vector2(1, 1.2)
+cleaning_range = 3.0

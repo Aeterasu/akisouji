@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://dvlleqic8xnpl"]
+[gd_scene load_steps=42 format=3 uid="uid://dvlleqic8xnpl"]
 
 [ext_resource type="PackedScene" uid="uid://bqtapora2wl4e" path="res://assets/mesh/level_design/mesh_alleyway.blend" id="1_yq5x8"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="2_akrc7"]
@@ -30,6 +30,9 @@
 [ext_resource type="PackedScene" uid="uid://dfu5idnqbw6ta" path="res://scenes/prop/horizon/horizon_city.tscn" id="27_c2rv4"]
 [ext_resource type="Texture2D" uid="uid://d3qw3bxoa8tck" path="res://assets/texture/environment/texture_horizon_close_1.png" id="27_jy52j"]
 [ext_resource type="PackedScene" uid="uid://d1pkstxa0k3lv" path="res://scenes/prop/horizon/horizon_trees.tscn" id="28_mloy2"]
+[ext_resource type="Material" uid="uid://s3fb87n24665" path="res://resource/clouds.tres" id="31_ue3y8"]
+[ext_resource type="Script" path="res://scenes/fx/clouds/clouds.gd" id="32_obmh3"]
+[ext_resource type="Texture2D" uid="uid://b72wywy3dchn" path="res://assets/texture/leaf/tile.png" id="33_u66on"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qdx78"]
 size = Vector3(1, 16, 105)
@@ -59,16 +62,32 @@ transparency = 1
 specular_mode = 2
 albedo_texture = ExtResource("27_jy52j")
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_lxrjr"]
+material = ExtResource("31_ue3y8")
+size = Vector2(4096, 4096)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7qt0g"]
+transparency = 1
+specular_mode = 2
+albedo_texture = ExtResource("33_u66on")
+metallic_specular = 0.16
+roughness = 0.91
+uv1_scale = Vector3(-0.7, -0.7, -0.7)
+uv1_triplanar = true
+
 [node name="LevelAlleyway" node_paths=PackedStringArray("leaf_populator", "player_spawn_position") instance=ExtResource("1_yq5x8")]
 script = ExtResource("2_akrc7")
 leaf_populator = NodePath("LeafPopulator")
 player_spawn_position = NodePath("PlayerSpawnPosition")
 
-[node name="LeafPopulator" parent="." index="0" instance=ExtResource("3_c46s6")]
+[node name="LeafPopulator" type="LeafPopulator" parent="." index="0" instance=ExtResource("3_c46s6")]
 leavesPerPixel = 3
 pixelFraction = 6.84
 leafmap = ExtResource("4_5sgs6")
 heightmap = ExtResource("5_sqrfh")
+nodePathMultimeshInstance = NodePath("MultiMeshInstance3D")
+leafColors = Array[Color]([Color(0.831373, 0.254902, 0.215686, 1), Color(0.831373, 0.678431, 0.32549, 1), Color(0.988235, 0.45098, 0.137255, 1), Color(0.941176, 0.647059, 0.235294, 1), Color(0.65098, 0.301961, 0.196078, 1), Color(0.941176, 0.647059, 0.235294, 1), Color(0.831373, 0.254902, 0.215686, 1), Color(0.988235, 0.45098, 0.137255, 1), Color(0.701239, 0.736999, 0.269074, 1), Color(0.701961, 0.737255, 0.270588, 1)])
+nodePathLeafCleaningHandler = NodePath("LeafCleaningHandler")
 
 [node name="Pavement" parent="." index="1"]
 transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 13, 0, 0)
@@ -169,10 +188,10 @@ surface_material_override/0 = ExtResource("25_y88bx")
 [node name="Fence_006" parent="." index="24"]
 surface_material_override/0 = ExtResource("25_y88bx")
 
-[node name="CityHorizon" parent="." index="25" instance=ExtResource("27_c2rv4")]
+[node name="CityHorizon" type="Node3D" parent="." index="25" instance=ExtResource("27_c2rv4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)
 
-[node name="Horizon" parent="." index="26" instance=ExtResource("28_mloy2")]
+[node name="Horizon" type="Node3D" parent="." index="26" instance=ExtResource("28_mloy2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -18.665, 0)
 
 [node name="Plains" parent="." index="28"]
@@ -203,1332 +222,1332 @@ surface_material_override/0 = SubResource("StandardMaterial3D_4r2f4")
 
 [node name="Foliage" type="Node3D" parent="." index="30"]
 
-[node name="Tree19" parent="Foliage" index="0" instance=ExtResource("19_lbj05")]
+[node name="Tree19" type="Node3D" parent="Foliage" index="0" instance=ExtResource("19_lbj05")]
 transform = Transform3D(0.929699, 0, 0.368319, 0, 1, 0, -0.368319, 0, 0.929699, 3.5, 0.101914, 40.9871)
 
-[node name="Tree20" parent="Foliage" index="1" instance=ExtResource("19_lbj05")]
+[node name="Tree20" type="Node3D" parent="Foliage" index="1" instance=ExtResource("19_lbj05")]
 transform = Transform3D(1.07068, 0, -0.311225, 0, 1.115, 0, 0.311225, 0, 1.07068, 6.44722, 0.101914, 82.9768)
 
-[node name="Tree8" parent="Foliage" index="2" instance=ExtResource("19_lbj05")]
+[node name="Tree8" type="Node3D" parent="Foliage" index="2" instance=ExtResource("19_lbj05")]
 transform = Transform3D(-0.584844, 0, -0.811146, 0, 1, 0, 0.811146, 0, -0.584844, 21, 0.101914, 10.0598)
 
-[node name="Tree9" parent="Foliage" index="3" instance=ExtResource("19_lbj05")]
+[node name="Tree9" type="Node3D" parent="Foliage" index="3" instance=ExtResource("19_lbj05")]
 transform = Transform3D(-0.584844, 0, -0.811146, 0, 1, 0, 0.811146, 0, -0.584844, 21, 0.101914, 35.0598)
 
-[node name="Tree21" parent="Foliage" index="4" instance=ExtResource("19_lbj05")]
+[node name="Tree21" type="Node3D" parent="Foliage" index="4" instance=ExtResource("19_lbj05")]
 transform = Transform3D(-0.293402, 0, -1.13778, 0, 1.175, 0, 1.13778, 0, -0.293402, 19.5235, 0.101914, 20.8169)
 
-[node name="Tree10" parent="Foliage" index="5" instance=ExtResource("19_lbj05")]
+[node name="Tree10" type="Node3D" parent="Foliage" index="5" instance=ExtResource("19_lbj05")]
 transform = Transform3D(0.339378, 0, -0.94065, 0, 1, 0, 0.94065, 0, 0.339378, 23.8259, 0.101914, 59.7348)
 
-[node name="Tree11" parent="Foliage" index="6" instance=ExtResource("19_lbj05")]
+[node name="Tree11" type="Node3D" parent="Foliage" index="6" instance=ExtResource("19_lbj05")]
 transform = Transform3D(-0.530348, 0, -0.84778, 0, 1, 0, 0.84778, 0, -0.530348, 21.2967, 0.101914, 83.4422)
 
-[node name="Tree5" parent="Foliage" index="7" instance=ExtResource("20_um7vi")]
+[node name="Tree5" type="Node3D" parent="Foliage" index="7" instance=ExtResource("20_um7vi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 11)
 
-[node name="Tree12" parent="Foliage" index="8" instance=ExtResource("20_um7vi")]
+[node name="Tree12" type="Node3D" parent="Foliage" index="8" instance=ExtResource("20_um7vi")]
 transform = Transform3D(0.824719, 0, 0.565543, 0, 1, 0, -0.565543, 0, 0.824719, 23.6859, 0, 45)
 
-[node name="Tree13" parent="Foliage" index="9" instance=ExtResource("20_um7vi")]
+[node name="Tree13" type="Node3D" parent="Foliage" index="9" instance=ExtResource("20_um7vi")]
 transform = Transform3D(0.952921, 0, -0.303218, 0, 1, 0, 0.303218, 0, 0.952921, 21.7082, 0, 71.9938)
 
-[node name="Tree14" parent="Foliage" index="10" instance=ExtResource("20_um7vi")]
+[node name="Tree14" type="Node3D" parent="Foliage" index="10" instance=ExtResource("20_um7vi")]
 transform = Transform3D(0.95436, 0, 0.298658, 0, 1, 0, -0.298658, 0, 0.95436, 22.6638, 0, 96.8367)
 
-[node name="Tree15" parent="Foliage" index="11" instance=ExtResource("20_um7vi")]
+[node name="Tree15" type="Node3D" parent="Foliage" index="11" instance=ExtResource("20_um7vi")]
 transform = Transform3D(0.730086, 0, 0.228473, 0, 0.765, 0, -0.228473, 0, 0.730086, 3.13638, 0, 97.916)
 
-[node name="Tree16" parent="Foliage" index="12" instance=ExtResource("20_um7vi")]
+[node name="Tree16" type="Node3D" parent="Foliage" index="12" instance=ExtResource("20_um7vi")]
 transform = Transform3D(1.02376, 0, -0.359359, 0, 1.085, 0, 0.359359, 0, 1.02376, 6.12491, 0, 71.7227)
 
-[node name="Tree17" parent="Foliage" index="13" instance=ExtResource("20_um7vi")]
+[node name="Tree17" type="Node3D" parent="Foliage" index="13" instance=ExtResource("20_um7vi")]
 transform = Transform3D(0.913815, 0, 0.406131, 0, 1, 0, -0.406131, 0, 0.913815, 1.74921, 0, 52.2227)
 
-[node name="Tree18" parent="Foliage" index="14" instance=ExtResource("20_um7vi")]
+[node name="Tree18" type="Node3D" parent="Foliage" index="14" instance=ExtResource("20_um7vi")]
 transform = Transform3D(0.996534, 0, 0.0831908, 0, 1, 0, -0.0831908, 0, 0.996534, 3.65031, 0, 29.3871)
 
-[node name="DistantTree1" parent="Foliage" index="15" instance=ExtResource("20_42j3l")]
+[node name="DistantTree1" type="Node3D" parent="Foliage" index="15" instance=ExtResource("20_42j3l")]
 transform = Transform3D(1.82624, 0, -0.295557, 0, 1.85, 0, 0.295557, 0, 1.82624, -10.3473, 0, 8.03863)
 
-[node name="DistantTree33" parent="Foliage" index="16" instance=ExtResource("20_42j3l")]
+[node name="DistantTree33" type="Node3D" parent="Foliage" index="16" instance=ExtResource("20_42j3l")]
 transform = Transform3D(1.82624, 0, -0.295557, 0, 1.85, 0, 0.295557, 0, 1.82624, -10.3473, 0, -25.7409)
 
-[node name="DistantTree34" parent="Foliage" index="17" instance=ExtResource("20_42j3l")]
+[node name="DistantTree34" type="Node3D" parent="Foliage" index="17" instance=ExtResource("20_42j3l")]
 transform = Transform3D(1.77949, 0, 0.505893, 0, 1.85, 0, -0.505893, 0, 1.77949, 6.46889, 0, -25.7409)
 
-[node name="DistantTree35" parent="Foliage" index="18" instance=ExtResource("20_42j3l")]
+[node name="DistantTree35" type="Node3D" parent="Foliage" index="18" instance=ExtResource("20_42j3l")]
 transform = Transform3D(1.83492, 0, -0.235742, 0, 1.85, 0, 0.235742, 0, 1.83492, 29.7721, 0, -25.7409)
 
-[node name="DistantTree36" parent="Foliage" index="19" instance=ExtResource("20_42j3l")]
+[node name="DistantTree36" type="Node3D" parent="Foliage" index="19" instance=ExtResource("20_42j3l")]
 transform = Transform3D(1.81867, 0, 0.33904, 0, 1.85, 0, -0.33904, 0, 1.81867, 45.5457, 0, -25.7409)
 
-[node name="DistantTree37" parent="Foliage" index="20" instance=ExtResource("20_42j3l")]
+[node name="DistantTree37" type="Node3D" parent="Foliage" index="20" instance=ExtResource("20_42j3l")]
 transform = Transform3D(1.81867, 0, 0.33904, 0, 1.85, 0, -0.33904, 0, 1.81867, 77.4937, 0, -25.7409)
 
-[node name="DistantTree38" parent="Foliage" index="21" instance=ExtResource("20_42j3l")]
+[node name="DistantTree38" type="Node3D" parent="Foliage" index="21" instance=ExtResource("20_42j3l")]
 transform = Transform3D(1.55735, 0, -0.998575, 0, 1.85, 0, 0.998575, 0, 1.55735, 95.3307, 0, -25.7409)
 
-[node name="DistantTree57" parent="Foliage" index="22" instance=ExtResource("20_42j3l")]
+[node name="DistantTree57" type="Node3D" parent="Foliage" index="22" instance=ExtResource("20_42j3l")]
 transform = Transform3D(1.55735, 0, -0.998575, 0, 1.85, 0, 0.998575, 0, 1.55735, 103.831, 0, -25.7409)
 
-[node name="DistantTree58" parent="Foliage" index="23" instance=ExtResource("20_42j3l")]
+[node name="DistantTree58" type="Node3D" parent="Foliage" index="23" instance=ExtResource("20_42j3l")]
 transform = Transform3D(1.24584, 0, -1.36762, 0, 1.85, 0, 1.36762, 0, 1.24584, 135.331, 0, -27.2409)
 
-[node name="DistantTree59" parent="Foliage" index="24" instance=ExtResource("20_42j3l")]
+[node name="DistantTree59" type="Node3D" parent="Foliage" index="24" instance=ExtResource("20_42j3l")]
 transform = Transform3D(0.395116, 0, -1.80731, 0, 1.85, 0, 1.80731, 0, 0.395116, 145.831, 0, -25.7409)
 
-[node name="DistantTree39" parent="Foliage" index="25" instance=ExtResource("20_42j3l")]
+[node name="DistantTree39" type="Node3D" parent="Foliage" index="25" instance=ExtResource("20_42j3l")]
 transform = Transform3D(1.74737, 0, -0.60761, 0, 1.85, 0, 0.60761, 0, 1.74737, -32.7881, 0, -25.7409)
 
-[node name="DistantTree40" parent="Foliage" index="26" instance=ExtResource("20_42j3l")]
+[node name="DistantTree40" type="Node3D" parent="Foliage" index="26" instance=ExtResource("20_42j3l")]
 transform = Transform3D(1.84701, 0, 0.105075, 0, 1.85, 0, -0.105075, 0, 1.84701, -62.6028, 0, -25.7409)
 
-[node name="DistantTree50" parent="Foliage" index="27" instance=ExtResource("20_42j3l")]
+[node name="DistantTree50" type="Node3D" parent="Foliage" index="27" instance=ExtResource("20_42j3l")]
 transform = Transform3D(1.84701, 0, 0.105075, 0, 1.85, 0, -0.105075, 0, 1.84701, -75.6028, 0, -25.7409)
 
-[node name="DistantTree51" parent="Foliage" index="28" instance=ExtResource("20_42j3l")]
+[node name="DistantTree51" type="Node3D" parent="Foliage" index="28" instance=ExtResource("20_42j3l")]
 transform = Transform3D(1.54702, 0, 1.0145, 0, 1.85, 0, -1.0145, 0, 1.54702, -96.6028, 0, -25.7409)
 
-[node name="DistantTree52" parent="Foliage" index="29" instance=ExtResource("20_42j3l")]
+[node name="DistantTree52" type="Node3D" parent="Foliage" index="29" instance=ExtResource("20_42j3l")]
 transform = Transform3D(1.6521, 0, -0.832509, 0, 1.85, 0, 0.832509, 0, 1.6521, -119.603, 0, -25.7409)
 
-[node name="DistantTree41" parent="Foliage" index="30" instance=ExtResource("21_iipbe")]
+[node name="DistantTree41" type="Node3D" parent="Foliage" index="30" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.81831, 0, 0.574777, 0, 1, 0, -0.574777, 0, 0.81831, -48.3039, 0, -26.95)
 
-[node name="DistantTree53" parent="Foliage" index="31" instance=ExtResource("21_iipbe")]
+[node name="DistantTree53" type="Node3D" parent="Foliage" index="31" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.421289, 0, 0.906926, 0, 1, 0, -0.906926, 0, 0.421289, -85.3039, 0, -26.95)
 
-[node name="DistantTree54" parent="Foliage" index="32" instance=ExtResource("21_iipbe")]
+[node name="DistantTree54" type="Node3D" parent="Foliage" index="32" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.81831, 0, 0.574777, 0, 1, 0, -0.574777, 0, 0.81831, -107.804, 0, -26.95)
 
-[node name="DistantTree55" parent="Foliage" index="33" instance=ExtResource("21_iipbe")]
+[node name="DistantTree55" type="Node3D" parent="Foliage" index="33" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.81831, 0, 0.574777, 0, 1, 0, -0.574777, 0, 0.81831, -128.304, 0, -26.95)
 
-[node name="DistantTree42" parent="Foliage" index="34" instance=ExtResource("21_iipbe")]
+[node name="DistantTree42" type="Node3D" parent="Foliage" index="34" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.996092, 0, 0.0883206, 0, 1, 0, -0.0883206, 0, 0.996092, -20.7265, 0, -26.95)
 
-[node name="DistantTree43" parent="Foliage" index="35" instance=ExtResource("21_iipbe")]
+[node name="DistantTree43" type="Node3D" parent="Foliage" index="35" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.996092, 0, 0.0883206, 0, 1, 0, -0.0883206, 0, 0.996092, -3.25685, 0, -26.95)
 
-[node name="DistantTree44" parent="Foliage" index="36" instance=ExtResource("21_iipbe")]
+[node name="DistantTree44" type="Node3D" parent="Foliage" index="36" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.837185, 0, 0.54692, 0, 1, 0, -0.54692, 0, 0.837185, 17.0938, 0, -26.95)
 
-[node name="DistantTree45" parent="Foliage" index="37" instance=ExtResource("21_iipbe")]
+[node name="DistantTree45" type="Node3D" parent="Foliage" index="37" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.837185, 0, 0.54692, 0, 1, 0, -0.54692, 0, 0.837185, 36.318, 0, -26.95)
 
-[node name="DistantTree46" parent="Foliage" index="38" instance=ExtResource("21_iipbe")]
+[node name="DistantTree46" type="Node3D" parent="Foliage" index="38" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.954376, 0, -0.298608, 0, 1, 0, 0.298608, 0, 0.954376, 57.7893, 0, -26.95)
 
-[node name="DistantTree47" parent="Foliage" index="39" instance=ExtResource("21_iipbe")]
+[node name="DistantTree47" type="Node3D" parent="Foliage" index="39" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.989838, 0, 0.142197, 0, 1, 0, -0.142197, 0, 0.989838, 66.8235, 0, -26.95)
 
-[node name="DistantTree48" parent="Foliage" index="40" instance=ExtResource("21_iipbe")]
+[node name="DistantTree48" type="Node3D" parent="Foliage" index="40" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.962635, 0, -0.270802, 0, 1, 0, 0.270802, 0, 0.962635, 111.823, 0, -26.95)
 
-[node name="DistantTree56" parent="Foliage" index="41" instance=ExtResource("21_iipbe")]
+[node name="DistantTree56" type="Node3D" parent="Foliage" index="41" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.969067, 0, 0.246796, 0, 1, 0, -0.246796, 0, 0.969067, 125.323, 0, -26.95)
 
-[node name="DistantTree60" parent="Foliage" index="42" instance=ExtResource("21_iipbe")]
+[node name="DistantTree60" type="Node3D" parent="Foliage" index="42" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.969067, 0, 0.246796, 0, 1, 0, -0.246796, 0, 0.969067, 150.323, 0, -24.95)
 
-[node name="DistantTree49" parent="Foliage" index="43" instance=ExtResource("21_iipbe")]
+[node name="DistantTree49" type="Node3D" parent="Foliage" index="43" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.962635, 0, -0.270802, 0, 1, 0, 0.270802, 0, 0.962635, 86.8235, 0, -26.95)
 
-[node name="DistantTree61" parent="Foliage" index="44" instance=ExtResource("20_42j3l")]
+[node name="DistantTree61" type="Node3D" parent="Foliage" index="44" instance=ExtResource("20_42j3l")]
 transform = Transform3D(-1.6521, 0, 0.832509, 0, 1.85, 0, -0.832509, 0, -1.6521, 138.138, 0, 129.269)
 
-[node name="DistantTree62" parent="Foliage" index="45" instance=ExtResource("21_iipbe")]
+[node name="DistantTree62" type="Node3D" parent="Foliage" index="45" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.81831, 0, -0.574777, 0, 1, 0, 0.574777, 0, -0.81831, 66.8395, 0, 130.478)
 
-[node name="DistantTree63" parent="Foliage" index="46" instance=ExtResource("21_iipbe")]
+[node name="DistantTree63" type="Node3D" parent="Foliage" index="46" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.421289, 0, -0.906926, 0, 1, 0, 0.906926, 0, -0.421289, 103.84, 0, 130.478)
 
-[node name="DistantTree64" parent="Foliage" index="47" instance=ExtResource("21_iipbe")]
+[node name="DistantTree64" type="Node3D" parent="Foliage" index="47" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.81831, 0, -0.574777, 0, 1, 0, 0.574777, 0, -0.81831, 126.34, 0, 130.478)
 
-[node name="DistantTree65" parent="Foliage" index="48" instance=ExtResource("21_iipbe")]
+[node name="DistantTree65" type="Node3D" parent="Foliage" index="48" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.81831, 0, -0.574777, 0, 1, 0, 0.574777, 0, -0.81831, 146.84, 0, 130.478)
 
-[node name="DistantTree66" parent="Foliage" index="49" instance=ExtResource("21_iipbe")]
+[node name="DistantTree66" type="Node3D" parent="Foliage" index="49" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.996092, 0, -0.0883207, 0, 1, 0, 0.0883207, 0, -0.996092, 39.262, 0, 130.478)
 
-[node name="DistantTree67" parent="Foliage" index="50" instance=ExtResource("21_iipbe")]
+[node name="DistantTree67" type="Node3D" parent="Foliage" index="50" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.996092, 0, -0.0883207, 0, 1, 0, 0.0883207, 0, -0.996092, 21.7924, 0, 130.478)
 
-[node name="DistantTree68" parent="Foliage" index="51" instance=ExtResource("21_iipbe")]
+[node name="DistantTree68" type="Node3D" parent="Foliage" index="51" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.837185, 0, -0.546921, 0, 1, 0, 0.546921, 0, -0.837185, 1.44176, 0, 130.478)
 
-[node name="DistantTree69" parent="Foliage" index="52" instance=ExtResource("21_iipbe")]
+[node name="DistantTree69" type="Node3D" parent="Foliage" index="52" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.837185, 0, -0.546921, 0, 1, 0, 0.546921, 0, -0.837185, -17.7824, 0, 130.478)
 
-[node name="DistantTree70" parent="Foliage" index="53" instance=ExtResource("21_iipbe")]
+[node name="DistantTree70" type="Node3D" parent="Foliage" index="53" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.954376, 0, 0.298608, 0, 1, 0, -0.298608, 0, -0.954376, -39.2537, 0, 130.478)
 
-[node name="DistantTree71" parent="Foliage" index="54" instance=ExtResource("21_iipbe")]
+[node name="DistantTree71" type="Node3D" parent="Foliage" index="54" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.989838, 0, -0.142197, 0, 1, 0, 0.142197, 0, -0.989838, -48.2879, 0, 130.478)
 
-[node name="DistantTree72" parent="Foliage" index="55" instance=ExtResource("21_iipbe")]
+[node name="DistantTree72" type="Node3D" parent="Foliage" index="55" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.962635, 0, 0.270802, 0, 1, 0, -0.270802, 0, -0.962635, -93.2879, 0, 130.478)
 
-[node name="DistantTree73" parent="Foliage" index="56" instance=ExtResource("21_iipbe")]
+[node name="DistantTree73" type="Node3D" parent="Foliage" index="56" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.969067, 0, -0.246796, 0, 1, 0, 0.246796, 0, -0.969067, -106.788, 0, 130.478)
 
-[node name="DistantTree74" parent="Foliage" index="57" instance=ExtResource("21_iipbe")]
+[node name="DistantTree74" type="Node3D" parent="Foliage" index="57" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.969067, 0, -0.246796, 0, 1, 0, 0.246796, 0, -0.969067, -131.788, 0, 128.478)
 
-[node name="DistantTree75" parent="Foliage" index="58" instance=ExtResource("21_iipbe")]
+[node name="DistantTree75" type="Node3D" parent="Foliage" index="58" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.962635, 0, 0.270802, 0, 1, 0, -0.270802, 0, -0.962635, -68.2879, 0, 130.478)
 
-[node name="DistantTree2" parent="Foliage" index="59" instance=ExtResource("20_42j3l")]
+[node name="DistantTree2" type="Node3D" parent="Foliage" index="59" instance=ExtResource("20_42j3l")]
 transform = Transform3D(1.52774, 0, 1.04332, 0, 1.85, 0, -1.04332, 0, 1.52774, -19.6579, 0, 31.9326)
 
-[node name="DistantTree3" parent="Foliage" index="60" instance=ExtResource("20_42j3l")]
+[node name="DistantTree3" type="Node3D" parent="Foliage" index="60" instance=ExtResource("20_42j3l")]
 transform = Transform3D(1.76302, 0, -0.560584, 0, 1.85, 0, 0.560584, 0, 1.76302, -13.3621, 0, 54.9138)
 
-[node name="DistantTree4" parent="Foliage" index="61" instance=ExtResource("20_42j3l")]
+[node name="DistantTree4" type="Node3D" parent="Foliage" index="61" instance=ExtResource("20_42j3l")]
 transform = Transform3D(1.78612, 0, 0.481933, 0, 1.85, 0, -0.481933, 0, 1.78612, -25.0021, 0, 67.3863)
 
-[node name="DistantTree5" parent="Foliage" index="62" instance=ExtResource("20_42j3l")]
+[node name="DistantTree5" type="Node3D" parent="Foliage" index="62" instance=ExtResource("20_42j3l")]
 transform = Transform3D(1.69948, 0, -0.730929, 0, 1.85, 0, 0.730929, 0, 1.69948, -11.9939, 0, 83.2671)
 
-[node name="DistantTree6" parent="Foliage" index="63" instance=ExtResource("20_42j3l")]
+[node name="DistantTree6" type="Node3D" parent="Foliage" index="63" instance=ExtResource("20_42j3l")]
 transform = Transform3D(1.84672, 0, 0.110103, 0, 1.85, 0, -0.110103, 0, 1.84672, -29.7994, 0, 96.6926)
 
-[node name="DistantTree7" parent="Foliage" index="64" instance=ExtResource("21_iipbe")]
+[node name="DistantTree7" type="Node3D" parent="Foliage" index="64" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.803763, 0, 0.594949, 0, 1, 0, -0.594949, 0, 0.803763, -11.6909, 0, 40.2113)
 
-[node name="DistantTree8" parent="Foliage" index="65" instance=ExtResource("21_iipbe")]
+[node name="DistantTree8" type="Node3D" parent="Foliage" index="65" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.863888, 0, -0.503684, 0, 1, 0, 0.503684, 0, 0.863888, -26.0336, 0, 55.2926)
 
-[node name="DistantTree9" parent="Foliage" index="66" instance=ExtResource("21_iipbe")]
+[node name="DistantTree9" type="Node3D" parent="Foliage" index="66" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.989417, 0, 0.145099, 0, 1, 0, -0.145099, 0, 0.989417, -16.8493, 0, 72.4705)
 
-[node name="DistantTree10" parent="Foliage" index="67" instance=ExtResource("21_iipbe")]
+[node name="DistantTree10" type="Node3D" parent="Foliage" index="67" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.955896, 0, -0.293707, 0, 1, 0, 0.293707, 0, 0.955896, -21.1619, 0, 93.7786)
 
-[node name="DistantTree11" parent="Foliage" index="68" instance=ExtResource("21_iipbe")]
+[node name="DistantTree11" type="Node3D" parent="Foliage" index="68" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.941164, 0, 0.33795, 0, 1, 0, -0.33795, 0, 0.941164, -29.5867, 0, 14.9488)
 
-[node name="DistantTree12" parent="Foliage" index="69" instance=ExtResource("21_iipbe")]
+[node name="DistantTree12" type="Node3D" parent="Foliage" index="69" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.710579, 0, 0.255152, 0, 0.755, 0, -0.255152, 0, 0.710579, -39.4951, 0, 24.5726)
 
-[node name="DistantTree13" parent="Foliage" index="70" instance=ExtResource("21_iipbe")]
+[node name="DistantTree13" type="Node3D" parent="Foliage" index="70" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.684274, 0, -0.319053, 0, 0.755, 0, 0.319053, 0, 0.684274, -39.4951, 0, 45.0729)
 
-[node name="DistantTree14" parent="Foliage" index="71" instance=ExtResource("21_iipbe")]
+[node name="DistantTree14" type="Node3D" parent="Foliage" index="71" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.748882, 0, 0.0959207, 0, 0.755, 0, -0.0959207, 0, 0.748882, -39.4951, 0, 62.5591)
 
-[node name="DistantTree15" parent="Foliage" index="72" instance=ExtResource("21_iipbe")]
+[node name="DistantTree15" type="Node3D" parent="Foliage" index="72" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.686566, 0, -0.314088, 0, 0.755, 0, 0.314088, 0, 0.686566, -39.4951, 0, 77.7215)
 
-[node name="DistantTree16" parent="Foliage" index="73" instance=ExtResource("21_iipbe")]
+[node name="DistantTree16" type="Node3D" parent="Foliage" index="73" instance=ExtResource("21_iipbe")]
 transform = Transform3D(0.750292, 0, 0.0841852, 0, 0.755, 0, -0.0841852, 0, 0.750292, -39.4951, 0, 91.2134)
 
-[node name="VeryDistantTree1" parent="Foliage" index="74" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree1" type="Node3D" parent="Foliage" index="74" instance=ExtResource("22_em0fu")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -49, 0, 10)
 
-[node name="VeryDistantTree2" parent="Foliage" index="75" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree2" type="Node3D" parent="Foliage" index="75" instance=ExtResource("22_em0fu")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -49, 0, 24)
 
-[node name="VeryDistantTree3" parent="Foliage" index="76" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree3" type="Node3D" parent="Foliage" index="76" instance=ExtResource("22_em0fu")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -49, 0, 43.5)
 
-[node name="VeryDistantTree4" parent="Foliage" index="77" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree4" type="Node3D" parent="Foliage" index="77" instance=ExtResource("22_em0fu")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -49, 0, 60.5)
 
-[node name="VeryDistantTree5" parent="Foliage" index="78" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree5" type="Node3D" parent="Foliage" index="78" instance=ExtResource("22_em0fu")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -55.781, 0, 78)
 
-[node name="VeryDistantTree7" parent="Foliage" index="79" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree7" type="Node3D" parent="Foliage" index="79" instance=ExtResource("22_em0fu")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -40.9129, 0, 72.1067)
 
-[node name="VeryDistantTree8" parent="Foliage" index="80" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree8" type="Node3D" parent="Foliage" index="80" instance=ExtResource("22_em0fu")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -40.9129, 0, 53.1198)
 
-[node name="VeryDistantTree9" parent="Foliage" index="81" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree9" type="Node3D" parent="Foliage" index="81" instance=ExtResource("22_em0fu")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -55.9606, 0, 32.8347)
 
-[node name="VeryDistantTree10" parent="Foliage" index="82" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree10" type="Node3D" parent="Foliage" index="82" instance=ExtResource("22_em0fu")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -71.3905, 0, 16.9382)
 
-[node name="VeryDistantTree11" parent="Foliage" index="83" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree11" type="Node3D" parent="Foliage" index="83" instance=ExtResource("22_em0fu")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -85.0309, 0, 46.0885)
 
-[node name="VeryDistantTree12" parent="Foliage" index="84" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree12" type="Node3D" parent="Foliage" index="84" instance=ExtResource("22_em0fu")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -69.4975, 0, 74.06)
 
-[node name="VeryDistantTree13" parent="Foliage" index="85" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree13" type="Node3D" parent="Foliage" index="85" instance=ExtResource("22_em0fu")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -69.4975, 0, 58.7269)
 
-[node name="VeryDistantTree14" parent="Foliage" index="86" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree14" type="Node3D" parent="Foliage" index="86" instance=ExtResource("22_em0fu")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -81.9554, 0, 91.7269)
 
-[node name="VeryDistantTree6" parent="Foliage" index="87" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree6" type="Node3D" parent="Foliage" index="87" instance=ExtResource("22_em0fu")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -49, 0, 93)
 
-[node name="DistantTree17" parent="Foliage" index="88" instance=ExtResource("20_42j3l")]
+[node name="DistantTree17" type="Node3D" parent="Foliage" index="88" instance=ExtResource("20_42j3l")]
 transform = Transform3D(-1.82624, 0, 0.295557, 0, 1.85, 0, -0.295557, 0, -1.82624, 31.5333, 0, 96.6707)
 
-[node name="DistantTree18" parent="Foliage" index="89" instance=ExtResource("20_42j3l")]
+[node name="DistantTree18" type="Node3D" parent="Foliage" index="89" instance=ExtResource("20_42j3l")]
 transform = Transform3D(-1.52774, 0, -1.04332, 0, 1.85, 0, 1.04332, 0, -1.52774, 40.8439, 0, 72.7768)
 
-[node name="DistantTree19" parent="Foliage" index="90" instance=ExtResource("20_42j3l")]
+[node name="DistantTree19" type="Node3D" parent="Foliage" index="90" instance=ExtResource("20_42j3l")]
 transform = Transform3D(-1.76302, 0, 0.560584, 0, 1.85, 0, -0.560584, 0, -1.76302, 34.5481, 0, 49.7956)
 
-[node name="DistantTree20" parent="Foliage" index="91" instance=ExtResource("20_42j3l")]
+[node name="DistantTree20" type="Node3D" parent="Foliage" index="91" instance=ExtResource("20_42j3l")]
 transform = Transform3D(-1.78612, 0, -0.481933, 0, 1.85, 0, 0.481933, 0, -1.78612, 46.1881, 0, 37.323)
 
-[node name="DistantTree21" parent="Foliage" index="92" instance=ExtResource("20_42j3l")]
+[node name="DistantTree21" type="Node3D" parent="Foliage" index="92" instance=ExtResource("20_42j3l")]
 transform = Transform3D(-1.69948, 0, 0.730929, 0, 1.85, 0, -0.730929, 0, -1.69948, 33.18, 0, 21.4423)
 
-[node name="DistantTree22" parent="Foliage" index="93" instance=ExtResource("20_42j3l")]
+[node name="DistantTree22" type="Node3D" parent="Foliage" index="93" instance=ExtResource("20_42j3l")]
 transform = Transform3D(-1.84672, 0, -0.110104, 0, 1.85, 0, 0.110104, 0, -1.84672, 50.9854, 0, 8.01671)
 
-[node name="DistantTree23" parent="Foliage" index="94" instance=ExtResource("21_iipbe")]
+[node name="DistantTree23" type="Node3D" parent="Foliage" index="94" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.803763, 0, -0.594949, 0, 1, 0, 0.594949, 0, -0.803763, 32.877, 0, 64.4981)
 
-[node name="DistantTree24" parent="Foliage" index="95" instance=ExtResource("21_iipbe")]
+[node name="DistantTree24" type="Node3D" parent="Foliage" index="95" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.863888, 0, 0.503684, 0, 1, 0, -0.503684, 0, -0.863888, 47.2196, 0, 49.4167)
 
-[node name="DistantTree25" parent="Foliage" index="96" instance=ExtResource("21_iipbe")]
+[node name="DistantTree25" type="Node3D" parent="Foliage" index="96" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.989417, 0, -0.145099, 0, 1, 0, 0.145099, 0, -0.989417, 38.0353, 0, 32.2388)
 
-[node name="DistantTree26" parent="Foliage" index="97" instance=ExtResource("21_iipbe")]
+[node name="DistantTree26" type="Node3D" parent="Foliage" index="97" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.955896, 0, 0.293707, 0, 1, 0, -0.293707, 0, -0.955896, 42.348, 0, 10.9307)
 
-[node name="DistantTree27" parent="Foliage" index="98" instance=ExtResource("21_iipbe")]
+[node name="DistantTree27" type="Node3D" parent="Foliage" index="98" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.941164, 0, -0.33795, 0, 1, 0, 0.33795, 0, -0.941164, 50.7728, 0, 89.7605)
 
-[node name="DistantTree28" parent="Foliage" index="99" instance=ExtResource("21_iipbe")]
+[node name="DistantTree28" type="Node3D" parent="Foliage" index="99" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.710579, 0, -0.255152, 0, 0.755, 0, 0.255152, 0, -0.710579, 60.6812, 0, 80.1367)
 
-[node name="DistantTree29" parent="Foliage" index="100" instance=ExtResource("21_iipbe")]
+[node name="DistantTree29" type="Node3D" parent="Foliage" index="100" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.684274, 0, 0.319053, 0, 0.755, 0, -0.319053, 0, -0.684274, 60.6812, 0, 59.6364)
 
-[node name="DistantTree30" parent="Foliage" index="101" instance=ExtResource("21_iipbe")]
+[node name="DistantTree30" type="Node3D" parent="Foliage" index="101" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.748882, 0, -0.0959207, 0, 0.755, 0, 0.0959207, 0, -0.748882, 60.6812, 0, 42.1503)
 
-[node name="DistantTree31" parent="Foliage" index="102" instance=ExtResource("21_iipbe")]
+[node name="DistantTree31" type="Node3D" parent="Foliage" index="102" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.686566, 0, 0.314088, 0, 0.755, 0, -0.314088, 0, -0.686566, 60.6812, 0, 26.9879)
 
-[node name="DistantTree32" parent="Foliage" index="103" instance=ExtResource("21_iipbe")]
+[node name="DistantTree32" type="Node3D" parent="Foliage" index="103" instance=ExtResource("21_iipbe")]
 transform = Transform3D(-0.750292, 0, -0.0841853, 0, 0.755, 0, 0.0841853, 0, -0.750292, 60.6812, 0, 13.4959)
 
-[node name="VeryDistantTree15" parent="Foliage" index="104" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree15" type="Node3D" parent="Foliage" index="104" instance=ExtResource("22_em0fu")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 70.1861, 0, 94.7093)
 
-[node name="VeryDistantTree16" parent="Foliage" index="105" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree16" type="Node3D" parent="Foliage" index="105" instance=ExtResource("22_em0fu")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 70.1861, 0, 80.7093)
 
-[node name="VeryDistantTree17" parent="Foliage" index="106" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree17" type="Node3D" parent="Foliage" index="106" instance=ExtResource("22_em0fu")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 70.1861, 0, 61.2093)
 
-[node name="VeryDistantTree18" parent="Foliage" index="107" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree18" type="Node3D" parent="Foliage" index="107" instance=ExtResource("22_em0fu")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 70.1861, 0, 44.2093)
 
-[node name="VeryDistantTree19" parent="Foliage" index="108" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree19" type="Node3D" parent="Foliage" index="108" instance=ExtResource("22_em0fu")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 76.9671, 0, 26.7093)
 
-[node name="VeryDistantTree20" parent="Foliage" index="109" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree20" type="Node3D" parent="Foliage" index="109" instance=ExtResource("22_em0fu")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 62.0989, 0, 32.6026)
 
-[node name="VeryDistantTree21" parent="Foliage" index="110" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree21" type="Node3D" parent="Foliage" index="110" instance=ExtResource("22_em0fu")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 62.0989, 0, 51.5895)
 
-[node name="VeryDistantTree22" parent="Foliage" index="111" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree22" type="Node3D" parent="Foliage" index="111" instance=ExtResource("22_em0fu")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 77.1467, 0, 71.8746)
 
-[node name="VeryDistantTree23" parent="Foliage" index="112" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree23" type="Node3D" parent="Foliage" index="112" instance=ExtResource("22_em0fu")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 92.5766, 0, 87.7712)
 
-[node name="VeryDistantTree24" parent="Foliage" index="113" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree24" type="Node3D" parent="Foliage" index="113" instance=ExtResource("22_em0fu")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 106.217, 0, 58.6208)
 
-[node name="VeryDistantTree25" parent="Foliage" index="114" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree25" type="Node3D" parent="Foliage" index="114" instance=ExtResource("22_em0fu")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 90.6836, 0, 30.6493)
 
-[node name="VeryDistantTree26" parent="Foliage" index="115" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree26" type="Node3D" parent="Foliage" index="115" instance=ExtResource("22_em0fu")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 90.6836, 0, 45.9824)
 
-[node name="VeryDistantTree27" parent="Foliage" index="116" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree27" type="Node3D" parent="Foliage" index="116" instance=ExtResource("22_em0fu")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 103.141, 0, 12.9824)
 
-[node name="VeryDistantTree28" parent="Foliage" index="117" instance=ExtResource("22_em0fu")]
+[node name="VeryDistantTree28" type="Node3D" parent="Foliage" index="117" instance=ExtResource("22_em0fu")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 70.1861, 0, 11.7093)
 
 [node name="Props" type="Node3D" parent="." index="31"]
 
-[node name="PavementBorder" parent="Props" index="0" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder" type="Node3D" parent="Props" index="0" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0433404, 0, 0.99906, 0, 1, 0, -0.99906, 0, 0.0433404, 9.24342, -0.102301, 0.882994)
 
-[node name="PavementBorder2" parent="Props" index="1" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder2" type="Node3D" parent="Props" index="1" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 2.67739)
 
-[node name="PavementBorder3" parent="Props" index="2" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder3" type="Node3D" parent="Props" index="2" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 4.48295)
 
-[node name="PavementBorder4" parent="Props" index="3" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder4" type="Node3D" parent="Props" index="3" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 6.29522)
 
-[node name="PavementBorder5" parent="Props" index="4" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder5" type="Node3D" parent="Props" index="4" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 8.12981)
 
-[node name="PavementBorder131" parent="Props" index="5" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder131" type="Node3D" parent="Props" index="5" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-1, 0, -0.000855214, 0, 1, 0, 0.000855214, 0, -1, 8.38773, -0.102301, 9.12981)
 
-[node name="PavementBorder133" parent="Props" index="6" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder133" type="Node3D" parent="Props" index="6" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 7.56877, -0.102301, 10.1982)
 
-[node name="PavementBorder134" parent="Props" index="7" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder134" type="Node3D" parent="Props" index="7" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0449969, 0, -0.998987, 0, 1, 0, 0.998987, 0, 0.0449969, 7.56877, -0.102301, 12.01)
 
-[node name="PavementBorder135" parent="Props" index="8" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder135" type="Node3D" parent="Props" index="8" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.0449438, 0, -0.998969, 0, 1, 0, 0.988979, 0, -0.0453978, 7.59694, -0.102301, 13.7767)
 
-[node name="PavementBorder132" parent="Props" index="9" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder132" type="Node3D" parent="Props" index="9" instance=ExtResource("23_jff5m")]
 transform = Transform3D(1, 0, 0.000855126, 0, 1, 0, -0.000855126, 0, 1, 8.38773, -0.102301, 14.7567)
 
-[node name="PavementBorder136" parent="Props" index="10" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder136" type="Node3D" parent="Props" index="10" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-1, 0, -0.000855214, 0, 1, 0, 0.000855214, 0, -1, 8.38773, -0.102301, 25.3332)
 
-[node name="PavementBorder137" parent="Props" index="11" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder137" type="Node3D" parent="Props" index="11" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 7.56877, -0.102301, 26.4016)
 
-[node name="PavementBorder138" parent="Props" index="12" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder138" type="Node3D" parent="Props" index="12" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0449969, 0, -0.998987, 0, 1, 0, 0.998987, 0, 0.0449969, 7.56877, -0.102301, 28.2134)
 
-[node name="PavementBorder139" parent="Props" index="13" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder139" type="Node3D" parent="Props" index="13" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.0449438, 0, -0.998969, 0, 1, 0, 0.988979, 0, -0.0453978, 7.59694, -0.102301, 29.9801)
 
-[node name="PavementBorder140" parent="Props" index="14" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder140" type="Node3D" parent="Props" index="14" instance=ExtResource("23_jff5m")]
 transform = Transform3D(1, 0, 0.000855126, 0, 1, 0, -0.000855126, 0, 1, 8.38773, -0.102301, 30.9601)
 
-[node name="PavementBorder141" parent="Props" index="15" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder141" type="Node3D" parent="Props" index="15" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-1, 0, -0.000855214, 0, 1, 0, 0.000855214, 0, -1, 8.38773, -0.102301, 41.2528)
 
-[node name="PavementBorder142" parent="Props" index="16" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder142" type="Node3D" parent="Props" index="16" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 7.56877, -0.102301, 42.3212)
 
-[node name="PavementBorder143" parent="Props" index="17" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder143" type="Node3D" parent="Props" index="17" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0449969, 0, -0.998987, 0, 1, 0, 0.998987, 0, 0.0449969, 7.56877, -0.102301, 44.133)
 
-[node name="PavementBorder144" parent="Props" index="18" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder144" type="Node3D" parent="Props" index="18" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.0449438, 0, -0.998969, 0, 1, 0, 0.988979, 0, -0.0453978, 7.59694, -0.102301, 45.8997)
 
-[node name="PavementBorder145" parent="Props" index="19" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder145" type="Node3D" parent="Props" index="19" instance=ExtResource("23_jff5m")]
 transform = Transform3D(1, 0, 0.000855126, 0, 1, 0, -0.000855126, 0, 1, 8.38773, -0.102301, 46.8797)
 
-[node name="PavementBorder146" parent="Props" index="20" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder146" type="Node3D" parent="Props" index="20" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-1, 0, -0.000855214, 0, 1, 0, 0.000855214, 0, -1, 8.38773, -0.102301, 56.9706)
 
-[node name="PavementBorder147" parent="Props" index="21" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder147" type="Node3D" parent="Props" index="21" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 7.56877, -0.102301, 58.039)
 
-[node name="PavementBorder148" parent="Props" index="22" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder148" type="Node3D" parent="Props" index="22" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0449969, 0, -0.998987, 0, 1, 0, 0.998987, 0, 0.0449969, 7.56877, -0.102301, 59.8508)
 
-[node name="PavementBorder149" parent="Props" index="23" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder149" type="Node3D" parent="Props" index="23" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.0449438, 0, -0.998969, 0, 1, 0, 0.988979, 0, -0.0453978, 7.59694, -0.102301, 61.6175)
 
-[node name="PavementBorder150" parent="Props" index="24" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder150" type="Node3D" parent="Props" index="24" instance=ExtResource("23_jff5m")]
 transform = Transform3D(1, 0, 0.000855126, 0, 1, 0, -0.000855126, 0, 1, 8.38773, -0.102301, 62.5975)
 
-[node name="PavementBorder151" parent="Props" index="25" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder151" type="Node3D" parent="Props" index="25" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-1, 0, -0.000855214, 0, 1, 0, 0.000855214, 0, -1, 8.38773, -0.102301, 73.174)
 
-[node name="PavementBorder152" parent="Props" index="26" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder152" type="Node3D" parent="Props" index="26" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 7.56877, -0.102301, 74.2424)
 
-[node name="PavementBorder153" parent="Props" index="27" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder153" type="Node3D" parent="Props" index="27" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0449969, 0, -0.998987, 0, 1, 0, 0.998987, 0, 0.0449969, 7.56877, -0.102301, 76.0542)
 
-[node name="PavementBorder154" parent="Props" index="28" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder154" type="Node3D" parent="Props" index="28" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.0449438, 0, -0.998969, 0, 1, 0, 0.988979, 0, -0.0453978, 7.59694, -0.102301, 77.8209)
 
-[node name="PavementBorder155" parent="Props" index="29" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder155" type="Node3D" parent="Props" index="29" instance=ExtResource("23_jff5m")]
 transform = Transform3D(1, 0, 0.000855126, 0, 1, 0, -0.000855126, 0, 1, 8.38773, -0.102301, 78.8009)
 
-[node name="PavementBorder156" parent="Props" index="30" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder156" type="Node3D" parent="Props" index="30" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-1, 0, -0.000855214, 0, 1, 0, 0.000855214, 0, -1, 8.38773, -0.102301, 89.0936)
 
-[node name="PavementBorder157" parent="Props" index="31" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder157" type="Node3D" parent="Props" index="31" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 7.56877, -0.102301, 90.162)
 
-[node name="PavementBorder158" parent="Props" index="32" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder158" type="Node3D" parent="Props" index="32" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0449969, 0, -0.998987, 0, 1, 0, 0.998987, 0, 0.0449969, 7.56877, -0.102301, 91.9738)
 
-[node name="PavementBorder159" parent="Props" index="33" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder159" type="Node3D" parent="Props" index="33" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.0449438, 0, -0.998969, 0, 1, 0, 0.988979, 0, -0.0453978, 7.59694, -0.102301, 93.7405)
 
-[node name="PavementBorder160" parent="Props" index="34" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder160" type="Node3D" parent="Props" index="34" instance=ExtResource("23_jff5m")]
 transform = Transform3D(1, 0, 0.000855126, 0, 1, 0, -0.000855126, 0, 1, 8.38773, -0.102301, 94.7205)
 
-[node name="PavementBorder161" parent="Props" index="35" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder161" type="Node3D" parent="Props" index="35" instance=ExtResource("23_jff5m")]
 transform = Transform3D(1, 0, 0.000855301, 0, 1, 0, -0.000855301, 0, 1, 17.6823, -0.102301, 94.8772)
 
-[node name="PavementBorder162" parent="Props" index="36" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder162" type="Node3D" parent="Props" index="36" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 18.5013, -0.102301, 93.8088)
 
-[node name="PavementBorder163" parent="Props" index="37" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder163" type="Node3D" parent="Props" index="37" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.044997, 0, 0.998987, 0, 1, 0, -0.998987, 0, -0.044997, 18.5013, -0.102301, 91.9969)
 
-[node name="PavementBorder164" parent="Props" index="38" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder164" type="Node3D" parent="Props" index="38" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0449437, 0, 0.998969, 0, 1, 0, -0.988979, 0, 0.0453977, 18.4731, -0.102301, 90.2303)
 
-[node name="PavementBorder165" parent="Props" index="39" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder165" type="Node3D" parent="Props" index="39" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-1, 0, -0.000855214, 0, 1, 0, 0.000855214, 0, -1, 17.6823, -0.102301, 89.2503)
 
-[node name="PavementBorder166" parent="Props" index="40" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder166" type="Node3D" parent="Props" index="40" instance=ExtResource("23_jff5m")]
 transform = Transform3D(1, 0, 0.000855301, 0, 1, 0, -0.000855301, 0, 1, 17.6823, -0.102301, 78.6737)
 
-[node name="PavementBorder167" parent="Props" index="41" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder167" type="Node3D" parent="Props" index="41" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 18.5013, -0.102301, 77.6053)
 
-[node name="PavementBorder168" parent="Props" index="42" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder168" type="Node3D" parent="Props" index="42" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.044997, 0, 0.998987, 0, 1, 0, -0.998987, 0, -0.044997, 18.5013, -0.102301, 75.7935)
 
-[node name="PavementBorder169" parent="Props" index="43" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder169" type="Node3D" parent="Props" index="43" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0449437, 0, 0.998969, 0, 1, 0, -0.988979, 0, 0.0453977, 18.4731, -0.102301, 74.0269)
 
-[node name="PavementBorder170" parent="Props" index="44" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder170" type="Node3D" parent="Props" index="44" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-1, 0, -0.000855214, 0, 1, 0, 0.000855214, 0, -1, 17.6823, -0.102301, 73.0469)
 
-[node name="PavementBorder171" parent="Props" index="45" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder171" type="Node3D" parent="Props" index="45" instance=ExtResource("23_jff5m")]
 transform = Transform3D(1, 0, 0.000855301, 0, 1, 0, -0.000855301, 0, 1, 17.6823, -0.102301, 62.7542)
 
-[node name="PavementBorder172" parent="Props" index="46" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder172" type="Node3D" parent="Props" index="46" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 18.5013, -0.102301, 61.6858)
 
-[node name="PavementBorder173" parent="Props" index="47" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder173" type="Node3D" parent="Props" index="47" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.044997, 0, 0.998987, 0, 1, 0, -0.998987, 0, -0.044997, 18.5013, -0.102301, 59.874)
 
-[node name="PavementBorder174" parent="Props" index="48" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder174" type="Node3D" parent="Props" index="48" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0449437, 0, 0.998969, 0, 1, 0, -0.988979, 0, 0.0453977, 18.4731, -0.102301, 58.1073)
 
-[node name="PavementBorder175" parent="Props" index="49" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder175" type="Node3D" parent="Props" index="49" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-1, 0, -0.000855214, 0, 1, 0, 0.000855214, 0, -1, 17.6823, -0.102301, 57.1273)
 
-[node name="PavementBorder176" parent="Props" index="50" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder176" type="Node3D" parent="Props" index="50" instance=ExtResource("23_jff5m")]
 transform = Transform3D(1, 0, 0.000855301, 0, 1, 0, -0.000855301, 0, 1, 17.6823, -0.102301, 47.0363)
 
-[node name="PavementBorder177" parent="Props" index="51" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder177" type="Node3D" parent="Props" index="51" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 18.5013, -0.102301, 45.9679)
 
-[node name="PavementBorder178" parent="Props" index="52" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder178" type="Node3D" parent="Props" index="52" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.044997, 0, 0.998987, 0, 1, 0, -0.998987, 0, -0.044997, 18.5013, -0.102301, 44.1561)
 
-[node name="PavementBorder179" parent="Props" index="53" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder179" type="Node3D" parent="Props" index="53" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0449437, 0, 0.998969, 0, 1, 0, -0.988979, 0, 0.0453977, 18.4731, -0.102301, 42.3895)
 
-[node name="PavementBorder180" parent="Props" index="54" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder180" type="Node3D" parent="Props" index="54" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-1, 0, -0.000855214, 0, 1, 0, 0.000855214, 0, -1, 17.6823, -0.102301, 41.4095)
 
-[node name="PavementBorder181" parent="Props" index="55" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder181" type="Node3D" parent="Props" index="55" instance=ExtResource("23_jff5m")]
 transform = Transform3D(1, 0, 0.000855301, 0, 1, 0, -0.000855301, 0, 1, 17.6823, -0.102301, 30.8329)
 
-[node name="PavementBorder182" parent="Props" index="56" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder182" type="Node3D" parent="Props" index="56" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 18.5013, -0.102301, 29.7645)
 
-[node name="PavementBorder183" parent="Props" index="57" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder183" type="Node3D" parent="Props" index="57" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.044997, 0, 0.998987, 0, 1, 0, -0.998987, 0, -0.044997, 18.5013, -0.102301, 27.9527)
 
-[node name="PavementBorder184" parent="Props" index="58" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder184" type="Node3D" parent="Props" index="58" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0449437, 0, 0.998969, 0, 1, 0, -0.988979, 0, 0.0453977, 18.4731, -0.102301, 26.1861)
 
-[node name="PavementBorder185" parent="Props" index="59" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder185" type="Node3D" parent="Props" index="59" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-1, 0, -0.000855214, 0, 1, 0, 0.000855214, 0, -1, 17.6823, -0.102301, 25.2061)
 
-[node name="PavementBorder186" parent="Props" index="60" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder186" type="Node3D" parent="Props" index="60" instance=ExtResource("23_jff5m")]
 transform = Transform3D(1, 0, 0.000855301, 0, 1, 0, -0.000855301, 0, 1, 17.6823, -0.102301, 14.9134)
 
-[node name="PavementBorder187" parent="Props" index="61" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder187" type="Node3D" parent="Props" index="61" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 18.5013, -0.102301, 13.845)
 
-[node name="PavementBorder188" parent="Props" index="62" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder188" type="Node3D" parent="Props" index="62" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.044997, 0, 0.998987, 0, 1, 0, -0.998987, 0, -0.044997, 18.5013, -0.102301, 12.0331)
 
-[node name="PavementBorder189" parent="Props" index="63" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder189" type="Node3D" parent="Props" index="63" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0449437, 0, 0.998969, 0, 1, 0, -0.988979, 0, 0.0453977, 18.4731, -0.102301, 10.2665)
 
-[node name="PavementBorder190" parent="Props" index="64" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder190" type="Node3D" parent="Props" index="64" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-1, 0, -0.000855214, 0, 1, 0, 0.000855214, 0, -1, 17.6823, -0.102301, 9.28649)
 
-[node name="PavementBorder6" parent="Props" index="65" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder6" type="Node3D" parent="Props" index="65" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 9.94208)
 
-[node name="PavementBorder7" parent="Props" index="66" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder7" type="Node3D" parent="Props" index="66" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 11.7228)
 
-[node name="PavementBorder8" parent="Props" index="67" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder8" type="Node3D" parent="Props" index="67" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 13.5351)
 
-[node name="PavementBorder9" parent="Props" index="68" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder9" type="Node3D" parent="Props" index="68" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 15.3697)
 
-[node name="PavementBorder10" parent="Props" index="69" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder10" type="Node3D" parent="Props" index="69" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 17.1819)
 
-[node name="PavementBorder11" parent="Props" index="70" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder11" type="Node3D" parent="Props" index="70" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 18.9776)
 
-[node name="PavementBorder12" parent="Props" index="71" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder12" type="Node3D" parent="Props" index="71" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 20.7899)
 
-[node name="PavementBorder13" parent="Props" index="72" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder13" type="Node3D" parent="Props" index="72" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 22.6245)
 
-[node name="PavementBorder14" parent="Props" index="73" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder14" type="Node3D" parent="Props" index="73" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 24.4368)
 
-[node name="PavementBorder15" parent="Props" index="74" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder15" type="Node3D" parent="Props" index="74" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 26.286)
 
-[node name="PavementBorder16" parent="Props" index="75" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder16" type="Node3D" parent="Props" index="75" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 28.0983)
 
-[node name="PavementBorder17" parent="Props" index="76" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder17" type="Node3D" parent="Props" index="76" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 29.9329)
 
-[node name="PavementBorder18" parent="Props" index="77" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder18" type="Node3D" parent="Props" index="77" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 31.7452)
 
-[node name="PavementBorder19" parent="Props" index="78" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder19" type="Node3D" parent="Props" index="78" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 33.5259)
 
-[node name="PavementBorder20" parent="Props" index="79" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder20" type="Node3D" parent="Props" index="79" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 35.3382)
 
-[node name="PavementBorder21" parent="Props" index="80" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder21" type="Node3D" parent="Props" index="80" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 37.1727)
 
-[node name="PavementBorder22" parent="Props" index="81" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder22" type="Node3D" parent="Props" index="81" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 38.985)
 
-[node name="PavementBorder23" parent="Props" index="82" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder23" type="Node3D" parent="Props" index="82" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 40.7807)
 
-[node name="PavementBorder24" parent="Props" index="83" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder24" type="Node3D" parent="Props" index="83" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 42.593)
 
-[node name="PavementBorder25" parent="Props" index="84" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder25" type="Node3D" parent="Props" index="84" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 44.4276)
 
-[node name="PavementBorder26" parent="Props" index="85" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder26" type="Node3D" parent="Props" index="85" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 46.2399)
 
-[node name="PavementBorder27" parent="Props" index="86" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder27" type="Node3D" parent="Props" index="86" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 48.0855)
 
-[node name="PavementBorder28" parent="Props" index="87" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder28" type="Node3D" parent="Props" index="87" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 49.8978)
 
-[node name="PavementBorder29" parent="Props" index="88" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder29" type="Node3D" parent="Props" index="88" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 51.7324)
 
-[node name="PavementBorder30" parent="Props" index="89" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder30" type="Node3D" parent="Props" index="89" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 53.5447)
 
-[node name="PavementBorder31" parent="Props" index="90" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder31" type="Node3D" parent="Props" index="90" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 55.3254)
 
-[node name="PavementBorder32" parent="Props" index="91" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder32" type="Node3D" parent="Props" index="91" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 57.1376)
 
-[node name="PavementBorder33" parent="Props" index="92" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder33" type="Node3D" parent="Props" index="92" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 58.9722)
 
-[node name="PavementBorder34" parent="Props" index="93" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder34" type="Node3D" parent="Props" index="93" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 60.7845)
 
-[node name="PavementBorder35" parent="Props" index="94" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder35" type="Node3D" parent="Props" index="94" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 62.5802)
 
-[node name="PavementBorder36" parent="Props" index="95" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder36" type="Node3D" parent="Props" index="95" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 64.3925)
 
-[node name="PavementBorder37" parent="Props" index="96" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder37" type="Node3D" parent="Props" index="96" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 66.2271)
 
-[node name="PavementBorder38" parent="Props" index="97" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder38" type="Node3D" parent="Props" index="97" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 68.0394)
 
-[node name="PavementBorder39" parent="Props" index="98" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder39" type="Node3D" parent="Props" index="98" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 69.8517)
 
-[node name="PavementBorder40" parent="Props" index="99" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder40" type="Node3D" parent="Props" index="99" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 71.6862)
 
-[node name="PavementBorder41" parent="Props" index="100" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder41" type="Node3D" parent="Props" index="100" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 73.4985)
 
-[node name="PavementBorder42" parent="Props" index="101" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder42" type="Node3D" parent="Props" index="101" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 75.2942)
 
-[node name="PavementBorder43" parent="Props" index="102" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder43" type="Node3D" parent="Props" index="102" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 77.1065)
 
-[node name="PavementBorder44" parent="Props" index="103" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder44" type="Node3D" parent="Props" index="103" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 78.9411)
 
-[node name="PavementBorder45" parent="Props" index="104" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder45" type="Node3D" parent="Props" index="104" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 80.7534)
 
-[node name="PavementBorder46" parent="Props" index="105" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder46" type="Node3D" parent="Props" index="105" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 82.4759)
 
-[node name="PavementBorder47" parent="Props" index="106" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder47" type="Node3D" parent="Props" index="106" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 84.3105)
 
-[node name="PavementBorder48" parent="Props" index="107" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder48" type="Node3D" parent="Props" index="107" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 86.1227)
 
-[node name="PavementBorder49" parent="Props" index="108" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder49" type="Node3D" parent="Props" index="108" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 87.9184)
 
-[node name="PavementBorder50" parent="Props" index="109" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder50" type="Node3D" parent="Props" index="109" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 89.7307)
 
-[node name="PavementBorder51" parent="Props" index="110" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder51" type="Node3D" parent="Props" index="110" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 91.5653)
 
-[node name="PavementBorder52" parent="Props" index="111" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder52" type="Node3D" parent="Props" index="111" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 93.3776)
 
-[node name="PavementBorder53" parent="Props" index="112" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder53" type="Node3D" parent="Props" index="112" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 82.4759)
 
-[node name="PavementBorder54" parent="Props" index="113" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder54" type="Node3D" parent="Props" index="113" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 84.3105)
 
-[node name="PavementBorder55" parent="Props" index="114" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder55" type="Node3D" parent="Props" index="114" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 86.1227)
 
-[node name="PavementBorder56" parent="Props" index="115" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder56" type="Node3D" parent="Props" index="115" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 87.9184)
 
-[node name="PavementBorder57" parent="Props" index="116" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder57" type="Node3D" parent="Props" index="116" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 89.7307)
 
-[node name="PavementBorder58" parent="Props" index="117" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder58" type="Node3D" parent="Props" index="117" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 91.5653)
 
-[node name="PavementBorder60" parent="Props" index="118" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder60" type="Node3D" parent="Props" index="118" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 95.1886)
 
-[node name="PavementBorder61" parent="Props" index="119" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder61" type="Node3D" parent="Props" index="119" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 102.443)
 
-[node name="PavementBorder130" parent="Props" index="120" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder130" type="Node3D" parent="Props" index="120" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000333501, 0, 1, 0, 1, 0, -0.39, 0, -0.000855132, 9.22861, -0.102301, 103.751)
 
-[node name="PavementBorder62" parent="Props" index="121" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder62" type="Node3D" parent="Props" index="121" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 96.9843)
 
-[node name="PavementBorder63" parent="Props" index="122" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder63" type="Node3D" parent="Props" index="122" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 98.7966)
 
-[node name="PavementBorder64" parent="Props" index="123" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder64" type="Node3D" parent="Props" index="123" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 100.631)
 
-[node name="PavementBorder59" parent="Props" index="124" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder59" type="Node3D" parent="Props" index="124" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00085517, 0, 1, 0, 1, 0, -1, 0, -0.00085517, 9.22861, -0.102301, 93.3776)
 
-[node name="PavementBorder65" parent="Props" index="125" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder65" type="Node3D" parent="Props" index="125" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.0433404, 0, -0.99906, 0, 1, 0, 0.99906, 0, -0.0433404, 16.7662, -0.102301, 102.479)
 
-[node name="PavementBorder129" parent="Props" index="126" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder129" type="Node3D" parent="Props" index="126" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.384537, 0, -0.92311, 0, 1, 0, 0.92311, 0, 0.384537, 16.6911, -0.102301, 103.972)
 
-[node name="PavementBorder66" parent="Props" index="127" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder66" type="Node3D" parent="Props" index="127" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 100.685)
 
-[node name="PavementBorder67" parent="Props" index="128" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder67" type="Node3D" parent="Props" index="128" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 98.879)
 
-[node name="PavementBorder68" parent="Props" index="129" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder68" type="Node3D" parent="Props" index="129" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 97.0667)
 
-[node name="PavementBorder69" parent="Props" index="130" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder69" type="Node3D" parent="Props" index="130" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 95.2321)
 
-[node name="PavementBorder70" parent="Props" index="131" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder70" type="Node3D" parent="Props" index="131" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 93.4198)
 
-[node name="PavementBorder71" parent="Props" index="132" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder71" type="Node3D" parent="Props" index="132" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 91.6391)
 
-[node name="PavementBorder72" parent="Props" index="133" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder72" type="Node3D" parent="Props" index="133" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 89.8268)
 
-[node name="PavementBorder73" parent="Props" index="134" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder73" type="Node3D" parent="Props" index="134" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 87.9922)
 
-[node name="PavementBorder74" parent="Props" index="135" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder74" type="Node3D" parent="Props" index="135" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 86.18)
 
-[node name="PavementBorder75" parent="Props" index="136" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder75" type="Node3D" parent="Props" index="136" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 84.3843)
 
-[node name="PavementBorder76" parent="Props" index="137" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder76" type="Node3D" parent="Props" index="137" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 82.572)
 
-[node name="PavementBorder77" parent="Props" index="138" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder77" type="Node3D" parent="Props" index="138" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 80.7374)
 
-[node name="PavementBorder78" parent="Props" index="139" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder78" type="Node3D" parent="Props" index="139" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 78.9251)
 
-[node name="PavementBorder79" parent="Props" index="140" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder79" type="Node3D" parent="Props" index="140" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 77.0759)
 
-[node name="PavementBorder80" parent="Props" index="141" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder80" type="Node3D" parent="Props" index="141" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 75.2636)
 
-[node name="PavementBorder81" parent="Props" index="142" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder81" type="Node3D" parent="Props" index="142" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 73.429)
 
-[node name="PavementBorder82" parent="Props" index="143" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder82" type="Node3D" parent="Props" index="143" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 71.6168)
 
-[node name="PavementBorder83" parent="Props" index="144" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder83" type="Node3D" parent="Props" index="144" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 69.836)
 
-[node name="PavementBorder84" parent="Props" index="145" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder84" type="Node3D" parent="Props" index="145" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 68.0238)
 
-[node name="PavementBorder85" parent="Props" index="146" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder85" type="Node3D" parent="Props" index="146" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 66.1892)
 
-[node name="PavementBorder86" parent="Props" index="147" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder86" type="Node3D" parent="Props" index="147" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 64.3769)
 
-[node name="PavementBorder87" parent="Props" index="148" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder87" type="Node3D" parent="Props" index="148" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 62.5812)
 
-[node name="PavementBorder88" parent="Props" index="149" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder88" type="Node3D" parent="Props" index="149" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 60.7689)
 
-[node name="PavementBorder89" parent="Props" index="150" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder89" type="Node3D" parent="Props" index="150" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 58.9343)
 
-[node name="PavementBorder90" parent="Props" index="151" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder90" type="Node3D" parent="Props" index="151" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 57.1221)
 
-[node name="PavementBorder91" parent="Props" index="152" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder91" type="Node3D" parent="Props" index="152" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 55.2764)
 
-[node name="PavementBorder92" parent="Props" index="153" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder92" type="Node3D" parent="Props" index="153" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 53.4641)
 
-[node name="PavementBorder93" parent="Props" index="154" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder93" type="Node3D" parent="Props" index="154" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 51.6295)
 
-[node name="PavementBorder94" parent="Props" index="155" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder94" type="Node3D" parent="Props" index="155" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 49.8173)
 
-[node name="PavementBorder95" parent="Props" index="156" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder95" type="Node3D" parent="Props" index="156" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 48.0365)
 
-[node name="PavementBorder96" parent="Props" index="157" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder96" type="Node3D" parent="Props" index="157" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 46.2243)
 
-[node name="PavementBorder97" parent="Props" index="158" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder97" type="Node3D" parent="Props" index="158" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 44.3897)
 
-[node name="PavementBorder98" parent="Props" index="159" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder98" type="Node3D" parent="Props" index="159" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 42.5774)
 
-[node name="PavementBorder99" parent="Props" index="160" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder99" type="Node3D" parent="Props" index="160" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 40.7817)
 
-[node name="PavementBorder100" parent="Props" index="161" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder100" type="Node3D" parent="Props" index="161" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 38.9694)
 
-[node name="PavementBorder101" parent="Props" index="162" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder101" type="Node3D" parent="Props" index="162" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 37.1348)
 
-[node name="PavementBorder102" parent="Props" index="163" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder102" type="Node3D" parent="Props" index="163" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 35.3226)
 
-[node name="PavementBorder103" parent="Props" index="164" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder103" type="Node3D" parent="Props" index="164" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 33.5103)
 
-[node name="PavementBorder104" parent="Props" index="165" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder104" type="Node3D" parent="Props" index="165" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 31.6757)
 
-[node name="PavementBorder105" parent="Props" index="166" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder105" type="Node3D" parent="Props" index="166" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 29.8634)
 
-[node name="PavementBorder106" parent="Props" index="167" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder106" type="Node3D" parent="Props" index="167" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 28.0677)
 
-[node name="PavementBorder107" parent="Props" index="168" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder107" type="Node3D" parent="Props" index="168" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 26.2554)
 
-[node name="PavementBorder108" parent="Props" index="169" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder108" type="Node3D" parent="Props" index="169" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 24.4208)
 
-[node name="PavementBorder193" parent="Props" index="170" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder193" type="Node3D" parent="Props" index="170" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5183, 0.00970089, 25.2952)
 
-[node name="PavementBorder194" parent="Props" index="171" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder194" type="Node3D" parent="Props" index="171" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.3827, 0.00970089, 25.2952)
 
-[node name="PavementBorder197" parent="Props" index="172" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder197" type="Node3D" parent="Props" index="172" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5183, 0.00970089, 28.9301)
 
-[node name="PavementBorder198" parent="Props" index="173" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder198" type="Node3D" parent="Props" index="173" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.3827, 0.00970089, 28.9301)
 
-[node name="PavementBorder195" parent="Props" index="174" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder195" type="Node3D" parent="Props" index="174" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0295093, 0, -0.999565, 0, 1, 0, 0.999565, 0, 0.0295093, 12.5362, 0.00970089, 27.1311)
 
-[node name="PavementBorder196" parent="Props" index="175" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder196" type="Node3D" parent="Props" index="175" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.0295094, 0, 0.999565, 0, 1, 0, -0.999565, 0, -0.0295094, 13.4002, 0.00970089, 27.1064)
 
-[node name="PavementBorder199" parent="Props" index="176" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder199" type="Node3D" parent="Props" index="176" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5183, 0.00970089, 30.7541)
 
-[node name="PavementBorder200" parent="Props" index="177" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder200" type="Node3D" parent="Props" index="177" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.3827, 0.00970089, 30.7541)
 
-[node name="PavementBorder201" parent="Props" index="178" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder201" type="Node3D" parent="Props" index="178" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5183, 0.00970089, 34.3891)
 
-[node name="PavementBorder202" parent="Props" index="179" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder202" type="Node3D" parent="Props" index="179" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.3827, 0.00970089, 34.3891)
 
-[node name="PavementBorder203" parent="Props" index="180" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder203" type="Node3D" parent="Props" index="180" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0295093, 0, -0.999565, 0, 1, 0, 0.999565, 0, 0.0295093, 12.5362, 0.00970089, 32.5901)
 
-[node name="PavementBorder204" parent="Props" index="181" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder204" type="Node3D" parent="Props" index="181" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.0295094, 0, 0.999565, 0, 1, 0, -0.999565, 0, -0.0295094, 13.4002, 0.00970089, 32.5653)
 
-[node name="PavementBorder205" parent="Props" index="182" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder205" type="Node3D" parent="Props" index="182" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5183, 0.00970089, 36.2247)
 
-[node name="PavementBorder206" parent="Props" index="183" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder206" type="Node3D" parent="Props" index="183" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.3827, 0.00970089, 36.2247)
 
-[node name="PavementBorder207" parent="Props" index="184" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder207" type="Node3D" parent="Props" index="184" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5183, 0.00970089, 39.8596)
 
-[node name="PavementBorder208" parent="Props" index="185" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder208" type="Node3D" parent="Props" index="185" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.3827, 0.00970089, 39.8596)
 
-[node name="PavementBorder209" parent="Props" index="186" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder209" type="Node3D" parent="Props" index="186" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0295093, 0, -0.999565, 0, 1, 0, 0.999565, 0, 0.0295093, 12.5362, 0.00970089, 38.0606)
 
-[node name="PavementBorder210" parent="Props" index="187" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder210" type="Node3D" parent="Props" index="187" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.0295094, 0, 0.999565, 0, 1, 0, -0.999565, 0, -0.0295094, 13.4002, 0.00970089, 38.0358)
 
-[node name="PavementBorder211" parent="Props" index="188" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder211" type="Node3D" parent="Props" index="188" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5183, 0.00970089, 41.6836)
 
-[node name="PavementBorder212" parent="Props" index="189" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder212" type="Node3D" parent="Props" index="189" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.3827, 0.00970089, 41.6836)
 
-[node name="PavementBorder213" parent="Props" index="190" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder213" type="Node3D" parent="Props" index="190" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5183, 0.00970089, 45.3185)
 
-[node name="PavementBorder214" parent="Props" index="191" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder214" type="Node3D" parent="Props" index="191" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.3827, 0.00970089, 45.3185)
 
-[node name="PavementBorder215" parent="Props" index="192" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder215" type="Node3D" parent="Props" index="192" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0295093, 0, -0.999565, 0, 1, 0, 0.999565, 0, 0.0295093, 12.5362, 0.00970089, 43.5195)
 
-[node name="PavementBorder216" parent="Props" index="193" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder216" type="Node3D" parent="Props" index="193" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.0295094, 0, 0.999565, 0, 1, 0, -0.999565, 0, -0.0295094, 13.4002, 0.00970089, 43.4947)
 
-[node name="PavementBorder217" parent="Props" index="194" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder217" type="Node3D" parent="Props" index="194" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5183, 0.00970089, 47.0677)
 
-[node name="PavementBorder218" parent="Props" index="195" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder218" type="Node3D" parent="Props" index="195" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.3827, 0.00970089, 47.0677)
 
-[node name="PavementBorder219" parent="Props" index="196" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder219" type="Node3D" parent="Props" index="196" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5183, 0.00970089, 50.7026)
 
-[node name="PavementBorder220" parent="Props" index="197" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder220" type="Node3D" parent="Props" index="197" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.3827, 0.00970089, 50.7026)
 
-[node name="PavementBorder221" parent="Props" index="198" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder221" type="Node3D" parent="Props" index="198" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0295093, 0, -0.999565, 0, 1, 0, 0.999565, 0, 0.0295093, 12.5362, 0.00970089, 48.9036)
 
-[node name="PavementBorder222" parent="Props" index="199" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder222" type="Node3D" parent="Props" index="199" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.0295094, 0, 0.999565, 0, 1, 0, -0.999565, 0, -0.0295094, 13.4002, 0.00970089, 48.8789)
 
-[node name="PavementBorder223" parent="Props" index="200" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder223" type="Node3D" parent="Props" index="200" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5183, 0.00970089, 52.5266)
 
-[node name="PavementBorder224" parent="Props" index="201" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder224" type="Node3D" parent="Props" index="201" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.3827, 0.00970089, 52.5266)
 
-[node name="PavementBorder225" parent="Props" index="202" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder225" type="Node3D" parent="Props" index="202" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5183, 0.00970089, 56.1616)
 
-[node name="PavementBorder226" parent="Props" index="203" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder226" type="Node3D" parent="Props" index="203" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.3827, 0.00970089, 56.1616)
 
-[node name="PavementBorder227" parent="Props" index="204" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder227" type="Node3D" parent="Props" index="204" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0295093, 0, -0.999565, 0, 1, 0, 0.999565, 0, 0.0295093, 12.5362, 0.00970089, 54.3626)
 
-[node name="PavementBorder228" parent="Props" index="205" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder228" type="Node3D" parent="Props" index="205" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.0295094, 0, 0.999565, 0, 1, 0, -0.999565, 0, -0.0295094, 13.4002, 0.00970089, 54.3378)
 
-[node name="PavementBorder229" parent="Props" index="206" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder229" type="Node3D" parent="Props" index="206" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5183, 0.00970089, 57.9972)
 
-[node name="PavementBorder230" parent="Props" index="207" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder230" type="Node3D" parent="Props" index="207" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.3827, 0.00970089, 57.9972)
 
-[node name="PavementBorder231" parent="Props" index="208" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder231" type="Node3D" parent="Props" index="208" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5183, 0.00970089, 61.6321)
 
-[node name="PavementBorder232" parent="Props" index="209" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder232" type="Node3D" parent="Props" index="209" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.3827, 0.00970089, 61.6321)
 
-[node name="PavementBorder233" parent="Props" index="210" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder233" type="Node3D" parent="Props" index="210" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0295093, 0, -0.999565, 0, 1, 0, 0.999565, 0, 0.0295093, 12.5362, 0.00970089, 59.8331)
 
-[node name="PavementBorder234" parent="Props" index="211" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder234" type="Node3D" parent="Props" index="211" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.0295094, 0, 0.999565, 0, 1, 0, -0.999565, 0, -0.0295094, 13.4002, 0.00970089, 59.8083)
 
-[node name="PavementBorder235" parent="Props" index="212" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder235" type="Node3D" parent="Props" index="212" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5183, 0.00970089, 63.4561)
 
-[node name="PavementBorder236" parent="Props" index="213" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder236" type="Node3D" parent="Props" index="213" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.3827, 0.00970089, 63.4561)
 
-[node name="PavementBorder237" parent="Props" index="214" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder237" type="Node3D" parent="Props" index="214" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5183, 0.00970089, 67.091)
 
-[node name="PavementBorder238" parent="Props" index="215" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder238" type="Node3D" parent="Props" index="215" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.3827, 0.00970089, 67.091)
 
-[node name="PavementBorder241" parent="Props" index="216" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder241" type="Node3D" parent="Props" index="216" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5407, 0.00970089, 68.8844)
 
-[node name="PavementBorder242" parent="Props" index="217" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder242" type="Node3D" parent="Props" index="217" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.4051, 0.00970089, 68.8844)
 
-[node name="PavementBorder243" parent="Props" index="218" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder243" type="Node3D" parent="Props" index="218" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5407, 0.00970089, 70.6864)
 
-[node name="PavementBorder244" parent="Props" index="219" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder244" type="Node3D" parent="Props" index="219" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.4051, 0.00970089, 70.6864)
 
-[node name="PavementBorder245" parent="Props" index="220" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder245" type="Node3D" parent="Props" index="220" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5407, 0.00970089, 72.4958)
 
-[node name="PavementBorder246" parent="Props" index="221" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder246" type="Node3D" parent="Props" index="221" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.4051, 0.00970089, 72.4958)
 
-[node name="PavementBorder247" parent="Props" index="222" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder247" type="Node3D" parent="Props" index="222" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5407, 0.00970089, 74.2978)
 
-[node name="PavementBorder248" parent="Props" index="223" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder248" type="Node3D" parent="Props" index="223" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.4051, 0.00970089, 74.2978)
 
-[node name="PavementBorder249" parent="Props" index="224" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder249" type="Node3D" parent="Props" index="224" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5407, 0.00970089, 76.1279)
 
-[node name="PavementBorder250" parent="Props" index="225" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder250" type="Node3D" parent="Props" index="225" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.4051, 0.00970089, 76.1279)
 
-[node name="PavementBorder251" parent="Props" index="226" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder251" type="Node3D" parent="Props" index="226" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 12.5407, 0.00970089, 77.9299)
 
-[node name="PavementBorder252" parent="Props" index="227" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder252" type="Node3D" parent="Props" index="227" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.000855345, 0, 1, 0, 1, 0, -1, 0, -0.000855345, 13.4051, 0.00970089, 77.9299)
 
-[node name="PavementBorder253" parent="Props" index="228" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder253" type="Node3D" parent="Props" index="228" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000530275, 0, -1, 0, 1, 0, 0.62, 0, 0.000855283, 12.5407, 0.00970089, 79.3285)
 
-[node name="PavementBorder254" parent="Props" index="229" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder254" type="Node3D" parent="Props" index="229" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.00053033, 0, 1, 0, 1, 0, -0.62, 0, -0.00085537, 13.4051, 0.00970089, 79.3285)
 
-[node name="PavementBorder239" parent="Props" index="230" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder239" type="Node3D" parent="Props" index="230" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.0295093, 0, -0.999565, 0, 1, 0, 0.999565, 0, 0.0295093, 12.5362, 0.00970089, 65.292)
 
-[node name="PavementBorder240" parent="Props" index="231" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder240" type="Node3D" parent="Props" index="231" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.0295094, 0, 0.999565, 0, 1, 0, -0.999565, 0, -0.0295094, 13.4002, 0.00970089, 65.2672)
 
-[node name="PavementBorder191" parent="Props" index="232" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder191" type="Node3D" parent="Props" index="232" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-0.6, 0, -0.00085512, 0, 1, 0, 0.000513072, 0, -1, 12.9979, 0.0406333, 24.2053)
 
-[node name="PavementBorder192" parent="Props" index="233" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder192" type="Node3D" parent="Props" index="233" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.6, 0, 0.000855033, 0, 1, 0, -0.00051302, 0, 1, 12.9979, 0.0406333, 80.0301)
 
-[node name="PavementBorder109" parent="Props" index="234" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder109" type="Node3D" parent="Props" index="234" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 22.6086)
 
-[node name="PavementBorder110" parent="Props" index="235" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder110" type="Node3D" parent="Props" index="235" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 20.886)
 
-[node name="PavementBorder111" parent="Props" index="236" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder111" type="Node3D" parent="Props" index="236" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 19.0514)
 
-[node name="PavementBorder112" parent="Props" index="237" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder112" type="Node3D" parent="Props" index="237" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 17.2392)
 
-[node name="PavementBorder113" parent="Props" index="238" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder113" type="Node3D" parent="Props" index="238" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 15.4435)
 
-[node name="PavementBorder114" parent="Props" index="239" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder114" type="Node3D" parent="Props" index="239" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 13.6312)
 
-[node name="PavementBorder115" parent="Props" index="240" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder115" type="Node3D" parent="Props" index="240" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 11.7966)
 
-[node name="PavementBorder116" parent="Props" index="241" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder116" type="Node3D" parent="Props" index="241" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 9.98434)
 
-[node name="PavementBorder117" parent="Props" index="242" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder117" type="Node3D" parent="Props" index="242" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 20.886)
 
-[node name="PavementBorder118" parent="Props" index="243" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder118" type="Node3D" parent="Props" index="243" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 19.0514)
 
-[node name="PavementBorder119" parent="Props" index="244" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder119" type="Node3D" parent="Props" index="244" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 17.2392)
 
-[node name="PavementBorder120" parent="Props" index="245" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder120" type="Node3D" parent="Props" index="245" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 15.4435)
 
-[node name="PavementBorder121" parent="Props" index="246" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder121" type="Node3D" parent="Props" index="246" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 13.6312)
 
-[node name="PavementBorder122" parent="Props" index="247" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder122" type="Node3D" parent="Props" index="247" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 11.7966)
 
-[node name="PavementBorder123" parent="Props" index="248" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder123" type="Node3D" parent="Props" index="248" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 8.17333)
 
-[node name="PavementBorder124" parent="Props" index="249" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder124" type="Node3D" parent="Props" index="249" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 0.918488)
 
-[node name="PavementBorder125" parent="Props" index="250" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder125" type="Node3D" parent="Props" index="250" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 6.37762)
 
-[node name="PavementBorder126" parent="Props" index="251" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder126" type="Node3D" parent="Props" index="251" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 4.56535)
 
-[node name="PavementBorder127" parent="Props" index="252" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder127" type="Node3D" parent="Props" index="252" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 2.73076)
 
-[node name="PavementBorder128" parent="Props" index="253" instance=ExtResource("23_jff5m")]
+[node name="PavementBorder128" type="Node3D" parent="Props" index="253" instance=ExtResource("23_jff5m")]
 transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 16.781, -0.102301, 9.98434)
 
-[node name="PropBench1" parent="Props" index="254" instance=ExtResource("20_dbfxh")]
+[node name="PropBench1" type="Node3D" parent="Props" index="254" instance=ExtResource("20_dbfxh")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 0, 20)
 
-[node name="PropGomibako1" parent="Props" index="255" instance=ExtResource("21_fndp6")]
+[node name="PropGomibako1" type="Node3D" parent="Props" index="255" instance=ExtResource("21_fndp6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.77228, 0, 21.9448)
 
-[node name="PropBench2" parent="Props" index="256" instance=ExtResource("20_dbfxh")]
+[node name="PropBench2" type="Node3D" parent="Props" index="256" instance=ExtResource("20_dbfxh")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 15.7723, 0, 19.9448)
 
-[node name="PropGomibako2" parent="Props" index="257" instance=ExtResource("21_fndp6")]
+[node name="PropGomibako2" type="Node3D" parent="Props" index="257" instance=ExtResource("21_fndp6")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16, 0, 21.797)
 
-[node name="PropBench13" parent="Props" index="258" instance=ExtResource("20_dbfxh")]
+[node name="PropBench13" type="Node3D" parent="Props" index="258" instance=ExtResource("20_dbfxh")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 0, 4.5)
 
-[node name="PropGomibako13" parent="Props" index="259" instance=ExtResource("21_fndp6")]
+[node name="PropGomibako13" type="Node3D" parent="Props" index="259" instance=ExtResource("21_fndp6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.77228, 0, 6.44475)
 
-[node name="PropBench14" parent="Props" index="260" instance=ExtResource("20_dbfxh")]
+[node name="PropBench14" type="Node3D" parent="Props" index="260" instance=ExtResource("20_dbfxh")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 15.7723, 0, 4.44475)
 
-[node name="PropGomibako14" parent="Props" index="261" instance=ExtResource("21_fndp6")]
+[node name="PropGomibako14" type="Node3D" parent="Props" index="261" instance=ExtResource("21_fndp6")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16, 0, 6.29696)
 
-[node name="PropBench3" parent="Props" index="262" instance=ExtResource("20_dbfxh")]
+[node name="PropBench3" type="Node3D" parent="Props" index="262" instance=ExtResource("20_dbfxh")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 0, 35.5)
 
-[node name="PropGomibako3" parent="Props" index="263" instance=ExtResource("21_fndp6")]
+[node name="PropGomibako3" type="Node3D" parent="Props" index="263" instance=ExtResource("21_fndp6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.77228, 0, 37.4448)
 
-[node name="PropBench4" parent="Props" index="264" instance=ExtResource("20_dbfxh")]
+[node name="PropBench4" type="Node3D" parent="Props" index="264" instance=ExtResource("20_dbfxh")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 15.7723, 0, 35.4448)
 
-[node name="PropGomibako4" parent="Props" index="265" instance=ExtResource("21_fndp6")]
+[node name="PropGomibako4" type="Node3D" parent="Props" index="265" instance=ExtResource("21_fndp6")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16, 0, 37.297)
 
-[node name="PropBench5" parent="Props" index="266" instance=ExtResource("20_dbfxh")]
+[node name="PropBench5" type="Node3D" parent="Props" index="266" instance=ExtResource("20_dbfxh")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 0, 52)
 
-[node name="PropGomibako5" parent="Props" index="267" instance=ExtResource("21_fndp6")]
+[node name="PropGomibako5" type="Node3D" parent="Props" index="267" instance=ExtResource("21_fndp6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.77228, 0, 53.9448)
 
-[node name="PropBench6" parent="Props" index="268" instance=ExtResource("20_dbfxh")]
+[node name="PropBench6" type="Node3D" parent="Props" index="268" instance=ExtResource("20_dbfxh")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 15.7723, 0, 51.9448)
 
-[node name="PropGomibako6" parent="Props" index="269" instance=ExtResource("21_fndp6")]
+[node name="PropGomibako6" type="Node3D" parent="Props" index="269" instance=ExtResource("21_fndp6")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16, 0, 53.797)
 
-[node name="PropBench7" parent="Props" index="270" instance=ExtResource("20_dbfxh")]
+[node name="PropBench7" type="Node3D" parent="Props" index="270" instance=ExtResource("20_dbfxh")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 0, 67.5)
 
-[node name="PropGomibako7" parent="Props" index="271" instance=ExtResource("21_fndp6")]
+[node name="PropGomibako7" type="Node3D" parent="Props" index="271" instance=ExtResource("21_fndp6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.77228, 0, 69.4447)
 
-[node name="PropBench8" parent="Props" index="272" instance=ExtResource("20_dbfxh")]
+[node name="PropBench8" type="Node3D" parent="Props" index="272" instance=ExtResource("20_dbfxh")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 15.7723, 0, 67.4447)
 
-[node name="PropGomibako8" parent="Props" index="273" instance=ExtResource("21_fndp6")]
+[node name="PropGomibako8" type="Node3D" parent="Props" index="273" instance=ExtResource("21_fndp6")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16, 0, 69.297)
 
-[node name="PropBench9" parent="Props" index="274" instance=ExtResource("20_dbfxh")]
+[node name="PropBench9" type="Node3D" parent="Props" index="274" instance=ExtResource("20_dbfxh")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 0, 83.5)
 
-[node name="PropGomibako9" parent="Props" index="275" instance=ExtResource("21_fndp6")]
+[node name="PropGomibako9" type="Node3D" parent="Props" index="275" instance=ExtResource("21_fndp6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.77228, 0, 85.4447)
 
-[node name="PropBench10" parent="Props" index="276" instance=ExtResource("20_dbfxh")]
+[node name="PropBench10" type="Node3D" parent="Props" index="276" instance=ExtResource("20_dbfxh")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 15.7723, 0, 83.4447)
 
-[node name="PropGomibako10" parent="Props" index="277" instance=ExtResource("21_fndp6")]
+[node name="PropGomibako10" type="Node3D" parent="Props" index="277" instance=ExtResource("21_fndp6")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16, 0, 85.297)
 
-[node name="PropBench11" parent="Props" index="278" instance=ExtResource("20_dbfxh")]
+[node name="PropBench11" type="Node3D" parent="Props" index="278" instance=ExtResource("20_dbfxh")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 10, 0, 99)
 
-[node name="PropGomibako11" parent="Props" index="279" instance=ExtResource("21_fndp6")]
+[node name="PropGomibako11" type="Node3D" parent="Props" index="279" instance=ExtResource("21_fndp6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.77228, 0, 100.945)
 
-[node name="PropBench12" parent="Props" index="280" instance=ExtResource("20_dbfxh")]
+[node name="PropBench12" type="Node3D" parent="Props" index="280" instance=ExtResource("20_dbfxh")]
 transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 15.7723, 0, 98.9447)
 
-[node name="PropGomibako12" parent="Props" index="281" instance=ExtResource("21_fndp6")]
+[node name="PropGomibako12" type="Node3D" parent="Props" index="281" instance=ExtResource("21_fndp6")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 16, 0, 100.797)
 
-[node name="PropClockpole" parent="Props" index="282" instance=ExtResource("22_lmrx7")]
+[node name="PropClockpole" type="Node3D" parent="Props" index="282" instance=ExtResource("22_lmrx7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3239, 0, 8.5)
 
-[node name="PropClockpole2" parent="Props" index="283" instance=ExtResource("22_lmrx7")]
+[node name="PropClockpole2" type="Node3D" parent="Props" index="283" instance=ExtResource("22_lmrx7")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.82386, 0, 8.5)
 
-[node name="PropClockpole3" parent="Props" index="284" instance=ExtResource("22_lmrx7")]
+[node name="PropClockpole3" type="Node3D" parent="Props" index="284" instance=ExtResource("22_lmrx7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3239, 0, 95.9005)
 
-[node name="PropClockpole4" parent="Props" index="285" instance=ExtResource("22_lmrx7")]
+[node name="PropClockpole4" type="Node3D" parent="Props" index="285" instance=ExtResource("22_lmrx7")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.82386, 0, 95.9005)
 
-[node name="PropStreetLight" parent="Props" index="286" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight" type="Node3D" parent="Props" index="286" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 15.5)
 
-[node name="PropStreetLight2" parent="Props" index="287" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight2" type="Node3D" parent="Props" index="287" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 15.5)
 
-[node name="PropStreetLight3" parent="Props" index="288" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight3" type="Node3D" parent="Props" index="288" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 24.5)
 
-[node name="PropStreetLight4" parent="Props" index="289" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight4" type="Node3D" parent="Props" index="289" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 24.5)
 
-[node name="PropStreetLight5" parent="Props" index="290" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight5" type="Node3D" parent="Props" index="290" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 31.5)
 
-[node name="PropStreetLight6" parent="Props" index="291" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight6" type="Node3D" parent="Props" index="291" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 31.5)
 
-[node name="PropStreetLight7" parent="Props" index="292" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight7" type="Node3D" parent="Props" index="292" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 40.5)
 
-[node name="PropStreetLight8" parent="Props" index="293" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight8" type="Node3D" parent="Props" index="293" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 40.5)
 
-[node name="PropStreetLight9" parent="Props" index="294" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight9" type="Node3D" parent="Props" index="294" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 47.5)
 
-[node name="PropStreetLight10" parent="Props" index="295" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight10" type="Node3D" parent="Props" index="295" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 47.5)
 
-[node name="PropStreetLight11" parent="Props" index="296" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight11" type="Node3D" parent="Props" index="296" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 56.5)
 
-[node name="PropStreetLight12" parent="Props" index="297" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight12" type="Node3D" parent="Props" index="297" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 56.5)
 
-[node name="PropStreetLight13" parent="Props" index="298" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight13" type="Node3D" parent="Props" index="298" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 63.5)
 
-[node name="PropStreetLight14" parent="Props" index="299" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight14" type="Node3D" parent="Props" index="299" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 63.5)
 
-[node name="PropStreetLight15" parent="Props" index="300" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight15" type="Node3D" parent="Props" index="300" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 72.5)
 
-[node name="PropStreetLight16" parent="Props" index="301" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight16" type="Node3D" parent="Props" index="301" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 72.5)
 
-[node name="PropStreetLight17" parent="Props" index="302" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight17" type="Node3D" parent="Props" index="302" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 79.5)
 
-[node name="PropStreetLight18" parent="Props" index="303" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight18" type="Node3D" parent="Props" index="303" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 79.5)
 
-[node name="PropStreetLight19" parent="Props" index="304" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight19" type="Node3D" parent="Props" index="304" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 88.5)
 
-[node name="PropStreetLight20" parent="Props" index="305" instance=ExtResource("23_4u7pc")]
+[node name="PropStreetLight20" type="Node3D" parent="Props" index="305" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 88.5)
 
-[node name="PropBush1" parent="Props" index="306" instance=ExtResource("27_51lti")]
+[node name="PropBush1" type="Node3D" parent="Props" index="306" instance=ExtResource("27_51lti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.46244, 0, 11.8464)
 
-[node name="PropBush2" parent="Props" index="307" instance=ExtResource("27_51lti")]
+[node name="PropBush2" type="Node3D" parent="Props" index="307" instance=ExtResource("27_51lti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.6498, 0, 12.3836)
 
-[node name="PropBush13" parent="Props" index="308" instance=ExtResource("27_51lti")]
+[node name="PropBush13" type="Node3D" parent="Props" index="308" instance=ExtResource("27_51lti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9487, 0, 28.0401)
 
-[node name="PropBush15" parent="Props" index="309" instance=ExtResource("27_51lti")]
+[node name="PropBush15" type="Node3D" parent="Props" index="309" instance=ExtResource("27_51lti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9487, 0, 37.2296)
 
-[node name="PropBush17" parent="Props" index="310" instance=ExtResource("27_51lti")]
+[node name="PropBush17" type="Node3D" parent="Props" index="310" instance=ExtResource("27_51lti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9487, 0, 46.7213)
 
-[node name="PropBush19" parent="Props" index="311" instance=ExtResource("27_51lti")]
+[node name="PropBush19" type="Node3D" parent="Props" index="311" instance=ExtResource("27_51lti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9487, 0, 56.6607)
 
-[node name="PropBush21" parent="Props" index="312" instance=ExtResource("27_51lti")]
+[node name="PropBush21" type="Node3D" parent="Props" index="312" instance=ExtResource("27_51lti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9487, 0, 66.5106)
 
-[node name="PropBush23" parent="Props" index="313" instance=ExtResource("27_51lti")]
+[node name="PropBush23" type="Node3D" parent="Props" index="313" instance=ExtResource("27_51lti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.9487, 0, 76.0207)
 
-[node name="PropBush3" parent="Props" index="314" instance=ExtResource("27_51lti")]
+[node name="PropBush3" type="Node3D" parent="Props" index="314" instance=ExtResource("27_51lti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.46244, 0, 27.7495)
 
-[node name="PropBush4" parent="Props" index="315" instance=ExtResource("27_51lti")]
+[node name="PropBush4" type="Node3D" parent="Props" index="315" instance=ExtResource("27_51lti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.6498, 0, 27.7495)
 
-[node name="PropBush5" parent="Props" index="316" instance=ExtResource("27_51lti")]
+[node name="PropBush5" type="Node3D" parent="Props" index="316" instance=ExtResource("27_51lti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.46244, 0, 43.8734)
 
-[node name="PropBush6" parent="Props" index="317" instance=ExtResource("27_51lti")]
+[node name="PropBush6" type="Node3D" parent="Props" index="317" instance=ExtResource("27_51lti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.6498, 0, 43.8734)
 
-[node name="PropBush7" parent="Props" index="318" instance=ExtResource("27_51lti")]
+[node name="PropBush7" type="Node3D" parent="Props" index="318" instance=ExtResource("27_51lti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.46244, 0, 59.8239)
 
-[node name="PropBush8" parent="Props" index="319" instance=ExtResource("27_51lti")]
+[node name="PropBush8" type="Node3D" parent="Props" index="319" instance=ExtResource("27_51lti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.6498, 0, 59.8239)
 
-[node name="PropBush9" parent="Props" index="320" instance=ExtResource("27_51lti")]
+[node name="PropBush9" type="Node3D" parent="Props" index="320" instance=ExtResource("27_51lti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.46244, 0, 75.89)
 
-[node name="PropBush10" parent="Props" index="321" instance=ExtResource("27_51lti")]
+[node name="PropBush10" type="Node3D" parent="Props" index="321" instance=ExtResource("27_51lti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.6498, 0, 75.89)
 
-[node name="PropBush11" parent="Props" index="322" instance=ExtResource("27_51lti")]
+[node name="PropBush11" type="Node3D" parent="Props" index="322" instance=ExtResource("27_51lti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.46244, 0, 91.8983)
 
-[node name="PropBush12" parent="Props" index="323" instance=ExtResource("27_51lti")]
+[node name="PropBush12" type="Node3D" parent="Props" index="323" instance=ExtResource("27_51lti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.6498, 0, 91.8983)
 
 [node name="Horizon2" type="Node3D" parent="." index="32"]
@@ -1614,7 +1633,11 @@ transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 6.7764e-22, -4.37114e-08,
 mesh = SubResource("PlaneMesh_wb77v")
 surface_material_override/0 = SubResource("StandardMaterial3D_a67vy")
 
-[node name="Clouds" parent="." index="33" instance=ExtResource("20_i0prs")]
+[node name="Clouds" type="MeshInstance3D" parent="." index="33" instance=ExtResource("20_i0prs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 227.117, 0)
+mesh = SubResource("PlaneMesh_lxrjr")
+script = ExtResource("32_obmh3")
+direction = Vector3(-0.002, -0.002, 0)
 metadata/_edit_lock_ = true
 
 [node name="Camera3D" type="Camera3D" parent="." index="34"]
@@ -1623,3 +1646,7 @@ projection = 1
 size = 106.0
 
 [node name="Marker3D" type="Marker3D" parent="." index="35"]
+
+[node name="Plains_001" parent="." index="36"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+surface_material_override/0 = SubResource("StandardMaterial3D_7qt0g")

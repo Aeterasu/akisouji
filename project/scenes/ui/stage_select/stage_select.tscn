@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://gcdsoumbb7v1"]
+[gd_scene load_steps=35 format=3 uid="uid://gcdsoumbb7v1"]
 
 [ext_resource type="Script" path="res://scenes/ui/stage_select/stage_select.gd" id="1_66fed"]
 [ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="1_dorsv"]
@@ -10,7 +10,9 @@
 [ext_resource type="Shader" path="res://shader/alpha_mask.gdshader" id="5_3202m"]
 [ext_resource type="PackedScene" uid="uid://bcrys4arojn37" path="res://scenes/ui/paper_button.tscn" id="6_kbe54"]
 [ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="7_dni56"]
+[ext_resource type="PackedScene" uid="uid://clbhy8rora05f" path="res://scenes/level/fountain/level_fountain.tscn" id="9_ontxg"]
 [ext_resource type="PackedScene" uid="uid://b4bw4uryofcbx" path="res://scenes/ui/stage_select/stage_navigation_arrow.tscn" id="10_avlww"]
+[ext_resource type="Texture2D" uid="uid://d0dlnwabgcqxg" path="res://assets/texture/stage/texture_stage_fountain.png" id="10_jxscp"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="10_v364h"]
 [ext_resource type="Script" path="res://scenes/ui/paper_button.gd" id="11_7qeyb"]
 [ext_resource type="Script" path="res://scenes/ui/button.gd" id="12_6pdp1"]
@@ -71,7 +73,7 @@ gradient = SubResource("Gradient_6qmtg")
 width = 8
 height = 8
 
-[node name="StageSelect" type="Control" node_paths=PackedStringArray("button_selection_handler", "back_button", "proceed_button", "navigation_button_selection_handler", "stages_container", "right_button", "left_button", "stage_button", "stage_name_label", "stage_description_label")]
+[node name="StageSelect" type="Control" node_paths=PackedStringArray("button_selection_handler", "back_button", "proceed_button", "navigation_button_selection_handler", "stages_container", "right_button", "left_button", "stage_button", "stage_name_label", "stage_description_label", "stage_background_origin")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -90,8 +92,17 @@ stage_button = NodePath("StageNavigation/StageSelection")
 scroll_lerp_weight = 5.5
 stage_name_label = NodePath("StageName")
 stage_description_label = NodePath("StageDescription")
+stage_background_origin = NodePath("Control")
 
-[node name="StageBackground" type="TextureRect" parent="."]
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StageBackground" type="TextureRect" parent="Control"]
 self_modulate = Color(0.239216, 0.172549, 0.156863, 1)
 layout_mode = 1
 anchors_preset = 15
@@ -101,7 +112,37 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_ykbf5")
 
-[node name="Background" type="TextureRect" parent="StageBackground"]
+[node name="StageBackground2" type="TextureRect" parent="Control"]
+self_modulate = Color(0.239216, 0.172549, 0.156863, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_jxscp")
+
+[node name="StageBackground3" type="TextureRect" parent="Control"]
+self_modulate = Color(0.239216, 0.172549, 0.156863, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ykbf5")
+
+[node name="StageBackground4" type="TextureRect" parent="Control"]
+self_modulate = Color(0.239216, 0.172549, 0.156863, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ykbf5")
+
+[node name="Background" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.278431)
 material = SubResource("ShaderMaterial_xyu36")
 layout_mode = 1
@@ -190,6 +231,12 @@ description_key = "STAGE_DESCRIPTION_ALLEYWAY"
 
 [node name="StageButton2" parent="SubViewportContainer/SubViewport/Control/HBoxContainer" instance=ExtResource("3_wm72o")]
 layout_mode = 2
+stage_scene = ExtResource("9_ontxg")
+name_key = "STAGE_NAME_FOUNTAIN"
+description_key = "STAGE_DESCRIPTION_FOUNTAIN"
+
+[node name="LevelImage" parent="SubViewportContainer/SubViewport/Control/HBoxContainer/StageButton2" index="2"]
+texture = ExtResource("10_jxscp")
 
 [node name="StageButton3" parent="SubViewportContainer/SubViewport/Control/HBoxContainer" instance=ExtResource("3_wm72o")]
 layout_mode = 2
@@ -469,3 +516,5 @@ horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("19_r5y7g")
 shop_button = NodePath("../Buttons/PaperButtonHFlipped")
+
+[editable path="SubViewportContainer/SubViewport/Control/HBoxContainer/StageButton2"]

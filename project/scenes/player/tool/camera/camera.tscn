@@ -691,6 +691,7 @@ surface_material_override/2 = SubResource("StandardMaterial3D_selyk")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="mesh_camera"]
 transform = Transform3D(1, -2.21189e-09, 0, -2.09548e-09, 1, -9.31323e-10, 1.49012e-08, -1.86265e-09, 1, 0, 0, 0)
 layers = 2
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_hgx7i")
 surface_material_override/0 = ExtResource("7_8p54i")
 

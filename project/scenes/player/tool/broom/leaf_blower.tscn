@@ -603,9 +603,11 @@ walk_cycle_direction = Vector3(0.025, 0.01, 0)
 
 [node name="mesh_broom" parent="." instance=ExtResource("1_arkqy")]
 transform = Transform3D(-0.00147166, 0.000339822, 0.00988528, 0.00988865, -0.000172611, 0.00147809, 0.00022086, 0.00999274, -0.000310636, 0.069, -0.062, -0.15)
+cast_shadow = 0
 surface_material_override/0 = SubResource("StandardMaterial3D_qif45")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="mesh_broom"]
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_hf2xe")
 surface_material_override/0 = ExtResource("4_3ckyp")
 

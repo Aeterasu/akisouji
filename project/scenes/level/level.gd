@@ -2,6 +2,7 @@
 
 @export var leaf_populator : LeafPopulator = null
 @export var player_spawn_position : Marker3D = null
+@export var enable_rain : bool = false
 
 @export var cash_reward : float = 1000.0:
     set(value):

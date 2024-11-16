@@ -20,11 +20,15 @@ class_name StageSelect extends Control
 @export var stage_name_label : Label = null
 @export var stage_description_label : Label = null
 
+@export var stage_background_origin : Control = null
+
 var current_selected_stage_id : int = 0
 var stage_amount : int = 0
 
 var target_scroll : float = 0.0
 var current_scroll : float = 0.0
+
+var stage_background_list : Array[TextureRect]
 
 var focus_level : int = 0:
 	set(value):
@@ -61,6 +65,12 @@ func _ready():
 
 	stage_amount = stages_container.get_child_count()
 
+	stage_background_list.resize(stage_amount)
+
+	for i in stage_amount:
+		stage_background_list[i] = stage_background_origin.get_child(i) as TextureRect
+		stage_background_list[i].modulate = Color(0.0, 0.0, 0.0, 0.0)
+
 func _on_button_mouse_selection(button : UIButton):
 	navigation_button_selection_handler._select_button(-999)
 
@@ -94,6 +104,12 @@ func _process(delta):
 
 	stage_name_label.text = tr(s.name_key)
 	stage_description_label.text = tr(s.description_key)
+	
+	for i in range(stage_amount):
+		if (i == current_selected_stage_id):
+			stage_background_list[i].modulate = stage_background_list[i].modulate.lerp(Color(1.0, 1.0, 1.0, 1.0), 6.0 * delta)
+		else:
+			stage_background_list[i].modulate = stage_background_list[i].modulate.lerp(Color(0.0, 0.0, 0.0, 0.0), 0.75 * delta)
 
 	if (Input.is_action_just_pressed("pause") or Input.is_action_just_pressed("menu_cancel")):
 		_on_back_button_pressed()
