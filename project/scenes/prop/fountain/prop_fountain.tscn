@@ -1,0 +1,161 @@
+[gd_scene load_steps=25 format=3 uid="uid://ctyas8et4qqpd"]
+
+[ext_resource type="PackedScene" uid="uid://cka5occqvar8n" path="res://assets/mesh/prop/mesh_fountain_prop_1.blend" id="1_pllja"]
+[ext_resource type="Script" path="res://scenes/prop/fountain/prop_fountain.gd" id="1_xaua7"]
+[ext_resource type="Texture2D" uid="uid://cj2g3dvjwyqyc" path="res://assets/texture/prop/texture_fountain_1_albm.png" id="2_a2vi3"]
+[ext_resource type="Texture2D" uid="uid://bm6t16cayusak" path="res://assets/texture/prop/texture_fountain_1_roughmap.png" id="3_e46uf"]
+[ext_resource type="Texture2D" uid="uid://djt026jb7xmpy" path="res://scenes/prop/fountain/noise_water_albedo.tres" id="4_j1x2p"]
+[ext_resource type="Texture2D" uid="uid://bhfbq3wuqlw3r" path="res://assets/texture/prop/texture_water_nrmp.png" id="5_5hj81"]
+[ext_resource type="Texture2D" uid="uid://y2cansc2ekld" path="res://assets/texture/fx/texture_fx_water_splash_1.png" id="7_a44mh"]
+[ext_resource type="Texture2D" uid="uid://22mff5v8p4fv" path="res://assets/texture/fx/texture_fx_water_splash_2.png" id="8_d7ahd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ipunq"]
+albedo_texture = ExtResource("2_a2vi3")
+roughness_texture = ExtResource("3_e46uf")
+uv1_scale = Vector3(0.75, 0.75, 0.75)
+uv1_triplanar = true
+
+[sub_resource type="Gradient" id="Gradient_d3ed5"]
+offsets = PackedFloat32Array(0, 0.590698)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cpecy"]
+frequency = 0.04
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_nji5s"]
+width = 128
+height = 128
+seamless = true
+color_ramp = SubResource("Gradient_d3ed5")
+noise = SubResource("FastNoiseLite_cpecy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aqsov"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.662745)
+albedo_texture = ExtResource("4_j1x2p")
+metallic_specular = 1.0
+roughness = 0.47
+roughness_texture = SubResource("NoiseTexture2D_nji5s")
+normal_enabled = true
+normal_scale = 0.27
+normal_texture = ExtResource("5_5hj81")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[sub_resource type="Gradient" id="Gradient_1bgvt"]
+offsets = PackedFloat32Array(0, 0.173776, 0.598736, 0.995261)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_a6ora"]
+gradient = SubResource("Gradient_1bgvt")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vk2sy"]
+emission_shape_scale = Vector3(1, 0, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(1, 16, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 4.0
+emission_ring_inner_radius = 1.0
+angle_min = -720.0
+angle_max = 720.0
+angular_velocity_min = -86.77
+angular_velocity_max = 101.24
+gravity = Vector3(0, 1.37, 0)
+scale_min = 0.5
+scale_max = 2.5
+color_ramp = SubResource("GradientTexture1D_a6ora")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p2074"]
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.140447, 0.140447, 0.140447, 1)
+albedo_texture = ExtResource("7_a44mh")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_ki658"]
+material = SubResource("StandardMaterial3D_p2074")
+
+[sub_resource type="Gradient" id="Gradient_gwt30"]
+offsets = PackedFloat32Array(0, 0.173776, 0.598736, 0.995261)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kqmcb"]
+gradient = SubResource("Gradient_gwt30")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ep4s"]
+particle_flag_align_y = true
+emission_shape_scale = Vector3(1, 0, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(1, 16, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 4.0
+emission_ring_inner_radius = 1.0
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 3.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 2.5
+color_ramp = SubResource("GradientTexture1D_kqmcb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4tcug"]
+blend_mode = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("8_d7ahd")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_84bie"]
+material = SubResource("StandardMaterial3D_4tcug")
+size = Vector2(0.05, 0.1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vis7i"]
+height = 16.0
+radius = 4.0
+
+[node name="Fountain" type="Node3D" node_paths=PackedStringArray("water_mesh")]
+script = ExtResource("1_xaua7")
+water_mesh = NodePath("mesh_fountain_prop_1/Water")
+water_speed = 3.0
+
+[node name="mesh_fountain_prop_1" parent="." instance=ExtResource("1_pllja")]
+surface_material_override/0 = SubResource("StandardMaterial3D_ipunq")
+
+[node name="Water" parent="mesh_fountain_prop_1" index="0"]
+cast_shadow = 0
+surface_material_override/0 = SubResource("StandardMaterial3D_aqsov")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+amount = 64
+lifetime = 1.5
+preprocess = 1.0
+randomness = 0.3
+process_material = SubResource("ParticleProcessMaterial_vk2sy")
+draw_pass_1 = SubResource("QuadMesh_ki658")
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+amount = 128
+lifetime = 1.5
+preprocess = 1.0
+randomness = 0.3
+process_material = SubResource("ParticleProcessMaterial_2ep4s")
+draw_pass_1 = SubResource("QuadMesh_84bie")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
+shape = SubResource("CylinderShape3D_vis7i")
+
+[editable path="mesh_fountain_prop_1"]

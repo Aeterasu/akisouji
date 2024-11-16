@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnss0alvnnk7s"]
+
+[ext_resource type="PackedScene" uid="uid://1gfiearfvx3t" path="res://assets/mesh/prop/mesh_floorlight_1.blend" id="1_okvyw"]
+[ext_resource type="Material" uid="uid://mrdkkmwqr7ls" path="res://resource/material/material_metal_1.tres" id="2_7wmur"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_st23g"]
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 4.0
+
+[node name="FloorLight" type="Node3D"]
+
+[node name="mesh_floorlight_1" parent="." instance=ExtResource("1_okvyw")]
+cast_shadow = 0
+surface_material_override/0 = SubResource("StandardMaterial3D_st23g")
+surface_material_override/1 = ExtResource("2_7wmur")

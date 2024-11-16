@@ -105,7 +105,6 @@ LEFT TO DO:
         - maybe implement optimization via cluster of multimeshes
         - dialogue box tutorial. mention leaf highlighting (could tutorial be a dialogue with the girl?)
         - redo brooming animations
-        - add the ability to throw your broom. it will then proceed to sweep all the leaves as it slides across the ground. 
         - feather duster - auto cleaning
         - vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
         - work on economy :D (boots should be dirt cheap, brooms more costly)
@@ -136,6 +135,7 @@ LEFT TO DO:
     VISUAL:
         GOLDEN AUTUMN MUCH?
 
+        - add outofbounds horizon to fountain stage 
         - retexture leaves
         - fix camera state transition disabling viewport (something's going fucky-wucky)
         - beautify leafs. new texture, maybe random texture
@@ -143,6 +143,7 @@ LEFT TO DO:
 		- remodel trees
     
     AUDIO:
+        - add fountain sound
         - add crunchy cleaning sounds
         - add general sound. now that I think about it, there won't be much sound in the game, will it?
         - rework footstep sound
