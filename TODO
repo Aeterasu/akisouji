@@ -96,6 +96,7 @@ LEFT TO DO:
     GAMEPLAY:
         = cash based broom that uses cash to clean ?
         = GARBAGE BAGS FILLING UP BY SWEEPING? YOU CAN THEN THROW IT, MOVE IT, ETC
+        - implement wellington boots buff
         - level-specific leaf cleaning leeway
         - disabled leaf populator completely breaks the game, pls add safety checks
         - add 'new upgrade notification'. a little '!' should appear on the category
@@ -114,7 +115,7 @@ LEFT TO DO:
         - cash and purchases saving
         - fix not being able to leave photo mode
         - add photo mode zoom, and tilt
-        - suggestion - make the leaf highlight not an inherent mechanic, but an upgrade?
+        - suggestion - make the leaf highlight not an inhere nt mechanic, but an upgrade?
         - set ranking times on levels !!!
     
     GENERAL UI:
@@ -124,7 +125,7 @@ LEFT TO DO:
         - are you sure? (on level exit)
         - add interpolations to ui (gallery. gallery down panel missing interpolations on mode switch)
         - add playstation glyphs
-        - rework loading screen
+        - rework loading screen (chibis + let them show the stage picture)
         - add timer
     
     IN-GAME HUD:

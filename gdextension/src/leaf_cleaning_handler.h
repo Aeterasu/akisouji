@@ -10,6 +10,7 @@
 #include <godot_cpp/classes/tween.hpp>
 #include <godot_cpp/classes/property_tweener.hpp>
 #include <godot_cpp/core/math.hpp>
+#include <godot_cpp/classes/time.hpp>
 #include "cleaning_request.h"
 
 namespace godot
@@ -63,8 +64,8 @@ namespace godot
             int pixelDensity = 4;
             Ref<MultiMesh> multimesh;
 
-            TypedArray<Transform3D> *transforms;
-            TypedArray<int> *indexes;
+            TypedArray<Transform3D> transforms;
+            TypedArray<int> indexes;
             TypedArray<bool> skips;
             int lastIndex = 0;
 

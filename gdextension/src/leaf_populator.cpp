@@ -185,8 +185,8 @@ void LeafPopulator::PopulateLeaves()
     leafCleaningHandler->mapSize = imageSize;
     leafCleaningHandler->pixelDensity = leavesPerPixel;
     leafCleaningHandler->multimesh = multimesh;
-    leafCleaningHandler->transforms = &transforms;
-    leafCleaningHandler->indexes = &indexes;
+    leafCleaningHandler->transforms = transforms;
+    leafCleaningHandler->indexes = indexes;
     leafCleaningHandler->instanceCount = final_instance_count;
     leafCleaningHandler->skips.resize(final_instance_count);
     leafCleaningHandler->skips.fill(bool(false));
@@ -207,6 +207,11 @@ void LeafPopulator::PopulateLeaves()
     uint64_t duration = endTime - startTime;
 
     UtilityFunctions::prints("Leaves generated in:", duration, "ms");
+
+    for (int j = 0; j < 15; j++)
+    {
+        UtilityFunctions::prints(Transform3D(transforms[j]).origin);
+    }
 }
 
 //bool LeafPopulator::LeafPositionSort(Transform3D a, Transform3D b)
@@ -216,7 +221,7 @@ void LeafPopulator::PopulateLeaves()
 
 bool LeafPopulator::LeafPositionSort(Transform3D a, Transform3D b)
 {
-    return Vector2(a.origin.x, a.origin.z) < Vector2(b.origin.x, b.origin.z);
+    return a.origin.x < b.origin.x;
 }
 
 void LeafPopulator::_physics_process(double p_delta)

@@ -58,43 +58,43 @@ void LeafCleaningHandler::_physics_process(double delta)
     {
         UpdateTicks(delta);
         ticks = tickRate;
-    }
 
-    int i = 0;
-    int sweeps = 0;
+        int i = 0;
+        int sweeps = 0;
 
-    while (sweeps < sweepPerTick)
-    {
-        if (i > cleaningQueueIndexBuffer - 1)
+        while (sweeps < sweepPerTick)
         {
-            break;
-        }
-
-        if (int(indexesQueuedForCleaning[i]) < 0)
-        {
-            i++;
-            continue;
-        }
-        else
-        {
-            sweeps++;
-            int req = int(indexesQueuedForCleaning[i]);
-
-            Transform3D t = Transform3D((*transforms)[req]).scaled_local(Vector3(1, 1, 1) - (Vector3(1, 1, 1) * leafInterpolationWeight * delta));
-
-            (*transforms)[req] = t;
-
-            if (t.basis.get_scale().length() <= 0.1f)
+            if (i > cleaningQueueIndexBuffer - 1)
             {
-                t = Transform3D().scaled(Vector3(0, 0, 0));
-                indexesQueuedForCleaning[i] = int(-1);
-                cleanedInstancesCount++;
+                break;
             }
 
-            multimesh->set_instance_transform(req, t);
+            if (int(indexesQueuedForCleaning[i]) < 0)
+            {
+                i++;
+                continue;
+            }
+            else
+            {
+                sweeps++;
+                int req = int(indexesQueuedForCleaning[i]);
+
+                Transform3D t = Transform3D(transforms[req]).scaled_local(Vector3(1, 1, 1) - (Vector3(1, 1, 1) * leafInterpolationWeight * (delta * tickRate)));
+
+                if (t.basis.get_scale().length() <= 0.1f)
+                {
+                    t = t.scaled_local(Vector3(0, 0, 0));
+                    indexesQueuedForCleaning[i] = -1;
+                    cleanedInstancesCount++;
+                }
+
+                transforms[req] = t;
+                multimesh->set_instance_transform(req, t);
+            }
+
+            i++;
         }
 
-        i++;
     }
 }
 
@@ -121,11 +121,6 @@ void LeafCleaningHandler::UpdateTicks(double delta)
         Vector2 requestDirection = request->getRequestDirection();
         Vector2 requestSize = request->getRequestSize();
 
-        int firstSuitableIndex = (*transforms).bsearch_custom(Transform3D()
-            .translated(Vector3(requestPosition.x, 0.0f, requestPosition.y)), 
-            Callable(this, "LeafPositionSort")
-            );
-
         Vector2 A = Vector2(-requestSize.x * 0.5f, -requestSize.y * 0.5f);
         Vector2 B = Vector2(requestSize.x * 0.5f, -requestSize.y * 0.5f);
         Vector2 C = Vector2(requestSize.x * 0.5f, requestSize.y * 0.5f);
@@ -143,22 +138,30 @@ void LeafCleaningHandler::UpdateTicks(double delta)
         C += requestPosition;
         D += requestPosition;
 
-        for (int j = 0; j < instanceCount; j++)
+        float minReqPos = Math::min(Math::min(A.x, B.x), Math::min(C.x, D.x));
+        float maxReqPos = Math::max(Math::max(A.x, B.x), Math::max(C.x, D.x));
+
+        int firstSuitableIndex = transforms.bsearch_custom(Transform3D()
+            .translated(Vector3(minReqPos, 0.0f, 0.0f)), 
+            Callable(this, "LeafPositionSort")
+            );
+
+        for (int j = firstSuitableIndex; j < instanceCount; j++)
         {
             if (skips[j])
             {
                 continue;
             }
 
-            Vector3 origin = Transform3D((*transforms)[j]).origin;
+            Vector3 origin = Transform3D(transforms[j]).origin;
 
-            if (origin.x > requestPosition.x + requestSize.x)
+            if (origin.x > requestPosition.x + Math::max(requestSize.x, requestSize.y))
             {
                 break;
             }
             else if (IsPointInRectangle(A, B, C, D, Vector2(origin.x, origin.z)))
             {
-                indexesQueuedForCleaning[lastFreeRequestedQueueIndex] = int(j);
+                indexesQueuedForCleaning[lastFreeRequestedQueueIndex] = j;
 
                 cleaned += 1;
                 skips[j] = true;
@@ -216,7 +219,7 @@ void LeafCleaningHandler::ClearAllLeaves()
 
 bool LeafCleaningHandler::LeafPositionSort(Transform3D a, Transform3D b)
 {
-    return Vector2(a.origin.x, a.origin.z) < Vector2(b.origin.x, b.origin.z);
+    return a.origin.x < b.origin.x;
 }
 
 void LeafCleaningHandler::setTickRate(int pTickrate)
