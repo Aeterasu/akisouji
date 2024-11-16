@@ -71,6 +71,13 @@ func _ready():
 		stage_background_list[i] = stage_background_origin.get_child(i) as TextureRect
 		stage_background_list[i].modulate = Color(0.0, 0.0, 0.0, 0.0)
 
+	stage_background_list[0].modulate = Color(1.0, 1.0, 1.0, 1.0)
+
+	modulate = Color(0.0, 0.0, 0.0)
+
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0), 0.3)
+
 func _on_button_mouse_selection(button : UIButton):
 	navigation_button_selection_handler._select_button(-999)
 

@@ -81,6 +81,7 @@ LEFT TO DO:
     + model pavement border
     + add pavement border texture
     + add credits to main menu
+    + fix flash on entering
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -171,7 +172,7 @@ LEFT TO DO:
         - add sounds for purchasing/purchase failure
         - add like a 'bought' and 'equipped\ rectangle stamp
         - fix horizontal scaling
-        - green background
+        - green background with tools etc
         
     STAGE SELECT:
         - fix horizontal scaling
