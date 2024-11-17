@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://bmmipwucjq6as"]
+[gd_scene load_steps=61 format=4 uid="uid://bmmipwucjq6as"]
 
 [ext_resource type="Script" path="res://scenes/player/tool/camera/camera.gd" id="1_dgrk7"]
 [ext_resource type="PackedScene" uid="uid://dchkqghoh07wq" path="res://assets/mesh/tool/mesh_camera.glb" id="2_7bjqe"]
@@ -8,6 +8,9 @@
 [ext_resource type="Texture2D" uid="uid://bq18jm4ehly5r" path="res://assets/texture/tool/texture_camera_roughmap.png" id="4_sasoj"]
 [ext_resource type="Texture2D" uid="uid://bjv31j5j8mrm0" path="res://assets/texture/tool/texture_lens.png" id="5_hkvqd"]
 [ext_resource type="Material" uid="uid://cwaw45fhmm7wj" path="res://resource/material/material_broom_outline.tres" id="7_8p54i"]
+[ext_resource type="AudioStream" uid="uid://by7h1emkbgwug" path="res://assets/audio/sfx_camera_shutter.ogg" id="9_op1j0"]
+[ext_resource type="AudioStream" uid="uid://c8bov6yram35n" path="res://assets/audio/sfx_camera_equip_1.ogg" id="10_mpr3a"]
+[ext_resource type="AudioStream" uid="uid://dwu1ewy5w5ey8" path="res://assets/audio/sfx_camera_equip_2.ogg" id="11_bmq3j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1wbt"]
 albedo_texture = ExtResource("3_3wv3y")
@@ -233,6 +236,20 @@ tracks/3/keys = {
 "update": 1,
 "values": [true, false]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Equip1")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_21033"]
 resource_name = "photo_mode_exit"
@@ -301,6 +318,20 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Unequip1")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_3prxh"]
@@ -672,11 +703,12 @@ states/unequip_loop/position = Vector2(-95, 138)
 transitions = ["sprint_init", "sprint_loop", SubResource("AnimationNodeStateMachineTransition_cno54"), "sprint_loop", "sprint_end", SubResource("AnimationNodeStateMachineTransition_v7sc1"), "idle", "sprint_init", SubResource("AnimationNodeStateMachineTransition_dbhv6"), "sprint_end", "idle", SubResource("AnimationNodeStateMachineTransition_6gud3"), "sprint_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_awu8l"), "sprint_init", "sprint_end", SubResource("AnimationNodeStateMachineTransition_gp30y"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_desuo"), "idle", "unequip", SubResource("AnimationNodeStateMachineTransition_xvp0s"), "sprint_init", "unequip", SubResource("AnimationNodeStateMachineTransition_lyf6y"), "sprint_loop", "unequip", SubResource("AnimationNodeStateMachineTransition_gw85u"), "sprint_end", "unequip", SubResource("AnimationNodeStateMachineTransition_r0jex"), "equip", "unequip", SubResource("AnimationNodeStateMachineTransition_ywx3w"), "unequip_loop", "equip", SubResource("AnimationNodeStateMachineTransition_8ek0q"), "unequip", "unequip_loop", SubResource("AnimationNodeStateMachineTransition_c7rwe"), "unequip", "equip", SubResource("AnimationNodeStateMachineTransition_t6hlb"), "equip", "sprint_init", SubResource("AnimationNodeStateMachineTransition_djup7"), "equip", "photo_mode_enter", SubResource("AnimationNodeStateMachineTransition_3s4k8"), "idle", "photo_mode_enter", SubResource("AnimationNodeStateMachineTransition_c1rmi"), "sprint_init", "photo_mode_enter", SubResource("AnimationNodeStateMachineTransition_3ixd7"), "sprint_loop", "photo_mode_enter", SubResource("AnimationNodeStateMachineTransition_x437a"), "sprint_end", "photo_mode_enter", SubResource("AnimationNodeStateMachineTransition_o7fmi"), "unequip", "photo_mode_enter", SubResource("AnimationNodeStateMachineTransition_deken"), "photo_mode_enter", "photo_mode_exit", SubResource("AnimationNodeStateMachineTransition_4li0p"), "photo_mode_exit", "idle", SubResource("AnimationNodeStateMachineTransition_4pjk8")]
 graph_offset = Vector2(-202, -336)
 
-[node name="Camera" type="Node3D" node_paths=PackedStringArray("sub_viewport", "mesh", "camera", "animation_tree")]
+[node name="Camera" type="Node3D" node_paths=PackedStringArray("sub_viewport", "mesh", "camera", "audio_shutter", "animation_tree")]
 script = ExtResource("1_dgrk7")
 sub_viewport = NodePath("mesh_camera/SubViewport")
 mesh = NodePath("mesh_camera")
 camera = NodePath("mesh_camera/SubViewport/Camera3D")
+audio_shutter = NodePath("CameraShutter")
 animation_tree = NodePath("AnimationTree")
 walk_cycle_direction = Vector3(0.01, 0.005, 0)
 
@@ -732,3 +764,24 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_wjiwp")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="CameraShutter" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_op1j0")
+volume_db = 2.0
+pitch_scale = 0.95
+max_polyphony = 4
+bus = &"SFX"
+
+[node name="Equip1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_mpr3a")
+volume_db = 2.0
+pitch_scale = 0.95
+max_polyphony = 4
+bus = &"SFX"
+
+[node name="Unequip1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_bmq3j")
+volume_db = 2.0
+pitch_scale = 0.95
+max_polyphony = 4
+bus = &"SFX"

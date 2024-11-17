@@ -85,6 +85,7 @@ LEFT TO DO:
     + rework footstep sound
     + add fountain sound
     + add ambience
+    + add camera sound
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -140,17 +141,14 @@ LEFT TO DO:
         GOLDEN AUTUMN MUCH?
 
         - add outofbounds horizon to fountain stage 
-        - retexture leaves
         - fix camera state transition disabling viewport (something's going fucky-wucky)
-        - beautify leafs. new texture, maybe random texture
-        - add props by necessity
-		- remodel trees
+        - retexture leaves. new texture, maybe random texture
     
     AUDIO:
+        - jumping and landing sounds
         - add bell chiming to church level
         - add crunchy cleaning sounds
         - add general sound. now that I think about it, there won't be much sound in the game, will it?
-        - add camera sound
         - some sort of music playlist manager and music ui
         - add music. incase, fallback to classical music
     

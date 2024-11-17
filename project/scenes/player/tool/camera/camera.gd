@@ -5,6 +5,8 @@ class_name CameraTool extends PlayerTool
 @export var mesh : MeshInstance3D = null
 @export var camera : Camera3D = null
 
+@export var audio_shutter : AudioStreamPlayer = null
+
 var tickrate : int = 1
 var ticks : int = 0
 
@@ -48,6 +50,8 @@ func _use_primary() -> void:
 		tween.tween_property(BlackoutLayer.instance.white_rect, "modulate", Color(1.0, 1.0, 1.0, 0.0), 0.5)
 		await get_tree().create_timer(0.1).timeout
 		CameraUI.instance.show()
+
+		audio_shutter.play()
 
 func _use_secondary() -> void:
 	super()
