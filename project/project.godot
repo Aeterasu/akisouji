@@ -18,6 +18,7 @@ warnings/check_angle_interpolation_type_conflicting=false
 config/name="akisouji"
 run/main_scene="res://scenes/main/main.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+run/max_fps=60
 boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
@@ -357,7 +358,8 @@ locale/translations=PackedStringArray("res://assets/localization/akisouji_locali
 [physics]
 
 common/max_physics_steps_per_frame=4
-common/physics_interpolation=true
+common/max_fps=60
+common/vsync/vsync_mode=1
 
 [rendering]
 

@@ -119,6 +119,7 @@ void LeafPopulator::PopulateLeaves()
 
     int size = imageSize.x * imageSize.y * leavesPerPixel;
     transforms.resize(size);
+    colors.resize(size);
     indexes.resize(size);
 
     uint32_t offset = 0;
@@ -157,6 +158,7 @@ void LeafPopulator::PopulateLeaves()
                     .translated(Vector3((i + random->randf() * 1.0) / pixelFraction, y, (j + random->randf() * 1.0) / pixelFraction));
 
                 indexes[offset] = offset;
+                colors[offset] = leafColors[random->randi() % leafColors.size()];
                 offset++;
             }
 
@@ -179,13 +181,14 @@ void LeafPopulator::PopulateLeaves()
     for (int i = 0; i < final_instance_count; i++)
     {
         multimesh->set_instance_transform(i, transforms[i]);
-        multimesh->set_instance_color(i, leafColors[random->randi() % leafColors.size()]);
+        multimesh->set_instance_color(i, colors[i]);
     }   
 
     leafCleaningHandler->mapSize = imageSize;
     leafCleaningHandler->pixelDensity = leavesPerPixel;
     leafCleaningHandler->multimesh = multimesh;
     leafCleaningHandler->transforms = transforms;
+    leafCleaningHandler->colors = colors;
     leafCleaningHandler->indexes = indexes;
     leafCleaningHandler->instanceCount = final_instance_count;
     leafCleaningHandler->skips.resize(final_instance_count);

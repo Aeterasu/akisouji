@@ -3,5 +3,7 @@
 [ext_resource type="Script" path="res://scenes/singleton/global_settings/global_settings.gd" id="1_diykh"]
 
 [node name="GlobalSettings" type="Node"]
+process_mode = 3
 script = ExtResource("1_diykh")
 gamepad_sensitvity = 96.0
+leaf_highlight_color = Color(1, 1, 1, 1)

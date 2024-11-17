@@ -18,6 +18,5 @@ nodePathLeafCleaningHandler = NodePath("LeafCleaningHandler")
 multimesh = SubResource("MultiMesh_5xmeq")
 
 [node name="LeafCleaningHandler" type="LeafCleaningHandler" parent="."]
-tickRate = 2
 sweepPerTick = 512
 leafInterpolationWeight = 10.0

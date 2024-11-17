@@ -25,7 +25,7 @@ func _physics_process(delta):
 func _highlight():
 	var tween = create_tween()
 	var highlight = leaf_material.next_pass as StandardMaterial3D
-	var color = highlight.albedo_color
+	var color = highlight.albedo_color * leaf_material.albedo_color.a
 
 	tween.tween_property(self, "highlight_color", Color(highlight_color.r, highlight_color.g, highlight_color.b, highlight_target_alpha), highlight_fade_duration)
 	tween.tween_property(self, "highlight_color", Color(highlight_color.r, highlight_color.g, highlight_color.b, 0.0), highlight_fade_duration).set_delay(highlight_fade_duration + highlight_linger_duration)

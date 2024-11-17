@@ -79,9 +79,26 @@ void LeafCleaningHandler::_physics_process(double delta)
                 sweeps++;
                 int req = int(indexesQueuedForCleaning[i]);
 
-                Transform3D t = Transform3D(transforms[req]).scaled_local(Vector3(1, 1, 1) - (Vector3(1, 1, 1) * leafInterpolationWeight * (delta * tickRate)));
+                //multimesh->set_instance_transform(req, transforms[req]);
+                //multimesh->set_instance_color(req, Color(0.0, 0.0, 0.0, 0.0));
 
-                if (t.basis.get_scale().length() <= 0.1f)
+                //Transform3D t = Transform3D(transforms[req]).scaled_local(Vector3(1, 1, 1) - (Vector3(1, 1, 1) * leafInterpolationWeight * (delta * tickRate)));
+
+                Color c = Color(colors[req]).lerp(Color(0.0, 0.0, 0.0, 0.0), leafInterpolationWeight * (delta * tickRate));
+
+                if (c.a <= 0.1f)
+                {
+                    c = Color(0.0, 0.0, 0.0, 0.0);
+                    indexesQueuedForCleaning[i] = -1;
+                    cleanedInstancesCount++;
+
+                    //multimesh->set_instance_transform(req, Transform3D(transforms[req]).scaled_local(Vector3(0.0, 0.0, 0.0)));
+                }
+
+                colors[req] = c;
+                multimesh->set_instance_color(req, c);
+
+                /*if (t.basis.get_scale().length() <= 0.1f)
                 {
                     t = t.scaled_local(Vector3(0, 0, 0));
                     indexesQueuedForCleaning[i] = -1;
@@ -89,7 +106,7 @@ void LeafCleaningHandler::_physics_process(double delta)
                 }
 
                 transforms[req] = t;
-                multimesh->set_instance_transform(req, t);
+                multimesh->set_instance_transform(req, t);*/
             }
 
             i++;

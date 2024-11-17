@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://gcdsoumbb7v1" path="res://scenes/ui/stage_select/stage_select.tscn" id="7_ti7n1"]
 
 [node name="Main" type="Node"]
+process_mode = 3
 script = ExtResource("1_bkdub")
 
 [node name="SceneTransitionHandler" type="Node" parent="."]

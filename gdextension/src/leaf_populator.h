@@ -41,6 +41,7 @@ namespace godot
             LeafCleaningHandler* leafCleaningHandler;
 
             TypedArray<Transform3D> transforms;
+            TypedArray<Color> colors;
             TypedArray<int> indexes;
 
             void PopulateLeaves();

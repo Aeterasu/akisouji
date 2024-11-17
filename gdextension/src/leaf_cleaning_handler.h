@@ -65,6 +65,7 @@ namespace godot
             Ref<MultiMesh> multimesh;
 
             TypedArray<Transform3D> transforms;
+            TypedArray<Color> colors;
             TypedArray<int> indexes;
             TypedArray<bool> skips;
             int lastIndex = 0;

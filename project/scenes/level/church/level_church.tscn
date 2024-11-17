@@ -14,13 +14,10 @@ script = ExtResource("2_hsbfh")
 leaf_populator = NodePath("LeafPopulator")
 player_spawn_position = NodePath("Marker3D")
 
-[node name="LeafPopulator" type="LeafPopulator" parent="." index="0" instance=ExtResource("2_y0tux")]
+[node name="LeafPopulator" parent="." index="0" instance=ExtResource("2_y0tux")]
 leavesPerPixel = 64
 leafmap = ExtResource("3_7ae50")
 heightmap = ExtResource("4_wyrm8")
-nodePathMultimeshInstance = NodePath("MultiMeshInstance3D")
-leafColors = Array[Color]([Color(0.831373, 0.254902, 0.215686, 1), Color(0.831373, 0.678431, 0.32549, 1), Color(0.988235, 0.45098, 0.137255, 1), Color(0.941176, 0.647059, 0.235294, 1), Color(0.65098, 0.301961, 0.196078, 1), Color(0.941176, 0.647059, 0.235294, 1), Color(0.831373, 0.254902, 0.215686, 1), Color(0.988235, 0.45098, 0.137255, 1), Color(0.701239, 0.736999, 0.269074, 1), Color(0.701961, 0.737255, 0.270588, 1)])
-nodePathLeafCleaningHandler = NodePath("LeafCleaningHandler")
 
 [node name="Marker3D" type="Marker3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87, 2, 83)

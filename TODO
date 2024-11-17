@@ -86,6 +86,7 @@ LEFT TO DO:
     + add fountain sound
     + add ambience
     + add camera sound
+    + jumping and landing sounds
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -146,7 +147,6 @@ LEFT TO DO:
         - retexture leaves. new texture, maybe random texture
     
     AUDIO:
-        - jumping and landing sounds
         - add bell chiming to church level
         - add crunchy cleaning sounds
         - add general sound. now that I think about it, there won't be much sound in the game, will it?
@@ -154,6 +154,7 @@ LEFT TO DO:
         - add music. incase, fallback to classical music
     
     SETTINGS:
+        - add camera wobble settings
         - disable black fade-in fade-out when entering settings menu from pause menu
         - fix settings menu flashing
 		- lerp for sliders
