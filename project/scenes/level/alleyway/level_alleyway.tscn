@@ -1644,6 +1644,7 @@ size = 106.0
 
 [node name="Plains_001" parent="." index="36"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_7qt0g")
 
 [node name="Ambience" type="AudioStreamPlayer" parent="." index="37"]

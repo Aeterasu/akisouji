@@ -738,6 +738,7 @@ environment = ExtResource("8_jvlfx")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="13"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 12.6895, 0)
 light_color = Color(0.219767, 0.2052, 0.38, 1)
+light_bake_mode = 1
 
 [node name="Ambience" type="AudioStreamPlayer" parent="." index="14"]
 process_mode = 3

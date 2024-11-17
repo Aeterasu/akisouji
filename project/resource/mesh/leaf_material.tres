@@ -1,20 +1,17 @@
-[gd_resource type="StandardMaterial3D" load_steps=4 format=3 uid="uid://dnl0j7w1x0eod"]
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://dnl0j7w1x0eod"]
 
 [ext_resource type="Texture2D" uid="uid://bktymx1qewgdb" path="res://assets/texture/leaf/texture_leaf_1.png" id="1_giusd"]
+[ext_resource type="Shader" path="res://resource/mesh/leaf_highlight.gdshader" id="2_i8jdf"]
 [ext_resource type="Texture2D" uid="uid://dp2ud54j076ow" path="res://assets/texture/leaf/texture_leaf_highlight.png" id="2_o5ypd"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jefrm"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t3aw4"]
 render_priority = 1
-transparency = 1
-cull_mode = 2
-no_depth_test = true
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_color = Color(0, 1, 0.883333, 1)
-albedo_texture = ExtResource("2_o5ypd")
+shader = ExtResource("2_i8jdf")
+shader_parameter/highlight_color = Color(0, 1, 1, 1)
+shader_parameter/leaf_texture = ExtResource("2_o5ypd")
 
 [resource]
-next_pass = SubResource("StandardMaterial3D_jefrm")
+next_pass = SubResource("ShaderMaterial_t3aw4")
 transparency = 1
 cull_mode = 2
 diffuse_mode = 1

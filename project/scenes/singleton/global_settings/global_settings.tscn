@@ -6,4 +6,3 @@
 process_mode = 3
 script = ExtResource("1_diykh")
 gamepad_sensitvity = 96.0
-leaf_highlight_color = Color(1, 1, 1, 1)
