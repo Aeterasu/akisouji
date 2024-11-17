@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://077fpjam3rlw"]
+[gd_scene load_steps=41 format=3 uid="uid://077fpjam3rlw"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_e0tat"]
 [ext_resource type="Script" path="res://scenes/component/velocity_component/velocity_component.gd" id="3_umteq"]
@@ -20,60 +20,83 @@
 [ext_resource type="AudioStream" uid="uid://cols2ungsaby3" path="res://assets/audio/sfx_concrete_footstep_1.ogg" id="16_s6ylb"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/resources/multi_sound_effect.gd" id="17_2xuu8"]
 [ext_resource type="AudioStream" uid="uid://b7ql34t7tq08r" path="res://assets/audio/sfx_concrete_footstep_2.ogg" id="17_a7lx8"]
-[ext_resource type="AudioStream" uid="uid://b8i85c1qcp7ox" path="res://assets/audio/sfx_gabriel_footstep_grass.ogg" id="18_d0mxl"]
+[ext_resource type="AudioStream" uid="uid://cqsb4q45tck0t" path="res://assets/audio/sfx_grass_footstep_1.ogg" id="18_r1c8k"]
 [ext_resource type="AudioStream" uid="uid://f1dd6esiymal" path="res://assets/audio/sfx_concrete_footstep_3.ogg" id="18_t1y7a"]
-[ext_resource type="Script" path="res://addons/bmod/scripts/resources/single_sound_effect.gd" id="19_n020x"]
+[ext_resource type="AudioStream" uid="uid://cqup4dy1a5ju" path="res://assets/audio/sfx_grass_footstep_2.ogg" id="19_r8fuj"]
 [ext_resource type="AudioStream" uid="uid://snikjpt8nwa5" path="res://assets/audio/sfx_concrete_footstep_4.ogg" id="19_w7vxr"]
+[ext_resource type="AudioStream" uid="uid://cbo87es8yv0pd" path="res://assets/audio/sfx_grass_footstep_3.ogg" id="20_x8ofr"]
+[ext_resource type="AudioStream" uid="uid://cc5ws3eha2jlq" path="res://assets/audio/sfx_grass_footstep_4.ogg" id="21_l063t"]
 [ext_resource type="Script" path="res://scenes/player/player_oob_rescue.gd" id="24_6ndkg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dq522"]
 
-[sub_resource type="Resource" id="Resource_ar33j"]
+[sub_resource type="Resource" id="Resource_moufm"]
 script = ExtResource("13_qnret")
 audio_stream = ExtResource("16_s6ylb")
 weight = 1
 
-[sub_resource type="Resource" id="Resource_661y3"]
+[sub_resource type="Resource" id="Resource_xggfh"]
 script = ExtResource("13_qnret")
 audio_stream = ExtResource("17_a7lx8")
 weight = 1
 
-[sub_resource type="Resource" id="Resource_5r3v3"]
+[sub_resource type="Resource" id="Resource_ofygo"]
 script = ExtResource("13_qnret")
 audio_stream = ExtResource("18_t1y7a")
 weight = 1
 
-[sub_resource type="Resource" id="Resource_126hh"]
+[sub_resource type="Resource" id="Resource_a17ui"]
 script = ExtResource("13_qnret")
 audio_stream = ExtResource("19_w7vxr")
 weight = 1
 
-[sub_resource type="Resource" id="Resource_gdao2"]
+[sub_resource type="Resource" id="Resource_2yqqe"]
 script = ExtResource("16_7g8ho")
-volume_db = 0.0
+volume_db = -12.0
 volume_variation_db = 0.0
 pitch_scale = 1.0
 pitch_variation = 0.2
 
-[sub_resource type="Resource" id="Resource_aq34r"]
+[sub_resource type="Resource" id="Resource_gd8lq"]
 script = ExtResource("17_2xuu8")
-effect_pool = Array[ExtResource("13_qnret")]([SubResource("Resource_ar33j"), SubResource("Resource_661y3"), SubResource("Resource_5r3v3"), SubResource("Resource_126hh")])
+effect_pool = Array[ExtResource("13_qnret")]([SubResource("Resource_moufm"), SubResource("Resource_xggfh"), SubResource("Resource_ofygo"), SubResource("Resource_a17ui")])
 mode = 0
-meta = SubResource("Resource_gdao2")
+meta = SubResource("Resource_2yqqe")
 play = false
 play_on_change = false
 
-[sub_resource type="Resource" id="Resource_ifbu1"]
+[sub_resource type="Resource" id="Resource_ar33j"]
+script = ExtResource("13_qnret")
+audio_stream = ExtResource("18_r1c8k")
+weight = 1
+
+[sub_resource type="Resource" id="Resource_661y3"]
+script = ExtResource("13_qnret")
+audio_stream = ExtResource("19_r8fuj")
+weight = 1
+
+[sub_resource type="Resource" id="Resource_5r3v3"]
+script = ExtResource("13_qnret")
+audio_stream = ExtResource("20_x8ofr")
+weight = 1
+
+[sub_resource type="Resource" id="Resource_126hh"]
+script = ExtResource("13_qnret")
+audio_stream = ExtResource("21_l063t")
+weight = 1
+
+[sub_resource type="Resource" id="Resource_a7tey"]
 script = ExtResource("16_7g8ho")
-volume_db = -4.0
+volume_db = -10.0
 volume_variation_db = 0.0
 pitch_scale = 1.0
-pitch_variation = 0.2
+pitch_variation = 0.0
 
-[sub_resource type="Resource" id="Resource_8e0gb"]
-script = ExtResource("19_n020x")
-audio_stream = ExtResource("18_d0mxl")
-meta = SubResource("Resource_ifbu1")
+[sub_resource type="Resource" id="Resource_qopjh"]
+script = ExtResource("17_2xuu8")
+effect_pool = Array[ExtResource("13_qnret")]([SubResource("Resource_ar33j"), SubResource("Resource_661y3"), SubResource("Resource_5r3v3"), SubResource("Resource_126hh")])
+mode = 0
+meta = SubResource("Resource_a7tey")
 play = false
 play_on_change = false
 
@@ -176,13 +199,13 @@ grass_footstep = NodePath("GrassFootstep")
 
 [node name="ConcreteFootstep" type="Node" parent="FootstepManager"]
 script = ExtResource("12_ws1qt")
-sound_effect = SubResource("Resource_aq34r")
+sound_effect = SubResource("Resource_gd8lq")
 bus = &"SFX"
 max_polyphony = 4
 
 [node name="GrassFootstep" type="Node" parent="FootstepManager"]
 script = ExtResource("12_ws1qt")
-sound_effect = SubResource("Resource_8e0gb")
+sound_effect = SubResource("Resource_qopjh")
 bus = &"SFX"
 max_polyphony = 4
 

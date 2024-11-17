@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ctyas8et4qqpd"]
+[gd_scene load_steps=26 format=3 uid="uid://ctyas8et4qqpd"]
 
 [ext_resource type="PackedScene" uid="uid://cka5occqvar8n" path="res://assets/mesh/prop/mesh_fountain_prop_1.blend" id="1_pllja"]
 [ext_resource type="Script" path="res://scenes/prop/fountain/prop_fountain.gd" id="1_xaua7"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bhfbq3wuqlw3r" path="res://assets/texture/prop/texture_water_nrmp.png" id="5_5hj81"]
 [ext_resource type="Texture2D" uid="uid://y2cansc2ekld" path="res://assets/texture/fx/texture_fx_water_splash_1.png" id="7_a44mh"]
 [ext_resource type="Texture2D" uid="uid://22mff5v8p4fv" path="res://assets/texture/fx/texture_fx_water_splash_2.png" id="8_d7ahd"]
+[ext_resource type="AudioStream" uid="uid://cpc56qgjiqswq" path="res://assets/audio/sfx_fountain.mp3" id="9_7h3so"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ipunq"]
 albedo_texture = ExtResource("2_a2vi3")
@@ -157,5 +158,16 @@ draw_pass_1 = SubResource("QuadMesh_84bie")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8, 0)
 shape = SubResource("CylinderShape3D_vis7i")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("9_7h3so")
+volume_db = -24.0
+unit_size = 24.0
+max_db = -12.0
+autoplay = true
+panning_strength = 0.25
+bus = &"SFX"
+attenuation_filter_cutoff_hz = 20500.0
+parameters/looping = true
 
 [editable path="mesh_fountain_prop_1"]

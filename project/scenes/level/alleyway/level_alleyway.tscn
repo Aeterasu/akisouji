@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://dvlleqic8xnpl"]
+[gd_scene load_steps=42 format=3 uid="uid://dvlleqic8xnpl"]
 
 [ext_resource type="PackedScene" uid="uid://bqtapora2wl4e" path="res://assets/mesh/level_design/mesh_alleyway.blend" id="1_yq5x8"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="2_akrc7"]
@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://d3qw3bxoa8tck" path="res://assets/texture/environment/texture_horizon_close_1.png" id="27_jy52j"]
 [ext_resource type="PackedScene" uid="uid://d1pkstxa0k3lv" path="res://scenes/prop/horizon/horizon_trees.tscn" id="28_mloy2"]
 [ext_resource type="Material" uid="uid://s3fb87n24665" path="res://resource/clouds.tres" id="31_ue3y8"]
+[ext_resource type="AudioStream" uid="uid://cot6oj6cnaib5" path="res://assets/audio/ambience_park_1.mp3" id="33_63x8d"]
 [ext_resource type="Texture2D" uid="uid://b72wywy3dchn" path="res://assets/texture/leaf/tile.png" id="33_u66on"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qdx78"]
@@ -1644,3 +1645,11 @@ size = 106.0
 [node name="Plains_001" parent="." index="36"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_7qt0g")
+
+[node name="Ambience" type="AudioStreamPlayer" parent="." index="37"]
+process_mode = 3
+stream = ExtResource("33_63x8d")
+volume_db = -12.0
+autoplay = true
+bus = &"Ambience"
+parameters/looping = true

@@ -82,6 +82,9 @@ LEFT TO DO:
     + add pavement border texture
     + add credits to main menu
     + fix flash on entering
+    + rework footstep sound
+    + add fountain sound
+    + add ambience
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -144,12 +147,10 @@ LEFT TO DO:
 		- remodel trees
     
     AUDIO:
-        - add fountain sound
+        - add bell chiming to church level
         - add crunchy cleaning sounds
         - add general sound. now that I think about it, there won't be much sound in the game, will it?
-        - rework footstep sound
         - add camera sound
-        - add ambience
         - some sort of music playlist manager and music ui
         - add music. incase, fallback to classical music
     
