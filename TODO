@@ -140,6 +140,7 @@ LEFT TO DO:
     VISUAL:
         GOLDEN AUTUMN MUCH?
 
+        - dust trails behind chara
         - add outofbounds horizon to fountain stage 
         - fix camera state transition disabling viewport (something's going fucky-wucky)
         - retexture leaves. new texture, maybe random texture

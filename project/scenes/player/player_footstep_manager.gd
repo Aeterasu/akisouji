@@ -1,4 +1,4 @@
-extends Node3D
+class_name FootstepManager extends Node3D
 
 @export var player : Player = null
 @export var velocity_component : VelocityComponent = null

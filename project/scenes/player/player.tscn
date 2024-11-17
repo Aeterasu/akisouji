@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://077fpjam3rlw"]
+[gd_scene load_steps=48 format=3 uid="uid://077fpjam3rlw"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_e0tat"]
 [ext_resource type="Script" path="res://scenes/component/velocity_component/velocity_component.gd" id="3_umteq"]
@@ -22,11 +22,14 @@
 [ext_resource type="AudioStream" uid="uid://b7ql34t7tq08r" path="res://assets/audio/sfx_concrete_footstep_2.ogg" id="17_a7lx8"]
 [ext_resource type="AudioStream" uid="uid://cqsb4q45tck0t" path="res://assets/audio/sfx_grass_footstep_1.ogg" id="18_r1c8k"]
 [ext_resource type="AudioStream" uid="uid://f1dd6esiymal" path="res://assets/audio/sfx_concrete_footstep_3.ogg" id="18_t1y7a"]
+[ext_resource type="Script" path="res://addons/bmod/scripts/resources/single_sound_effect.gd" id="19_n020x"]
 [ext_resource type="AudioStream" uid="uid://cqup4dy1a5ju" path="res://assets/audio/sfx_grass_footstep_2.ogg" id="19_r8fuj"]
 [ext_resource type="AudioStream" uid="uid://snikjpt8nwa5" path="res://assets/audio/sfx_concrete_footstep_4.ogg" id="19_w7vxr"]
 [ext_resource type="AudioStream" uid="uid://cbo87es8yv0pd" path="res://assets/audio/sfx_grass_footstep_3.ogg" id="20_x8ofr"]
 [ext_resource type="AudioStream" uid="uid://cc5ws3eha2jlq" path="res://assets/audio/sfx_grass_footstep_4.ogg" id="21_l063t"]
 [ext_resource type="Script" path="res://scenes/player/player_oob_rescue.gd" id="24_6ndkg"]
+[ext_resource type="AudioStream" uid="uid://qqrgriis5oeu" path="res://assets/audio/sfx_player_jump_1.ogg" id="28_b26d0"]
+[ext_resource type="AudioStream" uid="uid://ckvfw1v4i7yov" path="res://assets/audio/sfx_player_land_1.ogg" id="30_u8teo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dq522"]
 
@@ -100,7 +103,35 @@ meta = SubResource("Resource_a7tey")
 play = false
 play_on_change = false
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("velocity_component", "camera", "camera_origin", "camera_effect_landing", "cleaning_raycast", "inventory", "move_speed_upgrade_handler")]
+[sub_resource type="Resource" id="Resource_owuml"]
+script = ExtResource("16_7g8ho")
+volume_db = -9.0
+volume_variation_db = 0.0
+pitch_scale = 1.1
+pitch_variation = 0.1
+
+[sub_resource type="Resource" id="Resource_kilrq"]
+script = ExtResource("19_n020x")
+audio_stream = ExtResource("28_b26d0")
+meta = SubResource("Resource_owuml")
+play = false
+play_on_change = false
+
+[sub_resource type="Resource" id="Resource_1it1s"]
+script = ExtResource("16_7g8ho")
+volume_db = -12.0
+volume_variation_db = 0.0
+pitch_scale = 1.0
+pitch_variation = 0.1
+
+[sub_resource type="Resource" id="Resource_18oov"]
+script = ExtResource("19_n020x")
+audio_stream = ExtResource("30_u8teo")
+meta = SubResource("Resource_1it1s")
+play = false
+play_on_change = false
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("velocity_component", "camera", "camera_origin", "camera_effect_landing", "cleaning_raycast", "inventory", "move_speed_upgrade_handler", "audio_jump", "audio_land", "footstep_manager")]
 floor_block_on_wall = false
 script = ExtResource("1_e0tat")
 velocity_component = NodePath("VelocityComponent")
@@ -118,6 +149,9 @@ sprint_cleaning_cooldown = 0.1
 sprint_cleaning_radius = 0.5
 inventory = NodePath("PlayerToolInventory")
 move_speed_upgrade_handler = NodePath("VelocityComponent/MoveSpeedUpgradeHandler")
+audio_jump = NodePath("AudioJump")
+audio_land = NodePath("AudioLand")
+footstep_manager = NodePath("FootstepManager")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_dq522")
@@ -214,3 +248,13 @@ enabled = false
 target_position = Vector3(0, -2, 0)
 debug_shape_custom_color = Color(1, 1, 1, 1)
 debug_shape_thickness = 5
+
+[node name="AudioJump" type="Node" parent="."]
+script = ExtResource("12_ws1qt")
+sound_effect = SubResource("Resource_kilrq")
+bus = &"SFX"
+
+[node name="AudioLand" type="Node" parent="."]
+script = ExtResource("12_ws1qt")
+sound_effect = SubResource("Resource_18oov")
+bus = &"SFX"

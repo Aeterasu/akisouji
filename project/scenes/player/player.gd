@@ -33,6 +33,11 @@ const CAMERA_ROTATION_LIMIT : float = 80.0
 @export var inventory : PlayerToolInventory = null
 @export var move_speed_upgrade_handler : MoveSpeedUpgradeHandler = null
 
+@export_group("Audio")
+@export var audio_jump : SoundEffectPlayer = null
+@export var audio_land : SoundEffectPlayer = null
+@export var footstep_manager : FootstepManager = null
+
 var leaf_cleaning_handler : LeafCleaningHandler = null
 var broom_data : BroomData = null
 var brooming_tick_cooldown : int = 0
@@ -216,6 +221,8 @@ func movement_process(delta):
 			velocity.y = jump_strength
 			current_jump_buffer_ticks = 0
 			wish_jumping = false
+
+			audio_jump.play()
 		else:
 			current_jump_buffer_ticks += 1
 
@@ -252,6 +259,9 @@ func _on_landing():
 		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), Vector2(cos(rotation.y), sin(rotation.y)), Vector2.ONE * jump_cleaning_radius * multiplier)
 
 	camera_effect_landing._animate()
+
+	footstep_manager.cur_step_rate = 0.0
+	audio_land.play()
 
 func _on_sprint_cleaning_timeout():
 	if (!wish_sprint or !is_on_floor()):

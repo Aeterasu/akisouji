@@ -46,6 +46,10 @@ surface_material_override/0 = ExtResource("6_i44yf")
 [node name="Grass" parent="." index="5" groups=["Material-Grass"]]
 surface_material_override/0 = ExtResource("7_e3bhq")
 
+[node name="Grass " parent="." index="6" groups=["Material-Grass"]]
+
+[node name="Pavement " parent="." index="7" groups=["Material-Concrete"]]
+
 [node name="Light" type="Node3D" parent="." index="8"]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="Light" index="0"]
