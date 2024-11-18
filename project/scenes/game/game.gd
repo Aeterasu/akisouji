@@ -2,7 +2,6 @@ class_name Game extends Node3D
 
 @export var player : Player
 @export var level : Level
-@export var loading_screen : LoadingScreen
 @export var ui_completion : Control
 @export var pause_menu : PauseMenu
 @export var shop_menu_scene : PackedScene = null
@@ -73,7 +72,7 @@ func _ready():
 
 	progress_tracker.on_completion.connect(_on_level_completion)
 
-	loading_screen._on_timeout()
+	#loading_screen._on_timeout()
 
 	pause_menu.is_displayed = get_tree().paused
 
@@ -97,8 +96,8 @@ func _process(delta):
 		_close_shop()
 		return
 
-func _on_loading_ended():
-	loading_screen._on_timeout()
+#func _on_loading_ended():
+	#loading_screen._on_timeout()
 
 func _on_level_completion():
 	#TODO: Hide broom on level completion, but allow movement.

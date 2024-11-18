@@ -196,8 +196,6 @@ LEFT TO DO:
         - set locale on first launch
         - fix null checks, replace them with is_instance_valid
         - check out TODOs in code and implement them 🥺🥺🥺
-        - convert meshes to glb to save space
-        - cut out everything unused
     
 		- debug reference counts in C++
         - disable console before release

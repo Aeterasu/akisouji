@@ -94,7 +94,7 @@ func _on_gallery_transition():
 
 func _on_settings_pressed():
 	var tween = create_tween()
-	tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.2)
+	tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.4)
 
 	var settings = settings_scene.instantiate()
 	settings.on_back_pressed_type = SettingsMenu.OnBackPressedType.QUEUE_FREE

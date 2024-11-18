@@ -1,14 +1,12 @@
-[gd_scene load_steps=36 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=32 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_highlight_handler.gd" id="2_74dy0"]
 [ext_resource type="PackedScene" uid="uid://71lkn3s6kfqi" path="res://scenes/ui/shop/shop.tscn" id="2_cewtf"]
 [ext_resource type="PackedScene" uid="uid://077fpjam3rlw" path="res://scenes/player/player.tscn" id="3_ncnfk"]
-[ext_resource type="Script" path="res://scenes/loading_screen.gd" id="3_te81k"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="3_uk65u"]
 [ext_resource type="Material" uid="uid://dnl0j7w1x0eod" path="res://resource/mesh/leaf_material.tres" id="3_ys06x"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_progress_tracker.gd" id="4_deeln"]
-[ext_resource type="Script" path="res://scenes/utils/show_canvas_layer_on_ready.gd" id="4_ha1os"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_particle_handler.gd" id="5_5xq02"]
 [ext_resource type="PackedScene" uid="uid://dcaypqvm8j1yq" path="res://scenes/ui/hud/ui.tscn" id="5_is4j0"]
 [ext_resource type="Script" path="res://scenes/fps_counter.gd" id="6_5ay1t"]
@@ -29,15 +27,6 @@
 [ext_resource type="Texture2D" uid="uid://dhgy85uah6kgp" path="res://assets/texture/fx/texture_sun_flare_1.png" id="25_5i5i2"]
 [ext_resource type="Shader" path="res://shader/kuwahara_screen.gdshader" id="27_ktbah"]
 [ext_resource type="Script" path="res://scenes/ui/blackout_layer.gd" id="31_te3wo"]
-
-[sub_resource type="Gradient" id="Gradient_br6rk"]
-colors = PackedColorArray(0, 0, 0, 1, 0.126179, 0.0169545, 0.0044633, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_1hww3"]
-gradient = SubResource("Gradient_br6rk")
-width = 320
-height = 180
-fill_to = Vector2(0, 1)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e7rcr"]
 blend_mode = 1
@@ -64,11 +53,10 @@ shader = ExtResource("27_ktbah")
 shader_parameter/radius = 2
 shader_parameter/offset = Vector3(0, 0, 0)
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "loading_screen", "ui_completion", "pause_menu", "shop_origin", "pausable", "progress_tracker", "particle_handler", "ranking_manager", "rain_effect")]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "ui_completion", "pause_menu", "shop_origin", "pausable", "progress_tracker", "particle_handler", "ranking_manager", "rain_effect")]
 process_mode = 3
 script = ExtResource("1_bcfl2")
 player = NodePath("Pausable/Player")
-loading_screen = NodePath("CanvasLayer/LoadingScreen")
 ui_completion = NodePath("UICompletionLayer/UICompletion")
 pause_menu = NodePath("PauseLayer/PauseMenu")
 shop_menu_scene = ExtResource("2_cewtf")
@@ -103,47 +91,6 @@ _block_input = true
 
 [node name="RainParticles" parent="Pausable/Player" instance=ExtResource("7_wptpp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.5, 0)
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 128
-visible = false
-follow_viewport_enabled = true
-script = ExtResource("4_ha1os")
-
-[node name="LoadingScreen" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("3_te81k")
-
-[node name="Gradient" type="TextureRect" parent="CanvasLayer/LoadingScreen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_1hww3")
-
-[node name="Label" type="Label" parent="CanvasLayer/LoadingScreen"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -23.0
-offset_bottom = -23.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 16
-theme_override_fonts/font = ExtResource("3_uk65u")
-theme_override_font_sizes/font_size = 48
-text = "Loading..."
-horizontal_alignment = 2
-vertical_alignment = 2
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 layer = 99

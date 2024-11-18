@@ -43,7 +43,16 @@ func _load_title_screen_scene() -> void:
 	_load_scene(title_screen_scene.resource_path)
 
 func _load_game_scene(level : PackedScene) -> void:
+	var tween = create_tween()
+	tween.tween_property(Main.instance.loading_screen, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
+
+	await get_tree().create_timer(0.2).timeout
+
 	_load_scene(game_scene.resource_path, true, level)
+
+	tween.stop()
+	tween.tween_property(Main.instance.loading_screen, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.2)
+	tween.play()
 
 func _load_shop_scene() -> void:
 	_load_scene(shop_scene.resource_path)
