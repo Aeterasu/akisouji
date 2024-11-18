@@ -48,6 +48,8 @@ func _ready():
 	settings_category_audio.target_alpha = category_unselected_alpha
 	settings_category_audio.hide()
 
+	modulate = Color(0.0, 0.0, 0.0, 0.0)
+
 	var tween = create_tween()
 	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.3)
 
@@ -119,7 +121,7 @@ func _on_category_button_pressed(button : UIButton):
 			current_category = settings_category_audio
 
 	if (current_category):
-		category_name_label.text = current_category.category_name_key
+		category_name_label.text = "> " + tr(current_category.category_name_key)
 		category_name_label.show()
 
 func _on_category_enter(category: SettingsCategory) -> void:
@@ -140,5 +142,5 @@ func _on_category_leave(category : SettingsCategory) -> void:
 
 func transition(callable: Callable):
 	var tween = create_tween()
-	tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0), 0.2)
+	#tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.2)
 	tween.tween_callback(callable).set_delay(0.2)

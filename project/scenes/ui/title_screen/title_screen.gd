@@ -60,11 +60,6 @@ func _on_settings_pressed() -> void:
 
 	submenu_origin.add_child(settings)
 
-	#settings.background.hide()
-	#settings.scrolling_background.position = scrolling_background.position
-
-	#Game.game_instance.is_pausable = false
-
 func _on_exit_pressed() -> void:
 	transition(func(): get_tree().quit())
 
@@ -76,8 +71,8 @@ func transition(callable: Callable):
 func _on_submenu_closed() -> void:
 	button_selection_handler._enable_all_buttons()
 
-	button_selection_handler.buttons_origin.modulate = Color(0.0, 0.0, 0.0, 0.0)
-	var tween = create_tween().tween_property(button_selection_handler.buttons_origin, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
+	#button_selection_handler.buttons_origin.modulate = Color(0.0, 0.0, 0.0, 0.0)
+	#var tween = create_tween().tween_property(button_selection_handler.buttons_origin, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
 
 	button_selection_handler.buttons_origin.call_deferred("show")
 

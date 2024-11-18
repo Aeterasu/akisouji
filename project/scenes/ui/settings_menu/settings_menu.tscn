@@ -32,7 +32,6 @@ expand_margin_top = 22.0
 expand_margin_bottom = 22.0
 
 [node name="SettingsMenu" type="Control" node_paths=PackedStringArray("scrolling_background", "button_selection_handler", "back_button", "button_general", "button_language", "button_keyboard", "button_audio", "settings_category_general", "settings_category_language", "settings_category_keyboard", "settings_category_audio", "category_name_label")]
-modulate = Color(0, 0, 0, 0)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -115,7 +114,6 @@ offset_right = -2.82404
 theme_override_constants/outline_size = 18
 theme_override_fonts/font = ExtResource("6_j37ya")
 theme_override_font_sizes/font_size = 36
-text = "CATEGORY_LABEL"
 vertical_alignment = 2
 
 [node name="Blake" type="Label" parent="."]
@@ -142,9 +140,6 @@ horizontal_alignment = 2
 
 [node name="GamepadTooltip" parent="." instance=ExtResource("12_f6tbt")]
 layout_mode = 1
-
-[node name="RichTextLabel" parent="GamepadTooltip" index="1"]
-z_index = 4096
 
 [node name="CategoryButtons" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -646,7 +641,6 @@ buttons_origin = NodePath("..")
 [node name="UIUpscaler" type="Node" parent="."]
 script = ExtResource("5_1o7a7")
 
-[editable path="GamepadTooltip"]
 [editable path="GeneralSettings/FovButton"]
 [editable path="AudioSettings/MasterVolume"]
 [editable path="AudioSettings/SFXVolume"]
