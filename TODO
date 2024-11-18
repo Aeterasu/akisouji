@@ -90,6 +90,10 @@ LEFT TO DO:
     + add sound on slider interaction (use blit sound from field of sunflowers?)
     + fix settings menu flashing
     + disable black fade-in fade-out when entering settings menu from pause menu
+    + settings horizontal scaling
+    + add separator to settings category label
+    + fix mouse overlap with toggle buttons
+    + make directonal toggles usable
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -118,7 +122,7 @@ LEFT TO DO:
         - vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
         - work on economy :D (boots should be dirt cheap, brooms more costly)
         - add fountain stage (make it night/evening!)
-        - add park stage
+        - add church stage
         - add broom upgrades
         - cash and purchases saving
         - fix not being able to leave photo mode
@@ -152,21 +156,16 @@ LEFT TO DO:
     AUDIO:
         - add bell chiming to church level
         - add crunchy cleaning sounds
-        - add general sound. now that I think about it, there won't be much sound in the game, will it?
+        - add general sound.
         - some sort of music playlist manager and music ui
         - add music. incase, fallback to classical music
     
     SETTINGS:
         - add camera wobble settings
 		- lerp for sliders
-        - add separator to settings category label
         - make keybinds and controller binds
-        - make slider unclickable
-        - fix mouse overlap with toggle buttons, make directonal toggles usable
         - fix menu button selection while dragging a slider
         - add settings menu. master, sfx, ambience, music volume. fullscreen/windowed. language. leaf higlight color setting. fov - 70-100. controls. mouse sensitivity, gamepad sensitivity. -AUDIO, -VISUALS, -GAMEPLAY, -KEY BINDINGS, -GAMEPAD BINDINGS
-        - settings horizontal scaling
-        - add 'show tutorials' settings
 		- add 'show fps' setting
         - settings saving
 

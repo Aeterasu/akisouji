@@ -61,7 +61,7 @@ func _on_button_pressed(button : UIButton) -> void:
 	if (button is SettingsButton):
 		var settings_button = button as SettingsButton
 		if (settings_button.setting_toggle):
-			settings_button.setting_toggle._toggle()
+			settings_button.setting_toggle._check_toggle()
 
 	if (button == back_button):
 		on_back_button_pressed.emit(self)

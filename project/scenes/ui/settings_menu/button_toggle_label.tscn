@@ -21,6 +21,7 @@ anchor_bottom = 0.982
 offset_left = -80.0
 offset_right = -1.0
 offset_bottom = 0.00799561
+mouse_filter = 2
 texture = ExtResource("2_jw1fn")
 stretch_mode = 3
 
@@ -31,6 +32,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 91.0
+mouse_filter = 2
 texture = ExtResource("2_jw1fn")
 stretch_mode = 3
 flip_h = true

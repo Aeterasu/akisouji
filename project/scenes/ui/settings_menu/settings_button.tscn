@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dgodvr5gurqrs" path="res://assets/audio/sfx_menu_accent_1.ogg" id="4_7lmfr"]
 [ext_resource type="AudioStream" uid="uid://bb5kges32g0ld" path="res://assets/audio/sfx_menu_accent_2.ogg" id="5_yxxkk"]
 
-[node name="PropertyButton" type="Control" node_paths=PackedStringArray("highlight", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="PropertyButton" type="Control" node_paths=PackedStringArray("highlight", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchor_left = 0.337
@@ -18,6 +18,8 @@ offset_top = 0.319992
 offset_bottom = 0.159988
 script = ExtResource("1_yxlva")
 highlight = NodePath("TextureRect")
+toggle_area = NodePath("ToggleArea")
+alt_toggle_area = NodePath("AltToggleArea")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_FULLSCREEN"
 label = NodePath("Label")
@@ -55,6 +57,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+
+[node name="ToggleArea" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 0.625
+anchor_bottom = 0.5
+offset_left = 531.0
+offset_right = 425.375
+offset_bottom = 1.0
+mouse_filter = 2
+
+[node name="AltToggleArea" type="Control" parent="."]
+layout_mode = 1
+anchor_right = 0.611
+anchor_bottom = 0.5
+offset_right = 0.260986
+offset_bottom = 3.0
+mouse_filter = 2
 
 [node name="Accent1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_7lmfr")

@@ -11,6 +11,9 @@ class_name SettingsButton extends UIButton
 
 @export var setting_slider : SettingsSlider = null
 
+@export var toggle_area : Control = null
+@export var alt_toggle_area : Control = null
+
 func _ready():
 	mouse_area.mouse_entered.connect(func(): on_mouse_selection.emit(self))
 	mouse_area.mouse_exited.connect(func(): on_mouse_deselection.emit(self))
@@ -24,6 +27,11 @@ func _process(delta):
 	label.text = tr(text_key)
 	
 	if (setting_toggle):
+		if (get_global_mouse_position().x >= toggle_area.global_position.x):
+			setting_toggle.is_alt_toggle = false
+		elif (get_global_mouse_position().x <= alt_toggle_area.global_position.x + alt_toggle_area.size.x):
+			setting_toggle.is_alt_toggle = true
+
 		setting_label.text = setting_toggle.setting_text
 
 	if (setting_slider):

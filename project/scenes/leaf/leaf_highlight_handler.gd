@@ -1,5 +1,7 @@
 extends Node
 
+@export var enabled : bool = true
+
 @export var leaf_material : StandardMaterial3D = null
 @export var highlight_fade_duration = 0.3
 @export var highlight_linger_duration = 0.1
@@ -21,7 +23,7 @@ func _physics_process(delta):
 	#highlight_color = GlobalSettings.leaf_highlight_color
 	# TODO: update on settings change
 
-	if (Input.is_action_just_pressed("hint_highlight")):
+	if (enabled and Input.is_action_just_pressed("hint_highlight")):
 		_highlight()
 
 	(leaf_material.next_pass as ShaderMaterial).set_shader_parameter("highlight_color", highlight_color)
