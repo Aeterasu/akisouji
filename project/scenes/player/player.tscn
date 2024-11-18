@@ -206,6 +206,7 @@ process_mode = 1
 [node name="ViewmodelSway" type="Node3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin" node_paths=PackedStringArray("player")]
 script = ExtResource("6_t0wwe")
 sway_strength = 0.1
+sway_clamp = Vector2(24, 12)
 player = NodePath("../../../../../..")
 
 [node name="Broom" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("12_gpv6h")]

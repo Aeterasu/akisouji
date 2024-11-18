@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://ctyas8et4qqpd"]
+[gd_scene load_steps=32 format=3 uid="uid://ctyas8et4qqpd"]
 
 [ext_resource type="PackedScene" uid="uid://cka5occqvar8n" path="res://assets/mesh/prop/mesh_fountain_prop_1.blend" id="1_pllja"]
 [ext_resource type="Script" path="res://scenes/prop/fountain/prop_fountain.gd" id="1_xaua7"]
@@ -81,6 +81,29 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_ki658"]
 material = SubResource("StandardMaterial3D_p2074")
 
+[sub_resource type="Gradient" id="Gradient_7cbaq"]
+offsets = PackedFloat32Array(0, 0.173776, 0.598736, 0.995261)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_voqkn"]
+gradient = SubResource("Gradient_7cbaq")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n4xam"]
+emission_shape_scale = Vector3(1, 0, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(1, 8, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 1.5
+emission_ring_inner_radius = 1.0
+angle_min = -720.0
+angle_max = 720.0
+angular_velocity_min = -86.77
+angular_velocity_max = 101.24
+gravity = Vector3(0, 1.37, 0)
+scale_min = 0.5
+scale_max = 2.5
+color_ramp = SubResource("GradientTexture1D_voqkn")
+
 [sub_resource type="Gradient" id="Gradient_gwt30"]
 offsets = PackedFloat32Array(0, 0.173776, 0.598736, 0.995261)
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
@@ -119,6 +142,29 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_4tcug")
 size = Vector2(0.05, 0.1)
 
+[sub_resource type="Gradient" id="Gradient_o88wg"]
+offsets = PackedFloat32Array(0, 0.173776, 0.598736, 0.995261)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fnlxf"]
+gradient = SubResource("Gradient_o88wg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5ktwh"]
+particle_flag_align_y = true
+emission_shape_scale = Vector3(1, 0, 1)
+emission_shape = 6
+emission_ring_axis = Vector3(1, 8, 1)
+emission_ring_height = 0.0
+emission_ring_radius = 1.5
+emission_ring_inner_radius = 1.0
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 3.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 2.5
+color_ramp = SubResource("GradientTexture1D_fnlxf")
+
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_vis7i"]
 height = 16.0
 radius = 4.0
@@ -144,6 +190,15 @@ randomness = 0.3
 process_material = SubResource("ParticleProcessMaterial_vk2sy")
 draw_pass_1 = SubResource("QuadMesh_ki658")
 
+[node name="GPUParticles3D3" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.57471, 0)
+amount = 16
+lifetime = 1.5
+preprocess = 1.0
+randomness = 0.3
+process_material = SubResource("ParticleProcessMaterial_n4xam")
+draw_pass_1 = SubResource("QuadMesh_ki658")
+
 [node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 amount = 128
@@ -151,6 +206,15 @@ lifetime = 1.5
 preprocess = 1.0
 randomness = 0.3
 process_material = SubResource("ParticleProcessMaterial_2ep4s")
+draw_pass_1 = SubResource("QuadMesh_84bie")
+
+[node name="GPUParticles3D4" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.40248, 0)
+amount = 32
+lifetime = 1.5
+preprocess = 1.0
+randomness = 0.3
+process_material = SubResource("ParticleProcessMaterial_5ktwh")
 draw_pass_1 = SubResource("QuadMesh_84bie")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]

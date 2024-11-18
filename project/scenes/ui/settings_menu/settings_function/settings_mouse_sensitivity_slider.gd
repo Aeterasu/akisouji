@@ -17,3 +17,5 @@ func _on_drag(new_value : float):
 
     GlobalSettings.mouse_sensitivity = value
     setting_text = str(value)
+
+    super(new_value)

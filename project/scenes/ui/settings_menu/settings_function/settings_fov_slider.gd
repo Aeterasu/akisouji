@@ -13,5 +13,7 @@ func _on_drag(new_value : float):
     if (!is_dragging):
         return
 
+    super(new_value)
+
     GlobalSettings.fov = value
     setting_text = str(value)

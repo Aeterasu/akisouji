@@ -36,5 +36,9 @@ shader_parameter/Texture = ExtResource("3_kaety")
 transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0, 0)
 surface_material_override/0 = SubResource("ShaderMaterial_rpa0d")
 
+[node name="Collision " parent="mesh_bush_1" index="0" groups=["Material-Grass"]]
+
 [node name="SpreadGroup" type="Node" parent="mesh_bush_1"]
 script = ExtResource("4_uov3v")
+
+[editable path="mesh_bush_1"]

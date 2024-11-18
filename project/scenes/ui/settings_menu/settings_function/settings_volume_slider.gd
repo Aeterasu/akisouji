@@ -36,3 +36,5 @@ func _on_drag(new_value : float):
             GlobalSettings.music_volume = value
 
     setting_text = str(round(value * 100)) + "%"
+
+    super(new_value)

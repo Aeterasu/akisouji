@@ -290,7 +290,7 @@ mouse_filter = 2
 [node name="Vignette" type="CanvasLayer" parent="."]
 
 [node name="Vignette" type="TextureRect" parent="Vignette"]
-modulate = Color(1, 1, 1, 0.486275)
+modulate = Color(1, 1, 1, 0.556863)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

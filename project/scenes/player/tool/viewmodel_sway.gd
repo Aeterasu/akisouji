@@ -1,6 +1,7 @@
 extends Node3D
 
 @export var sway_strength : float = 1.0
+@export var sway_clamp : Vector2 = Vector2.ONE
 @export var decay_weight : float = 3.0
 
 @export var player : Player = null
@@ -21,6 +22,7 @@ func _input(event):
 	if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE && event is InputEventMouseMotion):
 		var mouseMotion = event as InputEventMouseMotion
 		current_sway += -mouseMotion.relative * GlobalSettings.mouse_sensitivity * sway_strength
+		current_sway = current_sway.clamp(-sway_clamp, sway_clamp)
 
 func _is_input_blocked() -> bool:
 	return player and player._block_input

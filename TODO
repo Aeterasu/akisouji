@@ -87,6 +87,7 @@ LEFT TO DO:
     + add ambience
     + add camera sound
     + jumping and landing sounds
+    + add sound on slider interaction (use blit sound from field of sunflowers?)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -165,7 +166,6 @@ LEFT TO DO:
         - fix menu button selection while dragging a slider
         - add settings menu. master, sfx, ambience, music volume. fullscreen/windowed. language. leaf higlight color setting. fov - 70-100. controls. mouse sensitivity, gamepad sensitivity. -AUDIO, -VISUALS, -GAMEPLAY, -KEY BINDINGS, -GAMEPAD BINDINGS
         - settings horizontal scaling
-        - add sound on slider interaction (use blit sound from field of sunflowers?)
         - add 'show tutorials' settings
 		- add 'show fps' setting
         - settings saving
