@@ -26,6 +26,7 @@ func _process(delta):
 
 	if ((button_selection_handler.current_button is SettingsButton)):
 		var slider = (button_selection_handler.current_button as SettingsButton).setting_slider
+		var toggle = (button_selection_handler.current_button as SettingsButton).setting_toggle
 		if (slider):
 			if (Input.is_action_just_pressed("gamepad_dpad_left") or Input.is_action_just_pressed("player_move_left")):
 				_adjust_slider_by_gamepad_step(slider, -1.0)
@@ -49,6 +50,14 @@ func _process(delta):
 				if (adjust_ticks >= adjust_rate):
 					_adjust_slider_by_gamepad_step(slider, adjust_sign)
 					adjust_rate = 0.0
+
+		if (toggle):
+			if (Input.is_action_just_pressed("gamepad_dpad_left") or Input.is_action_just_pressed("player_move_left")):
+				toggle._toggle()
+				SfxDeconflicter.play(button_selection_handler.current_button.audio_accent_2)
+			if (Input.is_action_just_pressed("gamepad_dpad_right") or Input.is_action_just_pressed("player_move_right")):
+				toggle._alt_toggle()
+				SfxDeconflicter.play(button_selection_handler.current_button.audio_accent_2)
 
 
 func _adjust_slider_by_gamepad_step(slider : SettingsSlider, adjust_sign : float = 1.0):
