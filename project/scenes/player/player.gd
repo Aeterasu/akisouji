@@ -314,6 +314,9 @@ func _on_boots_upgrade_update():
 	move_speed_upgrade_handler.current_upgrade = UpgradeManager.current_boots
 
 func _on_footstep():
+	if (!wish_sprint):
+		return
+
 	var particles = running_particles.duplicate()
 	add_child(particles)
 	particles.set_deferred("emitting", true)

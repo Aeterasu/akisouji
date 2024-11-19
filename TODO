@@ -97,6 +97,7 @@ LEFT TO DO:
     + fix not being able to leave photo mode
     + add photo mode zoom
     + dust trails behind chara
+    + add camera wobble settings
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -161,7 +162,6 @@ LEFT TO DO:
         - add music. incase, fallback to classical music
     
     SETTINGS:
-        - add camera wobble settings
         - make keybinds and controller binds
         - make it so that button tooltips change depending on bindings
         - fix menu button selection while dragging a slider
