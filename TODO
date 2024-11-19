@@ -111,7 +111,7 @@ LEFT TO DO:
     
     GAMEPLAY:
         = cash based broom that uses cash to clean ?
-        = GARBAGE BAGS FILLING UP BY SWEEPING? YOU CAN THEN THROW IT, MOVE IT, ETC
+        - GARBAGE BAGS FILLING UP BY SWEEPING? YOU CAN THEN THROW IT, MOVE IT, ETC
         - implement wellington boots buff
         - level-specific leaf cleaning leeway
         - disabled leaf populator completely breaks the game, pls add safety checks
@@ -170,6 +170,16 @@ LEFT TO DO:
         - settings saving
 
     SHOP:
+        =SHOP
+
+        =TOOLS
+
+        =BOOTS
+
+        =UTILITY
+            =leaf highlighting
+            =larger garbage bags
+
         - shop should just add tools to your inventory, no need for equipping
         - add sounds for purchasing/purchase failure
         - add like a 'bought' and 'equipped\ rectangle stamp

@@ -23,7 +23,7 @@
 [ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_function/settings_function_camera_wobble.gd" id="18_15a4a"]
 [ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_function/settings_mouse_sensitivity_slider.gd" id="19_16vq3"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_eamcj"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ynf4q"]
 shader = ExtResource("1_rhq0f")
 shader_parameter/speed = -0.25
 
@@ -55,16 +55,15 @@ category_name_label = NodePath("SettingsLabel/CategoryLabel")
 
 [node name="ScrollingBackground" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.694118)
-material = SubResource("ShaderMaterial_eamcj")
+material = SubResource("ShaderMaterial_ynf4q")
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_right = 1.0
+anchor_bottom = 1.0
 offset_left = -1280.0
-offset_right = -640.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(2, 2)
+offset_right = 2560.0
+offset_bottom = 1328.0
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_r5tj4")
 stretch_mode = 1
 script = ExtResource("3_5d0or")

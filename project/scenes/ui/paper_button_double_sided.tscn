@@ -1,16 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://civm4tg15jr0q"]
+[gd_scene load_steps=17 format=3 uid="uid://civm4tg15jr0q"]
 
 [ext_resource type="Script" path="res://scenes/ui/paper_button.gd" id="1_q8kh2"]
 [ext_resource type="Texture2D" uid="uid://coicweuvyjnya" path="res://assets/texture/ui/texture_ui_title_screen_button_double_sided_center.png" id="2_if4rd"]
 [ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="3_bjtei"]
 [ext_resource type="Texture2D" uid="uid://b36tehvutlvct" path="res://assets/texture/ui/texture_ui_title_screen_button_double_sided_left.png" id="4_h47s2"]
+[ext_resource type="Shader" path="res://shader/multiply_uv.gdshader" id="5_1o8cc"]
 [ext_resource type="Texture2D" uid="uid://djdisrglonqbw" path="res://assets/texture/ui/texture_ui_title_screen_button_double_sided_right.png" id="5_rmksl"]
 [ext_resource type="AudioStream" uid="uid://dgodvr5gurqrs" path="res://assets/audio/sfx_menu_accent_1.ogg" id="5_tkoag"]
 [ext_resource type="AudioStream" uid="uid://bb5kges32g0ld" path="res://assets/audio/sfx_menu_accent_2.ogg" id="6_2fnho"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="6_pntvj"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_t4r4y"]
-blend_mode = 3
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_diusx"]
+shader = ExtResource("5_1o8cc")
+shader_parameter/speed = null
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1v15l"]
 blend_mode = 3
@@ -50,7 +52,6 @@ grow_vertical = 2
 size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("1_q8kh2")
-animation_type = 1
 animation_origin = NodePath("SubViewportContainer/SubViewport/PaperMaskCenter")
 selected_gradient = NodePath("SubViewportContainer/SelectedGradient")
 deselected_gradient = NodePath("SubViewportContainer/DeselectedGradient")
@@ -161,8 +162,8 @@ stretch_mode = 2
 
 [node name="LeafPattern" type="TextureRect" parent="SubViewportContainer"]
 texture_repeat = 2
-material = SubResource("CanvasItemMaterial_t4r4y")
-custom_minimum_size = Vector2(1280, 90)
+material = SubResource("ShaderMaterial_diusx")
+custom_minimum_size = Vector2(2560, 180)
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("3_bjtei")

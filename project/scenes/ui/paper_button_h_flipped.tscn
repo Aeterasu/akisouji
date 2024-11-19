@@ -31,7 +31,7 @@ gradient = SubResource("Gradient_6qmtg")
 width = 8
 height = 8
 
-[node name="PaperButtonHFlipped" type="Control" node_paths=PackedStringArray("mouse_area", "label", "animation_origin", "selected_gradient", "deselected_gradient", "audio_accent_1", "audio_accent_2")]
+[node name="PaperButtonHFlipped" type="Control" node_paths=PackedStringArray("animation_origin", "selected_gradient", "deselected_gradient", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 3
 anchor_right = 0.401
@@ -42,12 +42,12 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
 script = ExtResource("1_rgq72")
-mouse_area = NodePath("MouseArea")
-label = NodePath("AnimationOrigin/Label")
 animation_origin = NodePath("AnimationOrigin")
 target_selected_position = Vector2(-12, 0)
 selected_gradient = NodePath("AnimationOrigin/PaperMask/SelectedGradient")
 deselected_gradient = NodePath("AnimationOrigin/PaperMask/DeselectedGradient")
+mouse_area = NodePath("MouseArea")
+label = NodePath("AnimationOrigin/Label")
 audio_accent_1 = NodePath("Accent1")
 audio_accent_2 = NodePath("Accent2")
 
@@ -67,8 +67,9 @@ flip_h = true
 [node name="LeafPattern" type="TextureRect" parent="AnimationOrigin/PaperMask"]
 texture_repeat = 2
 layout_mode = 0
-offset_right = 513.0
-offset_bottom = 81.0
+offset_right = 1026.0
+offset_bottom = 162.0
+scale = Vector2(0.5, 0.5)
 mouse_filter = 2
 texture = ExtResource("3_njdx5")
 expand_mode = 1

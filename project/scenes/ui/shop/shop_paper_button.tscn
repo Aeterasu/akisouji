@@ -66,8 +66,9 @@ texture = ExtResource("2_mltkv")
 [node name="LeafPattern" type="TextureRect" parent="AnimationOrigin/PaperMask"]
 texture_repeat = 2
 layout_mode = 0
-offset_right = 139.0
-offset_bottom = 60.0
+offset_right = 278.0
+offset_bottom = 120.0
+scale = Vector2(0.5, 0.5)
 mouse_filter = 2
 texture = ExtResource("3_bnrpy")
 expand_mode = 1

@@ -231,9 +231,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.685927, 0)
 script = ExtResource("4_nfr6p")
 velocity_component = NodePath("../../VelocityComponent")
 player = NodePath("../..")
-position_offset = Vector3(0, 0.025, 0)
+position_offset = Vector3(0, 0.028, 0)
 position_speed = 12.0
-rotation_degrees_offset = Vector3(0, 0, 0.15)
+rotation_degrees_offset = Vector3(0, 0, 0.2)
 rotation_speed = 6.0
 
 [node name="CameraEffectLanding" type="Node3D" parent="CameraOrigin/CameraWobble"]
