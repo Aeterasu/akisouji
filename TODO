@@ -96,6 +96,7 @@ LEFT TO DO:
     + make directonal toggles usable
     + fix not being able to leave photo mode
     + add photo mode zoom
+    + dust trails behind chara
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -148,7 +149,6 @@ LEFT TO DO:
     VISUAL:
         GOLDEN AUTUMN MUCH?
 
-        - dust trails behind chara
         - add outofbounds horizon to fountain stage 
         - fix camera state transition disabling viewport (something's going fucky-wucky)
         - retexture leaves. new texture, maybe random texture

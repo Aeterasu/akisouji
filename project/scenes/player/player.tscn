@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://077fpjam3rlw"]
+[gd_scene load_steps=54 format=3 uid="uid://077fpjam3rlw"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_e0tat"]
 [ext_resource type="Script" path="res://scenes/component/velocity_component/velocity_component.gd" id="3_umteq"]
@@ -30,6 +30,7 @@
 [ext_resource type="Script" path="res://scenes/player/player_oob_rescue.gd" id="24_6ndkg"]
 [ext_resource type="AudioStream" uid="uid://qqrgriis5oeu" path="res://assets/audio/sfx_player_jump_1.ogg" id="28_b26d0"]
 [ext_resource type="AudioStream" uid="uid://ckvfw1v4i7yov" path="res://assets/audio/sfx_player_land_1.ogg" id="30_u8teo"]
+[ext_resource type="Texture2D" uid="uid://b6te5m8ou6wik" path="res://assets/texture/fx/texture_fx_dust_1.png" id="31_l2a2d"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dq522"]
 
@@ -131,7 +132,50 @@ meta = SubResource("Resource_1it1s")
 play = false
 play_on_change = false
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("velocity_component", "camera", "camera_origin", "camera_effect_landing", "cleaning_raycast", "inventory", "move_speed_upgrade_handler", "audio_jump", "audio_land", "footstep_manager")]
+[sub_resource type="Curve" id="Curve_ai20a"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.186082, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -4.00033, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_720go"]
+curve = SubResource("Curve_ai20a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6nq0v"]
+emission_shape_scale = Vector3(1, 0, 1)
+emission_shape = 1
+emission_sphere_radius = 0.9
+angle_min = -720.0
+angle_max = 720.0
+direction = Vector3(1, 0, 1)
+spread = 180.0
+flatness = 1.0
+initial_velocity_min = 0.1
+initial_velocity_max = 0.5
+angular_velocity_min = -45.0
+angular_velocity_max = 45.0
+gravity = Vector3(0, 0, 0)
+damping_min = 0.3
+damping_max = 0.8
+scale_min = 0.6
+scale_max = 0.9
+alpha_curve = SubResource("CurveTexture_720go")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6odc"]
+transparency = 1
+cull_mode = 2
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.357524, 0.286866, 0.24432, 1)
+albedo_texture = ExtResource("31_l2a2d")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_3m7hl"]
+material = SubResource("StandardMaterial3D_k6odc")
+
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("velocity_component", "camera", "camera_origin", "camera_effect_landing", "cleaning_raycast", "inventory", "move_speed_upgrade_handler", "audio_jump", "audio_land", "footstep_manager", "landing_particles", "running_particles")]
 floor_block_on_wall = false
 script = ExtResource("1_e0tat")
 velocity_component = NodePath("VelocityComponent")
@@ -152,6 +196,8 @@ move_speed_upgrade_handler = NodePath("VelocityComponent/MoveSpeedUpgradeHandler
 audio_jump = NodePath("AudioJump")
 audio_land = NodePath("AudioLand")
 footstep_manager = NodePath("FootstepManager")
+landing_particles = NodePath("LandingParticles")
+running_particles = NodePath("RunningParticles")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_dq522")
@@ -262,3 +308,21 @@ bus = &"SFX"
 script = ExtResource("12_ws1qt")
 sound_effect = SubResource("Resource_18oov")
 bus = &"SFX"
+
+[node name="LandingParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.688931, 0)
+emitting = false
+amount = 5
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_6nq0v")
+draw_pass_1 = SubResource("QuadMesh_3m7hl")
+
+[node name="RunningParticles" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.688931, 0)
+emitting = false
+amount = 3
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_6nq0v")
+draw_pass_1 = SubResource("QuadMesh_3m7hl")

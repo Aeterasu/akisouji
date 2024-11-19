@@ -39,7 +39,8 @@ var is_displayed : bool = false:
 			tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.2)
 			for node in button_selection_handler.buttons:
 				node._disable()		
-			UI.instance.show()
+			if (!CameraUI.instance.visible):
+				UI.instance.show()
 
 func _ready():
 	button_selection_handler.on_button_pressed.connect(_on_button_pressed)

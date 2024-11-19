@@ -13,6 +13,8 @@ var cur_step_rate : float = 0.0
 
 var current_footstep : SoundEffectPlayer = null
 
+signal on_footstep 
+
 func _ready():
 	current_footstep = concrete_footstep
 
@@ -31,4 +33,5 @@ func _physics_process(delta):
 				current_footstep = grass_footstep				
 
 		current_footstep.play()
+		on_footstep.emit()
 		cur_step_rate = step_rate

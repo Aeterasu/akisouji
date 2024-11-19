@@ -38,6 +38,10 @@ const CAMERA_ROTATION_LIMIT : float = 80.0
 @export var audio_land : SoundEffectPlayer = null
 @export var footstep_manager : FootstepManager = null
 
+@export_group("Fx")
+@export var landing_particles : GPUParticles3D = null
+@export var running_particles : GPUParticles3D = null
+
 var leaf_cleaning_handler : LeafCleaningHandler = null
 var broom_data : BroomData = null
 var brooming_tick_cooldown : int = 0
@@ -79,6 +83,8 @@ func _ready():
 	var camera_tool = inventory._get_camera()
 	camera_tool.on_enter_photo_mode.connect(_on_enter_photo_mode)
 	camera_tool.on_exit_photo_mode.connect(_on_exit_photo_mode)
+
+	footstep_manager.on_footstep.connect(_on_footstep)
 
 	# upgrade handling
 
@@ -263,6 +269,11 @@ func _on_landing():
 	footstep_manager.cur_step_rate = 0.0
 	audio_land.play()
 
+	var particles = landing_particles.duplicate()
+	add_child(particles)
+	particles.set_deferred("emitting", true)
+	particles.finished.connect(particles.queue_free)
+
 func _on_sprint_cleaning_timeout():
 	if (!wish_sprint or !is_on_floor()):
 		return
@@ -301,3 +312,9 @@ func _photo_mode_exit_callback() -> void:
 
 func _on_boots_upgrade_update():
 	move_speed_upgrade_handler.current_upgrade = UpgradeManager.current_boots
+
+func _on_footstep():
+	var particles = running_particles.duplicate()
+	add_child(particles)
+	particles.set_deferred("emitting", true)
+	particles.finished.connect(particles.queue_free)
