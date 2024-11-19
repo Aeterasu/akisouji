@@ -199,6 +199,9 @@ process_mode = 3
 near = 0.003
 far = 1024.0
 script = ExtResource("4_feodf")
+photo_mode_min_fov = 15.0
+photo_mode_max_fov = 120.0
+zoom_speed = 25.0
 
 [node name="ViewmodelOrigin" type="Node3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D"]
 process_mode = 1

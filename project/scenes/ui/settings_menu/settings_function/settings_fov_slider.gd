@@ -1,6 +1,6 @@
 extends SettingsSlider
 
-func  _ready():
+func _ready():
     super()
 
     min_value = GlobalSettings.min_fov

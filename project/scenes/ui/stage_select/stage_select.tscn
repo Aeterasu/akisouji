@@ -74,7 +74,7 @@ gradient = SubResource("Gradient_6qmtg")
 width = 8
 height = 8
 
-[node name="StageSelect" type="Control" node_paths=PackedStringArray("button_selection_handler", "back_button", "proceed_button", "navigation_button_selection_handler", "stages_container", "right_button", "left_button", "stage_button", "stage_name_label", "stage_description_label", "stage_background_origin")]
+[node name="StageSelect" type="Control" node_paths=PackedStringArray("button_selection_handler", "back_button", "proceed_button", "navigation_button_selection_handler", "stages_container", "right_button", "left_button", "stage_button", "stage_name_label", "stage_description_label", "stage_background_origin", "blackout")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -94,6 +94,7 @@ scroll_lerp_weight = 5.5
 stage_name_label = NodePath("StageName")
 stage_description_label = NodePath("StageDescription")
 stage_background_origin = NodePath("Control")
+blackout = NodePath("BlackoutLayer/ColorRect")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -520,5 +521,16 @@ horizontal_alignment = 2
 vertical_alignment = 1
 script = ExtResource("19_r5y7g")
 shop_button = NodePath("../Buttons/PaperButtonHFlipped")
+
+[node name="BlackoutLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="BlackoutLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [editable path="SubViewportContainer/SubViewport/Control/HBoxContainer/StageButton2"]

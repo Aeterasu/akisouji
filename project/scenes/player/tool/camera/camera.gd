@@ -12,6 +12,8 @@ var ticks : int = 0
 
 var wish_photo_mode : bool = false
 
+var block_input : bool = false
+
 signal on_enter_photo_mode
 signal on_exit_photo_mode
 
@@ -54,12 +56,18 @@ func _use_primary() -> void:
 		audio_shutter.play()
 
 func _use_secondary() -> void:
+	if (block_input):
+		return
+
 	super()
 	wish_photo_mode = !wish_photo_mode
 	allow_switch = !allow_switch
+	block_input = true
 
 func _enter_photo_mode() -> void:
 	on_enter_photo_mode.emit()
+	block_input = false
 
 func _exit_photo_mode() -> void:
 	on_exit_photo_mode.emit()
+	block_input = false

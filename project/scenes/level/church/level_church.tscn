@@ -1,26 +1,42 @@
-[gd_scene load_steps=9 format=3 uid="uid://djxb2f12q5t80"]
+[gd_scene load_steps=10 format=3 uid="uid://djxb2f12q5t80"]
 
 [ext_resource type="PackedScene" uid="uid://bante8mpv041" path="res://assets/mesh/level_design/mesh_church.blend" id="1_ut78t"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="2_hsbfh"]
-[ext_resource type="PackedScene" uid="uid://b83v1plx4lqpw" path="res://scenes/leaf/leaf_populator.tscn" id="2_y0tux"]
 [ext_resource type="Texture2D" uid="uid://bc5a22nghb5dl" path="res://assets/texture/leaf_map/texture_leafmap_church_1.png" id="3_7ae50"]
 [ext_resource type="Texture2D" uid="uid://dbg0ruxkt7muh" path="res://assets/texture/leaf_map/texture_leafmap_church_1_heightmap.png" id="4_wyrm8"]
+[ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://resource/mesh/leaf_mesh.tres" id="5_2ua1s"]
 [ext_resource type="Material" uid="uid://cjtw4ylyq480t" path="res://resource/material/material_stone_pavement.tres" id="5_rep4p"]
 [ext_resource type="Material" uid="uid://c4kdvxtxf6qht" path="res://resource/material/material_grass_1.tres" id="6_eci3w"]
 [ext_resource type="Environment" uid="uid://dfi8f6n3mi0ob" path="res://resource/environment_base_autumn.tres" id="8_g0cne"]
+
+[sub_resource type="MultiMesh" id="MultiMesh_5xmeq"]
+transform_format = 1
+use_colors = true
+mesh = ExtResource("5_2ua1s")
 
 [node name="mesh_church" node_paths=PackedStringArray("leaf_populator", "player_spawn_position") instance=ExtResource("1_ut78t")]
 script = ExtResource("2_hsbfh")
 leaf_populator = NodePath("LeafPopulator")
 player_spawn_position = NodePath("Marker3D")
 
-[node name="LeafPopulator" parent="." index="0" instance=ExtResource("2_y0tux")]
+[node name="LeafPopulator" type="LeafPopulator" parent="." index="0"]
 leavesPerPixel = 64
 leafmap = ExtResource("3_7ae50")
 heightmap = ExtResource("4_wyrm8")
+nodePathMultimeshInstance = NodePath("MultiMeshInstance3D")
+leafColors = Array[Color]([Color(0.831373, 0.254902, 0.215686, 1), Color(0.831373, 0.678431, 0.32549, 1), Color(0.988235, 0.45098, 0.137255, 1), Color(0.941176, 0.647059, 0.235294, 1), Color(0.65098, 0.301961, 0.196078, 1), Color(0.941176, 0.647059, 0.235294, 1), Color(0.831373, 0.254902, 0.215686, 1), Color(0.988235, 0.45098, 0.137255, 1), Color(0.701239, 0.736999, 0.269074, 1), Color(0.701961, 0.737255, 0.270588, 1)])
+nodePathLeafCleaningHandler = NodePath("LeafCleaningHandler")
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="LeafPopulator" index="0"]
+multimesh = SubResource("MultiMesh_5xmeq")
+
+[node name="LeafCleaningHandler" type="LeafCleaningHandler" parent="LeafPopulator" index="1"]
+tickRate = 2
+sweepPerTick = 512
+leafInterpolationWeight = 10.0
 
 [node name="Marker3D" type="Marker3D" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87, 2, 83)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87, 1, 83)
 
 [node name="Pavement" parent="." index="3"]
 surface_material_override/0 = ExtResource("5_rep4p")

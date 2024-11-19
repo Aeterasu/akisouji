@@ -35,7 +35,7 @@ leafmap = ExtResource("4_h57q1")
 heightmap = ExtResource("5_tp8bi")
 
 [node name="Marker3D" type="Marker3D" parent="." index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 2, 56)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 1, 56)
 
 [node name="Fountain" parent="." index="2"]
 visible = false

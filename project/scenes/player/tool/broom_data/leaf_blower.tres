@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_ol460")
-brooming_tickrate = 4
+brooming_tickrate = 8
 cleaning_area = Vector2(3.2, 2.4)
 cleaning_range = 8.0

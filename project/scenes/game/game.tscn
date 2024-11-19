@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=34 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_highlight_handler.gd" id="2_74dy0"]
@@ -27,6 +27,14 @@
 [ext_resource type="Texture2D" uid="uid://dhgy85uah6kgp" path="res://assets/texture/fx/texture_sun_flare_1.png" id="25_5i5i2"]
 [ext_resource type="Shader" path="res://shader/kuwahara_screen.gdshader" id="27_ktbah"]
 [ext_resource type="Script" path="res://scenes/ui/blackout_layer.gd" id="31_te3wo"]
+
+[sub_resource type="Gradient" id="Gradient_7wx0o"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.0886263, 1)
+colors = PackedColorArray(0.168627, 0.0745098, 0.0392157, 0, 0.168627, 0.0745098, 0.0392157, 1, 0.168627, 0.0745098, 0.0392157, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s5kpg"]
+gradient = SubResource("Gradient_7wx0o")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e7rcr"]
 blend_mode = 1
@@ -120,18 +128,54 @@ script = ExtResource("6_5ay1t")
 [node name="UIUpscaler" type="Node" parent="UILayer/UI"]
 script = ExtResource("8_d3y8h")
 
-[node name="CameraUI" type="CanvasLayer" parent="."]
+[node name="CameraUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("label")]
 layer = 98
 script = ExtResource("13_d2xbq")
+label = NodePath("TextureRect/TextureRect/Label")
 
 [node name="TextureRect" type="TextureRect" parent="CameraUI"]
-modulate = Color(0.73, 0.73, 0.73, 0.760784)
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("13_fykye")
 
 [node name="UIUpscaler" type="Node" parent="CameraUI/TextureRect"]
 script = ExtResource("8_d3y8h")
+
+[node name="TextureRect" type="TextureRect" parent="CameraUI/TextureRect"]
+self_modulate = Color(0.568627, 0.568627, 0.568627, 0.713726)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 86.0
+offset_top = 483.0
+offset_right = -952.0
+offset_bottom = -67.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_s5kpg")
+
+[node name="Label" type="RichTextLabel" parent="CameraUI/TextureRect/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.764
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 13.0
+offset_right = -13.888
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 16
+theme_override_constants/line_separation = 8
+theme_override_fonts/normal_font = ExtResource("3_uk65u")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Photo mode tooltip 1
+Photo mode tooltip 2
+Photo mode tooltip 3"
+fit_content = true
+scroll_active = false
 
 [node name="SpeedEffectLayer" type="CanvasLayer" parent="."]
 layer = 64

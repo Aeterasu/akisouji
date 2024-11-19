@@ -22,6 +22,8 @@ class_name StageSelect extends Control
 
 @export var stage_background_origin : Control = null
 
+@export var blackout : ColorRect = null
+
 var current_selected_stage_id : int = 0
 var stage_amount : int = 0
 
@@ -73,10 +75,10 @@ func _ready():
 
 	stage_background_list[0].modulate = Color(1.0, 1.0, 1.0, 1.0)
 
-	modulate = Color(0.0, 0.0, 0.0)
+	blackout.modulate = Color(1.0, 1.0, 1.0, 1.0)
 
 	var tween = create_tween()
-	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0), 0.3)
+	tween.tween_property(blackout, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.3)
 
 func _on_button_mouse_selection(button : UIButton):
 	navigation_button_selection_handler._select_button(-999)
@@ -129,7 +131,9 @@ func _on_button_pressed(button : UIButton):
 			SceneTransitionHandler.instance._load_shop_scene()
 
 func _on_back_button_pressed():
-	SceneTransitionHandler.instance._load_title_screen_scene()
+	var tween = create_tween()
+	tween.tween_property(blackout, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
+	tween.tween_callback(SceneTransitionHandler.instance._load_title_screen_scene).set_delay(0.2)
 
 func _on_navigation_button_selected():
 	if (navigation_button_selection_handler.current_selection_id == 1):
