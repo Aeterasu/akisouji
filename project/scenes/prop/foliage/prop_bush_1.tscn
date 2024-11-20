@@ -1,13 +1,13 @@
 [gd_scene load_steps=6 format=3 uid="uid://cx7dxi1bicvqs"]
 
-[ext_resource type="PackedScene" uid="uid://c1d0e0845xr68" path="res://assets/mesh/prop/mesh_bush_1.blend" id="1_en7i6"]
-[ext_resource type="Shader" path="res://shader/foliage_alpha.gdshader" id="2_e1dcw"]
-[ext_resource type="Texture2D" uid="uid://dfvni54hmq5a8" path="res://assets/texture/environment/texture_foliage_2_albm.png" id="3_kaety"]
-[ext_resource type="Script" path="res://scenes/utils/spread_group.gd" id="4_uov3v"]
+[ext_resource type="PackedScene" uid="uid://c1d0e0845xr68" path="res://assets/mesh/prop/mesh_bush_1.blend" id="1_b3iwn"]
+[ext_resource type="Shader" path="res://shader/foliage_alpha.gdshader" id="2_ahcha"]
+[ext_resource type="Texture2D" uid="uid://dfvni54hmq5a8" path="res://assets/texture/environment/texture_foliage_2_albm.png" id="3_d6vgs"]
+[ext_resource type="Script" path="res://scenes/utils/spread_group.gd" id="4_wvcxm"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rpa0d"]
 render_priority = 0
-shader = ExtResource("2_e1dcw")
+shader = ExtResource("2_ahcha")
 shader_parameter/WindScale = 1.0
 shader_parameter/WindSpeed = 2.824
 shader_parameter/WindStrength = 1.647
@@ -28,17 +28,18 @@ shader_parameter/WiggleScale = 3.0
 shader_parameter/DistanceScale = 0.5
 shader_parameter/DistanceStart = 0.0
 shader_parameter/DistanceScaleRange = 70.0
-shader_parameter/Texture = ExtResource("3_kaety")
+shader_parameter/Texture = ExtResource("3_d6vgs")
 
 [node name="PropBush1" type="Node3D"]
 
-[node name="mesh_bush_1" parent="." groups=["Material-Grass"] instance=ExtResource("1_en7i6")]
+[node name="mesh_bush_1" parent="." groups=["Material-Grass"] instance=ExtResource("1_b3iwn")]
 transform = Transform3D(0.65, 0, 0, 0, 0.65, 0, 0, 0, 0.65, 0, 0, 0)
+custom_aabb = AABB(-1.735, -0.415, -3.62, 3.45, 3.435, 7.3)
 surface_material_override/0 = SubResource("ShaderMaterial_rpa0d")
 
 [node name="Collision " parent="mesh_bush_1" index="0" groups=["Material-Grass"]]
 
 [node name="SpreadGroup" type="Node" parent="mesh_bush_1"]
-script = ExtResource("4_uov3v")
+script = ExtResource("4_wvcxm")
 
 [editable path="mesh_bush_1"]
