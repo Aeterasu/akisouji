@@ -4,8 +4,8 @@
 
 [resource]
 script = ExtResource("1_mg2js")
-speed_multiplier = 1.1
-sprint_multiplier = 1.2
+speed_multiplier = 1.15
+sprint_multiplier = 1.25
 allow_walk_cleaning = false
 walk_cleaning_range_multiplier = 1.0
 sprint_cleaning_range_multiplier = 1.1

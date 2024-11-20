@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://e6kqs6p081ew"]
+
+[ext_resource type="Texture2D" uid="uid://ddvispa272skp" path="res://assets/texture/material/texture_gold_nrmp.png" id="1_wv1gv"]
+
+[resource]
+albedo_color = Color(0.862745, 0.690196, 0.27451, 1)
+metallic = 1.0
+roughness = 0.46
+normal_enabled = true
+normal_scale = 0.65
+normal_texture = ExtResource("1_wv1gv")
+uv1_scale = Vector3(4, 4, 4)
+uv1_triplanar = true

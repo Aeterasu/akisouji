@@ -1,0 +1,86 @@
+[gd_scene load_steps=10 format=3 uid="uid://brkdwm28b5pnj"]
+
+[ext_resource type="Material" uid="uid://e6kqs6p081ew" path="res://scenes/test/material_test/gold.tres" id="1_71oa5"]
+[ext_resource type="Script" path="res://scenes/test/material_test/rotating_orb.gd" id="1_ucg76"]
+[ext_resource type="PackedScene" uid="uid://j6k6m7mkrpjv" path="res://assets/mesh/tool/mesh_broom_strong.blend" id="3_eduyf"]
+[ext_resource type="Shader" path="res://shader/stylized_metal.gdshader" id="4_bkx2r"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_hnu37"]
+material = ExtResource("1_71oa5")
+
+[sub_resource type="Environment" id="Environment_0u6ut"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4mlje"]
+render_priority = 0
+shader = ExtResource("4_bkx2r")
+shader_parameter/baseColor = Color(0.654902, 0.517647, 0.164706, 1)
+shader_parameter/gradientBasis = Vector3(1.95, 1.235, 3)
+shader_parameter/gradientBasisDistort = Vector3(1.91, 0, 0)
+shader_parameter/gradientBasisSpeed = 0.0
+shader_parameter/refractionSplit = 2.0
+shader_parameter/refractionSplitPower = 1.0
+shader_parameter/refractionAffect = 0.8
+
+[sub_resource type="SphereMesh" id="SphereMesh_oi1um"]
+material = SubResource("ShaderMaterial_4mlje")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p0enq"]
+render_priority = 0
+shader = ExtResource("4_bkx2r")
+shader_parameter/baseColor = Color(0.654902, 0.517647, 0.164706, 1)
+shader_parameter/gradientBasis = Vector3(3, 3, 3)
+shader_parameter/gradientBasisDistort = Vector3(0, 0, 0)
+shader_parameter/gradientBasisSpeed = 0.0
+shader_parameter/refractionSplit = 1.265
+shader_parameter/refractionSplitPower = 1.0
+shader_parameter/refractionAffect = 0.8
+
+[node name="GoldMaterialTest" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.96363, 0.0116568, 0.266984, 0, 0.999048, -0.0436194, -0.267238, 0.042033, 0.962713, 0.565, 0.17, 2.665)
+fov = 51.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32497, -0.207013, -0.266738)
+mesh = SubResource("SphereMesh_hnu37")
+script = ExtResource("1_ucg76")
+direction = Vector3(0, 32, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0u6ut")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.587039, 1.18412)
+light_energy = 2.0
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7295, -0.0725093, 0.300593)
+light_color = Color(1, 0.8, 0.396078, 1)
+light_energy = 2.0
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.418994, 1.56877, -0.84637)
+light_color = Color(1, 0.755176, 0.821431, 1)
+light_energy = 2.0
+
+[node name="mesh_broom_strong" parent="." instance=ExtResource("3_eduyf")]
+transform = Transform3D(0.301476, 0.0589721, -0.0697099, 0, 0.240489, 0.203445, 0.0913081, -0.194711, 0.230164, -1.13837, -0.486593, 0.530991)
+surface_material_override/0 = ExtResource("1_71oa5")
+script = ExtResource("1_ucg76")
+direction = Vector3(0, 32, 0)
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.294688, -0.207013, -0.266738)
+mesh = SubResource("SphereMesh_oi1um")
+script = ExtResource("1_ucg76")
+direction = Vector3(0, 32, 0)
+
+[node name="mesh_broom_strong2" parent="." instance=ExtResource("3_eduyf")]
+transform = Transform3D(0.301476, 0.0589721, -0.0697099, 0, 0.240489, 0.203445, 0.0913081, -0.194711, 0.230164, 0.481293, -0.486593, 0.530991)
+surface_material_override/0 = SubResource("ShaderMaterial_p0enq")
+script = ExtResource("1_ucg76")
+direction = Vector3(0, 32, 0)
