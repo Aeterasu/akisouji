@@ -101,6 +101,7 @@ LEFT TO DO:
     + fix leaf highlight tweening
     + fix menu button selection while dragging a slider
     + fix horizontal scaling
+    + implement wellington boots buff
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -116,7 +117,6 @@ LEFT TO DO:
         = cash based broom that uses cash to clean ?
         - add "Golden Broom". the more cash, the bigger the radius! (but capped, of course.)
         - GARBAGE BAGS FILLING UP BY SWEEPING? YOU CAN THEN THROW IT, MOVE IT, ETC
-        - implement wellington boots buff
         - level-specific leaf cleaning leeway
         - disabled leaf populator completely breaks the game, pls add safety checks
         - add 'new upgrade notification'. a little '!' should appear on the category
@@ -133,7 +133,7 @@ LEFT TO DO:
         - add church stage
         - add broom upgrades
         - cash and purchases saving
-        - suggestion - make the leaf highlight not an inhere nt mechanic, but an upgrade?
+        - suggestion - make the leaf highlight not an inherent mechanic, but an upgrade?
         - set ranking times on levels !!!
     
     GENERAL UI:

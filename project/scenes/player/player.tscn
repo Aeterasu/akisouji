@@ -209,8 +209,9 @@ smooth_toggle = true
 accel_weight = 4.0
 decel_weight = 4.0
 
-[node name="MoveSpeedUpgradeHandler" type="Node" parent="VelocityComponent" node_paths=PackedStringArray("velocity_component")]
+[node name="MoveSpeedUpgradeHandler" type="Node" parent="VelocityComponent" node_paths=PackedStringArray("player", "velocity_component")]
 script = ExtResource("4_xp3sh")
+player = NodePath("../..")
 current_upgrade = ExtResource("5_ggm6b")
 velocity_component = NodePath("..")
 

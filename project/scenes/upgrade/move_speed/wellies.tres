@@ -5,5 +5,10 @@
 [resource]
 script = ExtResource("1_tkd7m")
 speed_multiplier = 0.8
+sprint_multiplier = 1.0
+allow_walk_cleaning = true
+walk_cleaning_range_multiplier = 1.2
+sprint_cleaning_range_multiplier = 1.4
+jump_cleaning_range_multiplier = 2.0
 cost = 600
 name_key = "ITEM_NAME_WELLIES"

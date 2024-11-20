@@ -262,7 +262,7 @@ func _on_landing():
 	if (is_instance_valid(leaf_cleaning_handler)):
 		Game.game_instance.last_cleaning_position = global_position + Vector3.DOWN * 0.5
 		Game.game_instance.last_cleaning_radius = jump_cleaning_radius * multiplier
-		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), Vector2(cos(rotation.y), sin(rotation.y)), Vector2.ONE * jump_cleaning_radius * multiplier)
+		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), Vector2(cos(rotation.y), sin(rotation.y)), Vector2.ONE * jump_cleaning_radius * multiplier * move_speed_upgrade_handler.current_upgrade.jump_cleaning_range_multiplier)
 
 	camera_effect_landing._animate()
 
@@ -275,13 +275,23 @@ func _on_landing():
 	particles.finished.connect(particles.queue_free)
 
 func _on_sprint_cleaning_timeout():
-	if (!wish_sprint or !is_on_floor()):
+	if (!is_on_floor()):
 		return
+
+	if (!wish_sprint and !move_speed_upgrade_handler.current_upgrade.allow_walk_cleaning):
+		return
+
+	var range_multiplier : float = 1.0
+
+	if (wish_sprint):
+		range_multiplier = move_speed_upgrade_handler.current_upgrade.sprint_cleaning_range_multiplier
+	else:
+		range_multiplier = move_speed_upgrade_handler.current_upgrade.walk_cleaning_range_multiplier
 	
 	if (is_instance_valid(leaf_cleaning_handler)):
 		Game.game_instance.last_cleaning_position = global_position + Vector3.DOWN * 0.5
 		Game.game_instance.last_cleaning_radius = sprint_cleaning_radius
-		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), Vector2(cos(rotation.y), sin(rotation.y)), Vector2.ONE * sprint_cleaning_radius)
+		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), Vector2(cos(rotation.y), sin(rotation.y)), Vector2.ONE * sprint_cleaning_radius * range_multiplier)
 
 func _on_enter_photo_mode():
 	is_in_photo_mode = true
