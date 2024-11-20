@@ -1,21 +1,19 @@
-[gd_scene load_steps=36 format=3 uid="uid://gcdsoumbb7v1"]
+[gd_scene load_steps=34 format=3 uid="uid://gcdsoumbb7v1"]
 
 [ext_resource type="Script" path="res://scenes/ui/stage_select/stage_select.gd" id="1_66fed"]
 [ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="1_dorsv"]
 [ext_resource type="PackedScene" uid="uid://cyaqutbexr62l" path="res://scenes/ui/gamepad_tooltip/gamepad_tooltip.tscn" id="2_gj8ga"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="2_yaed8"]
-[ext_resource type="PackedScene" uid="uid://0rans78oywx2" path="res://scenes/ui/stage_select/stage_button.tscn" id="3_wm72o"]
 [ext_resource type="Texture2D" uid="uid://clr88rwhe5dva" path="res://assets/texture/stage/texture_stage_alleyway.png" id="3_ykbf5"]
 [ext_resource type="Shader" path="res://shader/multiply.gdshader" id="4_ho324"]
 [ext_resource type="Shader" path="res://shader/alpha_mask.gdshader" id="5_3202m"]
 [ext_resource type="PackedScene" uid="uid://bcrys4arojn37" path="res://scenes/ui/paper_button.tscn" id="6_kbe54"]
 [ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="7_dni56"]
-[ext_resource type="PackedScene" uid="uid://clbhy8rora05f" path="res://scenes/level/fountain/level_fountain.tscn" id="9_ontxg"]
+[ext_resource type="PackedScene" uid="uid://724xpt22l83w" path="res://scenes/ui/stage_select/stage_select_container.tscn" id="9_r1ksl"]
 [ext_resource type="PackedScene" uid="uid://b4bw4uryofcbx" path="res://scenes/ui/stage_select/stage_navigation_arrow.tscn" id="10_avlww"]
 [ext_resource type="Texture2D" uid="uid://d0dlnwabgcqxg" path="res://assets/texture/stage/texture_stage_fountain.png" id="10_jxscp"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="10_v364h"]
 [ext_resource type="Script" path="res://scenes/ui/paper_button.gd" id="11_7qeyb"]
-[ext_resource type="PackedScene" uid="uid://djxb2f12q5t80" path="res://scenes/level/church/level_church.tscn" id="11_gxiw0"]
 [ext_resource type="Script" path="res://scenes/ui/button.gd" id="12_6pdp1"]
 [ext_resource type="Texture2D" uid="uid://ceghh11taklj3" path="res://assets/texture/ui/shop/texture_ui_shopping_cart.png" id="12_e0bnt"]
 [ext_resource type="Texture2D" uid="uid://dsdj6e2cue4jc" path="res://assets/texture/ui/texture_ui_title_screen_button_1.png" id="12_uro6y"]
@@ -39,7 +37,7 @@ gradient = SubResource("Gradient_mcqjw")
 fill_to = Vector2(0, 1)
 
 [sub_resource type="Gradient" id="Gradient_7qmm5"]
-offsets = PackedFloat32Array(0, 0.2, 0.8, 1)
+offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1)
 metadata/_snap_enabled = true
 
@@ -86,10 +84,11 @@ button_selection_handler = NodePath("Buttons/ButtonSelectionHandler")
 back_button = NodePath("Buttons/PaperButton")
 proceed_button = NodePath("Buttons/PaperButtonHFlipped")
 navigation_button_selection_handler = NodePath("StageNavigation/ButtonSelectionHandler")
-stages_container = NodePath("SubViewportContainer/SubViewport/Control/HBoxContainer")
+stages_container = NodePath("SubViewportContainer/SubViewport/StageSelectContainer")
 right_button = NodePath("StageNavigation/Right")
 left_button = NodePath("StageNavigation/Left")
 stage_button = NodePath("StageNavigation/StageSelection")
+edge_size = 0.0
 scroll_lerp_weight = 5.5
 stage_name_label = NodePath("StageName")
 stage_description_label = NodePath("StageDescription")
@@ -185,10 +184,6 @@ vertical_alignment = 1
 [node name="GamepadTooltip" parent="." instance=ExtResource("2_gj8ga")]
 z_index = 215
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
-offset_top = -720.0
-grow_vertical = 0
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 material = SubResource("ShaderMaterial_nlj8g")
@@ -207,47 +202,9 @@ handle_input_locally = false
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
-[node name="Control" type="Control" parent="SubViewportContainer/SubViewport"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="SubViewportContainer/SubViewport/Control"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 360.0
-offset_top = -240.0
-offset_right = 2980.0
-offset_bottom = 122.0
-grow_vertical = 2
-
-[node name="StageButton1" parent="SubViewportContainer/SubViewport/Control/HBoxContainer" instance=ExtResource("3_wm72o")]
-layout_mode = 2
-name_key = "STAGE_NAME_ALLEYWAY"
-description_key = "STAGE_DESCRIPTION_ALLEYWAY"
-
-[node name="StageButton2" parent="SubViewportContainer/SubViewport/Control/HBoxContainer" instance=ExtResource("3_wm72o")]
-layout_mode = 2
-stage_scene = ExtResource("9_ontxg")
-name_key = "STAGE_NAME_FOUNTAIN"
-description_key = "STAGE_DESCRIPTION_FOUNTAIN"
-
-[node name="LevelImage" parent="SubViewportContainer/SubViewport/Control/HBoxContainer/StageButton2" index="2"]
-texture = ExtResource("10_jxscp")
-
-[node name="StageButton3" parent="SubViewportContainer/SubViewport/Control/HBoxContainer" instance=ExtResource("3_wm72o")]
-layout_mode = 2
-stage_scene = ExtResource("11_gxiw0")
-name_key = "STAGE_NAME_CHURCH"
-description_key = "STAGE_DESCRIPTION_CHURCH"
-
-[node name="StageButton4" parent="SubViewportContainer/SubViewport/Control/HBoxContainer" instance=ExtResource("3_wm72o")]
-layout_mode = 2
+[node name="StageSelectContainer" parent="SubViewportContainer/SubViewport" instance=ExtResource("9_r1ksl")]
+size_flags_horizontal = 2
+offset = 1280.0
 
 [node name="StageName" type="Label" parent="."]
 layout_mode = 2
@@ -535,5 +492,3 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
-
-[editable path="SubViewportContainer/SubViewport/Control/HBoxContainer/StageButton2"]

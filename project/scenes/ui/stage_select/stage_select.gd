@@ -5,7 +5,7 @@ class_name StageSelect extends Control
 @export var proceed_button : UIButton = null
 
 @export var navigation_button_selection_handler : ButtonSelectionHandler = null
-@export var stages_container : Control = null
+@export var stages_container : StageSelectContainer = null
 @export var right_button : UIButton = null
 @export var left_button : UIButton = null
 @export var stage_button : UIButton = null
@@ -41,7 +41,7 @@ var focus_level : int = 0:
 			button_selection_handler._enable_all_buttons()
 			navigation_button_selection_handler._disable_all_buttons()
 
-			for node in stages_container.get_children():
+			for node in stages_container.container.get_children():
 				(node as StageButton)._deselect()	
 
 		elif (value > 0):
@@ -65,7 +65,7 @@ func _ready():
 		button.on_mouse_selection.connect(_on_button_mouse_selection)
 		button.on_mouse_deselection.connect(_on_button_mouse_deselection)
 
-	stage_amount = stages_container.get_child_count()
+	stage_amount = stages_container.container.get_child_count()
 
 	stage_background_list.resize(stage_amount)
 
@@ -105,11 +105,11 @@ func _process(delta):
 				navigation_button_selection_handler.current_selection_id = 1
 				navigation_button_selection_handler._update_button()
 
-	target_scroll = -(stages_container.get_child(current_selected_stage_id) as Control).position.x + edge_size
+	target_scroll = -(stages_container.container.get_child(current_selected_stage_id) as Control).position.x + ((size.x - 1280.0) * 0.5)
 	current_scroll = lerp(current_scroll, target_scroll, scroll_lerp_weight * delta)
 	stages_container.position.x = current_scroll
 
-	var s = stages_container.get_child(current_selected_stage_id) as StageButton
+	var s = stages_container.container.get_child(current_selected_stage_id) as StageButton
 
 	stage_name_label.text = tr(s.name_key)
 	stage_description_label.text = tr(s.description_key)
@@ -137,13 +137,13 @@ func _on_back_button_pressed():
 
 func _on_navigation_button_selected():
 	if (navigation_button_selection_handler.current_selection_id == 1):
-		for node in stages_container.get_children():
+		for node in stages_container.container.get_children():
 			if (node.get_index() == current_selected_stage_id):
 				(node as StageButton)._select()
 			else:
 				(node as StageButton)._deselect()
 	else:
-		for node in stages_container.get_children():
+		for node in stages_container.container.get_children():
 			(node as StageButton)._deselect()		
 
 func _on_navigation_button_pressed(button : UIButton):
@@ -153,5 +153,5 @@ func _on_navigation_button_pressed(button : UIButton):
 		left_button:
 			current_selected_stage_id = max(current_selected_stage_id - 1, 0)
 		stage_button:
-			Main.instance.current_stashed_level = (stages_container.get_child(current_selected_stage_id) as StageButton).stage_scene
+			Main.instance.current_stashed_level = (stages_container.container.get_child(current_selected_stage_id) as StageButton).stage_scene
 			SceneTransitionHandler.instance._load_game_scene(Main.instance.current_stashed_level)

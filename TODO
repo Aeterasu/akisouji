@@ -100,6 +100,7 @@ LEFT TO DO:
     + add camera wobble settings
     + fix leaf highlight tweening
     + fix menu button selection while dragging a slider
+    + fix horizontal scaling
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -113,6 +114,7 @@ LEFT TO DO:
     
     GAMEPLAY:
         = cash based broom that uses cash to clean ?
+        - add "Golden Broom". the more cash, the bigger the radius! (but capped, of course.)
         - GARBAGE BAGS FILLING UP BY SWEEPING? YOU CAN THEN THROW IT, MOVE IT, ETC
         - implement wellington boots buff
         - level-specific leaf cleaning leeway
@@ -188,7 +190,6 @@ LEFT TO DO:
         - green background with tools etc
         
     STAGE SELECT:
-        - fix horizontal scaling
         - add stage textures (reshoot them with a freecam)
     
     GALLERY:

@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://724xpt22l83w"]
+
+[ext_resource type="Script" path="res://scenes/ui/stage_select/stage_select_container.gd" id="1_5xwlp"]
+[ext_resource type="PackedScene" uid="uid://0rans78oywx2" path="res://scenes/ui/stage_select/stage_button.tscn" id="1_nbdvt"]
+[ext_resource type="PackedScene" uid="uid://clbhy8rora05f" path="res://scenes/level/fountain/level_fountain.tscn" id="2_qk5m6"]
+[ext_resource type="Texture2D" uid="uid://d0dlnwabgcqxg" path="res://assets/texture/stage/texture_stage_fountain.png" id="3_wlmgw"]
+[ext_resource type="PackedScene" uid="uid://djxb2f12q5t80" path="res://scenes/level/church/level_church.tscn" id="4_sdqqr"]
+
+[node name="StageSelectContainer" type="Control" node_paths=PackedStringArray("container")]
+layout_mode = 3
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -640.0
+offset_right = 640.0
+offset_bottom = 720.0
+grow_horizontal = 2
+script = ExtResource("1_5xwlp")
+container = NodePath("HBoxContainer")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 360.0
+offset_top = 120.0
+offset_right = 1700.0
+offset_bottom = -238.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="StageButton1" parent="HBoxContainer" instance=ExtResource("1_nbdvt")]
+layout_mode = 2
+name_key = "STAGE_NAME_ALLEYWAY"
+description_key = "STAGE_DESCRIPTION_ALLEYWAY"
+
+[node name="StageButton2" parent="HBoxContainer" instance=ExtResource("1_nbdvt")]
+layout_mode = 2
+stage_scene = ExtResource("2_qk5m6")
+name_key = "STAGE_NAME_FOUNTAIN"
+description_key = "STAGE_DESCRIPTION_FOUNTAIN"
+
+[node name="LevelImage" parent="HBoxContainer/StageButton2" index="2"]
+texture = ExtResource("3_wlmgw")
+
+[node name="StageButton3" parent="HBoxContainer" instance=ExtResource("1_nbdvt")]
+layout_mode = 2
+stage_scene = ExtResource("4_sdqqr")
+name_key = "STAGE_NAME_CHURCH"
+description_key = "STAGE_DESCRIPTION_CHURCH"
+
+[node name="StageButton4" parent="HBoxContainer" instance=ExtResource("1_nbdvt")]
+layout_mode = 2
+
+[editable path="HBoxContainer/StageButton2"]
