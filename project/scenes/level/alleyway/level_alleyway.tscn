@@ -82,7 +82,7 @@ player_spawn_position = NodePath("PlayerSpawnPosition")
 enable_rain = true
 
 [node name="LeafPopulator" parent="." index="0" instance=ExtResource("3_c46s6")]
-leavesPerPixel = 3
+leavesPerPixel = 2
 pixelFraction = 6.84
 leafmap = ExtResource("4_5sgs6")
 heightmap = ExtResource("5_sqrfh")

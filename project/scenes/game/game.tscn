@@ -78,6 +78,8 @@ rain_effect = NodePath("Pausable/Player/RainParticles")
 [node name="LeafHighlightHandler" type="Node" parent="."]
 script = ExtResource("2_74dy0")
 leaf_material = ExtResource("3_ys06x")
+highlight_duration = 0.6
+lerp_weight = 8.0
 
 [node name="LeafProgressTracker" type="Node" parent="."]
 script = ExtResource("4_deeln")
