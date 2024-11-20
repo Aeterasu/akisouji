@@ -71,7 +71,7 @@ func _ready():
 
 	for i in stage_amount:
 		stage_background_list[i] = stage_background_origin.get_child(i) as TextureRect
-		stage_background_list[i].modulate = Color(0.0, 0.0, 0.0, 0.0)
+		stage_background_list[i].modulate = Color(1.0, 1.0, 1.0, 0.0)
 
 	stage_background_list[0].modulate = Color(1.0, 1.0, 1.0, 1.0)
 
@@ -116,9 +116,9 @@ func _process(delta):
 	
 	for i in range(stage_amount):
 		if (i == current_selected_stage_id):
-			stage_background_list[i].modulate = stage_background_list[i].modulate.lerp(Color(1.0, 1.0, 1.0, 1.0), 6.0 * delta)
+			stage_background_list[i].modulate = stage_background_list[i].modulate.lerp(Color(1.0, 1.0, 1.0, 1.0), 2.0 * delta)
 		else:
-			stage_background_list[i].modulate = stage_background_list[i].modulate.lerp(Color(0.0, 0.0, 0.0, 0.0), 0.75 * delta)
+			stage_background_list[i].modulate = stage_background_list[i].modulate.lerp(Color(1.0, 1.0, 1.0, 0.0), 2.0 * delta)
 
 	if (Input.is_action_just_pressed("pause") or Input.is_action_just_pressed("menu_cancel")):
 		_on_back_button_pressed()
