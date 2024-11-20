@@ -99,6 +99,7 @@ LEFT TO DO:
     + dust trails behind chara
     + add camera wobble settings
     + fix leaf highlight tweening
+    + fix menu button selection while dragging a slider
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -165,7 +166,6 @@ LEFT TO DO:
     SETTINGS:
         - make keybinds and controller binds
         - make it so that button tooltips change depending on bindings
-        - fix menu button selection while dragging a slider
         - add settings menu. master, sfx, ambience, music volume. fullscreen/windowed. language. leaf higlight color setting. fov - 70-100. controls. mouse sensitivity, gamepad sensitivity. -AUDIO, -VISUALS, -GAMEPLAY, -KEY BINDINGS, -GAMEPAD BINDINGS
 		- add 'show fps' setting
         - settings saving

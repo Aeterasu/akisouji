@@ -12,6 +12,8 @@ var buttons : Array[UIButton] = []
 
 var previous_button_id : int = -999
 
+var prevent_new_selection : bool = false
+
 signal on_button_pressed
 signal on_button_selected
 
@@ -120,6 +122,9 @@ func _select_button(id : int):
 	_update_button()
 
 func _update_button():
+	if (prevent_new_selection):
+		return
+
 	if (current_button):
 		previous_button_id = buttons.find(current_button)
 		current_button._deselect()

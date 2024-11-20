@@ -28,6 +28,8 @@ func _process(delta):
 		var slider = (button_selection_handler.current_button as SettingsButton).setting_slider
 		var toggle = (button_selection_handler.current_button as SettingsButton).setting_toggle
 		if (slider):
+			button_selection_handler.prevent_new_selection = slider.is_dragging
+
 			if (Input.is_action_just_pressed("gamepad_dpad_left") or Input.is_action_just_pressed("player_move_left")):
 				_adjust_slider_by_gamepad_step(slider, -1.0)
 			if (Input.is_action_just_pressed("gamepad_dpad_right") or Input.is_action_just_pressed("player_move_right")):
