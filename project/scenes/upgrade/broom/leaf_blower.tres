@@ -1,8 +1,11 @@
-[gd_resource type="Resource" script_class="BroomUpgrade" load_steps=2 format=3 uid="uid://c7wg1nuu7ajn5"]
+[gd_resource type="Resource" script_class="BroomUpgrade" load_steps=3 format=3 uid="uid://c7wg1nuu7ajn5"]
 
 [ext_resource type="Script" path="res://scenes/upgrade/broom/broom_upgrade.gd" id="1_4gtq8"]
+[ext_resource type="PackedScene" uid="uid://diie8gejji6lq" path="res://scenes/player/tool/broom/leaf_blower.tscn" id="1_rasha"]
 
 [resource]
 script = ExtResource("1_4gtq8")
+broom_scene = ExtResource("1_rasha")
 cost = 2500
 name_key = "ITEM_NAME_LEAF_BLOWER"
+one_time_purchase = true

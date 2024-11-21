@@ -89,7 +89,9 @@ func _ready():
 	# upgrade handling
 
 	UpgradeManager.on_boots_update.connect(_on_boots_upgrade_update)
+	UpgradeManager.on_broom_update.connect(_on_broom_upgrade_update)
 	_on_boots_upgrade_update()
+	#_on_broom_upgrade_update()
 
 func _physics_process(delta : float):
 	input_process(delta)
@@ -322,6 +324,15 @@ func _photo_mode_exit_callback() -> void:
 
 func _on_boots_upgrade_update():
 	move_speed_upgrade_handler.current_upgrade = UpgradeManager.current_boots
+
+func _on_broom_upgrade_update(broom : BroomUpgrade):
+	var node = broom.broom_scene.instantiate()
+	inventory.tool_origin.add_child(node)
+
+	inventory.tools.insert(len(inventory.tools) - 1, node)
+	inventory.current_tool_id = len(inventory.tools) - 2
+	inventory.swap_cooldown_timer.stop()
+	inventory._update_tool()
 
 func _on_footstep():
 	if (!wish_sprint):

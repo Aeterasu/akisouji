@@ -52,8 +52,7 @@ func _process(delta):
 	if (Input.is_action_just_pressed(next_key) or Input.is_action_just_pressed(next_gamepad)):
 		_next_button()
 		
-	if (Input.is_action_just_pressed("menu_confirm") && current_button):
-		
+	if (Input.is_action_just_pressed("menu_confirm") and current_button and !current_button.is_disabled):
 		if (current_button.audio_accent_2):
 			var sfx = current_button.audio_accent_2.duplicate() as AudioStreamPlayer
 

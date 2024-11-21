@@ -5,5 +5,10 @@
 [resource]
 script = ExtResource("1_ejjpb")
 speed_multiplier = 1.0
+sprint_multiplier = 1.0
+allow_walk_cleaning = false
+walk_cleaning_range_multiplier = 1.0
+sprint_cleaning_range_multiplier = 1.0
+jump_cleaning_range_multiplier = 1.0
 cost = 0
 name_key = "ITEM_NAME_BOOTS"

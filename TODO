@@ -103,6 +103,8 @@ LEFT TO DO:
     + fix horizontal scaling
     + implement wellington boots buff
     + are you sure? (on level exit)
+    + add broom upgrades
+    + shop should just add tools to your inventory, no need for equipping
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -132,7 +134,6 @@ LEFT TO DO:
         - work on economy :D (boots should be dirt cheap, brooms more costly)
         - add fountain stage (make it night/evening!)
         - add church stage
-        - add broom upgrades
         - cash and purchases saving
         - suggestion - make the leaf highlight not an inherent mechanic, but an upgrade?
         - set ranking times on levels !!!
@@ -183,7 +184,7 @@ LEFT TO DO:
             =leaf highlighting
             =larger garbage bags
 
-        - shop should just add tools to your inventory, no need for equipping
+        - rework shop ui, to make it vertical (dmc5 ui style)
         - add sounds for purchasing/purchase failure
         - add like a 'bought' and 'equipped\ rectangle stamp
         - fix horizontal scaling
@@ -199,6 +200,8 @@ LEFT TO DO:
     PAUSE MENU:
     
     MISC:
+        - fix tweener error
+
         - GAME NAME AND LOGO IN TITLE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 		- Add cleanable surface tag so that we can't exactly clean lampposts etc

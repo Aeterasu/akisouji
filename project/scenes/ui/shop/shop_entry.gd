@@ -24,7 +24,7 @@ var state : EntryState = EntryState.NONE:
 		button.is_blocked = false
 		button._enable()
 
-		if (state == EntryState.EQUIPPED):
+		if (state == EntryState.EQUIPPED or state == EntryState.ONE_TIME_PURCHASE_BOUGHT):
 			button._deselect()
 			button._disable()
 			button.is_blocked = true
@@ -41,6 +41,7 @@ enum EntryState
 	AVAILABLE_TO_BUY, # not bought yet
 	UNEQUIPPED, # bought, not equipped
 	EQUIPPED, # bought, equipped
+	ONE_TIME_PURCHASE_BOUGHT, # unequipable, bought
 }
 
 signal on_state_update
@@ -61,6 +62,8 @@ func _process(delta):
 			button.text_key = "SHOP_BUTTON_EQUIP"
 		EntryState.EQUIPPED:
 			button.text_key = "SHOP_BUTTON_EQUIPPED"
+		EntryState.ONE_TIME_PURCHASE_BOUGHT:
+			button.text_key = "SHOP_BOUGHT"
 
 	sunbeams.rotation_degrees += animation_speed * delta
 
@@ -88,7 +91,6 @@ func _attempt_buy():
 		if (upgrade_item.cost < CashManager.cash):
 			UpgradeManager._grant_item(upgrade_item)
 			CashManager._substract_cash(upgrade_item.cost)
-
 			UpgradeManager._set_current_item(upgrade_item)
 			on_state_update.emit()
 
@@ -96,9 +98,12 @@ func _update_state():
 	state = EntryState.AVAILABLE_TO_BUY
 	
 	if (upgrade_item and UpgradeManager.inventory.has(upgrade_item)):
-		state = EntryState.UNEQUIPPED
+		if (upgrade_item.one_time_purchase):
+			state = EntryState.ONE_TIME_PURCHASE_BOUGHT
+		else:
+			state = EntryState.UNEQUIPPED
 
-	if (upgrade_item == UpgradeManager.current_boots or upgrade_item == UpgradeManager.current_broom):
+	if (upgrade_item == UpgradeManager.current_boots):
 		state = EntryState.EQUIPPED
 
 func _on_button_selected(selected_button : UIButton):

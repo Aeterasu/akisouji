@@ -1,8 +1,11 @@
-[gd_resource type="Resource" script_class="BroomUpgrade" load_steps=2 format=3 uid="uid://bi0qxjmyixrxb"]
+[gd_resource type="Resource" script_class="BroomUpgrade" load_steps=3 format=3 uid="uid://bi0qxjmyixrxb"]
 
+[ext_resource type="PackedScene" uid="uid://dqwotfhhj3x3" path="res://scenes/player/tool/broom/broom_strong.tscn" id="1_v77gm"]
 [ext_resource type="Script" path="res://scenes/upgrade/broom/broom_upgrade.gd" id="1_w1jw7"]
 
 [resource]
 script = ExtResource("1_w1jw7")
+broom_scene = ExtResource("1_v77gm")
 cost = 400
 name_key = "ITEM_NAME_STRONG_BROOM"
+one_time_purchase = true

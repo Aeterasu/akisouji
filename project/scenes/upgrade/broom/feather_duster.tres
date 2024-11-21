@@ -6,3 +6,4 @@
 script = ExtResource("1_xr0ix")
 cost = 1000
 name_key = "ITEM_NAME_FEATHER_DUSTER"
+one_time_purchase = true
