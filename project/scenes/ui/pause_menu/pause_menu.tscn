@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d0r5a5kwi5eoo"]
+[gd_scene load_steps=15 format=3 uid="uid://d0r5a5kwi5eoo"]
 
 [ext_resource type="Script" path="res://scenes/ui/pause_menu/pause_menu.gd" id="1_j0qui"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="1_y26lm"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dj6rqqv2dxh8t" path="res://scenes/ui/settings_menu/settings_menu.tscn" id="3_6ylju"]
 [ext_resource type="FontFile" uid="uid://c5kqanfa0j1nl" path="res://assets/font/DancingScript-VariableFont_wght.ttf" id="3_tc3ds"]
 [ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="3_trrex"]
+[ext_resource type="PackedScene" uid="uid://cyv8e0e5am36o" path="res://scenes/ui/are_you_sure/are_you_sure.tscn" id="4_q0k3j"]
 [ext_resource type="Script" path="res://scenes/ui/pause_menu/scrolling_background.gd" id="4_s0stg"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="6_qdgdp"]
 [ext_resource type="PackedScene" uid="uid://cyaqutbexr62l" path="res://scenes/ui/gamepad_tooltip/gamepad_tooltip.tscn" id="12_5o1ui"]
@@ -34,6 +35,7 @@ options_button = NodePath("CenterContainer/Control/PaperButton3")
 exit_button = NodePath("CenterContainer/Control/PaperButton4")
 gallery_scene = ExtResource("2_lhctp")
 settings_scene = ExtResource("3_6ylju")
+are_you_sure_scene = ExtResource("4_q0k3j")
 
 [node name="ScrollingBackground" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.694118)

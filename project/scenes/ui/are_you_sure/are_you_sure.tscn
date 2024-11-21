@@ -1,0 +1,259 @@
+[gd_scene load_steps=19 format=3 uid="uid://cyv8e0e5am36o"]
+
+[ext_resource type="Script" path="res://scenes/ui/are_you_sure/are_you_sure.gd" id="1_eeffr"]
+[ext_resource type="Texture2D" uid="uid://c585bqlmijm63" path="res://assets/texture/ui/texture_ui_credits_splash.png" id="2_lwhwt"]
+[ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="3_7ubyc"]
+[ext_resource type="Script" path="res://scenes/ui/paper_button.gd" id="4_a4kdl"]
+[ext_resource type="Texture2D" uid="uid://dkglgypibgnck" path="res://assets/texture/ui/texture_ui_title_screen_button_3.png" id="5_kvkv8"]
+[ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="6_51ibl"]
+[ext_resource type="AudioStream" uid="uid://dgodvr5gurqrs" path="res://assets/audio/sfx_menu_accent_1.ogg" id="7_4somy"]
+[ext_resource type="AudioStream" uid="uid://bb5kges32g0ld" path="res://assets/audio/sfx_menu_accent_2.ogg" id="8_0ys6d"]
+[ext_resource type="PackedScene" uid="uid://bcrys4arojn37" path="res://scenes/ui/paper_button.tscn" id="9_75bx6"]
+[ext_resource type="PackedScene" uid="uid://cyaqutbexr62l" path="res://scenes/ui/gamepad_tooltip/gamepad_tooltip.tscn" id="10_j5jiv"]
+[ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="11_fdm10"]
+[ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="12_2loq5"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1omue"]
+blend_mode = 3
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_pnugo"]
+colors = PackedColorArray(1, 0.356863, 0, 1, 1, 0.833333, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pk5ei"]
+gradient = SubResource("Gradient_pnugo")
+width = 8
+height = 8
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rup1a"]
+blend_mode = 3
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_6qmtg"]
+colors = PackedColorArray(0.29, 0.0754, 0.121897, 1, 0.556863, 0.156863, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rc7j3"]
+gradient = SubResource("Gradient_6qmtg")
+width = 8
+height = 8
+
+[node name="AreYouSure" type="Control" node_paths=PackedStringArray("button_selection_handler", "yes_button", "no_button")]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eeffr")
+button_selection_handler = NodePath("ButtonSelectionHandler")
+yes_button = NodePath("Control/PaperButton")
+no_button = NodePath("Control/PaperButtonHFlipped")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.465)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0.760784)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 158.0
+offset_top = 51.0
+offset_right = -105.0
+offset_bottom = -101.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_lwhwt")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 105.0
+offset_top = 103.0
+offset_right = -98.0
+offset_bottom = 163.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 45
+theme_override_fonts/font = ExtResource("3_7ubyc")
+theme_override_font_sizes/font_size = 46
+text = "ARE_YOU_SURE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 163.0
+offset_top = 194.0
+offset_right = -141.0
+offset_bottom = 338.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 22
+theme_override_fonts/font = ExtResource("3_7ubyc")
+theme_override_font_sizes/font_size = 24
+text = "ARE_YOU_SURE_PROGRESS"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PaperButtonHFlipped" type="Control" parent="Control" node_paths=PackedStringArray("animation_origin", "selected_gradient", "deselected_gradient", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 725.0
+offset_top = 413.0
+offset_right = -42.0
+offset_bottom = -179.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+script = ExtResource("4_a4kdl")
+animation_origin = NodePath("AnimationOrigin")
+target_deselected_position = Vector2(0, 0)
+selected_gradient = NodePath("AnimationOrigin/PaperMask/SelectedGradient")
+deselected_gradient = NodePath("AnimationOrigin/PaperMask/DeselectedGradient")
+mouse_area = NodePath("MouseArea")
+text_key = "ARE_YOU_SURE_NO"
+label = NodePath("AnimationOrigin/Label")
+audio_accent_1 = NodePath("Accent1")
+audio_accent_2 = NodePath("Accent2")
+
+[node name="AnimationOrigin" type="Control" parent="Control/PaperButtonHFlipped"]
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="PaperMask" type="TextureRect" parent="Control/PaperButtonHFlipped/AnimationOrigin"]
+clip_children = 1
+layout_mode = 0
+offset_right = 510.0
+offset_bottom = 79.0
+mouse_filter = 2
+texture = ExtResource("5_kvkv8")
+flip_h = true
+
+[node name="LeafPattern" type="TextureRect" parent="Control/PaperButtonHFlipped/AnimationOrigin/PaperMask"]
+texture_repeat = 2
+layout_mode = 0
+offset_right = 1026.0
+offset_bottom = 162.0
+scale = Vector2(0.5, 0.5)
+mouse_filter = 2
+texture = ExtResource("6_51ibl")
+expand_mode = 1
+stretch_mode = 1
+flip_h = true
+
+[node name="SelectedGradient" type="TextureRect" parent="Control/PaperButtonHFlipped/AnimationOrigin/PaperMask"]
+material = SubResource("CanvasItemMaterial_1omue")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_pk5ei")
+flip_h = true
+
+[node name="DeselectedGradient" type="TextureRect" parent="Control/PaperButtonHFlipped/AnimationOrigin/PaperMask"]
+material = SubResource("CanvasItemMaterial_rup1a")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_rc7j3")
+flip_h = true
+
+[node name="PaperShadow" type="TextureRect" parent="Control/PaperButtonHFlipped/AnimationOrigin"]
+modulate = Color(0, 0, 0, 0.4)
+show_behind_parent = true
+layout_mode = 0
+offset_left = -10.0
+offset_top = 12.0
+offset_right = 500.0
+offset_bottom = 91.0
+texture = ExtResource("5_kvkv8")
+flip_h = true
+
+[node name="Label" type="Label" parent="Control/PaperButtonHFlipped/AnimationOrigin"]
+layout_mode = 0
+offset_left = 39.0
+offset_right = 292.0
+offset_bottom = 77.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.337255)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 21
+theme_override_constants/shadow_outline_size = 70
+theme_override_fonts/font = ExtResource("3_7ubyc")
+theme_override_font_sizes/font_size = 48
+text = "Button"
+vertical_alignment = 1
+
+[node name="MouseArea" type="Control" parent="Control/PaperButtonHFlipped"]
+anchors_preset = 0
+offset_right = 523.0
+offset_bottom = 77.0
+
+[node name="Accent1" type="AudioStreamPlayer" parent="Control/PaperButtonHFlipped"]
+stream = ExtResource("7_4somy")
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Accent2" type="AudioStreamPlayer" parent="Control/PaperButtonHFlipped"]
+stream = ExtResource("8_0ys6d")
+volume_db = -3.0
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="PaperButton" parent="Control" instance=ExtResource("9_75bx6")]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 78.0
+offset_top = 413.0
+offset_right = -689.0
+offset_bottom = -179.0
+target_selected_position = Vector2(0, 0)
+target_deselected_position = Vector2(0, 0)
+text_key = "ARE_YOU_SURE_YES"
+
+[node name="PaperMask" parent="Control/PaperButton/AnimationOrigin" index="0"]
+texture = ExtResource("5_kvkv8")
+
+[node name="PaperShadow" parent="Control/PaperButton/AnimationOrigin" index="1"]
+texture = ExtResource("5_kvkv8")
+
+[node name="GamepadTooltip" parent="." instance=ExtResource("10_j5jiv")]
+layout_mode = 1
+
+[node name="UIUpscaler" type="Node" parent="."]
+script = ExtResource("11_fdm10")
+
+[node name="ButtonSelectionHandler" type="Node" parent="." node_paths=PackedStringArray("buttons_origin")]
+script = ExtResource("12_2loq5")
+horizontal = true
+buttons_origin = NodePath("../Control")
+
+[editable path="Control/PaperButton"]

@@ -102,6 +102,7 @@ LEFT TO DO:
     + fix menu button selection while dragging a slider
     + fix horizontal scaling
     + implement wellington boots buff
+    + are you sure? (on level exit)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -140,7 +141,6 @@ LEFT TO DO:
         = ? add shop button to title screen ?
         - ADD STYLISTIC POEMS TO OTHER MENUS!!! shop, stage select, gallery etc
 
-        - are you sure? (on level exit)
         - add interpolations to ui (gallery. gallery down panel missing interpolations on mode switch)
         - add playstation glyphs
         - rework loading screen (chibis + let them show the stage picture)

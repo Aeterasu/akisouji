@@ -14,6 +14,8 @@ class_name PauseMenu extends Control
 @export var gallery_scene : PackedScene = null
 @export var settings_scene : PackedScene = null
 
+@export var are_you_sure_scene : PackedScene = null
+
 var allow_input : bool = false:
 	set(value):
 		if (value):
@@ -34,7 +36,6 @@ var is_displayed : bool = false:
 			for node in button_selection_handler.buttons:
 				node._enable()
 			UI.instance.hide()
-			#button_selection_handler._enable_all_buttons()
 		else:
 			tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.2)
 			for node in button_selection_handler.buttons:
@@ -103,16 +104,29 @@ func _on_settings_pressed():
 
 	submenu_origin.add_child(settings)
 
-	#settings.background.hide()
 	settings.scrolling_background.position = scrolling_background.position
 
 	Game.game_instance.is_pausable = false
 
 func _on_exit_pressed():
+	var node = are_you_sure_scene.instantiate() as AreYouSure
+	submenu_origin.add_child(node)
+
+	node.on_yes_pressed.connect(_on_exit_confirmed)
+	node.on_no_pressed.connect(_on_exit_discarded)
+
+	Game.game_instance.is_pausable = false
+
+func _on_exit_confirmed():
 	var tween = create_tween()
 	tween.tween_property(BlackoutLayer.instance.black_rect, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.1)
 	tween.tween_callback(func(): SceneTransitionHandler.instance._load_title_screen_scene()).set_delay(0.1)
 	get_tree().paused = false
+
+func _on_exit_discarded():
+	button_selection_handler._enable_all_buttons()
+
+	_on_submenu_closed()
 
 func _on_settings_transition():
 	self.modulate = Color(0.0, 0.0, 0.0, 0.0)

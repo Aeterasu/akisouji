@@ -249,6 +249,7 @@ process_mode = 3
 layer = 102
 
 [node name="SubmenuLayer" type="CanvasLayer" parent="."]
+process_mode = 3
 layer = 103
 
 [node name="SunFlare" type="CanvasLayer" parent="."]
