@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="BroomUpgrade" load_steps=2 format=3 uid="uid://dcwhwjrx83toj"]
+[gd_resource type="Resource" script_class="BroomUpgrade" load_steps=3 format=3 uid="uid://dcwhwjrx83toj"]
 
+[ext_resource type="PackedScene" uid="uid://dujuhmxr6biyc" path="res://scenes/player/tool/broom/feather_duster.tscn" id="1_scswm"]
 [ext_resource type="Script" path="res://scenes/upgrade/broom/broom_upgrade.gd" id="1_xr0ix"]
 
 [resource]
 script = ExtResource("1_xr0ix")
+broom_scene = ExtResource("1_scswm")
 cost = 1000
 name_key = "ITEM_NAME_FEATHER_DUSTER"
 one_time_purchase = true

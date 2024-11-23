@@ -171,7 +171,7 @@ func input_process(delta : float):
 
 	if (!block_brooming_until_key_is_released):
 		if (inventory.current_tool.use_type == PlayerTool.UseType.HOLD):
-			inventory.current_tool.in_use = Input.is_action_pressed("player_action_primary") && !wish_sprint
+			inventory.current_tool.in_use = (Input.is_action_pressed("player_action_primary") or inventory.current_tool.auto_use) && !wish_sprint
 		elif (inventory.current_tool.use_type == PlayerTool.UseType.CLICK):
 			if (Input.is_action_just_pressed("player_action_primary") && !wish_sprint):
 				inventory.current_tool._use_primary()
@@ -326,6 +326,9 @@ func _on_boots_upgrade_update():
 	move_speed_upgrade_handler.current_upgrade = UpgradeManager.current_boots
 
 func _on_broom_upgrade_update(broom : BroomUpgrade):
+	if (!broom.broom_scene):
+		return
+
 	var node = broom.broom_scene.instantiate()
 	inventory.tool_origin.add_child(node)
 

@@ -1,0 +1,831 @@
+[gd_scene load_steps=56 format=3 uid="uid://dujuhmxr6biyc"]
+
+[ext_resource type="Script" path="res://scenes/player/tool/broom/broom.gd" id="1_0efb7"]
+[ext_resource type="Resource" uid="uid://dxal4iiwkbadt" path="res://scenes/player/tool/broom_data/feather_duster.tres" id="2_6fddw"]
+[ext_resource type="PackedScene" uid="uid://cu1rsfqkmvnup" path="res://scenes/player/tool/broom/mesh_feather_duster.tscn" id="3_5g74b"]
+
+[sub_resource type="Animation" id="Animation_0l0ac"]
+resource_name = "idle"
+length = 5.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_feather_duster:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.3, 5),
+"transitions": PackedFloat32Array(-2.73209, -2.73209, -2.73209),
+"update": 0,
+"values": [Vector3(-0.287979, -0.191986, -0.253073), Vector3(-0.287979, -0.191986, -0.349066), Vector3(-0.287979, -0.191986, -0.253073)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_feather_duster2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.3, 5),
+"transitions": PackedFloat32Array(-2.73209, -2.73209, -2.73209),
+"update": 0,
+"values": [Vector3(-0.315905, 1.12399, 1.56769e-08), Vector3(-0.315905, 1.12399, 0.0872665), Vector3(-0.315905, 1.12399, 1.56769e-08)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mesh_feather_duster:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.3, 5),
+"transitions": PackedFloat32Array(-2.73209, -2.73209, -2.73209),
+"update": 0,
+"values": [Vector3(0.098, -0.065, -0.159), Vector3(0.1, -0.08, -0.159), Vector3(0.098, -0.065, -0.159)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("mesh_feather_duster2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2.3, 5),
+"transitions": PackedFloat32Array(-2.73209, -2.73209, -2.73209),
+"update": 0,
+"values": [Vector3(-0.09, -0.065, -0.159), Vector3(-0.1, -0.08, -0.159), Vector3(-0.09, -0.065, -0.159)]
+}
+
+[sub_resource type="Animation" id="Animation_kfssl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_feather_duster:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.287979, -0.191986, -0.253073)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_feather_duster2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.315905, 1.12399, 1.56769e-08)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mesh_feather_duster:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.098, -0.065, -0.159)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("mesh_feather_duster2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.09, -0.065, -0.159)]
+}
+
+[sub_resource type="Animation" id="Animation_adpk0"]
+resource_name = "sprint_init"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_feather_duster:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(-0.287979, -0.191986, -0.253073), Vector3(-2.18166, -0.191986, 0.436332)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_feather_duster2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(-0.315905, 1.12399, 1.56769e-08), Vector3(-2.18166, 1.12399, -1.5708)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mesh_feather_duster:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(0.098, -0.065, -0.159), Vector3(0.098, -0.2, -0.159)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("mesh_feather_duster2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(-0.09, -0.065, -0.159), Vector3(-0.09, -0.2, -0.159)]
+}
+
+[sub_resource type="Animation" id="Animation_nofcb"]
+resource_name = "unequip"
+length = 1.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_feather_duster:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(-0.287979, -0.191986, -0.253073), Vector3(-0.287979, -0.191986, 0.785398)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_feather_duster2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(-0.315905, 1.12399, 1.56769e-08), Vector3(-0.315905, 1.12399, 0.436332)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mesh_feather_duster:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(0.098, -0.065, -0.159), Vector3(0.098, -0.4, -0.159)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("mesh_feather_duster2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.5, 1),
+"update": 0,
+"values": [Vector3(-0.09, -0.065, -0.159), Vector3(-0.09, -0.4, -0.159)]
+}
+
+[sub_resource type="Animation" id="Animation_87jt2"]
+resource_name = "unequip_loop"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_feather_duster:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.287979, -0.191986, 0.785398)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_feather_duster2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.315905, 1.12399, 0.436332)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mesh_feather_duster:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.098, -0.4, -0.159)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("mesh_feather_duster2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.09, -0.4, -0.159)]
+}
+
+[sub_resource type="Animation" id="Animation_co0jr"]
+resource_name = "equip"
+length = 1.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_feather_duster:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(-0.287979, -0.191986, 0.785398), Vector3(-0.287979, -0.191986, -0.253073)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_feather_duster2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(-0.315905, 1.12399, 0.436332), Vector3(-0.315905, 1.12399, 1.56769e-08)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mesh_feather_duster:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(0.098, -0.4, -0.159), Vector3(0.098, -0.065, -0.159)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("mesh_feather_duster2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(-0.09, -0.4, -0.159), Vector3(-0.09, -0.065, -0.159)]
+}
+
+[sub_resource type="Animation" id="Animation_1ewo5"]
+resource_name = "sprint_end"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_feather_duster:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(-2.18166, -0.191986, 0.436332), Vector3(-0.287979, -0.191986, -0.253073)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_feather_duster2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(-2.18166, 1.12399, -1.5708), Vector3(-0.315905, 1.12399, 1.56769e-08)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mesh_feather_duster:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(0.098, -0.2, -0.159), Vector3(0.098, -0.065, -0.159)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("mesh_feather_duster2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(-0.09, -0.2, -0.159), Vector3(-0.09, -0.065, -0.159)]
+}
+
+[sub_resource type="Animation" id="Animation_2r87i"]
+resource_name = "sprint_loop"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_feather_duster:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.18166, -0.191986, 0.436332)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_feather_duster2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-2.18166, 1.12399, -1.5708)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mesh_feather_duster:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.098, -0.2, -0.159)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("mesh_feather_duster2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.09, -0.2, -0.159)]
+}
+
+[sub_resource type="Animation" id="Animation_8cj7m"]
+resource_name = "brooming_loop"
+length = 2.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_feather_duster:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.5),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(-0.287979, -0.191986, -0.253073), Vector3(-0.872665, -0.191986, 0.261799), Vector3(-0.287979, -0.191986, -0.253073)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_feather_duster2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8, 1.4, 2),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(-0.315905, 1.12399, 1.56769e-08), Vector3(-0.959931, 1.12399, -0.785398), Vector3(-0.315905, 1.12399, 1.56769e-08)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mesh_feather_duster:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.5),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(0.098, -0.065, -0.159), Vector3(0.06, -0.065, -0.159), Vector3(0.098, -0.065, -0.159)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("mesh_feather_duster2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.8, 1.4, 2),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(-0.09, -0.065, -0.159), Vector3(-0.07, -0.08, -0.159), Vector3(-0.09, -0.065, -0.159)]
+}
+
+[sub_resource type="Animation" id="Animation_78h4p"]
+resource_name = "brooming_loop_start"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_feather_duster:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(-0.287979, -0.191986, -0.253073)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_feather_duster2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(-0.315905, 1.12399, 1.56769e-08)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mesh_feather_duster:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(0.098, -0.065, -0.159)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("mesh_feather_duster2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(-0.09, -0.065, -0.159)]
+}
+
+[sub_resource type="Animation" id="Animation_5lsb4"]
+resource_name = "brooming_loop_end"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_feather_duster:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(-0.287979, -0.191986, -0.253073)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_feather_duster2:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(-0.315905, 1.12399, 1.56769e-08)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("mesh_feather_duster:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(0.098, -0.065, -0.159)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("mesh_feather_duster2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(0.5),
+"update": 0,
+"values": [Vector3(-0.09, -0.065, -0.159)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ikm4v"]
+_data = {
+"RESET": SubResource("Animation_kfssl"),
+"brooming_loop": SubResource("Animation_8cj7m"),
+"brooming_loop_end": SubResource("Animation_5lsb4"),
+"brooming_loop_start": SubResource("Animation_78h4p"),
+"equip": SubResource("Animation_co0jr"),
+"idle": SubResource("Animation_0l0ac"),
+"sprint_end": SubResource("Animation_1ewo5"),
+"sprint_init": SubResource("Animation_adpk0"),
+"sprint_loop": SubResource("Animation_2r87i"),
+"unequip": SubResource("Animation_nofcb"),
+"unequip_loop": SubResource("Animation_87jt2")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gb0py"]
+animation = &"brooming_loop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hes0x"]
+animation = &"brooming_loop_end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ghdy0"]
+animation = &"brooming_loop_start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1q5rf"]
+animation = &"equip"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s6ifs"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fg4ie"]
+animation = &"sprint_end"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sn25p"]
+animation = &"sprint_init"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rlncc"]
+animation = &"sprint_loop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nrt0j"]
+animation = &"unequip"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2r00t"]
+animation = &"unequip_loop"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cno54"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_v7sc1"]
+advance_mode = 2
+advance_expression = "not wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dbhv6"]
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6gud3"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "not wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_awu8l"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gp30y"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yxkvm"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+advance_expression = "wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_46hi8"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_103xs"]
+advance_mode = 2
+advance_expression = "wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gsw54"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "not wish_brooming
+"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ybass"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "not wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jklkv"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fe82q"]
+xfade_time = 0.5
+advance_mode = 2
+advance_expression = "wish_brooming"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qtnhm"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yht86"]
+xfade_time = 0.2
+break_loop_at_end = true
+advance_mode = 2
+advance_expression = "wish_sprinting"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_desuo"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xvp0s"]
+xfade_time = 0.05
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jjggo"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n1m58"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q4fnt"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lyf6y"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gw85u"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r0jex"]
+xfade_time = 0.2
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ywx3w"]
+xfade_time = 0.05
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8ek0q"]
+advance_mode = 2
+advance_expression = "is_equipped
+"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c7rwe"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t6hlb"]
+xfade_time = 0.05
+advance_mode = 2
+advance_expression = "is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ocdqc"]
+xfade_time = 0.2
+switch_mode = 2
+advance_mode = 2
+advance_expression = "wish_sprint"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hh7re"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_auyjw"]
+states/End/position = Vector2(1067, 145)
+states/Start/position = Vector2(-162, -50)
+states/brooming_loop/node = SubResource("AnimationNodeAnimation_gb0py")
+states/brooming_loop/position = Vector2(549, -62)
+states/brooming_loop_end/node = SubResource("AnimationNodeAnimation_hes0x")
+states/brooming_loop_end/position = Vector2(834, 29)
+states/brooming_loop_start/node = SubResource("AnimationNodeAnimation_ghdy0")
+states/brooming_loop_start/position = Vector2(324, 29)
+states/equip/node = SubResource("AnimationNodeAnimation_1q5rf")
+states/equip/position = Vector2(59, 138)
+states/idle/node = SubResource("AnimationNodeAnimation_s6ifs")
+states/idle/position = Vector2(186, 138)
+states/sprint_end/node = SubResource("AnimationNodeAnimation_fg4ie")
+states/sprint_end/position = Vector2(753, 299)
+states/sprint_init/node = SubResource("AnimationNodeAnimation_sn25p")
+states/sprint_init/position = Vector2(324, 291)
+states/sprint_loop/node = SubResource("AnimationNodeAnimation_rlncc")
+states/sprint_loop/position = Vector2(534, 399)
+states/unequip/node = SubResource("AnimationNodeAnimation_nrt0j")
+states/unequip/position = Vector2(156, -239)
+states/unequip_loop/node = SubResource("AnimationNodeAnimation_2r00t")
+states/unequip_loop/position = Vector2(-101, 133)
+transitions = ["sprint_init", "sprint_loop", SubResource("AnimationNodeStateMachineTransition_cno54"), "sprint_loop", "sprint_end", SubResource("AnimationNodeStateMachineTransition_v7sc1"), "idle", "sprint_init", SubResource("AnimationNodeStateMachineTransition_dbhv6"), "sprint_end", "idle", SubResource("AnimationNodeStateMachineTransition_6gud3"), "sprint_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_awu8l"), "sprint_init", "sprint_end", SubResource("AnimationNodeStateMachineTransition_gp30y"), "brooming_loop_start", "brooming_loop", SubResource("AnimationNodeStateMachineTransition_yxkvm"), "brooming_loop", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_46hi8"), "idle", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_103xs"), "brooming_loop_end", "idle", SubResource("AnimationNodeStateMachineTransition_gsw54"), "brooming_loop_start", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_ybass"), "brooming_loop_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_jklkv"), "sprint_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_fe82q"), "brooming_loop_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_qtnhm"), "brooming_loop", "sprint_init", SubResource("AnimationNodeStateMachineTransition_yht86"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_desuo"), "idle", "unequip", SubResource("AnimationNodeStateMachineTransition_xvp0s"), "brooming_loop_start", "unequip", SubResource("AnimationNodeStateMachineTransition_jjggo"), "brooming_loop", "unequip", SubResource("AnimationNodeStateMachineTransition_n1m58"), "brooming_loop_end", "unequip", SubResource("AnimationNodeStateMachineTransition_q4fnt"), "sprint_init", "unequip", SubResource("AnimationNodeStateMachineTransition_lyf6y"), "sprint_loop", "unequip", SubResource("AnimationNodeStateMachineTransition_gw85u"), "sprint_end", "unequip", SubResource("AnimationNodeStateMachineTransition_r0jex"), "equip", "unequip", SubResource("AnimationNodeStateMachineTransition_ywx3w"), "unequip_loop", "equip", SubResource("AnimationNodeStateMachineTransition_8ek0q"), "unequip", "unequip_loop", SubResource("AnimationNodeStateMachineTransition_c7rwe"), "unequip", "equip", SubResource("AnimationNodeStateMachineTransition_t6hlb"), "equip", "sprint_init", SubResource("AnimationNodeStateMachineTransition_ocdqc"), "Start", "unequip_loop", SubResource("AnimationNodeStateMachineTransition_hh7re")]
+graph_offset = Vector2(-257, -331)
+
+[node name="FeatherDuster" type="Node3D"]
+script = ExtResource("1_0efb7")
+data = ExtResource("2_6fddw")
+use_type = 1
+auto_use = true
+walk_cycle_direction = Vector3(0.025, 0.01, 0)
+
+[node name="mesh_feather_duster" parent="." instance=ExtResource("3_5g74b")]
+transform = Transform3D(0.936791, 0.298246, -0.182951, -0.240069, 0.928279, 0.284015, 0.254537, -0.222142, 0.941204, 0.098, -0.065, -0.159)
+
+[node name="mesh_feather_duster2" parent="." instance=ExtResource("3_5g74b")]
+transform = Transform3D(0.432086, -0.280178, 0.857206, 1.49012e-08, 0.950516, 0.310676, -0.901832, -0.134239, 0.410704, -0.09, -0.065, -0.159)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+near = 0.001
+far = 1024.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ikm4v")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_auyjw")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://077fpjam3rlw"]
+[gd_scene load_steps=54 format=3 uid="uid://077fpjam3rlw"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_e0tat"]
 [ext_resource type="Script" path="res://scenes/component/velocity_component/velocity_component.gd" id="3_umteq"]
@@ -10,9 +10,11 @@
 [ext_resource type="Script" path="res://scenes/player/tool/viewmodel_sway.gd" id="6_t0wwe"]
 [ext_resource type="Script" path="res://scenes/player/tool/player_tool_inventory.gd" id="7_id8rm"]
 [ext_resource type="Script" path="res://scenes/player/player_footstep_manager.gd" id="11_le046"]
+[ext_resource type="PackedScene" uid="uid://dujuhmxr6biyc" path="res://scenes/player/tool/broom/feather_duster.tscn" id="12_1qk2x"]
 [ext_resource type="PackedScene" uid="uid://duvqdrsvvonkd" path="res://scenes/player/tool/broom/broom.tscn" id="12_gpv6h"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/nodes/sound_effect_player.gd" id="12_ws1qt"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/resources/multi_sound_effect_item.gd" id="13_qnret"]
+[ext_resource type="Resource" uid="uid://dxal4iiwkbadt" path="res://scenes/player/tool/broom_data/feather_duster.tres" id="13_qwy6n"]
 [ext_resource type="PackedScene" uid="uid://bmmipwucjq6as" path="res://scenes/player/tool/camera/camera.tscn" id="14_yl1fb"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/resources/sound_effect_meta.gd" id="16_7g8ho"]
 [ext_resource type="AudioStream" uid="uid://cols2ungsaby3" path="res://assets/audio/sfx_concrete_footstep_1.ogg" id="16_s6ylb"]
@@ -258,6 +260,9 @@ sway_clamp = Vector2(24, 12)
 player = NodePath("../../../../../..")
 
 [node name="Broom" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("12_gpv6h")]
+
+[node name="FeatherDuster" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("12_1qk2x")]
+data = ExtResource("13_qwy6n")
 
 [node name="Camera" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("14_yl1fb")]
 

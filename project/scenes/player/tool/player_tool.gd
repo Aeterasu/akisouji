@@ -2,6 +2,8 @@ class_name PlayerTool extends Node3D
 
 @export var use_type : UseType = UseType.CLICK
 
+@export var auto_use : bool = false
+
 @export var animation_tree : AnimationTree = null
 var state_machine : AnimationNodeStateMachinePlayback = null
 
@@ -28,7 +30,7 @@ enum UseType
 func _ready():
 	if (animation_tree):
 		state_machine = animation_tree.get("parameters/playback")
-		state_machine.start("idle")
+		state_machine.start("equip")
 
 func _physics_process(delta):
 	sin_timer += delta * walk_cycle_speed * walk_multiplier
