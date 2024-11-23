@@ -73,66 +73,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_v16ob"]
 resource_name = "brooming_loop"
-length = 1.25
 loop_mode = 1
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("mesh_broom:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.25, 0.9),
-"transitions": PackedFloat32Array(-2, -2),
-"update": 0,
-"values": [Vector3(0.05, -0.12, -0.3), Vector3(0.184, -0.12, -0.3)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("mesh_broom:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.35, 0.7, 1.05),
-"transitions": PackedFloat32Array(0.5, -0.5, 0.5),
-"update": 0,
-"values": [Vector3(1.53589, 0.331613, 0.1309), Vector3(1.69297, -0.0785398, 0.1309), Vector3(1.53589, -0.261799, 0.1309)]
-}
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.15, 0.35, 0.5, 0.7, 0.9, 1.15),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"values": [{
-"args": [],
-"method": &"_broom"
-}, {
-"args": [],
-"method": &"_broom"
-}, {
-"args": [],
-"method": &"_broom"
-}, {
-"args": [],
-"method": &"_broom"
-}, {
-"args": [],
-"method": &"_broom"
-}, {
-"args": [],
-"method": &"_broom"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_m3125"]
-resource_name = "brooming_loop_end"
-length = 0.8
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -141,10 +82,10 @@ tracks/0/path = NodePath("mesh_broom:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5),
-"transitions": PackedFloat32Array(0.5, -2, -2),
+"times": PackedFloat32Array(0.4, 0.9),
+"transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector3(0.084, -0.12, -0.3), Vector3(0.084, -0.102, -0.14), Vector3(0.084, -0.102, -0.154)]
+"values": [Vector3(0.084, -0.102, -0.225), Vector3(0.084, -0.102, -0.15)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -153,16 +94,15 @@ tracks/1/path = NodePath("mesh_broom:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.1, 0.4, 0.75),
-"transitions": PackedFloat32Array(-2, -2, -2),
+"times": PackedFloat32Array(0.3, 0.8),
+"transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector3(1.53589, 0.0959931, 0.1309), Vector3(2.18166, 0.0959931, 0.1309), Vector3(1.89194, 0.0959931, 0.1309)]
+"values": [Vector3(1.65806, 0.0959931, 0.1309), Vector3(1.39626, 0.0959931, 0.1309)]
 }
 
-[sub_resource type="Animation" id="Animation_5yecp"]
-resource_name = "brooming_loop_start"
-length = 0.35
-step = 0.05
+[sub_resource type="Animation" id="Animation_m3125"]
+resource_name = "brooming_loop_end"
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -170,10 +110,10 @@ tracks/0/path = NodePath("mesh_broom:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.35),
-"transitions": PackedFloat32Array(0.5, -2),
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(-2, -2, 1, -2),
 "update": 0,
-"values": [Vector3(0.084, -0.102, -0.154), Vector3(0.084, -0.12, -0.3)]
+"values": [Vector3(0.084, -0.102, -0.2), Vector3(0.084, -0.102, -0.154), Vector3(0.084, -0.09, -0.154), Vector3(0.084, -0.102, -0.154)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -182,24 +122,39 @@ tracks/1/path = NodePath("mesh_broom:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25),
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(1.65806, 0.0959931, 0.1309), Vector3(2.18166, 0.0959931, 0.1309), Vector3(1.89194, 0.0959931, 0.1309)]
+}
+
+[sub_resource type="Animation" id="Animation_5yecp"]
+resource_name = "brooming_loop_start"
+length = 0.35
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_broom:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector3(1.89194, 0.0959931, 0.1309), Vector3(1.53589, 0.0959931, 0.1309)]
+"values": [Vector3(0.084, -0.102, -0.154), Vector3(0.084, -0.102, -0.15)]
 }
-tracks/2/type = "method"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0.15),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_broom"
-}]
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_broom:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(-2, -2),
+"update": 0,
+"values": [Vector3(1.89194, 0.0959931, 0.1309), Vector3(1.39626, 0.0959931, 0.1309)]
 }
 
 [sub_resource type="Animation" id="Animation_15rol"]
@@ -643,7 +598,7 @@ states/unequip/position = Vector2(156, -239)
 states/unequip_loop/node = SubResource("AnimationNodeAnimation_2r00t")
 states/unequip_loop/position = Vector2(-95, 145)
 transitions = ["sprint_init", "sprint_loop", SubResource("AnimationNodeStateMachineTransition_cno54"), "sprint_loop", "sprint_end", SubResource("AnimationNodeStateMachineTransition_v7sc1"), "idle", "sprint_init", SubResource("AnimationNodeStateMachineTransition_dbhv6"), "sprint_end", "idle", SubResource("AnimationNodeStateMachineTransition_6gud3"), "sprint_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_awu8l"), "sprint_init", "sprint_end", SubResource("AnimationNodeStateMachineTransition_gp30y"), "brooming_loop_start", "brooming_loop", SubResource("AnimationNodeStateMachineTransition_yxkvm"), "brooming_loop", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_46hi8"), "idle", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_103xs"), "brooming_loop_end", "idle", SubResource("AnimationNodeStateMachineTransition_gsw54"), "brooming_loop_start", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_ybass"), "brooming_loop_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_jklkv"), "sprint_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_fe82q"), "brooming_loop_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_qtnhm"), "brooming_loop", "sprint_init", SubResource("AnimationNodeStateMachineTransition_yht86"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_desuo"), "idle", "unequip", SubResource("AnimationNodeStateMachineTransition_xvp0s"), "brooming_loop_start", "unequip", SubResource("AnimationNodeStateMachineTransition_jjggo"), "brooming_loop", "unequip", SubResource("AnimationNodeStateMachineTransition_n1m58"), "brooming_loop_end", "unequip", SubResource("AnimationNodeStateMachineTransition_q4fnt"), "sprint_init", "unequip", SubResource("AnimationNodeStateMachineTransition_lyf6y"), "sprint_loop", "unequip", SubResource("AnimationNodeStateMachineTransition_gw85u"), "sprint_end", "unequip", SubResource("AnimationNodeStateMachineTransition_r0jex"), "equip", "unequip", SubResource("AnimationNodeStateMachineTransition_ywx3w"), "unequip_loop", "equip", SubResource("AnimationNodeStateMachineTransition_8ek0q"), "unequip", "unequip_loop", SubResource("AnimationNodeStateMachineTransition_c7rwe"), "unequip", "equip", SubResource("AnimationNodeStateMachineTransition_t6hlb"), "equip", "sprint_init", SubResource("AnimationNodeStateMachineTransition_ocdqc"), "Start", "unequip_loop", SubResource("AnimationNodeStateMachineTransition_xbly7")]
-graph_offset = Vector2(-280, -116)
+graph_offset = Vector2(201, -64)
 
 [node name="Broom" type="Node3D" node_paths=PackedStringArray("animation_tree")]
 script = ExtResource("1_t54q8")

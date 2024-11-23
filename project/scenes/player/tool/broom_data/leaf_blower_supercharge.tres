@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="BroomData" load_steps=2 format=3 uid="uid://b1vqfg0kb465v"]
+
+[ext_resource type="Script" path="res://scenes/player/tool/broom_data/broom_data.gd" id="1_qwm72"]
+
+[resource]
+script = ExtResource("1_qwm72")
+brooming_tickrate = 8
+cleaning_area = Vector2(12, 12)
+cleaning_range = 16.0

@@ -105,6 +105,10 @@ LEFT TO DO:
     + are you sure? (on level exit)
     + add broom upgrades
     + shop should just add tools to your inventory, no need for equipping
+    + feather duster - auto cleaning
+    + fix shop from stage select not working
+    + redo brooming animations
+    = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
     
@@ -128,9 +132,6 @@ LEFT TO DO:
         - during completion, you can move and look at the results of your work. the completion is initially just a text popup (Press blah to finish)
         - maybe implement optimization via cluster of multimeshes
         - dialogue box tutorial. mention leaf highlighting (could tutorial be a dialogue with the girl?)
-        - redo brooming animations
-        - feather duster - auto cleaning
-        - vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
         - work on economy :D (boots should be dirt cheap, brooms more costly)
         - add fountain stage (make it night/evening!)
         - add church stage

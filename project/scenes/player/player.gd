@@ -91,6 +91,10 @@ func _ready():
 	UpgradeManager.on_boots_update.connect(_on_boots_upgrade_update)
 	UpgradeManager.on_broom_update.connect(_on_broom_upgrade_update)
 	_on_boots_upgrade_update()
+
+	for node in UpgradeManager.inventory:
+		if (node is BroomUpgrade):
+			UpgradeManager.on_broom_update.emit(node as BroomUpgrade)
 	#_on_broom_upgrade_update()
 
 func _physics_process(delta : float):
@@ -121,20 +125,35 @@ func _physics_process(delta : float):
 			brooming_tick_cooldown = broom_data.brooming_tickrate
 			on_broom()
 
-func on_broom():
-	if (!leaf_cleaning_handler):
-		return
-
+func _get_cleaning_raycast() -> Object:
 	var screen_size = get_viewport().size
 	var screen_center = Vector2(screen_size.x * 0.5, screen_size.y * 0.5)
 
 	cleaning_raycast.force_raycast_update()
 
-	if (cleaning_raycast.get_collider()):
+	return cleaning_raycast.get_collider()
+
+func on_broom():
+	if (!leaf_cleaning_handler):
+		return
+
+	if (_get_cleaning_raycast()):
 		var cleaning_point = cleaning_raycast.get_collision_point()
 		Game.game_instance.last_cleaning_position = cleaning_point
 		Game.game_instance.last_cleaning_radius = broom_data.cleaning_area.length()
 		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(cleaning_point.x, cleaning_point.z), Vector2(sin(rotation.y), cos(rotation.y)), broom_data.cleaning_area)
+
+	pass
+
+func on_leafblower_supercharge(leafblower : LeafBlower):
+	if (!leaf_cleaning_handler):
+		return
+
+	if (_get_cleaning_raycast()):
+		var cleaning_point = cleaning_raycast.get_collision_point()
+		Game.game_instance.last_cleaning_position = cleaning_point
+		Game.game_instance.last_cleaning_radius = leafblower.supercharge_data.cleaning_area.length()
+		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(cleaning_point.x, cleaning_point.z), Vector2(sin(rotation.y), cos(rotation.y)), leafblower.supercharge_data.cleaning_area)
 
 	pass
 
@@ -172,6 +191,15 @@ func input_process(delta : float):
 	if (!block_brooming_until_key_is_released):
 		if (inventory.current_tool.use_type == PlayerTool.UseType.HOLD):
 			inventory.current_tool.in_use = (Input.is_action_pressed("player_action_primary") or inventory.current_tool.auto_use) && !wish_sprint
+
+			#if (inventory.current_tool is LeafBlower):
+				#var leafblower = inventory.current_tool as LeafBlower
+				#leafblower.wish_charge = Input.is_action_pressed("player_action_secondary") && !wish_sprint
+
+				#if (leafblower.wish_charge and leafblower.current_charge >= leafblower.charge_duration):
+					#leafblower._release_charge()
+					#on_leafblower_supercharge(leafblower)
+
 		elif (inventory.current_tool.use_type == PlayerTool.UseType.CLICK):
 			if (Input.is_action_just_pressed("player_action_primary") && !wish_sprint):
 				inventory.current_tool._use_primary()
