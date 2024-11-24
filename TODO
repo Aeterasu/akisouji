@@ -113,6 +113,9 @@ LEFT TO DO:
     + add crunchy cleaning sounds
     + add general sound.
     + fix camera state transition disabling viewport (something's going fucky-wucky)
+    + add fountain stage (make it night/evening!)
+    + add outofbounds horizon to fountain stage
+    + add shop fluff texts
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
@@ -139,7 +142,6 @@ LEFT TO DO:
         - maybe implement optimization via cluster of multimeshes
         - dialogue box tutorial. mention leaf highlighting (could tutorial be a dialogue with the girl?)
         - work on economy :D (boots should be dirt cheap, brooms more costly)
-        - add fountain stage (make it night/evening!)
         - add church stage
         - cash and purchases saving
         - suggestion - make the leaf highlight not an inherent mechanic, but an upgrade?
@@ -162,7 +164,6 @@ LEFT TO DO:
     VISUAL:
         GOLDEN AUTUMN MUCH?
 
-        - add outofbounds horizon to fountain stage 
         - retexture leaves. new texture, maybe random texture
     
     AUDIO:
@@ -189,7 +190,6 @@ LEFT TO DO:
             =larger garbage bags
 
         - finalize shop icon texture for boots
-        - add shop fluff texts
         - add sounds for purchasing/purchase failure
         - add like a 'bought' and 'equipped\ rectangle stamp
         - fix horizontal scaling

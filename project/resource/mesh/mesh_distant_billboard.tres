@@ -1,0 +1,19 @@
+[gd_resource type="ArrayMesh" load_steps=2 format=4 uid="uid://tdu3ux5pg1g4"]
+
+[ext_resource type="Material" uid="uid://cpqfvpspt57jy" path="res://resource/material/material_distant_tree_2.tres" id="1_togby"]
+
+[resource]
+resource_name = "mesh_distant_billboard_Plane"
+_surfaces = [{
+"aabb": AABB(-1, 0, -1, 2, 2, 2),
+"attribute_data": PackedByteArray("AAD///////8AAAAA//8AAAAA////////AAAAAP//AAA="),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("AAADAAEAAAACAAMABAAHAAUABAAGAAcA"),
+"material": ExtResource("1_togby"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("AAAAAP9/AID//wAA/38AgAAA////fwCA//////9/AID/fwAA////v/9/AAAAAP+//3///////7//f///AAD/v/9/////f////3////9/////fwAA/38AAP9/AAD/fwAA")
+}]
+blend_shape_mode = 0

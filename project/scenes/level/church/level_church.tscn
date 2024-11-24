@@ -33,7 +33,7 @@ multimesh = SubResource("MultiMesh_5xmeq")
 [node name="LeafCleaningHandler" type="LeafCleaningHandler" parent="LeafPopulator" index="1"]
 tickRate = 2
 sweepPerTick = 512
-leafInterpolationWeight = 10.0
+leafInterpolationWeight = 20.0
 
 [node name="Marker3D" type="Marker3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87, 1, 83)

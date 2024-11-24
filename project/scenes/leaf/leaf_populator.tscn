@@ -19,4 +19,4 @@ multimesh = SubResource("MultiMesh_5xmeq")
 
 [node name="LeafCleaningHandler" type="LeafCleaningHandler" parent="."]
 sweepPerTick = 512
-leafInterpolationWeight = 10.0
+leafInterpolationWeight = 15.0

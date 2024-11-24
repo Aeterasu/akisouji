@@ -81,10 +81,10 @@ func _process(delta):
 
 	if (shop and is_in_shop and Input.is_action_just_pressed("open_inventory")):
 		shop._on_back_button_pressed()
-		is_pausable = true
+		
 		return
 
-	if ((not is_in_shop) and (Input.is_action_just_pressed("pause") or (Input.is_action_just_pressed("menu_cancel") and get_tree().paused))):
+	if ((not is_in_shop) and (Input.is_action_just_pressed("pause") or (Input.is_action_just_pressed("menu_cancel") and pause_menu.is_displayed))):
 		toggle_pause()
 		player.input_delay = 0.3
 		return
@@ -130,8 +130,6 @@ func _open_shop():
 	shop.on_shop_closed.connect(_close_shop)
 
 func _close_shop():
-	get_tree().paused = false
-
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 	is_in_shop = false

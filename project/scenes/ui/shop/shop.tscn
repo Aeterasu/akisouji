@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://71lkn3s6kfqi"]
+[gd_scene load_steps=34 format=3 uid="uid://71lkn3s6kfqi"]
 
 [ext_resource type="Script" path="res://scenes/ui/shop/shop.gd" id="1_87sb4"]
 [ext_resource type="Texture2D" uid="uid://o065i8cobccy" path="res://assets/texture/ui/shop/texture_shop_background.png" id="2_4mw2w"]
@@ -44,23 +44,15 @@ blend_mode = 1
 light_mode = 1
 
 [sub_resource type="Gradient" id="Gradient_3rejo"]
-offsets = PackedFloat32Array(0, 0.830228)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.146998, 0.503106, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.459268, 0.459268, 0.459268, 1, 0.153778, 0.153778, 0.153778, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_mhh31"]
 gradient = SubResource("Gradient_3rejo")
 fill = 1
 fill_from = Vector2(0.508547, 0.491453)
-fill_to = Vector2(0.807692, 0.230769)
-
-[sub_resource type="Gradient" id="Gradient_awfj1"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_dfn3v"]
-gradient = SubResource("Gradient_awfj1")
-fill = 1
-fill_from = Vector2(0.504274, 0.504274)
-fill_to = Vector2(0.82906, 0.226496)
+fill_to = Vector2(0.884615, 0.115385)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1omue"]
 blend_mode = 3
@@ -70,7 +62,7 @@ light_mode = 1
 blend_mode = 3
 light_mode = 1
 
-[node name="Shop" type="Control" node_paths=PackedStringArray("back_button", "tools_button", "boots_button", "category_select_screen", "category_select_button_handler", "category_tools", "category_boots")]
+[node name="Shop" type="Control" node_paths=PackedStringArray("back_button", "tools_button", "boots_button", "category_select_screen", "category_select_button_handler", "category_tools", "category_boots", "sidepanel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -86,6 +78,10 @@ category_select_screen = NodePath("CategorySelect")
 category_select_button_handler = NodePath("CategorySelect/ButtonSelectionHandler")
 category_tools = NodePath("Categories/ShopCategoryTools")
 category_boots = NodePath("Categories/ShopCategoryBoots")
+sidepanel = NodePath("SidePanel")
+shop_default_motto_key = "SHOP_DEFAULT_MOTTO"
+category_tools_motto_key = "CATEGORY_TOOLS_MOTTO"
+category_boots_motto_key = "CATEGORY_BOOTS_MOTTO"
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 modulate = Color(0.561098, 0.530684, 0.247338, 1)
@@ -140,7 +136,7 @@ theme_override_fonts/font = ExtResource("2_yb51t")
 theme_override_font_sizes/font_size = 36
 text = "SHOP_TITLE"
 
-[node name="SidePanel" type="Control" parent="." node_paths=PackedStringArray("icon")]
+[node name="SidePanel" type="Control" parent="." node_paths=PackedStringArray("icon", "default_panel", "motto_label", "in_category_panel", "shop_entry_description_label")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -148,7 +144,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_x7sem")
-icon = NodePath("Gradient/TextureRect")
+icon = NodePath("Gradient/InCategory/TextureRect")
+default_panel = NodePath("Gradient/Default")
+motto_label = NodePath("Gradient/Default/Label")
+in_category_panel = NodePath("Gradient/InCategory")
+shop_entry_description_label = NodePath("Gradient/InCategory/Label")
 
 [node name="Gradient" type="TextureRect" parent="SidePanel"]
 z_index = -2
@@ -161,7 +161,39 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_yfafo")
 
-[node name="Sunbeams" type="TextureRect" parent="SidePanel/Gradient"]
+[node name="Default" type="Control" parent="SidePanel/Gradient"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="SidePanel/Gradient/Default"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 141.0
+offset_bottom = -64.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_yb51t")
+theme_override_font_sizes/font_size = 32
+text = "Welcome to the shop!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="InCategory" type="Control" parent="SidePanel/Gradient"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sunbeams" type="TextureRect" parent="SidePanel/Gradient/InCategory"]
 modulate = Color(1, 0.853478, 0.388235, 0.494118)
 z_index = -2
 material = SubResource("CanvasItemMaterial_1rngk")
@@ -181,9 +213,9 @@ stretch_mode = 5
 script = ExtResource("6_avd2k")
 speed = 16.0
 
-[node name="Sunbeams2" type="TextureRect" parent="SidePanel/Gradient/Sunbeams"]
-modulate = Color(1, 0.854902, 0.388235, 1)
-z_index = -2
+[node name="Sunbeams2" type="TextureRect" parent="SidePanel/Gradient/InCategory/Sunbeams"]
+modulate = Color(1, 0.897008, 0.565765, 1)
+z_index = 101
 material = SubResource("CanvasItemMaterial_1rngk")
 layout_mode = 1
 anchors_preset = 15
@@ -191,13 +223,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(198, 198)
 texture = SubResource("GradientTexture2D_mhh31")
 stretch_mode = 5
 
-[node name="Sunbeams3" type="TextureRect" parent="SidePanel/Gradient/Sunbeams"]
-modulate = Color(0.486423, 0.390801, 0.0832631, 1)
-z_index = -2
+[node name="Sunbeams4" type="TextureRect" parent="SidePanel/Gradient/InCategory/Sunbeams"]
+modulate = Color(0.0791031, 0, 0.000629459, 1)
+z_index = 101
 material = SubResource("CanvasItemMaterial_1rngk")
 layout_mode = 1
 anchors_preset = 15
@@ -205,11 +236,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-pivot_offset = Vector2(198, 198)
 texture = SubResource("GradientTexture2D_mhh31")
 stretch_mode = 5
 
-[node name="Label" type="RichTextLabel" parent="SidePanel/Gradient"]
+[node name="Sunbeams3" type="TextureRect" parent="SidePanel/Gradient/InCategory/Sunbeams"]
+modulate = Color(0.574675, 0.485908, 0.200412, 1)
+z_index = 101
+material = SubResource("CanvasItemMaterial_1rngk")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -312.0
+offset_top = -207.0
+offset_right = 318.0
+offset_bottom = 203.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_mhh31")
+stretch_mode = 5
+
+[node name="Label" type="RichTextLabel" parent="SidePanel/Gradient/InCategory"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -224,7 +271,7 @@ text = "[center][font_size=36]SHOP_ITEM_NAME[/font_size][/center]
 
 [center][font_size=24]SHOP_ITEM_DESCRIPTION[/font_size][/center]"
 
-[node name="TextureRect" type="TextureRect" parent="SidePanel/Gradient"]
+[node name="TextureRect" type="TextureRect" parent="SidePanel/Gradient/InCategory"]
 modulate = Color(0.880165, 0.828865, 0.660042, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -242,13 +289,6 @@ pivot_offset = Vector2(86, 131)
 texture = ExtResource("5_o4h1p")
 script = ExtResource("9_xtrb1")
 anim_duration = 0.5
-
-[node name="PointLight2D" type="PointLight2D" parent="SidePanel/Gradient"]
-position = Vector2(362, 321)
-scale = Vector2(8.84375, 8.76563)
-color = Color(0.961629, 0.837832, 0.746429, 1)
-energy = 1.55
-texture = SubResource("GradientTexture2D_dfn3v")
 
 [node name="CategorySelect" type="Control" parent="."]
 layout_mode = 1

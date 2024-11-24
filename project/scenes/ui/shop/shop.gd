@@ -12,6 +12,12 @@ class_name Shop extends Control
 @export var category_tools : ShopCategory = null
 @export var category_boots : ShopCategory = null
 
+@export var sidepanel : ShopSidepanel = null
+
+@export var shop_default_motto_key : String = ""
+@export var category_tools_motto_key : String = ""
+@export var category_boots_motto_key : String = ""
+
 var current_category : ShopCategory = null
 var is_in_category : bool = false
 
@@ -36,9 +42,21 @@ func _ready():
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.3)
 
+	sidepanel.motto_label.text = tr(shop_default_motto_key)
+
 func _process(delta):
 	if (Input.is_action_just_pressed("pause") or Input.is_action_just_pressed("menu_cancel")):
 		_on_back_button_pressed()
+
+	sidepanel.default_panel.visible = !is_in_category
+	sidepanel.in_category_panel.visible = is_in_category
+
+	if (!is_in_category):
+		match category_select_button_handler.current_button:
+			tools_button:
+				sidepanel.motto_label.text = tr(category_tools_motto_key)
+			boots_button:
+				sidepanel.motto_label.text = tr(category_boots_motto_key)
 
 func _on_category_select_button_pressed(button : UIButton):
 	match (button):
@@ -71,6 +89,11 @@ func _on_back_button_pressed():
 	tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.2)
 	tween.tween_callback(on_shop_closed.emit).set_delay(0.2)
 	tween.tween_callback(_back_func).set_delay(0.2)
+
+	get_tree().paused = false
+
+	if (Game.game_instance):
+		Game.game_instance.is_pausable = true
 
 func _on_category_select() -> void:
 	category_select_screen.hide()

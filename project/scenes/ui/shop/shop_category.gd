@@ -33,6 +33,7 @@ func _process(delta):
 	
 	if (current_entry):
 		sidepanel.icon.texture = current_entry.upgrade_item.upgrade_icon
+		sidepanel.current_shop_entry_upgrade = current_entry.upgrade_item
 
 func _on_shop_entry_button_pressed(button : UIButton):
 	if (button == back_button):
