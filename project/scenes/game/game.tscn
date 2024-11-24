@@ -49,7 +49,7 @@ margin = Rect2(0, 0, 0, -360)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2fb3w"]
 shader = ExtResource("12_ceytl")
-shader_parameter/Blur = 4.0
+shader_parameter/Blur = 3.0
 shader_parameter/FlareThreshold = 0.9
 shader_parameter/Flares = 16
 shader_parameter/FlareSpacing = 0.125
@@ -283,6 +283,7 @@ scale = Vector2(3, 3)
 mouse_filter = 2
 
 [node name="KuwaharaLayer" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ColorRect" type="ColorRect" parent="KuwaharaLayer"]
 material = SubResource("ShaderMaterial_5tcod")

@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/texture_brush.png-f2d8d723dce7fcfc3146a2b856f
 
 [params]
 
-compress/mode=0
+compress/mode=4
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

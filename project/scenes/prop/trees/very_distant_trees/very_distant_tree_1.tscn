@@ -3,10 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://jcpxugrdgfvm" path="res://assets/texture/environment/texture_tree_4.png" id="1_wcmwd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgnyi"]
-transparency = 1
-diffuse_mode = 3
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
 specular_mode = 2
 albedo_texture = ExtResource("1_wcmwd")
+texture_filter = 0
+texture_repeat = false
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_55g7d"]
 material = SubResource("StandardMaterial3D_lgnyi")

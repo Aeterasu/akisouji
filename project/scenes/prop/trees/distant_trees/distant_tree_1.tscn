@@ -18,8 +18,10 @@ size = Vector2(8, 8)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.430974, 3.77262, 0)
+cast_shadow = 0
 mesh = SubResource("QuadMesh_bx4ub")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0371992, 3.77262, -0.328948)
+cast_shadow = 0
 mesh = SubResource("QuadMesh_bx4ub")

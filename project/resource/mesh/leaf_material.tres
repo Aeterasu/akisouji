@@ -13,8 +13,9 @@ shader_parameter/leaf_texture = ExtResource("2_o5ypd")
 [resource]
 next_pass = SubResource("ShaderMaterial_t3aw4")
 transparency = 1
-cull_mode = 2
 diffuse_mode = 1
 specular_mode = 2
 vertex_color_use_as_albedo = true
 albedo_texture = ExtResource("1_giusd")
+texture_filter = 0
+texture_repeat = false

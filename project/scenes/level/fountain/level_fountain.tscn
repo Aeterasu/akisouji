@@ -71,10 +71,12 @@ uv1_triplanar = true
 size = Vector2(64, 16)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o3dq1"]
-transparency = 1
-diffuse_mode = 3
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
 specular_mode = 2
 albedo_texture = ExtResource("31_r0mfe")
+texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nd7yu"]
 size = Vector3(1, 16.5, 60)
@@ -125,6 +127,8 @@ light_energy = 2.0
 light_specular = 2.0
 light_bake_mode = 1
 shadow_opacity = 0.65
+distance_fade_enabled = true
+distance_fade_begin = 64.0
 omni_range = 16.0
 omni_attenuation = 0.365
 
@@ -135,6 +139,8 @@ light_energy = 2.0
 light_specular = 2.0
 light_bake_mode = 1
 shadow_opacity = 0.65
+distance_fade_enabled = true
+distance_fade_begin = 64.0
 omni_range = 16.0
 omni_attenuation = 0.365
 
@@ -145,6 +151,8 @@ light_energy = 2.0
 light_specular = 2.0
 light_bake_mode = 1
 shadow_opacity = 0.65
+distance_fade_enabled = true
+distance_fade_begin = 64.0
 omni_range = 16.0
 omni_attenuation = 0.365
 
@@ -155,6 +163,8 @@ light_energy = 2.0
 light_specular = 2.0
 light_bake_mode = 1
 shadow_opacity = 0.65
+distance_fade_enabled = true
+distance_fade_begin = 64.0
 omni_range = 16.0
 omni_attenuation = 0.365
 
@@ -1072,7 +1082,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qb05a")
 
 [node name="FenceGate_001" parent="." index="19"]
 surface_material_override/0 = ExtResource("23_0eb3w")
-surface_material_override/1 = ExtResource("23_0eb3w")
+surface_material_override/1 = ExtResource("6_i44yf")
 
 [node name="Gates_001" parent="." index="20"]
 surface_material_override/0 = ExtResource("8_pnt3p")
@@ -1119,11 +1129,11 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qb05a")
 
 [node name="FenceGate_003" parent="." index="21"]
 surface_material_override/0 = ExtResource("23_0eb3w")
-surface_material_override/1 = ExtResource("23_0eb3w")
+surface_material_override/1 = ExtResource("6_i44yf")
 
 [node name="FenceGate_002" parent="." index="22"]
 surface_material_override/0 = ExtResource("23_0eb3w")
-surface_material_override/1 = ExtResource("23_0eb3w")
+surface_material_override/1 = ExtResource("6_i44yf")
 
 [node name="CityHorizon" parent="." index="23" instance=ExtResource("28_h3nsr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 50, 0)

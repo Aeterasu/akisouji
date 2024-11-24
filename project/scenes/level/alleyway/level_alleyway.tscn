@@ -58,9 +58,12 @@ normal_texture = ExtResource("17_rsgms")
 size = Vector2(64, 16)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a67vy"]
-transparency = 1
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
 specular_mode = 2
 albedo_texture = ExtResource("27_jy52j")
+texture_filter = 0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_lxrjr"]
 material = ExtResource("31_ue3y8")

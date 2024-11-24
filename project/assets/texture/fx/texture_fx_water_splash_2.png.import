@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/texture_fx_water_splash_2.png-575805b99e8002c
 
 [params]
 
-compress/mode=0
+compress/mode=4
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

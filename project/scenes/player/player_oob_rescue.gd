@@ -13,6 +13,6 @@ func _physics_process(delta) -> void:
 			player.global_transform = player.respawn_transform
 			trouble_counter = 0.0
 
-			Output.print("Player out of bound, rescuing...")
+			print("Player out of bound, rescuing...")
 	else:
 		trouble_counter = 0.0

@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/texture_daub_1.png-ec2b9ecde32695655ca92be6f6
 
 [params]
 
-compress/mode=0
+compress/mode=4
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

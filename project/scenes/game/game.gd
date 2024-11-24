@@ -72,6 +72,9 @@ func _ready():
 
 	player._block_input = false
 
+	#get_viewport().debug_draw = Viewport.DEBUG_DRAW_OVERDRAW
+	#get_viewport().debug_draw = Viewport.DEBUG_DRAW_WIREFRAME
+
 func _process(delta):
 	if (!pause_menu.is_displayed and !is_in_shop and Input.is_action_just_pressed("open_inventory")):
 		is_in_shop = true
@@ -100,7 +103,6 @@ func _on_level_completion():
 	CashManager._clean_buffer()
 
 	ui_completion.show()
-	Output.print("Level Completed!")
 
 func toggle_pause():
 	if (!is_pausable):

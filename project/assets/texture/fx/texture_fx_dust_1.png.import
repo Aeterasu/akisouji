@@ -15,7 +15,7 @@ dest_files=["res://.godot/imported/texture_fx_dust_1.png-95d6879caad179ab412d0f6
 
 [params]
 
-compress/mode=0
+compress/mode=4
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1

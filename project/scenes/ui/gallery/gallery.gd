@@ -54,7 +54,7 @@ func _ready():
 		var file_name = dir.get_next()
 		while file_name != "":
 			if dir.current_is_dir():
-				Output.print("Found directory: " + file_name)
+				print("Found directory: " + file_name)
 			else:
 				var extension = file_name.get_extension()
 				if (extension == "png" or extension == "jpg"):
@@ -74,7 +74,7 @@ func _ready():
 
 		gallery_base_entry.queue_free()
 	else:
-		Output.print("An error occurred when trying to access the path.")
+		print("An error occurred when trying to access the path.")
 
 	if (hide_tip):
 		tip_label.hide()

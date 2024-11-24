@@ -12,8 +12,6 @@ func _ready():
 	GlobalSettings.locale = GlobalSettings.locale
 	TranslationServer.set_locale(GlobalSettings.locale)
 
-	Output.print(OS.get_data_dir())
-
 	SceneTransitionHandler.instance._load_title_screen_scene()
 
 	GlobalSettings.fullscreen = GlobalSettings.fullscreen

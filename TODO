@@ -119,6 +119,7 @@ LEFT TO DO:
     + add "Golden Broom". the more cash, the bigger the radius! (but capped, of course.)
     + implement gold broom mechanic
     + add toggle to clean option
+    + add music. music iterates through a repeating playlist.
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
@@ -132,8 +133,10 @@ LEFT TO DO:
     CURRENT WORKING NAME - LEAF SWEEPER
     
     GAMEPLAY:
+		- add a huge mulitplier for sprinjumping with wellington boots
         = cash based broom that uses cash to clean ?
-        - setup heightmaps for fountain level
+		- on buying tools, make sure they are always in the same order
+        - setup leafmap and heightmap for fountain level (remove leaves from under the fountain lolololo!)
         - GARBAGE BAGS FILLING UP BY SWEEPING? YOU CAN THEN THROW IT, MOVE IT, ETC
         - level-specific leaf cleaning leeway
         - disabled leaf populator completely breaks the game, pls add safety checks
@@ -171,9 +174,7 @@ LEFT TO DO:
     AUDIO:
         - separate songs into game and menus
         - write a simple piece for title menu (chords and some piano)
-        - add crunchy footstep
         - add bell chiming to church level
-        - add music. music iterates through a repeating playlist.
     
     SETTINGS:
         - add leaf highlight colors (upon pressing, opens up a submenu layer) (??????????)

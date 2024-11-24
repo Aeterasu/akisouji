@@ -85,6 +85,7 @@ blend_mode = 1
 shading_mode = 0
 albedo_color = Color(0.47788, 0.47788, 0.47788, 1)
 albedo_texture = ExtResource("3_j3f1v")
+texture_filter = 1
 billboard_mode = 1
 
 [node name="PropStreetLight" type="Node3D"]
