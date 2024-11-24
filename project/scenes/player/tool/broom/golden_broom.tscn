@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=4 uid="uid://c40jnj8ehlq3b"]
+[gd_scene load_steps=70 format=4 uid="uid://c40jnj8ehlq3b"]
 
 [ext_resource type="Script" path="res://scenes/player/tool/broom/broom.gd" id="1_ibwn5"]
 [ext_resource type="Resource" uid="uid://cco1prg13vnll" path="res://scenes/player/tool/broom_data/broom_golden.tres" id="2_7rku4"]
@@ -6,6 +6,9 @@
 [ext_resource type="Material" uid="uid://e6kqs6p081ew" path="res://scenes/test/material_test/gold.tres" id="4_65gg4"]
 [ext_resource type="Material" uid="uid://cwaw45fhmm7wj" path="res://resource/material/material_broom_outline.tres" id="6_16s0k"]
 [ext_resource type="Texture2D" uid="uid://ddkvf0kktfo6b" path="res://assets/texture/fx/texture_fx_sparkle.png" id="6_ygl8s"]
+[ext_resource type="Script" path="res://scenes/player/tool/broom/golden_broom_particles.gd" id="7_dswcm"]
+[ext_resource type="AudioStream" uid="uid://bw8gh3hcw62pc" path="res://assets/audio/sfx_ambience_shimmer.mp3" id="7_f08ai"]
+[ext_resource type="Script" path="res://scenes/player/tool/broom/shimmer.gd" id="8_hadl0"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_voumu"]
 _surfaces = [{
@@ -649,6 +652,7 @@ lifetime = 2.0
 local_coords = true
 process_material = SubResource("ParticleProcessMaterial_xjixp")
 draw_pass_1 = SubResource("QuadMesh_u0g3t")
+script = ExtResource("7_dswcm")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 far = 1024.0
@@ -662,3 +666,12 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_ue7tg")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="Shimmer" type="AudioStreamPlayer" parent="." node_paths=PackedStringArray("broom")]
+stream = ExtResource("7_f08ai")
+autoplay = true
+bus = &"SFX"
+parameters/looping = true
+script = ExtResource("8_hadl0")
+target_volume = 0.25
+broom = NodePath("..")

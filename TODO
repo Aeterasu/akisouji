@@ -116,6 +116,8 @@ LEFT TO DO:
     + add fountain stage (make it night/evening!)
     + add outofbounds horizon to fountain stage
     + add shop fluff texts
+    + add "Golden Broom". the more cash, the bigger the radius! (but capped, of course.)
+    + implement gold broom mechanic
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
@@ -130,8 +132,6 @@ LEFT TO DO:
     
     GAMEPLAY:
         = cash based broom that uses cash to clean ?
-        - add "Golden Broom". the more cash, the bigger the radius! (but capped, of course.)
-        - implement gold broom mechanic
         - GARBAGE BAGS FILLING UP BY SWEEPING? YOU CAN THEN THROW IT, MOVE IT, ETC
         - level-specific leaf cleaning leeway
         - disabled leaf populator completely breaks the game, pls add safety checks

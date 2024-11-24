@@ -22,16 +22,16 @@ var state : EntryState = EntryState.NONE:
 		state = value
 
 		if (state == EntryState.AVAILABLE_TO_BUY):
-			cost_label.text = "[left]" + str(upgrade_item.cost) + "[img]res://assets/texture/ui/hud/texture_ui_cash_symbol_small.png[/img][/left]"
+			cost_label.text = "[left] " + str(upgrade_item.cost) + "[img]res://assets/texture/ui/hud/texture_ui_cash_symbol_small.png[/img][/left]"
 
 		if (state == EntryState.ONE_TIME_PURCHASE_BOUGHT):
-			cost_label.text = "[left]" + tr("SHOP_BOUGHT") + "[/left]"
+			cost_label.text = "[left] " + tr("SHOP_BOUGHT") + "[/left]"
 
 		if (state == EntryState.UNEQUIPPED):
-			cost_label.text = "[left]" + tr("SHOP_BUTTON_EQUIP") + "[/left]"
+			cost_label.text = "[left] " + tr("SHOP_BUTTON_EQUIP") + "[/left]"
 
 		if (state == EntryState.EQUIPPED):
-			cost_label.text = "[left]" + tr("SHOP_BUTTON_EQUIPPED") + "[/left]"
+			cost_label.text = "[left] " + tr("SHOP_BUTTON_EQUIPPED") + "[/left]"
 
 enum EntryState
 {

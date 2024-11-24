@@ -5,6 +5,9 @@ extends Node
 @export var base_cash_reward : float = 0.1
 @export var buffer_clean_time : float = 2.0
 
+@export var golden_broom_max_cap : float = 10000.0
+@export var golden_broom_base_multiplier : float = 12.0
+
 var cash_buffer : float = 0
 var timer : Timer = Timer.new()
 
@@ -63,3 +66,6 @@ func format_currency(number : float) -> String:
 
 func _pause_buffer() -> void:
 	is_buffer_paused = true
+
+func _get_golden_broom_multiplier() -> float:
+	return max((min(cash, golden_broom_max_cap) / golden_broom_max_cap) * golden_broom_base_multiplier, 1.0)

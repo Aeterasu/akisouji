@@ -198,20 +198,18 @@ modulate = Color(1, 0.853478, 0.388235, 0.494118)
 z_index = -2
 material = SubResource("CanvasItemMaterial_1rngk")
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
+anchor_left = 0.215
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 156.0
+offset_left = 0.339996
 offset_top = 127.0
 offset_right = -172.0
-offset_bottom = -197.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_bottom = 523.0
 pivot_offset = Vector2(198, 198)
 texture = ExtResource("5_rk14u")
 stretch_mode = 5
 script = ExtResource("6_avd2k")
-speed = 16.0
+speed = 0.0
 
 [node name="Sunbeams2" type="TextureRect" parent="SidePanel/Gradient/InCategory/Sunbeams"]
 modulate = Color(1, 0.897008, 0.565765, 1)
@@ -258,10 +256,13 @@ stretch_mode = 5
 
 [node name="Label" type="RichTextLabel" parent="SidePanel/Gradient/InCategory"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -362.0
 offset_top = 409.0
+offset_right = 362.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/outline_size = 16
@@ -274,19 +275,19 @@ text = "[center][font_size=36]SHOP_ITEM_NAME[/font_size][/center]
 [node name="TextureRect" type="TextureRect" parent="SidePanel/Gradient/InCategory"]
 modulate = Color(0.880165, 0.828865, 0.660042, 1)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -79.0
-offset_top = -227.0
-offset_right = 94.0
-offset_bottom = 36.0
+anchors_preset = -1
+anchor_left = 0.601
+anchor_top = 0.185
+anchor_right = 1.0
+anchor_bottom = 0.55
+offset_left = -152.124
+offset_top = -0.199997
+offset_right = -268.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(86, 131)
 texture = ExtResource("5_o4h1p")
+stretch_mode = 4
 script = ExtResource("9_xtrb1")
 anim_duration = 0.5
 

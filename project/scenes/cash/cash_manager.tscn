@@ -6,3 +6,4 @@
 script = ExtResource("1_8exi0")
 cash = 999999.0
 base_cash_reward = 0.03
+golden_broom_max_cap = 6000.0

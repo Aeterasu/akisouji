@@ -7,3 +7,4 @@ script = ExtResource("1_auls6")
 brooming_tickrate = 8
 cleaning_area = Vector2(0.8, 0.8)
 cleaning_range = 6.0
+use_golden_broom_multiplier = true

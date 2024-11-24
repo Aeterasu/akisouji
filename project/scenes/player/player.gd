@@ -139,9 +139,14 @@ func on_broom():
 
 	if (_get_cleaning_raycast()):
 		var cleaning_point = cleaning_raycast.get_collision_point()
+		var golden_multiplier : float = 1.0
+
+		if (broom_data.use_golden_broom_multiplier):
+			golden_multiplier = CashManager._get_golden_broom_multiplier()
+
 		Game.game_instance.last_cleaning_position = cleaning_point
-		Game.game_instance.last_cleaning_radius = broom_data.cleaning_area.length()
-		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(cleaning_point.x, cleaning_point.z), Vector2(sin(rotation.y), cos(rotation.y)), broom_data.cleaning_area)
+		Game.game_instance.last_cleaning_radius = broom_data.cleaning_area.length() * golden_multiplier
+		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(cleaning_point.x, cleaning_point.z), Vector2(sin(rotation.y), cos(rotation.y)), broom_data.cleaning_area * golden_multiplier)
 
 	pass
 
