@@ -4,6 +4,8 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lgnyi"]
 transparency = 1
+diffuse_mode = 3
+specular_mode = 2
 albedo_texture = ExtResource("1_wcmwd")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_55g7d"]
