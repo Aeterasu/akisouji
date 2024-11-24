@@ -112,6 +112,7 @@ LEFT TO DO:
     + rework shop ui, to make it vertical (dmc5 ui style)
     + add crunchy cleaning sounds
     + add general sound.
+    + fix camera state transition disabling viewport (something's going fucky-wucky)
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
@@ -162,7 +163,6 @@ LEFT TO DO:
         GOLDEN AUTUMN MUCH?
 
         - add outofbounds horizon to fountain stage 
-        - fix camera state transition disabling viewport (something's going fucky-wucky)
         - retexture leaves. new texture, maybe random texture
     
     AUDIO:

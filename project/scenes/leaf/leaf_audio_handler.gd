@@ -28,6 +28,7 @@ func _on_leaves_cleaned(amount : int, scale : float = 1.0) -> void:
 	amount = clamp(amount / 3, 1, 18)
 
 	var node = audio_player.duplicate() as AudioStreamPlayer3D
+	node.pitch_scale = randf_range(0.8, 1.1)
 	Game.game_instance.add_child(node)
 	node.global_position = Game.game_instance.last_cleaning_position
 	node.call_deferred("play", 0.0)

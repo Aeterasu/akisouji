@@ -36,12 +36,13 @@ curve = SubResource("Curve_yyney")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xjixp"]
 emission_shape = 1
-emission_sphere_radius = 2.0
+emission_sphere_radius = 4.95
 spread = 180.0
 initial_velocity_min = 0.1
 initial_velocity_max = 2.0
 gravity = Vector3(0, 0, 0)
-scale_min = 0.2
+scale_min = 5.0
+scale_max = 20.74
 scale_curve = SubResource("CurveTexture_mgmhe")
 color_ramp = SubResource("GradientTexture1D_pytif")
 
@@ -627,11 +628,10 @@ states/unequip_loop/position = Vector2(-95, 145)
 transitions = ["sprint_init", "sprint_loop", SubResource("AnimationNodeStateMachineTransition_cno54"), "sprint_loop", "sprint_end", SubResource("AnimationNodeStateMachineTransition_v7sc1"), "idle", "sprint_init", SubResource("AnimationNodeStateMachineTransition_dbhv6"), "sprint_end", "idle", SubResource("AnimationNodeStateMachineTransition_6gud3"), "sprint_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_awu8l"), "sprint_init", "sprint_end", SubResource("AnimationNodeStateMachineTransition_gp30y"), "brooming_loop_start", "brooming_loop", SubResource("AnimationNodeStateMachineTransition_yxkvm"), "brooming_loop", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_46hi8"), "idle", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_103xs"), "brooming_loop_end", "idle", SubResource("AnimationNodeStateMachineTransition_gsw54"), "brooming_loop_start", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_ybass"), "brooming_loop_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_jklkv"), "sprint_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_fe82q"), "brooming_loop_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_qtnhm"), "brooming_loop", "sprint_init", SubResource("AnimationNodeStateMachineTransition_yht86"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_desuo"), "idle", "unequip", SubResource("AnimationNodeStateMachineTransition_xvp0s"), "brooming_loop_start", "unequip", SubResource("AnimationNodeStateMachineTransition_jjggo"), "brooming_loop", "unequip", SubResource("AnimationNodeStateMachineTransition_n1m58"), "brooming_loop_end", "unequip", SubResource("AnimationNodeStateMachineTransition_q4fnt"), "sprint_init", "unequip", SubResource("AnimationNodeStateMachineTransition_lyf6y"), "sprint_loop", "unequip", SubResource("AnimationNodeStateMachineTransition_gw85u"), "sprint_end", "unequip", SubResource("AnimationNodeStateMachineTransition_r0jex"), "equip", "unequip", SubResource("AnimationNodeStateMachineTransition_ywx3w"), "unequip_loop", "equip", SubResource("AnimationNodeStateMachineTransition_8ek0q"), "unequip", "unequip_loop", SubResource("AnimationNodeStateMachineTransition_c7rwe"), "unequip", "equip", SubResource("AnimationNodeStateMachineTransition_t6hlb"), "equip", "sprint_init", SubResource("AnimationNodeStateMachineTransition_ocdqc"), "Start", "unequip_loop", SubResource("AnimationNodeStateMachineTransition_4hw2t")]
 graph_offset = Vector2(-365, -108)
 
-[node name="GoldenBroom" type="Node3D" node_paths=PackedStringArray("animation_tree")]
+[node name="GoldenBroom" type="Node3D"]
 script = ExtResource("1_ibwn5")
 data = ExtResource("2_7rku4")
 use_type = 1
-animation_tree = NodePath("")
 walk_cycle_direction = Vector3(0.025, 0.01, 0)
 
 [node name="mesh_broom" parent="." instance=ExtResource("3_8wfs0")]
@@ -646,6 +646,7 @@ surface_material_override/0 = ExtResource("6_16s0k")
 [node name="GPUParticles3D" type="GPUParticles3D" parent="mesh_broom"]
 amount = 16
 lifetime = 2.0
+local_coords = true
 process_material = SubResource("ParticleProcessMaterial_xjixp")
 draw_pass_1 = SubResource("QuadMesh_u0g3t")
 
