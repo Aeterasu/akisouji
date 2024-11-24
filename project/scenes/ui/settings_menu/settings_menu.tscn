@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dj6rqqv2dxh8t"]
+[gd_scene load_steps=26 format=3 uid="uid://dj6rqqv2dxh8t"]
 
 [ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_menu.gd" id="1_c7jnn"]
 [ext_resource type="Shader" path="res://shader/multiply.gdshader" id="1_rhq0f"]
@@ -21,6 +21,7 @@
 [ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_function/settings_fov_slider.gd" id="17_abun6"]
 [ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_function/settings_volume_slider.gd" id="18_4cwfk"]
 [ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_function/settings_function_camera_wobble.gd" id="18_15a4a"]
+[ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_function/settings_function_toggle_to_clean.gd" id="19_6lsur"]
 [ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_function/settings_mouse_sensitivity_slider.gd" id="19_16vq3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ynf4q"]
@@ -236,9 +237,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 0.0
-offset_top = 128.0
+offset_top = 87.0
 offset_right = 816.0
-offset_bottom = 236.0
+offset_bottom = 195.0
 mouse_filter = 1
 setting_label = NodePath("MouseArea/HSlider/ValueLabel")
 setting_slider = NodePath("MouseArea/HSlider")
@@ -278,9 +279,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 0.0
-offset_top = 260.0
+offset_top = 170.0
 offset_right = 816.0
-offset_bottom = 368.0
+offset_bottom = 278.0
 setting_label = NodePath("ToggleLabel")
 setting_toggle = NodePath("CameraWobbleFunction")
 text_key = "SETTINGS_PROPERTY_CAMERA_WOBBLE"
@@ -289,6 +290,30 @@ text_key = "SETTINGS_PROPERTY_CAMERA_WOBBLE"
 script = ExtResource("18_15a4a")
 
 [node name="ToggleLabel" parent="GeneralSettings/CameraWobbleButton" instance=ExtResource("14_g18rr")]
+layout_mode = 0
+offset_left = 613.0
+offset_right = 660.0
+text = ""
+
+[node name="ToggleToCleanButton" parent="GeneralSettings" node_paths=PackedStringArray("setting_label", "setting_toggle") instance=ExtResource("10_heo66")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 256.0
+offset_right = 816.0
+offset_bottom = 364.0
+setting_label = NodePath("ToggleLabel")
+setting_toggle = NodePath("ToggleToCleanFunction")
+text_key = "SETTINGS_PROPERTY_TOGGLE_TO_CLEAN"
+
+[node name="ToggleToCleanFunction" type="Node" parent="GeneralSettings/ToggleToCleanButton"]
+script = ExtResource("19_6lsur")
+
+[node name="ToggleLabel" parent="GeneralSettings/ToggleToCleanButton" instance=ExtResource("14_g18rr")]
 layout_mode = 0
 offset_left = 613.0
 offset_right = 660.0
