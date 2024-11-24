@@ -50,6 +50,8 @@ extends Node
 @export var max_fov : float = 100.0
 @export var min_fov : float = 60.0
 
+@export var toggle_to_clean : bool = false
+
 @export var camera_wobble_enabled : bool = true
 
 @export var show_fps_counter : bool = true

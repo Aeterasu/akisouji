@@ -57,6 +57,8 @@ var wish_sprint : bool = false
 
 var is_landing : bool = false
 
+var wish_cleaning_toggle : bool = false
+
 var respawn_transform : Transform3D = Transform3D()
 
 var input_delay : float = 0.0
@@ -195,7 +197,13 @@ func input_process(delta : float):
 
 	if (!block_brooming_until_key_is_released):
 		if (inventory.current_tool.use_type == PlayerTool.UseType.HOLD):
-			inventory.current_tool.in_use = (Input.is_action_pressed("player_action_primary") or inventory.current_tool.auto_use) && !wish_sprint
+			if (!GlobalSettings.toggle_to_clean):
+				inventory.current_tool.in_use = (Input.is_action_pressed("player_action_primary") or inventory.current_tool.auto_use) && !wish_sprint
+			else:
+				if (Input.is_action_just_pressed("player_action_primary")):
+					wish_cleaning_toggle = not wish_cleaning_toggle
+
+				inventory.current_tool.in_use = (wish_cleaning_toggle or inventory.current_tool.auto_use) && !wish_sprint
 
 			#if (inventory.current_tool is LeafBlower):
 				#var leafblower = inventory.current_tool as LeafBlower
@@ -206,6 +214,8 @@ func input_process(delta : float):
 					#on_leafblower_supercharge(leafblower)
 
 		elif (inventory.current_tool.use_type == PlayerTool.UseType.CLICK):
+			wish_cleaning_toggle = false
+
 			if (Input.is_action_just_pressed("player_action_primary") && !wish_sprint):
 				inventory.current_tool._use_primary()
 			if (Input.is_action_just_pressed("player_action_secondary") && !wish_sprint):
