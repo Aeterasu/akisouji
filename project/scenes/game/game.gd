@@ -29,17 +29,7 @@ static var game_instance : Game = null
 var is_pausable : bool = true
 
 var shop : Shop = null
-var is_in_shop : bool = false:
-	set(value):
-		if (is_in_shop == value):
-			return
-		
-		is_in_shop = value
-
-		if (value):
-			_open_shop()
-		else:
-			_close_shop()
+var is_in_shop : bool = false
 
 func _ready():
 	game_instance = self
@@ -74,8 +64,6 @@ func _ready():
 
 	progress_tracker.on_completion.connect(_on_level_completion)
 
-	#loading_screen._on_timeout()
-
 	pause_menu.is_displayed = get_tree().paused
 
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -85,21 +73,21 @@ func _ready():
 	player._block_input = false
 
 func _process(delta):
+	if (!pause_menu.is_displayed and !is_in_shop and Input.is_action_just_pressed("open_inventory")):
+		is_in_shop = true
+		_open_shop()
+		is_pausable = false
+		return
+
+	if (shop and is_in_shop and Input.is_action_just_pressed("open_inventory")):
+		shop._on_back_button_pressed()
+		is_pausable = true
+		return
+
 	if ((not is_in_shop) and (Input.is_action_just_pressed("pause") or (Input.is_action_just_pressed("menu_cancel") and get_tree().paused))):
 		toggle_pause()
 		player.input_delay = 0.3
 		return
-
-	if (!get_tree().paused and Input.is_action_just_pressed("open_inventory")):
-		is_in_shop = not is_in_shop
-		return
-
-	if (is_in_shop and Input.is_action_just_pressed("open_inventory")):
-		shop._on_back_button_pressed()
-		return
-
-#func _on_loading_ended():
-	#loading_screen._on_timeout()
 
 func _on_level_completion():
 	#TODO: Hide broom on level completion, but allow movement.
@@ -151,7 +139,7 @@ func _close_shop():
 	if (!shop):
 		return
 
-	#shop.queue_free()
+	shop.queue_free()
 
 	pause_menu.allow_input = true
 
