@@ -120,6 +120,7 @@ LEFT TO DO:
     + implement gold broom mechanic
     + add toggle to clean option
     + add music. music iterates through a repeating playlist.
+    + now that we got rid of extensive canvas layers, please fix popping on game loading
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =

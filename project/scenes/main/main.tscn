@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://71lkn3s6kfqi" path="res://scenes/ui/shop/shop.tscn" id="5_b672d"]
 [ext_resource type="PackedScene" uid="uid://bfmvy7wmymc2l" path="res://scenes/ui/gallery/gallery.tscn" id="6_b588i"]
 [ext_resource type="PackedScene" uid="uid://gcdsoumbb7v1" path="res://scenes/ui/stage_select/stage_select.tscn" id="7_ti7n1"]
-[ext_resource type="Script" path="res://scenes/utils/show_canvas_layer_on_ready.gd" id="8_dopoe"]
+[ext_resource type="Script" path="res://scenes/utils/show_canvas_item_on_ready.gd" id="8_dopoe"]
 [ext_resource type="Script" path="res://scenes/loading_screen.gd" id="9_0151b"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="10_m1uao"]
 
@@ -33,13 +33,18 @@ shop_scene = ExtResource("5_b672d")
 gallery_scene = ExtResource("6_b588i")
 stage_select_scene = ExtResource("7_ti7n1")
 
-[node name="LoadingScreenLayer" type="CanvasLayer" parent="."]
-layer = 128
-follow_viewport_enabled = true
+[node name="LoadingScreenLayer" type="Control" parent="."]
+z_index = 4096
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("8_dopoe")
 
 [node name="LoadingScreen" type="Control" parent="LoadingScreenLayer"]
-layout_mode = 3
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

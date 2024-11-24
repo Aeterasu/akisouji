@@ -1,4 +1,4 @@
-class_name BlackoutLayer extends CanvasLayer
+class_name BlackoutLayer extends Control
 
 @export var black_rect : ColorRect = null
 @export var white_rect : ColorRect = null

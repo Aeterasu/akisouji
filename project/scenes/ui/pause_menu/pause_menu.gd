@@ -30,14 +30,17 @@ var is_displayed : bool = false:
 		is_displayed = value
 
 		var tween = create_tween()
+		tween.set_parallel(true)
 		
 		if (is_displayed):
 			tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
+			show()
 			for node in button_selection_handler.buttons:
 				node._enable()
 			UI.instance.hide()
 		else:
 			tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.2)
+			tween.tween_callback(hide).set_delay(0.2)
 			for node in button_selection_handler.buttons:
 				node._disable()		
 			if (!CameraUI.instance.visible):

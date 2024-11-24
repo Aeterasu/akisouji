@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=35 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_highlight_handler.gd" id="2_74dy0"]
@@ -18,7 +18,6 @@
 [ext_resource type="Script" path="res://scenes/ui/ui_completion/ui_completion.gd" id="8_h2dad"]
 [ext_resource type="Texture2D" uid="uid://csspljpa4mobh" path="res://assets/texture/fx/texture_speed.png" id="10_0auwo"]
 [ext_resource type="AudioStream" uid="uid://dl8wj1e1mcaaj" path="res://assets/audio/sfx_leaves_rustle_1.ogg" id="10_l2gfw"]
-[ext_resource type="Script" path="res://scenes/utils/delete_in_web.gd" id="11_0g5lc"]
 [ext_resource type="Script" path="res://scenes/fx/speed_effect.gd" id="11_e6qqw"]
 [ext_resource type="Shader" path="res://shader/sun_flare.gdshader" id="12_ceytl"]
 [ext_resource type="Script" path="res://scenes/player/tool/camera/camera_ui.gd" id="13_d2xbq"]
@@ -30,14 +29,6 @@
 [ext_resource type="Shader" path="res://shader/kuwahara_screen.gdshader" id="27_ktbah"]
 [ext_resource type="Script" path="res://scenes/ui/blackout_layer.gd" id="31_te3wo"]
 
-[sub_resource type="Gradient" id="Gradient_7wx0o"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.0886263, 1)
-colors = PackedColorArray(0.168627, 0.0745098, 0.0392157, 0, 0.168627, 0.0745098, 0.0392157, 1, 0.168627, 0.0745098, 0.0392157, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_s5kpg"]
-gradient = SubResource("Gradient_7wx0o")
-
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e7rcr"]
 blend_mode = 1
 light_mode = 1
@@ -46,6 +37,19 @@ light_mode = 1
 atlas = ExtResource("10_0auwo")
 region = Rect2(0, 0, 320, 540)
 margin = Rect2(0, 0, 0, -360)
+
+[sub_resource type="Gradient" id="Gradient_7wx0o"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.0886263, 1)
+colors = PackedColorArray(0.168627, 0.0745098, 0.0392157, 0, 0.168627, 0.0745098, 0.0392157, 1, 0.168627, 0.0745098, 0.0392157, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s5kpg"]
+gradient = SubResource("Gradient_7wx0o")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5tcod"]
+shader = ExtResource("27_ktbah")
+shader_parameter/radius = 2
+shader_parameter/offset = Vector3(0, 0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2fb3w"]
 shader = ExtResource("12_ceytl")
@@ -58,17 +62,12 @@ shader_parameter/Saturation_ = 2.0
 shader_parameter/FlareMult = ExtResource("25_5i5i2")
 shader_parameter/FlareMult2 = ExtResource("14_gpri0")
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5tcod"]
-shader = ExtResource("27_ktbah")
-shader_parameter/radius = 2
-shader_parameter/offset = Vector3(0, 0, 0)
-
-[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "ui_completion", "pause_menu", "shop_origin", "pausable", "progress_tracker", "particle_handler", "audio_handler", "ranking_manager", "rain_effect")]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "ui_completion", "pause_menu", "shop_origin", "pausable", "progress_tracker", "particle_handler", "audio_handler", "ranking_manager", "rain_effect", "ui_layer")]
 process_mode = 3
 script = ExtResource("1_bcfl2")
 player = NodePath("Pausable/Player")
-ui_completion = NodePath("UICompletionLayer/UICompletion")
-pause_menu = NodePath("PauseLayer/PauseMenu")
+ui_completion = NodePath("UILayer/UICompletion")
+pause_menu = NodePath("UILayer/PauseMenu")
 shop_menu_scene = ExtResource("2_cewtf")
 shop_origin = NodePath("ShopLayer")
 pausable = NodePath("Pausable")
@@ -77,6 +76,7 @@ particle_handler = NodePath("LeafParticleHandler")
 audio_handler = NodePath("LeafAudioHandler")
 ranking_manager = NodePath("RankingManager")
 rain_effect = NodePath("Pausable/Player/RainParticles")
+ui_layer = NodePath("UILayer")
 
 [node name="LeafHighlightHandler" type="Node" parent="."]
 script = ExtResource("2_74dy0")
@@ -119,6 +119,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 21.5, 0)
 
 [node name="UILayer" type="CanvasLayer" parent="."]
 layer = 99
+visible = false
 
 [node name="UI" parent="UILayer" instance=ExtResource("5_is4j0")]
 
@@ -145,20 +146,30 @@ script = ExtResource("6_5ay1t")
 [node name="UIUpscaler" type="Node" parent="UILayer/UI"]
 script = ExtResource("8_d3y8h")
 
-[node name="CameraUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("label")]
-layer = 98
-script = ExtResource("13_d2xbq")
-label = NodePath("TextureRect/TextureRect/Label")
+[node name="SpeedEffect" type="TextureRect" parent="UILayer" node_paths=PackedStringArray("player")]
+material = SubResource("CanvasItemMaterial_e7rcr")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("AtlasTexture_dvkjl")
+script = ExtResource("11_e6qqw")
+player = NodePath("../../Pausable/Player")
+fps = 12.0
+target_color = Color(0.29219, 0.29219, 0.29219, 1)
 
-[node name="TextureRect" type="TextureRect" parent="CameraUI"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="CameraUI" type="TextureRect" parent="UILayer" node_paths=PackedStringArray("label")]
+offset_right = 1280.0
+offset_bottom = 720.0
 texture = ExtResource("13_fykye")
+script = ExtResource("13_d2xbq")
+label = NodePath("TextureRect/Label")
 
-[node name="UIUpscaler" type="Node" parent="CameraUI/TextureRect"]
+[node name="UIUpscaler" type="Node" parent="UILayer/CameraUI"]
 script = ExtResource("8_d3y8h")
 
-[node name="TextureRect" type="TextureRect" parent="CameraUI/TextureRect"]
+[node name="TextureRect" type="TextureRect" parent="UILayer/CameraUI"]
 self_modulate = Color(0.568627, 0.568627, 0.568627, 0.713726)
 layout_mode = 1
 anchors_preset = 15
@@ -172,7 +183,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_s5kpg")
 
-[node name="Label" type="RichTextLabel" parent="CameraUI/TextureRect/TextureRect"]
+[node name="Label" type="RichTextLabel" parent="UILayer/CameraUI/TextureRect"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.764
@@ -194,26 +205,7 @@ Photo mode tooltip 3"
 fit_content = true
 scroll_active = false
 
-[node name="SpeedEffectLayer" type="CanvasLayer" parent="."]
-layer = 64
-
-[node name="SpeedEffect" type="TextureRect" parent="SpeedEffectLayer" node_paths=PackedStringArray("player")]
-material = SubResource("CanvasItemMaterial_e7rcr")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("AtlasTexture_dvkjl")
-script = ExtResource("11_e6qqw")
-player = NodePath("../../Pausable/Player")
-fps = 12.0
-target_color = Color(0.29219, 0.29219, 0.29219, 1)
-
-[node name="UICompletionLayer" type="CanvasLayer" parent="."]
-layer = 101
-
-[node name="UICompletion" type="Control" parent="UICompletionLayer"]
+[node name="UICompletion" type="Control" parent="UILayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -223,7 +215,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("8_h2dad")
 
-[node name="ColorRect" type="ColorRect" parent="UICompletionLayer/UICompletion"]
+[node name="ColorRect" type="ColorRect" parent="UILayer/UICompletion"]
 layout_mode = 2
 offset_left = 320.0
 offset_top = 111.0
@@ -232,7 +224,7 @@ offset_bottom = 571.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0.690196)
 
-[node name="Label" type="Label" parent="UICompletionLayer/UICompletion/ColorRect"]
+[node name="Label" type="Label" parent="UILayer/UICompletion/ColorRect"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -249,13 +241,10 @@ text = "Level Completed!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="UIUpscaler" type="Node" parent="UICompletionLayer/UICompletion"]
+[node name="UIUpscaler" type="Node" parent="UILayer/UICompletion"]
 script = ExtResource("8_d3y8h")
 
-[node name="PauseLayer" type="CanvasLayer" parent="."]
-layer = 102
-
-[node name="PauseMenu" parent="PauseLayer" node_paths=PackedStringArray("submenu_origin") instance=ExtResource("22_yntas")]
+[node name="PauseMenu" parent="UILayer" node_paths=PackedStringArray("submenu_origin") instance=ExtResource("22_yntas")]
 mouse_filter = 2
 submenu_origin = NodePath("../../SubmenuLayer")
 
@@ -267,25 +256,9 @@ layer = 102
 process_mode = 3
 layer = 103
 
-[node name="SunFlare" type="CanvasLayer" parent="."]
-script = ExtResource("11_0g5lc")
+[node name="PostProcess" type="CanvasLayer" parent="."]
 
-[node name="SunFlare" type="ColorRect" parent="SunFlare"]
-material = SubResource("ShaderMaterial_2fb3w")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -854.0
-offset_bottom = -480.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(3, 3)
-mouse_filter = 2
-
-[node name="KuwaharaLayer" type="CanvasLayer" parent="."]
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="KuwaharaLayer"]
+[node name="Kuwahara" type="ColorRect" parent="PostProcess"]
 material = SubResource("ShaderMaterial_5tcod")
 anchors_preset = 15
 anchor_right = 1.0
@@ -297,9 +270,16 @@ grow_vertical = 2
 scale = Vector2(2, 2)
 mouse_filter = 2
 
-[node name="Vignette" type="CanvasLayer" parent="."]
+[node name="SunFlare" type="ColorRect" parent="PostProcess"]
+material = SubResource("ShaderMaterial_2fb3w")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="Vignette" type="TextureRect" parent="Vignette"]
+[node name="Vignette" type="TextureRect" parent="PostProcess"]
 modulate = Color(1, 1, 1, 0.556863)
 anchors_preset = 15
 anchor_right = 1.0
@@ -309,14 +289,20 @@ grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("18_q3514")
 
-[node name="BlackoutLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("black_rect", "white_rect")]
-layer = 128
+[node name="BlackoutLayer" type="Control" parent="PostProcess" node_paths=PackedStringArray("black_rect", "white_rect")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("31_te3wo")
 black_rect = NodePath("BlackRect")
 white_rect = NodePath("WhiteRect")
 
-[node name="BlackRect" type="ColorRect" parent="BlackoutLayer"]
+[node name="BlackRect" type="ColorRect" parent="PostProcess/BlackoutLayer"]
 modulate = Color(1, 1, 1, 0)
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -325,8 +311,9 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="WhiteRect" type="ColorRect" parent="BlackoutLayer"]
+[node name="WhiteRect" type="ColorRect" parent="PostProcess/BlackoutLayer"]
 modulate = Color(1, 1, 1, 0)
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

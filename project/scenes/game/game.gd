@@ -17,6 +17,8 @@ class_name Game extends Node3D
 
 @export var rain_effect : Node3D = null
 
+@export var ui_layer : CanvasLayer = null
+
 var leaf_populator : LeafPopulator = null
 var cleaning_handler : LeafCleaningHandler = null
 var last_cleaning_position : Vector3 = Vector3()
@@ -33,6 +35,8 @@ var is_in_shop : bool = false
 
 func _ready():
 	game_instance = self
+
+	ui_layer.show()
 
 	player._block_input = true
 
@@ -71,6 +75,8 @@ func _ready():
 	await get_tree().create_timer(0.4).timeout
 
 	player._block_input = false
+
+	shop_origin.hide()
 
 	#get_viewport().debug_draw = Viewport.DEBUG_DRAW_OVERDRAW
 	#get_viewport().debug_draw = Viewport.DEBUG_DRAW_WIREFRAME
@@ -128,6 +134,7 @@ func _open_shop():
 	shop = shop_menu_scene.instantiate()
 	shop.transition_type = Shop.TransitionType.FROM_GAME
 	shop_origin.add_child(shop)
+	shop_origin.show()
 
 	shop.on_shop_closed.connect(_close_shop)
 
@@ -140,6 +147,8 @@ func _close_shop():
 		return
 
 	shop.queue_free()
+
+	shop_origin.hide()
 
 	pause_menu.allow_input = true
 

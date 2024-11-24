@@ -1,4 +1,4 @@
-class_name CameraUI extends CanvasLayer
+class_name CameraUI extends Control
 
 @export var label : RichTextLabel = null
 
@@ -14,6 +14,9 @@ func _ready():
 	hide()
 
 func _process(delta):
+	if (!visible):
+		return
+
 	if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE):
 		label.text = "[left][img region=160,128,32,32]" + glyph_image + "[/img]" + " - " + tr("CAMERA_TOOLTIP_ZOOM") + "\n" + "[img region=32,128,32,32]" + glyph_image + "[/img]" + " - " + tr("CAMERA_TOOLTIP_PHOTO") + "\n" + "[img region=64,128,32,32]" + glyph_image + "[/img]" + " - " + tr("CAMERA_TOOLTIP_BACK") + "\n" + "[/left]"
 	elif (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD):
