@@ -4,12 +4,11 @@
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_76akf"]
 transparency = 1
-no_depth_test = true
 shading_mode = 0
 diffuse_mode = 3
 specular_mode = 2
 vertex_color_use_as_albedo = true
-albedo_color = Color(0.597861, 0.315575, 0.213699, 1)
+albedo_color = Color(0.520366, 0.354542, 0.219117, 1)
 albedo_texture = ExtResource("1_b7ios")
 texture_filter = 0
 disable_receive_shadows = true

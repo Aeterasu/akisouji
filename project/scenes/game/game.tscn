@@ -254,7 +254,43 @@ layer = 102
 
 [node name="SubmenuLayer" type="CanvasLayer" parent="."]
 process_mode = 3
-layer = 103
+layer = 100
+
+[node name="BlackoutLayer" type="Control" parent="SubmenuLayer" node_paths=PackedStringArray("black_rect", "white_rect")]
+z_index = 4096
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("31_te3wo")
+black_rect = NodePath("BlackRect")
+white_rect = NodePath("WhiteRect")
+
+[node name="BlackRect" type="ColorRect" parent="SubmenuLayer/BlackoutLayer"]
+modulate = Color(1, 1, 1, 0)
+z_index = 4096
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
+[node name="WhiteRect" type="ColorRect" parent="SubmenuLayer/BlackoutLayer"]
+modulate = Color(1, 1, 1, 0)
+z_index = 4096
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="PostProcess" type="CanvasLayer" parent="."]
 
@@ -288,35 +324,3 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("18_q3514")
-
-[node name="BlackoutLayer" type="Control" parent="PostProcess" node_paths=PackedStringArray("black_rect", "white_rect")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("31_te3wo")
-black_rect = NodePath("BlackRect")
-white_rect = NodePath("WhiteRect")
-
-[node name="BlackRect" type="ColorRect" parent="PostProcess/BlackoutLayer"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
-
-[node name="WhiteRect" type="ColorRect" parent="PostProcess/BlackoutLayer"]
-modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2

@@ -201,6 +201,7 @@ func _on_open_folder_pressed() -> void:
 
 func transition(callable: Callable):
 	var tween = create_tween()
+	tween.set_parallel(true)
 	tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0), 0.2)
 	tween.tween_callback(callable).set_delay(0.2)
 
