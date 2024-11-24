@@ -1,40 +1,77 @@
-[gd_scene load_steps=25 format=3 uid="uid://71lkn3s6kfqi"]
+[gd_scene load_steps=37 format=3 uid="uid://71lkn3s6kfqi"]
 
 [ext_resource type="Script" path="res://scenes/ui/shop/shop.gd" id="1_87sb4"]
-[ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="1_rawln"]
+[ext_resource type="Texture2D" uid="uid://o065i8cobccy" path="res://assets/texture/ui/shop/texture_shop_background.png" id="2_4mw2w"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="2_yb51t"]
 [ext_resource type="Texture2D" uid="uid://ceghh11taklj3" path="res://assets/texture/ui/shop/texture_ui_shopping_cart.png" id="3_o7shq"]
-[ext_resource type="PackedScene" uid="uid://bcrys4arojn37" path="res://scenes/ui/paper_button.tscn" id="3_xgq7m"]
-[ext_resource type="PackedScene" uid="uid://d1rn3y4kijnhy" path="res://scenes/ui/shop/shop_entry.tscn" id="4_a8w7q"]
-[ext_resource type="PackedScene" uid="uid://d2gvydsg23b1i" path="res://scenes/ui/shop/shop_category_button.tscn" id="4_jda8f"]
 [ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="5_bijnc"]
-[ext_resource type="Texture2D" uid="uid://co1bvf3oxphxj" path="res://assets/texture/ui/shop/texture_shop_category_boots.png" id="5_nq0wb"]
+[ext_resource type="Texture2D" uid="uid://c4ji1cckxhdx2" path="res://assets/texture/icons/texture_icon_broom_1.png" id="5_o4h1p"]
+[ext_resource type="PackedScene" uid="uid://bebej4aqrfu5c" path="res://scenes/ui/shop/shop_paper_button.tscn" id="5_qmceb"]
 [ext_resource type="Resource" uid="uid://bnojv12xi1uio" path="res://scenes/upgrade/move_speed/default_boots.tres" id="5_r8g5d"]
+[ext_resource type="Texture2D" uid="uid://dnhwqr3q3c00i" path="res://assets/texture/fx/texture_fx_sunbeams.png" id="5_rk14u"]
+[ext_resource type="Script" path="res://scenes/ui/shop/shop_sidepanel.gd" id="5_x7sem"]
 [ext_resource type="Script" path="res://scenes/ui/shop/shop_category.gd" id="6_7edpc"]
 [ext_resource type="PackedScene" uid="uid://c15cmbbg5nyn0" path="res://scenes/ui/hud/ui_cash.tscn" id="6_acpaq"]
 [ext_resource type="Resource" uid="uid://dm1aayb6i2p5a" path="res://scenes/upgrade/move_speed/sneakers.tres" id="6_aii5i"]
+[ext_resource type="Script" path="res://scenes/ui/rotating_texture_rect.gd" id="6_avd2k"]
 [ext_resource type="Resource" uid="uid://cc7kdcc5fh4wk" path="res://scenes/upgrade/move_speed/wellies.tres" id="7_bq3o6"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="7_fg3im"]
+[ext_resource type="Script" path="res://scenes/ui/shop/shop_entry.gd" id="8_8rigd"]
 [ext_resource type="Resource" uid="uid://c37g3k5d2emhn" path="res://scenes/upgrade/move_speed/sevenleagues.tres" id="8_httmv"]
+[ext_resource type="Script" path="res://scenes/ui/shop/shop_texture_scaling.gd" id="9_xtrb1"]
 [ext_resource type="Resource" uid="uid://c7sbyg4ns7pi2" path="res://scenes/upgrade/broom/broom.tres" id="11_sc14h"]
 [ext_resource type="Resource" uid="uid://bi0qxjmyixrxb" path="res://scenes/upgrade/broom/strong_broom.tres" id="12_ti5lq"]
 [ext_resource type="Resource" uid="uid://dcwhwjrx83toj" path="res://scenes/upgrade/broom/feather_duster.tres" id="13_oaano"]
+[ext_resource type="Resource" uid="uid://b8f14366gudkv" path="res://scenes/upgrade/broom/golden_broom.tres" id="13_tpjwr"]
 [ext_resource type="Resource" uid="uid://c7wg1nuu7ajn5" path="res://scenes/upgrade/broom/leaf_blower.tres" id="14_fdjp1"]
 [ext_resource type="PackedScene" uid="uid://cyaqutbexr62l" path="res://scenes/ui/gamepad_tooltip/gamepad_tooltip.tscn" id="17_xyhan"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_43j8k"]
+[sub_resource type="Gradient" id="Gradient_mtig2"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_unpm5"]
+gradient = SubResource("Gradient_mtig2")
+
+[sub_resource type="Gradient" id="Gradient_fiolj"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yfafo"]
+gradient = SubResource("Gradient_fiolj")
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1rngk"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_3rejo"]
+offsets = PackedFloat32Array(0, 0.830228)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mhh31"]
+gradient = SubResource("Gradient_3rejo")
+fill = 1
+fill_from = Vector2(0.508547, 0.491453)
+fill_to = Vector2(0.807692, 0.230769)
+
+[sub_resource type="Gradient" id="Gradient_awfj1"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dfn3v"]
+gradient = SubResource("Gradient_awfj1")
+fill = 1
+fill_from = Vector2(0.504274, 0.504274)
+fill_to = Vector2(0.82906, 0.226496)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1omue"]
 blend_mode = 3
+light_mode = 1
 
-[sub_resource type="Gradient" id="Gradient_vxd2d"]
-colors = PackedColorArray(0, 0, 0, 1, 0.237536, 0.0462933, 0, 1)
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_rup1a"]
+blend_mode = 3
+light_mode = 1
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_b4rmi"]
-gradient = SubResource("Gradient_vxd2d")
-width = 8
-height = 8
-fill_to = Vector2(0, 1)
-
-[node name="Shop" type="Control" node_paths=PackedStringArray("button_selection_handler", "back_button", "category_select_screen", "category_select_button_handler", "category_tools", "category_boots", "button_category_tools", "button_category_boots")]
+[node name="Shop" type="Control" node_paths=PackedStringArray("back_button", "tools_button", "boots_button", "category_select_screen", "category_select_button_handler", "category_tools", "category_boots")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,215 +80,454 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_87sb4")
-button_selection_handler = NodePath("NavigationButtons/ButtonSelectionHandler")
-back_button = NodePath("NavigationButtons/PaperButton")
+back_button = NodePath("Categories/ShopCategoryBoots/Back")
+tools_button = NodePath("CategorySelect/Tools")
+boots_button = NodePath("CategorySelect/Boots")
 category_select_screen = NodePath("CategorySelect")
 category_select_button_handler = NodePath("CategorySelect/ButtonSelectionHandler")
 category_tools = NodePath("Categories/ShopCategoryTools")
 category_boots = NodePath("Categories/ShopCategoryBoots")
-button_category_tools = NodePath("CategorySelect/ShopCategoryButtonTools")
-button_category_boots = NodePath("CategorySelect/ShopCategoryButtonBoots")
 
-[node name="Background" type="TextureRect" parent="."]
-z_index = -8
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 2.0
-anchor_bottom = 2.0
-offset_right = 734.72
-offset_bottom = 353.52
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_rawln")
-expand_mode = 1
-stretch_mode = 1
-
-[node name="TextureRect" type="TextureRect" parent="Background"]
-material = SubResource("CanvasItemMaterial_43j8k")
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(0.561098, 0.530684, 0.247338, 1)
+z_index = -12
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_b4rmi")
+texture = ExtResource("2_4mw2w")
+expand_mode = 1
+stretch_mode = 6
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Gradient" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.266667)
+layout_mode = 1
+offset_right = 729.0
+offset_bottom = 181.0
+scale = Vector2(0.52, 0.52)
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_unpm5")
+
+[node name="Cart" type="TextureRect" parent="."]
 layout_mode = 1
 offset_left = 16.0
 offset_top = 8.0
 offset_right = 159.0
 offset_bottom = 132.0
-scale = Vector2(0.755, 0.755)
+scale = Vector2(0.52, 0.52)
 texture = ExtResource("3_o7shq")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 138.0
-offset_top = 18.0
-offset_right = 419.0
-offset_bottom = 78.0
-theme_override_constants/outline_size = 4
+offset_left = 105.0
+offset_top = 21.0
+offset_right = 386.0
+offset_bottom = 81.0
+theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("2_yb51t")
-theme_override_font_sizes/font_size = 46
+theme_override_font_sizes/font_size = 36
 text = "SHOP_LABEL"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 99.0
+offset_right = 223.0
+offset_bottom = 146.0
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_yb51t")
+theme_override_font_sizes/font_size = 36
+text = "SHOP_TITLE"
+
+[node name="SidePanel" type="Control" parent="." node_paths=PackedStringArray("icon")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_x7sem")
+icon = NodePath("Gradient/TextureRect")
+
+[node name="Gradient" type="TextureRect" parent="SidePanel"]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 556.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_yfafo")
+
+[node name="Sunbeams" type="TextureRect" parent="SidePanel/Gradient"]
+modulate = Color(1, 0.853478, 0.388235, 0.494118)
+z_index = -2
+material = SubResource("CanvasItemMaterial_1rngk")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 156.0
+offset_top = 127.0
+offset_right = -172.0
+offset_bottom = -197.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(198, 198)
+texture = ExtResource("5_rk14u")
+stretch_mode = 5
+script = ExtResource("6_avd2k")
+speed = 16.0
+
+[node name="Sunbeams2" type="TextureRect" parent="SidePanel/Gradient/Sunbeams"]
+modulate = Color(1, 0.854902, 0.388235, 1)
+z_index = -2
+material = SubResource("CanvasItemMaterial_1rngk")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(198, 198)
+texture = SubResource("GradientTexture2D_mhh31")
+stretch_mode = 5
+
+[node name="Sunbeams3" type="TextureRect" parent="SidePanel/Gradient/Sunbeams"]
+modulate = Color(0.486423, 0.390801, 0.0832631, 1)
+z_index = -2
+material = SubResource("CanvasItemMaterial_1rngk")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(198, 198)
+texture = SubResource("GradientTexture2D_mhh31")
+stretch_mode = 5
+
+[node name="Label" type="RichTextLabel" parent="SidePanel/Gradient"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 409.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("2_yb51t")
+bbcode_enabled = true
+text = "[center][font_size=36]SHOP_ITEM_NAME[/font_size][/center]
+
+[center][font_size=24]SHOP_ITEM_DESCRIPTION[/font_size][/center]"
+
+[node name="TextureRect" type="TextureRect" parent="SidePanel/Gradient"]
+modulate = Color(0.880165, 0.828865, 0.660042, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -79.0
+offset_top = -227.0
+offset_right = 94.0
+offset_bottom = 36.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(86, 131)
+texture = ExtResource("5_o4h1p")
+script = ExtResource("9_xtrb1")
+anim_duration = 0.5
+
+[node name="PointLight2D" type="PointLight2D" parent="SidePanel/Gradient"]
+position = Vector2(362, 321)
+scale = Vector2(8.84375, 8.76563)
+color = Color(0.961629, 0.837832, 0.746429, 1)
+energy = 1.55
+texture = SubResource("GradientTexture2D_dfn3v")
+
+[node name="CategorySelect" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Tools" parent="CategorySelect" instance=ExtResource("5_qmceb")]
+layout_mode = 1
+offset_top = -417.76
+offset_bottom = -417.92
+target_selected_position = Vector2(64, 0)
+target_deselected_position = Vector2(0, 0)
+text_key = "SHOP_CATEGORY_TOOLS"
+
+[node name="Boots" parent="CategorySelect" instance=ExtResource("5_qmceb")]
+layout_mode = 1
+offset_top = -297.76
+offset_bottom = -297.92
+target_selected_position = Vector2(64, 0)
+target_deselected_position = Vector2(0, 0)
+text_key = "SHOP_CATEGORY_BOOTS"
+
+[node name="Back" parent="CategorySelect" instance=ExtResource("5_qmceb")]
+layout_mode = 1
+offset_top = -9.76001
+offset_bottom = -9.92004
+target_selected_position = Vector2(64, 0)
+target_deselected_position = Vector2(0, 0)
+text_key = "MENU_BUTTON_BACK"
+
+[node name="ButtonSelectionHandler" type="Node" parent="CategorySelect" node_paths=PackedStringArray("buttons_origin")]
+script = ExtResource("5_bijnc")
+buttons_origin = NodePath("..")
 
 [node name="Categories" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -37.0
-offset_bottom = -179.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="ShopCategoryBoots" type="Control" parent="Categories" node_paths=PackedStringArray("entries_origin", "button_selection_handler")]
-custom_minimum_size = Vector2(0, 216)
-layout_mode = 2
-anchors_preset = 0
-offset_top = 192.0
-offset_right = 1280.0
-offset_bottom = 408.0
-mouse_filter = 1
-script = ExtResource("6_7edpc")
-entries_origin = NodePath("HBoxContainer")
-button_selection_handler = NodePath("ButtonSelectionHandler")
-
-[node name="Label" type="Label" parent="Categories/ShopCategoryBoots"]
+[node name="ShopCategoryTools" type="Control" parent="Categories" node_paths=PackedStringArray("entries_origin", "back_button", "button_selection_handler", "sidepanel", "shop")]
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_top = -59.0
-offset_bottom = -17.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-theme_override_constants/outline_size = 16
-theme_override_fonts/font = ExtResource("2_yb51t")
-theme_override_font_sizes/font_size = 32
-text = "SHOP_CATEGORY_BOOTS"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Categories/ShopCategoryBoots"]
-layout_mode = 0
-offset_top = 34.0
-offset_right = 1280.0
-offset_bottom = 162.0
-theme_override_constants/separation = 128
-alignment = 1
-
-[node name="ShopEntry" parent="Categories/ShopCategoryBoots/HBoxContainer" instance=ExtResource("4_a8w7q")]
-layout_mode = 2
-upgrade_item = ExtResource("5_r8g5d")
-
-[node name="ShopEntry2" parent="Categories/ShopCategoryBoots/HBoxContainer" instance=ExtResource("4_a8w7q")]
-layout_mode = 2
-upgrade_item = ExtResource("6_aii5i")
-
-[node name="ShopEntry3" parent="Categories/ShopCategoryBoots/HBoxContainer" instance=ExtResource("4_a8w7q")]
-layout_mode = 2
-upgrade_item = ExtResource("7_bq3o6")
-
-[node name="ShopEntry4" parent="Categories/ShopCategoryBoots/HBoxContainer" instance=ExtResource("4_a8w7q")]
-layout_mode = 2
-upgrade_item = ExtResource("8_httmv")
-
-[node name="ButtonSelectionHandler" type="Node" parent="Categories/ShopCategoryBoots" node_paths=PackedStringArray("buttons_origin")]
-script = ExtResource("5_bijnc")
-enabled = false
-horizontal = true
-buttons_origin = NodePath("../HBoxContainer")
-
-[node name="ShopCategoryTools" type="Control" parent="Categories" node_paths=PackedStringArray("entries_origin", "button_selection_handler")]
-custom_minimum_size = Vector2(0, 216)
-layout_mode = 2
-anchors_preset = 0
-offset_top = 192.0
-offset_right = 1280.0
-offset_bottom = 408.0
+grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("6_7edpc")
-entries_origin = NodePath("HBoxContainer")
+entries_origin = NodePath(".")
+back_button = NodePath("Back")
 button_selection_handler = NodePath("ButtonSelectionHandler")
+sidepanel = NodePath("../../SidePanel")
+shop = NodePath("../..")
 
-[node name="Label" type="Label" parent="Categories/ShopCategoryTools"]
+[node name="Broom1" parent="Categories/ShopCategoryTools" instance=ExtResource("5_qmceb")]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = -59.0
-offset_bottom = -17.0
-grow_horizontal = 2
-theme_override_constants/outline_size = 16
-theme_override_fonts/font = ExtResource("2_yb51t")
-theme_override_font_sizes/font_size = 32
-text = "SHOP_CATEGORY_TOOLS
-"
-horizontal_alignment = 1
-vertical_alignment = 1
+offset_left = -34.0
+offset_top = -441.76
+offset_right = 479.0
+offset_bottom = -413.262
+scale = Vector2(0.6, 0.6)
+target_selected_position = Vector2(48, 0)
+target_deselected_position = Vector2(-32, 0)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Categories/ShopCategoryTools"]
+[node name="CostLabel" type="RichTextLabel" parent="Categories/ShopCategoryTools/Broom1/AnimationOrigin" index="3"]
 layout_mode = 0
-offset_top = 34.0
-offset_right = 1280.0
-offset_bottom = 162.0
-theme_override_constants/separation = 128
-alignment = 1
+offset_left = 535.0
+offset_top = 22.0
+offset_right = 1411.0
+offset_bottom = 85.0
+mouse_filter = 2
+theme_override_constants/outline_size = 32
+theme_override_fonts/normal_font = ExtResource("2_yb51t")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[left]0[img]res://assets/texture/ui/hud/texture_ui_cash_symbol_small.png[/img][/left]"
+scroll_active = false
+autowrap_mode = 0
 
-[node name="ShopEntry" parent="Categories/ShopCategoryTools/HBoxContainer" instance=ExtResource("4_a8w7q")]
-layout_mode = 2
+[node name="Broom1Entry" type="Node" parent="Categories/ShopCategoryTools/Broom1" node_paths=PackedStringArray("button", "name_label", "cost_label")]
+process_priority = 1
+process_physics_priority = 1
+script = ExtResource("8_8rigd")
+button = NodePath("..")
 upgrade_item = ExtResource("11_sc14h")
+name_label = NodePath("../AnimationOrigin/Label")
+cost_label = NodePath("../AnimationOrigin/CostLabel")
+not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
 
-[node name="ShopEntry2" parent="Categories/ShopCategoryTools/HBoxContainer" instance=ExtResource("4_a8w7q")]
-layout_mode = 2
+[node name="Broom2" parent="Categories/ShopCategoryTools" instance=ExtResource("5_qmceb")]
+layout_mode = 1
+offset_left = -34.0
+offset_top = -361.76
+offset_right = 479.0
+offset_bottom = -333.262
+scale = Vector2(0.6, 0.6)
+target_selected_position = Vector2(48, 0)
+target_deselected_position = Vector2(-32, 0)
+
+[node name="SelectedGradient" parent="Categories/ShopCategoryTools/Broom2/AnimationOrigin/PaperMask" index="1"]
+material = SubResource("CanvasItemMaterial_1omue")
+
+[node name="DeselectedGradient" parent="Categories/ShopCategoryTools/Broom2/AnimationOrigin/PaperMask" index="2"]
+material = SubResource("CanvasItemMaterial_rup1a")
+
+[node name="CostLabel" type="RichTextLabel" parent="Categories/ShopCategoryTools/Broom2/AnimationOrigin" index="3"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 22.0
+offset_right = 1411.0
+offset_bottom = 85.0
+mouse_filter = 2
+theme_override_constants/outline_size = 32
+theme_override_fonts/normal_font = ExtResource("2_yb51t")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[left]0[img]res://assets/texture/ui/hud/texture_ui_cash_symbol_small.png[/img][/left]"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Broom2Entry" type="Node" parent="Categories/ShopCategoryTools/Broom2" node_paths=PackedStringArray("button", "name_label", "cost_label")]
+process_priority = 1
+process_physics_priority = 1
+script = ExtResource("8_8rigd")
+button = NodePath("..")
 upgrade_item = ExtResource("12_ti5lq")
+name_label = NodePath("../AnimationOrigin/Label")
+cost_label = NodePath("../AnimationOrigin/CostLabel")
+not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
 
-[node name="ShopEntry3" parent="Categories/ShopCategoryTools/HBoxContainer" instance=ExtResource("4_a8w7q")]
-layout_mode = 2
+[node name="Broom3" parent="Categories/ShopCategoryTools" instance=ExtResource("5_qmceb")]
+layout_mode = 1
+offset_left = -34.0
+offset_top = -281.76
+offset_right = 479.0
+offset_bottom = -253.262
+scale = Vector2(0.6, 0.6)
+target_selected_position = Vector2(48, 0)
+target_deselected_position = Vector2(-32, 0)
+
+[node name="SelectedGradient" parent="Categories/ShopCategoryTools/Broom3/AnimationOrigin/PaperMask" index="1"]
+material = SubResource("CanvasItemMaterial_1omue")
+
+[node name="DeselectedGradient" parent="Categories/ShopCategoryTools/Broom3/AnimationOrigin/PaperMask" index="2"]
+material = SubResource("CanvasItemMaterial_rup1a")
+
+[node name="CostLabel" type="RichTextLabel" parent="Categories/ShopCategoryTools/Broom3/AnimationOrigin" index="3"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 22.0
+offset_right = 1411.0
+offset_bottom = 85.0
+mouse_filter = 2
+theme_override_constants/outline_size = 32
+theme_override_fonts/normal_font = ExtResource("2_yb51t")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[left]0[img]res://assets/texture/ui/hud/texture_ui_cash_symbol_small.png[/img][/left]"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Broom2Entry" type="Node" parent="Categories/ShopCategoryTools/Broom3" node_paths=PackedStringArray("button", "name_label", "cost_label")]
+process_priority = 1
+process_physics_priority = 1
+script = ExtResource("8_8rigd")
+button = NodePath("..")
 upgrade_item = ExtResource("13_oaano")
+name_label = NodePath("../AnimationOrigin/Label")
+cost_label = NodePath("../AnimationOrigin/CostLabel")
+not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
 
-[node name="ShopEntry4" parent="Categories/ShopCategoryTools/HBoxContainer" instance=ExtResource("4_a8w7q")]
-layout_mode = 2
+[node name="Broom4" parent="Categories/ShopCategoryTools" instance=ExtResource("5_qmceb")]
+layout_mode = 1
+offset_left = -34.0
+offset_top = -201.76
+offset_right = 479.0
+offset_bottom = -173.262
+scale = Vector2(0.6, 0.6)
+target_selected_position = Vector2(48, 0)
+target_deselected_position = Vector2(-32, 0)
+
+[node name="SelectedGradient" parent="Categories/ShopCategoryTools/Broom4/AnimationOrigin/PaperMask" index="1"]
+material = SubResource("CanvasItemMaterial_1omue")
+
+[node name="DeselectedGradient" parent="Categories/ShopCategoryTools/Broom4/AnimationOrigin/PaperMask" index="2"]
+material = SubResource("CanvasItemMaterial_rup1a")
+
+[node name="CostLabel" type="RichTextLabel" parent="Categories/ShopCategoryTools/Broom4/AnimationOrigin" index="3"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 22.0
+offset_right = 1411.0
+offset_bottom = 85.0
+mouse_filter = 2
+theme_override_constants/outline_size = 32
+theme_override_fonts/normal_font = ExtResource("2_yb51t")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[left]0[img]res://assets/texture/ui/hud/texture_ui_cash_symbol_small.png[/img][/left]"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Broom2Entry" type="Node" parent="Categories/ShopCategoryTools/Broom4" node_paths=PackedStringArray("button", "name_label", "cost_label")]
+process_priority = 1
+process_physics_priority = 1
+script = ExtResource("8_8rigd")
+button = NodePath("..")
 upgrade_item = ExtResource("14_fdjp1")
+name_label = NodePath("../AnimationOrigin/Label")
+cost_label = NodePath("../AnimationOrigin/CostLabel")
+not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
+
+[node name="Broom5" parent="Categories/ShopCategoryTools" instance=ExtResource("5_qmceb")]
+layout_mode = 1
+offset_left = -34.0
+offset_top = -121.76
+offset_right = 479.0
+offset_bottom = -93.262
+scale = Vector2(0.6, 0.6)
+target_selected_position = Vector2(48, 0)
+target_deselected_position = Vector2(-32, 0)
+
+[node name="SelectedGradient" parent="Categories/ShopCategoryTools/Broom5/AnimationOrigin/PaperMask" index="1"]
+material = SubResource("CanvasItemMaterial_1omue")
+
+[node name="DeselectedGradient" parent="Categories/ShopCategoryTools/Broom5/AnimationOrigin/PaperMask" index="2"]
+material = SubResource("CanvasItemMaterial_rup1a")
+
+[node name="CostLabel" type="RichTextLabel" parent="Categories/ShopCategoryTools/Broom5/AnimationOrigin" index="3"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 22.0
+offset_right = 1411.0
+offset_bottom = 85.0
+mouse_filter = 2
+theme_override_constants/outline_size = 32
+theme_override_fonts/normal_font = ExtResource("2_yb51t")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[left]0[img]res://assets/texture/ui/hud/texture_ui_cash_symbol_small.png[/img][/left]"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Broom2Entry" type="Node" parent="Categories/ShopCategoryTools/Broom5" node_paths=PackedStringArray("button", "name_label", "cost_label")]
+process_priority = 1
+process_physics_priority = 1
+script = ExtResource("8_8rigd")
+button = NodePath("..")
+upgrade_item = ExtResource("13_tpjwr")
+name_label = NodePath("../AnimationOrigin/Label")
+cost_label = NodePath("../AnimationOrigin/CostLabel")
+not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
+
+[node name="Back" parent="Categories/ShopCategoryTools" instance=ExtResource("5_qmceb")]
+layout_mode = 1
+offset_left = -114.0
+offset_top = 14.24
+offset_right = 399.0
+offset_bottom = 42.7379
+scale = Vector2(0.8, 0.8)
+target_selected_position = Vector2(64, 0)
+target_deselected_position = Vector2(0, 0)
+text_key = "MENU_BUTTON_BACK"
 
 [node name="ButtonSelectionHandler" type="Node" parent="Categories/ShopCategoryTools" node_paths=PackedStringArray("buttons_origin")]
 script = ExtResource("5_bijnc")
 enabled = false
-horizontal = true
-buttons_origin = NodePath("../HBoxContainer")
-
-[node name="CategorySelect" type="HBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 144.0
-offset_bottom = -167.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 96
-alignment = 1
-
-[node name="ShopCategoryButtonTools" parent="CategorySelect" instance=ExtResource("4_jda8f")]
-layout_mode = 2
-
-[node name="ShopCategoryButtonBoots" parent="CategorySelect" instance=ExtResource("4_jda8f")]
-layout_mode = 2
-text_key = "SHOP_CATEGORY_BOOTS"
-
-[node name="TextureRect" parent="CategorySelect/ShopCategoryButtonBoots/AnimationOrigin" index="0"]
-texture = ExtResource("5_nq0wb")
-
-[node name="ButtonSelectionHandler" type="Node" parent="CategorySelect" node_paths=PackedStringArray("buttons_origin")]
-script = ExtResource("5_bijnc")
-horizontal = true
 buttons_origin = NodePath("..")
 
-[node name="GamepadTooltip" parent="." instance=ExtResource("17_xyhan")]
-layout_mode = 1
-
-[node name="NavigationButtons" type="Control" parent="."]
+[node name="ShopCategoryBoots" type="Control" parent="Categories" node_paths=PackedStringArray("entries_origin", "back_button", "button_selection_handler", "sidepanel", "shop")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -259,22 +535,196 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("6_7edpc")
+entries_origin = NodePath(".")
+back_button = NodePath("Back")
+button_selection_handler = NodePath("ButtonSelectionHandler")
+sidepanel = NodePath("../../SidePanel")
+shop = NodePath("../..")
 
-[node name="PaperButton" parent="NavigationButtons" instance=ExtResource("3_xgq7m")]
+[node name="Boots1" parent="Categories/ShopCategoryBoots" instance=ExtResource("5_qmceb")]
 layout_mode = 1
-anchor_top = 0.833
-anchor_right = 0.0
-anchor_bottom = 1.011
-offset_left = -146.0
-offset_top = -35.76
-offset_right = 367.0
-offset_bottom = -35.92
+offset_left = -34.0
+offset_top = -441.76
+offset_right = 479.0
+offset_bottom = -413.262
+scale = Vector2(0.8, 0.8)
+target_selected_position = Vector2(48, 0)
+target_deselected_position = Vector2(-32, 0)
+
+[node name="SelectedGradient" parent="Categories/ShopCategoryBoots/Boots1/AnimationOrigin/PaperMask" index="1"]
+material = SubResource("CanvasItemMaterial_1omue")
+
+[node name="DeselectedGradient" parent="Categories/ShopCategoryBoots/Boots1/AnimationOrigin/PaperMask" index="2"]
+material = SubResource("CanvasItemMaterial_rup1a")
+
+[node name="CostLabel" type="RichTextLabel" parent="Categories/ShopCategoryBoots/Boots1/AnimationOrigin" index="3"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 22.0
+offset_right = 1411.0
+offset_bottom = 85.0
+mouse_filter = 2
+theme_override_constants/outline_size = 32
+theme_override_fonts/normal_font = ExtResource("2_yb51t")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[left]0[img]res://assets/texture/ui/hud/texture_ui_cash_symbol_small.png[/img][/left]"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Boots1Entry" type="Node" parent="Categories/ShopCategoryBoots/Boots1" node_paths=PackedStringArray("button", "name_label", "cost_label")]
+process_priority = 1
+process_physics_priority = 1
+script = ExtResource("8_8rigd")
+button = NodePath("..")
+upgrade_item = ExtResource("5_r8g5d")
+name_label = NodePath("../AnimationOrigin/Label")
+cost_label = NodePath("../AnimationOrigin/CostLabel")
+not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
+
+[node name="Boots2" parent="Categories/ShopCategoryBoots" instance=ExtResource("5_qmceb")]
+layout_mode = 1
+offset_left = -34.0
+offset_top = -345.76
+offset_right = 479.0
+offset_bottom = -317.262
+scale = Vector2(0.8, 0.8)
+target_selected_position = Vector2(48, 0)
+target_deselected_position = Vector2(-32, 0)
+
+[node name="SelectedGradient" parent="Categories/ShopCategoryBoots/Boots2/AnimationOrigin/PaperMask" index="1"]
+material = SubResource("CanvasItemMaterial_1omue")
+
+[node name="DeselectedGradient" parent="Categories/ShopCategoryBoots/Boots2/AnimationOrigin/PaperMask" index="2"]
+material = SubResource("CanvasItemMaterial_rup1a")
+
+[node name="CostLabel" type="RichTextLabel" parent="Categories/ShopCategoryBoots/Boots2/AnimationOrigin" index="3"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 22.0
+offset_right = 1411.0
+offset_bottom = 85.0
+mouse_filter = 2
+theme_override_constants/outline_size = 32
+theme_override_fonts/normal_font = ExtResource("2_yb51t")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[left]0[img]res://assets/texture/ui/hud/texture_ui_cash_symbol_small.png[/img][/left]"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Boots2Entry" type="Node" parent="Categories/ShopCategoryBoots/Boots2" node_paths=PackedStringArray("button", "name_label", "cost_label")]
+process_priority = 1
+process_physics_priority = 1
+script = ExtResource("8_8rigd")
+button = NodePath("..")
+upgrade_item = ExtResource("6_aii5i")
+name_label = NodePath("../AnimationOrigin/Label")
+cost_label = NodePath("../AnimationOrigin/CostLabel")
+not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
+
+[node name="Boots3" parent="Categories/ShopCategoryBoots" instance=ExtResource("5_qmceb")]
+layout_mode = 1
+offset_left = -34.0
+offset_top = -249.76
+offset_right = 479.0
+offset_bottom = -221.262
+scale = Vector2(0.8, 0.8)
+target_selected_position = Vector2(48, 0)
+target_deselected_position = Vector2(-32, 0)
+
+[node name="SelectedGradient" parent="Categories/ShopCategoryBoots/Boots3/AnimationOrigin/PaperMask" index="1"]
+material = SubResource("CanvasItemMaterial_1omue")
+
+[node name="DeselectedGradient" parent="Categories/ShopCategoryBoots/Boots3/AnimationOrigin/PaperMask" index="2"]
+material = SubResource("CanvasItemMaterial_rup1a")
+
+[node name="CostLabel" type="RichTextLabel" parent="Categories/ShopCategoryBoots/Boots3/AnimationOrigin" index="3"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 22.0
+offset_right = 1411.0
+offset_bottom = 85.0
+mouse_filter = 2
+theme_override_constants/outline_size = 32
+theme_override_fonts/normal_font = ExtResource("2_yb51t")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[left]0[img]res://assets/texture/ui/hud/texture_ui_cash_symbol_small.png[/img][/left]"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Boots3Entry" type="Node" parent="Categories/ShopCategoryBoots/Boots3" node_paths=PackedStringArray("button", "name_label", "cost_label")]
+process_priority = 1
+process_physics_priority = 1
+script = ExtResource("8_8rigd")
+button = NodePath("..")
+upgrade_item = ExtResource("7_bq3o6")
+name_label = NodePath("../AnimationOrigin/Label")
+cost_label = NodePath("../AnimationOrigin/CostLabel")
+not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
+
+[node name="Boots4" parent="Categories/ShopCategoryBoots" instance=ExtResource("5_qmceb")]
+layout_mode = 1
+offset_left = -34.0
+offset_top = -153.76
+offset_right = 479.0
+offset_bottom = -125.262
+scale = Vector2(0.8, 0.8)
+target_selected_position = Vector2(48, 0)
+target_deselected_position = Vector2(-32, 0)
+
+[node name="SelectedGradient" parent="Categories/ShopCategoryBoots/Boots4/AnimationOrigin/PaperMask" index="1"]
+material = SubResource("CanvasItemMaterial_1omue")
+
+[node name="DeselectedGradient" parent="Categories/ShopCategoryBoots/Boots4/AnimationOrigin/PaperMask" index="2"]
+material = SubResource("CanvasItemMaterial_rup1a")
+
+[node name="CostLabel" type="RichTextLabel" parent="Categories/ShopCategoryBoots/Boots4/AnimationOrigin" index="3"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 22.0
+offset_right = 1411.0
+offset_bottom = 85.0
+mouse_filter = 2
+theme_override_constants/outline_size = 32
+theme_override_fonts/normal_font = ExtResource("2_yb51t")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[left]0[img]res://assets/texture/ui/hud/texture_ui_cash_symbol_small.png[/img][/left]"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Boots4Entry" type="Node" parent="Categories/ShopCategoryBoots/Boots4" node_paths=PackedStringArray("button", "name_label", "cost_label")]
+process_priority = 1
+process_physics_priority = 1
+script = ExtResource("8_8rigd")
+button = NodePath("..")
+upgrade_item = ExtResource("8_httmv")
+name_label = NodePath("../AnimationOrigin/Label")
+cost_label = NodePath("../AnimationOrigin/CostLabel")
+not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
+
+[node name="Back" parent="Categories/ShopCategoryBoots" instance=ExtResource("5_qmceb")]
+layout_mode = 1
+offset_left = -114.0
+offset_top = 14.24
+offset_right = 399.0
+offset_bottom = 42.7379
+scale = Vector2(0.8, 0.8)
+target_selected_position = Vector2(64, 0)
+target_deselected_position = Vector2(0, 0)
 text_key = "MENU_BUTTON_BACK"
 
-[node name="ButtonSelectionHandler" type="Node" parent="NavigationButtons" node_paths=PackedStringArray("buttons_origin")]
+[node name="ButtonSelectionHandler" type="Node" parent="Categories/ShopCategoryBoots" node_paths=PackedStringArray("buttons_origin")]
 script = ExtResource("5_bijnc")
-horizontal = true
+enabled = false
 buttons_origin = NodePath("..")
+
+[node name="GamepadTooltip" parent="." instance=ExtResource("17_xyhan")]
+z_index = -1
+layout_mode = 1
 
 [node name="UICash" parent="." instance=ExtResource("6_acpaq")]
 layout_mode = 1
@@ -282,4 +732,12 @@ layout_mode = 1
 [node name="UIUpscaler" type="Node" parent="."]
 script = ExtResource("7_fg3im")
 
-[editable path="CategorySelect/ShopCategoryButtonBoots"]
+[editable path="Categories/ShopCategoryTools/Broom1"]
+[editable path="Categories/ShopCategoryTools/Broom2"]
+[editable path="Categories/ShopCategoryTools/Broom3"]
+[editable path="Categories/ShopCategoryTools/Broom4"]
+[editable path="Categories/ShopCategoryTools/Broom5"]
+[editable path="Categories/ShopCategoryBoots/Boots1"]
+[editable path="Categories/ShopCategoryBoots/Boots2"]
+[editable path="Categories/ShopCategoryBoots/Boots3"]
+[editable path="Categories/ShopCategoryBoots/Boots4"]

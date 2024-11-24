@@ -1,28 +1,53 @@
 class_name ShopCategory extends Control
 
 @export var entries_origin : Control = null
+@export var back_button : UIButton = null
 
 @export var button_selection_handler : ButtonSelectionHandler = null
 
-#var entries : Array[ShopEntry] = []
+@export var sidepanel : ShopSidepanel = null
+
+@export var shop : Shop = null
+
+var last_entry : bool = false
 
 func _ready():
 	_deselect()
 
 	button_selection_handler.on_button_pressed.connect(_on_shop_entry_button_pressed)
 
-	for entry in entries_origin.get_children():
-		if (entry is ShopEntry):
-			entry.on_state_update.connect(_on_entry_state_update)
-			#entries.append(entry)
+	for button in button_selection_handler.buttons:
+		for node in button.get_children():
+			if (node is ShopEntry):
+				node.on_state_update.connect(_on_entry_state_update)
+				break
+
+func _process(delta):
+	var current_entry : ShopEntry = null
+
+	if (button_selection_handler.current_button):
+		for node in button_selection_handler.current_button.get_children():
+			if (node is ShopEntry):
+				current_entry = node as ShopEntry
+				break
+	
+	if (current_entry):
+		sidepanel.icon.texture = current_entry.upgrade_item.upgrade_icon
 
 func _on_shop_entry_button_pressed(button : UIButton):
-	var parent = button.get_parent()
+	if (button == back_button):
+		shop._on_back_button_pressed()
 
-	if (parent is not ShopEntry):
+	var entry : ShopEntry = null
+
+	for node in button.get_children():
+		if (node is ShopEntry):
+			entry = node as ShopEntry
+			break
+
+	if (!entry):
 		return
 
-	var entry = parent as ShopEntry
 	entry._attempt_buy()
 
 func _select() -> ShopCategory:
@@ -36,6 +61,8 @@ func _deselect():
 	self.hide()
 
 func _on_entry_state_update():
-	for entry in entries_origin.get_children():
-		if (entry is ShopEntry):
-			entry._update_state()
+	for button in button_selection_handler.buttons:
+		for node in button.get_children():
+			if (node is ShopEntry):
+				node._update_state()
+				break

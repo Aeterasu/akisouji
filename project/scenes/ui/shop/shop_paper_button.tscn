@@ -1,21 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://c8tinqsg3byn6"]
+[gd_scene load_steps=12 format=3 uid="uid://bebej4aqrfu5c"]
 
-[ext_resource type="Script" path="res://scenes/ui/paper_button.gd" id="1_g6luj"]
-[ext_resource type="Texture2D" uid="uid://dp11d2nk0ddnt" path="res://assets/texture/ui/texture_ui_shop_paper_button.png" id="2_mltkv"]
-[ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="3_bnrpy"]
-[ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="4_scpsk"]
-[ext_resource type="AudioStream" uid="uid://dgodvr5gurqrs" path="res://assets/audio/sfx_menu_accent_1.ogg" id="5_cv2tr"]
-[ext_resource type="AudioStream" uid="uid://bb5kges32g0ld" path="res://assets/audio/sfx_menu_accent_2.ogg" id="6_hvtbu"]
+[ext_resource type="Script" path="res://scenes/ui/paper_button.gd" id="1_eo2xd"]
+[ext_resource type="Texture2D" uid="uid://dsdj6e2cue4jc" path="res://assets/texture/ui/texture_ui_title_screen_button_1.png" id="2_28hjp"]
+[ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="3_s5nlo"]
+[ext_resource type="Texture2D" uid="uid://ckcahh4yx2uui" path="res://scenes/ui/shop/button_deselect_gradient.tres" id="4_yk0sj"]
+[ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="5_3npoj"]
+[ext_resource type="AudioStream" uid="uid://dgodvr5gurqrs" path="res://assets/audio/sfx_menu_accent_1.ogg" id="6_65ee4"]
+[ext_resource type="AudioStream" uid="uid://bb5kges32g0ld" path="res://assets/audio/sfx_menu_accent_2.ogg" id="7_b7jj3"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1omue"]
 blend_mode = 3
 light_mode = 1
 
-[sub_resource type="Gradient" id="Gradient_pnugo"]
-colors = PackedColorArray(1, 0.356863, 0, 1, 1, 0.833333, 0, 1)
+[sub_resource type="Gradient" id="Gradient_v8jmr"]
+colors = PackedColorArray(0.758735, 1, 0, 1, 1, 0.94755, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_pk5ei"]
-gradient = SubResource("Gradient_pnugo")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_libkm"]
+gradient = SubResource("Gradient_v8jmr")
 width = 8
 height = 8
 
@@ -23,25 +24,19 @@ height = 8
 blend_mode = 3
 light_mode = 1
 
-[sub_resource type="Gradient" id="Gradient_6qmtg"]
-colors = PackedColorArray(0.29, 0.0754, 0.121897, 1, 0.556863, 0.156863, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_rc7j3"]
-gradient = SubResource("Gradient_6qmtg")
-width = 8
-height = 8
-
-[node name="ShopPaperButton" type="Control" node_paths=PackedStringArray("animation_origin", "selected_gradient", "deselected_gradient", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
-custom_minimum_size = Vector2(0, 64)
+[node name="ShopButton" type="Control" node_paths=PackedStringArray("animation_origin", "selected_gradient", "deselected_gradient", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+custom_minimum_size = Vector2(0, 128)
 layout_mode = 3
-anchor_right = 0.105
-anchor_bottom = 0.089
-offset_right = 0.599991
-offset_bottom = -10.08
+anchor_top = 0.833
+anchor_bottom = 1.011
+offset_left = -146.0
+offset_top = -449.76
+offset_right = 367.0
+offset_bottom = -449.92
 size_flags_horizontal = 0
 size_flags_vertical = 0
 mouse_filter = 2
-script = ExtResource("1_g6luj")
+script = ExtResource("1_eo2xd")
 animation_origin = NodePath("AnimationOrigin")
 target_selected_position = Vector2(-12, 0)
 selected_gradient = NodePath("AnimationOrigin/PaperMask/SelectedGradient")
@@ -58,19 +53,19 @@ mouse_filter = 2
 [node name="PaperMask" type="TextureRect" parent="AnimationOrigin"]
 clip_children = 1
 layout_mode = 0
-offset_right = 132.0
-offset_bottom = 52.0
+offset_right = 510.0
+offset_bottom = 79.0
 mouse_filter = 2
-texture = ExtResource("2_mltkv")
+texture = ExtResource("2_28hjp")
 
 [node name="LeafPattern" type="TextureRect" parent="AnimationOrigin/PaperMask"]
 texture_repeat = 2
 layout_mode = 0
-offset_right = 278.0
-offset_bottom = 120.0
+offset_right = 1026.0
+offset_bottom = 162.0
 scale = Vector2(0.5, 0.5)
 mouse_filter = 2
-texture = ExtResource("3_bnrpy")
+texture = ExtResource("3_s5nlo")
 expand_mode = 1
 stretch_mode = 1
 
@@ -82,7 +77,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_pk5ei")
+texture = SubResource("GradientTexture2D_libkm")
 
 [node name="DeselectedGradient" type="TextureRect" parent="AnimationOrigin/PaperMask"]
 material = SubResource("CanvasItemMaterial_rup1a")
@@ -92,7 +87,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture2D_rc7j3")
+texture = ExtResource("4_yk0sj")
 
 [node name="PaperShadow" type="TextureRect" parent="AnimationOrigin"]
 modulate = Color(0, 0, 0, 0.4)
@@ -100,36 +95,37 @@ show_behind_parent = true
 layout_mode = 0
 offset_left = 12.0
 offset_top = 12.0
-offset_right = 144.0
-offset_bottom = 64.0
-texture = ExtResource("2_mltkv")
+offset_right = 522.0
+offset_bottom = 91.0
+texture = ExtResource("2_28hjp")
 
 [node name="Label" type="Label" parent="AnimationOrigin"]
 layout_mode = 0
-offset_right = 132.0
-offset_bottom = 51.0
+offset_left = 153.0
+offset_right = 460.0
+offset_bottom = 77.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.337255)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 16
-theme_override_fonts/font = ExtResource("4_scpsk")
-theme_override_font_sizes/font_size = 18
-text = "SHOP_BUTTON_BUY"
-horizontal_alignment = 1
+theme_override_constants/outline_size = 21
+theme_override_constants/shadow_outline_size = 70
+theme_override_fonts/font = ExtResource("5_3npoj")
+theme_override_font_sizes/font_size = 48
+text = "Button"
+horizontal_alignment = 2
 vertical_alignment = 1
-clip_text = true
 
 [node name="MouseArea" type="Control" parent="."]
 anchors_preset = 0
-offset_right = 138.0
-offset_bottom = 68.0
+offset_right = 523.0
+offset_bottom = 77.0
 
 [node name="Accent1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_cv2tr")
+stream = ExtResource("6_65ee4")
 max_polyphony = 2
 bus = &"SFX"
 
 [node name="Accent2" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_hvtbu")
+stream = ExtResource("7_b7jj3")
 volume_db = -3.0
 max_polyphony = 2
 bus = &"SFX"

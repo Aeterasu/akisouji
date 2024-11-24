@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="MoveSpeedUpgrade" load_steps=2 format=3 uid="uid://bnojv12xi1uio"]
+[gd_resource type="Resource" script_class="MoveSpeedUpgrade" load_steps=3 format=3 uid="uid://bnojv12xi1uio"]
 
 [ext_resource type="Script" path="res://scenes/upgrade/move_speed/move_speed_upgrade.gd" id="1_ejjpb"]
+[ext_resource type="Texture2D" uid="uid://cpyvrwau5u65v" path="res://assets/texture/icons/texture_icon_boot_1.png" id="2_uiptm"]
 
 [resource]
 script = ExtResource("1_ejjpb")
@@ -10,6 +11,7 @@ allow_walk_cleaning = false
 walk_cleaning_range_multiplier = 1.0
 sprint_cleaning_range_multiplier = 1.0
 jump_cleaning_range_multiplier = 1.0
+upgrade_icon = ExtResource("2_uiptm")
 cost = 0
 name_key = "ITEM_NAME_BOOTS"
 one_time_purchase = false

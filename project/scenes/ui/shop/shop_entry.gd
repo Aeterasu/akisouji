@@ -1,6 +1,6 @@
-class_name ShopEntry extends Control
+class_name ShopEntry extends Node
 
-@export var button : PaperButton = null
+@export var button : UIButton = null
 
 @export var upgrade_item : Upgrade = null 
 @export var name_label : Label = null
@@ -21,19 +21,17 @@ var state : EntryState = EntryState.NONE:
 		
 		state = value
 
-		button.is_blocked = false
-		button._enable()
-
-		if (state == EntryState.EQUIPPED or state == EntryState.ONE_TIME_PURCHASE_BOUGHT):
-			button._deselect()
-			button._disable()
-			button.is_blocked = true
-
 		if (state == EntryState.AVAILABLE_TO_BUY):
-			cost_label.text = "[center]" + str(upgrade_item.cost) + "[img]res://assets/texture/ui/hud/texture_ui_cash_symbol_small.png[/img][/center]"
+			cost_label.text = "[left]" + str(upgrade_item.cost) + "[img]res://assets/texture/ui/hud/texture_ui_cash_symbol_small.png[/img][/left]"
 
-		if (state > EntryState.AVAILABLE_TO_BUY):
-			cost_label.text = "[center]" + tr("SHOP_BOUGHT") + "[/center]"
+		if (state == EntryState.ONE_TIME_PURCHASE_BOUGHT):
+			cost_label.text = "[left]" + tr("SHOP_BOUGHT") + "[/left]"
+
+		if (state == EntryState.UNEQUIPPED):
+			cost_label.text = "[left]" + tr("SHOP_BUTTON_EQUIP") + "[/left]"
+
+		if (state == EntryState.EQUIPPED):
+			cost_label.text = "[left]" + tr("SHOP_BUTTON_EQUIPPED") + "[/left]"
 
 enum EntryState
 {
@@ -49,36 +47,39 @@ signal on_state_update
 func _ready():
 	_update_state()
 
-	highlight.modulate = Color(0.0, 0.0, 0.0)
+	if (highlight):
+		highlight.modulate = Color(0.0, 0.0, 0.0)
 
 	button.on_selected.connect(_on_button_selected)
 	button.on_deselected.connect(_on_button_deselected)
 
 func _process(delta):
-	match (state):
-		EntryState.AVAILABLE_TO_BUY:
-			button.text_key = "SHOP_BUTTON_BUY"
-		EntryState.UNEQUIPPED:
-			button.text_key = "SHOP_BUTTON_EQUIP"
-		EntryState.EQUIPPED:
-			button.text_key = "SHOP_BUTTON_EQUIPPED"
-		EntryState.ONE_TIME_PURCHASE_BOUGHT:
-			button.text_key = "SHOP_BOUGHT"
+	#match (state):
+		#EntryState.AVAILABLE_TO_BUY:
+			#cost_label.text_key = "SHOP_BUTTON_BUY"
+		#EntryState.UNEQUIPPED:
+			#cost_label.text_key = "SHOP_BUTTON_EQUIP"
+		#EntryState.EQUIPPED:
+			#cost_label.text_key = "SHOP_BUTTON_EQUIPPED"
+		#EntryState.ONE_TIME_PURCHASE_BOUGHT:
+			#cost_label.text_key = "SHOP_BOUGHT"
 
-	sunbeams.rotation_degrees += animation_speed * delta
+	if (sunbeams):
+		sunbeams.rotation_degrees += animation_speed * delta
 
 	if (!upgrade_item):
 		return
 
-	if (upgrade_item.cost <= 0):
-		cost_label.hide()
+	#if (upgrade_item.cost <= 0):
+		#cost_label.hide()
 
 	if (upgrade_item.cost > CashManager.cash):
 		cost_label.modulate = not_enough_dosh_cost_color
 	else:
 		cost_label.modulate = regular_cost_color
 
-	name_label.text = tr(upgrade_item.name_key)
+	if (name_label):
+		name_label.text = tr(upgrade_item.name_key)
 
 func _attempt_buy():
 	if (state == EntryState.UNEQUIPPED):
@@ -107,9 +108,15 @@ func _update_state():
 		state = EntryState.EQUIPPED
 
 func _on_button_selected(selected_button : UIButton):
+	if (!highlight):
+		return
+
 	var tween = get_tree().create_tween()
 	tween.tween_property(highlight, "modulate", Color(0.8, 0.8, 0.8), 0.2)
 
 func _on_button_deselected(deselected_button : UIButton):
+	if (!highlight):
+		return
+
 	var tween = get_tree().create_tween()
 	tween.tween_property(highlight, "modulate", Color(0.0, 0.0, 0.0), 0.2)
