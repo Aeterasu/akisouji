@@ -39,6 +39,7 @@ ControlGlyphHandler="*res://scenes/singleton/control_glyph_handler/control_glyph
 LocaleManager="*res://scenes/singleton/locale_manager.gd"
 CashManager="*res://scenes/cash/cash_manager.tscn"
 UpgradeManager="*res://scenes/upgrade/upgrade_manager.tscn"
+MusicManager="*res://scenes/music/music_manager.tscn"
 
 [debug]
 

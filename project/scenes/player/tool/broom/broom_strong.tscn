@@ -671,6 +671,7 @@ cast_shadow = 0
 surface_material_override/0 = SubResource("StandardMaterial3D_m2dbm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="mesh_broom"]
+cast_shadow = 0
 mesh = SubResource("ArrayMesh_vuooc")
 surface_material_override/0 = ExtResource("4_31t54")
 

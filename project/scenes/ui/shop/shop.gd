@@ -92,7 +92,7 @@ func _on_back_button_pressed():
 
 	get_tree().paused = false
 
-	if (Game.game_instance):
+	if (is_instance_valid(Game.game_instance)):
 		Game.game_instance.is_pausable = true
 
 func _on_category_select() -> void:

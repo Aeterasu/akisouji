@@ -133,6 +133,7 @@ LEFT TO DO:
     
     GAMEPLAY:
         = cash based broom that uses cash to clean ?
+        - setup heightmaps for fountain level
         - GARBAGE BAGS FILLING UP BY SWEEPING? YOU CAN THEN THROW IT, MOVE IT, ETC
         - level-specific leaf cleaning leeway
         - disabled leaf populator completely breaks the game, pls add safety checks
@@ -168,6 +169,8 @@ LEFT TO DO:
         - retexture leaves. new texture, maybe random texture
     
     AUDIO:
+        - separate songs into game and menus
+        - write a simple piece for title menu (chords and some piano)
         - add crunchy footstep
         - add bell chiming to church level
         - add music. music iterates through a repeating playlist.
