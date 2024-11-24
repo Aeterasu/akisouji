@@ -121,6 +121,8 @@ LEFT TO DO:
     + add toggle to clean option
     + add music. music iterates through a repeating playlist.
     + now that we got rid of extensive canvas layers, please fix popping on game loading
+    + add a huge mulitplier for sprinjumping with wellington boots
+    + retexture leaves. new texture, maybe random texture
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
@@ -134,7 +136,6 @@ LEFT TO DO:
     CURRENT WORKING NAME - LEAF SWEEPER
     
     GAMEPLAY:
-		- add a huge mulitplier for sprinjumping with wellington boots
         = cash based broom that uses cash to clean ?
 		- on buying tools, make sure they are always in the same order
         - setup leafmap and heightmap for fountain level (remove leaves from under the fountain lolololo!)
@@ -169,8 +170,6 @@ LEFT TO DO:
     
     VISUAL:
         GOLDEN AUTUMN MUCH?
-
-        - retexture leaves. new texture, maybe random texture
     
     AUDIO:
         - separate songs into game and menus

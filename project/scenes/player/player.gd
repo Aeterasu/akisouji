@@ -302,7 +302,7 @@ func _on_landing():
 	var multiplier = 1.0
 
 	if (wish_sprint):
-		multiplier = 1.2
+		multiplier = move_speed_upgrade_handler.current_upgrade.sprint_jump_range_multiplier
 
 	if (is_instance_valid(leaf_cleaning_handler)):
 		Game.game_instance.last_cleaning_position = global_position + Vector3.DOWN * 0.5
