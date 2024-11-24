@@ -365,6 +365,10 @@ func _on_broom_upgrade_update(broom : BroomUpgrade):
 	inventory.swap_cooldown_timer.stop()
 	inventory._update_tool()
 
+	if (node is Broom):
+		var b = node as Broom
+		b.on_sweep_fx.connect(_on_sweep_fx)
+
 func _on_footstep():
 	if (!wish_sprint):
 		return
@@ -373,3 +377,16 @@ func _on_footstep():
 	add_child(particles)
 	particles.set_deferred("emitting", true)
 	particles.finished.connect(particles.queue_free)
+
+func _on_sweep_fx(broom : Broom) -> void:
+	if (_get_cleaning_raycast()):
+		var cleaning_point = cleaning_raycast.get_collision_point()
+		var particles = running_particles.duplicate()
+		add_child(particles)
+		(particles as Node3D).global_position = cleaning_point
+		particles.set_deferred("emitting", true)
+		particles.finished.connect(particles.queue_free)
+
+		broom.sweep_audio.play()
+
+		#Game.game_instance.audio_handler._on_leaves_cleaned(1)

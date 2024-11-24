@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=4 uid="uid://dqwotfhhj3x3"]
+[gd_scene load_steps=70 format=4 uid="uid://dqwotfhhj3x3"]
 
 [ext_resource type="PackedScene" uid="uid://j6k6m7mkrpjv" path="res://assets/mesh/tool/mesh_broom_strong.blend" id="1_05fyr"]
 [ext_resource type="Script" path="res://scenes/player/tool/broom/broom.gd" id="1_jcyrh"]
@@ -6,6 +6,11 @@
 [ext_resource type="Texture2D" uid="uid://dsbs3rnamnmhr" path="res://assets/texture/tool/texture_broom_strong_albm.png" id="2_hqhcf"]
 [ext_resource type="Texture2D" uid="uid://c3r3q4eduupr8" path="res://assets/texture/environment/texture_brushstrokes_nrmp.png" id="4_1wwa0"]
 [ext_resource type="Material" uid="uid://cwaw45fhmm7wj" path="res://resource/material/material_broom_outline.tres" id="4_31t54"]
+[ext_resource type="Script" path="res://addons/bmod/scripts/nodes/sound_effect_player.gd" id="7_pt5qp"]
+[ext_resource type="AudioStream" uid="uid://qak31cidwi6n" path="res://assets/audio/sfx_broom_2.ogg" id="8_snfq3"]
+[ext_resource type="Script" path="res://addons/bmod/scripts/resources/sound_effect_meta.gd" id="9_hk7vu"]
+[ext_resource type="Script" path="res://addons/bmod/scripts/resources/single_sound_effect.gd" id="10_356y0"]
+[ext_resource type="AudioStream" uid="uid://bji5ivsuqvy30" path="res://assets/audio/sfx_brooming_1.ogg" id="11_qow7k"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m2dbm"]
 diffuse_mode = 1
@@ -72,7 +77,6 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_v16ob"]
 resource_name = "brooming_loop"
-length = 1.25
 loop_mode = 1
 step = 0.1
 tracks/0/type = "value"
@@ -82,10 +86,10 @@ tracks/0/path = NodePath("mesh_broom:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(-2, 1),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(-2, -2),
 "update": 0,
-"values": [Vector3(0.069, -0.1, -0.25), Vector3(0.069, -0.1, -0.3)]
+"values": [Vector3(0.069, -0.1, -0.25), Vector3(0.069, -0.12, -0.33)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -94,10 +98,38 @@ tracks/1/path = NodePath("mesh_broom:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.9),
-"transitions": PackedFloat32Array(-2, 1, 1),
+"times": PackedFloat32Array(0.1, 0.3, 0.9),
+"transitions": PackedFloat32Array(-2, -2, -2),
 "update": 0,
-"values": [Vector3(0, 1.5708, 1.5708), Vector3(0, 1.5708, 1.48353), Vector3(0, 1.5708, 1.74533)]
+"values": [Vector3(0, 1.5708, 1.5708), Vector3(0, 1.5708, 1.43117), Vector3(0, 1.5708, 1.74533)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_make_sweep_fx"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SweepAudio2")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_m3125"]
@@ -597,9 +629,38 @@ states/unequip_loop/position = Vector2(-95, 145)
 transitions = ["sprint_init", "sprint_loop", SubResource("AnimationNodeStateMachineTransition_cno54"), "sprint_loop", "sprint_end", SubResource("AnimationNodeStateMachineTransition_v7sc1"), "idle", "sprint_init", SubResource("AnimationNodeStateMachineTransition_dbhv6"), "sprint_end", "idle", SubResource("AnimationNodeStateMachineTransition_6gud3"), "sprint_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_awu8l"), "sprint_init", "sprint_end", SubResource("AnimationNodeStateMachineTransition_gp30y"), "brooming_loop_start", "brooming_loop", SubResource("AnimationNodeStateMachineTransition_yxkvm"), "brooming_loop", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_46hi8"), "idle", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_103xs"), "brooming_loop_end", "idle", SubResource("AnimationNodeStateMachineTransition_gsw54"), "brooming_loop_start", "brooming_loop_end", SubResource("AnimationNodeStateMachineTransition_ybass"), "brooming_loop_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_jklkv"), "sprint_end", "brooming_loop_start", SubResource("AnimationNodeStateMachineTransition_fe82q"), "brooming_loop_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_qtnhm"), "brooming_loop", "sprint_init", SubResource("AnimationNodeStateMachineTransition_yht86"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_desuo"), "idle", "unequip", SubResource("AnimationNodeStateMachineTransition_xvp0s"), "brooming_loop_start", "unequip", SubResource("AnimationNodeStateMachineTransition_jjggo"), "brooming_loop", "unequip", SubResource("AnimationNodeStateMachineTransition_n1m58"), "brooming_loop_end", "unequip", SubResource("AnimationNodeStateMachineTransition_q4fnt"), "sprint_init", "unequip", SubResource("AnimationNodeStateMachineTransition_lyf6y"), "sprint_loop", "unequip", SubResource("AnimationNodeStateMachineTransition_gw85u"), "sprint_end", "unequip", SubResource("AnimationNodeStateMachineTransition_r0jex"), "equip", "unequip", SubResource("AnimationNodeStateMachineTransition_ywx3w"), "unequip_loop", "equip", SubResource("AnimationNodeStateMachineTransition_8ek0q"), "unequip", "unequip_loop", SubResource("AnimationNodeStateMachineTransition_c7rwe"), "unequip", "equip", SubResource("AnimationNodeStateMachineTransition_t6hlb"), "equip", "sprint_init", SubResource("AnimationNodeStateMachineTransition_ocdqc"), "Start", "unequip_loop", SubResource("AnimationNodeStateMachineTransition_4hw2t")]
 graph_offset = Vector2(-365, -108)
 
-[node name="BroomStrong" type="Node3D" node_paths=PackedStringArray("animation_tree")]
+[sub_resource type="Resource" id="Resource_pkxab"]
+script = ExtResource("9_hk7vu")
+volume_db = -12.0
+volume_variation_db = 0.0
+pitch_scale = 1.0
+pitch_variation = 0.2
+
+[sub_resource type="Resource" id="Resource_xm87r"]
+script = ExtResource("10_356y0")
+audio_stream = ExtResource("8_snfq3")
+meta = SubResource("Resource_pkxab")
+play = false
+play_on_change = false
+
+[sub_resource type="Resource" id="Resource_dsa36"]
+script = ExtResource("9_hk7vu")
+volume_db = -18.0
+volume_variation_db = 0.0
+pitch_scale = 0.8
+pitch_variation = 0.1
+
+[sub_resource type="Resource" id="Resource_vjlb5"]
+script = ExtResource("10_356y0")
+audio_stream = ExtResource("11_qow7k")
+meta = SubResource("Resource_dsa36")
+play = false
+play_on_change = false
+
+[node name="BroomStrong" type="Node3D" node_paths=PackedStringArray("sweep_audio", "animation_tree")]
 script = ExtResource("1_jcyrh")
 data = ExtResource("2_ds0fv")
+sweep_audio = NodePath("SweepAudio1")
 use_type = 1
 animation_tree = NodePath("AnimationTree")
 walk_cycle_direction = Vector3(0.025, 0.01, 0)
@@ -625,3 +686,15 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_jxgcu")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="SweepAudio1" type="Node" parent="."]
+script = ExtResource("7_pt5qp")
+sound_effect = SubResource("Resource_xm87r")
+bus = &"SFX"
+max_polyphony = 4
+
+[node name="SweepAudio2" type="Node" parent="."]
+script = ExtResource("7_pt5qp")
+sound_effect = SubResource("Resource_vjlb5")
+bus = &"SFX"
+max_polyphony = 4

@@ -11,6 +11,7 @@ class_name Game extends Node3D
 
 @export var progress_tracker : LeafProgressTracker = null
 @export var particle_handler : LeafParticleHandler = null
+@export var audio_handler : LeafAudioHandler = null
 
 @export var ranking_manager : RankingManager = null
 
@@ -69,6 +70,7 @@ func _ready():
 		player.leaf_cleaning_handler = cleaning_handler
 
 		cleaning_handler.on_leaves_cleaned.connect(particle_handler._on_leaves_cleaned)
+		cleaning_handler.on_leaves_cleaned.connect(audio_handler._on_leaves_cleaned)
 
 	progress_tracker.on_completion.connect(_on_level_completion)
 

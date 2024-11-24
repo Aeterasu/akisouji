@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://71lkn3s6kfqi"]
+[gd_scene load_steps=36 format=3 uid="uid://71lkn3s6kfqi"]
 
 [ext_resource type="Script" path="res://scenes/ui/shop/shop.gd" id="1_87sb4"]
 [ext_resource type="Texture2D" uid="uid://o065i8cobccy" path="res://assets/texture/ui/shop/texture_shop_background.png" id="2_4mw2w"]
@@ -21,7 +21,6 @@
 [ext_resource type="Script" path="res://scenes/ui/shop/shop_texture_scaling.gd" id="9_xtrb1"]
 [ext_resource type="Resource" uid="uid://c7sbyg4ns7pi2" path="res://scenes/upgrade/broom/broom.tres" id="11_sc14h"]
 [ext_resource type="Resource" uid="uid://bi0qxjmyixrxb" path="res://scenes/upgrade/broom/strong_broom.tres" id="12_ti5lq"]
-[ext_resource type="Resource" uid="uid://dcwhwjrx83toj" path="res://scenes/upgrade/broom/feather_duster.tres" id="13_oaano"]
 [ext_resource type="Resource" uid="uid://b8f14366gudkv" path="res://scenes/upgrade/broom/golden_broom.tres" id="13_tpjwr"]
 [ext_resource type="Resource" uid="uid://c7wg1nuu7ajn5" path="res://scenes/upgrade/broom/leaf_blower.tres" id="14_fdjp1"]
 [ext_resource type="PackedScene" uid="uid://cyaqutbexr62l" path="res://scenes/ui/gamepad_tooltip/gamepad_tooltip.tscn" id="17_xyhan"]
@@ -80,7 +79,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_87sb4")
-back_button = NodePath("Categories/ShopCategoryBoots/Back")
+back_button = NodePath("CategorySelect/Back")
 tools_button = NodePath("CategorySelect/Tools")
 boots_button = NodePath("CategorySelect/Boots")
 category_select_screen = NodePath("CategorySelect")
@@ -315,10 +314,10 @@ shop = NodePath("../..")
 [node name="Broom1" parent="Categories/ShopCategoryTools" instance=ExtResource("5_qmceb")]
 layout_mode = 1
 offset_left = -34.0
-offset_top = -441.76
+offset_top = -440.76
 offset_right = 479.0
-offset_bottom = -413.262
-scale = Vector2(0.6, 0.6)
+offset_bottom = -412.262
+scale = Vector2(0.8, 0.8)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
 
@@ -350,10 +349,10 @@ not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
 [node name="Broom2" parent="Categories/ShopCategoryTools" instance=ExtResource("5_qmceb")]
 layout_mode = 1
 offset_left = -34.0
-offset_top = -361.76
+offset_top = -345.76
 offset_right = 479.0
-offset_bottom = -333.262
-scale = Vector2(0.6, 0.6)
+offset_bottom = -317.262
+scale = Vector2(0.8, 0.8)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
 
@@ -388,54 +387,13 @@ name_label = NodePath("../AnimationOrigin/Label")
 cost_label = NodePath("../AnimationOrigin/CostLabel")
 not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
 
-[node name="Broom3" parent="Categories/ShopCategoryTools" instance=ExtResource("5_qmceb")]
-layout_mode = 1
-offset_left = -34.0
-offset_top = -281.76
-offset_right = 479.0
-offset_bottom = -253.262
-scale = Vector2(0.6, 0.6)
-target_selected_position = Vector2(48, 0)
-target_deselected_position = Vector2(-32, 0)
-
-[node name="SelectedGradient" parent="Categories/ShopCategoryTools/Broom3/AnimationOrigin/PaperMask" index="1"]
-material = SubResource("CanvasItemMaterial_1omue")
-
-[node name="DeselectedGradient" parent="Categories/ShopCategoryTools/Broom3/AnimationOrigin/PaperMask" index="2"]
-material = SubResource("CanvasItemMaterial_rup1a")
-
-[node name="CostLabel" type="RichTextLabel" parent="Categories/ShopCategoryTools/Broom3/AnimationOrigin" index="3"]
-layout_mode = 0
-offset_left = 535.0
-offset_top = 22.0
-offset_right = 1411.0
-offset_bottom = 85.0
-mouse_filter = 2
-theme_override_constants/outline_size = 32
-theme_override_fonts/normal_font = ExtResource("2_yb51t")
-theme_override_font_sizes/normal_font_size = 48
-bbcode_enabled = true
-text = "[left]0[img]res://assets/texture/ui/hud/texture_ui_cash_symbol_small.png[/img][/left]"
-scroll_active = false
-autowrap_mode = 0
-
-[node name="Broom2Entry" type="Node" parent="Categories/ShopCategoryTools/Broom3" node_paths=PackedStringArray("button", "name_label", "cost_label")]
-process_priority = 1
-process_physics_priority = 1
-script = ExtResource("8_8rigd")
-button = NodePath("..")
-upgrade_item = ExtResource("13_oaano")
-name_label = NodePath("../AnimationOrigin/Label")
-cost_label = NodePath("../AnimationOrigin/CostLabel")
-not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
-
 [node name="Broom4" parent="Categories/ShopCategoryTools" instance=ExtResource("5_qmceb")]
 layout_mode = 1
 offset_left = -34.0
-offset_top = -201.76
+offset_top = -248.76
 offset_right = 479.0
-offset_bottom = -173.262
-scale = Vector2(0.6, 0.6)
+offset_bottom = -220.262
+scale = Vector2(0.8, 0.8)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
 
@@ -473,10 +431,10 @@ not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
 [node name="Broom5" parent="Categories/ShopCategoryTools" instance=ExtResource("5_qmceb")]
 layout_mode = 1
 offset_left = -34.0
-offset_top = -121.76
+offset_top = -152.76
 offset_right = 479.0
-offset_bottom = -93.262
-scale = Vector2(0.6, 0.6)
+offset_bottom = -124.262
+scale = Vector2(0.8, 0.8)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
 
@@ -734,7 +692,6 @@ script = ExtResource("7_fg3im")
 
 [editable path="Categories/ShopCategoryTools/Broom1"]
 [editable path="Categories/ShopCategoryTools/Broom2"]
-[editable path="Categories/ShopCategoryTools/Broom3"]
 [editable path="Categories/ShopCategoryTools/Broom4"]
 [editable path="Categories/ShopCategoryTools/Broom5"]
 [editable path="Categories/ShopCategoryBoots/Boots1"]

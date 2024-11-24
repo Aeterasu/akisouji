@@ -108,6 +108,10 @@ LEFT TO DO:
     + feather duster - auto cleaning
     + fix shop from stage select not working
     + redo brooming animations
+    + green background with tools etc
+    + rework shop ui, to make it vertical (dmc5 ui style)
+    + add crunchy cleaning sounds
+    + add general sound.
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
@@ -162,9 +166,8 @@ LEFT TO DO:
         - retexture leaves. new texture, maybe random texture
     
     AUDIO:
+        - add crunchy footstep
         - add bell chiming to church level
-        - add crunchy cleaning sounds
-        - add general sound.
         - some sort of music playlist manager and music ui
         - add music. incase, fallback to classical music
     
@@ -186,11 +189,11 @@ LEFT TO DO:
             =leaf highlighting
             =larger garbage bags
 
-        - rework shop ui, to make it vertical (dmc5 ui style)
+        - finalize shop icon texture for boots
+        - add shop fluff texts
         - add sounds for purchasing/purchase failure
         - add like a 'bought' and 'equipped\ rectangle stamp
         - fix horizontal scaling
-        - green background with tools etc
         
     STAGE SELECT:
         - add stage textures (reshoot them with a freecam)

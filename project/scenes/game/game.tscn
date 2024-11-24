@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=36 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_highlight_handler.gd" id="2_74dy0"]
@@ -12,10 +12,12 @@
 [ext_resource type="Script" path="res://scenes/fps_counter.gd" id="6_5ay1t"]
 [ext_resource type="PackedScene" uid="uid://biun1d1hu4wq4" path="res://scenes/fx/leaf_particles.tscn" id="6_hdiec"]
 [ext_resource type="PackedScene" uid="uid://d1lybxei6fkyd" path="res://scenes/fx/rain_particles.tscn" id="7_wptpp"]
+[ext_resource type="Script" path="res://scenes/leaf/leaf_audio_handler.gd" id="8_8m8q3"]
 [ext_resource type="Script" path="res://scenes/leaf/ranking_manager.gd" id="8_18ngi"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="8_d3y8h"]
 [ext_resource type="Script" path="res://scenes/ui/ui_completion/ui_completion.gd" id="8_h2dad"]
 [ext_resource type="Texture2D" uid="uid://csspljpa4mobh" path="res://assets/texture/fx/texture_speed.png" id="10_0auwo"]
+[ext_resource type="AudioStream" uid="uid://dl8wj1e1mcaaj" path="res://assets/audio/sfx_leaves_rustle_1.ogg" id="10_l2gfw"]
 [ext_resource type="Script" path="res://scenes/utils/delete_in_web.gd" id="11_0g5lc"]
 [ext_resource type="Script" path="res://scenes/fx/speed_effect.gd" id="11_e6qqw"]
 [ext_resource type="Shader" path="res://shader/sun_flare.gdshader" id="12_ceytl"]
@@ -61,7 +63,7 @@ shader = ExtResource("27_ktbah")
 shader_parameter/radius = 2
 shader_parameter/offset = Vector3(0, 0, 0)
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "ui_completion", "pause_menu", "shop_origin", "pausable", "progress_tracker", "particle_handler", "ranking_manager", "rain_effect")]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "ui_completion", "pause_menu", "shop_origin", "pausable", "progress_tracker", "particle_handler", "audio_handler", "ranking_manager", "rain_effect")]
 process_mode = 3
 script = ExtResource("1_bcfl2")
 player = NodePath("Pausable/Player")
@@ -72,6 +74,7 @@ shop_origin = NodePath("ShopLayer")
 pausable = NodePath("Pausable")
 progress_tracker = NodePath("LeafProgressTracker")
 particle_handler = NodePath("LeafParticleHandler")
+audio_handler = NodePath("LeafAudioHandler")
 ranking_manager = NodePath("RankingManager")
 rain_effect = NodePath("Pausable/Player/RainParticles")
 
@@ -88,6 +91,18 @@ leeway = 1000
 [node name="LeafParticleHandler" type="Node" parent="."]
 script = ExtResource("5_5xq02")
 particles_scene = ExtResource("6_hdiec")
+
+[node name="LeafAudioHandler" type="Node" parent="." node_paths=PackedStringArray("audio_player")]
+script = ExtResource("8_8m8q3")
+audio_player = NodePath("AudioStreamPlayer3D")
+cooldown = 0.5
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="LeafAudioHandler"]
+stream = ExtResource("10_l2gfw")
+volume_db = -10.0
+max_db = -10.0
+bus = &"SFX"
+attenuation_filter_cutoff_hz = 20500.0
 
 [node name="RankingManager" type="Node" parent="."]
 process_mode = 1

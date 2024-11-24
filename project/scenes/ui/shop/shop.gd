@@ -44,7 +44,7 @@ func _on_category_select_button_pressed(button : UIButton):
 			current_category = category_boots._select()
 
 func _on_back_button_pressed():
-	if (current_category):
+	if (is_in_category):
 		current_category.button_selection_handler._disable_all_buttons()
 		category_select_button_handler._enable_all_buttons()
 		current_category._deselect()

@@ -37,6 +37,7 @@ func _process(delta):
 func _on_shop_entry_button_pressed(button : UIButton):
 	if (button == back_button):
 		shop._on_back_button_pressed()
+		return
 
 	var entry : ShopEntry = null
 
