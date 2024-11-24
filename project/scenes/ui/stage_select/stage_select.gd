@@ -128,7 +128,10 @@ func _on_button_pressed(button : UIButton):
 		back_button:
 			_on_back_button_pressed()
 		proceed_button:
-			SceneTransitionHandler.instance._load_shop_scene()
+			var tween = create_tween()
+			tween.set_parallel(true)
+			tween.tween_property(blackout, "modulate", Color(0.0, 0.0, 0.0, 1.0), 0.2)
+			tween.tween_callback(SceneTransitionHandler.instance._load_shop_scene).set_delay(0.2)
 
 func _on_back_button_pressed():
 	var tween = create_tween()

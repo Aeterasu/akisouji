@@ -30,6 +30,16 @@ func _ready():
 
 	category_select_button_handler._enable_all_buttons()
 
+	modulate = Color(0.0, 0.0, 0.0, 0.0)
+
+	var tween = get_tree().create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.3)
+
+func _process(delta):
+	if (Input.is_action_just_pressed("pause") or Input.is_action_just_pressed("menu_cancel")):
+		_on_back_button_pressed()
+
 func _on_category_select_button_pressed(button : UIButton):
 	match (button):
 		back_button:
@@ -54,11 +64,18 @@ func _on_back_button_pressed():
 		return
 
 	category_select_button_handler._disable_all_buttons()
-	on_shop_closed.emit()
 
-	if (transition_type == TransitionType.FROM_TITLE):
-		SceneTransitionHandler.instance._load_stage_select_scene()
+	var tween = get_tree().create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween.set_parallel(true)
+	tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.2)
+	tween.tween_callback(on_shop_closed.emit).set_delay(0.2)
+	tween.tween_callback(_back_func).set_delay(0.2)
 
 func _on_category_select() -> void:
 	category_select_screen.hide()
 	category_select_button_handler._disable_all_buttons()
+
+func _back_func() -> void:
+	if (transition_type == TransitionType.FROM_TITLE):
+		SceneTransitionHandler.instance._load_stage_select_scene()	

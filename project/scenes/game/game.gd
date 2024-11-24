@@ -95,7 +95,7 @@ func _process(delta):
 		return
 
 	if (is_in_shop and Input.is_action_just_pressed("open_inventory")):
-		_close_shop()
+		shop._on_back_button_pressed()
 		return
 
 #func _on_loading_ended():
@@ -151,7 +151,7 @@ func _close_shop():
 	if (!shop):
 		return
 
-	shop.queue_free()
+	#shop.queue_free()
 
 	pause_menu.allow_input = true
 

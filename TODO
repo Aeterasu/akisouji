@@ -168,8 +168,7 @@ LEFT TO DO:
     AUDIO:
         - add crunchy footstep
         - add bell chiming to church level
-        - some sort of music playlist manager and music ui
-        - add music. incase, fallback to classical music
+        - add music. music iterates through a repeating playlist.
     
     SETTINGS:
         - make keybinds and controller binds
