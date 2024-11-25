@@ -137,6 +137,7 @@ LEFT TO DO:
     
     GAMEPLAY:
         = cash based broom that uses cash to clean ?
+        - cash consumption on golden broom usage
 		- on buying tools, make sure they are always in the same order
         - setup leafmap and heightmap for fountain level (remove leaves from under the fountain lolololo!)
         - GARBAGE BAGS FILLING UP BY SWEEPING? YOU CAN THEN THROW IT, MOVE IT, ETC
@@ -170,6 +171,8 @@ LEFT TO DO:
     
     VISUAL:
         GOLDEN AUTUMN MUCH?
+		
+		-flowing leaves in the fountain
     
     AUDIO:
         - separate songs into game and menus
@@ -177,6 +180,7 @@ LEFT TO DO:
         - add bell chiming to church level
     
     SETTINGS:
+        - add vsync setting
         - add leaf highlight colors (upon pressing, opens up a submenu layer) (??????????)
         - make keybinds and controller binds
         - make it so that button tooltips change depending on bindings

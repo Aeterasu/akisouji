@@ -2,25 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdvg0disuaebg"
-path.s3tc="res://.godot/imported/texture_cloud_specular.png-b2e643af8d0e6ad7df797f3f46e26254.s3tc.ctex"
+uid="uid://p5d60sa6t2ci"
+path="res://.godot/imported/texture_ui_camera_alpha.png-377fcbbb8ef46c408d2ae64f9611815d.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/fx/texture_cloud_specular.png"
-dest_files=["res://.godot/imported/texture_cloud_specular.png-b2e643af8d0e6ad7df797f3f46e26254.s3tc.ctex"]
+source_file="res://assets/texture/ui/hud/texture_ui_camera_alpha.png"
+dest_files=["res://.godot/imported/texture_ui_camera_alpha.png-377fcbbb8ef46c408d2ae64f9611815d.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=2
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
