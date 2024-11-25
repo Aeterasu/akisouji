@@ -123,6 +123,7 @@ LEFT TO DO:
     + now that we got rid of extensive canvas layers, please fix popping on game loading
     + add a huge mulitplier for sprinjumping with wellington boots
     + retexture leaves. new texture, maybe random texture
+    + cash consumption on golden broom usage
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
@@ -137,7 +138,6 @@ LEFT TO DO:
     
     GAMEPLAY:
         = cash based broom that uses cash to clean ?
-        - cash consumption on golden broom usage
 		- on buying tools, make sure they are always in the same order
         - setup leafmap and heightmap for fountain level (remove leaves from under the fountain lolololo!)
         - GARBAGE BAGS FILLING UP BY SWEEPING? YOU CAN THEN THROW IT, MOVE IT, ETC

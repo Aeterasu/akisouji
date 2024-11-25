@@ -405,3 +405,7 @@ func _on_sweep_fx(broom : Broom) -> void:
 		broom.sweep_audio.play()
 
 		#Game.game_instance.audio_handler._on_leaves_cleaned(1)
+
+func _handle_golden_broom_consumption(amount : int):
+	if (inventory.current_tool is Broom and (inventory.current_tool as Broom).data.use_golden_broom_multiplier):
+		CashManager._substract_cash(float(amount) * CashManager.golden_broom_consumption)

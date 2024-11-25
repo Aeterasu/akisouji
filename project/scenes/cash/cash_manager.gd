@@ -7,6 +7,7 @@ extends Node
 
 @export var golden_broom_max_cap : float = 10000.0
 @export var golden_broom_base_multiplier : float = 12.0
+@export var golden_broom_consumption : float = 0.045
 
 var cash_buffer : float = 0
 var timer : Timer = Timer.new()
