@@ -5,4 +5,4 @@
 [resource]
 material = ExtResource("1_ury37")
 custom_aabb = AABB(0, 0, 0, 0.5, 0.5, 0.5)
-size = Vector2(0.3, 0.3)
+size = Vector2(0.35, 0.35)

@@ -2,7 +2,7 @@ class_name Game extends Node3D
 
 @export var player : Player
 @export var level : Level
-@export var ui_completion : Control
+@export var ui_completion : UICompletion
 @export var pause_menu : PauseMenu
 @export var shop_menu_scene : PackedScene = null
 @export var shop_origin : Node = null
@@ -112,7 +112,7 @@ func _on_level_completion():
 
 	CashManager._clean_buffer()
 
-	ui_completion.show()
+	ui_completion._show_initial_popup()
 
 func toggle_pause():
 	if (!is_pausable):

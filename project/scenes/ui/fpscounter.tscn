@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh34t2y2h07bu"]
+
+[ext_resource type="Script" path="res://scenes/fps_counter.gd" id="1_qct4w"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="FPSCounter" type="Label" parent="."]
+modulate = Color(0.458405, 0.458405, 0.458405, 1)
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 675.0
+offset_bottom = 31.0
+theme_override_constants/outline_size = 5
+text = "FPS: 00"
+script = ExtResource("1_qct4w")

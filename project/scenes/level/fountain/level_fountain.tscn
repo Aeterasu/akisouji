@@ -97,7 +97,7 @@ leaf_populator = NodePath("LeafPopulator")
 player_spawn_position = NodePath("Marker3D")
 
 [node name="LeafPopulator" parent="." index="0" instance=ExtResource("3_atajh")]
-leavesPerPixel = 64
+leavesPerPixel = 45
 leafmap = ExtResource("4_h57q1")
 heightmap = ExtResource("5_tp8bi")
 
