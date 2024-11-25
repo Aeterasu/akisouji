@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://clbhy8rora05f"]
+[gd_scene load_steps=43 format=3 uid="uid://clbhy8rora05f"]
 
 [ext_resource type="PackedScene" uid="uid://8xryiyqywwk0" path="res://assets/mesh/level_design/mesh_fountain.blend" id="1_xjuuk"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="2_mcqjm"]
@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://dfu5idnqbw6ta" path="res://scenes/prop/horizon/horizon_city.tscn" id="28_h3nsr"]
 [ext_resource type="PackedScene" uid="uid://d1pkstxa0k3lv" path="res://scenes/prop/horizon/horizon_trees.tscn" id="29_f8018"]
 [ext_resource type="Texture2D" uid="uid://c4iot32vjvrln" path="res://assets/texture/environment/texture_horizon_1.png" id="30_qsph0"]
+[ext_resource type="Texture2D" uid="uid://qku2yjr0rm1" path="res://assets/texture/smile.png" id="31_4cjmo"]
 [ext_resource type="Texture2D" uid="uid://d3qw3bxoa8tck" path="res://assets/texture/environment/texture_horizon_close_1.png" id="31_r0mfe"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rks30"]
@@ -80,6 +81,15 @@ texture_filter = 0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nd7yu"]
 size = Vector3(1, 16.5, 60)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d1dcb"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("31_4cjmo")
+
+[sub_resource type="QuadMesh" id="QuadMesh_1jeby"]
+material = SubResource("StandardMaterial3D_d1dcb")
+size = Vector2(2, 2)
 
 [node name="LevelFountain" node_paths=PackedStringArray("leaf_populator", "player_spawn_position") instance=ExtResource("1_xjuuk")]
 script = ExtResource("2_mcqjm")
@@ -842,7 +852,7 @@ transform = Transform3D(-0.69715, 0, -0.4025, 0, 0.805, 0, 0.4025, 0, -0.69715, 
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 71.375, 0, 13.5417)
 
 [node name="DistantTree17" parent="Foliage" index="30" instance=ExtResource("18_mqfjg")]
-transform = Transform3D(-5.70434e-08, 0, -1.305, 0, 1.305, 0, 1.305, 0, -5.70434e-08, 88.375, 0, 23.5417)
+transform = Transform3D(-5.70434e-08, 0, -1.305, 0, 1.305, 0, 1.305, 0, -5.70434e-08, 112.375, 0, 39.5417)
 
 [node name="DistantTree18" parent="Foliage" index="31" instance=ExtResource("19_jttsp")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 74.375, 0, 1.54167)
@@ -1287,6 +1297,13 @@ shape = SubResource("BoxShape3D_nd7yu")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="3"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 30, 6.75, -0.5)
 shape = SubResource("BoxShape3D_nd7yu")
+
+[node name="DistantTree49" parent="." index="27" instance=ExtResource("19_jttsp")]
+transform = Transform3D(-1, 0, 2.23517e-07, 0, 1, 0, -2.23517e-07, 0, -1, 135.612, 0, 16.1671)
+
+[node name="dolbaebik" type="MeshInstance3D" parent="." index="28"]
+transform = Transform3D(-0.257599, -0.133669, -0.956962, -0.267598, 0.961516, -0.062272, 0.928458, 0.24004, -0.283455, 138.383, 3.5, 23.3746)
+mesh = SubResource("QuadMesh_1jeby")
 
 [editable path="CityHorizon"]
 [editable path="Horizon"]
