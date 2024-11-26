@@ -3,6 +3,8 @@ class_name PlayerToolInventory extends Node
 @export var tool_origin : Node = null
 @export var swap_cooldown : float = 0.1
 
+@export var player : Player = null
+
 var current_tool : PlayerTool = null
 var current_tool_id : int = 0
 var tools : Array[PlayerTool] = []
@@ -23,11 +25,11 @@ func _physics_process(delta) -> void:
 	if (current_tool and !current_tool.allow_switch):
 		return
 
-	if (Input.is_action_just_pressed("player_action_next_tool")):
+	if (!player._block_input and Input.is_action_just_pressed("player_action_next_tool")):
 		_next_tool()
 		return
 
-	if (Input.is_action_just_pressed("player_action_previous_tool")):
+	if (!player._block_input and Input.is_action_just_pressed("player_action_previous_tool")):
 		_previous_tool()
 		return
 

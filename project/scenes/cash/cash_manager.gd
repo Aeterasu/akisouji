@@ -12,7 +12,11 @@ extends Node
 var cash_buffer : float = 0
 var timer : Timer = Timer.new()
 
+var animation_delay : float = 0.0
+
 var is_buffer_paused : bool = false
+
+var finalize : bool = false
 
 signal on_cash_rewarded
 signal on_cash_substracted
@@ -26,7 +30,7 @@ func _ready() -> void:
 func _physics_process(delta) -> void:
 	timer.paused = is_buffer_paused
 
-func _grant_cash(amount : float = base_cash_reward) -> void:
+func _grant_cash(amount : float = base_cash_reward, new_anim_duration : float = 0.6) -> void:
 	if (amount <= 0.0):
 		return
 
@@ -34,6 +38,8 @@ func _grant_cash(amount : float = base_cash_reward) -> void:
 	
 	if (timer.is_stopped()):
 		timer.start()
+
+	animation_delay = new_anim_duration
 
 func _substract_cash(amount : float):
 	if (amount <= 0):
@@ -53,7 +59,12 @@ func _clean_buffer():
 	is_buffer_paused = false
 
 func _reward_leaf_cleaning(leaf_amount : float):
-	_grant_cash(leaf_amount * base_cash_reward)
+	var anim = 0.6
+
+	if (finalize):
+		anim = animation_delay
+
+	_grant_cash(leaf_amount * base_cash_reward, anim)
 
 func format_currency(number : float) -> String:
 	

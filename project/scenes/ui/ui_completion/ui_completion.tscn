@@ -1,8 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://bvt1eg2hnqbmb"]
+[gd_scene load_steps=23 format=3 uid="uid://bvt1eg2hnqbmb"]
 
 [ext_resource type="Script" path="res://scenes/ui/ui_completion/ui_completion.gd" id="1_1oi0r"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="2_s0aa6"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="3_8a5oe"]
+[ext_resource type="Texture2D" uid="uid://djdu2cnw1tlsc" path="res://assets/texture/ui/texture_ui_completion_paper_mask.png" id="3_ail1c"]
+[ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="4_ps45g"]
+[ext_resource type="Shader" path="res://shader/scale_uv.gdshader" id="4_v0u8r"]
+[ext_resource type="Texture2D" uid="uid://ba2a4pgqlijo8" path="res://assets/texture/girl/girl2_1.png" id="5_isd08"]
+[ext_resource type="PackedScene" uid="uid://teb4p57yamr3" path="res://scenes/ui/paper_button_h_flipped.tscn" id="7_clfxf"]
+[ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="8_wqtt0"]
+[ext_resource type="PackedScene" uid="uid://bh1grw871br6n" path="res://scenes/ui/grade/grade.tscn" id="9_ql2oi"]
 
 [sub_resource type="Gradient" id="Gradient_yxyfn"]
 offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
@@ -12,7 +19,42 @@ metadata/_snap_enabled = true
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ecfsd"]
 gradient = SubResource("Gradient_yxyfn")
 
-[node name="UICompletion" type="Control" node_paths=PackedStringArray("initial_popup")]
+[sub_resource type="Gradient" id="Gradient_okjsw"]
+offsets = PackedFloat32Array(0, 0.053913, 0.274783, 0.554783, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0.866667, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ohqkq"]
+gradient = SubResource("Gradient_okjsw")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ywv0j"]
+shader = ExtResource("4_v0u8r")
+shader_parameter/coeff = 2.86
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yhgpe"]
+blend_mode = 3
+
+[sub_resource type="Gradient" id="Gradient_luaff"]
+offsets = PackedFloat32Array(0, 0.693913)
+colors = PackedColorArray(1, 0.399375, 0, 1, 0.269186, 0.0686268, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6juqm"]
+gradient = SubResource("Gradient_luaff")
+
+[sub_resource type="Gradient" id="Gradient_um1o7"]
+offsets = PackedFloat32Array(0, 0.130435, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yv2rf"]
+gradient = SubResource("Gradient_um1o7")
+
+[sub_resource type="Gradient" id="Gradient_x1dtd"]
+offsets = PackedFloat32Array(0, 0.511304, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kbhp8"]
+gradient = SubResource("Gradient_x1dtd")
+
+[node name="UICompletion" type="Control" node_paths=PackedStringArray("initial_popup", "menu", "menu_button_handler", "grade_emblem", "time_label", "blackout")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,8 +64,14 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_1oi0r")
 initial_popup = NodePath("InitialPopup")
+menu = NodePath("Menu")
+menu_button_handler = NodePath("Menu/Control/ButtonSelectionHandler")
+grade_emblem = NodePath("Menu/Grade")
+time_label = NodePath("Menu/TimeElapsedLabel")
+blackout = NodePath("Menu/Blackout")
 
 [node name="InitialPopup" type="TextureRect" parent="."]
+visible = false
 self_modulate = Color(1, 1, 1, 0.443137)
 layout_mode = 1
 anchors_preset = 14
@@ -49,6 +97,242 @@ theme_override_font_sizes/font_size = 26
 text = "COMPLETION_POPUP_TEXT"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Menu" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.654902)
+
+[node name="TextureRect3" type="TextureRect" parent="Menu"]
+modulate = Color(1, 1, 1, 0.615686)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.161
+anchor_right = 1.007
+anchor_bottom = 1.014
+offset_left = 385.0
+offset_top = 0.0799866
+offset_right = 0.039917
+offset_bottom = -0.0800171
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_ohqkq")
+
+[node name="PaperMask" type="TextureRect" parent="Menu"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.156
+anchor_right = 0.93
+anchor_bottom = 0.247
+offset_top = -0.32
+offset_right = -0.400146
+offset_bottom = 0.159988
+grow_horizontal = 2
+texture = ExtResource("3_ail1c")
+
+[node name="TextureRect" type="TextureRect" parent="Menu/PaperMask"]
+material = SubResource("ShaderMaterial_ywv0j")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.019
+anchor_bottom = 1.091
+offset_right = -0.314026
+offset_bottom = -0.00600433
+texture = ExtResource("4_ps45g")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="Menu/PaperMask"]
+material = SubResource("CanvasItemMaterial_yhgpe")
+layout_mode = 1
+anchors_preset = -1
+anchor_top = -0.318
+anchor_right = 1.046
+anchor_bottom = 1.379
+offset_top = -0.0119991
+offset_right = -0.0759888
+offset_bottom = -0.0140076
+texture = SubResource("GradientTexture2D_6juqm")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="Menu/PaperMask"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.187
+anchor_right = 0.787
+anchor_bottom = 1.0
+offset_left = 0.278
+offset_right = -0.322021
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_s0aa6")
+theme_override_font_sizes/font_size = 44
+text = "COMPLETION_LABEL_1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PaperMask2" type="TextureRect" parent="Menu"]
+modulate = Color(0, 0, 0, 0.498039)
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.174
+anchor_right = 0.93
+anchor_bottom = 0.265
+offset_top = -0.280006
+offset_right = -0.400146
+offset_bottom = 0.199982
+texture = ExtResource("3_ail1c")
+
+[node name="Girl" type="TextureRect" parent="Menu"]
+z_index = 4096
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.241
+anchor_top = 0.003
+anchor_right = 0.781
+anchor_bottom = 1.497
+offset_left = -0.519989
+offset_top = -0.16
+offset_right = 0.319946
+offset_bottom = 0.159912
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("5_isd08")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TimeElapsedLabel" type="Label" parent="Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.294
+anchor_right = 1.0
+anchor_bottom = 0.362
+offset_left = 539.0
+offset_top = 0.320007
+offset_right = -192.0
+offset_bottom = 0.359985
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_s0aa6")
+theme_override_font_sizes/font_size = 36
+text = "Time spent: 00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Menu/TimeElapsedLabel"]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.089
+anchor_right = 1.022
+anchor_bottom = 1.041
+offset_left = 0.139
+offset_right = -0.078064
+offset_bottom = -0.00899887
+texture = SubResource("GradientTexture2D_yv2rf")
+expand_mode = 1
+
+[node name="GradeLabel" type="Label" parent="Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.443
+anchor_right = 1.0
+anchor_bottom = 0.511
+offset_left = 624.0
+offset_top = 0.039978
+offset_right = -231.0
+offset_bottom = 0.0799866
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("2_s0aa6")
+theme_override_font_sizes/font_size = 36
+text = "GRADE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Menu/GradeLabel"]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.282
+anchor_right = 0.751
+anchor_bottom = 1.0
+offset_left = 0.150002
+offset_right = -0.175018
+offset_bottom = 2.0
+texture = SubResource("GradientTexture2D_kbhp8")
+expand_mode = 1
+
+[node name="Control" type="Control" parent="Menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PaperButtonHFlipped" parent="Menu/Control" instance=ExtResource("7_clfxf")]
+layout_mode = 1
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -379.0
+offset_top = -137.0
+offset_right = 134.0
+offset_bottom = -9.0
+target_selected_position = Vector2(-120, 0)
+target_deselected_position = Vector2(-36, 0)
+text_key = "COMPLETION_BUTTON_TO_STAGE_SELECT"
+
+[node name="ButtonSelectionHandler" type="Node" parent="Menu/Control" node_paths=PackedStringArray("buttons_origin")]
+script = ExtResource("8_wqtt0")
+buttons_origin = NodePath("..")
+
+[node name="Grade" parent="Menu" instance=ExtResource("9_ql2oi")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.602
+anchor_top = 0.519
+anchor_right = 0.602
+anchor_bottom = 0.519
+offset_left = -0.560059
+offset_top = 0.319946
+offset_right = -0.560059
+offset_bottom = 0.319946
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Blackout" type="ColorRect" parent="Menu"]
+modulate = Color(1, 1, 1, 0)
+z_index = 4096
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="UIUpscaler" type="Node" parent="."]
 script = ExtResource("3_8a5oe")

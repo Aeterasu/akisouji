@@ -218,10 +218,11 @@ script = ExtResource("24_6ndkg")
 player = NodePath("..")
 trouble_threshold = 5.0
 
-[node name="PlayerToolInventory" type="Node" parent="." node_paths=PackedStringArray("tool_origin")]
+[node name="PlayerToolInventory" type="Node" parent="." node_paths=PackedStringArray("tool_origin", "player")]
 script = ExtResource("7_id8rm")
 tool_origin = NodePath("../CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway")
 swap_cooldown = 0.15
+player = NodePath("..")
 
 [node name="CameraOrigin" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.685927, 0)
@@ -241,7 +242,7 @@ direction = Vector3(0, -0.15, 0)
 
 [node name="Camera3D" type="Camera3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding"]
 process_mode = 3
-fov = 37.8493
+near = 0.001
 script = ExtResource("4_feodf")
 photo_mode_min_fov = 15.0
 photo_mode_max_fov = 120.0

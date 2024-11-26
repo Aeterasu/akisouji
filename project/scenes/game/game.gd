@@ -26,6 +26,8 @@ var last_cleaning_radius : float = 1.0
 
 var current_level_scene : PackedScene = null
 
+var await_completion_confirm : bool = false
+
 static var game_instance : Game = null
 
 var is_pausable : bool = true
@@ -34,6 +36,8 @@ var shop : Shop = null
 var is_in_shop : bool = false
 
 func _ready():
+	CashManager.finalize = false
+
 	game_instance = self
 
 	ui_layer.show()
@@ -86,6 +90,18 @@ func _ready():
 	#get_viewport().debug_draw = Viewport.DEBUG_DRAW_WIREFRAME
 
 func _process(delta):
+	if (await_completion_confirm and Input.is_action_just_pressed("open_inventory") and !ui_completion.confirmed):
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		player._block_input = true
+		ui_completion._set_grade(ranking_manager.get_current_rank())
+		ui_completion._set_time(ranking_manager.get_formatted_time_elapsed())
+		ui_completion._show_menu()
+		UI.instance.hide()
+		return
+
+	if (await_completion_confirm):
+		return
+
 	if (!pause_menu.is_displayed and !is_in_shop and Input.is_action_just_pressed("open_inventory")):
 		is_in_shop = true
 		_open_shop()
@@ -105,14 +121,16 @@ func _process(delta):
 func _on_level_completion():
 	#TODO: Hide broom on level completion, but allow movement.
 
-	CashManager._pause_buffer()
-	CashManager._grant_cash(level.cash_reward)
+	#CashManager._pause_buffer()
+	CashManager.finalize = true
+	CashManager._grant_cash(level.cash_reward + ranking_manager._get_current_cash_bonus(), 8.0)
 
 	await get_tree().create_timer(1).timeout
 
-	CashManager._clean_buffer()
+	#CashManager._clean_buffer()
 
 	ui_completion._show_initial_popup()
+	await_completion_confirm = true
 
 func toggle_pause():
 	if (!is_pausable):

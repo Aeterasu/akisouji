@@ -624,10 +624,9 @@ states/unequip_loop/position = Vector2(-95, 138)
 transitions = ["sprint_init", "sprint_loop", SubResource("AnimationNodeStateMachineTransition_cno54"), "sprint_loop", "sprint_end", SubResource("AnimationNodeStateMachineTransition_v7sc1"), "idle", "sprint_init", SubResource("AnimationNodeStateMachineTransition_dbhv6"), "sprint_end", "idle", SubResource("AnimationNodeStateMachineTransition_6gud3"), "sprint_end", "sprint_init", SubResource("AnimationNodeStateMachineTransition_awu8l"), "sprint_init", "sprint_end", SubResource("AnimationNodeStateMachineTransition_gp30y"), "equip", "idle", SubResource("AnimationNodeStateMachineTransition_desuo"), "idle", "unequip", SubResource("AnimationNodeStateMachineTransition_xvp0s"), "sprint_init", "unequip", SubResource("AnimationNodeStateMachineTransition_lyf6y"), "sprint_loop", "unequip", SubResource("AnimationNodeStateMachineTransition_gw85u"), "sprint_end", "unequip", SubResource("AnimationNodeStateMachineTransition_r0jex"), "equip", "unequip", SubResource("AnimationNodeStateMachineTransition_ywx3w"), "unequip_loop", "equip", SubResource("AnimationNodeStateMachineTransition_8ek0q"), "unequip", "unequip_loop", SubResource("AnimationNodeStateMachineTransition_c7rwe"), "unequip", "equip", SubResource("AnimationNodeStateMachineTransition_t6hlb"), "equip", "sprint_init", SubResource("AnimationNodeStateMachineTransition_djup7"), "equip", "photo_mode_enter", SubResource("AnimationNodeStateMachineTransition_3s4k8"), "idle", "photo_mode_enter", SubResource("AnimationNodeStateMachineTransition_c1rmi"), "sprint_init", "photo_mode_enter", SubResource("AnimationNodeStateMachineTransition_3ixd7"), "sprint_loop", "photo_mode_enter", SubResource("AnimationNodeStateMachineTransition_x437a"), "sprint_end", "photo_mode_enter", SubResource("AnimationNodeStateMachineTransition_o7fmi"), "unequip", "photo_mode_enter", SubResource("AnimationNodeStateMachineTransition_deken"), "photo_mode_enter", "photo_mode_exit", SubResource("AnimationNodeStateMachineTransition_4li0p"), "photo_mode_exit", "idle", SubResource("AnimationNodeStateMachineTransition_4pjk8")]
 graph_offset = Vector2(-202, -336)
 
-[node name="Camera" type="Node3D" node_paths=PackedStringArray("mesh", "camera", "audio_shutter", "animation_tree")]
+[node name="Camera" type="Node3D" node_paths=PackedStringArray("mesh", "audio_shutter", "animation_tree")]
 script = ExtResource("1_dgrk7")
 mesh = NodePath("mesh_camera")
-camera = NodePath("")
 audio_shutter = NodePath("CameraShutter")
 animation_tree = NodePath("AnimationTree")
 walk_cycle_direction = Vector3(0.01, 0.005, 0)
@@ -649,7 +648,7 @@ surface_material_override/0 = ExtResource("7_8p54i")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
-near = 0.009
+near = 0.001
 far = 1024.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

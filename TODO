@@ -126,6 +126,8 @@ LEFT TO DO:
     + cash consumption on golden broom usage
     + add interpolations to ui (gallery. gallery down panel missing interpolations on mode switch)
     + fix progression being 100 while the level is not yet cleaned. maybe allow it to be decimal?
+    + add completion UI, with our chara holding thumbs up! add a grade based on time. D, C, B, A, A+, S.
+    + Each grade has a cash bonus. info shown - grade, time, level name. grade is an enum where -1 means no grade, otherwise grade.
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
@@ -146,7 +148,6 @@ LEFT TO DO:
         - level-specific leaf cleaning leeway
         - disabled leaf populator completely breaks the game, pls add safety checks
         - add 'new upgrade notification'. a little '!' should appear on the category
-        - add completion UI, with our chara holding thumbs up! add a grade based on time. D, C, B, A, A+, S. Each grade has a cash bonus. info shown - grade, time, level name. grade is an enum where -1 means no grade, otherwise grade.
 		- save best grades and show them in stage select
         - during completion, you can move and look at the results of your work. the completion is initially just a text popup (Press blah to finish)
         - maybe implement optimization via cluster of multimeshes

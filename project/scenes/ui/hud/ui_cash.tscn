@@ -10,7 +10,7 @@ colors = PackedColorArray(0, 0, 0, 0.578, 0, 0, 0, 0)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_25j5i"]
 gradient = SubResource("Gradient_ghd1x")
 
-[node name="UICash" type="Control" node_paths=PackedStringArray("cash_label", "cash_reward_label")]
+[node name="UICash" type="Control" node_paths=PackedStringArray("cash_label", "cash_reward_label", "target_cash_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +21,7 @@ mouse_filter = 2
 script = ExtResource("1_hp6ya")
 cash_label = NodePath("Label")
 cash_reward_label = NodePath("AppendedCashLabel")
+target_cash_label = NodePath("TargetCashLabel")
 
 [node name="TextureRect3" type="TextureRect" parent="."]
 layout_mode = 1
@@ -67,7 +68,44 @@ text = "0"
 horizontal_alignment = 2
 vertical_alignment = 1
 
+[node name="TargetCashLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -103.0
+offset_top = 60.0
+offset_right = -84.0
+offset_bottom = 133.0
+grow_horizontal = 0
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_adlfv")
+theme_override_font_sizes/font_size = 28
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
 [node name="AppendedCashLabel" type="Label" parent="."]
+visible = false
+modulate = Color(0.34392, 0.48, 0.0912, 1)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -103.0
+offset_top = 60.0
+offset_right = -84.0
+offset_bottom = 133.0
+grow_horizontal = 0
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("2_adlfv")
+theme_override_font_sizes/font_size = 28
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="TargetAppendedCashLabel" type="Label" parent="."]
 visible = false
 modulate = Color(0.34392, 0.48, 0.0912, 1)
 layout_mode = 1
