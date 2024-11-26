@@ -125,6 +125,7 @@ LEFT TO DO:
     + retexture leaves. new texture, maybe random texture
     + cash consumption on golden broom usage
     + add interpolations to ui (gallery. gallery down panel missing interpolations on mode switch)
+    + fix progression being 100 while the level is not yet cleaned. maybe allow it to be decimal?
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
@@ -139,7 +140,6 @@ LEFT TO DO:
     
     GAMEPLAY:
         = cash based broom that uses cash to clean ?
-        - fix progression being 100 while the level is not yet cleaned. maybe allow it to be decimal?
 		- on buying tools, make sure they are always in the same order
         - setup leafmap and heightmap for fountain level (remove leaves from under the fountain lolololo!)
         - GARBAGE BAGS FILLING UP BY SWEEPING? YOU CAN THEN THROW IT, MOVE IT, ETC
@@ -173,7 +173,7 @@ LEFT TO DO:
     VISUAL:
         GOLDEN AUTUMN MUCH?
 		
-		-flowing leaves in the fountain
+		- flowing leaves in the fountain
     
     AUDIO:
         - separate songs into game and menus

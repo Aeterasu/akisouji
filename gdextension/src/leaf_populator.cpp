@@ -209,7 +209,7 @@ void LeafPopulator::PopulateLeaves()
     uint64_t endTime = Time::get_singleton()->get_ticks_msec();
     uint64_t duration = endTime - startTime;
 
-    //UtilityFunctions::prints("Leaves generated in:", duration, "ms");
+    UtilityFunctions::prints("Leaves generated in:", duration, "ms");
 
     //for (int j = 0; j < 15; j++)
     //{

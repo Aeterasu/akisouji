@@ -227,7 +227,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_4r2f4")
 transform = Transform3D(0.929699, 0, 0.368319, 0, 1, 0, -0.368319, 0, 0.929699, 3.5, 0.101914, 40.9871)
 
 [node name="Tree20" parent="Foliage" index="1" instance=ExtResource("19_lbj05")]
-transform = Transform3D(1.07068, 0, -0.311225, 0, 1.115, 0, 0.311225, 0, 1.07068, 6.44722, 0.101914, 82.9768)
+transform = Transform3D(1.07068, 0, -0.311225, 0, 1.115, 0, 0.311225, 0, 1.07068, 6.44722, -0.164347, 82.9768)
 
 [node name="Tree8" parent="Foliage" index="2" instance=ExtResource("19_lbj05")]
 transform = Transform3D(-0.584844, 0, -0.811146, 0, 1, 0, 0.811146, 0, -0.584844, 21, 0.101914, 10.0598)
@@ -239,10 +239,10 @@ transform = Transform3D(-0.584844, 0, -0.811146, 0, 1, 0, 0.811146, 0, -0.584844
 transform = Transform3D(-0.293402, 0, -1.13778, 0, 1.175, 0, 1.13778, 0, -0.293402, 19.5235, 0.101914, 20.8169)
 
 [node name="Tree10" parent="Foliage" index="5" instance=ExtResource("19_lbj05")]
-transform = Transform3D(0.339378, 0, -0.94065, 0, 1, 0, 0.94065, 0, 0.339378, 23.8259, 0.101914, 59.7348)
+transform = Transform3D(0.339378, 0, -0.94065, 0, 1, 0, 0.94065, 0, 0.339378, 23.8259, -0.0373714, 59.7348)
 
 [node name="Tree11" parent="Foliage" index="6" instance=ExtResource("19_lbj05")]
-transform = Transform3D(-0.530348, 0, -0.84778, 0, 1, 0, 0.84778, 0, -0.530348, 21.2967, 0.101914, 83.4422)
+transform = Transform3D(-0.530348, 0, -0.84778, 0, 1, 0, 0.84778, 0, -0.530348, 21.2967, -0.101121, 83.4422)
 
 [node name="Tree5" parent="Foliage" index="7" instance=ExtResource("20_um7vi")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 11)
@@ -251,13 +251,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 11)
 transform = Transform3D(0.824719, 0, 0.565543, 0, 1, 0, -0.565543, 0, 0.824719, 23.6859, 0, 45)
 
 [node name="Tree13" parent="Foliage" index="9" instance=ExtResource("20_um7vi")]
-transform = Transform3D(0.952921, 0, -0.303218, 0, 1, 0, 0.303218, 0, 0.952921, 21.7082, 0, 71.9938)
+transform = Transform3D(0.952921, 0, -0.303218, 0, 1, 0, 0.303218, 0, 0.952921, 21.7082, -0.132858, 71.9938)
 
 [node name="Tree14" parent="Foliage" index="10" instance=ExtResource("20_um7vi")]
-transform = Transform3D(0.95436, 0, 0.298658, 0, 1, 0, -0.298658, 0, 0.95436, 22.6638, 0, 96.8367)
+transform = Transform3D(0.95436, 0, 0.298658, 0, 1, 0, -0.298658, 0, 0.95436, 22.6638, -0.0752227, 96.8367)
 
 [node name="Tree15" parent="Foliage" index="11" instance=ExtResource("20_um7vi")]
-transform = Transform3D(0.730086, 0, 0.228473, 0, 0.765, 0, -0.228473, 0, 0.730086, 3.13638, 0, 97.916)
+transform = Transform3D(0.730086, 0, 0.228473, 0, 0.765, 0, -0.228473, 0, 0.730086, 3.13638, -0.0603983, 97.916)
 
 [node name="Tree16" parent="Foliage" index="12" instance=ExtResource("20_um7vi")]
 transform = Transform3D(1.02376, 0, -0.359359, 0, 1.085, 0, 0.359359, 0, 1.02376, 6.12491, 0, 71.7227)
@@ -1439,63 +1439,83 @@ transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 8.8238
 
 [node name="PropStreetLight" parent="Props" index="286" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 15.5)
+metadata/_edit_lock_ = true
 
 [node name="PropStreetLight2" parent="Props" index="287" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 15.5)
+metadata/_edit_lock_ = true
 
 [node name="PropStreetLight3" parent="Props" index="288" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 24.5)
+metadata/_edit_lock_ = true
 
 [node name="PropStreetLight4" parent="Props" index="289" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 24.5)
+metadata/_edit_lock_ = true
 
 [node name="PropStreetLight5" parent="Props" index="290" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 31.5)
+metadata/_edit_lock_ = true
 
 [node name="PropStreetLight6" parent="Props" index="291" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 31.5)
+metadata/_edit_lock_ = true
 
 [node name="PropStreetLight7" parent="Props" index="292" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 40.5)
+metadata/_edit_lock_ = true
 
 [node name="PropStreetLight8" parent="Props" index="293" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 40.5)
+metadata/_edit_lock_ = true
 
 [node name="PropStreetLight9" parent="Props" index="294" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 47.5)
+metadata/_edit_lock_ = true
 
 [node name="PropStreetLight10" parent="Props" index="295" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 47.5)
+metadata/_edit_lock_ = true
 
 [node name="PropStreetLight11" parent="Props" index="296" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 56.5)
+metadata/_edit_lock_ = true
 
 [node name="PropStreetLight12" parent="Props" index="297" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 56.5)
+metadata/_edit_lock_ = true
 
 [node name="PropStreetLight13" parent="Props" index="298" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 63.5)
+metadata/_edit_lock_ = true
 
 [node name="PropStreetLight14" parent="Props" index="299" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 63.5)
+metadata/_edit_lock_ = true
 
 [node name="PropStreetLight15" parent="Props" index="300" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 72.5)
+metadata/_edit_lock_ = true
 
 [node name="PropStreetLight16" parent="Props" index="301" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 72.5)
+metadata/_edit_lock_ = true
 
 [node name="PropStreetLight17" parent="Props" index="302" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 79.5)
+metadata/_edit_lock_ = true
 
 [node name="PropStreetLight18" parent="Props" index="303" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 79.5)
+metadata/_edit_lock_ = true
 
 [node name="PropStreetLight19" parent="Props" index="304" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.77438, 0, 88.5)
+metadata/_edit_lock_ = true
 
 [node name="PropStreetLight20" parent="Props" index="305" instance=ExtResource("23_4u7pc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.2577, 0, 88.5)
+metadata/_edit_lock_ = true
 
 [node name="PropBush1" parent="Props" index="306" instance=ExtResource("27_51lti")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.46244, 0, 11.8464)

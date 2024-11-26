@@ -85,7 +85,7 @@ lerp_weight = 8.0
 
 [node name="LeafProgressTracker" type="Node" parent="."]
 script = ExtResource("4_deeln")
-leeway = 1000
+leeway = 250
 
 [node name="LeafParticleHandler" type="Node" parent="."]
 script = ExtResource("5_5xq02")
