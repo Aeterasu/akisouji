@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://dj6rqqv2dxh8t"]
+[gd_scene load_steps=27 format=3 uid="uid://dj6rqqv2dxh8t"]
 
 [ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_menu.gd" id="1_c7jnn"]
 [ext_resource type="Shader" path="res://shader/multiply.gdshader" id="1_rhq0f"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_function/settings_function_fullscreen.gd" id="13_blidx"]
 [ext_resource type="PackedScene" uid="uid://5x2w4kgdeaiw" path="res://scenes/ui/settings_menu/button_toggle_label.tscn" id="14_g18rr"]
 [ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_function/settings_function_language.gd" id="15_07bbl"]
+[ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_function/settings_function_vsync.gd" id="15_7e77k"]
 [ext_resource type="Texture2D" uid="uid://chx18mmni45o7" path="res://assets/texture/ui/settings_screen/texture_settings_slider_grabber.png" id="15_k2reo"]
 [ext_resource type="Texture2D" uid="uid://yw63jqnkuqxt" path="res://assets/texture/ui/settings_screen/texture_settings_slider.png" id="16_4lnsw"]
 [ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_function/settings_fov_slider.gd" id="17_abun6"]
@@ -229,6 +230,30 @@ offset_left = 613.0
 offset_right = 660.0
 text = ""
 
+[node name="VSyncButton" parent="GeneralSettings" node_paths=PackedStringArray("setting_label", "setting_toggle") instance=ExtResource("10_heo66")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 0.0
+offset_top = 74.0
+offset_right = 816.0
+offset_bottom = 182.0
+setting_label = NodePath("ToggleLabel")
+setting_toggle = NodePath("VSyncFunction")
+text_key = "SETTINGS_PROPERTY_VSYNC"
+
+[node name="VSyncFunction" type="Node" parent="GeneralSettings/VSyncButton"]
+script = ExtResource("15_7e77k")
+
+[node name="ToggleLabel" parent="GeneralSettings/VSyncButton" instance=ExtResource("14_g18rr")]
+layout_mode = 0
+offset_left = 613.0
+offset_right = 660.0
+text = ""
+
 [node name="FovButton" parent="GeneralSettings" node_paths=PackedStringArray("setting_label", "setting_slider") instance=ExtResource("10_heo66")]
 layout_mode = 2
 anchors_preset = 0
@@ -237,9 +262,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 0.0
-offset_top = 87.0
+offset_top = 152.0
 offset_right = 816.0
-offset_bottom = 195.0
+offset_bottom = 260.0
 mouse_filter = 1
 setting_label = NodePath("MouseArea/HSlider/ValueLabel")
 setting_slider = NodePath("MouseArea/HSlider")
@@ -279,9 +304,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 0.0
-offset_top = 170.0
+offset_top = 229.0
 offset_right = 816.0
-offset_bottom = 278.0
+offset_bottom = 337.0
 setting_label = NodePath("ToggleLabel")
 setting_toggle = NodePath("CameraWobbleFunction")
 text_key = "SETTINGS_PROPERTY_CAMERA_WOBBLE"
@@ -302,10 +327,10 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-offset_left = 0.0
-offset_top = 256.0
-offset_right = 816.0
-offset_bottom = 364.0
+offset_left = 1.0
+offset_top = 306.0
+offset_right = 817.0
+offset_bottom = 414.0
 setting_label = NodePath("ToggleLabel")
 setting_toggle = NodePath("ToggleToCleanFunction")
 text_key = "SETTINGS_PROPERTY_TOGGLE_TO_CLEAN"

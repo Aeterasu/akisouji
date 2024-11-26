@@ -30,7 +30,13 @@ func _on_cash_rewarded(amount : float):
 func _tween_new_cash_label(label : Label):
 	label.show()
 
-	var target_position : Vector2 = label.position + Vector2.LEFT * label.size.x + Vector2.LEFT * 8
+	var a : int = 0
+
+	for chara in target_cash_label.text:
+		if (!(chara == "," or chara == ".")):
+			a += 1
+
+	var target_position : Vector2 = label.position + Vector2.LEFT * (label.size.x + 8.0) + Vector2.LEFT * ((len(target_cash_label.text) - 1) * 8.0)
 
 	var tween : Tween = get_tree().create_tween()
 	tween.set_parallel(true)

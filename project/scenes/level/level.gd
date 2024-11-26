@@ -44,10 +44,10 @@
         if (value < 0.0):
             value = 0.0
 
-        if (value > c_rank_target_time):
+        if (value < a_rank_target_time):
+            value = a_rank_target_time
+        elif (value > c_rank_target_time):
             value = c_rank_target_time
-        elif (value < d_rank_target_time):
-            value = d_rank_target_time
 
         b_rank_target_time = value
 

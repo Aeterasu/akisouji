@@ -36,6 +36,15 @@ extends Node
 @export_range(1.0, 256.0) var gamepad_sensitvity : float = 64.0
 @export_range(0.0, 1.0) var gamepad_deadzone : float = 0.3
 
+@export var vsync_enabled : bool = true:
+    set(value):
+        vsync_enabled = value
+
+        if value:
+            DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_ENABLED)
+        else:
+            DisplayServer.window_set_vsync_mode(DisplayServer.VSYNC_DISABLED)
+
 @export_range(10.0, 150.0) var fov : float = 75.0:
     set(value):
         if (value < min_fov):

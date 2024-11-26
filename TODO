@@ -141,12 +141,11 @@ LEFT TO DO:
     CURRENT WORKING NAME - LEAF SWEEPER
     
     GAMEPLAY:
-        = cash based broom that uses cash to clean ?
 		- on buying tools, make sure they are always in the same order
         - setup leafmap and heightmap for fountain level (remove leaves from under the fountain lolololo!)
         - GARBAGE BAGS FILLING UP BY SWEEPING? YOU CAN THEN THROW IT, MOVE IT, ETC
         - level-specific leaf cleaning leeway
-        - disabled leaf populator completely breaks the game, pls add safety checks
+         disabled leaf populator completely breaks the game, pls add safety checks
         - add 'new upgrade notification'. a little '!' should appear on the category
 		- save best grades and show them in stage select
         - during completion, you can move and look at the results of your work. the completion is initially just a text popup (Press blah to finish)
