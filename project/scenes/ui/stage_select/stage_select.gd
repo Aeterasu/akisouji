@@ -80,6 +80,10 @@ func _ready():
 	var tween = create_tween()
 	tween.tween_property(blackout, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.3)
 
+	await get_tree().create_timer(0.05).timeout
+
+	_reset_scroll()
+
 func _on_button_mouse_selection(button : UIButton):
 	navigation_button_selection_handler._select_button(-999)
 
@@ -105,11 +109,9 @@ func _process(delta):
 				navigation_button_selection_handler.current_selection_id = 1
 				navigation_button_selection_handler._update_button()
 
-	target_scroll = -(stages_container.container.get_child(current_selected_stage_id) as Control).position.x + ((size.x - 1280.0) * 0.5)
-	current_scroll = lerp(current_scroll, target_scroll, scroll_lerp_weight * delta)
-	stages_container.position.x = current_scroll
-
 	var s = stages_container.container.get_child(current_selected_stage_id) as StageButton
+
+	_update_scroll(delta)
 
 	stage_name_label.text = tr(s.name_key)
 	stage_description_label.text = tr(s.description_key)
@@ -122,6 +124,16 @@ func _process(delta):
 
 	if (Input.is_action_just_pressed("pause") or Input.is_action_just_pressed("menu_cancel")):
 		_on_back_button_pressed()
+
+func _update_scroll(delta) -> void:
+	target_scroll = -(stages_container.container.get_child(current_selected_stage_id) as Control).position.x + ((size.x - 1280.0) * 0.5)
+	current_scroll = lerp(current_scroll, target_scroll, scroll_lerp_weight * delta)
+	stages_container.position.x = current_scroll
+
+func _reset_scroll() -> void:
+	target_scroll = -(stages_container.container.get_child(current_selected_stage_id) as Control).position.x + ((size.x - 1280.0) * 0.5)
+	current_scroll = target_scroll
+	stages_container.position.x = current_scroll
 
 func _on_button_pressed(button : UIButton):
 	match (button):

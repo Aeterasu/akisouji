@@ -28,7 +28,14 @@ func _use_primary() -> void:
 
 	if (wish_photo_mode):
 		CameraUI.instance.hide()
+		
+		var ui_completion_flag : bool = Game.game_instance.ui_completion.visible
+		Game.game_instance.ui_completion.hide()
 		await get_tree().create_timer(0.1).timeout
+
+		if (ui_completion_flag):
+			Game.game_instance.ui_completion.show()
+
 		Main.instance._take_screenshot()
 		var tween = create_tween()
 		tween.tween_property(BlackoutLayer.instance.white_rect, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.05)

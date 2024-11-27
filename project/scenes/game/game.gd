@@ -127,6 +127,8 @@ func _on_level_completion():
 	CashManager.finalize = true
 	CashManager._grant_cash(level.cash_reward + ranking_manager._get_current_cash_bonus(), 8.0)
 
+	ranking_manager.completed = true
+
 	await get_tree().create_timer(1).timeout
 
 	ui_completion._show_initial_popup()

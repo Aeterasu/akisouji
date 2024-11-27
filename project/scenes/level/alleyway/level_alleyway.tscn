@@ -91,7 +91,7 @@ c_rank_target_time = 640.0
 d_rank_target_time = 720.0
 
 [node name="LeafPopulator" parent="." index="0" instance=ExtResource("3_c46s6")]
-leavesPerPixel = 1
+leavesPerPixel = 2
 pixelFraction = 6.84
 leafmap = ExtResource("4_5sgs6")
 heightmap = ExtResource("5_sqrfh")
@@ -1679,7 +1679,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_7qt0g")
 [node name="Ambience" type="AudioStreamPlayer" parent="." index="37"]
 process_mode = 3
 stream = ExtResource("33_63x8d")
-volume_db = -12.0
+volume_db = -8.0
 autoplay = true
 bus = &"Ambience"
 parameters/looping = true
