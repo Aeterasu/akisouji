@@ -72,7 +72,7 @@ func _ready():
 		cleaning_handler.on_leaves_cleaned.connect(particle_handler._on_leaves_cleaned)
 		cleaning_handler.on_leaves_cleaned.connect(audio_handler._on_leaves_cleaned)
 
-		cleaning_handler.on_leaves_cleaned.connect(player._handle_golden_broom_consumption)
+		cleaning_handler.on_leaves_cleaned.connect(player._on_leaves_cleaned)
 
 		#cleaning_handler.on_leaves_cleaned.connect(func(amount: int): CashManager._substract_cash(float(amount) * CashManager.golden_broom_consumption))
 

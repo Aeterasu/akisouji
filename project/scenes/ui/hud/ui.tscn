@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dcaypqvm8j1yq"]
+[gd_scene load_steps=20 format=3 uid="uid://dcaypqvm8j1yq"]
 
 [ext_resource type="Script" path="res://scenes/ui/hud/ui.gd" id="1_7l35m"]
 [ext_resource type="Texture2D" uid="uid://dbqwuevdtqyjl" path="res://assets/texture/ui/hud/texture_ui_crosshair_dot.png" id="2_sidhx"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://c15cmbbg5nyn0" path="res://scenes/ui/hud/ui_cash.tscn" id="8_8dhui"]
 [ext_resource type="Script" path="res://scenes/ui/hud/ui_timer.gd" id="9_l3wss"]
 [ext_resource type="Texture2D" uid="uid://jhg85c77h287" path="res://resource/hud_timer_gradient_1.tres" id="10_6ylqo"]
+[ext_resource type="Script" path="res://scenes/ui/hud/ui_garbage_bag_popup.gd" id="11_ryd7g"]
 
 [sub_resource type="Gradient" id="Gradient_ghd1x"]
 colors = PackedColorArray(0, 0, 0, 0.578, 0, 0, 0, 0)
@@ -37,7 +38,15 @@ gradient = SubResource("Gradient_vn31i")
 width = 128
 height = 2
 
-[node name="UI" type="Control" node_paths=PackedStringArray("progress")]
+[sub_resource type="Gradient" id="Gradient_mfykj"]
+offsets = PackedFloat32Array(0, 0.4, 0.6, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_woyka"]
+gradient = SubResource("Gradient_mfykj")
+
+[node name="UI" type="Control" node_paths=PackedStringArray("progress", "ui_timer", "ui_garbage_bag_popup")]
 process_priority = -1
 process_physics_priority = -1
 layout_mode = 3
@@ -48,6 +57,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_7l35m")
 progress = NodePath("UIProgress")
+ui_timer = NodePath("UITimer")
+ui_garbage_bag_popup = NodePath("GarbageBagPopup")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -193,3 +204,39 @@ step = 0.0
 texture_under = SubResource("GradientTexture2D_7vvdc")
 texture_over = SubResource("GradientTexture2D_dpkdx")
 texture_progress = ExtResource("10_6ylqo")
+
+[node name="GarbageBagPopup" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_ryd7g")
+
+[node name="TextureRect" type="TextureRect" parent="GarbageBagPopup"]
+self_modulate = Color(1, 1, 1, 0.517647)
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -136.0
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_woyka")
+
+[node name="Label" type="Label" parent="GarbageBagPopup/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("6_j3p5c")
+theme_override_font_sizes/font_size = 32
+text = "GARBAGE_BAG_FULL_2"
+horizontal_alignment = 1
+vertical_alignment = 1

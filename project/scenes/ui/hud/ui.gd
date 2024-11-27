@@ -4,6 +4,8 @@ class_name UI extends Control
 
 @export var ui_timer : UITimer = null
 
+@export var ui_garbage_bag_popup : UIGarbageBagPopup = null
+
 static var instance : UI
 
 func _ready():

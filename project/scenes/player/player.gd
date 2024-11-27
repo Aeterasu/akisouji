@@ -22,6 +22,9 @@ const CAMERA_ROTATION_LIMIT : float = 80.0
 @export var camera_effect_landing : CameraEffectLanding = null
 
 @export_group("Leaf Cleaning")
+@export var garbage_bag_raycast : RayCast3D = null
+@export var garbage_bag_handler : GarbageBagHandler = null
+@export var garbage_bag_viewmodel : GarbageBagViewmodel = null
 @export var cleaning_raycast : RayCast3D = null
 @export var jump_cleaning_radius : float = 0.5
 @export var sprint_cleaning_cooldown : float = 0.25
@@ -98,6 +101,8 @@ func _ready():
 	#_on_broom_upgrade_update()
 
 func _physics_process(delta : float):
+	UI.instance.ui_garbage_bag_popup.is_bag_full = garbage_bag_handler._is_full()
+
 	input_process(delta)
 	movement_process(delta)
 
@@ -105,7 +110,9 @@ func _physics_process(delta : float):
 		broom_data = (inventory.current_tool as Broom).data
 		cleaning_raycast.target_position = Vector3(0, 0, -1) * broom_data.cleaning_range
 
-	inventory.current_tool.walk_multiplier = velocity_component.current_velocity.length() / velocity_component.speed
+	var v = velocity_component.current_velocity.length() / velocity_component.speed
+	inventory.current_tool.walk_multiplier = v
+	garbage_bag_viewmodel.walk_multiplier = v
 
 	inventory.current_tool._set_sprint_toggle(wish_sprint)
 
@@ -191,10 +198,38 @@ func input_process(delta : float):
 	if (Input.is_action_just_pressed("player_action_jump")):
 		wish_jumping = true
 
+	# sprint
+
+	if (Input.is_action_just_pressed("player_action_sprint") && velocity_component.input_direction.length() > 0.0 && is_on_floor()):
+		wish_sprint = !wish_sprint
+
 	# broom
 
+	if (!garbage_bag_handler.is_holding_a_bag and garbage_bag_raycast.is_colliding() and Input.is_action_just_pressed("player_action_primary")):
+		var collider = garbage_bag_raycast.get_collider()
+		if (collider is GarbageBag):
+			(collider as GarbageBag).queue_free()
+			garbage_bag_handler.is_holding_a_bag = true
+			inventory.current_tool._unequip()
+			garbage_bag_viewmodel._equip()
+		return
+
+	if (garbage_bag_handler.is_holding_a_bag and Input.is_action_just_pressed("player_action_primary")):
+		garbage_bag_handler.is_holding_a_bag = false
+		inventory.current_tool._equip()
+		garbage_bag_viewmodel._unequip()
+		garbage_bag_handler._discard_bag(self)
+		return
+
+	if (garbage_bag_handler.is_holding_a_bag):
+		return
+
+	if (garbage_bag_handler._is_full() and Input.is_action_just_pressed("player_action_secondary")):
+		garbage_bag_handler.current_fill = 0
+		garbage_bag_handler._discard_bag(self)
+
 	if (!block_brooming_until_key_is_released):
-		if (inventory.current_tool.use_type == PlayerTool.UseType.HOLD):
+		if (inventory.current_tool.use_type == PlayerTool.UseType.HOLD and (inventory.current_tool is Broom and !garbage_bag_handler._is_full())):
 			if (!GlobalSettings.toggle_to_clean):
 				inventory.current_tool.in_use = (Input.is_action_pressed("player_action_primary") or inventory.current_tool.auto_use) && !wish_sprint
 			else:
@@ -202,14 +237,6 @@ func input_process(delta : float):
 					wish_cleaning_toggle = not wish_cleaning_toggle
 
 				inventory.current_tool.in_use = (wish_cleaning_toggle or inventory.current_tool.auto_use) && !wish_sprint
-
-			#if (inventory.current_tool is LeafBlower):
-				#var leafblower = inventory.current_tool as LeafBlower
-				#leafblower.wish_charge = Input.is_action_pressed("player_action_secondary") && !wish_sprint
-
-				#if (leafblower.wish_charge and leafblower.current_charge >= leafblower.charge_duration):
-					#leafblower._release_charge()
-					#on_leafblower_supercharge(leafblower)
 
 		elif (inventory.current_tool.use_type == PlayerTool.UseType.CLICK):
 			wish_cleaning_toggle = false
@@ -219,10 +246,8 @@ func input_process(delta : float):
 			if (Input.is_action_just_pressed("player_action_secondary") && !wish_sprint):
 				inventory.current_tool._use_secondary()
 
-	# sprint
-
-	if (Input.is_action_just_pressed("player_action_sprint") && velocity_component.input_direction.length() > 0.0 && is_on_floor()):
-		wish_sprint = !wish_sprint
+	if (inventory.current_tool is Broom and garbage_bag_handler._is_full()):
+		inventory.current_tool.in_use = false
 
 func get_input_direction() -> Vector2:
 	var result = Vector2()
@@ -402,8 +427,8 @@ func _on_sweep_fx(broom : Broom) -> void:
 
 		broom.sweep_audio.play()
 
-		#Game.game_instance.audio_handler._on_leaves_cleaned(1)
-
-func _handle_golden_broom_consumption(amount : int):
+func _on_leaves_cleaned(amount : int):
 	if (inventory.current_tool is Broom and (inventory.current_tool as Broom).data.use_golden_broom_multiplier):
 		CashManager._substract_cash(float(amount) * CashManager.golden_broom_consumption)
+
+	garbage_bag_handler._add(amount)

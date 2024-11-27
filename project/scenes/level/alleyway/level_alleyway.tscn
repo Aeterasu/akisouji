@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://dvlleqic8xnpl"]
+[gd_scene load_steps=43 format=3 uid="uid://dvlleqic8xnpl"]
 
 [ext_resource type="PackedScene" uid="uid://bqtapora2wl4e" path="res://assets/mesh/level_design/mesh_alleyway.blend" id="1_yq5x8"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="2_akrc7"]
@@ -33,6 +33,7 @@
 [ext_resource type="Material" uid="uid://s3fb87n24665" path="res://resource/clouds.tres" id="31_ue3y8"]
 [ext_resource type="AudioStream" uid="uid://cot6oj6cnaib5" path="res://assets/audio/ambience_park_1.mp3" id="33_63x8d"]
 [ext_resource type="Texture2D" uid="uid://b72wywy3dchn" path="res://assets/texture/leaf/tile.png" id="33_u66on"]
+[ext_resource type="PackedScene" uid="uid://cdl3hbykq84ed" path="res://scenes/player/garbage_bag/garbage_bag.tscn" id="34_xn7j5"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qdx78"]
 size = Vector3(1, 16, 105)
@@ -1683,3 +1684,6 @@ volume_db = -8.0
 autoplay = true
 bus = &"Ambience"
 parameters/looping = true
+
+[node name="GarbageBag" parent="." index="38" instance=ExtResource("34_xn7j5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.4438, 9.188, 17.8722)

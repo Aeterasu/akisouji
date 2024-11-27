@@ -1,8 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://cg1c15gfn5n0d"]
+[gd_scene load_steps=3 format=3 uid="uid://cg1c15gfn5n0d"]
 
 [ext_resource type="Script" path="res://scenes/cash/cash_manager.gd" id="1_8exi0"]
+[ext_resource type="AudioStream" uid="uid://bu7r6ihxs30m5" path="res://assets/audio/sfx_ding_1.ogg" id="2_lfl1b"]
 
-[node name="cash_manager" type="Node"]
+[node name="cash_manager" type="Node" node_paths=PackedStringArray("reward_ding")]
 script = ExtResource("1_8exi0")
 base_cash_reward = 0.03
+buffer_clean_time = 4.0
 golden_broom_max_cap = 6000.0
+reward_ding = NodePath("RewardDing")
+
+[node name="RewardDing" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_lfl1b")
+volume_db = -11.0
+pitch_scale = 0.8
+max_polyphony = 4
+bus = &"SFX"

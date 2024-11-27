@@ -9,6 +9,8 @@ extends Node
 @export var golden_broom_base_multiplier : float = 12.0
 @export var golden_broom_consumption : float = 0.045
 
+@export var reward_ding : AudioStreamPlayer = null
+
 var cash_buffer : float = 0
 var timer : Timer = Timer.new()
 
@@ -60,6 +62,10 @@ func _clean_buffer():
 	on_cash_rewarded.emit(amount)
 
 	is_buffer_paused = false
+
+	if (amount > 0.0):
+		reward_ding.pitch_scale = randf_range(0.8, 1.1)
+		reward_ding.play()
 
 func _reward_leaf_cleaning(leaf_amount : float):
 	var anim = 0.6

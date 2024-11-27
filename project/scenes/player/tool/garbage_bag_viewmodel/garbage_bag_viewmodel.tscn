@@ -1,0 +1,238 @@
+[gd_scene load_steps=21 format=3 uid="uid://be23vn6a0ldjb"]
+
+[ext_resource type="Script" path="res://scenes/player/tool/garbage_bag_viewmodel/garbage_bag_viewmodel.gd" id="1_66s7d"]
+[ext_resource type="PackedScene" uid="uid://bwi15gobv053g" path="res://scenes/player/garbage_bag/mesh_garbage_bag.tscn" id="2_bb7dy"]
+
+[sub_resource type="Animation" id="Animation_0lt4f"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_garbage_bag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.105, -0.215, -0.27)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_garbage_bag:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.148353, 0.479966, -0.253073)]
+}
+
+[sub_resource type="Animation" id="Animation_6kcvq"]
+resource_name = "equip"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_garbage_bag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 1),
+"transitions": PackedFloat32Array(0.5, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(0.105, -0.8, -0.27), Vector3(0.105, -0.2, -0.27), Vector3(0.105, -0.215, -0.27)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_garbage_bag:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(0.5, 0.5),
+"update": 0,
+"values": [Vector3(1.5708, 1.5708, -0.253073), Vector3(0.148353, 0.479966, -0.253073)]
+}
+
+[sub_resource type="Animation" id="Animation_mrlpj"]
+resource_name = "idle"
+length = 3.0
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_garbage_bag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.2, 3),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(0.105, -0.215, -0.27), Vector3(0.105, -0.22, -0.27), Vector3(0.105, -0.215, -0.27)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_garbage_bag:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.8, 3),
+"transitions": PackedFloat32Array(-2, -2, -2),
+"update": 0,
+"values": [Vector3(0.148353, 0.479966, -0.253073), Vector3(0.174533, 0.506145, -0.253073), Vector3(0.148353, 0.479966, -0.253073)]
+}
+
+[sub_resource type="Animation" id="Animation_6vjfr"]
+resource_name = "unequip"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_garbage_bag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.105, -0.215, -0.27), Vector3(0.105, -0.8, -0.27)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_garbage_bag:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.148353, 0.479966, -0.253073), Vector3(0.148353, 0.479966, 3.14159)]
+}
+
+[sub_resource type="Animation" id="Animation_hx6k0"]
+resource_name = "unequip_loop"
+length = 0.1
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("mesh_garbage_bag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.105, -0.8, -0.27)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("mesh_garbage_bag:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.148353, 0.479966, 3.14159)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ay5cn"]
+_data = {
+"RESET": SubResource("Animation_0lt4f"),
+"equip": SubResource("Animation_6kcvq"),
+"idle": SubResource("Animation_mrlpj"),
+"unequip": SubResource("Animation_6vjfr"),
+"unequip_loop": SubResource("Animation_hx6k0")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1q5rf"]
+animation = &"equip"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s6ifs"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nrt0j"]
+animation = &"unequip"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2r00t"]
+animation = &"unequip_loop"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_desuo"]
+switch_mode = 2
+advance_mode = 2
+advance_expression = "is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xvp0s"]
+xfade_time = 0.05
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ywx3w"]
+xfade_time = 0.05
+advance_mode = 2
+advance_expression = "not is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8ek0q"]
+advance_mode = 2
+advance_expression = "is_equipped
+"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_c7rwe"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t6hlb"]
+xfade_time = 0.1
+advance_mode = 2
+advance_expression = "is_equipped"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uewos"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ynd50"]
+states/End/position = Vector2(1067, 145)
+states/Start/position = Vector2(-162, -50)
+states/equip/node = SubResource("AnimationNodeAnimation_1q5rf")
+states/equip/position = Vector2(59, 138)
+states/idle/node = SubResource("AnimationNodeAnimation_s6ifs")
+states/idle/position = Vector2(184, 138)
+states/unequip/node = SubResource("AnimationNodeAnimation_nrt0j")
+states/unequip/position = Vector2(59, 6)
+states/unequip_loop/node = SubResource("AnimationNodeAnimation_2r00t")
+states/unequip_loop/position = Vector2(-95, 138)
+transitions = ["equip", "idle", SubResource("AnimationNodeStateMachineTransition_desuo"), "idle", "unequip", SubResource("AnimationNodeStateMachineTransition_xvp0s"), "equip", "unequip", SubResource("AnimationNodeStateMachineTransition_ywx3w"), "unequip_loop", "equip", SubResource("AnimationNodeStateMachineTransition_8ek0q"), "unequip", "unequip_loop", SubResource("AnimationNodeStateMachineTransition_c7rwe"), "unequip", "equip", SubResource("AnimationNodeStateMachineTransition_t6hlb"), "Start", "unequip_loop", SubResource("AnimationNodeStateMachineTransition_uewos")]
+graph_offset = Vector2(-431, -228)
+
+[node name="GarbageBagViewmodel" type="Node3D" node_paths=PackedStringArray("animation_tree")]
+script = ExtResource("1_66s7d")
+animation_tree = NodePath("AnimationTree")
+walk_cycle_direction = Vector3(0.025, 0.01, 0)
+
+[node name="mesh_garbage_bag" parent="." instance=ExtResource("2_bb7dy")]
+transform = Transform3D(0.168334, 0.0576335, 0.0913356, -0.0495261, 0.191503, -0.0295619, -0.0959738, 0.00226392, 0.175454, 0.105, -0.215, -0.27)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)
+near = 0.001
+far = 1024.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ay5cn")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_ynd50")
+advance_expression_base_node = NodePath("..")
+anim_player = NodePath("../AnimationPlayer")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=37 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_highlight_handler.gd" id="2_74dy0"]
@@ -24,7 +24,9 @@
 [ext_resource type="Texture2D" uid="uid://cvtg8bskknog1" path="res://assets/texture/ui/hud/texture_ui_vignette.png" id="18_q3514"]
 [ext_resource type="PackedScene" uid="uid://bvt1eg2hnqbmb" path="res://scenes/ui/ui_completion/ui_completion.tscn" id="20_rawhc"]
 [ext_resource type="PackedScene" uid="uid://d0r5a5kwi5eoo" path="res://scenes/ui/pause_menu/pause_menu.tscn" id="22_yntas"]
+[ext_resource type="Shader" path="res://shader/dither/dither.gdshader" id="24_pk5q3"]
 [ext_resource type="Texture2D" uid="uid://dhgy85uah6kgp" path="res://assets/texture/fx/texture_sun_flare_1.png" id="25_5i5i2"]
+[ext_resource type="Texture2D" uid="uid://264l2cv85ecc" path="res://shader/dither/dither map 8x8.png" id="25_bb80r"]
 [ext_resource type="Shader" path="res://shader/kuwahara_screen.gdshader" id="27_ktbah"]
 [ext_resource type="Script" path="res://scenes/ui/blackout_layer.gd" id="31_te3wo"]
 
@@ -49,6 +51,14 @@ gradient = SubResource("Gradient_7wx0o")
 shader = ExtResource("27_ktbah")
 shader_parameter/radius = 1
 shader_parameter/offset = Vector3(0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gksga"]
+shader = ExtResource("24_pk5q3")
+shader_parameter/enabled = true
+shader_parameter/greyscale = false
+shader_parameter/dither_amount = 1.0
+shader_parameter/colours = 8
+shader_parameter/dither_texture = ExtResource("25_bb80r")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2fb3w"]
 shader = ExtResource("12_ceytl")
@@ -243,6 +253,19 @@ layer = -128
 
 [node name="Kuwahara" type="ColorRect" parent="PostProcess"]
 material = SubResource("ShaderMaterial_5tcod")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -640.0
+offset_bottom = -360.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+mouse_filter = 2
+
+[node name="Pixel" type="ColorRect" parent="PostProcess"]
+visible = false
+material = SubResource("ShaderMaterial_gksga")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

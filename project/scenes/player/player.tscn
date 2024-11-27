@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://077fpjam3rlw"]
+[gd_scene load_steps=54 format=3 uid="uid://077fpjam3rlw"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_e0tat"]
 [ext_resource type="Script" path="res://scenes/component/velocity_component/velocity_component.gd" id="3_umteq"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scenes/player/tool/viewmodel_sway.gd" id="6_t0wwe"]
 [ext_resource type="Script" path="res://scenes/player/tool/player_tool_inventory.gd" id="7_id8rm"]
 [ext_resource type="Script" path="res://scenes/player/player_footstep_manager.gd" id="11_le046"]
+[ext_resource type="PackedScene" uid="uid://be23vn6a0ldjb" path="res://scenes/player/tool/garbage_bag_viewmodel/garbage_bag_viewmodel.tscn" id="12_r8hcx"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/nodes/sound_effect_player.gd" id="12_ws1qt"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/resources/multi_sound_effect_item.gd" id="13_qnret"]
 [ext_resource type="PackedScene" uid="uid://bmmipwucjq6as" path="res://scenes/player/tool/camera/camera.tscn" id="14_yl1fb"]
@@ -25,6 +26,8 @@
 [ext_resource type="AudioStream" uid="uid://cbo87es8yv0pd" path="res://assets/audio/sfx_grass_footstep_3.ogg" id="20_x8ofr"]
 [ext_resource type="AudioStream" uid="uid://cc5ws3eha2jlq" path="res://assets/audio/sfx_grass_footstep_4.ogg" id="21_l063t"]
 [ext_resource type="Script" path="res://scenes/player/player_oob_rescue.gd" id="24_6ndkg"]
+[ext_resource type="Script" path="res://scenes/player/garbage_bar_handler.gd" id="25_wanw5"]
+[ext_resource type="PackedScene" uid="uid://cdl3hbykq84ed" path="res://scenes/player/garbage_bag/garbage_bag.tscn" id="26_xu41v"]
 [ext_resource type="AudioStream" uid="uid://qqrgriis5oeu" path="res://assets/audio/sfx_player_jump_1.ogg" id="28_b26d0"]
 [ext_resource type="AudioStream" uid="uid://ckvfw1v4i7yov" path="res://assets/audio/sfx_player_land_1.ogg" id="30_u8teo"]
 [ext_resource type="Texture2D" uid="uid://b6te5m8ou6wik" path="res://assets/texture/fx/texture_fx_dust_1.png" id="31_l2a2d"]
@@ -173,7 +176,8 @@ particles_anim_loop = false
 [sub_resource type="QuadMesh" id="QuadMesh_3m7hl"]
 material = SubResource("StandardMaterial3D_k6odc")
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("velocity_component", "camera", "camera_origin", "camera_effect_landing", "cleaning_raycast", "inventory", "move_speed_upgrade_handler", "audio_jump", "audio_land", "footstep_manager", "landing_particles", "running_particles")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("velocity_component", "camera", "camera_origin", "camera_effect_landing", "garbage_bag_raycast", "garbage_bag_handler", "garbage_bag_viewmodel", "cleaning_raycast", "inventory", "move_speed_upgrade_handler", "audio_jump", "audio_land", "footstep_manager", "landing_particles", "running_particles")]
+collision_layer = 2
 floor_block_on_wall = false
 script = ExtResource("1_e0tat")
 velocity_component = NodePath("VelocityComponent")
@@ -185,6 +189,9 @@ look_down_slowdown_threshold = 45.0
 camera = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D")
 camera_origin = NodePath("CameraOrigin")
 camera_effect_landing = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding")
+garbage_bag_raycast = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/GarbageBagRayCast3D")
+garbage_bag_handler = NodePath("GarbageBagHandler")
+garbage_bag_viewmodel = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway/GarbageBagViewmodel")
 cleaning_raycast = NodePath("CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/CleaningRayCast3D")
 jump_cleaning_radius = 0.8
 sprint_cleaning_cooldown = 0.1
@@ -259,10 +266,18 @@ player = NodePath("../../../../../..")
 
 [node name="Camera" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("14_yl1fb")]
 
+[node name="GarbageBagViewmodel" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway" instance=ExtResource("12_r8hcx")]
+
 [node name="CleaningRayCast3D" type="RayCast3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D"]
 enabled = false
 target_position = Vector3(0, 0, -3)
 debug_shape_custom_color = Color(0.393541, 0.550201, 3.85046e-07, 1)
+debug_shape_thickness = 3
+
+[node name="GarbageBagRayCast3D" type="RayCast3D" parent="CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D"]
+target_position = Vector3(0, 0, -3)
+collision_mask = 4
+debug_shape_custom_color = Color(3.6074e-07, 0.0827658, 0.550201, 1)
 debug_shape_thickness = 3
 
 [node name="FootstepManager" type="Node3D" parent="." node_paths=PackedStringArray("player", "velocity_component", "raycast", "concrete_footstep", "grass_footstep")]
@@ -291,6 +306,12 @@ enabled = false
 target_position = Vector3(0, -2, 0)
 debug_shape_custom_color = Color(1, 1, 1, 1)
 debug_shape_thickness = 5
+
+[node name="GarbageBagHandler" type="Node" parent="."]
+script = ExtResource("25_wanw5")
+capacity = 3000
+garbage_bag_scene = ExtResource("26_xu41v")
+throw_strength = 12.0
 
 [node name="AudioJump" type="Node" parent="."]
 script = ExtResource("12_ws1qt")

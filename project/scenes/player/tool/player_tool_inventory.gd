@@ -25,25 +25,13 @@ func _physics_process(delta) -> void:
 	if (current_tool and !current_tool.allow_switch):
 		return
 
-	if (!player._block_input and Input.is_action_just_pressed("player_action_next_tool")):
-		_next_tool()
-		return
-
-	if (!player._block_input and Input.is_action_just_pressed("player_action_previous_tool")):
-		_previous_tool()
-		return
-
-	#if (Input.is_action_just_pressed("player_action_select_tool_1")):
-		#_set_tool(0)
-		#return
-
-	#if (Input.is_action_just_pressed("player_action_select_tool_2")):
-		#_set_tool(1)
-		#return		
-
-	#if (Input.is_action_just_pressed("player_action_select_tool_3")):
-		#_set_tool(2)
-		#return		
+	if (!player._block_input and !player.garbage_bag_handler.is_holding_a_bag):
+		if (Input.is_action_just_pressed("player_action_next_tool")):
+			_next_tool()
+			return
+		if (Input.is_action_just_pressed("player_action_previous_tool")):
+			_previous_tool()
+			return
 
 func _previous_tool():
 	current_tool_id += 1

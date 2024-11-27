@@ -131,6 +131,8 @@ LEFT TO DO:
     + add vsync setting
     + level-specific leaf cleaning leeway
     + add timer
+    + FIX STUTTER ON FIRST CLEANING RELATED TO PARTICLE SCENE CLEANUP
+    + add sound for getting cleaning cash
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
@@ -143,7 +145,19 @@ LEFT TO DO:
     CURRENT WORKING NAME - LEAF SWEEPER
     
     GAMEPLAY:
-        - FIX STUTTER ON FIRST CLEANING RELATED TO PARTICLE SCENE CLEANUP
+        - add objectives
+            = alleyway
+                =1. clean the leaves 0%
+
+            = fountain
+                =1. clean the leaves 0%
+                =2. turn on the light 0/3
+                =3. turn on the fountain 0/1
+
+            = church
+                =1. clean the leaves 0%
+                =2. ring the bell, with the interval 0/3
+
 		- on buying tools, make sure they are always in the same order
         - setup leafmap and heightmap for fountain level (remove leaves from under the fountain lolololo!)
         - GARBAGE BAGS FILLING UP BY SWEEPING? YOU CAN THEN THROW IT, MOVE IT, ETC
@@ -170,6 +184,7 @@ LEFT TO DO:
         - redraw textures for in-game ui
         - add in-game tool panel ui
         - in-game UI should have control tooltips with gamepad glyphs
+        - add 'current rank'
     
     VISUAL:
         GOLDEN AUTUMN MUCH?
@@ -178,7 +193,6 @@ LEFT TO DO:
 		- flowing leaves in the fountain
     
     AUDIO:
-        - add sound for getting cleaning cash
         - separate songs into game and menus
         - write a simple piece for title menu (chords and some piano)
         - add bell chiming to church level
