@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://wi4dakqwoxtb"]
+
+[ext_resource type="PackedScene" uid="uid://j0g3msvtw4wn" path="res://assets/mesh/billboard_crossplanes.glb" id="1_w1j1t"]
+[ext_resource type="ArrayMesh" uid="uid://1he0r1avl6dr" path="res://assets/mesh/mesh_billboard_crossplanes.tres" id="2_j8crl"]
+
+[node name="billboard_crossplanes" instance=ExtResource("1_w1j1t")]
+mesh = ExtResource("2_j8crl")

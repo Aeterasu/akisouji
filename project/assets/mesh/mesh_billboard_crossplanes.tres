@@ -1,0 +1,40 @@
+[gd_resource type="ArrayMesh" load_steps=4 format=4 uid="uid://1he0r1avl6dr"]
+
+[ext_resource type="Texture2D" uid="uid://bpo5631mifnm0" path="res://assets/texture/environment/texture_tallgrass_1_albm.png" id="1_l3jbx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_51bmy"]
+transparency = 2
+alpha_scissor_threshold = 0.695
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_l3jbx")
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_53c62"]
+_surfaces = [{
+"aabb": AABB(-0.5, 0, -0.5, 1, 0.5, 1),
+"format": 34896613377,
+"index_count": 12,
+"index_data": PackedByteArray("AAADAAEAAAACAAMABAAHAAUABAAGAAcA"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("/3//////AAD/fwAA//8AAP9///8AAAAA/38AAAAAAAAAAP///38AAAAAAAD/fwAA//////9/AAD//wAA/38AAA==")
+}]
+blend_shape_mode = 0
+
+[resource]
+resource_name = "billboard_crossplanes_Plane"
+_surfaces = [{
+"aabb": AABB(-0.5, 0, -0.5, 1, 0.5, 1),
+"attribute_data": PackedByteArray("AAAAAAAA/////wAA/////wAAAAAAAP////8AAP////8="),
+"format": 34896613399,
+"index_count": 12,
+"index_data": PackedByteArray("AAADAAEAAAACAAMABAAHAAUABAAGAAcA"),
+"material": SubResource("StandardMaterial3D_51bmy"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 8,
+"vertex_data": PackedByteArray("/3///////7//fwAA////v/9///8AAP+//38AAAAA/78AAP///38AgAAAAAD/fwCA//////9/AID//wAA/38AgP9/AAD/fwAA/38AAP9/AAD/f////3////9/////f///")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_53c62")

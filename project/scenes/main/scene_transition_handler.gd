@@ -14,6 +14,8 @@ var current_scene : PackedScene = null
 
 static var instance : SceneTransitionHandler = null
 
+signal finished_loading
+
 func _ready():
 	instance = self
 

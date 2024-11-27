@@ -133,6 +133,8 @@ LEFT TO DO:
     + add timer
     + FIX STUTTER ON FIRST CLEANING RELATED TO PARTICLE SCENE CLEANUP
     + add sound for getting cleaning cash
+    + GARBAGE BAGS FILLING UP BY SWEEPING? YOU CAN THEN THROW IT, MOVE IT, ETC
+    + add grass
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
@@ -160,7 +162,6 @@ LEFT TO DO:
 
 		- on buying tools, make sure they are always in the same order
         - setup leafmap and heightmap for fountain level (remove leaves from under the fountain lolololo!)
-        - GARBAGE BAGS FILLING UP BY SWEEPING? YOU CAN THEN THROW IT, MOVE IT, ETC
          disabled leaf populator completely breaks the game, pls add safety checks
         - add 'new upgrade notification'. a little '!' should appear on the category
 		- save best grades and show them in stage select
@@ -189,7 +190,6 @@ LEFT TO DO:
     VISUAL:
         GOLDEN AUTUMN MUCH?
 		
-        - add grass
 		- flowing leaves in the fountain
     
     AUDIO:
@@ -216,6 +216,7 @@ LEFT TO DO:
             =leaf highlighting
             =larger garbage bags
 
+        - add garbage bag upgrades 1 and 2
         - fix red 'bought'
         - finalize shop icon texture for boots
         - add sounds for purchasing/purchase failure

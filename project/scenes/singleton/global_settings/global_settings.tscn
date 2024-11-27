@@ -5,5 +5,5 @@
 [node name="GlobalSettings" type="Node"]
 process_mode = 3
 script = ExtResource("1_diykh")
-music_volume = 0.3
+music_volume = 0.0
 gamepad_sensitvity = 96.0

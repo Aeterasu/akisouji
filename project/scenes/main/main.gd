@@ -9,6 +9,8 @@ static var instance = null
 func _ready():
 	instance = self
 
+	_update_volume()
+
 	GlobalSettings.locale = GlobalSettings.locale
 	TranslationServer.set_locale(GlobalSettings.locale)
 
@@ -18,7 +20,12 @@ func _ready():
 
 	loading_screen.modulate = Color(0.0, 0.0, 0.0, 0.0)
 
+	MusicManager.player.play()
+
 func _process(delta):
+	_update_volume()
+
+func _update_volume():
 	AudioServer.set_bus_volume_db(0, linear_to_db(GlobalSettings.master_volume))
 	AudioServer.set_bus_volume_db(1, linear_to_db(GlobalSettings.sfx_volume))
 	AudioServer.set_bus_volume_db(2, linear_to_db(GlobalSettings.ambience_volume))
