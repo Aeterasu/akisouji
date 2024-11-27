@@ -10,6 +10,8 @@ var state_machine : AnimationNodeStateMachinePlayback = null
 @export var walk_cycle_speed : float = 5.0
 @export var walk_cycle_direction : Vector3 = Vector3()
 
+@export var tool_inventory_id : int = 0
+
 var walk_multiplier : float = 1.0
 var sin_timer : float = 0.0
 

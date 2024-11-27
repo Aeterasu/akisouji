@@ -664,6 +664,7 @@ sweep_audio = NodePath("SweepAudio1")
 use_type = 1
 animation_tree = NodePath("AnimationTree")
 walk_cycle_direction = Vector3(0.025, 0.01, 0)
+tool_inventory_id = 1
 
 [node name="mesh_broom" parent="." instance=ExtResource("1_05fyr")]
 transform = Transform3D(-0.00662246, 0.0015292, 0.0444838, 0.0444989, -0.000776751, 0.00665143, 0.000993869, 0.0449673, -0.00139786, 0.069, -0.062, -0.15)

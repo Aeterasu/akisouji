@@ -18,12 +18,12 @@ func _ready():
 	body_entered.connect(_on_contact)
 	cleaning_ticks = cleaning_cooldown * 0.9
 
-func _process(delta):
+func _physics_process(delta):
 	audio_ticks += delta
 	cleaning_ticks += delta
 	delay = max(delay - delta, 0.0)
 
-	if (raycast.is_colliding() and Vector2(linear_velocity.x, linear_velocity.z).length() >= 0.5):
+	if (raycast.is_colliding() and Vector2(linear_velocity.x, linear_velocity.z).length() >= 0.7):
 		if (delay <= 0.0 and cleaning_ticks > cleaning_cooldown):
 			Game.game_instance.last_cleaning_position = global_position
 			Game.game_instance.last_cleaning_radius = cleaning_radius
@@ -32,6 +32,9 @@ func _process(delta):
 
 func _on_contact(body : Node3D):
 	set_collision_mask_value(2, true)
+
+	if (body is GarbageBag):
+		(body as GarbageBag).apply_central_impulse(Vector3(linear_velocity.x, abs(linear_velocity.y), linear_velocity.z) * 50.0)
 
 	if (audio_ticks > audio_cooldown):
 		audio_foley.pitch_scale = randf_range(0.7, 1.1)

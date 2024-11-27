@@ -397,15 +397,25 @@ func _on_broom_upgrade_update(broom : BroomUpgrade):
 
 	var node = broom.broom_scene.instantiate()
 	inventory.tool_origin.add_child(node)
+		
+	# insert
 
-	inventory.tools.insert(len(inventory.tools) - 1, node)
-	inventory.current_tool_id = len(inventory.tools) - 2
+	inventory.tools.append(node)
+
+	# sort
+
+	inventory.tools.sort_custom(_sort_brooms)
+	inventory.current_tool_id = inventory.tools.find(node)
+
 	inventory.swap_cooldown_timer.stop()
 	inventory._update_tool()
 
 	if (node is Broom):
 		var b = node as Broom
 		b.on_sweep_fx.connect(_on_sweep_fx)
+
+func _sort_brooms(a : PlayerTool, b : PlayerTool) -> bool:
+	return a.tool_inventory_id < b.tool_inventory_id
 
 func _on_footstep():
 	if (!wish_sprint):

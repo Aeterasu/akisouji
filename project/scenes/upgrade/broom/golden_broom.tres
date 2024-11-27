@@ -10,4 +10,6 @@ broom_scene = ExtResource("1_lv58o")
 upgrade_icon = ExtResource("3_gy7jg")
 cost = 5000
 name_key = "ITEM_NAME_GOLDEN_BROOM"
+description_key = ""
 one_time_purchase = true
+tool_inventory_id = 3

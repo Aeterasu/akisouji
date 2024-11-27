@@ -1310,7 +1310,7 @@ shape = SubResource("BoxShape3D_nd7yu")
 transform = Transform3D(-1, 0, 2.23517e-07, 0, 1, 0, -2.23517e-07, 0, -1, 135.612, 0, 16.1671)
 
 [node name="dolbaebik" type="MeshInstance3D" parent="." index="28"]
-transform = Transform3D(-0.257599, -0.133669, -0.956962, -0.267598, 0.961516, -0.062272, 0.928458, 0.24004, -0.283455, 138.383, 3.5, 23.3746)
+transform = Transform3D(-0.390263, -0.202508, -1.4498, -0.405411, 1.4567, -0.0943421, 1.40661, 0.36366, -0.429435, 138.383, 3.5, 23.3746)
 mesh = SubResource("QuadMesh_1jeby")
 
 [node name="MultiGrass" type="MultiMeshInstance3D" parent="." index="29"]
