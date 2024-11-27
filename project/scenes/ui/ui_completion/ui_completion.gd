@@ -1,6 +1,7 @@
 class_name UICompletion extends Control
 
 @export var initial_popup : Control = null
+@export var initial_popup_label : RichTextLabel = null
 
 @export var menu : Control = null
 @export var menu_button_handler : ButtonSelectionHandler = null
@@ -24,6 +25,15 @@ func _ready() -> void:
 	menu_button_handler._disable_all_buttons()
 	menu_button_handler.on_button_pressed.connect(_transition)
 	pass
+
+func _process(delta):
+	if (initial_popup.visible):
+		initial_popup_label.text = "[center]" + tr("COMPLETION_POPUP_TEXT")
+
+		if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD):
+			initial_popup_label.text = initial_popup_label.text.replace("[button]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("open_inventory")[1]))
+		elif (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE):
+			initial_popup_label.text = initial_popup_label.text.replace("[button]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("open_inventory")[0]))
 
 func _show_initial_popup():
 	show()

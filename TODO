@@ -183,6 +183,7 @@ LEFT TO DO:
         - rework loading screen (chibis + let them show the stage picture)
     
     IN-GAME HUD:
+        - add a tool tip when looking at a bag
         - redraw textures for in-game ui
         - add in-game tool panel ui
         - in-game UI should have control tooltips with gamepad glyphs
