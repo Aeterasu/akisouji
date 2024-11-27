@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dcaypqvm8j1yq"]
+[gd_scene load_steps=17 format=3 uid="uid://dcaypqvm8j1yq"]
 
 [ext_resource type="Script" path="res://scenes/ui/hud/ui.gd" id="1_7l35m"]
 [ext_resource type="Texture2D" uid="uid://dbqwuevdtqyjl" path="res://assets/texture/ui/hud/texture_ui_crosshair_dot.png" id="2_sidhx"]
@@ -8,12 +8,34 @@
 [ext_resource type="Texture2D" uid="uid://px5nsuya2plm" path="res://assets/texture/ui/hud/texture_ui_progress_bar_under.png" id="6_uwo0g"]
 [ext_resource type="Texture2D" uid="uid://vr36vghxgove" path="res://assets/texture/ui/hud/texture_ui_progress_bar_fill.png" id="7_q0gs6"]
 [ext_resource type="PackedScene" uid="uid://c15cmbbg5nyn0" path="res://scenes/ui/hud/ui_cash.tscn" id="8_8dhui"]
+[ext_resource type="Script" path="res://scenes/ui/hud/ui_timer.gd" id="9_l3wss"]
+[ext_resource type="Texture2D" uid="uid://jhg85c77h287" path="res://resource/hud_timer_gradient_1.tres" id="10_6ylqo"]
 
 [sub_resource type="Gradient" id="Gradient_ghd1x"]
 colors = PackedColorArray(0, 0, 0, 0.578, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_25j5i"]
 gradient = SubResource("Gradient_ghd1x")
+
+[sub_resource type="Gradient" id="Gradient_tvc4l"]
+offsets = PackedFloat32Array(0, 0.259325, 1)
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.984014, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7vvdc"]
+gradient = SubResource("Gradient_tvc4l")
+width = 128
+height = 2
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_vn31i"]
+offsets = PackedFloat32Array(0, 0.507993, 1)
+colors = PackedColorArray(0.282353, 0.0705882, 0, 0, 0.85301, 0.736263, 0.561141, 0.458824, 0.282353, 0.0705882, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_dpkdx"]
+gradient = SubResource("Gradient_vn31i")
+width = 128
+height = 2
 
 [node name="UI" type="Control" node_paths=PackedStringArray("progress")]
 process_priority = -1
@@ -124,3 +146,50 @@ vertical_alignment = 1
 
 [node name="UICash" parent="." instance=ExtResource("8_8dhui")]
 layout_mode = 1
+
+[node name="UITimer" type="Control" parent="." node_paths=PackedStringArray("label", "progress_bar")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("9_l3wss")
+label = NodePath("TextureRect/Label")
+progress_bar = NodePath("TextureProgressBar")
+
+[node name="TextureRect" type="TextureRect" parent="UITimer"]
+self_modulate = Color(1, 1, 1, 0.682353)
+layout_mode = 0
+offset_top = 118.0
+offset_right = 176.0
+offset_bottom = 157.0
+texture = SubResource("GradientTexture2D_25j5i")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UITimer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("6_j3p5c")
+theme_override_font_sizes/font_size = 16
+text = "00:00"
+vertical_alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="UITimer"]
+modulate = Color(1, 1, 1, 0.635294)
+layout_mode = 0
+offset_top = 157.0
+offset_right = 172.0
+offset_bottom = 159.0
+min_value = -720.0
+max_value = 0.0
+step = 0.0
+texture_under = SubResource("GradientTexture2D_7vvdc")
+texture_over = SubResource("GradientTexture2D_dpkdx")
+texture_progress = ExtResource("10_6ylqo")

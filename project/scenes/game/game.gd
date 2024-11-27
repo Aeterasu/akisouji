@@ -35,6 +35,8 @@ var is_pausable : bool = true
 var shop : Shop = null
 var is_in_shop : bool = false
 
+var cash_earned : float = 0.0
+
 func _ready():
 	CashManager.finalize = false
 
@@ -74,6 +76,8 @@ func _ready():
 
 		#cleaning_handler.on_leaves_cleaned.connect(func(amount: int): CashManager._substract_cash(float(amount) * CashManager.golden_broom_consumption))
 
+	progress_tracker.leeway = level.leaf_leeway
+
 	progress_tracker.on_completion.connect(_on_level_completion)
 
 	pause_menu.is_displayed = get_tree().paused
@@ -95,6 +99,7 @@ func _process(delta):
 		player._block_input = true
 		ui_completion._set_grade(ranking_manager.get_current_rank())
 		ui_completion._set_time(ranking_manager.get_formatted_time_elapsed())
+		ui_completion._set_cash(cash_earned)
 		ui_completion._show_menu()
 		UI.instance.hide()
 		return
@@ -119,15 +124,10 @@ func _process(delta):
 		return
 
 func _on_level_completion():
-	#TODO: Hide broom on level completion, but allow movement.
-
-	#CashManager._pause_buffer()
 	CashManager.finalize = true
 	CashManager._grant_cash(level.cash_reward + ranking_manager._get_current_cash_bonus(), 8.0)
 
 	await get_tree().create_timer(1).timeout
-
-	#CashManager._clean_buffer()
 
 	ui_completion._show_initial_popup()
 	await_completion_confirm = true

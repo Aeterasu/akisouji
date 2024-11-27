@@ -87,9 +87,11 @@ lerp_weight = 8.0
 script = ExtResource("4_deeln")
 leeway = 250
 
-[node name="LeafParticleHandler" type="Node" parent="."]
+[node name="LeafParticleHandler" type="Node" parent="." node_paths=PackedStringArray("particles")]
 script = ExtResource("5_5xq02")
-particles_scene = ExtResource("6_hdiec")
+particles = NodePath("LeafParticles")
+
+[node name="LeafParticles" parent="LeafParticleHandler" instance=ExtResource("6_hdiec")]
 
 [node name="LeafAudioHandler" type="Node" parent="." node_paths=PackedStringArray("audio_player")]
 script = ExtResource("8_8m8q3")
@@ -106,6 +108,9 @@ attenuation_filter_cutoff_hz = 20500.0
 [node name="RankingManager" type="Node" parent="."]
 process_mode = 1
 script = ExtResource("8_18ngi")
+cash_bonus_s_rank = 700.0
+cash_bonus_a_rank = 450.0
+cash_bonus_b_rank = 250.0
 
 [node name="Pausable" type="Node" parent="."]
 process_mode = 1

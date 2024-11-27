@@ -1,10 +1,11 @@
-[gd_scene load_steps=34 format=3 uid="uid://gcdsoumbb7v1"]
+[gd_scene load_steps=35 format=3 uid="uid://gcdsoumbb7v1"]
 
 [ext_resource type="Script" path="res://scenes/ui/stage_select/stage_select.gd" id="1_66fed"]
 [ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="1_dorsv"]
 [ext_resource type="PackedScene" uid="uid://cyaqutbexr62l" path="res://scenes/ui/gamepad_tooltip/gamepad_tooltip.tscn" id="2_gj8ga"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="2_yaed8"]
 [ext_resource type="Texture2D" uid="uid://clr88rwhe5dva" path="res://assets/texture/stage/texture_stage_alleyway.png" id="3_ykbf5"]
+[ext_resource type="Texture2D" uid="uid://bcdsdko4ujkho" path="res://assets/texture/stage/texture_stage_church.png" id="4_5r7es"]
 [ext_resource type="Shader" path="res://shader/multiply.gdshader" id="4_ho324"]
 [ext_resource type="Shader" path="res://shader/alpha_mask.gdshader" id="5_3202m"]
 [ext_resource type="PackedScene" uid="uid://bcrys4arojn37" path="res://scenes/ui/paper_button.tscn" id="6_kbe54"]
@@ -131,7 +132,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("3_ykbf5")
+texture = ExtResource("4_5r7es")
 
 [node name="StageBackground4" type="TextureRect" parent="Control"]
 self_modulate = Color(0.239216, 0.172549, 0.156863, 1)

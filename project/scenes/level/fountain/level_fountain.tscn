@@ -94,6 +94,7 @@ size = Vector2(2, 2)
 [node name="LevelFountain" node_paths=PackedStringArray("leaf_populator", "player_spawn_position") instance=ExtResource("1_xjuuk")]
 script = ExtResource("2_mcqjm")
 leaf_populator = NodePath("LeafPopulator")
+leaf_leeway = 500
 player_spawn_position = NodePath("Marker3D")
 
 [node name="LeafPopulator" parent="." index="0" instance=ExtResource("3_atajh")]

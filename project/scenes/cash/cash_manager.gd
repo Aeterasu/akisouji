@@ -41,6 +41,9 @@ func _grant_cash(amount : float = base_cash_reward, new_anim_duration : float = 
 
 	animation_delay = new_anim_duration
 
+	if (is_instance_valid(Game.game_instance)):
+		Game.game_instance.cash_earned += amount
+
 func _substract_cash(amount : float):
 	if (amount <= 0):
 		return

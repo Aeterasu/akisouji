@@ -1,6 +1,7 @@
 @tool class_name Level extends Node3D
 
 @export var leaf_populator : LeafPopulator = null
+@export_range(1, 5000) var leaf_leeway : int = 1
 @export var player_spawn_position : Marker3D = null
 @export var enable_rain : bool = false
 

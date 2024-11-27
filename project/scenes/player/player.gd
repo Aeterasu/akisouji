@@ -1,7 +1,5 @@
 class_name Player extends CharacterBody3D
 
-#TODO: Dustforce/Quake style movement with forces, friction and some sort of boosting
-
 const CAMERA_ROTATION_LIMIT : float = 80.0
 
 @export_group("Input")

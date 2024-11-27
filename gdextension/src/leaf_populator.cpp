@@ -134,7 +134,6 @@ void LeafPopulator::PopulateLeaves()
         heightmapData = heightmap->get_image();
     }
 
-    // TODO: implement heightmaps
     for (int i = 0; i < imageSize.x; i++)
     {
         for (int j = 0; j < imageSize.y; j++)

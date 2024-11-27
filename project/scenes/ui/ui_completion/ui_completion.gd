@@ -7,6 +7,7 @@ class_name UICompletion extends Control
 
 @export var grade_emblem : Grade = null
 @export var time_label : Label = null
+@export var cash_label : RichTextLabel = null
 
 @export var blackout : ColorRect = null
 
@@ -57,3 +58,6 @@ func _set_grade(a : int):
 
 func _set_time(a : String):
 	time_elapsed_string = a
+
+func _set_cash(a : float):
+	cash_label.text = "[center]" + tr("COMPLETION_CASH_EARNED") + " " + CashManager.format_currency(a) + "[img]res://assets/texture/ui/hud/texture_ui_cash_symbol_small.png[/img]"

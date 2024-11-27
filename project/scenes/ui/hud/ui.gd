@@ -2,6 +2,8 @@ class_name UI extends Control
 
 @export var progress : UIProgress = null
 
+@export var ui_timer : UITimer = null
+
 static var instance : UI
 
 func _ready():

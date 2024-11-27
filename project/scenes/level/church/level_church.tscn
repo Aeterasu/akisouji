@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://djxb2f12q5t80"]
+[gd_scene load_steps=12 format=3 uid="uid://djxb2f12q5t80"]
 
 [ext_resource type="PackedScene" uid="uid://bante8mpv041" path="res://assets/mesh/level_design/mesh_church.blend" id="1_ut78t"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="2_hsbfh"]
@@ -7,6 +7,8 @@
 [ext_resource type="PlaneMesh" uid="uid://c13qy6bljibj8" path="res://resource/mesh/leaf_mesh.tres" id="5_2ua1s"]
 [ext_resource type="Material" uid="uid://cjtw4ylyq480t" path="res://resource/material/material_stone_pavement.tres" id="5_rep4p"]
 [ext_resource type="Material" uid="uid://c4kdvxtxf6qht" path="res://resource/material/material_grass_1.tres" id="6_eci3w"]
+[ext_resource type="PackedScene" uid="uid://db8gwpx58uwus" path="res://assets/mesh/prop/mesh_cathedral.blend" id="6_p5u52"]
+[ext_resource type="Material" uid="uid://e6kqs6p081ew" path="res://scenes/test/material_test/gold.tres" id="7_5jfeb"]
 [ext_resource type="Environment" uid="uid://dfi8f6n3mi0ob" path="res://resource/environment_base_autumn.tres" id="8_g0cne"]
 
 [sub_resource type="MultiMesh" id="MultiMesh_5xmeq"]
@@ -38,30 +40,42 @@ leafInterpolationWeight = 20.0
 [node name="Marker3D" type="Marker3D" parent="." index="1"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 87, 1, 83)
 
-[node name="Pavement" parent="." index="3"]
+[node name="Cube" parent="." index="2"]
+visible = false
+
+[node name="mesh_cathedral" parent="." index="3" instance=ExtResource("6_p5u52")]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, 52.5, 1.24185, 47.9312)
+
+[node name="Sphere" parent="mesh_cathedral" index="4"]
+surface_material_override/0 = ExtResource("7_5jfeb")
+
+[node name="Sphere_001" parent="mesh_cathedral" index="5"]
+surface_material_override/0 = ExtResource("7_5jfeb")
+
+[node name="Pavement" parent="." index="4"]
 surface_material_override/0 = ExtResource("5_rep4p")
 
-[node name="Grass" parent="." index="5"]
+[node name="Grass" parent="." index="6"]
 surface_material_override/0 = ExtResource("6_eci3w")
 
-[node name="Grass_001" parent="." index="6"]
+[node name="Grass_001" parent="." index="7"]
 surface_material_override/0 = ExtResource("6_eci3w")
 
-[node name="Grass_002" parent="." index="7"]
+[node name="Grass_002" parent="." index="8"]
 surface_material_override/0 = ExtResource("6_eci3w")
 
-[node name="Pavement " parent="." index="8" groups=["Material-Concrete"]]
+[node name="Pavement " parent="." index="9" groups=["Material-Concrete"]]
 
-[node name="Grass " parent="." index="9" groups=["Material-Grass"]]
+[node name="Grass " parent="." index="10" groups=["Material-Grass"]]
 
-[node name="Grass_001 " parent="." index="10" groups=["Material-Grass"]]
+[node name="Grass_001 " parent="." index="11" groups=["Material-Grass"]]
 
-[node name="Grass_002 " parent="." index="11" groups=["Material-Grass"]]
+[node name="Grass_002 " parent="." index="12" groups=["Material-Grass"]]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="12"]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." index="13"]
 environment = ExtResource("8_g0cne")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="13"]
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="14"]
 transform = Transform3D(-0.986286, -0.0399287, -0.160145, 8.4826e-08, -0.970297, 0.241922, -0.165048, 0.238604, 0.956988, 0, 0, 0)
 light_energy = 2.0
 light_bake_mode = 1
@@ -69,3 +83,5 @@ shadow_enabled = true
 shadow_opacity = 0.75
 directional_shadow_mode = 0
 directional_shadow_fade_start = 1.0
+
+[editable path="mesh_cathedral"]

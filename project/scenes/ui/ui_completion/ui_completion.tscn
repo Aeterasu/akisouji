@@ -54,7 +54,7 @@ colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kbhp8"]
 gradient = SubResource("Gradient_x1dtd")
 
-[node name="UICompletion" type="Control" node_paths=PackedStringArray("initial_popup", "menu", "menu_button_handler", "grade_emblem", "time_label", "blackout")]
+[node name="UICompletion" type="Control" node_paths=PackedStringArray("initial_popup", "menu", "menu_button_handler", "grade_emblem", "time_label", "cash_label", "blackout")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,6 +68,7 @@ menu = NodePath("Menu")
 menu_button_handler = NodePath("Menu/Control/ButtonSelectionHandler")
 grade_emblem = NodePath("Menu/Grade")
 time_label = NodePath("Menu/TimeElapsedLabel")
+cash_label = NodePath("Menu/CashEarnedLabel")
 blackout = NodePath("Menu/Blackout")
 
 [node name="InitialPopup" type="TextureRect" parent="."]
@@ -225,9 +226,9 @@ anchor_top = 0.294
 anchor_right = 1.0
 anchor_bottom = 0.362
 offset_left = 539.0
-offset_top = 0.320007
+offset_top = -16.68
 offset_right = -192.0
-offset_bottom = 0.359985
+offset_bottom = -16.64
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/outline_size = 12
@@ -250,16 +251,48 @@ offset_bottom = -0.00899887
 texture = SubResource("GradientTexture2D_yv2rf")
 expand_mode = 1
 
+[node name="CashEarnedLabel" type="RichTextLabel" parent="Menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.294
+anchor_right = 1.0
+anchor_bottom = 0.362
+offset_left = 539.0
+offset_top = 44.32
+offset_right = -192.0
+offset_bottom = 44.36
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 12
+theme_override_fonts/normal_font = ExtResource("2_s0aa6")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[center]Cash earned: 0.00$[/center]"
+scroll_active = false
+
+[node name="TextureRect" type="TextureRect" parent="Menu/CashEarnedLabel"]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.089
+anchor_right = 1.022
+anchor_bottom = 1.041
+offset_left = 0.139
+offset_right = -0.078064
+offset_bottom = -0.00899887
+texture = SubResource("GradientTexture2D_yv2rf")
+expand_mode = 1
+
 [node name="GradeLabel" type="Label" parent="Menu"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.443
 anchor_right = 1.0
 anchor_bottom = 0.511
-offset_left = 624.0
-offset_top = 0.039978
-offset_right = -231.0
-offset_bottom = 0.0799866
+offset_left = 627.0
+offset_top = 26.04
+offset_right = -228.0
+offset_bottom = 26.08
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/outline_size = 12
@@ -292,6 +325,7 @@ grow_vertical = 2
 
 [node name="PaperButtonHFlipped" parent="Menu/Control" instance=ExtResource("7_clfxf")]
 layout_mode = 1
+anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -316,9 +350,9 @@ anchor_top = 0.519
 anchor_right = 0.602
 anchor_bottom = 0.519
 offset_left = -0.560059
-offset_top = 0.319946
+offset_top = 20.32
 offset_right = -0.560059
-offset_bottom = 0.319946
+offset_bottom = 20.32
 grow_horizontal = 2
 grow_vertical = 2
 
