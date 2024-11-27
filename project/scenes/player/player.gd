@@ -214,7 +214,7 @@ func input_process(delta : float):
 			garbage_bag_viewmodel._equip()
 		return
 
-	if (garbage_bag_handler.is_holding_a_bag and Input.is_action_just_pressed("player_action_primary")):
+	if (garbage_bag_handler.is_holding_a_bag and (Input.is_action_just_pressed("player_action_primary") or Input.is_action_just_pressed("player_action_secondary"))):
 		garbage_bag_handler.is_holding_a_bag = false
 		inventory.current_tool._equip()
 		garbage_bag_viewmodel._unequip()

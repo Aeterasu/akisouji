@@ -1,28 +1,29 @@
-[gd_scene load_steps=34 format=3 uid="uid://71lkn3s6kfqi"]
+[gd_scene load_steps=37 format=3 uid="uid://71lkn3s6kfqi"]
 
 [ext_resource type="Script" path="res://scenes/ui/shop/shop.gd" id="1_87sb4"]
 [ext_resource type="Texture2D" uid="uid://o065i8cobccy" path="res://assets/texture/ui/shop/texture_shop_background.png" id="2_4mw2w"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="2_yb51t"]
 [ext_resource type="Texture2D" uid="uid://ceghh11taklj3" path="res://assets/texture/ui/shop/texture_ui_shopping_cart.png" id="3_o7shq"]
 [ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="5_bijnc"]
-[ext_resource type="Texture2D" uid="uid://c4ji1cckxhdx2" path="res://assets/texture/icons/texture_icon_broom_1.png" id="5_o4h1p"]
 [ext_resource type="PackedScene" uid="uid://bebej4aqrfu5c" path="res://scenes/ui/shop/shop_paper_button.tscn" id="5_qmceb"]
 [ext_resource type="Resource" uid="uid://bnojv12xi1uio" path="res://scenes/upgrade/move_speed/default_boots.tres" id="5_r8g5d"]
 [ext_resource type="Texture2D" uid="uid://dnhwqr3q3c00i" path="res://assets/texture/fx/texture_fx_sunbeams.png" id="5_rk14u"]
 [ext_resource type="Script" path="res://scenes/ui/shop/shop_sidepanel.gd" id="5_x7sem"]
 [ext_resource type="Script" path="res://scenes/ui/shop/shop_category.gd" id="6_7edpc"]
+[ext_resource type="Shader" path="res://shader/uv_pulse.gdshader" id="6_ac7cn"]
 [ext_resource type="PackedScene" uid="uid://c15cmbbg5nyn0" path="res://scenes/ui/hud/ui_cash.tscn" id="6_acpaq"]
 [ext_resource type="Resource" uid="uid://dm1aayb6i2p5a" path="res://scenes/upgrade/move_speed/sneakers.tres" id="6_aii5i"]
-[ext_resource type="Script" path="res://scenes/ui/rotating_texture_rect.gd" id="6_avd2k"]
+[ext_resource type="Shader" path="res://shader/rotate_uv.gdshader" id="6_s7n1s"]
 [ext_resource type="Resource" uid="uid://cc7kdcc5fh4wk" path="res://scenes/upgrade/move_speed/wellies.tres" id="7_bq3o6"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="7_fg3im"]
 [ext_resource type="Script" path="res://scenes/ui/shop/shop_entry.gd" id="8_8rigd"]
 [ext_resource type="Resource" uid="uid://c37g3k5d2emhn" path="res://scenes/upgrade/move_speed/sevenleagues.tres" id="8_httmv"]
-[ext_resource type="Script" path="res://scenes/ui/shop/shop_texture_scaling.gd" id="9_xtrb1"]
+[ext_resource type="Texture2D" uid="uid://ig30bsdmdd53" path="res://assets/texture/icons/texture_icon_camera.png" id="8_r0lf6"]
 [ext_resource type="Resource" uid="uid://c7sbyg4ns7pi2" path="res://scenes/upgrade/broom/broom.tres" id="11_sc14h"]
 [ext_resource type="Resource" uid="uid://bi0qxjmyixrxb" path="res://scenes/upgrade/broom/strong_broom.tres" id="12_ti5lq"]
 [ext_resource type="Resource" uid="uid://b8f14366gudkv" path="res://scenes/upgrade/broom/golden_broom.tres" id="13_tpjwr"]
 [ext_resource type="Resource" uid="uid://c7wg1nuu7ajn5" path="res://scenes/upgrade/broom/leaf_blower.tres" id="14_fdjp1"]
+[ext_resource type="Resource" uid="uid://bn47rjqc642pu" path="res://scenes/upgrade/camera.tres" id="15_3nn51"]
 [ext_resource type="PackedScene" uid="uid://cyaqutbexr62l" path="res://scenes/ui/gamepad_tooltip/gamepad_tooltip.tscn" id="17_xyhan"]
 
 [sub_resource type="Gradient" id="Gradient_mtig2"]
@@ -39,6 +40,19 @@ gradient = SubResource("Gradient_fiolj")
 fill_from = Vector2(1, 0)
 fill_to = Vector2(0, 0)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3i6hp"]
+shader = ExtResource("6_ac7cn")
+shader_parameter/coeff = 0.1
+shader_parameter/speed = 3.0
+shader_parameter/modulate = Color(0.878431, 0.827451, 0.658824, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ft403"]
+shader = ExtResource("6_s7n1s")
+shader_parameter/color = Color(1, 0.854902, 0.388235, 0.392157)
+shader_parameter/clockwise = true
+shader_parameter/speed = 1.0
+shader_parameter/spin_texture = ExtResource("5_rk14u")
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_1rngk"]
 blend_mode = 1
 light_mode = 1
@@ -50,6 +64,8 @@ colors = PackedColorArray(1, 1, 1, 1, 0.459268, 0.459268, 0.459268, 1, 0.153778,
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_mhh31"]
 gradient = SubResource("Gradient_3rejo")
+width = 32
+height = 32
 fill = 1
 fill_from = Vector2(0.508547, 0.491453)
 fill_to = Vector2(0.884615, 0.115385)
@@ -193,26 +209,40 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TextureRect" type="TextureRect" parent="SidePanel/Gradient/InCategory"]
+modulate = Color(0.880165, 0.828865, 0.660042, 1)
+material = SubResource("ShaderMaterial_3i6hp")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 214.0
+offset_top = 140.0
+offset_right = -268.0
+offset_bottom = -317.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_r0lf6")
+stretch_mode = 3
+
 [node name="Sunbeams" type="TextureRect" parent="SidePanel/Gradient/InCategory"]
 modulate = Color(1, 0.853478, 0.388235, 0.494118)
 z_index = -2
-material = SubResource("CanvasItemMaterial_1rngk")
+material = SubResource("ShaderMaterial_ft403")
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.215
-anchor_right = 1.0
-offset_left = 0.339996
-offset_top = 127.0
-offset_right = -172.0
-offset_bottom = 523.0
-pivot_offset = Vector2(198, 198)
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -108.0
+offset_right = -20.0
+offset_bottom = -72.0
+scale = Vector2(2, 2)
 texture = ExtResource("5_rk14u")
-stretch_mode = 5
-script = ExtResource("6_avd2k")
-speed = 0.0
+stretch_mode = 3
 
 [node name="Sunbeams2" type="TextureRect" parent="SidePanel/Gradient/InCategory/Sunbeams"]
-modulate = Color(1, 0.897008, 0.565765, 1)
+modulate = Color(0.988783, 0.873066, 0.500894, 1)
 z_index = 101
 material = SubResource("CanvasItemMaterial_1rngk")
 layout_mode = 1
@@ -222,23 +252,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_mhh31")
-stretch_mode = 5
-
-[node name="Sunbeams4" type="TextureRect" parent="SidePanel/Gradient/InCategory/Sunbeams"]
-modulate = Color(0.0791031, 0, 0.000629459, 1)
-z_index = 101
-material = SubResource("CanvasItemMaterial_1rngk")
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = SubResource("GradientTexture2D_mhh31")
+expand_mode = 1
 stretch_mode = 5
 
 [node name="Sunbeams3" type="TextureRect" parent="SidePanel/Gradient/InCategory/Sunbeams"]
-modulate = Color(0.574675, 0.485908, 0.200412, 1)
+modulate = Color(0.0926804, 0.0730157, 0.00976936, 1)
 z_index = 101
 material = SubResource("CanvasItemMaterial_1rngk")
 layout_mode = 1
@@ -257,12 +275,10 @@ stretch_mode = 5
 [node name="Label" type="RichTextLabel" parent="SidePanel/Gradient/InCategory"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
+anchor_top = 0.568
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -362.0
-offset_top = 409.0
-offset_right = 362.0
+offset_top = 0.039978
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/outline_size = 16
@@ -271,25 +287,6 @@ bbcode_enabled = true
 text = "[center][font_size=36]SHOP_ITEM_NAME[/font_size][/center]
 
 [center][font_size=24]SHOP_ITEM_DESCRIPTION[/font_size][/center]"
-
-[node name="TextureRect" type="TextureRect" parent="SidePanel/Gradient/InCategory"]
-modulate = Color(0.880165, 0.828865, 0.660042, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.601
-anchor_top = 0.185
-anchor_right = 1.0
-anchor_bottom = 0.55
-offset_left = -152.124
-offset_top = -0.199997
-offset_right = -268.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(86, 131)
-texture = ExtResource("5_o4h1p")
-stretch_mode = 4
-script = ExtResource("9_xtrb1")
-anim_duration = 0.5
 
 [node name="CategorySelect" type="Control" parent="."]
 layout_mode = 1
@@ -353,12 +350,15 @@ sidepanel = NodePath("../../SidePanel")
 shop = NodePath("../..")
 
 [node name="Broom1" parent="Categories/ShopCategoryTools" instance=ExtResource("5_qmceb")]
-layout_mode = 1
-offset_left = -34.0
-offset_top = -440.76
-offset_right = 479.0
-offset_bottom = -412.262
-scale = Vector2(0.8, 0.8)
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -56.0
+offset_top = 172.0
+offset_right = -56.0
+offset_bottom = 300.0
+scale = Vector2(0.71, 0.71)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
 
@@ -387,13 +387,54 @@ name_label = NodePath("../AnimationOrigin/Label")
 cost_label = NodePath("../AnimationOrigin/CostLabel")
 not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
 
+[node name="Camera" parent="Categories/ShopCategoryTools" instance=ExtResource("5_qmceb")]
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -56.0
+offset_top = 261.1
+offset_right = -56.0
+offset_bottom = 389.1
+scale = Vector2(0.71, 0.71)
+target_selected_position = Vector2(48, 0)
+target_deselected_position = Vector2(-32, 0)
+
+[node name="CostLabel" type="RichTextLabel" parent="Categories/ShopCategoryTools/Camera/AnimationOrigin" index="3"]
+layout_mode = 0
+offset_left = 535.0
+offset_top = 22.0
+offset_right = 1411.0
+offset_bottom = 85.0
+mouse_filter = 2
+theme_override_constants/outline_size = 32
+theme_override_fonts/normal_font = ExtResource("2_yb51t")
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[left]0[img]res://assets/texture/ui/hud/texture_ui_cash_symbol_small.png[/img][/left]"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="CameraEntry" type="Node" parent="Categories/ShopCategoryTools/Camera" node_paths=PackedStringArray("button", "name_label", "cost_label")]
+process_priority = 1
+process_physics_priority = 1
+script = ExtResource("8_8rigd")
+button = NodePath("..")
+upgrade_item = ExtResource("15_3nn51")
+name_label = NodePath("../AnimationOrigin/Label")
+cost_label = NodePath("../AnimationOrigin/CostLabel")
+not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
+
 [node name="Broom2" parent="Categories/ShopCategoryTools" instance=ExtResource("5_qmceb")]
-layout_mode = 1
-offset_left = -34.0
-offset_top = -345.76
-offset_right = 479.0
-offset_bottom = -317.262
-scale = Vector2(0.8, 0.8)
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -56.0
+offset_top = 350.2
+offset_right = -56.0
+offset_bottom = 478.2
+scale = Vector2(0.71, 0.71)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
 
@@ -429,12 +470,15 @@ cost_label = NodePath("../AnimationOrigin/CostLabel")
 not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
 
 [node name="Broom4" parent="Categories/ShopCategoryTools" instance=ExtResource("5_qmceb")]
-layout_mode = 1
-offset_left = -34.0
-offset_top = -248.76
-offset_right = 479.0
-offset_bottom = -220.262
-scale = Vector2(0.8, 0.8)
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -56.0
+offset_top = 439.3
+offset_right = -56.0
+offset_bottom = 567.3
+scale = Vector2(0.71, 0.71)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
 
@@ -470,12 +514,15 @@ cost_label = NodePath("../AnimationOrigin/CostLabel")
 not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
 
 [node name="Broom5" parent="Categories/ShopCategoryTools" instance=ExtResource("5_qmceb")]
-layout_mode = 1
-offset_left = -34.0
-offset_top = -152.76
-offset_right = 479.0
-offset_bottom = -124.262
-scale = Vector2(0.8, 0.8)
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -56.0
+offset_top = 528.4
+offset_right = -56.0
+offset_bottom = 656.4
+scale = Vector2(0.71, 0.71)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
 
@@ -511,12 +558,14 @@ cost_label = NodePath("../AnimationOrigin/CostLabel")
 not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
 
 [node name="Back" parent="Categories/ShopCategoryTools" instance=ExtResource("5_qmceb")]
-layout_mode = 1
-offset_left = -114.0
-offset_top = 14.24
-offset_right = 399.0
-offset_bottom = 42.7379
-scale = Vector2(0.8, 0.8)
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -144.0
+offset_top = 617.5
+offset_right = -144.0
+offset_bottom = 745.5
 target_selected_position = Vector2(64, 0)
 target_deselected_position = Vector2(0, 0)
 text_key = "MENU_BUTTON_BACK"
@@ -542,11 +591,14 @@ sidepanel = NodePath("../../SidePanel")
 shop = NodePath("../..")
 
 [node name="Boots1" parent="Categories/ShopCategoryBoots" instance=ExtResource("5_qmceb")]
-layout_mode = 1
-offset_left = -34.0
-offset_top = -441.76
-offset_right = 479.0
-offset_bottom = -413.262
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -53.0
+offset_top = 164.0
+offset_right = -53.0
+offset_bottom = 292.0
 scale = Vector2(0.8, 0.8)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
@@ -583,11 +635,14 @@ cost_label = NodePath("../AnimationOrigin/CostLabel")
 not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
 
 [node name="Boots2" parent="Categories/ShopCategoryBoots" instance=ExtResource("5_qmceb")]
-layout_mode = 1
-offset_left = -34.0
-offset_top = -345.76
-offset_right = 479.0
-offset_bottom = -317.262
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -53.0
+offset_top = 271.58
+offset_right = -53.0
+offset_bottom = 399.58
 scale = Vector2(0.8, 0.8)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
@@ -624,11 +679,14 @@ cost_label = NodePath("../AnimationOrigin/CostLabel")
 not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
 
 [node name="Boots3" parent="Categories/ShopCategoryBoots" instance=ExtResource("5_qmceb")]
-layout_mode = 1
-offset_left = -34.0
-offset_top = -249.76
-offset_right = 479.0
-offset_bottom = -221.262
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -53.0
+offset_top = 379.16
+offset_right = -53.0
+offset_bottom = 507.16
 scale = Vector2(0.8, 0.8)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
@@ -665,11 +723,14 @@ cost_label = NodePath("../AnimationOrigin/CostLabel")
 not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
 
 [node name="Boots4" parent="Categories/ShopCategoryBoots" instance=ExtResource("5_qmceb")]
-layout_mode = 1
-offset_left = -34.0
-offset_top = -153.76
-offset_right = 479.0
-offset_bottom = -125.262
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -53.0
+offset_top = 486.74
+offset_right = -53.0
+offset_bottom = 614.74
 scale = Vector2(0.8, 0.8)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
@@ -706,12 +767,14 @@ cost_label = NodePath("../AnimationOrigin/CostLabel")
 not_enough_dosh_cost_color = Color(0.696871, 0.322589, 0.256776, 1)
 
 [node name="Back" parent="Categories/ShopCategoryBoots" instance=ExtResource("5_qmceb")]
-layout_mode = 1
-offset_left = -114.0
-offset_top = 14.24
-offset_right = 399.0
-offset_bottom = 42.7379
-scale = Vector2(0.8, 0.8)
+layout_mode = 2
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = -141.0
+offset_top = 586.32
+offset_right = -141.0
+offset_bottom = 714.32
 target_selected_position = Vector2(64, 0)
 target_deselected_position = Vector2(0, 0)
 text_key = "MENU_BUTTON_BACK"
@@ -732,6 +795,7 @@ layout_mode = 1
 script = ExtResource("7_fg3im")
 
 [editable path="Categories/ShopCategoryTools/Broom1"]
+[editable path="Categories/ShopCategoryTools/Camera"]
 [editable path="Categories/ShopCategoryTools/Broom2"]
 [editable path="Categories/ShopCategoryTools/Broom4"]
 [editable path="Categories/ShopCategoryTools/Broom5"]

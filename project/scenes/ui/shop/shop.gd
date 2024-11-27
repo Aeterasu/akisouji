@@ -49,9 +49,9 @@ func _process(delta):
 		_on_back_button_pressed()
 
 	sidepanel.default_panel.visible = !is_in_category
-	sidepanel.in_category_panel.visible = is_in_category
 
 	if (!is_in_category):
+		sidepanel.in_category_panel.hide()
 		match category_select_button_handler.current_button:
 			tools_button:
 				sidepanel.motto_label.text = tr(category_tools_motto_key)
@@ -59,6 +59,11 @@ func _process(delta):
 				sidepanel.motto_label.text = tr(category_boots_motto_key)
 
 func _on_category_select_button_pressed(button : UIButton):
+	sidepanel.current_shop_entry_upgrade = null
+	sidepanel.icon.texture = null
+	sidepanel.in_category_panel.hide()
+	sidepanel.current_shop_entry_upgrade = null
+	sidepanel.shop_entry_description_label.text = ""
 	match (button):
 		back_button:
 			_on_back_button_pressed()
@@ -67,8 +72,8 @@ func _on_category_select_button_pressed(button : UIButton):
 			is_in_category = true
 			current_category = category_tools._select()
 		boots_button:
-			is_in_category = true
 			_on_category_select()
+			is_in_category = true
 			current_category = category_boots._select()
 
 func _on_back_button_pressed():

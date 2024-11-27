@@ -32,6 +32,7 @@ func _process(delta):
 				break
 	
 	if (current_entry):
+		sidepanel.in_category_panel.show()
 		sidepanel.icon.texture = current_entry.upgrade_item.upgrade_icon
 		sidepanel.current_shop_entry_upgrade = current_entry.upgrade_item
 

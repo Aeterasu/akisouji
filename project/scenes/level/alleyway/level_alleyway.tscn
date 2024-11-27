@@ -1692,6 +1692,7 @@ bus = &"Ambience"
 parameters/looping = true
 
 [node name="MultiGrass" type="MultiMeshInstance3D" parent="." index="38"]
+cast_shadow = 0
 multimesh = SubResource("MultiMesh_a64m0")
 
 [node name="Grass" type="MeshInstance3D" parent="." index="39"]

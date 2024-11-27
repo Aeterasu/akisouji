@@ -113,6 +113,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_ykbf5")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="StageBackground2" type="TextureRect" parent="Control"]
 self_modulate = Color(0.239216, 0.172549, 0.156863, 1)
@@ -123,6 +125,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("10_jxscp")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="StageBackground3" type="TextureRect" parent="Control"]
 self_modulate = Color(0.239216, 0.172549, 0.156863, 1)
@@ -133,6 +137,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_5r7es")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="StageBackground4" type="TextureRect" parent="Control"]
 self_modulate = Color(0.239216, 0.172549, 0.156863, 1)
@@ -143,6 +149,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_ykbf5")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Background" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.278431)

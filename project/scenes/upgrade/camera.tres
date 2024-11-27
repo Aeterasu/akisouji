@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=3 format=3 uid="uid://bn47rjqc642pu"]
+
+[ext_resource type="Script" path="res://scenes/upgrade/upgrade.gd" id="1_13gv6"]
+[ext_resource type="Texture2D" uid="uid://ig30bsdmdd53" path="res://assets/texture/icons/texture_icon_camera.png" id="2_cchg6"]
+
+[resource]
+script = ExtResource("1_13gv6")
+upgrade_icon = ExtResource("2_cchg6")
+cost = 0
+name_key = "ITEM_NAME_CAMERA"
+description_key = ""
+one_time_purchase = true
