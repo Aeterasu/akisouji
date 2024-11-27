@@ -136,6 +136,7 @@ LEFT TO DO:
     + GARBAGE BAGS FILLING UP BY SWEEPING? YOU CAN THEN THROW IT, MOVE IT, ETC
     + add grass
     + fix horizontal scaling
+    + add 'current rank'
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
@@ -189,7 +190,6 @@ LEFT TO DO:
         - redraw textures for in-game ui
         - add in-game tool panel ui
         - in-game UI should have control tooltips with gamepad glyphs
-        - add 'current rank'
     
     VISUAL:
         GOLDEN AUTUMN MUCH?
@@ -236,6 +236,8 @@ LEFT TO DO:
     PAUSE MENU:
     
     MISC:
+        - sort language file
+
         - fix tweener error
 
         - GAME NAME AND LOGO IN TITLE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
