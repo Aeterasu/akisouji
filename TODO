@@ -160,7 +160,9 @@ LEFT TO DO:
             = church
                 =1. clean the leaves 0%
                 =2. ring the bell, with the interval 0/3
+                =3. move the garbage bags from the alley
 
+        - add cleaning requests on garbage bags collision
 		- on buying tools, make sure they are always in the same order
         - setup leafmap and heightmap for fountain level (remove leaves from under the fountain lolololo!)
          disabled leaf populator completely breaks the game, pls add safety checks

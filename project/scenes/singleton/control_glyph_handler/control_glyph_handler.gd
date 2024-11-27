@@ -9,7 +9,7 @@ func _get_glyph_bbcode(input : InputEvent) -> String:
 	var result : String = ""
 
 	if (input is InputEventKey):
-		result = "[" + OS.get_keycode_string((input as InputEventKey).key_label) + "]"
+		result = "[" + OS.get_keycode_string((input as InputEventKey).physical_keycode) + "]"
 	elif (input is InputEventMouseButton):
 		match (input as InputEventMouseButton).button_index:
 			MouseButton.MOUSE_BUTTON_LEFT:
@@ -33,7 +33,6 @@ func _get_glyph_bbcode(input : InputEvent) -> String:
 				result = _get_playstation_axis(joypadMotion.axis)
 			"PS5 Controller":
 				result = _get_playstation_axis(joypadMotion.axis)
-
 	elif (input is InputEventJoypadButton):
 		var joypadButton = input as InputEventJoypadButton;
 		var joypadName = Input.get_joy_name(0);
@@ -64,7 +63,7 @@ func _get_xbox_axis(axis : JoyAxis) -> String:
 		JoyAxis.JOY_AXIS_TRIGGER_LEFT:
 			return "[img region=192,0,32,32]" + _get_glyph_image_path() + "[/img]"
 		JoyAxis.JOY_AXIS_TRIGGER_RIGHT:
-			return "[img region=224,64,32,32]" + _get_glyph_image_path() + "[/img]"
+			return "[img region=224,0,32,32]" + _get_glyph_image_path() + "[/img]"
 	
 	return ""
 

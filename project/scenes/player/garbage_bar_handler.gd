@@ -1,5 +1,6 @@
 class_name GarbageBagHandler extends Node
 
+@export var enable_filling : bool = false
 @export_range(1, 100000) var capacity : int = 2500
 @export var garbage_bag_scene : PackedScene = null
 @export var throw_strength : float = 8.0
@@ -12,6 +13,9 @@ func _process(delta) -> void:
     pass
 
 func _add(amount : int):
+    if (!enable_filling):
+        return
+
     if (current_fill >= capacity):
         return
 
