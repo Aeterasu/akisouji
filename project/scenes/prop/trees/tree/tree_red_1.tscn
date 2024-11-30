@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://c821h84y81dge"]
+
+[ext_resource type="PackedScene" uid="uid://lcqqs6xwlhew" path="res://assets/mesh/prop/mesh_tree_1.glb" id="1_5mxm8"]
+[ext_resource type="Material" uid="uid://dx34skvhw6nkc" path="res://resource/material/material_tree_trunk.tres" id="2_518vj"]
+[ext_resource type="Shader" path="res://shader/foliage_alpha.gdshader" id="3_fpakd"]
+[ext_resource type="Texture2D" uid="uid://dtneewh7ob0gq" path="res://assets/texture/environment/texture_foliage_3_albm.png" id="4_o4blq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jawfv"]
+render_priority = 0
+shader = ExtResource("3_fpakd")
+shader_parameter/WindScale = 1.0
+shader_parameter/WindStrength = 1.49
+shader_parameter/WindDensity = 5.0
+shader_parameter/ClampTop = 1.0
+shader_parameter/ClampBtm = 0.0
+shader_parameter/MeshScale = -3.0
+shader_parameter/FresnelColor = Color(0.615686, 0.243137, 0, 1)
+shader_parameter/FresnelStrength = 1.893
+shader_parameter/FresnelBlend = 0.577
+shader_parameter/Texture = ExtResource("4_o4blq")
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_f7wet"]
+height = 8.0
+
+[node name="Tree1" type="Node3D"]
+
+[node name="mesh_tree_1" parent="." instance=ExtResource("1_5mxm8")]
+surface_material_override/0 = ExtResource("2_518vj")
+surface_material_override/1 = SubResource("ShaderMaterial_jawfv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+shape = SubResource("CylinderShape3D_f7wet")

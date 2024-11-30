@@ -2,29 +2,29 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3r3q4eduupr8"
-path="res://.godot/imported/texture_brushstrokes_nrmp.png-0dd423cd950bbad6f463c473ac0d93ff.ctex"
+uid="uid://k37fw1tbqwph"
+path="res://.godot/imported/texture_wall_4_albm.png-39f0362618131490edf3f53cfccd4013.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/texture/environment/texture_brushstrokes_nrmp.png"
-dest_files=["res://.godot/imported/texture_brushstrokes_nrmp.png-0dd423cd950bbad6f463c473ac0d93ff.ctex"]
+source_file="res://assets/texture/prop/cathedral/texture_wall_4_albm.png"
+dest_files=["res://.godot/imported/texture_wall_4_albm.png-39f0362618131490edf3f53cfccd4013.ctex"]
 
 [params]
 
-compress/mode=4
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
-compress/normal_map=1
+compress/normal_map=0
 compress/channel_pack=0
 mipmaps/generate=true
 mipmaps/limit=-1
-roughness/mode=1
-roughness/src_normal="res://assets/texture/environment/texture_brushstrokes_nrmp.png"
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false

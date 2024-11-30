@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ccbnrhjvyuxy1"]
+
+[ext_resource type="Texture2D" uid="uid://cbhi0rbni7oov" path="res://assets/texture/environment/texture_red_tree_1.png" id="1_pb35k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hvs5i"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+diffuse_mode = 3
+specular_mode = 2
+albedo_texture = ExtResource("1_pb35k")
+
+[sub_resource type="QuadMesh" id="QuadMesh_bx4ub"]
+material = SubResource("StandardMaterial3D_hvs5i")
+size = Vector2(8, 8)
+
+[node name="DistantTree1" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.430974, 3.77262, 0)
+mesh = SubResource("QuadMesh_bx4ub")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.0371992, 3.77262, -0.328948)
+mesh = SubResource("QuadMesh_bx4ub")

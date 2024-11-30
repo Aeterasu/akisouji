@@ -1,0 +1,61 @@
+[gd_scene load_steps=10 format=3 uid="uid://bh2vkso5xehue"]
+
+[ext_resource type="PackedScene" uid="uid://db8gwpx58uwus" path="res://assets/mesh/prop/mesh_cathedral.blend" id="1_a8mio"]
+[ext_resource type="Material" uid="uid://1bjbkgj03b7q" path="res://scenes/prop/cathedral/material_wall_1.tres" id="2_cgx65"]
+[ext_resource type="Material" uid="uid://vvuxdoclta2d" path="res://scenes/prop/cathedral/material_foundation_1.tres" id="2_lnybh"]
+[ext_resource type="Material" uid="uid://c5hnt4xok8hhv" path="res://scenes/prop/cathedral/material_wall_2.tres" id="3_01m15"]
+[ext_resource type="Material" uid="uid://b0xq13jwyxqyu" path="res://scenes/prop/cathedral/material_rooftop_1.tres" id="3_lnqr1"]
+[ext_resource type="Material" uid="uid://dcl27287ecwcc" path="res://scenes/prop/cathedral/material_gold.tres" id="3_n1bqo"]
+[ext_resource type="Material" uid="uid://sejallexe56r" path="res://scenes/prop/cathedral/material_wall_4.tres" id="4_viji3"]
+[ext_resource type="Material" uid="uid://wu31d643gm28" path="res://scenes/prop/cathedral/material_wall_3.tres" id="5_vuqf1"]
+[ext_resource type="Material" uid="uid://dj24l37yaodmk" path="res://scenes/prop/cathedral/material_concrete.tres" id="6_qiktc"]
+
+[node name="mesh_cathedral" instance=ExtResource("1_a8mio")]
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_lnybh")
+surface_material_override/1 = ExtResource("2_cgx65")
+surface_material_override/2 = ExtResource("3_lnqr1")
+
+[node name="Cube_001" parent="." index="1"]
+surface_material_override/0 = ExtResource("2_cgx65")
+surface_material_override/1 = ExtResource("2_lnybh")
+surface_material_override/2 = ExtResource("3_lnqr1")
+
+[node name="Cube_002" parent="." index="2"]
+surface_material_override/0 = ExtResource("4_viji3")
+surface_material_override/1 = ExtResource("3_lnqr1")
+
+[node name="Circle" parent="." index="3"]
+surface_material_override/0 = ExtResource("6_qiktc")
+surface_material_override/1 = ExtResource("3_lnqr1")
+
+[node name="Circle_001" parent="." index="4"]
+surface_material_override/0 = ExtResource("6_qiktc")
+surface_material_override/1 = ExtResource("3_lnqr1")
+
+[node name="Cube_004" parent="." index="5"]
+surface_material_override/0 = ExtResource("3_lnqr1")
+surface_material_override/1 = ExtResource("2_lnybh")
+surface_material_override/2 = ExtResource("5_vuqf1")
+
+[node name="Cylinder" parent="." index="6"]
+surface_material_override/0 = ExtResource("3_lnqr1")
+surface_material_override/1 = ExtResource("2_lnybh")
+surface_material_override/2 = ExtResource("3_01m15")
+
+[node name="Sphere" parent="." index="7"]
+surface_material_override/0 = ExtResource("3_n1bqo")
+
+[node name="Sphere_001" parent="." index="8"]
+surface_material_override/0 = ExtResource("3_n1bqo")
+
+[node name="Cube_003" parent="." index="9"]
+surface_material_override/0 = ExtResource("3_lnqr1")
+surface_material_override/1 = ExtResource("2_lnybh")
+surface_material_override/2 = ExtResource("5_vuqf1")
+
+[node name="Cube_005" parent="." index="10"]
+surface_material_override/0 = ExtResource("3_lnqr1")
+surface_material_override/1 = ExtResource("2_lnybh")
+surface_material_override/2 = ExtResource("5_vuqf1")

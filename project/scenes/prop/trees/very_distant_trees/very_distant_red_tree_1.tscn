@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://biw7nofraxmyp"]
+
+[ext_resource type="Material" uid="uid://bm76xlav8l7sm" path="res://scenes/prop/trees/very_distant_trees/very_distant_red_tree_1.tres" id="1_457u0"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_8vlhr"]
+size = Vector2(4, 4)
+
+[node name="VeryDistantTree1" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.84112, 0)
+mesh = SubResource("QuadMesh_8vlhr")
+surface_material_override/0 = ExtResource("1_457u0")
