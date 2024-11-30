@@ -142,6 +142,9 @@ LEFT TO DO:
     + add playstation glyphs
     + during completion, you can move and look at the results of your work. the completion is initially just a text popup (Press blah to finish)
     + setup leafmap and heightmap for fountain level (remove leaves from under the fountain lolololo!)
+    + add church stage
+    + fix red 'bought'
+    + add bell chiming to church level
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
@@ -176,7 +179,6 @@ LEFT TO DO:
         - maybe implement optimization via cluster of multimeshes
         - dialogue box tutorial. mention leaf highlighting (could tutorial be a dialogue with the girl?)
         - work on economy :D (boots should be dirt cheap, brooms more costly)
-        - add church stage
         - cash and purchases saving
         - suggestion - make the leaf highlight not an inherent mechanic, but an upgrade?
         - set ranking times on levels !!!
@@ -184,6 +186,8 @@ LEFT TO DO:
     GENERAL UI:
         = ? add shop button to title screen ?
         - ADD STYLISTIC POEMS TO OTHER MENUS!!! shop, stage select, gallery etc
+
+        - add animation to level result screen on receiving grade (plus sound :3)
 
         - rework loading screen (chibis + let them show the stage picture. short stage description and "ENTERING [stage_name]...", press any button to start)
     
@@ -201,7 +205,6 @@ LEFT TO DO:
     AUDIO:
         - separate songs into game and menus
         - write a simple piece for title menu (chords and some piano)
-        - add bell chiming to church level
     
     SETTINGS:
         = CHANGEABLE KEYBINDS
@@ -242,10 +245,7 @@ LEFT TO DO:
 
         =UTILITY
             =leaf highlighting
-            =larger garbage bags
 
-        = add garbage bag upgrades 1 and 2
-        - fix red 'bought'
         - finalize shop icon texture for boots
         - add sounds for purchasing/purchase failure
         - add like a 'bought' and 'equipped\ rectangle stamp

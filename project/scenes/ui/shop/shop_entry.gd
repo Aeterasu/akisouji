@@ -54,26 +54,13 @@ func _ready():
 	button.on_deselected.connect(_on_button_deselected)
 
 func _process(delta):
-	#match (state):
-		#EntryState.AVAILABLE_TO_BUY:
-			#cost_label.text_key = "SHOP_BUTTON_BUY"
-		#EntryState.UNEQUIPPED:
-			#cost_label.text_key = "SHOP_BUTTON_EQUIP"
-		#EntryState.EQUIPPED:
-			#cost_label.text_key = "SHOP_BUTTON_EQUIPPED"
-		#EntryState.ONE_TIME_PURCHASE_BOUGHT:
-			#cost_label.text_key = "SHOP_BOUGHT"
-
 	if (sunbeams):
 		sunbeams.rotation_degrees += animation_speed * delta
 
 	if (!upgrade_item):
 		return
 
-	#if (upgrade_item.cost <= 0):
-		#cost_label.hide()
-
-	if (upgrade_item.cost > CashManager.cash):
+	if (state == EntryState.AVAILABLE_TO_BUY and upgrade_item.cost > CashManager.cash):
 		cost_label.modulate = not_enough_dosh_cost_color
 	else:
 		cost_label.modulate = regular_cost_color
