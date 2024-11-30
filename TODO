@@ -273,10 +273,8 @@ LEFT TO DO:
         - add some sort of intro seq
         
         - set locale on first launch
-        - fix null checks, replace them with is_instance_valid
         - check out TODOs in code and implement them 🥺🥺🥺
     
-		- debug reference counts in C++
         - disable console before release
         - IMPORTANT! BEFORE RELEASE, RECOMPILE C++ TO RELEASE TEMPLATE
     

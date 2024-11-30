@@ -39,4 +39,4 @@ bus = &"SFX"
 attenuation_filter_cutoff_hz = 20500.0
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
-target_position = Vector3(0, -0.6, 0)
+target_position = Vector3(0, -0.8, 0)

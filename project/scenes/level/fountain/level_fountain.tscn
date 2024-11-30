@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://clbhy8rora05f"]
+[gd_scene load_steps=46 format=3 uid="uid://clbhy8rora05f"]
 
 [ext_resource type="PackedScene" uid="uid://8xryiyqywwk0" path="res://assets/mesh/level_design/mesh_fountain.blend" id="1_xjuuk"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="2_mcqjm"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://qku2yjr0rm1" path="res://assets/texture/smile.png" id="31_4cjmo"]
 [ext_resource type="Texture2D" uid="uid://d3qw3bxoa8tck" path="res://assets/texture/environment/texture_horizon_close_1.png" id="31_r0mfe"]
 [ext_resource type="ArrayMesh" uid="uid://1he0r1avl6dr" path="res://assets/mesh/mesh_billboard_crossplanes.tres" id="32_3cxs2"]
+[ext_resource type="PackedScene" uid="uid://cdl3hbykq84ed" path="res://scenes/player/garbage_bag/garbage_bag.tscn" id="33_fs6jm"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_rks30"]
 material = ExtResource("12_3ydgt")
@@ -101,7 +102,7 @@ buffer = PackedFloat32Array(0.647813, 0, -0.763112, 48.0353, 0, 1.001, 0, 0, 0.7
 [node name="LevelFountain" node_paths=PackedStringArray("leaf_populator", "player_spawn_position") instance=ExtResource("1_xjuuk")]
 script = ExtResource("2_mcqjm")
 leaf_populator = NodePath("LeafPopulator")
-leaf_leeway = 500
+leaf_leeway = 350
 player_spawn_position = NodePath("Marker3D")
 
 [node name="LeafPopulator" parent="." index="0" instance=ExtResource("3_atajh")]
@@ -1319,6 +1320,57 @@ multimesh = SubResource("MultiMesh_eg8qr")
 
 [node name="Grass2" type="MeshInstance3D" parent="." index="30"]
 mesh = ExtResource("32_3cxs2")
+
+[node name="GarbageBag" parent="." index="31" instance=ExtResource("33_fs6jm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.4985, 0.601766, 39.042)
+
+[node name="GarbageBag2" parent="." index="32" instance=ExtResource("33_fs6jm")]
+transform = Transform3D(0.786116, 0, 0.618079, 0, 1, 0, -0.618079, 0, 0.786116, 19.1796, 0.601766, 40.042)
+
+[node name="GarbageBag3" parent="." index="33" instance=ExtResource("33_fs6jm")]
+transform = Transform3D(0.786116, 0, 0.618079, 0, 1, 0, -0.618079, 0, 0.786116, 38.679, 0.601766, 19.6018)
+
+[node name="GarbageBag4" parent="." index="34" instance=ExtResource("33_fs6jm")]
+transform = Transform3D(0.770625, 0, 0.63729, 0, 1, 0, -0.63729, 0, 0.770625, 44.1527, 0.601766, 10.7463)
+
+[node name="GarbageBag5" parent="." index="35" instance=ExtResource("33_fs6jm")]
+transform = Transform3D(0.461934, 0, 0.886914, 0, 1, 0, -0.886914, 0, 0.461934, 45.3661, 0.601766, 12.5338)
+
+[node name="GarbageBag6" parent="." index="36" instance=ExtResource("33_fs6jm")]
+transform = Transform3D(0.461934, 0, 0.886914, 0, 1, 0, -0.886914, 0, 0.461934, 38.3661, 0.601766, 14.0275)
+
+[node name="GarbageBag7" parent="." index="37" instance=ExtResource("33_fs6jm")]
+transform = Transform3D(0.988759, 0, -0.149518, 0, 1, 0, 0.149518, 0, 0.988759, 16.0228, 0.601766, 16.1672)
+
+[node name="GarbageBag8" parent="." index="38" instance=ExtResource("33_fs6jm")]
+transform = Transform3D(0.988759, 0, -0.149518, 0, 1, 0, 0.149518, 0, 0.988759, 9.1212, 0.601766, 21.6133)
+
+[node name="GarbageBag9" parent="." index="39" instance=ExtResource("33_fs6jm")]
+transform = Transform3D(0.867062, 0, 0.4982, 0, 1, 0, -0.4982, 0, 0.867062, 10.9814, 0.601766, 24.023)
+
+[node name="GarbageBag10" parent="." index="40" instance=ExtResource("33_fs6jm")]
+transform = Transform3D(0.867062, 0, 0.4982, 0, 1, 0, -0.4982, 0, 0.867062, 1.82323, 0.601766, 24.023)
+
+[node name="GarbageBag11" parent="." index="41" instance=ExtResource("33_fs6jm")]
+transform = Transform3D(0.99518, 0, 0.0980692, 0, 1, 0, -0.0980692, 0, 0.99518, 11.1658, 0.601766, 40.2717)
+
+[node name="GarbageBag12" parent="." index="42" instance=ExtResource("33_fs6jm")]
+transform = Transform3D(0.99518, 0, 0.0980692, 0, 1, 0, -0.0980692, 0, 0.99518, 21.05, 0.601766, 48.0276)
+
+[node name="GarbageBag13" parent="." index="43" instance=ExtResource("33_fs6jm")]
+transform = Transform3D(0.965781, 0, -0.259359, 0, 1, 0, 0.259359, 0, 0.965781, 18.9696, 0.601766, 51.0928)
+
+[node name="GarbageBag14" parent="." index="44" instance=ExtResource("33_fs6jm")]
+transform = Transform3D(0.920027, 0, 0.391855, 0, 1, 0, -0.391855, 0, 0.920027, 38.1113, 0.601766, 54.4069)
+
+[node name="GarbageBag15" parent="." index="45" instance=ExtResource("33_fs6jm")]
+transform = Transform3D(0.920027, 0, 0.391855, 0, 1, 0, -0.391855, 0, 0.920027, 42.3694, 0.601766, 56.5412)
+
+[node name="GarbageBag16" parent="." index="46" instance=ExtResource("33_fs6jm")]
+transform = Transform3D(0.863528, 0, 0.504302, 0, 1, 0, -0.504302, 0, 0.863528, 47.3062, 0.601766, 52.8185)
+
+[node name="GarbageBag17" parent="." index="47" instance=ExtResource("33_fs6jm")]
+transform = Transform3D(0.642895, 0, 0.765955, 0, 1, 0, -0.765955, 0, 0.642895, 51.4635, 0.601766, 43.3642)
 
 [editable path="CityHorizon"]
 [editable path="Horizon"]

@@ -29,10 +29,10 @@ func _discard_bag(player : Player) -> void:
     var sprint_multiplier : float = 1.0
 
     if (!player.is_on_floor()):
-        jump_multiplier = 1.5
+        jump_multiplier = 1.8
 
     if (player.wish_sprint):
-        sprint_multiplier = 1.2
+        sprint_multiplier = 1.4
 
     var bag = garbage_bag_scene.instantiate() as GarbageBag
     Game.game_instance.level.add_child(bag)
