@@ -638,6 +638,7 @@ data = ExtResource("2_7rku4")
 use_type = 1
 walk_cycle_direction = Vector3(0.025, 0.01, 0)
 hud_icon = ExtResource("3_vi40s")
+tool_name = "ITEM_NAME_GOLDEN_BROOM"
 tool_inventory_id = 4
 
 [node name="mesh_broom" parent="." instance=ExtResource("3_8wfs0")]

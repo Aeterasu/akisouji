@@ -677,6 +677,7 @@ use_type = 1
 animation_tree = NodePath("AnimationTree")
 walk_cycle_direction = Vector3(0.025, 0.01, 0)
 hud_icon = ExtResource("3_03isx")
+tool_name = "ITEM_NAME_BROOM"
 
 [node name="mesh_broom" parent="." instance=ExtResource("2_0flt6")]
 transform = Transform3D(0.0749063, -0.00298185, -0.00226904, -0.00309007, -0.0234714, -0.0711656, 0.0021193, 0.0711702, -0.0235649, 0.084, -0.102, -0.154)

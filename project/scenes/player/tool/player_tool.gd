@@ -11,6 +11,7 @@ var state_machine : AnimationNodeStateMachinePlayback = null
 @export var walk_cycle_direction : Vector3 = Vector3()
 
 @export var hud_icon : Texture2D = null
+@export var tool_name : String = ""
 @export var tool_inventory_id : int = 0
 
 var walk_multiplier : float = 1.0

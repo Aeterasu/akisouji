@@ -706,6 +706,7 @@ use_type = 1
 animation_tree = NodePath("AnimationTree")
 walk_cycle_direction = Vector3(0.013, 0.005, 0)
 hud_icon = ExtResource("4_8cxr1")
+tool_name = "ITEM_NAME_LEAF_BLOWER"
 tool_inventory_id = 2
 
 [node name="mesh_broom" parent="." instance=ExtResource("1_arkqy")]

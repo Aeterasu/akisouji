@@ -54,6 +54,9 @@ func _update_hud_textures() -> void:
 	tween.tween_callback(func(): (UI.instance.ui_tool_carousel.tool_right_animated.material as ShaderMaterial).set_shader_parameter("coeff", 0.8)).set_delay(0.2)
 
 func _physics_process(delta) -> void:
+	if (current_tool):
+		UI.instance.ui_tool_carousel.label.text = tr(current_tool.tool_name)
+
 	if (current_tool and !current_tool.allow_switch):
 		return
 
