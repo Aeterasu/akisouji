@@ -57,6 +57,23 @@ func _physics_process(delta) -> void:
 	if (current_tool):
 		UI.instance.ui_tool_carousel.label.text = tr(current_tool.tool_name)
 
+		UI.instance.ui_tool_carousel.tooltip_label.text = "[right]" + tr(current_tool.hud_tooltip_prompt)
+
+	if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD):
+		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[LMB]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_primary")[1]))
+		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[RMB]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_secondary")[1]))
+		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[F]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("hint_highlight")[1]))
+		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[Tab]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("open_inventory")[1]))
+		
+		UI.instance.ui_tool_carousel.tooltip_label.set("theme_override_constants/line_separation", 0)
+	elif (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE):
+		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[LMB]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_primary")[0]))
+		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[RMB]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_secondary")[0]))
+		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[F]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("hint_highlight")[0]))
+		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[Tab]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("open_inventory")[0]))
+
+		UI.instance.ui_tool_carousel.tooltip_label.set("theme_override_constants/line_separation", 6)
+
 	if (current_tool and !current_tool.allow_switch):
 		return
 

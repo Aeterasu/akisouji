@@ -150,6 +150,7 @@ LEFT TO DO:
     + make it so that button tooltips change depending on bindings
     + add 'show fps' setting
     + add in-game tool panel ui
+    + in-game UI should have control tooltips with gamepad glyphs
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
@@ -197,9 +198,6 @@ LEFT TO DO:
         - rework loading screen (chibis + let them show the stage picture. short stage description and "ENTERING [stage_name]...", press any button to start)
     
     IN-GAME HUD:
-        - redraw textures for in-game ui
-        - in-game UI should have control tooltips with gamepad glyphs
-
         - REMOVE TIMER FROM FIRST HUD UPDATE due to async it may fuck up and crash
     
     VISUAL:

@@ -682,6 +682,7 @@ animation_tree = NodePath("AnimationTree")
 walk_cycle_direction = Vector3(0.025, 0.01, 0)
 hud_icon = ExtResource("3_0bmvt")
 tool_name = "ITEM_NAME_STRONG_BROOM"
+hud_tooltip_prompt = "HUD_TOOLTIP_BROOM"
 tool_inventory_id = 1
 
 [node name="mesh_broom" parent="." instance=ExtResource("1_05fyr")]

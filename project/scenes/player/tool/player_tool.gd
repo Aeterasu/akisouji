@@ -12,6 +12,7 @@ var state_machine : AnimationNodeStateMachinePlayback = null
 
 @export var hud_icon : Texture2D = null
 @export var tool_name : String = ""
+@export var hud_tooltip_prompt : String = ""
 @export var tool_inventory_id : int = 0
 
 var walk_multiplier : float = 1.0
