@@ -21,13 +21,39 @@ func _ready():
 	add_child(swap_cooldown_timer)
 	swap_cooldown_timer.one_shot = true
 
+	await get_tree().create_timer(0.05).timeout
+
+	_update_hud_textures()
+
 func _update_hud_textures() -> void:
-	pass
+	UI.instance.ui_tool_carousel.tool_center.texture = current_tool.hud_icon
+	UI.instance.ui_tool_carousel.tool_left.texture = tools[wrapi(current_tool_id - 1, 0, len(tools))].hud_icon
+	UI.instance.ui_tool_carousel.tool_right.texture = tools[wrapi(current_tool_id + 1, 0, len(tools))].hud_icon
+
+	var tween = create_tween()
+	tween.set_parallel(true)
+
+	tween.tween_callback(func(): UI.instance.ui_tool_carousel.tool_center.position.x = 1033.0).set_delay(0.2)
+	tween.tween_callback(func(): (UI.instance.ui_tool_carousel.tool_center.material as ShaderMaterial).set_shader_parameter("modulate", Color(1.0, 1.0, 1.0, 1.0))).set_delay(0.2)
+	tween.tween_callback(func(): (UI.instance.ui_tool_carousel.tool_center.material as ShaderMaterial).set_shader_parameter("coeff", 0.00)).set_delay(0.2)
+
+	tween.tween_callback(func(): UI.instance.ui_tool_carousel.tool_left.position.x = 945.0).set_delay(0.2)
+	tween.tween_callback(func(): (UI.instance.ui_tool_carousel.tool_left.material as ShaderMaterial).set_shader_parameter("modulate", UI.instance.ui_tool_carousel.semi_transparent_color)).set_delay(0.2)
+	tween.tween_callback(func(): (UI.instance.ui_tool_carousel.tool_left.material as ShaderMaterial).set_shader_parameter("coeff", 0.2)).set_delay(0.2)
+
+	tween.tween_callback(func(): UI.instance.ui_tool_carousel.tool_right.position.x = 1121.0).set_delay(0.2)
+	tween.tween_callback(func(): (UI.instance.ui_tool_carousel.tool_right.material as ShaderMaterial).set_shader_parameter("modulate", UI.instance.ui_tool_carousel.semi_transparent_color)).set_delay(0.2)
+	tween.tween_callback(func(): (UI.instance.ui_tool_carousel.tool_right.material as ShaderMaterial).set_shader_parameter("coeff", 0.2)).set_delay(0.2)
+
+	tween.tween_callback(func(): UI.instance.ui_tool_carousel.tool_left_animated.position.x = 857.0).set_delay(0.2)
+	tween.tween_callback(func(): (UI.instance.ui_tool_carousel.tool_left_animated.material as ShaderMaterial).set_shader_parameter("modulate", Color(0.0, 0.0, 0.0, 0.0))).set_delay(0.2)
+	tween.tween_callback(func(): (UI.instance.ui_tool_carousel.tool_left_animated.material as ShaderMaterial).set_shader_parameter("coeff", 0.8)).set_delay(0.2)
+
+	tween.tween_callback(func(): UI.instance.ui_tool_carousel.tool_right_animated.position.x = 1209.0).set_delay(0.2)
+	tween.tween_callback(func(): (UI.instance.ui_tool_carousel.tool_right_animated.material as ShaderMaterial).set_shader_parameter("modulate", Color(0.0, 0.0, 0.0, 0.0))).set_delay(0.2)
+	tween.tween_callback(func(): (UI.instance.ui_tool_carousel.tool_right_animated.material as ShaderMaterial).set_shader_parameter("coeff", 0.8)).set_delay(0.2)
 
 func _physics_process(delta) -> void:
-	#if (UI.instance and UI.instance.ui_tool_carousel and current_tool):
-		#UI.instance.ui_tool_carousel.tool_center.texture = current_tool.hud_icon
-
 	if (current_tool and !current_tool.allow_switch):
 		return
 

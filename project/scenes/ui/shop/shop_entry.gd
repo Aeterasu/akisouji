@@ -82,6 +82,9 @@ func _attempt_buy():
 			UpgradeManager._set_current_item(upgrade_item)
 			on_state_update.emit()
 
+			if (is_instance_valid(Game.game_instance)):
+				Game.game_instance.player.inventory._update_hud_textures()
+
 func _update_state():
 	state = EntryState.AVAILABLE_TO_BUY
 	
