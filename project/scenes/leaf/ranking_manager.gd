@@ -6,10 +6,26 @@ class_name RankingManager extends Node
 @export var cash_bonus_c_rank : float = 100.0
 @export var cash_bonus_d_rank : float = 50.0
 
+@export var multiplier_brooming : float = 1.0
+@export var multiplier_sprinting : float = 1.1
+@export var multiplier_jumping : float = 1.1
+@export var multiplier_sprint_jumping : float = 1.25
+@export var multiplier_garbage_bag : float = 1.5
+
+@export var multiplier_speed_clear_s : float = 3.0
+@export var multiplier_speed_clear_a : float = 2.0
+@export var multiplier_speed_clear_b : float = 1.25
+
 var time_elapsed  : float = 0.0
 
-var level : Level = null
+var score : float = 0:
+	set(value):
+		if (value < 0):
+			value = 0
 
+		score = value
+
+var level : Level = null
 var completed : bool
 
 enum Rank
@@ -22,8 +38,14 @@ enum Rank
 	S = 4,
 }
 
-func _ready() -> void:
-	pass
+enum ScoreRewardType
+{
+	BROOMING = 0,
+	SPRINTING = 1,
+	JUMPING = 2,
+	SPRINT_JUMPING = 3,
+	GARBAGE_BAG = 4,
+}
 
 func _physics_process(delta) -> void:
 	if (completed):
@@ -31,22 +53,48 @@ func _physics_process(delta) -> void:
 
 	time_elapsed  += delta
 
+func _get_multiplier_from_reward_type(type : ScoreRewardType) -> float:
+	match type:
+		ScoreRewardType.BROOMING:
+			return multiplier_brooming
+		ScoreRewardType.SPRINTING:
+			return multiplier_sprinting
+		ScoreRewardType.JUMPING:
+			return multiplier_jumping
+		ScoreRewardType.SPRINT_JUMPING:
+			return multiplier_sprint_jumping
+		ScoreRewardType.GARBAGE_BAG:
+			return multiplier_garbage_bag
+
+	return 1.0
+
 func get_current_rank() -> Rank:
 	if (!is_instance_valid(level)):
 		return Rank.D
 
-	if (time_elapsed <= level.s_rank_target_time):
+	if (score >= level.s_rank_target_score):
 		return Rank.S
-	elif (time_elapsed <= level.a_rank_target_time):
+	elif (score >= level.a_rank_target_score):
 		return Rank.A
-	elif (time_elapsed <= level.b_rank_target_time):
+	elif (score >= level.b_rank_target_score):
 		return Rank.B
-	elif (time_elapsed <= level.c_rank_target_time):
+	elif (score >= level.c_rank_target_score):
 		return Rank.C
-	elif (time_elapsed <= level.d_rank_target_time):
-		return Rank.D
-
+		
 	return Rank.D
+
+func get_current_time_multiplier() -> float:
+	if (!is_instance_valid(level)):
+		return 1.0
+
+	if (time_elapsed <= level.s_target_speed_clear):
+		return multiplier_speed_clear_s
+	elif (time_elapsed <= level.a_target_speed_clear):
+		return multiplier_speed_clear_a
+	elif (time_elapsed <= level.b_target_speed_clear):
+		return multiplier_speed_clear_b
+
+	return 1.0
 
 func get_formatted_time_elapsed() -> String:
 	var minutes = time_elapsed / 60
@@ -70,3 +118,9 @@ func _get_current_cash_bonus() -> float:
 			return cash_bonus_s_rank
 
 	return 0.0
+
+func _on_leaves_cleaned(amount : int):
+	score += float(amount) * 2.0 * _get_multiplier_from_reward_type(Game.game_instance.last_cleaning_type)
+
+func _get_current_score() -> int:
+	return floor(score)

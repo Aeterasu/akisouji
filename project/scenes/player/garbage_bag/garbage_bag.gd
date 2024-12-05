@@ -32,6 +32,7 @@ func _physics_process(delta):
 		if (delay <= 0.0 and cleaning_ticks > cleaning_cooldown):
 			Game.game_instance.last_cleaning_position = global_position
 			Game.game_instance.last_cleaning_radius = cleaning_radius
+			Game.game_instance.last_cleaning_type = RankingManager.ScoreRewardType.GARBAGE_BAG
 			Game.game_instance.cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), Vector2(cos(rotation.y), sin(rotation.y)), Vector2.ONE * cleaning_radius * clampf(linear_velocity.length() * 0.1, 1.0, 999.0))
 			cleaning_ticks = 0.0
 

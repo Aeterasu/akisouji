@@ -24,7 +24,7 @@ func _physics_process(delta):
 		is_completed = true
 		on_completion.emit()
 		cleaning_handler.ClearAllLeaves()
-		prints(progress)
+		#prints(progress)
 
 	if (UI.instance and UI.instance.progress.current_value != progress):
 		UI.instance.progress.current_value = progress

@@ -24,6 +24,8 @@ var cleaning_handler : LeafCleaningHandler = null
 var last_cleaning_position : Vector3 = Vector3()
 var last_cleaning_radius : float = 1.0
 
+var last_cleaning_type : RankingManager.ScoreRewardType
+
 var current_level_scene : PackedScene = null
 
 var await_completion_confirm : bool = false
@@ -51,8 +53,6 @@ func _ready():
 		pausable.add_child(node)
 		level = node as Level
 	
-
-	#level.on_level_completion.connect(_on_level_completion)
 	player.global_transform = level.player_spawn_position.global_transform
 	player.respawn_transform = level.player_spawn_position.global_transform
 
@@ -71,10 +71,8 @@ func _ready():
 
 		cleaning_handler.on_leaves_cleaned.connect(particle_handler._on_leaves_cleaned)
 		cleaning_handler.on_leaves_cleaned.connect(audio_handler._on_leaves_cleaned)
-
+		cleaning_handler.on_leaves_cleaned.connect(ranking_manager._on_leaves_cleaned)
 		cleaning_handler.on_leaves_cleaned.connect(player._on_leaves_cleaned)
-
-		#cleaning_handler.on_leaves_cleaned.connect(func(amount: int): CashManager._substract_cash(float(amount) * CashManager.golden_broom_consumption))
 
 	progress_tracker.leeway = level.leaf_leeway
 
@@ -89,9 +87,6 @@ func _ready():
 	player._block_input = false
 
 	shop_origin.hide()
-
-	#get_viewport().debug_draw = Viewport.DEBUG_DRAW_OVERDRAW
-	#get_viewport().debug_draw = Viewport.DEBUG_DRAW_WIREFRAME
 
 	if (is_instance_valid(cleaning_handler)):
 		for i in 15:
@@ -131,7 +126,9 @@ func _on_level_completion():
 	CashManager.finalize = true
 	CashManager._grant_cash(level.cash_reward + ranking_manager._get_current_cash_bonus(), 8.0)
 
+
 	ranking_manager.completed = true
+	ranking_manager.score *= ranking_manager.get_current_time_multiplier()
 
 	await get_tree().create_timer(1).timeout
 

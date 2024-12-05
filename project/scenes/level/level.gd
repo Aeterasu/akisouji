@@ -12,71 +12,14 @@
 
         cash_reward = value
 
-@export var s_rank_target_time : float = 100.0:
-    get():
-        return s_rank_target_time
-    set(value):
-        if (value < 0.0):
-            value = 0.0
+@export var s_rank_target_score : float = 500000.0
+@export var a_rank_target_score : float = 250000.0
+@export var b_rank_target_score : float = 150000.0
+@export var c_rank_target_score : float = 50000.0
 
-        if (value > a_rank_target_time):
-            value = a_rank_target_time
-
-        s_rank_target_time = value
-
-@export var a_rank_target_time : float = 250.0:
-    get():
-        return a_rank_target_time
-    set(value):
-        if (value < 0.0):
-            value = 0.0
-
-        if (value > b_rank_target_time):
-            value = b_rank_target_time
-        elif (value < s_rank_target_time):
-            value = s_rank_target_time
-
-        a_rank_target_time = value
-
-@export var b_rank_target_time : float = 500.0:
-    get():
-        return b_rank_target_time
-    set(value):
-        if (value < 0.0):
-            value = 0.0
-
-        if (value < a_rank_target_time):
-            value = a_rank_target_time
-        elif (value > c_rank_target_time):
-            value = c_rank_target_time
-
-        b_rank_target_time = value
-
-@export var c_rank_target_time : float = 750.0:
-    get():
-        return c_rank_target_time
-    set(value):
-        if (value < 0.0):
-            value = 0.0
-
-        if (value > d_rank_target_time):
-            value = d_rank_target_time
-        elif (value < b_rank_target_time):
-            value = b_rank_target_time
-
-        c_rank_target_time = value
-
-@export var d_rank_target_time : float = 1000.0:
-    get():
-        return d_rank_target_time
-    set(value):
-        if (value < 0.0):
-            value = 0.0
-
-        if (value < c_rank_target_time):
-            value = c_rank_target_time
-
-        d_rank_target_time = value
+@export var s_target_speed_clear : float = 250.0
+@export var a_target_speed_clear : float = 500.0
+@export var b_target_speed_clear : float = 1000.0
 
 signal on_level_completion
 

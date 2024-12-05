@@ -117,10 +117,16 @@ attenuation_filter_cutoff_hz = 20500.0
 
 [node name="RankingManager" type="Node" parent="."]
 process_mode = 1
+process_priority = 512
+process_physics_priority = 512
 script = ExtResource("8_18ngi")
 cash_bonus_s_rank = 700.0
 cash_bonus_a_rank = 450.0
 cash_bonus_b_rank = 250.0
+multiplier_sprinting = 1.5
+multiplier_jumping = 1.5
+multiplier_sprint_jumping = 2.0
+multiplier_garbage_bag = 2.5
 
 [node name="Pausable" type="Node" parent="."]
 process_mode = 1

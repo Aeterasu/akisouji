@@ -153,6 +153,7 @@ func on_broom():
 
 		Game.game_instance.last_cleaning_position = cleaning_point
 		Game.game_instance.last_cleaning_radius = broom_data.cleaning_area.length() * golden_multiplier
+		Game.game_instance.last_cleaning_type = RankingManager.ScoreRewardType.BROOMING
 		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(cleaning_point.x, cleaning_point.z), Vector2(sin(rotation.y), cos(rotation.y)), broom_data.cleaning_area * golden_multiplier)
 
 	pass
@@ -165,6 +166,7 @@ func on_leafblower_supercharge(leafblower : LeafBlower):
 		var cleaning_point = cleaning_raycast.get_collision_point()
 		Game.game_instance.last_cleaning_position = cleaning_point
 		Game.game_instance.last_cleaning_radius = leafblower.supercharge_data.cleaning_area.length()
+		Game.game_instance.last_cleaning_type = RankingManager.ScoreRewardType.BROOMING
 		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(cleaning_point.x, cleaning_point.z), Vector2(sin(rotation.y), cos(rotation.y)), leafblower.supercharge_data.cleaning_area)
 
 	pass
@@ -326,10 +328,12 @@ func _on_landing():
 
 	if (wish_sprint):
 		multiplier = move_speed_upgrade_handler.current_upgrade.sprint_jump_range_multiplier
+		Game.game_instance.last_cleaning_type = RankingManager.ScoreRewardType.SPRINT_JUMPING
 
 	if (is_instance_valid(leaf_cleaning_handler)):
 		Game.game_instance.last_cleaning_position = global_position + Vector3.DOWN * 0.5
 		Game.game_instance.last_cleaning_radius = jump_cleaning_radius * multiplier
+		Game.game_instance.last_cleaning_type = RankingManager.ScoreRewardType.JUMPING
 		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), Vector2(cos(rotation.y), sin(rotation.y)), Vector2.ONE * jump_cleaning_radius * multiplier * move_speed_upgrade_handler.current_upgrade.jump_cleaning_range_multiplier)
 
 	camera_effect_landing._animate()
@@ -359,6 +363,7 @@ func _on_sprint_cleaning_timeout():
 	if (is_instance_valid(leaf_cleaning_handler)):
 		Game.game_instance.last_cleaning_position = global_position + Vector3.DOWN * 0.5
 		Game.game_instance.last_cleaning_radius = sprint_cleaning_radius
+		Game.game_instance.last_cleaning_type = RankingManager.ScoreRewardType.SPRINTING
 		leaf_cleaning_handler.RequestCleaningAtPosition(Vector2(global_position.x, global_position.z), Vector2(cos(rotation.y), sin(rotation.y)), Vector2.ONE * sprint_cleaning_radius * range_multiplier)
 
 func _on_enter_photo_mode():

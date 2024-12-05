@@ -5,6 +5,7 @@
 
 [node name="cash_manager" type="Node" node_paths=PackedStringArray("reward_ding")]
 script = ExtResource("1_8exi0")
+cash = 999999.0
 base_cash_reward = 0.02
 buffer_clean_time = 4.0
 golden_broom_max_cap = 6000.0
