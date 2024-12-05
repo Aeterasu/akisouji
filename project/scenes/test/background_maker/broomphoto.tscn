@@ -299,6 +299,7 @@ ambient_light_color = Color(1, 1, 1, 1)
 
 [node name="mesh_broom4" parent="." instance=ExtResource("1_n8q6l")]
 transform = Transform3D(-0.017691, 0.0265009, -0.0241812, 0.032921, 0.0227061, 0.000799265, 0.0142561, -0.0195482, -0.0318533, -0.0438925, -0.0608634, -0.143385)
+visible = false
 layers = 2
 cast_shadow = 0
 surface_material_override/0 = ExtResource("2_moup4")
@@ -317,6 +318,7 @@ draw_pass_1 = SubResource("QuadMesh_eag3u")
 
 [node name="mesh_broom" parent="." instance=ExtResource("5_kkv27")]
 transform = Transform3D(0.0697656, 0.0279242, -0.027441, 0, 0.0560728, 0.05706, 0.0391506, -0.0497603, 0.0488993, 0, -0.02, -0.315)
+visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_oelar")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="mesh_broom"]
@@ -326,6 +328,7 @@ surface_material_override/0 = ExtResource("3_1tqb6")
 
 [node name="mesh_broom2" parent="." instance=ExtResource("1_n8q6l")]
 transform = Transform3D(0.00618961, 0.0360645, -0.071141, 0.0508793, 0.0531663, 0.031379, 0.0614246, -0.0476729, -0.0188232, -0.0955482, -0.125938, -0.306609)
+visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_gmtjk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="mesh_broom2"]
@@ -335,6 +338,7 @@ surface_material_override/0 = ExtResource("3_1tqb6")
 
 [node name="mesh_broom3" parent="." instance=ExtResource("10_0t0er")]
 transform = Transform3D(0.00963578, 0.0164397, -0.0060733, 0.017199, -0.0102022, -0.000328818, -0.00336836, -0.00506432, -0.0190527, 0.0745537, -0.0366072, -0.269431)
+visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_7tchr")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="mesh_broom3"]
@@ -345,35 +349,43 @@ surface_material_override/0 = ExtResource("3_1tqb6")
 
 [node name="mesh_feather_duster" parent="." instance=ExtResource("13_x1h16")]
 transform = Transform3D(0.749157, 0.494731, -0.44046, -0.42648, 0.869046, 0.250745, 0.506831, 0, 0.862045, 0.0347219, 0, -0.139469)
+visible = false
 
 [node name="mesh_feather_duster2" parent="." instance=ExtResource("13_x1h16")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0391208, 0, -0.155201)
+visible = false
 
 [node name="mesh_work_boots" parent="." instance=ExtResource("14_1vevt")]
 transform = Transform3D(0.304378, -0.0686132, -0.0432564, 0.0589185, 0.302489, -0.0652211, 0.0557449, 0.0549311, 0.305123, 0.0359918, -0.0222236, -0.151765)
+visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_ndacr")
 
 [node name="mesh_work_boots2" parent="." instance=ExtResource("14_1vevt")]
 transform = Transform3D(0.209724, -0.137206, -0.190829, 0.119815, 0.28244, -0.0713951, 0.202201, -0.0250503, 0.240234, -0.00277779, -0.0265158, -0.176556)
+visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_ndacr")
 
 [node name="mesh_sneakers2" parent="." instance=ExtResource("16_ik16k")]
 transform = Transform3D(0.0489753, -0.0331239, -0.0461436, 0.00983845, 0.0649532, -0.0361841, 0.0559431, 0.0175752, 0.0467599, -0.0287468, -0.0132119, -0.124459)
+visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_g8s8f")
 surface_material_override/1 = SubResource("StandardMaterial3D_qx8v1")
 
 [node name="mesh_sneakers3" parent="." instance=ExtResource("16_ik16k")]
 transform = Transform3D(0.0741504, -0.00588598, 0.00959571, 0.00983845, 0.0649532, -0.0361841, -0.00547059, 0.0370329, 0.0649895, 0.0266505, -0.0132119, -0.124459)
+visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_g8s8f")
 surface_material_override/1 = SubResource("StandardMaterial3D_qx8v1")
 
 [node name="mesh_wellies2" parent="." instance=ExtResource("18_h2wbx")]
 transform = Transform3D(0.0193634, 0.0139011, -0.00753766, 0, 0.0119167, 0.0219771, 0.0158132, -0.017022, 0.00922991, -0.0238851, -0.0608305, -0.137147)
+visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_2tv7d")
 surface_material_override/1 = SubResource("StandardMaterial3D_okxvb")
 
 [node name="mesh_wellies3" parent="." instance=ExtResource("18_h2wbx")]
 transform = Transform3D(0.0244664, -0.00451637, 0.00244893, 4.71271e-10, 0.0119167, 0.0219771, -0.00513759, -0.021508, 0.0116624, 0.0265253, -0.0608305, -0.163214)
+visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_2tv7d")
 surface_material_override/1 = SubResource("StandardMaterial3D_okxvb")
 
@@ -402,9 +414,8 @@ environment = SubResource("Environment_m50ux")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.48053, 0.876979, 0, -0.876979, 0.48053, 0, 0.0349657, 0)
 layers = 2
-light_energy = 2.641
+light_energy = 3.522
 light_cull_mask = 4294967294
-shadow_enabled = true
 shadow_bias = 0.0
 
 [editable path="mesh_broom"]

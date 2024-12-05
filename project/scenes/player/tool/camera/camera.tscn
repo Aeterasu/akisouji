@@ -1,7 +1,8 @@
-[gd_scene load_steps=61 format=4 uid="uid://bmmipwucjq6as"]
+[gd_scene load_steps=62 format=4 uid="uid://bmmipwucjq6as"]
 
 [ext_resource type="Script" path="res://scenes/player/tool/camera/camera.gd" id="1_dgrk7"]
 [ext_resource type="PackedScene" uid="uid://dchkqghoh07wq" path="res://assets/mesh/tool/mesh_camera.glb" id="2_7bjqe"]
+[ext_resource type="Texture2D" uid="uid://dsurrv6k3154n" path="res://assets/texture/icons/texture_hud_icon_camera.png" id="2_vlykn"]
 [ext_resource type="Texture2D" uid="uid://byhqhv6f2owdu" path="res://assets/texture/tool/texture_camera_albm.png" id="3_3wv3y"]
 [ext_resource type="Texture2D" uid="uid://cdvg0disuaebg" path="res://assets/texture/fx/texture_cloud_specular.png" id="3_g1ww4"]
 [ext_resource type="Texture2D" uid="uid://bq18jm4ehly5r" path="res://assets/texture/tool/texture_camera_roughmap.png" id="4_sasoj"]
@@ -630,6 +631,7 @@ mesh = NodePath("mesh_camera")
 audio_shutter = NodePath("CameraShutter")
 animation_tree = NodePath("AnimationTree")
 walk_cycle_direction = Vector3(0.01, 0.005, 0)
+hud_icon = ExtResource("2_vlykn")
 
 [node name="mesh_camera" parent="." instance=ExtResource("2_7bjqe")]
 transform = Transform3D(0.0985709, -0.0094913, 0.0139173, 0.00958457, 0.0995396, 0, -0.0138532, 0.00133391, 0.0990268, 0.05, -0.02, -0.06)

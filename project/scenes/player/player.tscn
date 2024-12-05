@@ -228,7 +228,7 @@ trouble_threshold = 5.0
 [node name="PlayerToolInventory" type="Node" parent="." node_paths=PackedStringArray("tool_origin", "player")]
 script = ExtResource("7_id8rm")
 tool_origin = NodePath("../CameraOrigin/CameraWobble/CameraEffectLanding/Camera3D/ViewmodelOrigin/ViewmodelSway")
-swap_cooldown = 0.15
+swap_cooldown = 0.2
 player = NodePath("..")
 
 [node name="CameraOrigin" type="Node3D" parent="."]

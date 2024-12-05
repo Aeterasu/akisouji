@@ -1,8 +1,9 @@
-[gd_scene load_steps=70 format=4 uid="uid://c40jnj8ehlq3b"]
+[gd_scene load_steps=71 format=4 uid="uid://c40jnj8ehlq3b"]
 
 [ext_resource type="Script" path="res://scenes/player/tool/broom/broom.gd" id="1_ibwn5"]
 [ext_resource type="Resource" uid="uid://cco1prg13vnll" path="res://scenes/player/tool/broom_data/broom_golden.tres" id="2_7rku4"]
 [ext_resource type="PackedScene" uid="uid://j6k6m7mkrpjv" path="res://assets/mesh/tool/mesh_broom_strong.blend" id="3_8wfs0"]
+[ext_resource type="Texture2D" uid="uid://cs1643mlfnjqa" path="res://assets/texture/icons/texture_hud_icon_broom_4.png" id="3_vi40s"]
 [ext_resource type="Material" uid="uid://e6kqs6p081ew" path="res://scenes/test/material_test/gold.tres" id="4_65gg4"]
 [ext_resource type="Material" uid="uid://cwaw45fhmm7wj" path="res://resource/material/material_broom_outline.tres" id="6_16s0k"]
 [ext_resource type="Texture2D" uid="uid://ddkvf0kktfo6b" path="res://assets/texture/fx/texture_fx_sparkle.png" id="6_ygl8s"]
@@ -636,6 +637,7 @@ script = ExtResource("1_ibwn5")
 data = ExtResource("2_7rku4")
 use_type = 1
 walk_cycle_direction = Vector3(0.025, 0.01, 0)
+hud_icon = ExtResource("3_vi40s")
 tool_inventory_id = 4
 
 [node name="mesh_broom" parent="." instance=ExtResource("3_8wfs0")]

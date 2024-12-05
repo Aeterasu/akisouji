@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=4 uid="uid://diie8gejji6lq"]
+[gd_scene load_steps=69 format=4 uid="uid://diie8gejji6lq"]
 
 [ext_resource type="PackedScene" uid="uid://b23qrjtjdh1is" path="res://assets/mesh/tool/mesh_leaf_blower.blend" id="1_arkqy"]
 [ext_resource type="Script" path="res://scenes/player/tool/broom/leaf_blower.gd" id="1_pcd2s"]
@@ -7,6 +7,7 @@
 [ext_resource type="Resource" uid="uid://bodhlv21wm7qg" path="res://scenes/player/tool/broom_data/leaf_blower.tres" id="2_pfy14"]
 [ext_resource type="Texture2D" uid="uid://c3snsfrthhaev" path="res://assets/texture/tool/texture_leaf_blower_nrmp.png" id="3_nbegn"]
 [ext_resource type="Material" uid="uid://cwaw45fhmm7wj" path="res://resource/material/material_broom_outline.tres" id="4_3ckyp"]
+[ext_resource type="Texture2D" uid="uid://drgf3woaow08e" path="res://assets/texture/icons/texture_hud_icon_broom_3.png" id="4_8cxr1"]
 [ext_resource type="AudioStream" uid="uid://bm22irxf0rted" path="res://assets/audio/sfx_leaf_blower_end.ogg" id="8_3byc2"]
 [ext_resource type="AudioStream" uid="uid://e7flnvgptebp" path="res://assets/audio/sfx_leaf_blower_loop.ogg" id="9_vt3uq"]
 
@@ -704,6 +705,7 @@ data = ExtResource("2_pfy14")
 use_type = 1
 animation_tree = NodePath("AnimationTree")
 walk_cycle_direction = Vector3(0.013, 0.005, 0)
+hud_icon = ExtResource("4_8cxr1")
 tool_inventory_id = 2
 
 [node name="mesh_broom" parent="." instance=ExtResource("1_arkqy")]

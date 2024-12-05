@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://8kw8vfjyax3p"]
+[gd_scene load_steps=55 format=3 uid="uid://8kw8vfjyax3p"]
 
 [ext_resource type="PackedScene" uid="uid://r34i4r8tnmcn" path="res://assets/mesh/level_design/mesh_tutorial_1.blend" id="1_hrr73"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="2_xm36i"]
@@ -11,7 +11,6 @@
 [ext_resource type="Material" uid="uid://cgapwxhj1pitw" path="res://resource/material/material_stone_wall.tres" id="8_chgk2"]
 [ext_resource type="PackedScene" uid="uid://dx0ixxp8vs850" path="res://scenes/prop/trees/tree/tree_tutorial_2.tscn" id="8_l6ufc"]
 [ext_resource type="Material" uid="uid://1atumgger74q" path="res://scenes/level/tutorial_1/new_standard_material_3d.tres" id="9_livf6"]
-[ext_resource type="Texture2D" uid="uid://d2dx0abxbvyeu" path="res://assets/texture/fx/texture_cloud_1.png" id="10_5iq08"]
 [ext_resource type="Texture2D" uid="uid://c2hssoyppok8k" path="res://assets/texture/environment/texture_mansion_1.png" id="10_60h8k"]
 [ext_resource type="Material" uid="uid://mrdkkmwqr7ls" path="res://resource/material/material_metal_1.tres" id="10_u62kq"]
 [ext_resource type="PackedScene" uid="uid://0bclpuxnu1nm" path="res://scenes/prop/vase_1/Vase.tscn" id="10_w6msp"]
@@ -22,6 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://bx7j2o3y7c8yv" path="res://scenes/prop/trees/tree/tree_green_1.tscn" id="18_tlugr"]
 [ext_resource type="PackedScene" uid="uid://d1dsmgmofm18w" path="res://scenes/prop/trees/tree/tree_green_2.tscn" id="19_0ud7h"]
 [ext_resource type="PackedScene" uid="uid://u8sbqvfha382" path="res://scenes/prop/bench/prop_bench_1.tscn" id="19_rsh5x"]
+[ext_resource type="Texture2D" uid="uid://bsyd8msxxqilb" path="res://assets/texture/fx/texture_fx_oil_clouds.png" id="20_vokx0"]
+[ext_resource type="Texture2D" uid="uid://bb24ivlwgabv" path="res://assets/texture/fx/texture_fx_oil_clouds_nrmp.png" id="21_linfb"]
 [ext_resource type="PackedScene" uid="uid://dfu5idnqbw6ta" path="res://scenes/prop/horizon/horizon_city.tscn" id="22_2x7su"]
 [ext_resource type="PackedScene" uid="uid://d1pkstxa0k3lv" path="res://scenes/prop/horizon/horizon_trees.tscn" id="23_8jdqe"]
 [ext_resource type="Texture2D" uid="uid://d3qw3bxoa8tck" path="res://assets/texture/environment/texture_horizon_close_1.png" id="24_gdn82"]
@@ -70,10 +71,12 @@ adjustment_color_correction = SubResource("GradientTexture1D_eixy3")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iwiu3"]
 blend_mode = 1
 cull_mode = 1
-shading_mode = 0
 disable_fog = true
-albedo_color = Color(0.339006, 0.275955, 0.343861, 1)
-albedo_texture = ExtResource("10_5iq08")
+albedo_color = Color(0.628985, 0.628985, 0.628985, 1)
+albedo_texture = ExtResource("20_vokx0")
+normal_enabled = true
+normal_texture = ExtResource("21_linfb")
+uv1_scale = Vector3(5, 5, 5)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_hh4jl"]
 material = SubResource("StandardMaterial3D_iwiu3")
@@ -191,7 +194,7 @@ size = Vector2(0.8, 0.8)
 [node name="LevelTutorial1" type="Node3D" node_paths=PackedStringArray("leaf_populator", "player_spawn_position")]
 script = ExtResource("2_xm36i")
 leaf_populator = NodePath("LeafPopulator")
-leaf_leeway = 80
+leaf_leeway = 35
 player_spawn_position = NodePath("Marker3D")
 cash_reward = 150.0
 s_rank_target_score = 150000.0

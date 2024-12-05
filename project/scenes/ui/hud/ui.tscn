@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://dcaypqvm8j1yq"]
+[gd_scene load_steps=35 format=3 uid="uid://dcaypqvm8j1yq"]
 
 [ext_resource type="Script" path="res://scenes/ui/hud/ui.gd" id="1_7l35m"]
 [ext_resource type="Texture2D" uid="uid://dbqwuevdtqyjl" path="res://assets/texture/ui/hud/texture_ui_crosshair_dot.png" id="2_sidhx"]
@@ -14,6 +14,11 @@
 [ext_resource type="Texture2D" uid="uid://jhg85c77h287" path="res://resource/hud_timer_gradient_1.tres" id="10_6ylqo"]
 [ext_resource type="PackedScene" uid="uid://bh1grw871br6n" path="res://scenes/ui/grade/grade.tscn" id="10_mhp4x"]
 [ext_resource type="Script" path="res://scenes/ui/hud/ui_garbage_bag_popup.gd" id="11_ryd7g"]
+[ext_resource type="Script" path="res://scenes/ui/hud/ui_tool_carousel.gd" id="15_w6n43"]
+[ext_resource type="Texture2D" uid="uid://c43kw5kmwjadh" path="res://assets/texture/icons/texture_hud_icon_broom_1.png" id="15_y016k"]
+[ext_resource type="Texture2D" uid="uid://dkqcq5y4b4ba2" path="res://assets/texture/ui/hud/texture_ui_tool_carousel_arrow.png" id="16_j7ojx"]
+[ext_resource type="Shader" path="res://shader/uv_center_scale.gdshader" id="16_lre02"]
+[ext_resource type="Texture2D" uid="uid://dsurrv6k3154n" path="res://assets/texture/icons/texture_hud_icon_camera.png" id="16_ov8mb"]
 
 [sub_resource type="Gradient" id="Gradient_ghd1x"]
 colors = PackedColorArray(0, 0, 0, 0.578, 0, 0, 0, 0)
@@ -49,7 +54,40 @@ metadata/_snap_enabled = true
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_woyka"]
 gradient = SubResource("Gradient_mfykj")
 
-[node name="UI" type="Control" node_paths=PackedStringArray("progress", "ui_timer", "ui_garbage_bag_popup", "ui_interaction_tooltip")]
+[sub_resource type="Gradient" id="Gradient_bbw5l"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_d36h1"]
+gradient = SubResource("Gradient_bbw5l")
+fill_from = Vector2(1, 0.713675)
+fill_to = Vector2(0.192308, 0.482906)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbfxe"]
+shader = ExtResource("16_lre02")
+shader_parameter/coeff = 0.05
+shader_parameter/modulate = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fsp3c"]
+shader = ExtResource("16_lre02")
+shader_parameter/coeff = 0.05
+shader_parameter/modulate = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7aamf"]
+shader = ExtResource("16_lre02")
+shader_parameter/coeff = 0.0
+shader_parameter/modulate = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0lh5o"]
+shader = ExtResource("16_lre02")
+shader_parameter/coeff = 0.05
+shader_parameter/modulate = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_33si0"]
+shader = ExtResource("16_lre02")
+shader_parameter/coeff = 0.05
+shader_parameter/modulate = Color(1, 1, 1, 1)
+
+[node name="UI" type="Control" node_paths=PackedStringArray("progress", "ui_timer", "ui_garbage_bag_popup", "ui_interaction_tooltip", "ui_tool_carousel")]
 process_priority = -1
 process_physics_priority = -1
 layout_mode = 3
@@ -61,8 +99,9 @@ grow_vertical = 2
 script = ExtResource("1_7l35m")
 progress = NodePath("UIProgress")
 ui_timer = NodePath("UITimer")
-ui_garbage_bag_popup = NodePath("GarbageBagPopup")
-ui_interaction_tooltip = NodePath("InteractionTooltip")
+ui_garbage_bag_popup = NodePath("UIGarbageBagPopup")
+ui_interaction_tooltip = NodePath("YUInteractionTooltip")
+ui_tool_carousel = NodePath("UIToolCarousel")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -100,7 +139,7 @@ texture = ExtResource("3_qygll")
 stretch_mode = 4
 flip_h = true
 
-[node name="InteractionTooltip" type="Control" parent="." node_paths=PackedStringArray("label")]
+[node name="YUInteractionTooltip" type="Control" parent="." node_paths=PackedStringArray("label")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -110,7 +149,8 @@ grow_vertical = 2
 script = ExtResource("4_npemi")
 label = NodePath("RichTextLabel")
 
-[node name="TextureRect" type="TextureRect" parent="InteractionTooltip"]
+[node name="TextureRect" type="TextureRect" parent="YUInteractionTooltip"]
+modulate = Color(1, 1, 1, 0.529412)
 layout_mode = 0
 offset_left = 667.0
 offset_top = 328.0
@@ -118,7 +158,7 @@ offset_right = 884.0
 offset_bottom = 392.0
 texture = ExtResource("4_ubkri")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="InteractionTooltip"]
+[node name="RichTextLabel" type="RichTextLabel" parent="YUInteractionTooltip"]
 layout_mode = 0
 offset_left = 708.0
 offset_top = 341.0
@@ -272,7 +312,7 @@ texture_under = SubResource("GradientTexture2D_7vvdc")
 texture_over = SubResource("GradientTexture2D_dpkdx")
 texture_progress = ExtResource("10_6ylqo")
 
-[node name="GarbageBagPopup" type="Control" parent="." node_paths=PackedStringArray("label")]
+[node name="UIGarbageBagPopup" type="Control" parent="." node_paths=PackedStringArray("label")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -282,7 +322,7 @@ grow_vertical = 2
 script = ExtResource("11_ryd7g")
 label = NodePath("TextureRect/Label")
 
-[node name="TextureRect" type="TextureRect" parent="GarbageBagPopup"]
+[node name="TextureRect" type="TextureRect" parent="UIGarbageBagPopup"]
 self_modulate = Color(1, 1, 1, 0.517647)
 layout_mode = 1
 anchors_preset = 14
@@ -295,7 +335,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_woyka")
 
-[node name="Label" type="RichTextLabel" parent="GarbageBagPopup/TextureRect"]
+[node name="Label" type="RichTextLabel" parent="UIGarbageBagPopup/TextureRect"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -309,3 +349,158 @@ theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
 text = "[center]GARBAGE_BAG_FULL_2"
 scroll_active = false
+
+[node name="UIToolCarousel" type="Control" parent="." node_paths=PackedStringArray("tool_origin", "tool_left_animated", "tool_left", "tool_center", "tool_right", "tool_right_animated")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("15_w6n43")
+tool_origin = NodePath("Tools")
+tool_left_animated = NodePath("Tools/ToolLeftAnimated")
+tool_left = NodePath("Tools/ToolLeft")
+tool_center = NodePath("Tools/ToolCenter")
+tool_right = NodePath("Tools/ToolRight")
+tool_right_animated = NodePath("Tools/ToolRightAnimated")
+semi_transparent_color = Color(0.6, 0.6, 0.6, 0.643137)
+
+[node name="TextureRect" type="TextureRect" parent="UIToolCarousel"]
+self_modulate = Color(1, 1, 1, 0.647059)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 892.0
+offset_top = 567.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_d36h1")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="UIToolCarousel/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 119.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("6_j3p5c")
+theme_override_font_sizes/font_size = 22
+text = "TOOL_NAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Tools" type="Control" parent="UIToolCarousel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ToolLeftAnimated" type="TextureRect" parent="UIToolCarousel/Tools"]
+material = SubResource("ShaderMaterial_tbfxe")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 857.0
+offset_top = 580.0
+offset_right = -295.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_ov8mb")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ToolLeft" type="TextureRect" parent="UIToolCarousel/Tools"]
+material = SubResource("ShaderMaterial_fsp3c")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 945.0
+offset_top = 580.0
+offset_right = -207.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_ov8mb")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ToolCenter" type="TextureRect" parent="UIToolCarousel/Tools"]
+material = SubResource("ShaderMaterial_7aamf")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1033.0
+offset_top = 580.0
+offset_right = -119.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("15_y016k")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ToolRight" type="TextureRect" parent="UIToolCarousel/Tools"]
+material = SubResource("ShaderMaterial_0lh5o")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1121.0
+offset_top = 580.0
+offset_right = -31.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_ov8mb")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ToolRightAnimated" type="TextureRect" parent="UIToolCarousel/Tools"]
+material = SubResource("ShaderMaterial_33si0")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1209.0
+offset_top = 580.0
+offset_right = 57.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_ov8mb")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ArrowRight" type="TextureRect" parent="UIToolCarousel"]
+layout_mode = 0
+offset_left = 1242.0
+offset_top = 610.0
+offset_right = 1264.0
+offset_bottom = 663.0
+texture = ExtResource("16_j7ojx")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ArrowLeft" type="TextureRect" parent="UIToolCarousel"]
+layout_mode = 0
+offset_left = 934.0
+offset_top = 610.0
+offset_right = 956.0
+offset_bottom = 663.0
+texture = ExtResource("16_j7ojx")
+expand_mode = 1
+stretch_mode = 4
+flip_h = true

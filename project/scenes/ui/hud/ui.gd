@@ -8,6 +8,8 @@ class_name UI extends Control
 
 @export var ui_interaction_tooltip : UIInteractionTooltip = null
 
+@export var ui_tool_carousel : UIToolCarousel = null
+
 static var instance : UI
 
 func _ready():
