@@ -54,7 +54,14 @@ func _update_hud_textures() -> void:
 	tween.tween_callback(func(): (UI.instance.ui_tool_carousel.tool_right_animated.material as ShaderMaterial).set_shader_parameter("coeff", 0.8)).set_delay(0.2)
 
 func _physics_process(delta) -> void:
-	if (current_tool):
+	UI.instance.ui_tool_carousel.icon_garbage_bag.visible = player.garbage_bag_handler.is_holding_a_bag
+	UI.instance.ui_tool_carousel.tool_center.visible = !player.garbage_bag_handler.is_holding_a_bag
+
+	if (player.garbage_bag_handler.is_holding_a_bag):
+		UI.instance.ui_tool_carousel.label.text = tr("GARBAGE_BAG")
+
+		UI.instance.ui_tool_carousel.tooltip_label.text = "[right]" + tr("HUD_TOOLTIP_GARBAGE_BAG")
+	elif (current_tool):
 		UI.instance.ui_tool_carousel.label.text = tr(current_tool.tool_name)
 
 		UI.instance.ui_tool_carousel.tooltip_label.text = "[right]" + tr(current_tool.hud_tooltip_prompt)

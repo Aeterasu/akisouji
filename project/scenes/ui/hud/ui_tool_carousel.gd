@@ -19,7 +19,12 @@ class_name UIToolCarousel extends Control
 @export var arrow_right_tooltip_label : RichTextLabel = null
 @export var arrow_left_tooltip_label : RichTextLabel = null
 
+@export var icon_garbage_bag : TextureRect = null
+
 @export var audio_accent_1 : AudioStreamPlayer = null
+
+func _ready():
+    icon_garbage_bag.hide()
 
 func _process(delta):
     if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=4 uid="uid://du6l28dd5smvf"]
+[gd_scene load_steps=54 format=4 uid="uid://du6l28dd5smvf"]
 
 [ext_resource type="PackedScene" uid="uid://j6k6m7mkrpjv" path="res://assets/mesh/tool/mesh_broom_strong.blend" id="1_n8q6l"]
 [ext_resource type="Material" uid="uid://e6kqs6p081ew" path="res://scenes/test/material_test/gold.tres" id="2_moup4"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://cscls801flb1v" path="res://assets/texture/environment/texture_oilpaint_1_rmmap.png" id="17_r0g3b"]
 [ext_resource type="PackedScene" uid="uid://bxqw6q8c58o4b" path="res://assets/mesh/boots/mesh_wellies.blend" id="18_h2wbx"]
 [ext_resource type="Texture2D" uid="uid://byhqhv6f2owdu" path="res://assets/texture/tool/texture_camera_albm.png" id="19_be2j8"]
+[ext_resource type="PackedScene" uid="uid://bwi15gobv053g" path="res://scenes/player/garbage_bag/mesh_garbage_bag.tscn" id="19_cesyo"]
 [ext_resource type="Texture2D" uid="uid://bq18jm4ehly5r" path="res://assets/texture/tool/texture_camera_roughmap.png" id="20_qb1mh"]
 [ext_resource type="Texture2D" uid="uid://p5d60sa6t2ci" path="res://assets/texture/ui/hud/texture_ui_camera_alpha.png" id="21_bt0cb"]
 [ext_resource type="Texture2D" uid="uid://cdvg0disuaebg" path="res://assets/texture/fx/texture_cloud_specular.png" id="22_isrio"]
@@ -389,8 +390,12 @@ visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_2tv7d")
 surface_material_override/1 = SubResource("StandardMaterial3D_okxvb")
 
+[node name="mesh_garbage_bag" parent="." instance=ExtResource("19_cesyo")]
+transform = Transform3D(0.866025, -0.238579, -0.439409, 0, 0.878817, -0.477159, 0.5, 0.413232, 0.761078, 0.105, -0.405, -1.46)
+
 [node name="mesh_camera" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.0926611, 0.00424747, 0.0373614, 0.00611318, 0.0963364, -0.0261136, 0.0371018, -0.0264811, -0.0890068, 0.0275227, -0.00809046, -0.149913)
+visible = false
 layers = 2
 cast_shadow = 0
 mesh = SubResource("ArrayMesh_v8eae")

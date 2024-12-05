@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dcaypqvm8j1yq"]
+[gd_scene load_steps=37 format=3 uid="uid://dcaypqvm8j1yq"]
 
 [ext_resource type="Script" path="res://scenes/ui/hud/ui.gd" id="1_7l35m"]
 [ext_resource type="Texture2D" uid="uid://dbqwuevdtqyjl" path="res://assets/texture/ui/hud/texture_ui_crosshair_dot.png" id="2_sidhx"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://dkqcq5y4b4ba2" path="res://assets/texture/ui/hud/texture_ui_tool_carousel_arrow.png" id="16_j7ojx"]
 [ext_resource type="Shader" path="res://shader/uv_center_scale.gdshader" id="16_lre02"]
 [ext_resource type="Texture2D" uid="uid://dsurrv6k3154n" path="res://assets/texture/icons/texture_hud_icon_camera.png" id="16_ov8mb"]
+[ext_resource type="Texture2D" uid="uid://bjxadga0fnfur" path="res://assets/texture/icons/texture_icon_garbage_bag.png" id="19_66i1b"]
 [ext_resource type="AudioStream" uid="uid://c8lqm2l5ordkm" path="res://assets/audio/sfx_hud_tool_carousel_accent_1.ogg" id="20_i5tbn"]
 
 [sub_resource type="Gradient" id="Gradient_ghd1x"]
@@ -351,7 +352,7 @@ bbcode_enabled = true
 text = "[center]GARBAGE_BAG_FULL_2"
 scroll_active = false
 
-[node name="UIToolCarousel" type="Control" parent="." node_paths=PackedStringArray("tool_origin", "tool_left_animated", "tool_left", "tool_center", "tool_right", "tool_right_animated", "arrow_right", "arrow_left", "label", "tooltip_label", "arrow_right_tooltip_label", "arrow_left_tooltip_label", "audio_accent_1")]
+[node name="UIToolCarousel" type="Control" parent="." node_paths=PackedStringArray("tool_origin", "tool_left_animated", "tool_left", "tool_center", "tool_right", "tool_right_animated", "arrow_right", "arrow_left", "label", "tooltip_label", "arrow_right_tooltip_label", "arrow_left_tooltip_label", "icon_garbage_bag", "audio_accent_1")]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -376,6 +377,7 @@ label = NodePath("TextureRect/Label")
 tooltip_label = NodePath("Tooltip")
 arrow_right_tooltip_label = NodePath("ArrowLeftTooltip")
 arrow_left_tooltip_label = NodePath("ArrowRightTooltip")
+icon_garbage_bag = NodePath("Tools/GarbageBag")
 audio_accent_1 = NodePath("Accent1")
 
 [node name="TextureRect" type="TextureRect" parent="UIToolCarousel"]
@@ -464,6 +466,22 @@ offset_bottom = -12.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("15_y016k")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="GarbageBag" type="TextureRect" parent="UIToolCarousel/Tools"]
+material = SubResource("ShaderMaterial_7aamf")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1033.0
+offset_top = 580.0
+offset_right = -119.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("19_66i1b")
 expand_mode = 1
 stretch_mode = 4
 

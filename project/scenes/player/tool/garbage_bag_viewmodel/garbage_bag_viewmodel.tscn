@@ -1,7 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://be23vn6a0ldjb"]
+[gd_scene load_steps=23 format=3 uid="uid://be23vn6a0ldjb"]
 
 [ext_resource type="Script" path="res://scenes/player/tool/garbage_bag_viewmodel/garbage_bag_viewmodel.gd" id="1_66s7d"]
 [ext_resource type="PackedScene" uid="uid://bwi15gobv053g" path="res://scenes/player/garbage_bag/mesh_garbage_bag.tscn" id="2_bb7dy"]
+[ext_resource type="AudioStream" uid="uid://df780sj7dpa2w" path="res://assets/audio/sfx_garbage_bag_equip.ogg" id="3_a7d1o"]
+[ext_resource type="AudioStream" uid="uid://bpcio828iaepf" path="res://assets/audio/sfx_garbage_bag_throw.ogg" id="4_o7eg5"]
 
 [sub_resource type="Animation" id="Animation_0lt4f"]
 length = 0.001
@@ -56,6 +58,20 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(0.5, 0.5),
 "update": 0,
 "values": [Vector3(1.5708, 1.5708, -0.253073), Vector3(0.148353, 0.479966, -0.253073)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("EquipAudio1")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_mrlpj"]
@@ -115,6 +131,20 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector3(0.148353, 0.479966, -0.253073), Vector3(0.148353, 0.479966, 3.14159)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ThrowAudio1")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_hx6k0"]
@@ -237,3 +267,15 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_ynd50")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="EquipAudio1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_a7d1o")
+volume_db = -7.0
+max_polyphony = 4
+bus = &"SFX"
+
+[node name="ThrowAudio1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_o7eg5")
+volume_db = -14.0
+max_polyphony = 4
+bus = &"SFX"
