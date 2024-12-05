@@ -93,8 +93,9 @@ func _ready():
 	#get_viewport().debug_draw = Viewport.DEBUG_DRAW_OVERDRAW
 	#get_viewport().debug_draw = Viewport.DEBUG_DRAW_WIREFRAME
 
-	for i in 15:
-		Game.game_instance.cleaning_handler.RequestCleaningAtPosition(Vector2.ZERO, Vector2.ZERO, Vector2.ZERO)
+	if (is_instance_valid(cleaning_handler)):
+		for i in 15:
+			Game.game_instance.cleaning_handler.RequestCleaningAtPosition(Vector2.ZERO, Vector2.ZERO, Vector2.ZERO)
 
 func _process(delta):
 	if (await_completion_confirm and Input.is_action_just_pressed("open_inventory") and !ui_completion.confirmed):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=4 uid="uid://djxb2f12q5t80"]
+[gd_scene load_steps=64 format=4 uid="uid://djxb2f12q5t80"]
 
 [ext_resource type="PackedScene" uid="uid://bante8mpv041" path="res://assets/mesh/level_design/mesh_church.blend" id="1_ut78t"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="2_hsbfh"]
@@ -149,12 +149,13 @@ ambient_light_color = Color(0.859799, 0.752455, 0.690006, 1)
 ambient_light_energy = 0.5
 reflected_light_source = 1
 glow_enabled = true
+glow_intensity = 1.0
 glow_bloom = 0.2
+fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.854902, 0.901961, 0.94902, 1)
-fog_density = 0.145
-fog_depth_begin = 205.0
-fog_depth_end = 358.5
+fog_light_color = Color(0.357438, 0.213507, 0.159913, 1)
+fog_density = 0.7443
+fog_depth_curve = 10.5561
 adjustment_enabled = true
 adjustment_color_correction = SubResource("GradientTexture1D_h5x43")
 
@@ -162,6 +163,7 @@ adjustment_color_correction = SubResource("GradientTexture1D_h5x43")
 blend_mode = 1
 cull_mode = 1
 shading_mode = 0
+disable_fog = true
 albedo_color = Color(0.316706, 0.316706, 0.316706, 1)
 albedo_texture = ExtResource("12_3l5ip")
 uv1_scale = Vector3(4, 4, 4)
@@ -175,10 +177,15 @@ material = ExtResource("14_o2817")
 size = Vector2(8, 8)
 center_offset = Vector3(0, 2.5, 0)
 
+[sub_resource type="QuadMesh" id="QuadMesh_m58lh"]
+material = ExtResource("14_o2817")
+size = Vector2(8, 8)
+center_offset = Vector3(0, 2.5, 0)
+
 [sub_resource type="MultiMesh" id="MultiMesh_8kwpn"]
 transform_format = 1
 instance_count = 64
-mesh = SubResource("QuadMesh_pkbnf")
+mesh = SubResource("QuadMesh_m58lh")
 buffer = PackedFloat32Array(3.001, 0, 0, -120.258, 0, 3.001, 0, 0, 0, 0, 3.001, 198.907, -0.948998, 0, 2.847, -45.2167, 0, 3.001, 0, 0, -2.847, 0, -0.948998, -1.65424, -3.001, 0, 0, -278.91, 0, 3.001, 0, 0, 0, 0, -3.001, -80.5429, 0, 0, -3.001, -221.27, 0, 3.001, 0, 0, 3.001, 0, 0, 51.6533, 1.11454, 0, -2.78636, -202.098, 0, 3.001, 0, 0, 2.78636, 0, 1.11454, 123.407, -0.949006, 0, 2.847, -64.6851, 0, 3.001, 0, 0, -2.847, 0, -0.949006, -67.6577, -3.001, 0, 0, -173.971, 0, 3.001, 0, 0, 0, 0, -3.001, -56.0326, 3.001, 0, 0, -116.337, 0, 3.001, 0, 0, 0, 0, 3.001, 131.637, 0.0600336, 0, -3.0004, -260.278, 0, 3.001, 0, 0, 3.0004, 0, 0.0600336, 77.8763, 0, 0, -3.001, -146.93, 0, 3.001, 0, 0, 3.001, 0, 0, 59.2471, -0.948996, 0, 2.847, -172.58, 0, 3.001, 0, 0, -2.847, 0, -0.948996, -16.7047, 3.001, 0, 0, -80.2047, 0, 3.001, 0, 0, 0, 0, 3.001, 149.781, 0, 0, -3.001, -150.451, 0, 3.001, 0, 0, 3.001, 0, 0, 40.0855, 1.11454, 0, -2.78636, -246.16, 0, 3.001, 0, 0, 2.78636, 0, 1.11454, 111.222, -3.001, 0, 0, -281.307, 0, 3.001, 0, 0, 0, 0, -3.001, -81.2003, -0.948996, 0, 2.847, -75.3648, 0, 3.001, 0, 0, -2.847, 0, -0.948996, -48.4153, -0.66337, 0, -2.92676, -110.144, 0, 3.001, 0, 0, 2.92676, 0, -0.66337, 8.08927, -3.001, 0, 0, -296.003, 0, 3.001, 0, 0, 0, 0, -3.001, -55.4232, -3.001, 0, 0, -287.203, 0, 3.001, 0, 0, 0, 0, -3.001, -94.3049, 3.001, 0, 0, -75.7444, 0, 3.001, 0, 0, 0, 0, 3.001, 133.071, 1.11452, 0, -2.78637, -253.88, 0, 3.001, 0, 0, 2.78637, 0, 1.11452, 136.125, 1.11452, 0, -2.78637, -217.985, 0, 3.001, 0, 0, 2.78637, 0, 1.11452, 157.63, 1.11456, 0, -2.78635, -298.911, 0, 3.001, 0, 0, 2.78635, 0, 1.11456, 81.3386, 3.001, 0, 0, -111.527, 0, 3.001, 0, 0, 0, 0, 3.001, 143.466, 1.11454, 0, -2.78636, -266.164, 0, 3.001, 0, 0, 2.78636, 0, 1.11454, 151.345, -3.001, 0, 0, -122.909, 0, 3.001, 0, 0, 0, 0, -3.001, -84.8913, -3.001, 0, 0, -159.562, 0, 3.001, 0, 0, 0, 0, -3.001, -69.96, -3.001, 0, 0, -136.635, 0, 3.001, 0, 0, 0, 0, -3.001, -63.3655, 1.11452, 0, -2.78637, -241.079, 0, 3.001, 0, 0, 2.78637, 0, 1.11452, 170.159, 3.001, 0, 0, -156.608, 0, 3.001, 0, 0, 0, 0, 3.001, 189.026, 3.001, 0, 0, -59.5844, 0, 3.001, 0, 0, 0, 0, 3.001, 124.173, 3.001, 0, 0, -142.986, 0, 3.001, 0, 0, 0, 0, 3.001, 142.415, 3.001, 0, 0, -217.346, 0, 3.001, 0, 0, 0, 0, 3.001, 197.882, -0.949012, 0, 2.84699, -272.914, 0, 3.001, 0, 0, -2.84699, 0, -0.949012, -6.43452, 1.11454, 0, -2.78636, -296.116, 0, 3.001, 0, 0, 2.78636, 0, 1.11454, 179.428, -0.948996, 0, 2.847, -78.0195, 0, 3.001, 0, 0, -2.847, 0, -0.948996, -35.148, 3.001, 0, 0, -17.9781, 0, 3.001, 0, 0, 0, 0, 3.001, 120.383, -3.001, 0, 0, -164.877, 0, 3.001, 0, 0, 0, 0, -3.001, -99.617, -3.001, 0, 0, -207.278, 0, 3.001, 0, 0, 0, 0, -3.001, -52.2897, 0, 0, -3.001, -296.025, 0, 3.001, 0, 0, 3.001, 0, 0, 34.4161, -0.948996, 0, 2.847, -171.638, 0, 3.001, 0, 0, -2.847, 0, -0.948996, -24.5076, 3.001, 0, 0, -120.962, 0, 3.001, 0, 0, 0, 0, 3.001, 187.302, -3.001, 0, 0, -273.388, 0, 3.001, 0, 0, 0, 0, -3.001, -89.6672, -0.948999, 0, 2.847, -69.8259, 0, 3.001, 0, 0, -2.847, 0, -0.948999, -8.87736, 3.001, 0, 0, -61.0302, 0, 3.001, 0, 0, 0, 0, 3.001, 178.113, 1.11454, 0, -2.78636, -169.221, 0, 3.001, 0, 0, 2.78636, 0, 1.11454, 102.857, 3.001, 0, 0, -82.4212, 0, 3.001, 0, 0, 0, 0, 3.001, 131.981, -0.663372, 0, -2.92676, -15.7447, 0, 3.001, 0, 0, 2.92676, 0, -0.663372, 9.0666, 3.001, 0, 0, -154.963, 0, 3.001, 0, 0, 0, 0, 3.001, 181.512, -0.948996, 0, 2.847, -109.565, 0, 3.001, 0, 0, -2.847, 0, -0.948996, -54.3579, -3.001, 0, 0, -174.537, 0, 3.001, 0, 0, 0, 0, -3.001, -75.8801, -0.948996, 0, 2.847, -193.951, 0, 3.001, 0, 0, -2.847, 0, -0.948996, -35.125, 1.11454, 0, -2.78636, -132.503, 0, 3.001, 0, 0, 2.78636, 0, 1.11454, 118.457, -0.663372, 0, -2.92676, -19.0945, 0, 3.001, 0, 0, 2.92676, 0, -0.663372, 53.9755, -0.949006, 0, 2.847, -61.9054, 0, 3.001, 0, 0, -2.847, 0, -0.949006, -73.5095, -0.663371, 0, -2.92676, -187.969, 0, 3.001, 0, 0, 2.92676, 0, -0.663371, 6.11876, 3.001, 0, 0, -191.912, 0, 3.001, 0, 0, 0, 0, 3.001, 191.705, 3.001, 0, 0, -148.492, 0, 3.001, 0, 0, 0, 0, 3.001, 197.635, 0, 0, -3.001, -229.723, 0, 3.001, 0, 0, 3.001, 0, 0, 24.2716, 0, 0, -3.001, -176.331, 0, 3.001, 0, 0, 3.001, 0, 0, 62.4174, -3.001, 0, 0, -207.934, 0, 3.001, 0, 0, 0, 0, -3.001, -84.0213, -0.949008, 0, 2.847, -30.1368, 0, 3.001, 0, 0, -2.847, 0, -0.949008, -80.3195, -0.663373, 0, -2.92676, -14.7229, 0, 3.001, 0, 0, 2.92676, 0, -0.663373, 6.71688, 3.001, 0, 0, -249.236, 0, 3.001, 0, 0, 0, 0, 3.001, 188.425)
 
 [sub_resource type="MultiMesh" id="MultiMesh_1l7la"]
@@ -269,24 +276,25 @@ albedo_texture = ExtResource("21_qjois")
 uv1_scale = Vector3(2, 1.95, 2)
 uv1_triplanar = true
 
-[sub_resource type="Gradient" id="Gradient_688qp"]
+[sub_resource type="Gradient" id="Gradient_nms6v"]
 offsets = PackedFloat32Array(0, 0.526508, 0.961609)
 colors = PackedColorArray(1, 1, 1, 1, 0.262397, 0.262397, 0.262397, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_ust72"]
-gradient = SubResource("Gradient_688qp")
+gradient = SubResource("Gradient_nms6v")
 fill = 1
 fill_from = Vector2(0.495726, 0.482906)
 fill_to = Vector2(0.0811966, 0.132479)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6y8sp"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_trto1"]
 blend_mode = 1
 shading_mode = 0
+disable_fog = true
 albedo_texture = SubResource("GradientTexture2D_ust72")
 billboard_mode = 1
 
 [sub_resource type="QuadMesh" id="QuadMesh_udthv"]
-material = SubResource("StandardMaterial3D_6y8sp")
+material = SubResource("StandardMaterial3D_trto1")
 size = Vector2(96, 96)
 
 [node name="mesh_church" node_paths=PackedStringArray("leaf_populator", "player_spawn_position") instance=ExtResource("1_ut78t")]
@@ -306,13 +314,12 @@ parameters/looping = true
 
 [node name="ChurchBells" type="Node" parent="." index="1" node_paths=PackedStringArray("audio")]
 script = ExtResource("3_cn5bq")
-rate = 2.0
 audio = NodePath("AudioStreamPlayer3D")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="ChurchBells" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.498, 15.5058, 51)
 stream = ExtResource("4_vq2uw")
-volume_db = -8.0
+volume_db = -16.0
 unit_size = 64.0
 max_polyphony = 2
 bus = &"SFX"
@@ -332,7 +339,7 @@ multimesh = SubResource("MultiMesh_qofxr")
 [node name="LeafCleaningHandler" type="LeafCleaningHandler" parent="LeafPopulator" index="1"]
 tickRate = 2
 sweepPerTick = 512
-leafInterpolationWeight = 20.0
+leafInterpolationWeight = 12.0
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="3"]
 

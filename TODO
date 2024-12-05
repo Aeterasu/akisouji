@@ -170,6 +170,8 @@ LEFT TO DO:
                 =2. ring the bell, with the interval 0/3
                 =3. move the garbage bags from the alley
 
+        - add a final stage that unlocks upon completing all of them, that is just lobby and THANKS FOR PLAYING!
+
         - redo the scoring system, so that it not only uses time, but your action. ie, sprint jumping awards more.
         - add high score to stage select.
         - add an additional skill expression mechanic.
@@ -260,6 +262,8 @@ LEFT TO DO:
     PAUSE MENU:
     
     MISC:
+        - also, before release, just in case, check with virustotal
+
         - ADD KARTOSHKA EASTER EGG
 
         - sort language file

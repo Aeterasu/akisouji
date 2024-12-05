@@ -220,7 +220,8 @@ animation_tree = NodePath("AnimationTree")
 walk_cycle_direction = Vector3(0.025, 0.01, 0)
 
 [node name="mesh_garbage_bag" parent="." instance=ExtResource("2_bb7dy")]
-transform = Transform3D(0.168334, 0.0576335, 0.0913356, -0.0495261, 0.191503, -0.0295619, -0.0959738, 0.00226392, 0.175454, 0.105, -0.215, -0.27)
+transform = Transform3D(0.168334, 0.0576335, 0.0913357, -0.0495261, 0.191503, -0.029562, -0.0959738, 0.00226392, 0.175454, 0.105, -0.215, -0.27)
+cast_shadow = 0
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.01, 0, 0, 0, 0.01, 0, 0, 0, 0.01, 0, 0, 0)

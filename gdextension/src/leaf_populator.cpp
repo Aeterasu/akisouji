@@ -17,6 +17,10 @@ void LeafPopulator::_bind_methods()
     ClassDB::bind_method(D_METHOD("getPixelFraction"), &LeafPopulator::getPixelFraction);
     ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "pixelFraction"), "setPixelFraction", "getPixelFraction");
 
+    ClassDB::bind_method(D_METHOD("setHeightmapOffset", "pHeightmapOffset"), &LeafPopulator::setHeightmapOffset);
+    ClassDB::bind_method(D_METHOD("getHeightmapOffset"), &LeafPopulator::getHeightmapOffset);
+    ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "heightmapOffset"), "setHeightmapOffset", "getHeightmapOffset");
+
     ClassDB::bind_method(D_METHOD("setLeafmap", "pLeafmap"), &LeafPopulator::setLeafmap);
     ClassDB::bind_method(D_METHOD("getLeafmap"), &LeafPopulator::getLeafmap);    
     ADD_PROPERTY(PropertyInfo(Variant::OBJECT, "leafmap", PROPERTY_HINT_RESOURCE_TYPE, "Texture2D"), "setLeafmap", "getLeafmap");
@@ -148,7 +152,7 @@ void LeafPopulator::PopulateLeaves()
 
                 if (hasHeightmap)
                 {
-                    y += heightmapData->get_pixel(i, j).get_r8() * 0.01f;
+                    y += heightmapData->get_pixel(i, j).get_r8() * heightmapOffset;
                 }
 
                 transforms[offset] = Transform3D()
@@ -259,6 +263,16 @@ void LeafPopulator::setPixelFraction(const float pPixelFraction)
 float LeafPopulator::getPixelFraction() const
 {
     return pixelFraction;
+}
+
+void LeafPopulator::setHeightmapOffset(const float pHeightmapOffset)
+{
+    heightmapOffset = pHeightmapOffset;
+}
+
+float LeafPopulator::getHeightmapOffset() const
+{
+    return heightmapOffset;
 }
 
 void LeafPopulator::setLeafmap(Ref<Texture2D> pLeafmap)

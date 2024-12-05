@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://dx0ixxp8vs850"]
+
+[ext_resource type="PackedScene" uid="uid://dhm5igyq3vs3a" path="res://assets/mesh/prop/mesh_tutorial_tree_2.blend" id="1_4cr8u"]
+[ext_resource type="Material" uid="uid://dx34skvhw6nkc" path="res://resource/material/material_tree_trunk.tres" id="2_dd8aw"]
+[ext_resource type="Shader" path="res://shader/foliage_alpha.gdshader" id="3_qyei4"]
+[ext_resource type="Texture2D" uid="uid://d16tiqtf74m4r" path="res://assets/texture/environment/texture_foliage_5_albm.png" id="4_bj06v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ik31y"]
+render_priority = 0
+shader = ExtResource("3_qyei4")
+shader_parameter/WindScale = 1.0
+shader_parameter/WindStrength = 1.49
+shader_parameter/WindDensity = 5.0
+shader_parameter/ClampTop = 1.0
+shader_parameter/ClampBtm = 0.0
+shader_parameter/MeshScale = -0.44
+shader_parameter/FresnelColor = Color(0.58, 0.65, 0.33, 1)
+shader_parameter/FresnelStrength = 0.435
+shader_parameter/FresnelBlend = 0.0550001
+shader_parameter/Texture = ExtResource("4_bj06v")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nypwe"]
+render_priority = 0
+shader = ExtResource("3_qyei4")
+shader_parameter/WindScale = 1.0
+shader_parameter/WindStrength = 1.49
+shader_parameter/WindDensity = 5.0
+shader_parameter/ClampTop = 1.0
+shader_parameter/ClampBtm = 0.0
+shader_parameter/MeshScale = -0.52
+shader_parameter/FresnelColor = Color(0.58, 0.65, 0.33, 1)
+shader_parameter/FresnelStrength = 0.435
+shader_parameter/FresnelBlend = 0.0550001
+shader_parameter/Texture = ExtResource("4_bj06v")
+
+[node name="TreeTutorial" type="Node3D"]
+
+[node name="mesh_tutorial_tree_2" parent="." instance=ExtResource("1_4cr8u")]
+surface_material_override/0 = ExtResource("2_dd8aw")
+
+[node name="Sphere" parent="mesh_tutorial_tree_2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.30873, 0.227613, -0.134558)
+surface_material_override/0 = SubResource("ShaderMaterial_ik31y")
+
+[node name="Sphere_001" parent="mesh_tutorial_tree_2" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.323494, 0.906231, 0.215199)
+surface_material_override/0 = SubResource("ShaderMaterial_nypwe")
+
+[editable path="mesh_tutorial_tree_2"]

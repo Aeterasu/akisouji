@@ -25,6 +25,7 @@ namespace godot
             bool isEnabled = true;
             int leavesPerPixel = 4;
             float pixelFraction = 1.0f;
+            float heightmapOffset = 0.01f;
             
             Ref<Texture2D> leafmap;
             Ref<Texture2D> heightmap;
@@ -63,6 +64,9 @@ namespace godot
 
             void setPixelFraction(const float pPixelFraction);
             float getPixelFraction() const;
+        
+            void setHeightmapOffset(const float pHeightmapOffset);
+            float getHeightmapOffset() const;
 
             void setLeafmap(Ref<Texture2D> pLeafmap);
             Ref<Texture2D> getLeafmap();
