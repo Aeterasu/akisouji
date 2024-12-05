@@ -9,6 +9,8 @@ class_name FootstepManager extends Node3D
 @export var concrete_footstep : SoundEffectPlayer = null
 @export var grass_footstep : SoundEffectPlayer = null
 
+@export var leaf_footstep : SoundEffectPlayer = null
+
 var cur_step_rate : float = 0.0
 
 var current_footstep : SoundEffectPlayer = null
@@ -30,8 +32,12 @@ func _physics_process(delta):
 			if (collider.is_in_group("Material-Concrete")):
 				current_footstep = concrete_footstep
 			if (collider.is_in_group("Material-Grass")):
-				current_footstep = grass_footstep				
+				current_footstep = grass_footstep			
 
 		current_footstep.play()
 		on_footstep.emit()
 		cur_step_rate = step_rate
+
+		if (Game.game_instance.cleaning_handler and Game.game_instance.cleaning_handler.AreThereLeavesInRadius(Vector2(global_position.x, global_position.z), 0.5)):
+			#leaf_footstep.pitch_scale = randf_range(0.8, 1.0)
+			leaf_footstep.play()

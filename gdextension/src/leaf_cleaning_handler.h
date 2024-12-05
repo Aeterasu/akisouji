@@ -79,6 +79,8 @@ namespace godot
             void RequestCleaningAtPosition(Vector2 pPosition, Vector2 pDirection, Vector2 pSize);
             bool LeafPositionSort(Transform3D a, Transform3D b);
 
+            bool AreThereLeavesInRadius(Vector2 pPosition, float pRadius);
+
             void ClearAllLeaves();
 
             float ManhattanDistance(Vector2 a, Vector2 b)

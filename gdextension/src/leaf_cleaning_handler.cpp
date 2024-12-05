@@ -22,6 +22,8 @@ void LeafCleaningHandler::_bind_methods()
 
     ClassDB::bind_method(D_METHOD("LeafPositionSort", "a", "b"), &LeafCleaningHandler::LeafPositionSort);
 
+    ClassDB::bind_method(D_METHOD("AreThereLeavesInRadius", "pPosition", "pRadius"), &LeafCleaningHandler::AreThereLeavesInRadius);
+
     ClassDB::bind_method(D_METHOD("ClearAllLeaves"), &LeafCleaningHandler::ClearAllLeaves);
 
     ClassDB::bind_method(D_METHOD("getInstanceCount"), &LeafCleaningHandler::getInstanceCount);
@@ -79,11 +81,6 @@ void LeafCleaningHandler::_physics_process(double delta)
                 sweeps++;
                 int req = int(indexesQueuedForCleaning[i]);
 
-                //multimesh->set_instance_transform(req, transforms[req]);
-                //multimesh->set_instance_color(req, Color(0.0, 0.0, 0.0, 0.0));
-
-                //Transform3D t = Transform3D(transforms[req]).scaled_local(Vector3(1, 1, 1) - (Vector3(1, 1, 1) * leafInterpolationWeight * (delta * tickRate)));
-
                 Color c = Color(colors[req]).lerp(Color(0.0, 0.0, 0.0, 0.0), leafInterpolationWeight * (delta * tickRate));
 
                 if (c.a <= 0.1f)
@@ -91,22 +88,10 @@ void LeafCleaningHandler::_physics_process(double delta)
                     c = Color(0.0, 0.0, 0.0, 0.0);
                     indexesQueuedForCleaning[i] = -1;
                     cleanedInstancesCount++;
-
-                    //multimesh->set_instance_transform(req, Transform3D(transforms[req]).scaled_local(Vector3(0.0, 0.0, 0.0)));
                 }
 
                 colors[req] = c;
                 multimesh->set_instance_color(req, c);
-
-                /*if (t.basis.get_scale().length() <= 0.1f)
-                {
-                    t = t.scaled_local(Vector3(0, 0, 0));
-                    indexesQueuedForCleaning[i] = -1;
-                    cleanedInstancesCount++;
-                }
-
-                transforms[req] = t;
-                multimesh->set_instance_transform(req, t);*/
             }
 
             i++;
@@ -201,6 +186,48 @@ void LeafCleaningHandler::UpdateTicks(double delta)
 
         requests.remove_at(i);
     }
+}
+
+bool LeafCleaningHandler::AreThereLeavesInRadius(Vector2 pPosition, float pRadius)
+{
+    Vector2 A = Vector2(-pRadius * 0.5f, -pRadius * 0.5f);
+    Vector2 B = Vector2(pRadius * 0.5f, -pRadius * 0.5f);
+    Vector2 C = Vector2(pRadius * 0.5f, pRadius * 0.5f);
+    Vector2 D = Vector2(-pRadius * 0.5f, pRadius * 0.5f);
+
+    A += pPosition;
+    B += pPosition;
+    C += pPosition;
+    D += pPosition;
+
+    float minReqPos = Math::min(Math::min(A.x, B.x), Math::min(C.x, D.x));
+    float maxReqPos = Math::max(Math::max(A.x, B.x), Math::max(C.x, D.x));
+
+    int firstSuitableIndex = transforms.bsearch_custom(Transform3D()
+        .translated(Vector3(minReqPos, 0.0f, 0.0f)), 
+        Callable(this, "LeafPositionSort")
+        );
+
+    for (int j = firstSuitableIndex; j < instanceCount; j++)
+    {
+        if (skips[j])
+        {
+            continue;
+        }
+
+        Vector3 origin = Transform3D(transforms[j]).origin;
+
+        if (origin.x > pPosition.x + pRadius)
+        {
+            return false;
+        }
+        else if (IsPointInRectangle(A, B, C, D, Vector2(origin.x, origin.z)))
+        {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void LeafCleaningHandler::ClearAllLeaves()
