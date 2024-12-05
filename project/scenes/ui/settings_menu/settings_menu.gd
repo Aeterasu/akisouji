@@ -11,11 +11,13 @@ class_name SettingsMenu extends Control
 @export var button_general : UIButton = null
 @export var button_language : UIButton = null
 @export var button_keyboard : UIButton = null
+@export var button_gamepad : UIButton = null
 @export var button_audio : UIButton = null
 
 @export var settings_category_general : SettingsCategory = null
 @export var settings_category_language : SettingsCategory = null
 @export var settings_category_keyboard : SettingsCategory = null
+@export var settings_category_gamepad : SettingsCategory = null
 @export var settings_category_audio : SettingsCategory = null
 
 @export var category_name_label : Label = null
@@ -45,6 +47,9 @@ func _ready():
 	settings_category_keyboard.target_alpha = category_unselected_alpha
 	settings_category_keyboard.hide()
 
+	settings_category_gamepad.target_alpha = category_unselected_alpha
+	settings_category_gamepad.hide()
+
 	settings_category_audio.target_alpha = category_unselected_alpha
 	settings_category_audio.hide()
 
@@ -61,6 +66,7 @@ func _process(delta):
 		settings_category_general.hide()
 		settings_category_language.hide()
 		settings_category_keyboard.hide()
+		settings_category_gamepad.hide()
 		settings_category_audio.hide()
 
 		match (button_selection_handler.current_button):
@@ -70,6 +76,8 @@ func _process(delta):
 				settings_category_language.show()
 			button_keyboard:
 				settings_category_keyboard.show()
+			button_gamepad:
+				settings_category_gamepad.show()
 			button_audio:
 				settings_category_audio.show()
 
@@ -116,6 +124,9 @@ func _on_category_button_pressed(button : UIButton):
 		button_keyboard:
 			_on_category_enter(settings_category_keyboard)
 			current_category = settings_category_keyboard
+		button_gamepad:
+			_on_category_enter(settings_category_gamepad)
+			current_category = settings_category_gamepad
 		button_audio:
 			_on_category_enter(settings_category_audio)
 			current_category = settings_category_audio

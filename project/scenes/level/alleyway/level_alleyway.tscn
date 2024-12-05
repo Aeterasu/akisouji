@@ -101,11 +101,6 @@ leaf_populator = NodePath("LeafPopulator")
 leaf_leeway = 250
 player_spawn_position = NodePath("PlayerSpawnPosition")
 enable_rain = true
-s_rank_target_time = 250.0
-a_rank_target_time = 400.0
-b_rank_target_time = 540.0
-c_rank_target_time = 640.0
-d_rank_target_time = 720.0
 
 [node name="LeafPopulator" parent="." index="0" instance=ExtResource("3_c46s6")]
 leavesPerPixel = 2

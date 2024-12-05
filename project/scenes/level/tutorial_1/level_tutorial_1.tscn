@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://8kw8vfjyax3p"]
+[gd_scene load_steps=54 format=3 uid="uid://8kw8vfjyax3p"]
 
 [ext_resource type="PackedScene" uid="uid://r34i4r8tnmcn" path="res://assets/mesh/level_design/mesh_tutorial_1.blend" id="1_hrr73"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="2_xm36i"]
@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://d3qw3bxoa8tck" path="res://assets/texture/environment/texture_horizon_close_1.png" id="24_gdn82"]
 [ext_resource type="Texture2D" uid="uid://dwrsf8r8u334c" path="res://assets/texture/environment/texture_tree_5.png" id="26_q23ff"]
 [ext_resource type="Texture2D" uid="uid://hxj50lhy5iwi" path="res://assets/texture/leaf/texture_leaf_particle_2.png" id="27_pkogk"]
+[ext_resource type="AudioStream" uid="uid://cot6oj6cnaib5" path="res://assets/audio/ambience_park_1.mp3" id="28_l8jqa"]
 
 [sub_resource type="Gradient" id="Gradient_x5tch"]
 offsets = PackedFloat32Array(0, 0.442815, 0.953079, 1)
@@ -648,6 +649,14 @@ preprocess = 2.0
 fixed_fps = 15
 process_material = SubResource("ParticleProcessMaterial_hf7a1")
 draw_pass_1 = SubResource("PlaneMesh_fcwy0")
+
+[node name="Ambience" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("28_l8jqa")
+volume_db = -8.0
+autoplay = true
+bus = &"Ambience"
+parameters/looping = true
 
 [editable path="LeafPopulator"]
 [editable path="mesh_tutorial_1"]
