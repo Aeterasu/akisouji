@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://8kw8vfjyax3p"]
+[gd_scene load_steps=53 format=3 uid="uid://8kw8vfjyax3p"]
 
 [ext_resource type="PackedScene" uid="uid://r34i4r8tnmcn" path="res://assets/mesh/level_design/mesh_tutorial_1.blend" id="1_hrr73"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="2_xm36i"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://d1pkstxa0k3lv" path="res://scenes/prop/horizon/horizon_trees.tscn" id="23_8jdqe"]
 [ext_resource type="Texture2D" uid="uid://d3qw3bxoa8tck" path="res://assets/texture/environment/texture_horizon_close_1.png" id="24_gdn82"]
 [ext_resource type="Texture2D" uid="uid://dwrsf8r8u334c" path="res://assets/texture/environment/texture_tree_5.png" id="26_q23ff"]
+[ext_resource type="Texture2D" uid="uid://hxj50lhy5iwi" path="res://assets/texture/leaf/texture_leaf_particle_2.png" id="27_pkogk"]
 
 [sub_resource type="Gradient" id="Gradient_x5tch"]
 offsets = PackedFloat32Array(0, 0.442815, 0.953079, 1)
@@ -150,6 +151,42 @@ size = Vector3(21, 7.5, 0.5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_mnw8i"]
 size = Vector3(28.0117, 7.5, 0.5)
 
+[sub_resource type="Curve" id="Curve_iuu5e"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.0805009, 0.743926), 1.88349, 1.88349, 0, 0, Vector2(0.896243, 0.923178), -0.867546, -0.867546, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_lbqr5"]
+curve = SubResource("Curve_iuu5e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hf7a1"]
+particle_flag_rotate_y = true
+emission_shape = 1
+emission_sphere_radius = 32.0
+angle_min = 1.07288e-05
+angle_max = 720.0
+direction = Vector3(-1, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 8.0
+angular_velocity_min = -82.29
+angular_velocity_max = -10.89
+gravity = Vector3(0, -2.45, 0)
+scale_curve = SubResource("CurveTexture_lbqr5")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4lh4g"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("27_pkogk")
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fcwy0"]
+material = SubResource("StandardMaterial3D_4lh4g")
+size = Vector2(0.8, 0.8)
+
 [node name="LevelTutorial1" type="Node3D" node_paths=PackedStringArray("leaf_populator", "player_spawn_position")]
 script = ExtResource("2_xm36i")
 leaf_populator = NodePath("LeafPopulator")
@@ -174,7 +211,7 @@ heightmap = ExtResource("5_e40wm")
 leafColors = Array[Color]([Color(0.941176, 0.647059, 0.235294, 1), Color(0.831373, 0.678431, 0.32549, 1), Color(0.533943, 0.523328, 0.059794, 1), Color(0.656139, 0.255687, 0.129575, 1)])
 
 [node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 1.78116, 2)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 6, 0.5, 2)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.833442, -0.199494, 0.51534, 1.21763e-08, 0.932563, 0.361006, -0.552606, -0.300878, 0.777238, 4.30357, 11.1948, 20.5862)
@@ -602,6 +639,15 @@ shape = SubResource("BoxShape3D_mnw8i")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -0.119833, 3.25, 13.5431)
 shape = SubResource("BoxShape3D_mnw8i")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(0.87676, 0, -0.480928, 0, 1, 0, 0.480928, 0, 0.87676, 26.796, 8.11396, 18.7837)
+amount = 1808
+lifetime = 16.0
+preprocess = 2.0
+fixed_fps = 15
+process_material = SubResource("ParticleProcessMaterial_hf7a1")
+draw_pass_1 = SubResource("PlaneMesh_fcwy0")
 
 [editable path="LeafPopulator"]
 [editable path="mesh_tutorial_1"]

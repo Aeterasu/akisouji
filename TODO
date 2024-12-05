@@ -145,6 +145,8 @@ LEFT TO DO:
     + add church stage
     + fix red 'bought'
     + add bell chiming to church level
+    + redo the scoring system, so that it not only uses time, but your action. ie, sprint jumping awards more.
+    + add a tool tip when looking at a bag
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
 
     = DON'T ADD ANY MORE FEATURES. PERIOD. =
@@ -172,7 +174,6 @@ LEFT TO DO:
 
         - add a final stage that unlocks upon completing all of them, that is just lobby and THANKS FOR PLAYING!
 
-        - redo the scoring system, so that it not only uses time, but your action. ie, sprint jumping awards more.
         - add high score to stage select.
         - add an additional skill expression mechanic.
          disabled leaf populator completely breaks the game, pls add safety checks
@@ -182,8 +183,7 @@ LEFT TO DO:
         - dialogue box tutorial. mention leaf highlighting (could tutorial be a dialogue with the girl?)
         - work on economy :D (boots should be dirt cheap, brooms more costly)
         - cash and purchases saving
-        - suggestion - make the leaf highlight not an inherent mechanic, but an upgrade?
-        - set ranking times on levels !!!
+        - set ranking times and scores on levels !!!
     
     GENERAL UI:
         = ? add shop button to title screen ?
@@ -194,7 +194,6 @@ LEFT TO DO:
         - rework loading screen (chibis + let them show the stage picture. short stage description and "ENTERING [stage_name]...", press any button to start)
     
     IN-GAME HUD:
-        - add a tool tip when looking at a bag
         - redraw textures for in-game ui
         - add in-game tool panel ui
         - in-game UI should have control tooltips with gamepad glyphs

@@ -1,8 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://dcaypqvm8j1yq"]
+[gd_scene load_steps=23 format=3 uid="uid://dcaypqvm8j1yq"]
 
 [ext_resource type="Script" path="res://scenes/ui/hud/ui.gd" id="1_7l35m"]
 [ext_resource type="Texture2D" uid="uid://dbqwuevdtqyjl" path="res://assets/texture/ui/hud/texture_ui_crosshair_dot.png" id="2_sidhx"]
 [ext_resource type="Texture2D" uid="uid://dfvylguh5grfg" path="res://assets/texture/ui/hud/texture_ui_dark_corner.png" id="3_qygll"]
+[ext_resource type="Script" path="res://scenes/ui/hud/ui_interaction_tooltip.gd" id="4_npemi"]
+[ext_resource type="Texture2D" uid="uid://rkflify7m4j1" path="res://assets/texture/ui/hud/texture_ui_interaction_tooltip.png" id="4_ubkri"]
 [ext_resource type="Script" path="res://scenes/ui/hud/ui_progress.gd" id="5_nsbia"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="6_j3p5c"]
 [ext_resource type="Texture2D" uid="uid://px5nsuya2plm" path="res://assets/texture/ui/hud/texture_ui_progress_bar_under.png" id="6_uwo0g"]
@@ -47,7 +49,7 @@ metadata/_snap_enabled = true
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_woyka"]
 gradient = SubResource("Gradient_mfykj")
 
-[node name="UI" type="Control" node_paths=PackedStringArray("progress", "ui_timer", "ui_garbage_bag_popup")]
+[node name="UI" type="Control" node_paths=PackedStringArray("progress", "ui_timer", "ui_garbage_bag_popup", "ui_interaction_tooltip")]
 process_priority = -1
 process_physics_priority = -1
 layout_mode = 3
@@ -60,6 +62,7 @@ script = ExtResource("1_7l35m")
 progress = NodePath("UIProgress")
 ui_timer = NodePath("UITimer")
 ui_garbage_bag_popup = NodePath("GarbageBagPopup")
+ui_interaction_tooltip = NodePath("InteractionTooltip")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -72,6 +75,8 @@ grow_vertical = 2
 [node name="Crosshair" type="TextureRect" parent="CenterContainer"]
 layout_mode = 2
 texture = ExtResource("2_sidhx")
+expand_mode = 1
+stretch_mode = 3
 
 [node name="DarkCornerLeft" type="TextureRect" parent="."]
 layout_mode = 1
@@ -94,6 +99,36 @@ scale = Vector2(3, 3)
 texture = ExtResource("3_qygll")
 stretch_mode = 4
 flip_h = true
+
+[node name="InteractionTooltip" type="Control" parent="." node_paths=PackedStringArray("label")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_npemi")
+label = NodePath("RichTextLabel")
+
+[node name="TextureRect" type="TextureRect" parent="InteractionTooltip"]
+layout_mode = 0
+offset_left = 667.0
+offset_top = 328.0
+offset_right = 884.0
+offset_bottom = 392.0
+texture = ExtResource("4_ubkri")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="InteractionTooltip"]
+layout_mode = 0
+offset_left = 708.0
+offset_top = 341.0
+offset_right = 1285.0
+offset_bottom = 392.0
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("6_j3p5c")
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "INTERACTION_TOOLTIP"
 
 [node name="UIProgress" type="Control" parent="." node_paths=PackedStringArray("label", "progress_bar", "percent_label")]
 layout_mode = 1

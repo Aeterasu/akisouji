@@ -207,14 +207,18 @@ func input_process(delta : float):
 
 	# broom
 
-	if (!is_in_photo_mode and !garbage_bag_handler.is_holding_a_bag and garbage_bag_raycast.is_colliding() and Input.is_action_just_pressed("player_action_primary")):
-		var collider = garbage_bag_raycast.get_collider()
-		if (collider is GarbageBag):
-			(collider as GarbageBag).queue_free()
-			garbage_bag_handler.is_holding_a_bag = true
-			inventory.current_tool._unequip()
-			garbage_bag_viewmodel._equip()
-		return
+	if (!is_in_photo_mode and !garbage_bag_handler.is_holding_a_bag and garbage_bag_raycast.is_colliding()):
+		if (Input.is_action_just_pressed("player_action_primary")):
+			var collider = garbage_bag_raycast.get_collider()
+			if (collider is GarbageBag):
+				(collider as GarbageBag).queue_free()
+				garbage_bag_handler.is_holding_a_bag = true
+				inventory.current_tool._unequip()
+				garbage_bag_viewmodel._equip()
+			return
+		UI.instance.ui_interaction_tooltip.show_tooltip = true
+	else:
+		UI.instance.ui_interaction_tooltip.show_tooltip = false
 
 	if (garbage_bag_handler.is_holding_a_bag and (Input.is_action_just_pressed("player_action_primary") or Input.is_action_just_pressed("player_action_secondary"))):
 		garbage_bag_handler.is_holding_a_bag = false
