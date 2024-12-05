@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=4 uid="uid://bmmipwucjq6as"]
+[gd_scene load_steps=63 format=4 uid="uid://bmmipwucjq6as"]
 
 [ext_resource type="Script" path="res://scenes/player/tool/camera/camera.gd" id="1_dgrk7"]
 [ext_resource type="PackedScene" uid="uid://dchkqghoh07wq" path="res://assets/mesh/tool/mesh_camera.glb" id="2_7bjqe"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://by7h1emkbgwug" path="res://assets/audio/sfx_camera_shutter.ogg" id="9_op1j0"]
 [ext_resource type="AudioStream" uid="uid://c8bov6yram35n" path="res://assets/audio/sfx_camera_equip_1.ogg" id="10_mpr3a"]
 [ext_resource type="AudioStream" uid="uid://dwu1ewy5w5ey8" path="res://assets/audio/sfx_camera_equip_2.ogg" id="11_bmq3j"]
+[ext_resource type="AudioStream" uid="uid://dhfjmkqpaof7m" path="res://assets/audio/sfx_camera_equip_3.ogg" id="13_sswdc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1wbt"]
 albedo_texture = ExtResource("3_3wv3y")
@@ -116,6 +117,20 @@ tracks/2/keys = {
 "values": [{
 "args": [],
 "method": &"show"
+}]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EquipAudio1")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
 }]
 }
 
@@ -681,5 +696,11 @@ bus = &"SFX"
 stream = ExtResource("11_bmq3j")
 volume_db = 2.0
 pitch_scale = 0.95
+max_polyphony = 4
+bus = &"SFX"
+
+[node name="EquipAudio1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_sswdc")
+volume_db = -8.0
 max_polyphony = 4
 bus = &"SFX"

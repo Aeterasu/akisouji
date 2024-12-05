@@ -64,6 +64,8 @@ func _physics_process(delta) -> void:
 		if (Input.is_action_just_pressed("player_action_next_tool")):
 			_next_tool()
 
+			UI.instance.ui_tool_carousel.audio_accent_1.play()
+
 			var tween = create_tween()
 			tween.set_parallel(true)
 
@@ -103,11 +105,16 @@ func _physics_process(delta) -> void:
 			tween.tween_callback(func(): (UI.instance.ui_tool_carousel.tool_left_animated.material as ShaderMaterial).set_shader_parameter("modulate", Color(0.0, 0.0, 0.0, 0.0))).set_delay(0.2)
 			tween.tween_callback(func(): (UI.instance.ui_tool_carousel.tool_left_animated.material as ShaderMaterial).set_shader_parameter("coeff", 0.8)).set_delay(0.2)
 
+			tween.tween_property(UI.instance.ui_tool_carousel.arrow_left, "position", Vector2(934.0 - 8.0, UI.instance.ui_tool_carousel.arrow_left.position.y), 0.1)
+			tween.tween_property(UI.instance.ui_tool_carousel.arrow_left, "position", Vector2(934.0, UI.instance.ui_tool_carousel.arrow_left.position.y), 0.1).set_delay(0.1)
+
 			UI.instance.ui_tool_carousel.tool_left_animated.texture = tools[next_id].hud_icon
 
 			return
 		if (Input.is_action_just_pressed("player_action_previous_tool")):
 			_previous_tool()
+
+			UI.instance.ui_tool_carousel.audio_accent_1.play()
 
 			var tween = create_tween()
 			tween.set_parallel(true)
@@ -147,6 +154,9 @@ func _physics_process(delta) -> void:
 			tween.tween_callback(func(): UI.instance.ui_tool_carousel.tool_right_animated.position.x = 1209.0).set_delay(0.2)
 			tween.tween_callback(func(): (UI.instance.ui_tool_carousel.tool_right_animated.material as ShaderMaterial).set_shader_parameter("modulate", Color(0.0, 0.0, 0.0, 0.0))).set_delay(0.2)
 			tween.tween_callback(func(): (UI.instance.ui_tool_carousel.tool_right_animated.material as ShaderMaterial).set_shader_parameter("coeff", 0.8)).set_delay(0.2)
+
+			tween.tween_property(UI.instance.ui_tool_carousel.arrow_right, "position", Vector2(1242.0 + 8.0, UI.instance.ui_tool_carousel.arrow_right.position.y), 0.1)
+			tween.tween_property(UI.instance.ui_tool_carousel.arrow_right, "position", Vector2(1242.0, UI.instance.ui_tool_carousel.arrow_right.position.y), 0.1).set_delay(0.1)
 
 			UI.instance.ui_tool_carousel.tool_right_animated.texture = tools[next_id].hud_icon
 

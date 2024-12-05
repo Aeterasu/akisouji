@@ -199,6 +199,8 @@ LEFT TO DO:
     IN-GAME HUD:
         - redraw textures for in-game ui
         - in-game UI should have control tooltips with gamepad glyphs
+
+        - REMOVE TIMER FROM FIRST HUD UPDATE due to async it may fuck up and crash
     
     VISUAL:
         GOLDEN AUTUMN MUCH?

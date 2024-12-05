@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=4 uid="uid://duvqdrsvvonkd"]
+[gd_scene load_steps=73 format=4 uid="uid://duvqdrsvvonkd"]
 
 [ext_resource type="Script" path="res://scenes/player/tool/broom/broom.gd" id="1_t54q8"]
 [ext_resource type="PackedScene" uid="uid://1rbyx1a81x74" path="res://assets/mesh/tool/mesh_broom.blend" id="2_0flt6"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://addons/bmod/scripts/resources/sound_effect_meta.gd" id="9_p52kn"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/resources/single_sound_effect.gd" id="10_16r3d"]
 [ext_resource type="AudioStream" uid="uid://bji5ivsuqvy30" path="res://assets/audio/sfx_brooming_1.ogg" id="10_qq1ah"]
+[ext_resource type="AudioStream" uid="uid://maqm1knr6irq" path="res://assets/audio/sfx_equipping_broom_1.ogg" id="12_taocq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_skvaf"]
 render_priority = 3
@@ -229,6 +230,20 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("EquipAudio1")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.0],
+"method": &"play"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_h5qqg"]
@@ -713,5 +728,11 @@ script = ExtResource("7_fh7go")
 sound_effect = SubResource("Resource_ja1np")
 bus = &"SFX"
 max_polyphony = 4
+
+[node name="EquipAudio1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_taocq")
+volume_db = -12.0
+max_polyphony = 4
+bus = &"SFX"
 
 [editable path="mesh_broom"]
