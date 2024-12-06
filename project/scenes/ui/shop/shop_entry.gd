@@ -54,6 +54,8 @@ func _ready():
 	button.on_deselected.connect(_on_button_deselected)
 
 func _process(delta):
+	button.disable_click_accent = state == EntryState.AVAILABLE_TO_BUY
+
 	if (sunbeams):
 		sunbeams.rotation_degrees += animation_speed * delta
 
@@ -68,15 +70,15 @@ func _process(delta):
 	if (name_label):
 		name_label.text = tr(upgrade_item.name_key)
 
-func _attempt_buy():
+func _attempt_buy() -> bool:
 	if (state == EntryState.UNEQUIPPED):
 		UpgradeManager._set_current_item(upgrade_item)
 		on_state_update.emit()
 
-		return
+		return false
 
 	if (state == EntryState.AVAILABLE_TO_BUY):
-		if (upgrade_item.cost < CashManager.cash):
+		if (upgrade_item.cost <= CashManager.cash):
 			UpgradeManager._grant_item(upgrade_item)
 			CashManager._substract_cash(upgrade_item.cost)
 			UpgradeManager._set_current_item(upgrade_item)
@@ -84,6 +86,12 @@ func _attempt_buy():
 
 			if (is_instance_valid(Game.game_instance)):
 				Game.game_instance.player.inventory._update_hud_textures()
+			
+			return true
+		else:
+			return false
+
+	return false
 
 func _update_state():
 	state = EntryState.AVAILABLE_TO_BUY

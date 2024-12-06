@@ -18,6 +18,9 @@ class_name Shop extends Control
 @export var category_tools_motto_key : String = ""
 @export var category_boots_motto_key : String = ""
 
+@export var purchase_accent_1 : AudioStreamPlayer = null
+@export var purchase_denied_accent_1 : AudioStreamPlayer = null
+
 var current_category : ShopCategory = null
 var is_in_category : bool = false
 

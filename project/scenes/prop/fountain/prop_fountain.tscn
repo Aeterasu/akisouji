@@ -278,9 +278,9 @@ shape = SubResource("BoxShape3D_bxxdw")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource("9_7h3so")
-volume_db = -24.0
+volume_db = -20.0
 unit_size = 24.0
-max_db = -12.0
+max_db = -10.0
 autoplay = true
 panning_strength = 0.25
 bus = &"SFX"

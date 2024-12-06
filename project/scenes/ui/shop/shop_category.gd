@@ -51,7 +51,12 @@ func _on_shop_entry_button_pressed(button : UIButton):
 	if (!entry):
 		return
 
-	entry._attempt_buy()
+	var a : bool = entry._attempt_buy()
+
+	if (a):
+		shop.purchase_accent_1.play()
+	elif (!a and (entry.state == ShopEntry.EntryState.AVAILABLE_TO_BUY)):
+		shop.purchase_denied_accent_1.play()
 
 func _select() -> ShopCategory:
 	button_selection_handler._enable_all_buttons()

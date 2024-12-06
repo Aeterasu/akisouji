@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://71lkn3s6kfqi"]
+[gd_scene load_steps=39 format=3 uid="uid://71lkn3s6kfqi"]
 
 [ext_resource type="Script" path="res://scenes/ui/shop/shop.gd" id="1_87sb4"]
 [ext_resource type="Texture2D" uid="uid://o065i8cobccy" path="res://assets/texture/ui/shop/texture_shop_background.png" id="2_4mw2w"]
@@ -25,6 +25,8 @@
 [ext_resource type="Resource" uid="uid://c7wg1nuu7ajn5" path="res://scenes/upgrade/broom/leaf_blower.tres" id="14_fdjp1"]
 [ext_resource type="Resource" uid="uid://bn47rjqc642pu" path="res://scenes/upgrade/camera.tres" id="15_3nn51"]
 [ext_resource type="PackedScene" uid="uid://cyaqutbexr62l" path="res://scenes/ui/gamepad_tooltip/gamepad_tooltip.tscn" id="17_xyhan"]
+[ext_resource type="AudioStream" uid="uid://22v57ovw4be1" path="res://assets/audio/sfx_purchase.ogg" id="26_4v50f"]
+[ext_resource type="AudioStream" uid="uid://cxmgf8utqn23i" path="res://assets/audio/sfx_purchase_denied.ogg" id="27_ixi7m"]
 
 [sub_resource type="Gradient" id="Gradient_mtig2"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
@@ -42,6 +44,7 @@ fill_to = Vector2(0, 0)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3i6hp"]
 shader = ExtResource("6_ac7cn")
+shader_parameter/base = 0.145
 shader_parameter/coeff = 0.1
 shader_parameter/speed = 3.0
 shader_parameter/modulate = Color(0.878431, 0.827451, 0.658824, 1)
@@ -78,7 +81,7 @@ light_mode = 1
 blend_mode = 3
 light_mode = 1
 
-[node name="Shop" type="Control" node_paths=PackedStringArray("back_button", "tools_button", "boots_button", "category_select_screen", "category_select_button_handler", "category_tools", "category_boots", "sidepanel")]
+[node name="Shop" type="Control" node_paths=PackedStringArray("back_button", "tools_button", "boots_button", "category_select_screen", "category_select_button_handler", "category_tools", "category_boots", "sidepanel", "purchase_accent_1", "purchase_denied_accent_1")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -98,6 +101,8 @@ sidepanel = NodePath("SidePanel")
 shop_default_motto_key = "SHOP_DEFAULT_MOTTO"
 category_tools_motto_key = "CATEGORY_TOOLS_MOTTO"
 category_boots_motto_key = "CATEGORY_BOOTS_MOTTO"
+purchase_accent_1 = NodePath("PurchaseAudio1")
+purchase_denied_accent_1 = NodePath("PurchaseDenied1")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 modulate = Color(0.561098, 0.530684, 0.247338, 1)
@@ -202,6 +207,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="InCategory" type="Control" parent="SidePanel/Gradient"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -361,6 +367,7 @@ offset_bottom = 300.0
 scale = Vector2(0.71, 0.71)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
+disable_click_accent = true
 
 [node name="CostLabel" type="RichTextLabel" parent="Categories/ShopCategoryTools/Broom1/AnimationOrigin" index="3"]
 layout_mode = 0
@@ -399,6 +406,7 @@ offset_bottom = 389.1
 scale = Vector2(0.71, 0.71)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
+disable_click_accent = true
 
 [node name="CostLabel" type="RichTextLabel" parent="Categories/ShopCategoryTools/Camera/AnimationOrigin" index="3"]
 layout_mode = 0
@@ -437,6 +445,7 @@ offset_bottom = 478.2
 scale = Vector2(0.71, 0.71)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
+disable_click_accent = true
 
 [node name="SelectedGradient" parent="Categories/ShopCategoryTools/Broom2/AnimationOrigin/PaperMask" index="1"]
 material = SubResource("CanvasItemMaterial_1omue")
@@ -481,6 +490,7 @@ offset_bottom = 567.3
 scale = Vector2(0.71, 0.71)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
+disable_click_accent = true
 
 [node name="SelectedGradient" parent="Categories/ShopCategoryTools/Broom4/AnimationOrigin/PaperMask" index="1"]
 material = SubResource("CanvasItemMaterial_1omue")
@@ -525,6 +535,7 @@ offset_bottom = 656.4
 scale = Vector2(0.71, 0.71)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
+disable_click_accent = true
 
 [node name="SelectedGradient" parent="Categories/ShopCategoryTools/Broom5/AnimationOrigin/PaperMask" index="1"]
 material = SubResource("CanvasItemMaterial_1omue")
@@ -602,6 +613,7 @@ offset_bottom = 292.0
 scale = Vector2(0.8, 0.8)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
+disable_click_accent = true
 
 [node name="SelectedGradient" parent="Categories/ShopCategoryBoots/Boots1/AnimationOrigin/PaperMask" index="1"]
 material = SubResource("CanvasItemMaterial_1omue")
@@ -646,6 +658,7 @@ offset_bottom = 399.58
 scale = Vector2(0.8, 0.8)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
+disable_click_accent = true
 
 [node name="SelectedGradient" parent="Categories/ShopCategoryBoots/Boots2/AnimationOrigin/PaperMask" index="1"]
 material = SubResource("CanvasItemMaterial_1omue")
@@ -690,6 +703,7 @@ offset_bottom = 507.16
 scale = Vector2(0.8, 0.8)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
+disable_click_accent = true
 
 [node name="SelectedGradient" parent="Categories/ShopCategoryBoots/Boots3/AnimationOrigin/PaperMask" index="1"]
 material = SubResource("CanvasItemMaterial_1omue")
@@ -734,6 +748,7 @@ offset_bottom = 614.74
 scale = Vector2(0.8, 0.8)
 target_selected_position = Vector2(48, 0)
 target_deselected_position = Vector2(-32, 0)
+disable_click_accent = true
 
 [node name="SelectedGradient" parent="Categories/ShopCategoryBoots/Boots4/AnimationOrigin/PaperMask" index="1"]
 material = SubResource("CanvasItemMaterial_1omue")
@@ -793,6 +808,16 @@ layout_mode = 1
 
 [node name="UIUpscaler" type="Node" parent="."]
 script = ExtResource("7_fg3im")
+
+[node name="PurchaseAudio1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_4v50f")
+max_polyphony = 4
+bus = &"SFX"
+
+[node name="PurchaseDenied1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("27_ixi7m")
+max_polyphony = 4
+bus = &"SFX"
 
 [editable path="Categories/ShopCategoryTools/Broom1"]
 [editable path="Categories/ShopCategoryTools/Camera"]

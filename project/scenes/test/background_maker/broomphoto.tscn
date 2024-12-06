@@ -1,5 +1,6 @@
-[gd_scene load_steps=54 format=4 uid="uid://du6l28dd5smvf"]
+[gd_scene load_steps=57 format=4 uid="uid://du6l28dd5smvf"]
 
+[ext_resource type="PackedScene" uid="uid://c42201kg0t4nh" path="res://assets/mesh/boots/mesh_sevenleague.glb" id="1_mqbei"]
 [ext_resource type="PackedScene" uid="uid://j6k6m7mkrpjv" path="res://assets/mesh/tool/mesh_broom_strong.blend" id="1_n8q6l"]
 [ext_resource type="Material" uid="uid://e6kqs6p081ew" path="res://scenes/test/material_test/gold.tres" id="2_moup4"]
 [ext_resource type="Material" uid="uid://cwaw45fhmm7wj" path="res://resource/material/material_broom_outline.tres" id="3_1tqb6"]
@@ -24,6 +25,12 @@
 [ext_resource type="Texture2D" uid="uid://p5d60sa6t2ci" path="res://assets/texture/ui/hud/texture_ui_camera_alpha.png" id="21_bt0cb"]
 [ext_resource type="Texture2D" uid="uid://cdvg0disuaebg" path="res://assets/texture/fx/texture_cloud_specular.png" id="22_isrio"]
 [ext_resource type="Texture2D" uid="uid://bjv31j5j8mrm0" path="res://assets/texture/tool/texture_lens.png" id="23_6qgqx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wgjbv"]
+albedo_color = Color(0.520366, 0.23965, 0.23965, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tk38j"]
+albedo_color = Color(0.330284, 0.330284, 0.330284, 1)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_spqaq"]
 _surfaces = [{
@@ -298,6 +305,16 @@ ambient_light_color = Color(1, 1, 1, 1)
 
 [node name="Broomphoto" type="Node3D"]
 
+[node name="mesh_sevenleague" parent="." instance=ExtResource("1_mqbei")]
+transform = Transform3D(0.0341708, -0.0201673, 0.00506345, -0.00755602, -0.00296878, 0.0391675, -0.0193717, -0.0344161, -0.00634575, 0, -0.0458159, -0.198246)
+surface_material_override/0 = SubResource("StandardMaterial3D_wgjbv")
+surface_material_override/1 = SubResource("StandardMaterial3D_tk38j")
+
+[node name="mesh_sevenleague2" parent="." instance=ExtResource("1_mqbei")]
+transform = Transform3D(0.0392573, -0.00192331, 0.00742756, -0.00599986, 0.0164401, 0.0359684, -0.0047822, -0.0364146, 0.0158463, -0.0889015, -0.0662279, -0.23638)
+surface_material_override/0 = SubResource("StandardMaterial3D_wgjbv")
+surface_material_override/1 = SubResource("StandardMaterial3D_tk38j")
+
 [node name="mesh_broom4" parent="." instance=ExtResource("1_n8q6l")]
 transform = Transform3D(-0.017691, 0.0265009, -0.0241812, 0.032921, 0.0227061, 0.000799265, 0.0142561, -0.0195482, -0.0318533, -0.0438925, -0.0608634, -0.143385)
 visible = false
@@ -392,6 +409,7 @@ surface_material_override/1 = SubResource("StandardMaterial3D_okxvb")
 
 [node name="mesh_garbage_bag" parent="." instance=ExtResource("19_cesyo")]
 transform = Transform3D(0.866025, -0.238579, -0.439409, 0, 0.878817, -0.477159, 0.5, 0.413232, 0.761078, 0.105, -0.405, -1.46)
+visible = false
 
 [node name="mesh_camera" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.0926611, 0.00424747, 0.0373614, 0.00611318, 0.0963364, -0.0261136, 0.0371018, -0.0264811, -0.0890068, 0.0275227, -0.00809046, -0.149913)

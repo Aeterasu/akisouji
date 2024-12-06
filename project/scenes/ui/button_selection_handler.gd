@@ -53,7 +53,7 @@ func _process(delta):
 		_next_button()
 		
 	if (Input.is_action_just_pressed("menu_confirm") and current_button and !current_button.is_disabled):
-		if (current_button.audio_accent_2):
+		if (!current_button.disable_click_accent and current_button.audio_accent_2):
 			var sfx = current_button.audio_accent_2.duplicate() as AudioStreamPlayer
 
 			get_tree().root.add_child(sfx)

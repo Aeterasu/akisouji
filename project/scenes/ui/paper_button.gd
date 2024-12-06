@@ -8,6 +8,8 @@ class_name PaperButton extends UIButton
 @export var selected_gradient : TextureRect = null
 @export var deselected_gradient : TextureRect = null
 
+@export var disable_click_accent : bool = false
+
 var gradient_1 : Gradient = null
 var gradient_1_color_1 : Color = Color(1.0, 1.0, 1.0, 1.0)
 var gradient_1_color_2 : Color = Color(1.0, 1.0, 1.0, 1.0)
