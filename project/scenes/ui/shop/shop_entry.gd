@@ -53,6 +53,8 @@ func _ready():
 	button.on_selected.connect(_on_button_selected)
 	button.on_deselected.connect(_on_button_deselected)
 
+	cost_label.set("clip_contents", false)
+
 func _process(delta):
 	button.disable_click_accent = state == EntryState.AVAILABLE_TO_BUY
 

@@ -67,6 +67,9 @@ func _clean_buffer():
 		reward_ding.pitch_scale = randf_range(0.8, 1.1)
 		reward_ding.play()
 
+	if (UpgradeManager):
+		UpgradeManager._check_unlocks()
+
 func _reward_leaf_cleaning(leaf_amount : float):
 	var anim = 0.6
 

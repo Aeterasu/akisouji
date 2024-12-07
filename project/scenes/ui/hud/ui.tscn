@@ -1,17 +1,23 @@
-[gd_scene load_steps=37 format=3 uid="uid://dcaypqvm8j1yq"]
+[gd_scene load_steps=55 format=3 uid="uid://dcaypqvm8j1yq"]
 
 [ext_resource type="Script" path="res://scenes/ui/hud/ui.gd" id="1_7l35m"]
 [ext_resource type="Texture2D" uid="uid://dbqwuevdtqyjl" path="res://assets/texture/ui/hud/texture_ui_crosshair_dot.png" id="2_sidhx"]
 [ext_resource type="Texture2D" uid="uid://dfvylguh5grfg" path="res://assets/texture/ui/hud/texture_ui_dark_corner.png" id="3_qygll"]
+[ext_resource type="Shader" path="res://shader/gradient_mask.gdshader" id="4_2002d"]
+[ext_resource type="Script" path="res://scenes/ui/hud/ui_new_upgrade_notification.gd" id="4_j3834"]
 [ext_resource type="Script" path="res://scenes/ui/hud/ui_interaction_tooltip.gd" id="4_npemi"]
 [ext_resource type="Texture2D" uid="uid://rkflify7m4j1" path="res://assets/texture/ui/hud/texture_ui_interaction_tooltip.png" id="4_ubkri"]
+[ext_resource type="Texture2D" uid="uid://cvjac4agi8hyq" path="res://assets/texture/ui/texture_upgrade_notification_mask.png" id="5_3lq6c"]
 [ext_resource type="Script" path="res://scenes/ui/hud/ui_progress.gd" id="5_nsbia"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="6_j3p5c"]
 [ext_resource type="Texture2D" uid="uid://px5nsuya2plm" path="res://assets/texture/ui/hud/texture_ui_progress_bar_under.png" id="6_uwo0g"]
 [ext_resource type="Texture2D" uid="uid://vr36vghxgove" path="res://assets/texture/ui/hud/texture_ui_progress_bar_fill.png" id="7_q0gs6"]
 [ext_resource type="PackedScene" uid="uid://c15cmbbg5nyn0" path="res://scenes/ui/hud/ui_cash.tscn" id="8_8dhui"]
+[ext_resource type="Shader" path="res://shader/rotate_uv.gdshader" id="8_lqmr8"]
 [ext_resource type="Script" path="res://scenes/ui/hud/ui_timer.gd" id="9_l3wss"]
+[ext_resource type="Texture2D" uid="uid://dnhwqr3q3c00i" path="res://assets/texture/fx/texture_fx_sunbeams.png" id="9_qn68k"]
 [ext_resource type="Texture2D" uid="uid://jhg85c77h287" path="res://resource/hud_timer_gradient_1.tres" id="10_6ylqo"]
+[ext_resource type="AudioStream" uid="uid://drajbmcrrnrvj" path="res://assets/audio/sfx_new_upgrade.ogg" id="10_c8nw4"]
 [ext_resource type="PackedScene" uid="uid://bh1grw871br6n" path="res://scenes/ui/grade/grade.tscn" id="10_mhp4x"]
 [ext_resource type="Script" path="res://scenes/ui/hud/ui_garbage_bag_popup.gd" id="11_ryd7g"]
 [ext_resource type="Script" path="res://scenes/ui/hud/ui_tool_carousel.gd" id="15_w6n43"]
@@ -21,6 +27,68 @@
 [ext_resource type="Texture2D" uid="uid://dsurrv6k3154n" path="res://assets/texture/icons/texture_hud_icon_camera.png" id="16_ov8mb"]
 [ext_resource type="Texture2D" uid="uid://bjxadga0fnfur" path="res://assets/texture/icons/texture_icon_garbage_bag.png" id="19_66i1b"]
 [ext_resource type="AudioStream" uid="uid://c8lqm2l5ordkm" path="res://assets/audio/sfx_hud_tool_carousel_accent_1.ogg" id="20_i5tbn"]
+
+[sub_resource type="Gradient" id="Gradient_d80uc"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.282353, 0.0588235, 0, 0.152941, 1, 0.692, 0.16, 1, 0.282353, 0.0588235, 0, 0.152941)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_av4w1"]
+gradient = SubResource("Gradient_d80uc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a3pb6"]
+shader = ExtResource("4_2002d")
+shader_parameter/mask = SubResource("GradientTexture2D_av4w1")
+
+[sub_resource type="Gradient" id="Gradient_5anac"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.21, 0.042, 0, 0, 0.208088, 0.0445575, 0, 1, 0.21, 0.042, 0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7bjgr"]
+gradient = SubResource("Gradient_5anac")
+fill_from = Vector2(1, 1)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_4l6tf"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_qwwix"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.271304, 0.617391, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.364227, 0.364227, 0.364227, 1, 0.126624, 0.126624, 0.126624, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jfl63"]
+gradient = SubResource("Gradient_qwwix")
+width = 96
+height = 96
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.820513, 0.162393)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_auo65"]
+shader = ExtResource("8_lqmr8")
+shader_parameter/color = Color(1, 0.7255, 0.39, 0.0588235)
+shader_parameter/clockwise = true
+shader_parameter/speed = 1.0
+shader_parameter/spin_texture = ExtResource("9_qn68k")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tmx4g"]
+blend_mode = 1
+light_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_3rejo"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.146998, 0.503106, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.459268, 0.459268, 0.459268, 1, 0.153778, 0.153778, 0.153778, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_tqjsh"]
+gradient = SubResource("Gradient_3rejo")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.508547, 0.491453)
+fill_to = Vector2(0.884615, 0.115385)
 
 [sub_resource type="Gradient" id="Gradient_ghd1x"]
 colors = PackedColorArray(0, 0, 0, 0.578, 0, 0, 0, 0)
@@ -89,7 +157,7 @@ shader = ExtResource("16_lre02")
 shader_parameter/coeff = 0.05
 shader_parameter/modulate = Color(1, 1, 1, 1)
 
-[node name="UI" type="Control" node_paths=PackedStringArray("progress", "ui_timer", "ui_garbage_bag_popup", "ui_interaction_tooltip", "ui_tool_carousel")]
+[node name="UI" type="Control" node_paths=PackedStringArray("progress", "ui_timer", "ui_garbage_bag_popup", "ui_interaction_tooltip", "ui_tool_carousel", "ui_new_upgrade_notification")]
 process_priority = -1
 process_physics_priority = -1
 layout_mode = 3
@@ -104,6 +172,7 @@ ui_timer = NodePath("UITimer")
 ui_garbage_bag_popup = NodePath("UIGarbageBagPopup")
 ui_interaction_tooltip = NodePath("YUInteractionTooltip")
 ui_tool_carousel = NodePath("UIToolCarousel")
+ui_new_upgrade_notification = NodePath("UINewUpgradeNotification")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -140,6 +209,139 @@ scale = Vector2(3, 3)
 texture = ExtResource("3_qygll")
 stretch_mode = 4
 flip_h = true
+
+[node name="UINewUpgradeNotification" type="Control" parent="." node_paths=PackedStringArray("accent", "big_label", "small_label")]
+layout_mode = 1
+anchor_top = 0.293
+anchor_right = 1.0
+anchor_bottom = 0.293
+offset_top = -89.96
+offset_bottom = 24.04
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_j3834")
+accent = NodePath("AudioStreamPlayer")
+big_label = NodePath("BigLabel")
+small_label = NodePath("SmallLabel")
+
+[node name="TextureRect2" type="TextureRect" parent="UINewUpgradeNotification"]
+material = SubResource("ShaderMaterial_a3pb6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_3lq6c")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TextureRect3" type="TextureRect" parent="UINewUpgradeNotification"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_a3pb6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_7bjgr")
+expand_mode = 1
+
+[node name="BigLabel" type="Label" parent="UINewUpgradeNotification"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -45.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0.160567, 0.0343819, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("6_j3p5c")
+theme_override_font_sizes/font_size = 36
+text = "NEW UPGRADE UNLOCKED!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SmallLabel" type="RichTextLabel" parent="UINewUpgradeNotification"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 69.0
+offset_bottom = 2.00001
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0.160567, 0.0343819, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("6_j3p5c")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Press [button] to access shop!"
+
+[node name="TextureRect" type="TextureRect" parent="UINewUpgradeNotification"]
+modulate = Color(1, 0.847059, 0, 0.211765)
+material = SubResource("CanvasItemMaterial_4l6tf")
+layout_mode = 0
+offset_left = 1.0
+offset_top = -200.0
+offset_right = 1282.0
+offset_bottom = 295.0
+texture = SubResource("GradientTexture2D_jfl63")
+
+[node name="Sunbeams" type="TextureRect" parent="UINewUpgradeNotification"]
+z_index = -2
+material = SubResource("ShaderMaterial_auo65")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -54.0
+offset_top = -200.0
+offset_right = -20.0
+offset_bottom = -1.0
+scale = Vector2(2, 2)
+texture = ExtResource("9_qn68k")
+stretch_mode = 3
+
+[node name="Sunbeams2" type="TextureRect" parent="UINewUpgradeNotification/Sunbeams"]
+modulate = Color(0.357438, 0.27658, 0.016521, 1)
+z_index = 101
+material = SubResource("CanvasItemMaterial_tmx4g")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_tqjsh")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Sunbeams3" type="TextureRect" parent="UINewUpgradeNotification/Sunbeams"]
+modulate = Color(0.0926804, 0.0730157, 0.00976936, 1)
+z_index = 101
+material = SubResource("CanvasItemMaterial_tmx4g")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -312.0
+offset_top = -207.0
+offset_right = 318.0
+offset_bottom = 203.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_tqjsh")
+stretch_mode = 5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UINewUpgradeNotification"]
+stream = ExtResource("10_c8nw4")
+bus = &"SFX"
 
 [node name="YUInteractionTooltip" type="Control" parent="." node_paths=PackedStringArray("label")]
 layout_mode = 1

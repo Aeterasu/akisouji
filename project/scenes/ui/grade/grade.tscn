@@ -60,13 +60,13 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.820513, 0.162393)
 
-[sub_resource type="Gradient" id="Gradient_nh085"]
+[sub_resource type="Gradient" id="Gradient_1tj6i"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.271304, 0.617391, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.364227, 0.364227, 0.364227, 1, 0.126624, 0.126624, 0.126624, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fk3fb"]
-gradient = SubResource("Gradient_nh085")
+gradient = SubResource("Gradient_1tj6i")
 width = 96
 height = 96
 fill = 1

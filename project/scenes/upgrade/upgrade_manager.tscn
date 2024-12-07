@@ -1,12 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://c3dicmve0y25t"]
+[gd_scene load_steps=11 format=3 uid="uid://c3dicmve0y25t"]
 
 [ext_resource type="Script" path="res://scenes/upgrade/upgrade_manager.gd" id="1_otq28"]
 [ext_resource type="Script" path="res://scenes/upgrade/upgrade.gd" id="2_bbl6a"]
 [ext_resource type="Resource" uid="uid://bnojv12xi1uio" path="res://scenes/upgrade/move_speed/default_boots.tres" id="3_mauo5"]
 [ext_resource type="Resource" uid="uid://c7sbyg4ns7pi2" path="res://scenes/upgrade/broom/broom.tres" id="4_mwnnl"]
 [ext_resource type="Resource" uid="uid://bn47rjqc642pu" path="res://scenes/upgrade/camera.tres" id="5_1kv5e"]
+[ext_resource type="Resource" uid="uid://bi0qxjmyixrxb" path="res://scenes/upgrade/broom/strong_broom.tres" id="6_2iauj"]
+[ext_resource type="Resource" uid="uid://c7wg1nuu7ajn5" path="res://scenes/upgrade/broom/leaf_blower.tres" id="7_4xvsf"]
+[ext_resource type="Resource" uid="uid://b8f14366gudkv" path="res://scenes/upgrade/broom/golden_broom.tres" id="8_i8bi2"]
+[ext_resource type="Resource" uid="uid://dm1aayb6i2p5a" path="res://scenes/upgrade/move_speed/sneakers.tres" id="9_dapp4"]
+[ext_resource type="Resource" uid="uid://cc7kdcc5fh4wk" path="res://scenes/upgrade/move_speed/wellies.tres" id="10_u2wur"]
 
 [node name="UpgradeManager" type="Node"]
 script = ExtResource("1_otq28")
 inventory = Array[ExtResource("2_bbl6a")]([ExtResource("3_mauo5"), ExtResource("4_mwnnl"), ExtResource("5_1kv5e")])
+upgrade_database = Array[ExtResource("2_bbl6a")]([ExtResource("6_2iauj"), ExtResource("7_4xvsf"), ExtResource("8_i8bi2"), ExtResource("8_i8bi2"), ExtResource("9_dapp4"), ExtResource("10_u2wur")])
 current_boots = ExtResource("3_mauo5")

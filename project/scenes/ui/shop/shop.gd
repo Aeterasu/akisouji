@@ -21,6 +21,9 @@ class_name Shop extends Control
 @export var purchase_accent_1 : AudioStreamPlayer = null
 @export var purchase_denied_accent_1 : AudioStreamPlayer = null
 
+@export var tools_exclamation_mark : TextureRect = null
+@export var boots_exclamation_mark : TextureRect = null
+
 var current_category : ShopCategory = null
 var is_in_category : bool = false
 
@@ -53,6 +56,9 @@ func _process(delta):
 
 	sidepanel.default_panel.visible = !is_in_category
 
+	tools_exclamation_mark.visible = UpgradeManager.new_brooms_unlocked
+	boots_exclamation_mark.visible = UpgradeManager.new_boots_unlocked
+
 	if (!is_in_category):
 		sidepanel.in_category_panel.hide()
 		match category_select_button_handler.current_button:
@@ -74,10 +80,12 @@ func _on_category_select_button_pressed(button : UIButton):
 			_on_category_select()
 			is_in_category = true
 			current_category = category_tools._select()
+			UpgradeManager.new_brooms_unlocked = false
 		boots_button:
 			_on_category_select()
 			is_in_category = true
 			current_category = category_boots._select()
+			UpgradeManager.new_boots_unlocked = false
 
 func _on_back_button_pressed():
 	if (is_in_category):
