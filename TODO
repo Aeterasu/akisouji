@@ -154,6 +154,7 @@ LEFT TO DO:
     + finalize shop icon texture for boots
     + add sounds for purchasing/purchase failure
     + add 'new upgrade notification' a little '!' should appear on the category
+    + add animation to level result screen on receiving grade (plus sound :3)
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
     
     = consider reworking the sweeping mechanic. 
@@ -204,8 +205,6 @@ LEFT TO DO:
     GENERAL UI:
         = ? add shop button to title screen ?
         - ADD STYLISTIC POEMS TO OTHER MENUS!!! shop, stage select, gallery etc
-
-        - add animation to level result screen on receiving grade (plus sound :3)
 
         - rework loading screen (chibis + let them show the stage picture. short stage description and "ENTERING [stage_name]...", press any button to start)
     

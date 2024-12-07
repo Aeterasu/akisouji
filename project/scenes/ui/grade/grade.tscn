@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bh1grw871br6n"]
+[gd_scene load_steps=25 format=3 uid="uid://bh1grw871br6n"]
 
 [ext_resource type="Script" path="res://scenes/ui/grade/grade.gd" id="1_4d634"]
 [ext_resource type="Texture2D" uid="uid://c3lje42cf3fws" path="res://assets/texture/ui/grades/texture_grade_d.png" id="1_o8oyr"]
@@ -95,15 +95,34 @@ scale_min = 0.3
 scale_max = 0.9
 color_ramp = SubResource("GradientTexture1D_p0p4w")
 
-[node name="Grade" type="Control" node_paths=PackedStringArray("d", "c", "b", "a", "s")]
+[sub_resource type="Gradient" id="Gradient_ygo8j"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.271304, 0.617391, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.364227, 0.364227, 0.364227, 1, 0.126624, 0.126624, 0.126624, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nxqvu"]
+gradient = SubResource("Gradient_ygo8j")
+width = 96
+height = 96
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.820513, 0.162393)
+
+[node name="Grade" type="Control" node_paths=PackedStringArray("d", "c", "b", "a", "s", "glow")]
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 2
 script = ExtResource("1_4d634")
 d = NodePath("D")
 c = NodePath("C")
 b = NodePath("B")
 a = NodePath("A")
 s = NodePath("S")
+glow = NodePath("Control")
+c_color = Color(0, 0.588235, 0.588235, 1)
+b_color = Color(0.243137, 0.631373, 1, 1)
+a_color = Color(0.270588, 0.505882, 0.160784, 1)
+s_color = Color(1, 0.654823, 0, 1)
 
 [node name="D" type="TextureRect" parent="."]
 layout_mode = 0
@@ -221,3 +240,27 @@ position = Vector2(68, 78)
 process_material = SubResource("ParticleProcessMaterial_vq1uq")
 texture = ExtResource("6_366mm")
 lifetime = 3.0
+
+[node name="Control" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="Glow1" type="TextureRect" parent="Control"]
+material = SubResource("CanvasItemMaterial_e1gfi")
+offset_left = -150.0
+offset_top = -136.0
+offset_right = 296.0
+offset_bottom = 297.0
+texture = SubResource("GradientTexture2D_nxqvu")
+stretch_mode = 4
+
+[node name="Glow2" type="TextureRect" parent="Control"]
+material = SubResource("CanvasItemMaterial_e1gfi")
+offset_left = -587.0
+offset_top = -25.0
+offset_right = 685.0
+offset_bottom = 192.0
+texture = SubResource("GradientTexture2D_nxqvu")

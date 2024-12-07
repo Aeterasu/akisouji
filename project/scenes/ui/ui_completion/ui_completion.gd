@@ -12,6 +12,8 @@ class_name UICompletion extends Control
 
 @export var blackout : ColorRect = null
 
+@export var grade_audio : AudioStreamPlayer = null
+
 var time_elapsed_string : String = "00:00"
 
 var confirmed : bool = false
@@ -20,6 +22,7 @@ func _ready() -> void:
 	hide()
 	initial_popup.hide()
 	menu.hide()
+	grade_emblem.hide()
 	initial_popup.modulate = Color(0.0, 0.0, 0.0, 0.0)
 	menu.modulate = Color(0.0, 0.0, 0.0, 0.0)
 	menu_button_handler._disable_all_buttons()
@@ -47,11 +50,15 @@ func _show_menu():
 	initial_popup.hide()
 	menu.show()
 	var tween = get_tree().create_tween()
+	tween.set_parallel(true)
 	tween.tween_property(menu, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
 
 	time_label.text = tr("COMPLETION_TIME_SPENT") + ": " + time_elapsed_string
 
 	menu_button_handler._enable_all_buttons()
+
+	tween.tween_callback(grade_emblem._animate).set_delay(0.6)
+	tween.tween_callback(grade_audio.play).set_delay(0.6)
 
 func _transition(button : UIButton):
 	menu_button_handler._disable_all_buttons()
