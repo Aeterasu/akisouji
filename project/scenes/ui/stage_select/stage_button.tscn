@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://0rans78oywx2"]
+[gd_scene load_steps=7 format=3 uid="uid://0rans78oywx2"]
 
 [ext_resource type="Texture2D" uid="uid://kpquelm48ns4" path="res://assets/texture/ui/stage_select/texture_ui_stage_frame.png" id="1_sj4tv"]
 [ext_resource type="Script" path="res://scenes/ui/stage_select/stage_button.gd" id="1_vxyaf"]
 [ext_resource type="PackedScene" uid="uid://dvlleqic8xnpl" path="res://scenes/level/alleyway/level_alleyway.tscn" id="2_kpvrh"]
 [ext_resource type="Texture2D" uid="uid://clr88rwhe5dva" path="res://assets/texture/stage/texture_stage_alleyway.png" id="2_nieu1"]
 [ext_resource type="Texture2D" uid="uid://ceins1jamomkq" path="res://assets/texture/ui/shop/texture_ui_shop_highlight_premulalpha.png" id="3_wvqj8"]
+[ext_resource type="PackedScene" uid="uid://bh1grw871br6n" path="res://scenes/ui/grade/grade.tscn" id="6_i0qmx"]
 
-[node name="StageButton" type="Control" node_paths=PackedStringArray("highlight")]
+[node name="StageButton" type="Control" node_paths=PackedStringArray("highlight", "grade")]
 custom_minimum_size = Vector2(652, 362)
 layout_mode = 3
 anchors_preset = 0
@@ -15,6 +16,7 @@ offset_bottom = 362.0
 script = ExtResource("1_vxyaf")
 stage_scene = ExtResource("2_kpvrh")
 highlight = NodePath("Highlight")
+grade = NodePath("Grade")
 
 [node name="Highlight" type="TextureRect" parent="."]
 show_behind_parent = true
@@ -46,3 +48,41 @@ grow_vertical = 2
 texture = ExtResource("2_nieu1")
 expand_mode = 1
 stretch_mode = 6
+
+[node name="Grade" parent="." instance=ExtResource("6_i0qmx")]
+offset_left = 451.0
+offset_top = -34.0
+offset_right = 451.0
+offset_bottom = -34.0
+
+[node name="TextureRect" parent="Grade/D" index="0"]
+visible = false
+
+[node name="TextureRect" parent="Grade/C" index="0"]
+visible = false
+
+[node name="TextureRect" parent="Grade/B" index="0"]
+visible = false
+
+[node name="TextureRect" parent="Grade/A" index="0"]
+visible = false
+
+[node name="TextureRect" parent="Grade/S" index="0"]
+visible = false
+
+[node name="TextureRect2" parent="Grade/S" index="1"]
+visible = false
+
+[node name="TextureRect3" parent="Grade/S" index="2"]
+visible = false
+
+[node name="GPUParticles2D" parent="Grade/S" index="3"]
+visible = false
+
+[node name="Glow1" parent="Grade/Control" index="0"]
+layout_mode = 0
+
+[node name="Glow2" parent="Grade/Control" index="1"]
+layout_mode = 0
+
+[editable path="Grade"]

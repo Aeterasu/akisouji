@@ -128,6 +128,7 @@ s_color = Color(1, 0.654823, 0, 1)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource("1_o8oyr")
 
 [node name="TextureRect" type="TextureRect" parent="D"]
@@ -138,6 +139,7 @@ offset_left = -37.0
 offset_top = -22.0
 offset_right = 169.0
 offset_bottom = 184.0
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_5ox60")
 
 [node name="C" type="TextureRect" parent="."]
@@ -145,6 +147,7 @@ visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource("2_shagp")
 
 [node name="TextureRect" type="TextureRect" parent="C"]
@@ -156,6 +159,7 @@ offset_left = -37.0
 offset_top = -22.0
 offset_right = 169.0
 offset_bottom = 184.0
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_wjgn7")
 
 [node name="B" type="TextureRect" parent="."]
@@ -163,6 +167,7 @@ visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource("3_5dfph")
 
 [node name="TextureRect" type="TextureRect" parent="B"]
@@ -174,6 +179,7 @@ offset_left = -37.0
 offset_top = -22.0
 offset_right = 169.0
 offset_bottom = 184.0
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_s0sve")
 
 [node name="A" type="TextureRect" parent="."]
@@ -181,6 +187,7 @@ visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource("4_1c4p2")
 
 [node name="TextureRect" type="TextureRect" parent="A"]
@@ -192,6 +199,7 @@ offset_left = -56.0
 offset_top = -44.0
 offset_right = 197.0
 offset_bottom = 208.0
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_rc77r")
 
 [node name="S" type="TextureRect" parent="."]
@@ -199,6 +207,7 @@ visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 texture = ExtResource("5_nbx6t")
 
 [node name="TextureRect" type="TextureRect" parent="S"]
@@ -210,6 +219,7 @@ offset_left = -56.0
 offset_top = -44.0
 offset_right = 197.0
 offset_bottom = 208.0
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_fk3fb")
 
 [node name="TextureRect2" type="TextureRect" parent="S"]
@@ -221,6 +231,7 @@ offset_left = 1.0
 offset_top = 17.0
 offset_right = 136.0
 offset_bottom = 151.0
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_fk3fb")
 
 [node name="TextureRect3" type="TextureRect" parent="S"]
@@ -232,6 +243,7 @@ offset_left = -220.0
 offset_top = 30.0
 offset_right = 360.0
 offset_bottom = 126.0
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_fk3fb")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="S"]
@@ -250,17 +262,21 @@ mouse_filter = 2
 
 [node name="Glow1" type="TextureRect" parent="Control"]
 material = SubResource("CanvasItemMaterial_e1gfi")
+layout_mode = 0
 offset_left = -150.0
 offset_top = -136.0
 offset_right = 296.0
 offset_bottom = 297.0
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_nxqvu")
 stretch_mode = 4
 
 [node name="Glow2" type="TextureRect" parent="Control"]
 material = SubResource("CanvasItemMaterial_e1gfi")
+layout_mode = 0
 offset_left = -587.0
 offset_top = -25.0
 offset_right = 685.0
 offset_bottom = 192.0
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_nxqvu")

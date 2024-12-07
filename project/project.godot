@@ -38,6 +38,7 @@ LocaleManager="*res://scenes/singleton/locale_manager.gd"
 CashManager="*res://scenes/cash/cash_manager.tscn"
 UpgradeManager="*res://scenes/upgrade/upgrade_manager.tscn"
 MusicManager="*res://scenes/music/music_manager.tscn"
+HighscoreManager="*res://scenes/highscore_manager/highscore_manager.tscn"
 
 [debug]
 

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://u57di416n5sh"]
+
+[ext_resource type="Script" path="res://scenes/highscore_manager/highscore_manager.gd" id="1_a42o3"]
+
+[node name="HighscoreManager" type="Node"]
+script = ExtResource("1_a42o3")
+level_grades = Array[int]([-1, -1, -1, -1])

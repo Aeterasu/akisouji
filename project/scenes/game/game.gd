@@ -101,6 +101,7 @@ func _process(delta):
 		ui_completion._set_cash(cash_earned)
 		ui_completion._show_menu()
 		UI.instance.hide()
+		HighscoreManager._update_current_level_grade(ranking_manager.get_current_rank())
 		return
 
 	if (await_completion_confirm):

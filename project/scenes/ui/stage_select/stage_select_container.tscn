@@ -43,13 +43,27 @@ description_key = "STAGE_DESCRIPTION_TUTORIAL_1"
 [node name="LevelImage" parent="HBoxContainer/StageButton4" index="2"]
 texture = ExtResource("4_3n4rn")
 
+[node name="Glow1" parent="HBoxContainer/StageButton4/Grade/Control" index="0"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 446.0
+offset_bottom = 433.0
+
+[node name="Glow2" parent="HBoxContainer/StageButton4/Grade/Control" index="1"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1272.0
+offset_bottom = 217.0
+
 [node name="StageButton1" parent="HBoxContainer" instance=ExtResource("1_nbdvt")]
 layout_mode = 2
+level_number = 1
 name_key = "STAGE_NAME_ALLEYWAY"
 description_key = "STAGE_DESCRIPTION_ALLEYWAY"
 
 [node name="StageButton2" parent="HBoxContainer" instance=ExtResource("1_nbdvt")]
 layout_mode = 2
+level_number = 2
 stage_scene = ExtResource("2_qk5m6")
 name_key = "STAGE_NAME_FOUNTAIN"
 description_key = "STAGE_DESCRIPTION_FOUNTAIN"
@@ -57,8 +71,21 @@ description_key = "STAGE_DESCRIPTION_FOUNTAIN"
 [node name="LevelImage" parent="HBoxContainer/StageButton2" index="2"]
 texture = ExtResource("3_wlmgw")
 
+[node name="Glow1" parent="HBoxContainer/StageButton2/Grade/Control" index="0"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 446.0
+offset_bottom = 433.0
+
+[node name="Glow2" parent="HBoxContainer/StageButton2/Grade/Control" index="1"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1272.0
+offset_bottom = 217.0
+
 [node name="StageButton3" parent="HBoxContainer" instance=ExtResource("1_nbdvt")]
 layout_mode = 2
+level_number = 3
 stage_scene = ExtResource("4_sdqqr")
 name_key = "STAGE_NAME_CHURCH"
 description_key = "STAGE_DESCRIPTION_CHURCH"
@@ -66,6 +93,21 @@ description_key = "STAGE_DESCRIPTION_CHURCH"
 [node name="LevelImage" parent="HBoxContainer/StageButton3" index="2"]
 texture = ExtResource("6_4hxpc")
 
+[node name="Glow1" parent="HBoxContainer/StageButton3/Grade/Control" index="0"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 446.0
+offset_bottom = 433.0
+
+[node name="Glow2" parent="HBoxContainer/StageButton3/Grade/Control" index="1"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 1272.0
+offset_bottom = 217.0
+
 [editable path="HBoxContainer/StageButton4"]
+[editable path="HBoxContainer/StageButton4/Grade"]
 [editable path="HBoxContainer/StageButton2"]
+[editable path="HBoxContainer/StageButton2/Grade"]
 [editable path="HBoxContainer/StageButton3"]
+[editable path="HBoxContainer/StageButton3/Grade"]

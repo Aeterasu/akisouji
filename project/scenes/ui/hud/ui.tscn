@@ -640,6 +640,7 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="ToolLeft" type="TextureRect" parent="UIToolCarousel/Tools"]
+z_index = 1
 material = SubResource("ShaderMaterial_fsp3c")
 layout_mode = 1
 anchors_preset = 15
@@ -656,6 +657,7 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="ToolCenter" type="TextureRect" parent="UIToolCarousel/Tools"]
+z_index = 2
 material = SubResource("ShaderMaterial_7aamf")
 layout_mode = 1
 anchors_preset = 15
@@ -672,6 +674,7 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="GarbageBag" type="TextureRect" parent="UIToolCarousel/Tools"]
+z_index = 2
 material = SubResource("ShaderMaterial_7aamf")
 layout_mode = 1
 anchors_preset = 15
@@ -688,6 +691,7 @@ expand_mode = 1
 stretch_mode = 4
 
 [node name="ToolRight" type="TextureRect" parent="UIToolCarousel/Tools"]
+z_index = 1
 material = SubResource("ShaderMaterial_0lh5o")
 layout_mode = 1
 anchors_preset = 15
