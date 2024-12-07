@@ -22,6 +22,8 @@ func _ready():
 
 	MusicManager.player.play()
 
+	SaveManager._load()
+
 func _process(delta):
 	_update_volume()
 

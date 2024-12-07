@@ -70,6 +70,8 @@ func _clean_buffer():
 	if (UpgradeManager):
 		UpgradeManager._check_unlocks()
 
+	SaveManager._save()
+
 func _reward_leaf_cleaning(leaf_amount : float):
 	var anim = 0.6
 

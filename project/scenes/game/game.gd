@@ -101,7 +101,9 @@ func _process(delta):
 		ui_completion._set_cash(cash_earned)
 		ui_completion._show_menu()
 		UI.instance.hide()
-		HighscoreManager._update_current_level_grade(ranking_manager.get_current_rank())
+		HighscoreManager._update_current_level_grade(ranking_manager.get_current_rank(), ranking_manager._get_current_score())
+
+		SaveManager._save()
 		return
 
 	if (await_completion_confirm):
@@ -127,7 +129,6 @@ func _on_level_completion():
 	CashManager.finalize = true
 	CashManager._grant_cash(level.cash_reward + ranking_manager._get_current_cash_bonus(), 8.0)
 
-
 	ranking_manager.completed = true
 	ranking_manager.score *= ranking_manager.get_current_time_multiplier()
 
@@ -135,6 +136,8 @@ func _on_level_completion():
 
 	ui_completion._show_initial_popup()
 	await_completion_confirm = true
+
+	SaveManager._save()
 
 func toggle_pause():
 	if (!is_pausable):

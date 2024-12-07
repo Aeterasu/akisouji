@@ -44,7 +44,7 @@ func _check_unlocks():
 
     for upgrade in upgrade_database:
         var i = upgrade_database.find(upgrade)
-        if (CashManager.cash >= upgrade.cost and not unlocked_array[i]):
+        if (CashManager.cash >= upgrade.cost and not unlocked_array[i] and !(_is_upgrade_bought(i))):
             unlocked_array[i] = true
             show_notif = true
 
@@ -55,3 +55,29 @@ func _check_unlocks():
 
     if (show_notif):
         UI.instance.ui_new_upgrade_notification._animate()
+
+func _is_upgrade_bought(id : int) -> bool:
+    if (id > len(upgrade_database) - 1):
+        return false
+
+    return inventory.has(upgrade_database[id])
+
+func _get_equipped_boots_id() -> int:
+    var i = upgrade_database.find(current_boots)
+
+    return max(i, 0)
+
+func _grant_upgrade_by_id(id : int) -> void:
+    if (id > len(upgrade_database) - 1):
+        return
+
+    inventory.append(upgrade_database[id])
+
+func _set_equipped_boots_by_id(id : int) -> void:
+    if (id > len(upgrade_database) - 1):
+        return
+
+    var u = upgrade_database[id]
+
+    if (u is MoveSpeedUpgrade):
+        current_boots = upgrade_database[id]

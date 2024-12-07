@@ -155,6 +155,10 @@ LEFT TO DO:
     + add sounds for purchasing/purchase failure
     + add 'new upgrade notification' a little '!' should appear on the category
     + add animation to level result screen on receiving grade (plus sound :3)
+    + show best grades in stage select
+    + cash and purchases saving
+    + save best grades
+    + add high score to stage select.
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
     
     = consider reworking the sweeping mechanic. 
@@ -172,6 +176,18 @@ LEFT TO DO:
     = Leafsweep
     = Leafsong
     = Autumn Leaf Song
+
+    = SAVE
+        = what do we need to save?
+
+        = cash
+        = purchased upgrades
+        = stage best grades
+        = stage best highscores
+
+    = CONFIG
+        = what do we need to save
+        = well, everything
     
     FIXES:
         - alleyway level leaves are slighlty cutoff
@@ -194,14 +210,11 @@ LEFT TO DO:
 
         - tutorial level final pass. setup heightmaps for tutorial level
 
-        - add high score to stage select.
         - add an additional skill expression mechanic.
          disabled leaf populator completely breaks the game, pls add safety checks
-		- save best grades and show them in stage select
         - maybe implement optimization via cluster of multimeshes
         - dialogue box tutorial. mention leaf highlighting (could tutorial be a dialogue with the girl?)
         - work on economy :D (boots should be dirt cheap, brooms more costly)
-        - cash and purchases saving
         - set ranking times and scores on levels !!!
     
     GENERAL UI:

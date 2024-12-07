@@ -114,7 +114,7 @@ func _process(delta):
 	_update_scroll(delta)
 
 	stage_name_label.text = tr(s.name_key)
-	stage_description_label.text = tr(s.description_key)
+	stage_description_label.text = tr(s.description_key) + "\n" + tr("HIGH_SCORE") + ": " + str(HighscoreManager.level_highscores[(stages_container.container.get_child(current_selected_stage_id) as StageButton).level_number]).pad_zeros(9)
 	
 	for i in range(stage_amount):
 		if (i == current_selected_stage_id):

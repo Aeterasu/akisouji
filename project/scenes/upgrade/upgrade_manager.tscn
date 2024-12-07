@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c3dicmve0y25t"]
+[gd_scene load_steps=12 format=3 uid="uid://c3dicmve0y25t"]
 
 [ext_resource type="Script" path="res://scenes/upgrade/upgrade_manager.gd" id="1_otq28"]
 [ext_resource type="Script" path="res://scenes/upgrade/upgrade.gd" id="2_bbl6a"]
@@ -10,9 +10,10 @@
 [ext_resource type="Resource" uid="uid://b8f14366gudkv" path="res://scenes/upgrade/broom/golden_broom.tres" id="8_i8bi2"]
 [ext_resource type="Resource" uid="uid://dm1aayb6i2p5a" path="res://scenes/upgrade/move_speed/sneakers.tres" id="9_dapp4"]
 [ext_resource type="Resource" uid="uid://cc7kdcc5fh4wk" path="res://scenes/upgrade/move_speed/wellies.tres" id="10_u2wur"]
+[ext_resource type="Resource" uid="uid://c37g3k5d2emhn" path="res://scenes/upgrade/move_speed/sevenleagues.tres" id="11_1873s"]
 
 [node name="UpgradeManager" type="Node"]
 script = ExtResource("1_otq28")
 inventory = Array[ExtResource("2_bbl6a")]([ExtResource("3_mauo5"), ExtResource("4_mwnnl"), ExtResource("5_1kv5e")])
-upgrade_database = Array[ExtResource("2_bbl6a")]([ExtResource("6_2iauj"), ExtResource("7_4xvsf"), ExtResource("8_i8bi2"), ExtResource("8_i8bi2"), ExtResource("9_dapp4"), ExtResource("10_u2wur")])
+upgrade_database = Array[ExtResource("2_bbl6a")]([ExtResource("6_2iauj"), ExtResource("7_4xvsf"), ExtResource("8_i8bi2"), ExtResource("9_dapp4"), ExtResource("10_u2wur"), ExtResource("11_1873s")])
 current_boots = ExtResource("3_mauo5")
