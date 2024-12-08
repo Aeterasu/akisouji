@@ -12,6 +12,8 @@ class_name UI extends Control
 
 @export var ui_new_upgrade_notification : UINewUpgradeNotification = null
 
+@export var ui_tutorial : UITutorial = null
+
 static var instance : UI
 
 func _ready():

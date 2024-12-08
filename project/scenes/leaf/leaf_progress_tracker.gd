@@ -15,8 +15,7 @@ func _physics_process(delta):
 	if (!cleaning_handler):
 		return
 
-	var target = max(cleaning_handler.getInstanceCount() - leeway, 1)
-	var progress : float = float(cleaned_leaves_count) / float(target)
+	var progress : float = _get_progress()
 
 	#prints("progress: ", progress, "instance count: ", cleaning_handler.getInstanceCount(), ", target: ", target, ", cleaned count: ", cleaned_leaves_count)
 
@@ -32,3 +31,7 @@ func _physics_process(delta):
 func _on_leaves_cleaned(amount : int):
 	CashManager._reward_leaf_cleaning(amount)
 	cleaned_leaves_count += amount
+
+func _get_progress():
+	var target = max(cleaning_handler.getInstanceCount() - leeway, 1)
+	return float(cleaned_leaves_count) / float(target)

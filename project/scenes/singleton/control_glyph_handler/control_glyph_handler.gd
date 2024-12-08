@@ -5,6 +5,12 @@ extends Node
 func _get_glyph_image_path() -> String:
 	return glyph_image.resource_path
 
+func _get_key_string(input : InputEvent) -> String:
+	if (input is InputEventKey):
+		return OS.get_keycode_string((input as InputEventKey).physical_keycode)
+
+	return ""
+
 func _get_glyph_bbcode(input : InputEvent) -> String:
 	var result : String = ""
 

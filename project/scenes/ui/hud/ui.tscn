@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://dcaypqvm8j1yq"]
+[gd_scene load_steps=65 format=3 uid="uid://dcaypqvm8j1yq"]
 
 [ext_resource type="Script" path="res://scenes/ui/hud/ui.gd" id="1_7l35m"]
 [ext_resource type="Texture2D" uid="uid://dbqwuevdtqyjl" path="res://assets/texture/ui/hud/texture_ui_crosshair_dot.png" id="2_sidhx"]
@@ -27,6 +27,10 @@
 [ext_resource type="Texture2D" uid="uid://dsurrv6k3154n" path="res://assets/texture/icons/texture_hud_icon_camera.png" id="16_ov8mb"]
 [ext_resource type="Texture2D" uid="uid://bjxadga0fnfur" path="res://assets/texture/icons/texture_icon_garbage_bag.png" id="19_66i1b"]
 [ext_resource type="AudioStream" uid="uid://c8lqm2l5ordkm" path="res://assets/audio/sfx_hud_tool_carousel_accent_1.ogg" id="20_i5tbn"]
+[ext_resource type="Script" path="res://scenes/ui/hud/ui_tutorial.gd" id="28_7ef1e"]
+[ext_resource type="Texture2D" uid="uid://dbs0scn2gan2p" path="res://assets/texture/ui/dialogue_box/texture_ui_dialogue_box.png" id="28_qbr36"]
+[ext_resource type="Texture2D" uid="uid://ccjvf1bd72jr5" path="res://assets/texture/ui/dialogue_box/texture_ui_portrait_frame.png" id="29_d444q"]
+[ext_resource type="Texture2D" uid="uid://ceg8a1m1uvm0l" path="res://assets/texture/girl/girl_box_1.png" id="30_ankg1"]
 
 [sub_resource type="Gradient" id="Gradient_d80uc"]
 offsets = PackedFloat32Array(0, 0.5, 1)
@@ -157,7 +161,33 @@ shader = ExtResource("16_lre02")
 shader_parameter/coeff = 0.05
 shader_parameter/modulate = Color(1, 1, 1, 1)
 
-[node name="UI" type="Control" node_paths=PackedStringArray("progress", "ui_timer", "ui_garbage_bag_popup", "ui_interaction_tooltip", "ui_tool_carousel", "ui_new_upgrade_notification")]
+[sub_resource type="Gradient" id="Gradient_x2uus"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(0.208088, 0.0445575, 0, 1, 0.21, 0.042, 0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ppsme"]
+gradient = SubResource("Gradient_x2uus")
+fill = 1
+fill_from = Vector2(0.508547, 0.482906)
+fill_to = Vector2(0.833333, 0.213675)
+
+[sub_resource type="Gradient" id="Gradient_lvi31"]
+offsets = PackedFloat32Array(0, 0.3, 0.5, 0.7, 1)
+colors = PackedColorArray(0.493211, 0.112485, 0, 0, 1, 0.902108, 0.690719, 1, 1, 1, 1, 1, 1, 0.901961, 0.690196, 1, 0.494118, 0.113725, 0, 0)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7pr1u"]
+gradient = SubResource("Gradient_lvi31")
+
+[sub_resource type="Gradient" id="Gradient_xygop"]
+colors = PackedColorArray(0.901961, 0.407843, 0.0862745, 1, 0.32, 0.0586667, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_se0dp"]
+gradient = SubResource("Gradient_xygop")
+fill_from = Vector2(1, 1)
+
+[node name="UI" type="Control" node_paths=PackedStringArray("progress", "ui_timer", "ui_garbage_bag_popup", "ui_interaction_tooltip", "ui_tool_carousel", "ui_new_upgrade_notification", "ui_tutorial")]
 process_priority = -1
 process_physics_priority = -1
 layout_mode = 3
@@ -173,6 +203,7 @@ ui_garbage_bag_popup = NodePath("UIGarbageBagPopup")
 ui_interaction_tooltip = NodePath("YUInteractionTooltip")
 ui_tool_carousel = NodePath("UIToolCarousel")
 ui_new_upgrade_notification = NodePath("UINewUpgradeNotification")
+ui_tutorial = NodePath("UITutorial")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -219,6 +250,7 @@ offset_top = -89.96
 offset_bottom = 24.04
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("4_j3834")
 accent = NodePath("AudioStreamPlayer")
 big_label = NodePath("BigLabel")
@@ -341,6 +373,7 @@ stretch_mode = 5
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UINewUpgradeNotification"]
 stream = ExtResource("10_c8nw4")
+volume_db = -4.0
 bus = &"SFX"
 
 [node name="YUInteractionTooltip" type="Control" parent="." node_paths=PackedStringArray("label")]
@@ -815,3 +848,125 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture2D_d36h1")
 expand_mode = 1
+
+[node name="UITutorial" type="Control" parent="." node_paths=PackedStringArray("label")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("28_7ef1e")
+label = NodePath("RichTextLabel")
+
+[node name="TextureRect" type="TextureRect" parent="UITutorial"]
+modulate = Color(0.72, 0.59364, 0.5256, 0.776471)
+layout_mode = 0
+offset_left = 43.0
+offset_top = 542.0
+offset_right = 872.0
+offset_bottom = 685.0
+texture = ExtResource("28_qbr36")
+expand_mode = 1
+
+[node name="TextureRect3" type="TextureRect" parent="UITutorial/TextureRect"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_a3pb6")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -168.0
+offset_top = -42.0
+offset_right = 199.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_ppsme")
+expand_mode = 1
+
+[node name="Border1" type="TextureRect" parent="UITutorial"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 542.0
+offset_right = 872.0
+offset_bottom = 544.0
+texture = SubResource("GradientTexture2D_7pr1u")
+expand_mode = 1
+
+[node name="Border2" type="TextureRect" parent="UITutorial"]
+layout_mode = 0
+offset_left = 43.0
+offset_top = 683.0
+offset_right = 872.0
+offset_bottom = 685.0
+texture = SubResource("GradientTexture2D_7pr1u")
+expand_mode = 1
+
+[node name="PortraitFrame" type="TextureRect" parent="UITutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 93.0
+offset_top = 542.0
+offset_right = -1039.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("29_d444q")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Backdrop" type="TextureRect" parent="UITutorial/PortraitFrame"]
+modulate = Color(1, 1, 1, 0.266667)
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.081
+anchor_right = 0.919
+anchor_bottom = 1.0
+offset_left = 0.0120001
+offset_top = 12.0
+offset_right = -0.0120087
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_se0dp")
+expand_mode = 1
+
+[node name="Girl" type="TextureRect" parent="UITutorial/PortraitFrame"]
+modulate = Color(0.934474, 0.864345, 0.805244, 1)
+show_behind_parent = true
+texture_filter = 6
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = 14.0
+offset_right = -14.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("30_ankg1")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="RichTextLabel" type="RichTextLabel" parent="UITutorial"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 246.0
+offset_top = 554.0
+offset_right = -454.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/normal_font = ExtResource("6_j3p5c")
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "Welcome to [game_name], your cozy autumn cleaning simulator! Your goal is to sweep all of the fallen leaves on the level. Use [WASD] to move, and [MOUSE] to look around."

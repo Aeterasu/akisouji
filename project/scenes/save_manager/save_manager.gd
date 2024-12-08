@@ -1,5 +1,7 @@
 extends Node
 
+var seen_tutorial : bool = false
+
 func _save():
 	var save_file = FileAccess.open("user://leafsweep.save", FileAccess.WRITE)
 
@@ -20,6 +22,7 @@ func _save():
 		"level_2_highscore" : HighscoreManager.level_highscores[2],
 		"level_3_grade" : HighscoreManager.level_grades[3],
 		"level_3_highscore" : HighscoreManager.level_highscores[3],
+		"seen_tutorial" : seen_tutorial,
 	}
 
 	var json = JSON.stringify(save_dict)
@@ -79,3 +82,8 @@ func _load():
 
 	HighscoreManager.level_grades[3] = int(data["level_3_grade"])
 	HighscoreManager.level_highscores[3] = int(data["level_3_highscore"])
+
+	if (data.has("seen_tutorial")):
+		seen_tutorial = data["seen_tutorial"]
+	else:
+		seen_tutorial = false

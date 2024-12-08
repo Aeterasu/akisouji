@@ -88,11 +88,16 @@ func _ready():
 
 	shop_origin.hide()
 
+	if (SaveManager.seen_tutorial):
+		UI.instance.ui_tutorial.hide()
+
 	if (is_instance_valid(cleaning_handler)):
 		for i in 15:
 			Game.game_instance.cleaning_handler.RequestCleaningAtPosition(Vector2.ZERO, Vector2.ZERO, Vector2.ZERO)
 
 func _process(delta):
+	_handle_tutorial(delta)
+
 	if (await_completion_confirm and Input.is_action_just_pressed("open_inventory") and !ui_completion.confirmed):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		player._block_input = true
@@ -186,3 +191,50 @@ func _close_shop():
 	pause_menu.button_selection_handler._disable_all_buttons()
 	await get_tree().create_timer(0.2).timeout
 	pause_menu.button_selection_handler._enable_all_buttons()
+
+func _handle_tutorial(delta : float) -> void:
+	if (SaveManager.seen_tutorial):
+		UI.instance.ui_tutorial.hide()
+		return
+
+	if (UI.instance.ui_tutorial.in_animation):
+		return
+
+	if (UI.instance.ui_tutorial.tutorial_stage == 1 and player.velocity_component.input_direction.length() >= 0.2):
+		UI.instance.ui_tutorial.ticks += delta
+		if (UI.instance.ui_tutorial.ticks >= 1.0):
+			UI.instance.ui_tutorial.tutorial_stage += 1
+			UI.instance.ui_tutorial.ticks = 0.0
+		return
+
+	if (UI.instance.ui_tutorial.tutorial_stage == 2 and player.inventory.current_tool.in_use):
+		UI.instance.ui_tutorial.ticks += delta
+		if (UI.instance.ui_tutorial.ticks >= 3.0):
+			UI.instance.ui_tutorial.is_shown = false
+			UI.instance.ui_tutorial.ticks = 0.0
+
+	if (UI.instance.ui_tutorial.tutorial_stage == 2 and !UI.instance.ui_tutorial.stage_3_flag and ranking_manager.score > 9000):
+		UI.instance.ui_tutorial.stage_3_flag = true
+		UI.instance.ui_tutorial.tutorial_stage += 1
+
+	if (UI.instance.ui_tutorial.tutorial_stage == 3 and UI.instance.ui_tutorial.stage_3_flag and !UI.instance.ui_tutorial.stage_3_hide_flag):
+		UI.instance.ui_tutorial.ticks += delta
+		if (UI.instance.ui_tutorial.ticks >= 8.0):
+			UI.instance.ui_tutorial.is_shown = false
+			UI.instance.ui_tutorial.stage_3_hide_flag = true
+			UI.instance.ui_tutorial.ticks = 0.0
+		return
+
+	if (UI.instance.ui_tutorial.tutorial_stage == 3 and UI.instance.ui_tutorial.stage_3_hide_flag and ranking_manager.score > 19000):
+		UI.instance.ui_tutorial.stage_4_flag = true
+		UI.instance.ui_tutorial.tutorial_stage += 1
+
+	if (UI.instance.ui_tutorial.tutorial_stage == 4 and UI.instance.ui_tutorial.stage_4_flag and !UI.instance.ui_tutorial.stage_4_hide_flag):
+		UI.instance.ui_tutorial.ticks += delta
+		if (UI.instance.ui_tutorial.ticks >= 8.0):
+			UI.instance.ui_tutorial.is_shown = false
+			UI.instance.ui_tutorial.stage_4_hide_flag = true
+			UI.instance.ui_tutorial.ticks = 0.0
+			SaveManager.seen_tutorial = true
+			SaveManager._save()
+		return

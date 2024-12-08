@@ -193,6 +193,7 @@ size = Vector2(0.8, 0.8)
 
 [node name="LevelTutorial1" type="Node3D" node_paths=PackedStringArray("leaf_populator", "player_spawn_position")]
 script = ExtResource("2_xm36i")
+enable_tutorial = true
 leaf_populator = NodePath("LeafPopulator")
 leaf_leeway = 50
 player_spawn_position = NodePath("Marker3D")
