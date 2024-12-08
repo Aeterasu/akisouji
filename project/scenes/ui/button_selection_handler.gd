@@ -19,6 +19,8 @@ var prevent_new_selection : bool = false
 signal on_button_pressed
 signal on_button_selected
 
+signal on_scroll_button_pressed
+
 func _ready():
 	_retrieve_buttons()
 
@@ -50,9 +52,11 @@ func _process(delta):
 
 	if (Input.is_action_just_pressed(previous_key) or Input.is_action_just_pressed(previous_gamepad)):
 		_previous_button()
+		on_scroll_button_pressed.emit()
 	
 	if (Input.is_action_just_pressed(next_key) or Input.is_action_just_pressed(next_gamepad)):
 		_next_button()
+		on_scroll_button_pressed.emit()
 		
 	if (Input.is_action_just_pressed("menu_confirm") and current_button and !current_button.is_disabled):
 		if (!(current_button is PaperButton and current_button.disable_click_accent) and current_button.audio_accent_2):

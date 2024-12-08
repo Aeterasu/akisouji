@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dj6rqqv2dxh8t"]
+[gd_scene load_steps=37 format=3 uid="uid://dj6rqqv2dxh8t"]
 
 [ext_resource type="Script" path="res://scenes/ui/settings_menu/settings_menu.gd" id="1_c7jnn"]
 [ext_resource type="Shader" path="res://shader/multiply.gdshader" id="1_rhq0f"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://cuwioumcw346w" path="res://assets/texture/ui/settings_screen/texture_settings_property_highlight_1.png" id="26_usn16"]
 [ext_resource type="AudioStream" uid="uid://dgodvr5gurqrs" path="res://assets/audio/sfx_menu_accent_1.ogg" id="27_wsx3y"]
 [ext_resource type="AudioStream" uid="uid://bb5kges32g0ld" path="res://assets/audio/sfx_menu_accent_2.ogg" id="28_6fjlb"]
+[ext_resource type="Script" path="res://scenes/ui/settings_menu/keybind_popup.gd" id="33_twmpy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ynf4q"]
 shader = ExtResource("1_rhq0f")
@@ -43,7 +44,7 @@ texture = ExtResource("16_4lnsw")
 expand_margin_top = 22.0
 expand_margin_bottom = 22.0
 
-[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("scrolling_background", "button_selection_handler", "back_button", "button_general", "button_language", "button_keyboard", "button_gamepad", "button_audio", "settings_category_general", "settings_category_language", "settings_category_keyboard", "settings_category_gamepad", "settings_category_audio", "category_name_label")]
+[node name="SettingsMenu" type="Control" node_paths=PackedStringArray("scrolling_background", "button_selection_handler", "back_button", "button_general", "button_language", "button_keyboard", "button_gamepad", "button_audio", "settings_category_general", "settings_category_language", "settings_category_keyboard", "settings_category_gamepad", "settings_category_audio", "category_name_label", "keybind_popup")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -65,6 +66,7 @@ settings_category_keyboard = NodePath("KeyboardSettings")
 settings_category_gamepad = NodePath("GamepadSettings")
 settings_category_audio = NodePath("AudioSettings")
 category_name_label = NodePath("SettingsLabel/CategoryLabel")
+keybind_popup = NodePath("KeybindAwaiting")
 
 [node name="ScrollingBackground" type="TextureRect" parent="."]
 modulate = Color(1, 1, 1, 0.694118)
@@ -202,7 +204,6 @@ script = ExtResource("7_fgs88")
 buttons_origin = NodePath("..")
 
 [node name="GeneralSettings" type="Control" parent="." node_paths=PackedStringArray("button_selection_handler", "back_button")]
-visible = false
 layout_mode = 1
 anchor_left = 0.337
 anchor_top = 0.169
@@ -405,7 +406,6 @@ enabled = false
 buttons_origin = NodePath("..")
 
 [node name="AudioSettings" type="Control" parent="." node_paths=PackedStringArray("button_selection_handler", "back_button")]
-visible = false
 layout_mode = 1
 anchor_left = 0.337
 anchor_top = 0.169
@@ -617,7 +617,6 @@ enabled = false
 buttons_origin = NodePath("..")
 
 [node name="LanguageSettings" type="Control" parent="." node_paths=PackedStringArray("button_selection_handler", "back_button")]
-visible = false
 layout_mode = 1
 anchor_left = 0.337
 anchor_top = 0.169
@@ -676,8 +675,7 @@ script = ExtResource("7_fgs88")
 enabled = false
 buttons_origin = NodePath("..")
 
-[node name="KeyboardSettings" type="Control" parent="." node_paths=PackedStringArray("button_selection_handler", "back_button")]
-visible = false
+[node name="KeyboardSettings" type="Control" parent="." node_paths=PackedStringArray("button_selection_handler", "back_button", "settings")]
 layout_mode = 1
 anchor_left = 0.337
 anchor_top = 0.169
@@ -693,6 +691,7 @@ script = ExtResource("10_i323x")
 category_name_key = "SETTINGS_KEYBOARD"
 button_selection_handler = NodePath("ButtonSelectionHandler")
 back_button = NodePath("BackButton")
+settings = NodePath("..")
 
 [node name="Control" type="Control" parent="KeyboardSettings"]
 clip_children = 1
@@ -1727,7 +1726,7 @@ script = ExtResource("7_fgs88")
 enabled = false
 button_retrieve_list = [NodePath("../Control/Scroll/MouseSensitivityButton"), NodePath("../Control/Scroll/Keybind1Button"), NodePath("../Control/Scroll/Keybind1Button2"), NodePath("../Control/Scroll/Keybind1Button3"), NodePath("../Control/Scroll/Keybind1Button4"), NodePath("../Control/Scroll/Keybind1Button5"), NodePath("../Control/Scroll/Keybind1Button6"), NodePath("../Control/Scroll/Keybind1Button7"), NodePath("../Control/Scroll/Keybind1Button8"), NodePath("../Control/Scroll/Keybind1Button9"), NodePath("../Control/Scroll/Keybind1Button10"), NodePath("../Control/Scroll/Keybind1Button11"), NodePath("../Control/Scroll/Keybind1Button12"), NodePath("../BackButton")]
 
-[node name="GamepadSettings" type="Control" parent="." node_paths=PackedStringArray("button_selection_handler", "back_button")]
+[node name="GamepadSettings" type="Control" parent="." node_paths=PackedStringArray("button_selection_handler", "back_button", "settings")]
 layout_mode = 1
 anchor_left = 0.337
 anchor_top = 0.169
@@ -1743,6 +1742,7 @@ script = ExtResource("10_i323x")
 category_name_key = "SETTINGS_KEYBOARD"
 button_selection_handler = NodePath("ButtonSelectionHandler")
 back_button = NodePath("BackButton")
+settings = NodePath("..")
 
 [node name="Control" type="Control" parent="GamepadSettings"]
 clip_children = 1
@@ -2516,6 +2516,32 @@ text_key = "MENU_BUTTON_BACK"
 script = ExtResource("7_fgs88")
 enabled = false
 button_retrieve_list = [NodePath("../Control/Scroll/GamepadSensitivityButton"), NodePath("../Control/Scroll/GamepadDeadzoneButton"), NodePath("../Control/Scroll/Keybind1Button"), NodePath("../Control/Scroll/Keybind1Button2"), NodePath("../Control/Scroll/Keybind1Button3"), NodePath("../Control/Scroll/Keybind1Button4"), NodePath("../Control/Scroll/Keybind1Button5"), NodePath("../Control/Scroll/Keybind1Button6"), NodePath("../Control/Scroll/Keybind1Button7"), NodePath("../Control/Scroll/Keybind1Button8"), NodePath("../BackButton")]
+
+[node name="KeybindAwaiting" type="ColorRect" parent="." node_paths=PackedStringArray("label")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.713726)
+script = ExtResource("33_twmpy")
+label = NodePath("Label")
+
+[node name="Label" type="Label" parent="KeybindAwaiting"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 24
+theme_override_fonts/font = ExtResource("6_j37ya")
+theme_override_font_sizes/font_size = 44
+text = "SETTINGS_KEYBIND"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="UIUpscaler" type="Node" parent="."]
 script = ExtResource("5_1o7a7")

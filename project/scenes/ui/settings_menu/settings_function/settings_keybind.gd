@@ -11,6 +11,8 @@ var awaiting_input : bool = false
 
 var delay : float = 0.2
 
+var keybind_failed_awaiting_input : bool = false
+
 signal on_received_input
 
 func _process(delta):
@@ -21,31 +23,30 @@ func _process(delta):
 	if (device == 1):
 		keybind_label.text = "[center]" + ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events(input_action)[1])
 
-func _check_toggle() -> void:
-	if (device != InputDeviceCheck.input_device):
-		return
-
-	_toggle()
-
 func _toggle() -> void:
 	if (not awaiting_input):
 		delay = 0.2
 		awaiting_input = true
 
 func _input(event):
-	if (awaiting_input and delay <= 0.0):
+	if (keybind_failed_awaiting_input and delay <= 0.0 and ((event is InputEventKey) or (event is InputEventMouseButton) or (event is InputEventJoypadButton) or (event is InputEventJoypadMotion))):
 		awaiting_input = false
-		on_received_input.emit(self)
+		keybind_failed_awaiting_input = false
+		on_received_input.emit(self, true)
+		return	
 
+	if (awaiting_input and delay <= 0.0 and ((event is InputEventKey) or (event is InputEventMouseButton) or (event is InputEventJoypadButton) or (event is InputEventJoypadMotion and ((event as InputEventJoypadMotion).axis == JOY_AXIS_TRIGGER_LEFT or (event as InputEventJoypadMotion).axis == JOY_AXIS_TRIGGER_RIGHT)))):
 		if (device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE and (event is InputEventKey or event is InputEventMouseButton)):
 			for list in GlobalSettings.bindable_actions:
 				var e = InputMap.action_get_events(StringName(list))
 				if (len(e) > 0):
 					if ((event is InputEventKey) and (e[0] is InputEventKey) and ((event as InputEventKey).physical_keycode == (e[0] as InputEventKey).physical_keycode)):
-						print("KEY ALREADY TAKEN")
+						awaiting_input = false
+						on_received_input.emit(self, false)
 						return
 					elif ((event is InputEventMouseButton) and (e[0] is InputEventMouseButton) and ((event as InputEventMouseButton).button_index == (e[0] as InputEventMouseButton).button_index)):
-						print("KEY ALREADY TAKEN")
+						awaiting_input = false
+						on_received_input.emit(self, false)
 						return
 
 			var inputs = InputMap.action_get_events(input_action)
@@ -62,11 +63,13 @@ func _input(event):
 			for list in GlobalSettings.bindable_actions:
 				var e = InputMap.action_get_events(StringName(list))
 				if (len(e) > 0):
-					if ((event is InputEventJoypadButton) and (e[0] is InputEventJoypadButton) and ((event as InputEventJoypadButton).button_index == (e[0] as InputEventJoypadButton).button_index)):
-						print("KEY ALREADY TAKEN")
+					if ((event is InputEventJoypadButton) and (e[1] is InputEventJoypadButton) and ((event as InputEventJoypadButton).button_index == (e[1] as InputEventJoypadButton).button_index)):
+						awaiting_input = false
+						on_received_input.emit(self, false)
 						return
-					elif ((event is InputEventJoypadMotion) and (e[0] is InputEventJoypadMotion) and ((event as InputEventJoypadMotion).axis == (e[0] as InputEventJoypadMotion).axis)):
-						print("KEY ALREADY TAKEN")
+					elif ((event is InputEventJoypadMotion) and (e[1] is InputEventJoypadMotion) and ((event as InputEventJoypadMotion).axis == (e[1] as InputEventJoypadMotion).axis)):
+						awaiting_input = false
+						on_received_input.emit(self, false)
 						return
 
 			var inputs = InputMap.action_get_events(input_action)
@@ -81,5 +84,5 @@ func _input(event):
 				for i in range(2, size):
 					InputMap.action_add_event(input_action, inputs[i])
 
-		else:
-			return
+		awaiting_input = false
+		on_received_input.emit(self, true)

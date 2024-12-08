@@ -167,6 +167,7 @@ LEFT TO DO:
     + dialogue box tutorial. mention leaf highlighting (could tutorial be a dialogue with the girl?)
     + ADD KARTOSHKA EASTER EGG
     + tutorial level final pass. setup heightmaps for tutorial level (add small pumpkins :3)
+    + make keybinds and controller binds
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
     
     = consider reworking the sweeping mechanic. 
@@ -274,7 +275,8 @@ LEFT TO DO:
             =HIGHLIGHT LEAVES = F
 
         - add leaf highlight colors (upon pressing, opens up a submenu layer) (??????????)
-        - make keybinds and controller binds
+
+        - rewrite some of the keybind popups texts, to make them clearer (reference any other game)
 
     SHOP:
         =SHOP

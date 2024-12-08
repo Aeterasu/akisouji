@@ -25,6 +25,10 @@ class_name SettingsMenu extends Control
 @export var category_selected_alpha : float = 1.0
 @export var category_unselected_alpha : float = 0.25
 
+@export var keybind_popup : KeybindPopup = null
+
+var show_keybind_popup : bool = false
+
 var is_in_category : bool = false
 
 enum OnBackPressedType
@@ -59,6 +63,11 @@ func _ready():
 	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.3)
 
 func _process(delta):
+	if (show_keybind_popup):
+		keybind_popup.modulate = keybind_popup.modulate.lerp(Color(1.0, 1.0, 1.0, 1.0), delta * 6.0)
+	else:
+		keybind_popup.modulate = keybind_popup.modulate.lerp(Color(0.0, 0.0, 0.0, 0.0), delta * 9.0)
+
 	if (Input.is_action_just_pressed("pause") || (!is_in_category and Input.is_action_just_pressed("menu_cancel"))):
 		_on_back_pressed()
 
