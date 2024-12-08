@@ -1323,7 +1323,7 @@ setting_keybind = NodePath("KeybindFunction1")
 toggle_area = NodePath("")
 alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
-text_key = "SETTINGS_PROPERTY_SHIFT"
+text_key = "SETTINGS_PROPERTY_SPRINT"
 label = NodePath("Label")
 audio_accent_1 = NodePath("Accent1")
 audio_accent_2 = NodePath("Accent2")
@@ -1750,13 +1750,14 @@ clip_contents = true
 layout_mode = 3
 anchors_preset = 0
 offset_right = 849.0
-offset_bottom = 396.0
+offset_bottom = 389.0
 
 [node name="Scroll" type="Control" parent="GamepadSettings/Control"]
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("24_fb0uc")
+max_scroll = 360.0
 
 [node name="GamepadSensitivityButton" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("setting_label", "setting_slider") instance=ExtResource("10_heo66")]
 layout_mode = 2
@@ -1842,6 +1843,662 @@ theme_override_font_sizes/font_size = 24
 text = "75"
 vertical_alignment = 1
 
+[node name="Keybind1Button" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 3
+anchors_preset = 0
+offset_top = 148.0
+offset_right = 816.0
+offset_bottom = 256.0
+script = ExtResource("25_ukw4x")
+highlight = NodePath("TextureRect")
+setting_label = NodePath("")
+setting_keybind = NodePath("KeybindFunction1")
+toggle_area = NodePath("")
+alt_toggle_area = NodePath("")
+mouse_area = NodePath("MouseArea")
+text_key = "SETTINGS_PROPERTY_PRIMARY"
+label = NodePath("Label")
+audio_accent_1 = NodePath("Accent1")
+audio_accent_2 = NodePath("Accent2")
+
+[node name="TextureRect" type="TextureRect" parent="GamepadSettings/Control/Scroll/Keybind1Button"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.042
+offset_right = -810.272
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("26_usn16")
+
+[node name="Label" type="Label" parent="GamepadSettings/Control/Scroll/Keybind1Button"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 48.0
+offset_right = -415.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("6_j37ya")
+theme_override_font_sizes/font_size = 33
+text = "PROPERTY_NAME"
+vertical_alignment = 1
+
+[node name="MouseArea" type="Control" parent="GamepadSettings/Control/Scroll/Keybind1Button"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Accent1" type="AudioStreamPlayer" parent="GamepadSettings/Control/Scroll/Keybind1Button"]
+stream = ExtResource("27_wsx3y")
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Accent2" type="AudioStreamPlayer" parent="GamepadSettings/Control/Scroll/Keybind1Button"]
+stream = ExtResource("28_6fjlb")
+volume_db = -3.0
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="KeybindFunction1" type="Node" parent="GamepadSettings/Control/Scroll/Keybind1Button" node_paths=PackedStringArray("keybind_label")]
+script = ExtResource("25_st02x")
+input_action = "player_action_primary"
+keybind_label = NodePath("../KeybindLabel")
+device = 1
+
+[node name="KeybindLabel" type="RichTextLabel" parent="GamepadSettings/Control/Scroll/Keybind1Button"]
+clip_contents = false
+layout_mode = 0
+offset_left = 470.0
+offset_top = 17.0
+offset_right = 735.0
+offset_bottom = 49.0
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("6_j37ya")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]F"
+scroll_active = false
+
+[node name="Keybind1Button2" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 3
+anchors_preset = 0
+offset_top = 220.0
+offset_right = 816.0
+offset_bottom = 328.0
+script = ExtResource("25_ukw4x")
+highlight = NodePath("TextureRect")
+setting_label = NodePath("")
+setting_keybind = NodePath("KeybindFunction1")
+toggle_area = NodePath("")
+alt_toggle_area = NodePath("")
+mouse_area = NodePath("MouseArea")
+text_key = "SETTINGS_PROPERTY_SECONDARY"
+label = NodePath("Label")
+audio_accent_1 = NodePath("Accent1")
+audio_accent_2 = NodePath("Accent2")
+
+[node name="TextureRect" type="TextureRect" parent="GamepadSettings/Control/Scroll/Keybind1Button2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.042
+offset_right = -810.272
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("26_usn16")
+
+[node name="Label" type="Label" parent="GamepadSettings/Control/Scroll/Keybind1Button2"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 48.0
+offset_right = -415.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("6_j37ya")
+theme_override_font_sizes/font_size = 33
+text = "PROPERTY_NAME"
+vertical_alignment = 1
+
+[node name="MouseArea" type="Control" parent="GamepadSettings/Control/Scroll/Keybind1Button2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Accent1" type="AudioStreamPlayer" parent="GamepadSettings/Control/Scroll/Keybind1Button2"]
+stream = ExtResource("27_wsx3y")
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Accent2" type="AudioStreamPlayer" parent="GamepadSettings/Control/Scroll/Keybind1Button2"]
+stream = ExtResource("28_6fjlb")
+volume_db = -3.0
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="KeybindFunction1" type="Node" parent="GamepadSettings/Control/Scroll/Keybind1Button2" node_paths=PackedStringArray("keybind_label")]
+script = ExtResource("25_st02x")
+input_action = "player_action_secondary"
+keybind_label = NodePath("../KeybindLabel")
+device = 1
+
+[node name="KeybindLabel" type="RichTextLabel" parent="GamepadSettings/Control/Scroll/Keybind1Button2"]
+clip_contents = false
+layout_mode = 0
+offset_left = 470.0
+offset_top = 17.0
+offset_right = 735.0
+offset_bottom = 49.0
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("6_j37ya")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]F"
+scroll_active = false
+
+[node name="Keybind1Button3" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 3
+anchors_preset = 0
+offset_top = 292.0
+offset_right = 816.0
+offset_bottom = 400.0
+script = ExtResource("25_ukw4x")
+highlight = NodePath("TextureRect")
+setting_label = NodePath("")
+setting_keybind = NodePath("KeybindFunction1")
+toggle_area = NodePath("")
+alt_toggle_area = NodePath("")
+mouse_area = NodePath("MouseArea")
+text_key = "SETTINGS_PROPERTY_JUMP"
+label = NodePath("Label")
+audio_accent_1 = NodePath("Accent1")
+audio_accent_2 = NodePath("Accent2")
+
+[node name="TextureRect" type="TextureRect" parent="GamepadSettings/Control/Scroll/Keybind1Button3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.042
+offset_right = -810.272
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("26_usn16")
+
+[node name="Label" type="Label" parent="GamepadSettings/Control/Scroll/Keybind1Button3"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 48.0
+offset_right = -415.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("6_j37ya")
+theme_override_font_sizes/font_size = 33
+text = "PROPERTY_NAME"
+vertical_alignment = 1
+
+[node name="MouseArea" type="Control" parent="GamepadSettings/Control/Scroll/Keybind1Button3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Accent1" type="AudioStreamPlayer" parent="GamepadSettings/Control/Scroll/Keybind1Button3"]
+stream = ExtResource("27_wsx3y")
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Accent2" type="AudioStreamPlayer" parent="GamepadSettings/Control/Scroll/Keybind1Button3"]
+stream = ExtResource("28_6fjlb")
+volume_db = -3.0
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="KeybindFunction1" type="Node" parent="GamepadSettings/Control/Scroll/Keybind1Button3" node_paths=PackedStringArray("keybind_label")]
+script = ExtResource("25_st02x")
+input_action = "player_action_jump"
+keybind_label = NodePath("../KeybindLabel")
+device = 1
+
+[node name="KeybindLabel" type="RichTextLabel" parent="GamepadSettings/Control/Scroll/Keybind1Button3"]
+clip_contents = false
+layout_mode = 0
+offset_left = 470.0
+offset_top = 17.0
+offset_right = 735.0
+offset_bottom = 49.0
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("6_j37ya")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]F"
+scroll_active = false
+
+[node name="Keybind1Button4" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 3
+anchors_preset = 0
+offset_top = 364.0
+offset_right = 816.0
+offset_bottom = 472.0
+script = ExtResource("25_ukw4x")
+highlight = NodePath("TextureRect")
+setting_label = NodePath("")
+setting_keybind = NodePath("KeybindFunction1")
+toggle_area = NodePath("")
+alt_toggle_area = NodePath("")
+mouse_area = NodePath("MouseArea")
+text_key = "SETTINGS_PROPERTY_SPRINT"
+label = NodePath("Label")
+audio_accent_1 = NodePath("Accent1")
+audio_accent_2 = NodePath("Accent2")
+
+[node name="TextureRect" type="TextureRect" parent="GamepadSettings/Control/Scroll/Keybind1Button4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.042
+offset_right = -810.272
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("26_usn16")
+
+[node name="Label" type="Label" parent="GamepadSettings/Control/Scroll/Keybind1Button4"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 48.0
+offset_right = -415.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("6_j37ya")
+theme_override_font_sizes/font_size = 33
+text = "PROPERTY_NAME"
+vertical_alignment = 1
+
+[node name="MouseArea" type="Control" parent="GamepadSettings/Control/Scroll/Keybind1Button4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Accent1" type="AudioStreamPlayer" parent="GamepadSettings/Control/Scroll/Keybind1Button4"]
+stream = ExtResource("27_wsx3y")
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Accent2" type="AudioStreamPlayer" parent="GamepadSettings/Control/Scroll/Keybind1Button4"]
+stream = ExtResource("28_6fjlb")
+volume_db = -3.0
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="KeybindFunction1" type="Node" parent="GamepadSettings/Control/Scroll/Keybind1Button4" node_paths=PackedStringArray("keybind_label")]
+script = ExtResource("25_st02x")
+input_action = "player_action_sprint"
+keybind_label = NodePath("../KeybindLabel")
+device = 1
+
+[node name="KeybindLabel" type="RichTextLabel" parent="GamepadSettings/Control/Scroll/Keybind1Button4"]
+clip_contents = false
+layout_mode = 0
+offset_left = 470.0
+offset_top = 17.0
+offset_right = 735.0
+offset_bottom = 49.0
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("6_j37ya")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]F"
+scroll_active = false
+
+[node name="Keybind1Button5" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 3
+anchors_preset = 0
+offset_top = 436.0
+offset_right = 816.0
+offset_bottom = 544.0
+script = ExtResource("25_ukw4x")
+highlight = NodePath("TextureRect")
+setting_label = NodePath("")
+setting_keybind = NodePath("KeybindFunction1")
+toggle_area = NodePath("")
+alt_toggle_area = NodePath("")
+mouse_area = NodePath("MouseArea")
+text_key = "SETTINGS_PROPERTY_PREVIOUS_TOOL"
+label = NodePath("Label")
+audio_accent_1 = NodePath("Accent1")
+audio_accent_2 = NodePath("Accent2")
+
+[node name="TextureRect" type="TextureRect" parent="GamepadSettings/Control/Scroll/Keybind1Button5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.042
+offset_right = -810.272
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("26_usn16")
+
+[node name="Label" type="Label" parent="GamepadSettings/Control/Scroll/Keybind1Button5"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 48.0
+offset_right = -415.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("6_j37ya")
+theme_override_font_sizes/font_size = 33
+text = "PROPERTY_NAME"
+vertical_alignment = 1
+
+[node name="MouseArea" type="Control" parent="GamepadSettings/Control/Scroll/Keybind1Button5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Accent1" type="AudioStreamPlayer" parent="GamepadSettings/Control/Scroll/Keybind1Button5"]
+stream = ExtResource("27_wsx3y")
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Accent2" type="AudioStreamPlayer" parent="GamepadSettings/Control/Scroll/Keybind1Button5"]
+stream = ExtResource("28_6fjlb")
+volume_db = -3.0
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="KeybindFunction1" type="Node" parent="GamepadSettings/Control/Scroll/Keybind1Button5" node_paths=PackedStringArray("keybind_label")]
+script = ExtResource("25_st02x")
+input_action = "player_action_next_tool"
+keybind_label = NodePath("../KeybindLabel")
+device = 1
+
+[node name="KeybindLabel" type="RichTextLabel" parent="GamepadSettings/Control/Scroll/Keybind1Button5"]
+clip_contents = false
+layout_mode = 0
+offset_left = 470.0
+offset_top = 17.0
+offset_right = 735.0
+offset_bottom = 49.0
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("6_j37ya")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]F"
+scroll_active = false
+
+[node name="Keybind1Button6" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 3
+anchors_preset = 0
+offset_top = 508.0
+offset_right = 816.0
+offset_bottom = 616.0
+script = ExtResource("25_ukw4x")
+highlight = NodePath("TextureRect")
+setting_label = NodePath("")
+setting_keybind = NodePath("KeybindFunction1")
+toggle_area = NodePath("")
+alt_toggle_area = NodePath("")
+mouse_area = NodePath("MouseArea")
+text_key = "SETTINGS_PROPERTY_NEXT_TOOL"
+label = NodePath("Label")
+audio_accent_1 = NodePath("Accent1")
+audio_accent_2 = NodePath("Accent2")
+
+[node name="TextureRect" type="TextureRect" parent="GamepadSettings/Control/Scroll/Keybind1Button6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.042
+offset_right = -810.272
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("26_usn16")
+
+[node name="Label" type="Label" parent="GamepadSettings/Control/Scroll/Keybind1Button6"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 48.0
+offset_right = -415.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("6_j37ya")
+theme_override_font_sizes/font_size = 33
+text = "PROPERTY_NAME"
+vertical_alignment = 1
+
+[node name="MouseArea" type="Control" parent="GamepadSettings/Control/Scroll/Keybind1Button6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Accent1" type="AudioStreamPlayer" parent="GamepadSettings/Control/Scroll/Keybind1Button6"]
+stream = ExtResource("27_wsx3y")
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Accent2" type="AudioStreamPlayer" parent="GamepadSettings/Control/Scroll/Keybind1Button6"]
+stream = ExtResource("28_6fjlb")
+volume_db = -3.0
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="KeybindFunction1" type="Node" parent="GamepadSettings/Control/Scroll/Keybind1Button6" node_paths=PackedStringArray("keybind_label")]
+script = ExtResource("25_st02x")
+input_action = "player_action_previous_tool"
+keybind_label = NodePath("../KeybindLabel")
+device = 1
+
+[node name="KeybindLabel" type="RichTextLabel" parent="GamepadSettings/Control/Scroll/Keybind1Button6"]
+clip_contents = false
+layout_mode = 0
+offset_left = 470.0
+offset_top = 17.0
+offset_right = 735.0
+offset_bottom = 49.0
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("6_j37ya")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]F"
+scroll_active = false
+
+[node name="Keybind1Button7" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 3
+anchors_preset = 0
+offset_top = 580.0
+offset_right = 816.0
+offset_bottom = 688.0
+script = ExtResource("25_ukw4x")
+highlight = NodePath("TextureRect")
+setting_label = NodePath("")
+setting_keybind = NodePath("KeybindFunction1")
+toggle_area = NodePath("")
+alt_toggle_area = NodePath("")
+mouse_area = NodePath("MouseArea")
+text_key = "SETTINGS_PROPERTY_OPEN_INVENTORY"
+label = NodePath("Label")
+audio_accent_1 = NodePath("Accent1")
+audio_accent_2 = NodePath("Accent2")
+
+[node name="TextureRect" type="TextureRect" parent="GamepadSettings/Control/Scroll/Keybind1Button7"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.042
+offset_right = -810.272
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("26_usn16")
+
+[node name="Label" type="Label" parent="GamepadSettings/Control/Scroll/Keybind1Button7"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 48.0
+offset_right = -415.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("6_j37ya")
+theme_override_font_sizes/font_size = 33
+text = "PROPERTY_NAME"
+vertical_alignment = 1
+
+[node name="MouseArea" type="Control" parent="GamepadSettings/Control/Scroll/Keybind1Button7"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Accent1" type="AudioStreamPlayer" parent="GamepadSettings/Control/Scroll/Keybind1Button7"]
+stream = ExtResource("27_wsx3y")
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Accent2" type="AudioStreamPlayer" parent="GamepadSettings/Control/Scroll/Keybind1Button7"]
+stream = ExtResource("28_6fjlb")
+volume_db = -3.0
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="KeybindFunction1" type="Node" parent="GamepadSettings/Control/Scroll/Keybind1Button7" node_paths=PackedStringArray("keybind_label")]
+script = ExtResource("25_st02x")
+input_action = "open_inventory"
+keybind_label = NodePath("../KeybindLabel")
+device = 1
+
+[node name="KeybindLabel" type="RichTextLabel" parent="GamepadSettings/Control/Scroll/Keybind1Button7"]
+clip_contents = false
+layout_mode = 0
+offset_left = 470.0
+offset_top = 17.0
+offset_right = 735.0
+offset_bottom = 49.0
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("6_j37ya")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]F"
+scroll_active = false
+
+[node name="Keybind1Button8" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+custom_minimum_size = Vector2(0, 108)
+layout_mode = 3
+anchors_preset = 0
+offset_top = 652.0
+offset_right = 816.0
+offset_bottom = 760.0
+script = ExtResource("25_ukw4x")
+highlight = NodePath("TextureRect")
+setting_label = NodePath("")
+setting_keybind = NodePath("KeybindFunction1")
+toggle_area = NodePath("")
+alt_toggle_area = NodePath("")
+mouse_area = NodePath("MouseArea")
+text_key = "SETTINGS_PROPERTY_HIGHLIGHT_LEAVES"
+label = NodePath("Label")
+audio_accent_1 = NodePath("Accent1")
+audio_accent_2 = NodePath("Accent2")
+
+[node name="TextureRect" type="TextureRect" parent="GamepadSettings/Control/Scroll/Keybind1Button8"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.042
+offset_right = -810.272
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("26_usn16")
+
+[node name="Label" type="Label" parent="GamepadSettings/Control/Scroll/Keybind1Button8"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 48.0
+offset_right = -415.0
+offset_bottom = 56.0
+grow_horizontal = 2
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("6_j37ya")
+theme_override_font_sizes/font_size = 33
+text = "PROPERTY_NAME"
+vertical_alignment = 1
+
+[node name="MouseArea" type="Control" parent="GamepadSettings/Control/Scroll/Keybind1Button8"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Accent1" type="AudioStreamPlayer" parent="GamepadSettings/Control/Scroll/Keybind1Button8"]
+stream = ExtResource("27_wsx3y")
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="Accent2" type="AudioStreamPlayer" parent="GamepadSettings/Control/Scroll/Keybind1Button8"]
+stream = ExtResource("28_6fjlb")
+volume_db = -3.0
+max_polyphony = 2
+bus = &"SFX"
+
+[node name="KeybindFunction1" type="Node" parent="GamepadSettings/Control/Scroll/Keybind1Button8" node_paths=PackedStringArray("keybind_label")]
+script = ExtResource("25_st02x")
+input_action = "hint_highlight"
+keybind_label = NodePath("../KeybindLabel")
+device = 1
+
+[node name="KeybindLabel" type="RichTextLabel" parent="GamepadSettings/Control/Scroll/Keybind1Button8"]
+clip_contents = false
+layout_mode = 0
+offset_left = 470.0
+offset_top = 17.0
+offset_right = 735.0
+offset_bottom = 49.0
+theme_override_constants/outline_size = 16
+theme_override_fonts/normal_font = ExtResource("6_j37ya")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]F"
+scroll_active = false
+
 [node name="BackButton" parent="GamepadSettings" instance=ExtResource("10_heo66")]
 layout_mode = 2
 anchors_preset = 0
@@ -1855,10 +2512,10 @@ offset_right = 816.0
 offset_bottom = 521.0
 text_key = "MENU_BUTTON_BACK"
 
-[node name="ButtonSelectionHandler" type="Node" parent="GamepadSettings" node_paths=PackedStringArray("buttons_origin")]
+[node name="ButtonSelectionHandler" type="Node" parent="GamepadSettings" node_paths=PackedStringArray("button_retrieve_list")]
 script = ExtResource("7_fgs88")
 enabled = false
-buttons_origin = NodePath("..")
+button_retrieve_list = [NodePath("../Control/Scroll/GamepadSensitivityButton"), NodePath("../Control/Scroll/GamepadDeadzoneButton"), NodePath("../Control/Scroll/Keybind1Button"), NodePath("../Control/Scroll/Keybind1Button2"), NodePath("../Control/Scroll/Keybind1Button3"), NodePath("../Control/Scroll/Keybind1Button4"), NodePath("../Control/Scroll/Keybind1Button5"), NodePath("../Control/Scroll/Keybind1Button6"), NodePath("../Control/Scroll/Keybind1Button7"), NodePath("../Control/Scroll/Keybind1Button8"), NodePath("../BackButton")]
 
 [node name="UIUpscaler" type="Node" parent="."]
 script = ExtResource("5_1o7a7")

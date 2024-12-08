@@ -142,10 +142,14 @@ func _on_category_enter(category: SettingsCategory) -> void:
 	category.on_back_button_pressed.connect(_on_category_leave)
 	category.target_alpha = category_selected_alpha
 
+	category.selected = true
+
 	is_in_category = true
 
 func _on_category_leave(category : SettingsCategory) -> void:
 	button_selection_handler._enable_all_buttons()
+
+	category.selected = false
 
 	category.button_selection_handler._disable_all_buttons()
 	category.on_back_button_pressed.disconnect(_on_category_leave)

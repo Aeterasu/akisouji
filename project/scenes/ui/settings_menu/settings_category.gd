@@ -19,6 +19,8 @@ var keybind_delay : float = 0.2
 
 var scroll
 
+var selected : bool = false
+
 signal on_back_button_pressed
 
 func _ready() -> void:
@@ -31,10 +33,13 @@ func _process(delta):
 	keybind_delay -= delta
 
 	if (scroll and scroll is SettingsScroll):
-		if (button_selection_handler.current_button and button_selection_handler.current_selection_id < len(button_selection_handler.buttons) - 1):
-			var sc = clamp(button_selection_handler.current_button.position.y - 240.0, 0.0, scroll.max_scroll)
-			(scroll as SettingsScroll).target_scroll = -sc
-			#print(sc)
+		if (selected and (Input.is_action_just_pressed("gamepad_dpad_up") or Input.is_action_just_pressed("player_move_forward") or Input.is_action_just_released("scroll_up"))):
+			(scroll as SettingsScroll).target_scroll -= 74
+		elif (selected and (Input.is_action_just_pressed("gamepad_dpad_down") or Input.is_action_just_pressed("player_move_backwards") or Input.is_action_just_released("scroll_down"))):
+			(scroll as SettingsScroll).target_scroll += 74
+
+		var sc = clamp((scroll as SettingsScroll).target_scroll - 240.0, 0.0, scroll.max_scroll)
+		(scroll as SettingsScroll).current_scroll = -sc
 
 	if (Input.is_action_just_pressed("pause") or Input.is_action_just_pressed("menu_cancel")):
 		on_back_button_pressed.emit(self)
@@ -110,5 +115,6 @@ func _on_button_pressed(button : UIButton) -> void:
 
 	if (button == back_button):
 		on_back_button_pressed.emit(self)
-		scroll.position.y = 0.0
+		scroll.target_scroll = 0.0
+		selected = false
 		GlobalSettings._save_config()

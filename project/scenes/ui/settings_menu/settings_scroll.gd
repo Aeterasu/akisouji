@@ -6,7 +6,8 @@ class_name SettingsScroll extends Control
 var target_scroll : float = 0.0
 
 var current_scroll : float = 0.0
+var lerped_scroll : float = 0.0
 
 func _process(delta):
-    current_scroll = lerp(current_scroll, target_scroll, 8 * delta)
-    position.y = current_scroll
+    lerped_scroll = lerp(lerped_scroll, current_scroll, 8 * delta)
+    position.y = lerped_scroll
