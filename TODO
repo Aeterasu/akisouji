@@ -225,6 +225,9 @@ LEFT TO DO:
 
         = consider updating the scoring to take into acount the CLEANING ACTION, not the amount of leaves (basically remove multiplying by amount, but tweak brooms tickrate then. perhaps give each broom its own multiplier?)
 
+        - WRITE THE MISSING TEXT DESCRIPTIONS
+        - also please don't let [game_name] string into release :D
+
         - add a final stage that unlocks upon completing all of them, that is just a field with grass and THANKS FOR PLAYING!
 
         - add finding secret cats as a small side quest - needed to unlock the golden broom ?
@@ -249,6 +252,7 @@ LEFT TO DO:
 		- flowing leaves in the fountain
     
     AUDIO:
+        - add stage select audio
         - separate songs into game and menus
         - write a simple piece for title menu (chords and some piano)
         - make improvements towards asmr sound
