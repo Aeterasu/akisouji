@@ -33,7 +33,7 @@ func _ready() -> void:
 	scroll = get_node_or_null("Control/Scroll")
 
 func _on_scroll_button_pressed():
-	if (button_selection_handler.current_selection_id < len(button_selection_handler.buttons) - 1):
+	if (scroll and button_selection_handler.current_selection_id < len(button_selection_handler.buttons) - 1):
 		(scroll as SettingsScroll).target_scroll = button_selection_handler.current_button.position.y
 
 func _process(delta):
@@ -142,6 +142,7 @@ func _on_button_pressed(button : UIButton) -> void:
 
 	if (button == back_button):
 		on_back_button_pressed.emit(self)
-		scroll.target_scroll = 0.0
+		if (scroll):
+			scroll.target_scroll = 0.0
 		selected = false
 		GlobalSettings._save_config()

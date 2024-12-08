@@ -220,7 +220,24 @@ category_name_key = "SETTINGS_GENERAL"
 button_selection_handler = NodePath("ButtonSelectionHandler")
 back_button = NodePath("BackButton")
 
-[node name="FullscreenButton" parent="GeneralSettings" node_paths=PackedStringArray("setting_label", "setting_toggle") instance=ExtResource("10_heo66")]
+[node name="Control" type="Control" parent="GeneralSettings"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -156.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Scroll" type="Control" parent="GeneralSettings/Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("24_fb0uc")
+max_scroll = 74.0
+
+[node name="FullscreenButton" parent="GeneralSettings/Control/Scroll" node_paths=PackedStringArray("setting_label", "setting_toggle") instance=ExtResource("10_heo66")]
 layout_mode = 2
 anchors_preset = 0
 anchor_left = 0.0
@@ -231,20 +248,19 @@ offset_left = 0.0
 offset_top = 0.0
 offset_right = 816.0
 offset_bottom = 108.0
-scale = Vector2(0.8, 0.8)
 setting_label = NodePath("ToggleLabel")
 setting_toggle = NodePath("FullscreenFunction")
 
-[node name="FullscreenFunction" type="Node" parent="GeneralSettings/FullscreenButton"]
+[node name="FullscreenFunction" type="Node" parent="GeneralSettings/Control/Scroll/FullscreenButton"]
 script = ExtResource("13_blidx")
 
-[node name="ToggleLabel" parent="GeneralSettings/FullscreenButton" instance=ExtResource("14_g18rr")]
+[node name="ToggleLabel" parent="GeneralSettings/Control/Scroll/FullscreenButton" instance=ExtResource("14_g18rr")]
 layout_mode = 0
 offset_left = 613.0
 offset_right = 660.0
 text = ""
 
-[node name="VSyncButton" parent="GeneralSettings" node_paths=PackedStringArray("setting_label", "setting_toggle") instance=ExtResource("10_heo66")]
+[node name="VSyncButton" parent="GeneralSettings/Control/Scroll" node_paths=PackedStringArray("setting_label", "setting_toggle") instance=ExtResource("10_heo66")]
 layout_mode = 2
 anchors_preset = 0
 anchor_left = 0.0
@@ -252,24 +268,23 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 0.0
-offset_top = 56.0
+offset_top = 72.0
 offset_right = 816.0
-offset_bottom = 164.0
-scale = Vector2(0.8, 0.8)
+offset_bottom = 180.0
 setting_label = NodePath("ToggleLabel")
 setting_toggle = NodePath("VSyncFunction")
 text_key = "SETTINGS_PROPERTY_VSYNC"
 
-[node name="VSyncFunction" type="Node" parent="GeneralSettings/VSyncButton"]
+[node name="VSyncFunction" type="Node" parent="GeneralSettings/Control/Scroll/VSyncButton"]
 script = ExtResource("15_7e77k")
 
-[node name="ToggleLabel" parent="GeneralSettings/VSyncButton" instance=ExtResource("14_g18rr")]
+[node name="ToggleLabel" parent="GeneralSettings/Control/Scroll/VSyncButton" instance=ExtResource("14_g18rr")]
 layout_mode = 0
 offset_left = 613.0
 offset_right = 660.0
 text = ""
 
-[node name="ShowFPSButton" parent="GeneralSettings" node_paths=PackedStringArray("setting_label", "setting_toggle") instance=ExtResource("10_heo66")]
+[node name="ShowFPSButton" parent="GeneralSettings/Control/Scroll" node_paths=PackedStringArray("setting_label", "setting_toggle") instance=ExtResource("10_heo66")]
 layout_mode = 2
 anchors_preset = 0
 anchor_left = 0.0
@@ -277,24 +292,23 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 0.0
-offset_top = 112.0
+offset_top = 144.0
 offset_right = 816.0
-offset_bottom = 220.0
-scale = Vector2(0.8, 0.8)
+offset_bottom = 252.0
 setting_label = NodePath("ToggleLabel")
 setting_toggle = NodePath("ShowFPSFunction")
 text_key = "SETTINGS_PROPERTY_SHOW_FPS"
 
-[node name="ShowFPSFunction" type="Node" parent="GeneralSettings/ShowFPSButton"]
+[node name="ShowFPSFunction" type="Node" parent="GeneralSettings/Control/Scroll/ShowFPSButton"]
 script = ExtResource("16_iygsa")
 
-[node name="ToggleLabel" parent="GeneralSettings/ShowFPSButton" instance=ExtResource("14_g18rr")]
+[node name="ToggleLabel" parent="GeneralSettings/Control/Scroll/ShowFPSButton" instance=ExtResource("14_g18rr")]
 layout_mode = 0
 offset_left = 613.0
 offset_right = 660.0
 text = ""
 
-[node name="FovButton" parent="GeneralSettings" node_paths=PackedStringArray("setting_label", "setting_slider") instance=ExtResource("10_heo66")]
+[node name="FovButton" parent="GeneralSettings/Control/Scroll" node_paths=PackedStringArray("setting_label", "setting_slider") instance=ExtResource("10_heo66")]
 layout_mode = 2
 anchors_preset = 0
 anchor_left = 0.0
@@ -302,16 +316,15 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 0.0
-offset_top = 168.0
+offset_top = 216.0
 offset_right = 816.0
-offset_bottom = 276.0
-scale = Vector2(0.8, 0.8)
+offset_bottom = 324.0
 mouse_filter = 1
 setting_label = NodePath("MouseArea/HSlider/ValueLabel")
 setting_slider = NodePath("MouseArea/HSlider")
 text_key = "SETTINGS_PROPERTY_FOV"
 
-[node name="HSlider" type="HSlider" parent="GeneralSettings/FovButton/MouseArea" index="0"]
+[node name="HSlider" type="HSlider" parent="GeneralSettings/Control/Scroll/FovButton/MouseArea" index="0"]
 layout_mode = 0
 offset_left = 463.0
 offset_top = 4.0
@@ -326,7 +339,7 @@ min_value = 70.0
 value = 75.0
 script = ExtResource("17_abun6")
 
-[node name="ValueLabel" type="Label" parent="GeneralSettings/FovButton/MouseArea/HSlider"]
+[node name="ValueLabel" type="Label" parent="GeneralSettings/Control/Scroll/FovButton/MouseArea/HSlider"]
 layout_mode = 0
 offset_left = 320.0
 offset_right = 368.0
@@ -337,7 +350,7 @@ theme_override_font_sizes/font_size = 24
 text = "75"
 vertical_alignment = 1
 
-[node name="CameraWobbleButton" parent="GeneralSettings" node_paths=PackedStringArray("setting_label", "setting_toggle") instance=ExtResource("10_heo66")]
+[node name="CameraWobbleButton" parent="GeneralSettings/Control/Scroll" node_paths=PackedStringArray("setting_label", "setting_toggle") instance=ExtResource("10_heo66")]
 layout_mode = 2
 anchors_preset = 0
 anchor_left = 0.0
@@ -345,24 +358,23 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 0.0
-offset_top = 224.0
+offset_top = 288.0
 offset_right = 816.0
-offset_bottom = 332.0
-scale = Vector2(0.8, 0.8)
+offset_bottom = 396.0
 setting_label = NodePath("ToggleLabel")
 setting_toggle = NodePath("CameraWobbleFunction")
 text_key = "SETTINGS_PROPERTY_CAMERA_WOBBLE"
 
-[node name="CameraWobbleFunction" type="Node" parent="GeneralSettings/CameraWobbleButton"]
+[node name="CameraWobbleFunction" type="Node" parent="GeneralSettings/Control/Scroll/CameraWobbleButton"]
 script = ExtResource("18_15a4a")
 
-[node name="ToggleLabel" parent="GeneralSettings/CameraWobbleButton" instance=ExtResource("14_g18rr")]
+[node name="ToggleLabel" parent="GeneralSettings/Control/Scroll/CameraWobbleButton" instance=ExtResource("14_g18rr")]
 layout_mode = 0
 offset_left = 613.0
 offset_right = 660.0
 text = ""
 
-[node name="ToggleToCleanButton" parent="GeneralSettings" node_paths=PackedStringArray("setting_label", "setting_toggle") instance=ExtResource("10_heo66")]
+[node name="ToggleToCleanButton" parent="GeneralSettings/Control/Scroll" node_paths=PackedStringArray("setting_label", "setting_toggle") instance=ExtResource("10_heo66")]
 layout_mode = 2
 anchors_preset = 0
 anchor_left = 0.0
@@ -370,18 +382,17 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_left = 0.0
-offset_top = 280.0
+offset_top = 360.0
 offset_right = 816.0
-offset_bottom = 388.0
-scale = Vector2(0.8, 0.8)
+offset_bottom = 468.0
 setting_label = NodePath("ToggleLabel")
 setting_toggle = NodePath("ToggleToCleanFunction")
 text_key = "SETTINGS_PROPERTY_TOGGLE_TO_CLEAN"
 
-[node name="ToggleToCleanFunction" type="Node" parent="GeneralSettings/ToggleToCleanButton"]
+[node name="ToggleToCleanFunction" type="Node" parent="GeneralSettings/Control/Scroll/ToggleToCleanButton"]
 script = ExtResource("19_6lsur")
 
-[node name="ToggleLabel" parent="GeneralSettings/ToggleToCleanButton" instance=ExtResource("14_g18rr")]
+[node name="ToggleLabel" parent="GeneralSettings/Control/Scroll/ToggleToCleanButton" instance=ExtResource("14_g18rr")]
 layout_mode = 0
 offset_left = 613.0
 offset_right = 660.0
@@ -400,12 +411,13 @@ offset_right = 816.0
 offset_bottom = 521.0
 text_key = "MENU_BUTTON_BACK"
 
-[node name="ButtonSelectionHandler" type="Node" parent="GeneralSettings" node_paths=PackedStringArray("buttons_origin")]
+[node name="ButtonSelectionHandler" type="Node" parent="GeneralSettings" node_paths=PackedStringArray("button_retrieve_list")]
 script = ExtResource("7_fgs88")
 enabled = false
-buttons_origin = NodePath("..")
+button_retrieve_list = [NodePath("../Control/Scroll/FullscreenButton"), NodePath("../Control/Scroll/VSyncButton"), NodePath("../Control/Scroll/ShowFPSButton"), NodePath("../Control/Scroll/FovButton"), NodePath("../Control/Scroll/CameraWobbleButton"), NodePath("../Control/Scroll/ToggleToCleanButton"), NodePath("../BackButton")]
 
 [node name="AudioSettings" type="Control" parent="." node_paths=PackedStringArray("button_selection_handler", "back_button")]
+visible = false
 layout_mode = 1
 anchor_left = 0.337
 anchor_top = 0.169
@@ -617,6 +629,7 @@ enabled = false
 buttons_origin = NodePath("..")
 
 [node name="LanguageSettings" type="Control" parent="." node_paths=PackedStringArray("button_selection_handler", "back_button")]
+visible = false
 layout_mode = 1
 anchor_left = 0.337
 anchor_top = 0.169
@@ -676,6 +689,7 @@ enabled = false
 buttons_origin = NodePath("..")
 
 [node name="KeyboardSettings" type="Control" parent="." node_paths=PackedStringArray("button_selection_handler", "back_button", "settings")]
+visible = false
 layout_mode = 1
 anchor_left = 0.337
 anchor_top = 0.169
@@ -698,7 +712,7 @@ clip_children = 1
 clip_contents = true
 anchors_preset = 0
 offset_right = 849.0
-offset_bottom = 396.0
+offset_bottom = 400.0
 
 [node name="Scroll" type="Control" parent="KeyboardSettings/Control"]
 anchors_preset = 0
@@ -822,6 +836,7 @@ offset_left = 470.0
 offset_top = 5.0
 offset_right = 735.0
 offset_bottom = 56.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -902,6 +917,7 @@ offset_left = 470.0
 offset_top = 5.0
 offset_right = 735.0
 offset_bottom = 56.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -982,6 +998,7 @@ offset_left = 470.0
 offset_top = 5.0
 offset_right = 735.0
 offset_bottom = 56.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -1062,6 +1079,7 @@ offset_left = 470.0
 offset_top = 5.0
 offset_right = 735.0
 offset_bottom = 56.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -1142,6 +1160,7 @@ offset_left = 470.0
 offset_top = 5.0
 offset_right = 735.0
 offset_bottom = 56.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -1222,6 +1241,7 @@ offset_left = 470.0
 offset_top = 5.0
 offset_right = 735.0
 offset_bottom = 56.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -1302,6 +1322,7 @@ offset_left = 470.0
 offset_top = 5.0
 offset_right = 735.0
 offset_bottom = 56.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -1382,6 +1403,7 @@ offset_left = 470.0
 offset_top = 5.0
 offset_right = 735.0
 offset_bottom = 56.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -1462,6 +1484,7 @@ offset_left = 470.0
 offset_top = 5.0
 offset_right = 735.0
 offset_bottom = 56.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -1542,6 +1565,7 @@ offset_left = 470.0
 offset_top = 5.0
 offset_right = 735.0
 offset_bottom = 56.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -1622,6 +1646,7 @@ offset_left = 470.0
 offset_top = 5.0
 offset_right = 735.0
 offset_bottom = 56.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -1702,6 +1727,7 @@ offset_left = 470.0
 offset_top = 5.0
 offset_right = 735.0
 offset_bottom = 56.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -1727,6 +1753,7 @@ enabled = false
 button_retrieve_list = [NodePath("../Control/Scroll/MouseSensitivityButton"), NodePath("../Control/Scroll/Keybind1Button"), NodePath("../Control/Scroll/Keybind1Button2"), NodePath("../Control/Scroll/Keybind1Button3"), NodePath("../Control/Scroll/Keybind1Button4"), NodePath("../Control/Scroll/Keybind1Button5"), NodePath("../Control/Scroll/Keybind1Button6"), NodePath("../Control/Scroll/Keybind1Button7"), NodePath("../Control/Scroll/Keybind1Button8"), NodePath("../Control/Scroll/Keybind1Button9"), NodePath("../Control/Scroll/Keybind1Button10"), NodePath("../Control/Scroll/Keybind1Button11"), NodePath("../Control/Scroll/Keybind1Button12"), NodePath("../BackButton")]
 
 [node name="GamepadSettings" type="Control" parent="." node_paths=PackedStringArray("button_selection_handler", "back_button", "settings")]
+visible = false
 layout_mode = 1
 anchor_left = 0.337
 anchor_top = 0.169
@@ -1750,7 +1777,7 @@ clip_contents = true
 layout_mode = 3
 anchors_preset = 0
 offset_right = 849.0
-offset_bottom = 389.0
+offset_bottom = 400.0
 
 [node name="Scroll" type="Control" parent="GamepadSettings/Control"]
 anchors_preset = 0
@@ -1918,6 +1945,7 @@ offset_left = 470.0
 offset_top = 17.0
 offset_right = 735.0
 offset_bottom = 49.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -2000,6 +2028,7 @@ offset_left = 470.0
 offset_top = 17.0
 offset_right = 735.0
 offset_bottom = 49.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -2082,6 +2111,7 @@ offset_left = 470.0
 offset_top = 17.0
 offset_right = 735.0
 offset_bottom = 49.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -2164,6 +2194,7 @@ offset_left = 470.0
 offset_top = 17.0
 offset_right = 735.0
 offset_bottom = 49.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -2246,6 +2277,7 @@ offset_left = 470.0
 offset_top = 17.0
 offset_right = 735.0
 offset_bottom = 49.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -2328,6 +2360,7 @@ offset_left = 470.0
 offset_top = 17.0
 offset_right = 735.0
 offset_bottom = 49.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -2410,6 +2443,7 @@ offset_left = 470.0
 offset_top = 17.0
 offset_right = 735.0
 offset_bottom = 49.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -2492,6 +2526,7 @@ offset_left = 470.0
 offset_top = 17.0
 offset_right = 735.0
 offset_bottom = 49.0
+mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
@@ -2518,6 +2553,7 @@ enabled = false
 button_retrieve_list = [NodePath("../Control/Scroll/GamepadSensitivityButton"), NodePath("../Control/Scroll/GamepadDeadzoneButton"), NodePath("../Control/Scroll/Keybind1Button"), NodePath("../Control/Scroll/Keybind1Button2"), NodePath("../Control/Scroll/Keybind1Button3"), NodePath("../Control/Scroll/Keybind1Button4"), NodePath("../Control/Scroll/Keybind1Button5"), NodePath("../Control/Scroll/Keybind1Button6"), NodePath("../Control/Scroll/Keybind1Button7"), NodePath("../Control/Scroll/Keybind1Button8"), NodePath("../BackButton")]
 
 [node name="KeybindAwaiting" type="ColorRect" parent="." node_paths=PackedStringArray("label")]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2546,7 +2582,7 @@ vertical_alignment = 1
 [node name="UIUpscaler" type="Node" parent="."]
 script = ExtResource("5_1o7a7")
 
-[editable path="GeneralSettings/FovButton"]
+[editable path="GeneralSettings/Control/Scroll/FovButton"]
 [editable path="AudioSettings/MasterVolume"]
 [editable path="AudioSettings/SFXVolume"]
 [editable path="AudioSettings/AmbienceVolume"]
