@@ -220,6 +220,8 @@ LEFT TO DO:
                 =2. ring the bell, with the interval 0/3
                 =3. move the garbage bags from the alley
 
+        = consider updating the scoring to take into acount the CLEANING ACTION, not the amount of leaves (basically remove multiplying by amount, but tweak brooms tickrate then. perhaps give each broom its own multiplier?)
+
         - add a final stage that unlocks upon completing all of them, that is just a field with grass and THANKS FOR PLAYING!
 
         - add finding secret cats as a small side quest - needed to unlock the golden broom ?

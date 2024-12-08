@@ -80,6 +80,8 @@ extends Node
 
 @export var leaf_highlight_color : Color = Color(0.988, 0.525, 0.259, 1.0)
 
+@export var bindable_actions : Array[String] = []
+
 func _save_config():
     var config = Config.new()
     config.fullscreen = fullscreen

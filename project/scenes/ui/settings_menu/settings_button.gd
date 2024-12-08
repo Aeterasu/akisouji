@@ -9,6 +9,8 @@ class_name SettingsButton extends UIButton
 
 @export var setting_toggle : SettingsFunction = null
 
+@export var setting_keybind : SettingsKeybind = null
+
 @export var setting_slider : SettingsSlider = null
 
 @export var toggle_area : Control = null

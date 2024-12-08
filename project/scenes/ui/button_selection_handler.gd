@@ -6,6 +6,8 @@ class_name ButtonSelectionHandler extends Node
 @export var horizontal : bool = false
 @export var buttons_origin : Control = null
 
+@export var button_retrieve_list : Array[UIButton] = []
+
 var current_button : UIButton = null
 var current_selection_id : int = -999
 var buttons : Array[UIButton] = []
@@ -72,17 +74,23 @@ func _retrieve_buttons():
 
 	if (buttons_origin):
 		for node in buttons_origin.get_children():
-			if (node is ShopEntry):
-				var entry = node as ShopEntry
-				buttons.append(entry.button)
-				entry.button._deselect()
-				entry.button.on_mouse_selection.connect(_on_button_mouse_selection)
-				entry.button.on_mouse_deselection.connect(_on_button_mouse_deselection)
-			elif (node is UIButton):
-				buttons.append(node)
-				node._deselect()
-				node.on_mouse_selection.connect(_on_button_mouse_selection)
-				node.on_mouse_deselection.connect(_on_button_mouse_deselection)
+			_parse_button(node)
+	else:
+		for node in button_retrieve_list:
+			_parse_button(node)
+	
+func _parse_button(node : Node):
+	if (node is ShopEntry):
+		var entry = node as ShopEntry
+		buttons.append(entry.button)
+		entry.button._deselect()
+		entry.button.on_mouse_selection.connect(_on_button_mouse_selection)
+		entry.button.on_mouse_deselection.connect(_on_button_mouse_deselection)
+	elif (node is UIButton):
+		buttons.append(node)
+		node._deselect()
+		node.on_mouse_selection.connect(_on_button_mouse_selection)
+		node.on_mouse_deselection.connect(_on_button_mouse_deselection)
 
 func _next_button():
 	if (current_selection_id <= -999):

@@ -13,13 +13,28 @@ var target_alpha : float = 1.0
 var button_hold_ticks : float = 0.0
 var adjust_ticks : float = 0.0
 
+var button_id_preserve : int = 0
+
+var keybind_delay : float = 0.2
+
+var scroll
+
 signal on_back_button_pressed
 
 func _ready() -> void:
 	button_selection_handler.on_button_pressed.connect(_on_button_pressed)
+	scroll = get_node_or_null("Control/Scroll")
 
 func _process(delta):
 	modulate = modulate.lerp(Color(1.0, 1.0, 1.0, target_alpha), 6.0 * delta)
+
+	keybind_delay -= delta
+
+	if (scroll and scroll is SettingsScroll):
+		if (button_selection_handler.current_button and button_selection_handler.current_selection_id < len(button_selection_handler.buttons) - 1):
+			var sc = clamp(button_selection_handler.current_button.position.y - 240.0, 0.0, scroll.max_scroll)
+			(scroll as SettingsScroll).target_scroll = -sc
+			#print(sc)
 
 	if (Input.is_action_just_pressed("pause") or Input.is_action_just_pressed("menu_cancel")):
 		on_back_button_pressed.emit(self)
@@ -28,6 +43,8 @@ func _process(delta):
 	if ((button_selection_handler.current_button is SettingsButton)):
 		var slider = (button_selection_handler.current_button as SettingsButton).setting_slider
 		var toggle = (button_selection_handler.current_button as SettingsButton).setting_toggle
+		var keybind = (button_selection_handler.current_button as SettingsButton).setting_keybind
+
 		if (slider):
 			button_selection_handler.prevent_new_selection = slider.is_dragging
 
@@ -62,6 +79,22 @@ func _process(delta):
 				toggle._alt_toggle()
 				SfxDeconflicter.play(button_selection_handler.current_button.audio_accent_2)
 
+		if (keybind):
+			if (Input.is_action_just_pressed("menu_confirm") and keybind_delay <= 0.0):
+				keybind._toggle()
+				button_id_preserve = button_selection_handler.current_selection_id
+				button_selection_handler._disable_all_buttons()
+				keybind.on_received_input.connect(_on_keybind_input)
+				keybind_delay = 0.2
+				return
+				
+				
+func _on_keybind_input(keybind : SettingsKeybind) -> void:
+	keybind.on_received_input.disconnect(_on_keybind_input)
+	button_selection_handler._enable_all_buttons()
+	keybind_delay = 0.2
+	button_selection_handler.current_selection_id = button_id_preserve
+	button_selection_handler._update_button()
 
 func _adjust_slider_by_gamepad_step(slider : SettingsSlider, adjust_sign : float = 1.0):
 	slider.is_dragging = true
@@ -77,4 +110,5 @@ func _on_button_pressed(button : UIButton) -> void:
 
 	if (button == back_button):
 		on_back_button_pressed.emit(self)
+		scroll.position.y = 0.0
 		GlobalSettings._save_config()
