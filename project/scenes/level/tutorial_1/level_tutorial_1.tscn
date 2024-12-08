@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://8kw8vfjyax3p"]
+[gd_scene load_steps=64 format=3 uid="uid://8kw8vfjyax3p"]
 
 [ext_resource type="PackedScene" uid="uid://r34i4r8tnmcn" path="res://assets/mesh/level_design/mesh_tutorial_1.blend" id="1_hrr73"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="2_xm36i"]
@@ -195,6 +195,9 @@ shading_mode = 0
 albedo_texture = ExtResource("27_4yk2e")
 billboard_mode = 1
 billboard_keep_scale = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h60t4"]
+size = Vector3(1, 16, 40)
 
 [node name="LevelTutorial1" type="Node3D" node_paths=PackedStringArray("leaf_populator", "player_spawn_position")]
 script = ExtResource("2_xm36i")
@@ -850,6 +853,24 @@ transform = Transform3D(-0.484474, 0, 0.874806, 0, 1, 0, -0.874806, 0, -0.484474
 
 [node name="GarbageBag3" parent="." instance=ExtResource("39_8yspe")]
 transform = Transform3D(-0.998901, 0, 0.0468619, 0, 1, 0, -0.0468619, 0, -0.998901, 33.7914, 0.619432, 11.217)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 8, 20)
+shape = SubResource("BoxShape3D_h60t4")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.5, 8, 20)
+shape = SubResource("BoxShape3D_h60t4")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 8, 40.5)
+shape = SubResource("BoxShape3D_h60t4")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 8, -0.5)
+shape = SubResource("BoxShape3D_h60t4")
 
 [editable path="LeafPopulator"]
 [editable path="mesh_tutorial_1"]

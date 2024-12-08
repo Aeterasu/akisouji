@@ -5,13 +5,15 @@
 
 [resource]
 script = ExtResource("1_mg2js")
-speed_multiplier = 1.15
+speed_multiplier = 1.18
 sprint_multiplier = 1.25
 allow_walk_cleaning = false
 walk_cleaning_range_multiplier = 1.0
 sprint_cleaning_range_multiplier = 1.1
 jump_cleaning_range_multiplier = 1.0
+sprint_jump_range_multiplier = 1.2
 upgrade_icon = ExtResource("2_leuxm")
 cost = 250
 name_key = "ITEM_NAME_SNEAKERS"
+description_key = ""
 one_time_purchase = false
