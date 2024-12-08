@@ -1,11 +1,6 @@
-[gd_resource type="Environment" load_steps=5 format=3 uid="uid://dfi8f6n3mi0ob"]
+[gd_resource type="Environment" load_steps=4 format=3 uid="uid://dfi8f6n3mi0ob"]
 
-[sub_resource type="Gradient" id="Gradient_b23kf"]
-offsets = PackedFloat32Array(0, 0.442815, 0.953079, 1)
-colors = PackedColorArray(0.116396, 0.0654409, 0, 1, 0.564706, 0.529412, 0.466667, 1, 0.98, 0.85897, 0.5978, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_tbmu0"]
-gradient = SubResource("Gradient_b23kf")
+[ext_resource type="Texture2D" uid="uid://c70pcvpdjpk5i" path="res://resource/color_correction_default.tres" id="1_5ymmi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7h7gc"]
 sky_top_color = Color(0.2948, 0.40128, 0.44, 1)
@@ -36,4 +31,4 @@ fog_depth_end = 106.5
 adjustment_enabled = true
 adjustment_brightness = 1.06
 adjustment_contrast = 0.95
-adjustment_color_correction = SubResource("GradientTexture1D_tbmu0")
+adjustment_color_correction = ExtResource("1_5ymmi")

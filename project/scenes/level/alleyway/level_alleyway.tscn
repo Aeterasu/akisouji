@@ -1725,6 +1725,6 @@ multimesh = SubResource("MultiMesh_a64m0")
 mesh = ExtResource("34_xi37w")
 
 [node name="THE SECRET CREATURE" type="MeshInstance3D" parent="." index="46"]
-transform = Transform3D(10.36, 0, 0, 0, 10.36, 0, 0, 0, 10.36, 13.9336, -11.2074, 34.9082)
+transform = Transform3D(2.165, 0, 0, 0, 2.165, 0, 0, 0, 2.165, -22.5989, 1.40645, 32.263)
 mesh = SubResource("QuadMesh_7ksfv")
 surface_material_override/0 = SubResource("StandardMaterial3D_6myay")

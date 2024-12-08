@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://0bclpuxnu1nm"]
+[gd_scene load_steps=8 format=3 uid="uid://0bclpuxnu1nm"]
 
 [ext_resource type="PackedScene" uid="uid://da40kh0sk84f1" path="res://assets/mesh/prop/mesh_vase_1.blend" id="1_0r6e8"]
 [ext_resource type="Texture2D" uid="uid://cj2g3dvjwyqyc" path="res://assets/texture/prop/texture_fountain_1_albm.png" id="2_27jt1"]
@@ -14,9 +14,19 @@ normal_scale = 0.6
 normal_texture = ExtResource("3_8n5ey")
 uv1_triplanar = true
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_q351k"]
+height = 1.1105
+radius = 0.25371
+
 [node name="Vase" type="Node3D"]
 
 [node name="mesh_vase_1" parent="." instance=ExtResource("1_0r6e8")]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 surface_material_override/0 = SubResource("StandardMaterial3D_hvkwc")
 surface_material_override/1 = ExtResource("3_wmyx5")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.530211, 0)
+shape = SubResource("CylinderShape3D_q351k")

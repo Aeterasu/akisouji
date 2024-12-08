@@ -8,7 +8,7 @@ class_name UITutorial extends Control
 
 		var tween = get_tree().create_tween()
 		tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.4)
-		tween.tween_callback(func(): label.text = tr("TUTORIAL_" + str(tutorial_stage)))
+		tween.tween_callback(func(): current_text = tr("TUTORIAL_" + str(tutorial_stage)))
 		tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.4)
 		tween.tween_callback(func(): in_animation = false).set_delay(0.4)
 
@@ -29,6 +29,8 @@ class_name UITutorial extends Control
 
 @export var label : RichTextLabel = null
 
+var current_text : String = ""
+
 var in_animation : bool = false
 
 var ticks : float = 0.0
@@ -42,14 +44,23 @@ var stage_4_hide_flag : bool = false
 var stage_5_flag : bool = false
 var stage_5_hide_flag : bool = false
 
+var stage_6_flag : bool = false
+var stage_6_hide_flag : bool = false
+
+var glyph_image
+
 func _ready() -> void:
 	tutorial_stage = 1
 
+	glyph_image = ControlGlyphHandler._get_glyph_image_path()
+
 func _process(delta):
-	var glyph_image = ControlGlyphHandler._get_glyph_image_path()
+	label.text = current_text
 
 	if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD):
 		label.text = label.text.replace("[LMB]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_primary")[1]))
+		label.text = label.text.replace("[SHIFT]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_sprint")[1]))
+		label.text = label.text.replace("[SPACE]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_jump")[1]))
 		label.text = label.text.replace("[WASD]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_move_forward")[1]))
 		label.text = label.text.replace("[MOUSE]", "[img region=32,64,32,32]" + glyph_image + "[/img]")
 		label.text = label.text.replace("[F]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("hint_highlight")[1]))
@@ -57,6 +68,8 @@ func _process(delta):
 	elif (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE):
 		label.text = label.text.replace("[LMB]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_primary")[0]))
 		label.text = label.text.replace("[F]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("hint_highlight")[0]))
+		label.text = label.text.replace("[SHIFT]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_sprint")[0]))
+		label.text = label.text.replace("[SPACE]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_jump")[0]))
 
 		var wasd = "["
 		wasd += ControlGlyphHandler._get_key_string(InputMap.action_get_events("player_move_forward")[0])

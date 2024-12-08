@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=4 uid="uid://djxb2f12q5t80"]
+[gd_scene load_steps=67 format=4 uid="uid://djxb2f12q5t80"]
 
 [ext_resource type="PackedScene" uid="uid://bante8mpv041" path="res://assets/mesh/level_design/mesh_church.blend" id="1_ut78t"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="2_hsbfh"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://c4iot32vjvrln" path="res://assets/texture/environment/texture_horizon_1.png" id="21_qjois"]
 [ext_resource type="PackedScene" uid="uid://dhfjydch4ru0a" path="res://scenes/prop/pavement_border/pavement_border.tscn" id="23_wm10b"]
 [ext_resource type="PackedScene" uid="uid://cdl3hbykq84ed" path="res://scenes/player/garbage_bag/garbage_bag.tscn" id="23_x5usx"]
+[ext_resource type="Texture2D" uid="uid://rr5kgcyq32ef" path="res://assets/texture/alisa.jpg" id="27_tm38f"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ldsq4"]
 material = ExtResource("5_kitgi")
@@ -296,6 +297,14 @@ billboard_mode = 1
 [sub_resource type="QuadMesh" id="QuadMesh_udthv"]
 material = SubResource("StandardMaterial3D_trto1")
 size = Vector2(96, 96)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ofwtr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aleon"]
+shading_mode = 0
+albedo_texture = ExtResource("27_tm38f")
+billboard_mode = 1
+billboard_keep_scale = true
 
 [node name="mesh_church" node_paths=PackedStringArray("leaf_populator", "player_spawn_position") instance=ExtResource("1_ut78t")]
 script = ExtResource("2_hsbfh")
@@ -1106,3 +1115,8 @@ transform = Transform3D(0.743729, 0, 0.668482, 0, 1, 0, -0.668482, 0, 0.743729, 
 
 [node name="GarbageBag17" parent="." index="56" instance=ExtResource("23_x5usx")]
 transform = Transform3D(0.743729, 0, 0.668482, 0, 1, 0, -0.668482, 0, 0.743729, 66.5521, 0.601766, 56.243)
+
+[node name="THE SECRET CREATURE" type="MeshInstance3D" parent="." index="57"]
+transform = Transform3D(3.078, 0, 0, 0, 2.53, 0, 0, 0, 2.53, 21.3702, 1.40645, -18.2003)
+mesh = SubResource("QuadMesh_ofwtr")
+surface_material_override/0 = SubResource("StandardMaterial3D_aleon")

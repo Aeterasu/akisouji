@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://co8u2jicawhds" path="res://assets/texture/environment/texture_stone_wall_1_nrmp.png" id="2_gawo3"]
 
 [resource]
-albedo_color = Color(0.377804, 0.327095, 0.303195, 1)
+albedo_color = Color(0.669716, 0.534924, 0.471395, 1)
 albedo_texture = ExtResource("1_0s2y5")
 normal_enabled = true
-normal_scale = 1.25
+normal_scale = 0.5
 normal_texture = ExtResource("2_gawo3")
 uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true

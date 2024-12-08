@@ -165,6 +165,8 @@ LEFT TO DO:
     + REMOVE TIMER FROM FIRST HUD UPDATE due to async it may fuck up and crash
     + force tanya to draw our pretty chara
     + dialogue box tutorial. mention leaf highlighting (could tutorial be a dialogue with the girl?)
+    + ADD KARTOSHKA EASTER EGG
+    + tutorial level final pass. setup heightmaps for tutorial level (add small pumpkins :3)
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
     
     = consider reworking the sweeping mechanic. 
@@ -220,7 +222,7 @@ LEFT TO DO:
 
         - add a final stage that unlocks upon completing all of them, that is just a field with grass and THANKS FOR PLAYING!
 
-        - tutorial level final pass. setup heightmaps for tutorial level (add small pumpkins :3)
+        - add finding secret cats as a small side quest - needed to unlock the golden broom ?
 
         - add an additional skill expression mechanic.
          disabled leaf populator completely breaks the game, pls add safety checks
@@ -295,8 +297,6 @@ LEFT TO DO:
     
     MISC:
         - also, before release, just in case, check with virustotal
-
-        - ADD KARTOSHKA EASTER EGG
 
         - sort language file
 
