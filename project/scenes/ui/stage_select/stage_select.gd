@@ -24,6 +24,9 @@ class_name StageSelect extends Control
 
 @export var blackout : ColorRect = null
 
+@export var accent_1 : AudioStreamPlayer = null
+@export var accent_2 : AudioStreamPlayer = null
+
 var current_selected_stage_id : int = 0
 var stage_amount : int = 0
 
@@ -150,6 +153,8 @@ func _on_back_button_pressed():
 	tween.tween_property(blackout, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
 	tween.tween_callback(SceneTransitionHandler.instance._load_title_screen_scene).set_delay(0.2)
 
+
+
 func _on_navigation_button_selected():
 	if (navigation_button_selection_handler.current_selection_id == 1):
 		for node in stages_container.container.get_children():
@@ -161,6 +166,8 @@ func _on_navigation_button_selected():
 		for node in stages_container.container.get_children():
 			(node as StageButton)._deselect()		
 
+	accent_2.play()
+
 func _on_navigation_button_pressed(button : UIButton):
 	match (button):
 		right_button:
@@ -170,4 +177,7 @@ func _on_navigation_button_pressed(button : UIButton):
 		stage_button:
 			HighscoreManager.current_level_id = (stages_container.container.get_child(current_selected_stage_id) as StageButton).level_number
 			Main.instance.current_stashed_level = (stages_container.container.get_child(current_selected_stage_id) as StageButton).stage_scene
+			Main.instance.stage_start_audio.play()
 			SceneTransitionHandler.instance._load_game_scene(Main.instance.current_stashed_level)
+
+	#accent_1.play()

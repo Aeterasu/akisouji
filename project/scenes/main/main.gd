@@ -2,6 +2,8 @@ class_name Main extends Node
 
 @export var loading_screen : Control = null
 
+@export var stage_start_audio : AudioStreamPlayer = null
+
 var current_stashed_level : PackedScene = null
 
 static var instance = null

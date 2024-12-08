@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://gcdsoumbb7v1"]
+[gd_scene load_steps=38 format=3 uid="uid://gcdsoumbb7v1"]
 
 [ext_resource type="Script" path="res://scenes/ui/stage_select/stage_select.gd" id="1_66fed"]
 [ext_resource type="Texture2D" uid="uid://d0f7jq4x8g3ai" path="res://assets/texture/texture_leaf_pattern.png" id="1_dorsv"]
@@ -22,6 +22,8 @@
 [ext_resource type="AudioStream" uid="uid://dgodvr5gurqrs" path="res://assets/audio/sfx_menu_accent_1.ogg" id="14_f1cvk"]
 [ext_resource type="AudioStream" uid="uid://bb5kges32g0ld" path="res://assets/audio/sfx_menu_accent_2.ogg" id="15_n3af2"]
 [ext_resource type="Script" path="res://scenes/ui/stage_select/shop_button_appearing_label.gd" id="19_r5y7g"]
+[ext_resource type="AudioStream" uid="uid://dpr62sdk2hshq" path="res://assets/audio/sfx_stage_select_accent_1.ogg" id="23_tw00j"]
+[ext_resource type="AudioStream" uid="uid://c2t6olkwe35wf" path="res://assets/audio/sfx_stage_select_accent_2.ogg" id="24_uau62"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_xyu36"]
 shader = ExtResource("4_ho324")
@@ -74,7 +76,7 @@ gradient = SubResource("Gradient_6qmtg")
 width = 8
 height = 8
 
-[node name="StageSelect" type="Control" node_paths=PackedStringArray("button_selection_handler", "back_button", "proceed_button", "navigation_button_selection_handler", "stages_container", "right_button", "left_button", "stage_button", "stage_name_label", "stage_description_label", "stage_background_origin", "blackout")]
+[node name="StageSelect" type="Control" node_paths=PackedStringArray("button_selection_handler", "back_button", "proceed_button", "navigation_button_selection_handler", "stages_container", "right_button", "left_button", "stage_button", "stage_name_label", "stage_description_label", "stage_background_origin", "blackout", "accent_1", "accent_2")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -96,6 +98,8 @@ stage_name_label = NodePath("StageName")
 stage_description_label = NodePath("StageDescription")
 stage_background_origin = NodePath("Control")
 blackout = NodePath("BlackoutLayer/ColorRect")
+accent_1 = NodePath("Accent1")
+accent_2 = NodePath("Accent2")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 1
@@ -406,7 +410,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Left" parent="StageNavigation" instance=ExtResource("10_avlww")]
+[node name="Left" parent="StageNavigation" node_paths=PackedStringArray("audio_accent_2") instance=ExtResource("10_avlww")]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
@@ -419,8 +423,9 @@ offset_bottom = 20.0
 grow_vertical = 2
 scale = Vector2(-1, 1)
 animation_target_offset = Vector2(16, 0)
+audio_accent_2 = NodePath("../../Accent1")
 
-[node name="StageSelection" type="Control" parent="StageNavigation" node_paths=PackedStringArray("mouse_area")]
+[node name="StageSelection" type="Control" parent="StageNavigation" node_paths=PackedStringArray("mouse_area", "audio_accent_2")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -430,6 +435,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("12_6pdp1")
 mouse_area = NodePath("StageSelectMouseArea")
+audio_accent_2 = NodePath("../../Accent1")
 
 [node name="StageSelectMouseArea" type="Control" parent="StageNavigation/StageSelection"]
 layout_mode = 1
@@ -443,7 +449,7 @@ offset_bottom = -255.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Right" parent="StageNavigation" instance=ExtResource("10_avlww")]
+[node name="Right" parent="StageNavigation" node_paths=PackedStringArray("audio_accent_2") instance=ExtResource("10_avlww")]
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -457,6 +463,7 @@ offset_bottom = 20.0
 grow_horizontal = 0
 grow_vertical = 2
 animation_target_offset = Vector2(16, 0)
+audio_accent_2 = NodePath("../../Accent1")
 
 [node name="ButtonSelectionHandler" type="Node" parent="StageNavigation" node_paths=PackedStringArray("buttons_origin")]
 script = ExtResource("7_dni56")
@@ -502,3 +509,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="Accent1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_tw00j")
+volume_db = 4.0
+max_polyphony = 4
+bus = &"SFX"
+
+[node name="Accent2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_uau62")
+volume_db = -2.0
+max_polyphony = 4
+bus = &"SFX"

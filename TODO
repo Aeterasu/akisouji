@@ -170,6 +170,8 @@ LEFT TO DO:
     + make keybinds and controller binds
     + COME UP WITH A NAME FOR THE GAME!!! = AUTUMN CLEANUP
     + add some sort of intro seq
+    + rewrite some of the keybind popups texts, to make them clearer (reference any other game)
+    + add stage select audio
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
     
     = consider reworking the sweeping mechanic. 
@@ -254,7 +256,6 @@ LEFT TO DO:
 		- flowing leaves in the fountain
     
     AUDIO:
-        - add stage select audio
         - separate songs into game and menus
         - write a simple piece for title menu (chords and some piano)
         - make improvements towards asmr sound
@@ -283,8 +284,6 @@ LEFT TO DO:
             =HIGHLIGHT LEAVES = F
 
         - add leaf highlight colors (upon pressing, opens up a submenu layer) (??????????)
-
-        - rewrite some of the keybind popups texts, to make them clearer (reference any other game)
 
     SHOP:
         =SHOP

@@ -273,18 +273,6 @@ text = "CREDITS_1"
 horizontal_alignment = 2
 vertical_alignment = 2
 
-[node name="SubmenuLayer" type="CanvasLayer" parent="."]
-
-[node name="Blackout" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0)
-
 [node name="Backdrop" type="TextureRect" parent="."]
 show_behind_parent = true
 layout_mode = 1
@@ -307,3 +295,15 @@ mouse_filter = 2
 texture = ExtResource("18_ppfos")
 expand_mode = 1
 stretch_mode = 4
+
+[node name="SubmenuLayer" type="CanvasLayer" parent="."]
+
+[node name="Blackout" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
