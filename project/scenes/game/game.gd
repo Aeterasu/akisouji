@@ -199,6 +199,8 @@ func _handle_tutorial(delta : float) -> void:
 
 	if (UI.instance.ui_tutorial.in_animation):
 		return
+	
+	# stage 1
 
 	if (UI.instance.ui_tutorial.tutorial_stage == 1 and player.velocity_component.input_direction.length() >= 0.2):
 		UI.instance.ui_tutorial.ticks += delta
@@ -207,13 +209,17 @@ func _handle_tutorial(delta : float) -> void:
 			UI.instance.ui_tutorial.ticks = 0.0
 		return
 
+	# stage 2
+
 	if (UI.instance.ui_tutorial.tutorial_stage == 2 and player.inventory.current_tool.in_use):
 		UI.instance.ui_tutorial.ticks += delta
 		if (UI.instance.ui_tutorial.ticks >= 3.0):
 			UI.instance.ui_tutorial.is_shown = false
 			UI.instance.ui_tutorial.ticks = 0.0
 
-	if (UI.instance.ui_tutorial.tutorial_stage == 2 and !UI.instance.ui_tutorial.stage_3_flag and ranking_manager.score > 9000):
+	# stage 3
+
+	if (UI.instance.ui_tutorial.tutorial_stage == 2 and !UI.instance.ui_tutorial.stage_3_flag and ranking_manager.score > 4500):
 		UI.instance.ui_tutorial.stage_3_flag = true
 		UI.instance.ui_tutorial.tutorial_stage += 1
 
@@ -225,7 +231,9 @@ func _handle_tutorial(delta : float) -> void:
 			UI.instance.ui_tutorial.ticks = 0.0
 		return
 
-	if (UI.instance.ui_tutorial.tutorial_stage == 3 and UI.instance.ui_tutorial.stage_3_hide_flag and ranking_manager.score > 19000):
+	# stage 4
+
+	if (UI.instance.ui_tutorial.tutorial_stage == 3 and UI.instance.ui_tutorial.stage_3_hide_flag and ranking_manager.score > 9000):
 		UI.instance.ui_tutorial.stage_4_flag = true
 		UI.instance.ui_tutorial.tutorial_stage += 1
 
@@ -234,6 +242,20 @@ func _handle_tutorial(delta : float) -> void:
 		if (UI.instance.ui_tutorial.ticks >= 8.0):
 			UI.instance.ui_tutorial.is_shown = false
 			UI.instance.ui_tutorial.stage_4_hide_flag = true
+			UI.instance.ui_tutorial.ticks = 0.0
+		return
+
+	# stage 5
+
+	if (UI.instance.ui_tutorial.tutorial_stage == 4 and UI.instance.ui_tutorial.stage_4_hide_flag and ranking_manager.score > 15000):
+		UI.instance.ui_tutorial.stage_5_flag = true
+		UI.instance.ui_tutorial.tutorial_stage += 1
+
+	if (UI.instance.ui_tutorial.tutorial_stage == 5 and UI.instance.ui_tutorial.stage_5_flag and !UI.instance.ui_tutorial.stage_5_hide_flag):
+		UI.instance.ui_tutorial.ticks += delta
+		if (UI.instance.ui_tutorial.ticks >= 8.0):
+			UI.instance.ui_tutorial.is_shown = false
+			UI.instance.ui_tutorial.stage_5_hide_flag = true
 			UI.instance.ui_tutorial.ticks = 0.0
 			SaveManager.seen_tutorial = true
 			SaveManager._save()

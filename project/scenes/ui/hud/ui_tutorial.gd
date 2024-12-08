@@ -39,6 +39,9 @@ var stage_3_hide_flag : bool = false
 var stage_4_flag : bool = false
 var stage_4_hide_flag : bool = false
 
+var stage_5_flag : bool = false
+var stage_5_hide_flag : bool = false
+
 func _ready() -> void:
 	tutorial_stage = 1
 
@@ -49,9 +52,11 @@ func _process(delta):
 		label.text = label.text.replace("[LMB]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_primary")[1]))
 		label.text = label.text.replace("[WASD]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_move_forward")[1]))
 		label.text = label.text.replace("[MOUSE]", "[img region=32,64,32,32]" + glyph_image + "[/img]")
+		label.text = label.text.replace("[F]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("hint_highlight")[1]))
 
 	elif (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE):
 		label.text = label.text.replace("[LMB]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_primary")[0]))
+		label.text = label.text.replace("[F]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("hint_highlight")[0]))
 
 		var wasd = "["
 		wasd += ControlGlyphHandler._get_key_string(InputMap.action_get_events("player_move_forward")[0])
