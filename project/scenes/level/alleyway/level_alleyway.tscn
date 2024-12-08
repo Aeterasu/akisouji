@@ -101,7 +101,8 @@ leaf_populator = NodePath("LeafPopulator")
 leaf_leeway = 250
 player_spawn_position = NodePath("PlayerSpawnPosition")
 enable_rain = true
-s_target_speed_clear = 200.0
+s_rank_target_score = 550000.0
+s_target_speed_clear = 180.0
 a_target_speed_clear = 400.0
 b_target_speed_clear = 600.0
 
