@@ -10,6 +10,5 @@ broom_scene = ExtResource("1_rasha")
 upgrade_icon = ExtResource("3_sjv3r")
 cost = 2500
 name_key = "ITEM_NAME_LEAF_BLOWER"
-description_key = ""
+description_key = "ITEM_DESCRIPTION_LEAF_BLOWER"
 one_time_purchase = true
-tool_inventory_id = 2

@@ -15,5 +15,5 @@ sprint_jump_range_multiplier = 1.6
 upgrade_icon = ExtResource("2_56dlq")
 cost = 600
 name_key = "ITEM_NAME_WELLIES"
-description_key = ""
+description_key = "ITEM_DESCRIPTION_WELLIES"
 one_time_purchase = false

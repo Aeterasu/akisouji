@@ -15,5 +15,5 @@ sprint_jump_range_multiplier = 1.2
 upgrade_icon = ExtResource("2_hpfey")
 cost = 2500
 name_key = "ITEM_NAME_SEVENLEAGUES"
-description_key = ""
+description_key = "ITEM_DESCRIPTION_SEVENLEAGUES"
 one_time_purchase = false

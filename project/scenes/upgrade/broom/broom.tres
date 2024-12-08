@@ -10,4 +10,5 @@ broom_scene = ExtResource("1_5v5ht")
 upgrade_icon = ExtResource("3_7crcq")
 cost = 0
 name_key = "ITEM_NAME_BROOM"
+description_key = "ITEM_DESCRIPTION_BROOM"
 one_time_purchase = true

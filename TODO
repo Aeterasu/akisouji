@@ -211,6 +211,23 @@ LEFT TO DO:
         = Hold [LMB] to sweep! You receive money for sweeping, which you can later use to buy more powerful brooms and other upgrades.
         = There are other ways to clean leaves other than using your broom, such as jumping, running and using objects in the environment. Try to experiment!
         = At the end of the level you receive a grade based on your speed and what techniques you have used. Aim for that maximum, golden S rank!
+
+    = Good old regular broom. Everyone started with that.
+    = Camera for taking photos.
+
+    = A stronger broom with a wider sweep.
+
+    = A powerful leaf propeller!
+
+    = A broom only for the richest of janitors. Becomes more powerful the more money you have, but also uses money to sweep.
+
+    = Plain working boots for a professional janitor.
+    = Stylish running shoes. Slightly increase movement speed.
+    
+    = Expensive, exotic shoes. Greatly increase movement speed and the range of cleaning upon jumping or sprinting.
+
+    = Rubber boots for bad weather. Slow you down, but allow you to clean leaves by walking upon them, and greatly increase the range of jump cleaning and sprint cleaning.
+
     
     FIXES:
         - polish up the jank
