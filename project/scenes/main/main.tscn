@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://d28lh7c58l5qv"]
+[gd_scene load_steps=16 format=3 uid="uid://d28lh7c58l5qv"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_bkdub"]
 [ext_resource type="Script" path="res://scenes/main/scene_transition_handler.gd" id="2_7iqhl"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bfmvy7wmymc2l" path="res://scenes/ui/gallery/gallery.tscn" id="6_b588i"]
 [ext_resource type="PackedScene" uid="uid://gcdsoumbb7v1" path="res://scenes/ui/stage_select/stage_select.tscn" id="7_ti7n1"]
 [ext_resource type="Script" path="res://scenes/utils/show_canvas_layer_on_ready.gd" id="8_7idpe"]
+[ext_resource type="PackedScene" uid="uid://fye2x2ut2ndh" path="res://scenes/level/finale/level_finale.tscn" id="8_edojj"]
 [ext_resource type="Script" path="res://scenes/loading_screen.gd" id="9_0151b"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="10_m1uao"]
 [ext_resource type="PackedScene" uid="uid://dh34t2y2h07bu" path="res://scenes/ui/fpscounter.tscn" id="11_h0csv"]
@@ -35,6 +36,7 @@ game_scene = ExtResource("4_3un4g")
 shop_scene = ExtResource("5_b672d")
 gallery_scene = ExtResource("6_b588i")
 stage_select_scene = ExtResource("7_ti7n1")
+finale_scene = ExtResource("8_edojj")
 
 [node name="LoadingLayer" type="CanvasLayer" parent="."]
 layer = 128

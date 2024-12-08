@@ -10,6 +10,8 @@ class_name StageButton extends Control
 
 @export var grade : Grade = null
 
+@export var is_finale : bool = false
+
 var is_selected : bool = false
 
 func _ready():

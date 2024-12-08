@@ -4,4 +4,4 @@
 
 [node name="HighscoreManager" type="Node"]
 script = ExtResource("1_a42o3")
-level_grades = Array[int]([-1, -1, -1, -1])
+level_grades = Array[int]([-1, -1, -1, -1, -1])

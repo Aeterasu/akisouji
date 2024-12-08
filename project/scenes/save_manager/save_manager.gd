@@ -22,6 +22,8 @@ func _save():
 		"level_2_highscore" : HighscoreManager.level_highscores[2],
 		"level_3_grade" : HighscoreManager.level_grades[3],
 		"level_3_highscore" : HighscoreManager.level_highscores[3],
+		"level_4_grade" : HighscoreManager.level_grades[4],
+		"level_4_highscore" : HighscoreManager.level_highscores[4],
 		"seen_tutorial" : seen_tutorial,
 	}
 
@@ -82,6 +84,9 @@ func _load():
 
 	HighscoreManager.level_grades[3] = int(data["level_3_grade"])
 	HighscoreManager.level_highscores[3] = int(data["level_3_highscore"])
+
+	HighscoreManager.level_grades[4] = int(data["level_4_grade"])
+	HighscoreManager.level_highscores[4] = int(data["level_4_highscore"])
 
 	if (data.has("seen_tutorial")):
 		seen_tutorial = data["seen_tutorial"]

@@ -175,9 +175,14 @@ func _on_navigation_button_pressed(button : UIButton):
 		left_button:
 			current_selected_stage_id = max(current_selected_stage_id - 1, 0)
 		stage_button:
-			HighscoreManager.current_level_id = (stages_container.container.get_child(current_selected_stage_id) as StageButton).level_number
-			Main.instance.current_stashed_level = (stages_container.container.get_child(current_selected_stage_id) as StageButton).stage_scene
-			Main.instance.stage_start_audio.play()
-			SceneTransitionHandler.instance._load_game_scene(Main.instance.current_stashed_level)
+			if (!(stages_container.container.get_child(current_selected_stage_id) as StageButton).is_finale):
+				HighscoreManager.current_level_id = (stages_container.container.get_child(current_selected_stage_id) as StageButton).level_number
+				Main.instance.current_stashed_level = (stages_container.container.get_child(current_selected_stage_id) as StageButton).stage_scene
+				Main.instance.stage_start_audio.play()
+				SceneTransitionHandler.instance._load_game_scene(Main.instance.current_stashed_level)
+			else:
+				Main.instance.stage_start_audio.play()
+				HighscoreManager.current_level_id = (stages_container.container.get_child(current_selected_stage_id) as StageButton).level_number
+				SceneTransitionHandler.instance._load_finale_scene()
 
 	#accent_1.play()

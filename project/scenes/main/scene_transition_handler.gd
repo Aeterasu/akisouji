@@ -5,6 +5,7 @@ class_name SceneTransitionHandler extends Node
 @export var shop_scene : PackedScene = null
 @export var gallery_scene : PackedScene = null
 @export var stage_select_scene : PackedScene = null
+@export var finale_scene : PackedScene = null
 
 var initialized_scenes : Array[Node] = []
 
@@ -64,6 +65,20 @@ func _load_gallery_scene() -> void:
 
 func _load_stage_select_scene() -> void:
 	_load_scene(stage_select_scene.resource_path)
+
+func _load_finale_scene() -> void:
+	var tween = create_tween()
+	tween.tween_callback(Main.instance.loading_screen.show)
+	tween.tween_property(Main.instance.loading_screen, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
+
+	await get_tree().create_timer(0.2).timeout
+
+	_load_scene(finale_scene.resource_path)
+
+	tween.stop()
+	tween.tween_property(Main.instance.loading_screen, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.2)
+	tween.tween_callback(Main.instance.loading_screen.hide)
+	tween.play()
 
 func _load_previous_scene() -> void:
 	_load_scene(previous_scene.resource_path)

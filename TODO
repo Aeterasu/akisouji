@@ -172,6 +172,7 @@ LEFT TO DO:
     + add some sort of intro seq
     + rewrite some of the keybind popups texts, to make them clearer (reference any other game)
     + add stage select audio
+    + GAME NAME AND LOGO IN TITLE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
     
     = consider reworking the sweeping mechanic. 
@@ -310,8 +311,6 @@ LEFT TO DO:
         - also, before release, just in case, check with virustotal
 
         - sort language file
-
-        - GAME NAME AND LOGO IN TITLE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 		- Add cleanable surface tag so that we can't exactly clean lampposts etc
         
