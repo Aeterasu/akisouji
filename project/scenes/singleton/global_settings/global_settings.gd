@@ -79,3 +79,61 @@ extends Node
 @export var show_fps_counter : bool = true
 
 @export var leaf_highlight_color : Color = Color(0.988, 0.525, 0.259, 1.0)
+
+func _save_config():
+    var config = Config.new()
+    config.fullscreen = fullscreen
+    config.vsync_enabled = vsync_enabled
+
+    config.locale = locale
+
+    config.master_volume = master_volume
+    config.sfx_volume = sfx_volume
+    config.ambience_volume = ambience_volume
+    config.music_volume = music_volume
+
+    config.mouse_sensitivity = mouse_sensitivity
+    config.gamepad_sensitvity = gamepad_sensitvity
+    config.gamepad_deadzone = gamepad_deadzone
+
+    config.fov = fov
+
+    config.toggle_to_clean = toggle_to_clean
+    config.camera_wobble_enabled = camera_wobble_enabled
+    config.show_fps_counter = show_fps_counter
+
+    for action in InputMap.get_actions():
+        config.input_map[action] = InputMap.action_get_events(action)
+
+    ResourceSaver.save(config, "user://config.tres")
+
+func _load_config():
+    var config = load("user://config.tres")
+
+    if (not config):
+        return
+
+    fullscreen = config.fullscreen
+    vsync_enabled = config.vsync_enabled
+
+    locale = config.locale
+
+    master_volume = config.master_volume
+    sfx_volume = config.sfx_volume
+    ambience_volume = config.ambience_volume
+    music_volume = config.music_volume
+
+    mouse_sensitivity = config.mouse_sensitivity
+    gamepad_sensitvity = config.gamepad_sensitvity
+    gamepad_deadzone = config.gamepad_deadzone
+
+    fov = config.fov
+
+    toggle_to_clean = config.toggle_to_clean
+    camera_wobble_enabled = config.camera_wobble_enabled
+    show_fps_counter = config.show_fps_counter
+
+    for action in config.input_map:
+        InputMap.action_erase_events(action)
+        for input_event in config.input_map[action]:
+            InputMap.action_add_event(action, input_event)

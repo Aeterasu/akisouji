@@ -9,6 +9,11 @@ static var instance = null
 func _ready():
 	instance = self
 
+	if (FileAccess.file_exists("user://config.tres")):
+		GlobalSettings._load_config()
+	else:
+		GlobalSettings._save_config()
+
 	_update_volume()
 
 	GlobalSettings.locale = GlobalSettings.locale
@@ -20,9 +25,9 @@ func _ready():
 
 	loading_screen.modulate = Color(0.0, 0.0, 0.0, 0.0)
 
-	MusicManager.player.play()
-
 	SaveManager._load()
+
+	MusicManager.player.play()
 
 func _process(delta):
 	_update_volume()

@@ -97,6 +97,8 @@ func _on_button_pressed(button : UIButton):
 
 
 func _on_back_pressed() -> void:
+	GlobalSettings._save_config()
+
 	on_settings_menu_freed.emit()
 	var duration : float = 0.2
 	var tween = create_tween()

@@ -23,6 +23,7 @@ func _process(delta):
 
 	if (Input.is_action_just_pressed("pause") or Input.is_action_just_pressed("menu_cancel")):
 		on_back_button_pressed.emit(self)
+		GlobalSettings._save_config()
 
 	if ((button_selection_handler.current_button is SettingsButton)):
 		var slider = (button_selection_handler.current_button as SettingsButton).setting_slider
@@ -76,3 +77,4 @@ func _on_button_pressed(button : UIButton) -> void:
 
 	if (button == back_button):
 		on_back_button_pressed.emit(self)
+		GlobalSettings._save_config()
