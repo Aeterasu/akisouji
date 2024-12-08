@@ -300,6 +300,7 @@ LEFT TO DO:
         
     STAGE SELECT:
         - add stage textures (reshoot them with a freecam)
+        - upon returning to stage select from the game, preserve the selected level
     
     GALLERY:
         - using keyboard blocks mouse buttons forever and ever - fix pls

@@ -12,6 +12,8 @@ class_name StageButton extends Control
 
 @export var is_finale : bool = false
 
+@export var show_highscore : bool = true
+
 var is_selected : bool = false
 
 func _ready():

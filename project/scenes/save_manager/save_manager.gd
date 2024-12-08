@@ -2,6 +2,11 @@ extends Node
 
 var seen_tutorial : bool = false
 
+var beat_0 : bool = false
+var beat_1 : bool = false
+var beat_2 : bool = false
+var beat_3 : bool = false
+
 func _save():
 	var save_file = FileAccess.open("user://leafsweep.save", FileAccess.WRITE)
 
@@ -14,6 +19,10 @@ func _save():
 		"buy_4" : UpgradeManager._is_upgrade_bought(4),
 		"buy_5" : UpgradeManager._is_upgrade_bought(5),
 		"equipped" : UpgradeManager._get_equipped_boots_id(),
+		"beat_0" : beat_0,
+		"beat_1" : beat_1,
+		"beat_2" : beat_2,
+		"beat_3" : beat_3,
 		"level_0_grade" : HighscoreManager.level_grades[0],
 		"level_0_highscore" : HighscoreManager.level_highscores[0],
 		"level_1_grade" : HighscoreManager.level_grades[1],
@@ -70,6 +79,11 @@ func _load():
 
 	if (data["buy_5"]):
 		UpgradeManager._grant_upgrade_by_id(5)
+
+	beat_0 = data["beat_0"]
+	beat_1 = data["beat_1"]
+	beat_2 = data["beat_2"]
+	beat_3 = data["beat_3"]
 
 	UpgradeManager._set_equipped_boots_by_id(data["equipped"])
 

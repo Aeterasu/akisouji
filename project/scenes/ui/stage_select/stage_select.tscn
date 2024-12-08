@@ -229,9 +229,10 @@ handle_input_locally = false
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
-[node name="StageSelectContainer" parent="SubViewportContainer/SubViewport" instance=ExtResource("9_r1ksl")]
+[node name="StageSelectContainer" parent="SubViewportContainer/SubViewport" node_paths=PackedStringArray("finale_background") instance=ExtResource("9_r1ksl")]
 size_flags_horizontal = 2
 offset = 1280.0
+finale_background = NodePath("../../../Control/StageBackground5")
 
 [node name="StageName" type="Label" parent="."]
 layout_mode = 2

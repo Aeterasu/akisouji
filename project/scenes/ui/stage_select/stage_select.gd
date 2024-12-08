@@ -117,7 +117,10 @@ func _process(delta):
 	_update_scroll(delta)
 
 	stage_name_label.text = tr(s.name_key)
-	stage_description_label.text = tr(s.description_key) + "\n" + tr("HIGH_SCORE") + ": " + str(HighscoreManager.level_highscores[(stages_container.container.get_child(current_selected_stage_id) as StageButton).level_number]).pad_zeros(9)
+	stage_description_label.text = tr(s.description_key) + "\n"
+	
+	if (s.show_highscore):
+		stage_description_label.text += tr("HIGH_SCORE") + ": " + str(HighscoreManager.level_highscores[(stages_container.container.get_child(current_selected_stage_id) as StageButton).level_number]).pad_zeros(9)
 	
 	for i in range(stage_amount):
 		if (i == current_selected_stage_id):
@@ -153,8 +156,6 @@ func _on_back_button_pressed():
 	tween.tween_property(blackout, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
 	tween.tween_callback(SceneTransitionHandler.instance._load_title_screen_scene).set_delay(0.2)
 
-
-
 func _on_navigation_button_selected():
 	if (navigation_button_selection_handler.current_selection_id == 1):
 		for node in stages_container.container.get_children():
@@ -181,8 +182,9 @@ func _on_navigation_button_pressed(button : UIButton):
 				Main.instance.stage_start_audio.play()
 				SceneTransitionHandler.instance._load_game_scene(Main.instance.current_stashed_level)
 			else:
-				Main.instance.stage_start_audio.play()
-				HighscoreManager.current_level_id = (stages_container.container.get_child(current_selected_stage_id) as StageButton).level_number
-				SceneTransitionHandler.instance._load_finale_scene()
+				if (SaveManager.beat_0 and SaveManager.beat_1 and SaveManager.beat_2 and SaveManager.beat_3):
+					Main.instance.stage_start_audio.play()
+					HighscoreManager.current_level_id = (stages_container.container.get_child(current_selected_stage_id) as StageButton).level_number
+					SceneTransitionHandler.instance._load_finale_scene()
 
 	#accent_1.play()

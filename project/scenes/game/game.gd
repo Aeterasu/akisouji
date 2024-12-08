@@ -108,6 +108,16 @@ func _process(delta):
 		UI.instance.hide()
 		HighscoreManager._update_current_level_grade(ranking_manager.get_current_rank(), ranking_manager._get_current_score())
 
+		match (HighscoreManager.current_level_id):
+			0:
+				SaveManager.beat_0 = true
+			1:
+				SaveManager.beat_1 = true
+			2:
+				SaveManager.beat_2 = true
+			3:
+				SaveManager.beat_3 = true
+
 		SaveManager._save()
 		return
 

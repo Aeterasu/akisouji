@@ -17,7 +17,7 @@ func _ready() -> void:
 
 func _input(event):
 	if (event.is_pressed()):
-		if (not exiting and event is InputEventJoypadButton or event is InputEventKey or event is InputEventMouseButton):
+		if (can_exit and (not exiting) and (event is InputEventJoypadButton or event is InputEventKey or event is InputEventMouseButton)):
 			_exit()
 
 func _allow_exit() -> void:
