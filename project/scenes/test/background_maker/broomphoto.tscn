@@ -307,11 +307,13 @@ ambient_light_color = Color(1, 1, 1, 1)
 
 [node name="mesh_sevenleague" parent="." instance=ExtResource("1_mqbei")]
 transform = Transform3D(0.0341708, -0.0201673, 0.00506345, -0.00755602, -0.00296878, 0.0391675, -0.0193717, -0.0344161, -0.00634575, 0, -0.0458159, -0.198246)
+visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_wgjbv")
 surface_material_override/1 = SubResource("StandardMaterial3D_tk38j")
 
 [node name="mesh_sevenleague2" parent="." instance=ExtResource("1_mqbei")]
 transform = Transform3D(0.0392573, -0.00192331, 0.00742756, -0.00599986, 0.0164401, 0.0359684, -0.0047822, -0.0364146, 0.0158463, -0.0889015, -0.0662279, -0.23638)
+visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_wgjbv")
 surface_material_override/1 = SubResource("StandardMaterial3D_tk38j")
 
@@ -335,7 +337,7 @@ process_material = SubResource("ParticleProcessMaterial_pcfj5")
 draw_pass_1 = SubResource("QuadMesh_eag3u")
 
 [node name="mesh_broom" parent="." instance=ExtResource("5_kkv27")]
-transform = Transform3D(0.0697656, 0.0279242, -0.027441, 0, 0.0560728, 0.05706, 0.0391506, -0.0497603, 0.0488993, 0, -0.02, -0.315)
+transform = Transform3D(0.0800001, 0, 0, 0, 0.0800001, 0, 0, 0, 0.08, 0, -0.02, -0.315)
 visible = false
 surface_material_override/0 = SubResource("StandardMaterial3D_oelar")
 
@@ -345,8 +347,7 @@ mesh = SubResource("ArrayMesh_x15t6")
 surface_material_override/0 = ExtResource("3_1tqb6")
 
 [node name="mesh_broom2" parent="." instance=ExtResource("1_n8q6l")]
-transform = Transform3D(0.00618961, 0.0360645, -0.071141, 0.0508793, 0.0531663, 0.031379, 0.0614246, -0.0476729, -0.0188232, -0.0955482, -0.125938, -0.306609)
-visible = false
+transform = Transform3D(-3.49691e-09, 0, 0.08, 0, 0.0800001, 0, -0.08, 0, -3.49691e-09, 0, -0.101, -0.2)
 surface_material_override/0 = SubResource("StandardMaterial3D_gmtjk")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="mesh_broom2"]
@@ -433,6 +434,9 @@ surface_material_override/0 = ExtResource("3_1tqb6")
 environment = SubResource("Environment_m50ux")
 
 [node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.24, 0)
+projection = 1
+size = 0.8
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.48053, 0.876979, 0, -0.876979, 0.48053, 0, 0.0349657, 0)

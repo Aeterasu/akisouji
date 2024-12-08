@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bxucohptg4lk5"]
+[gd_scene load_steps=28 format=3 uid="uid://bxucohptg4lk5"]
 
 [ext_resource type="Script" path="res://scenes/ui/title_screen/title_screen.gd" id="1_cn1xc"]
 [ext_resource type="PackedScene" uid="uid://dj6rqqv2dxh8t" path="res://scenes/ui/settings_menu/settings_menu.tscn" id="2_aqpct"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://c2gi0x0ml64uf" path="res://assets/texture/girl/girl1_2.png" id="7_docbu"]
 [ext_resource type="Texture2D" uid="uid://cxi2udxes477p" path="res://assets/texture/girl/girl1_blur.png" id="8_2nckq"]
 [ext_resource type="Script" path="res://scenes/utils/mouse_capture_handler.gd" id="8_osiqa"]
+[ext_resource type="Texture2D" uid="uid://bb72aqf18bh4t" path="res://assets/texture/logo.png" id="18_ppfos"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nph5e"]
 particles_animation = true
@@ -65,6 +66,13 @@ shader_parameter/modulate = Color(0.890196, 0.8, 0.694118, 1)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ia864"]
 blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_2swkj"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_n342w"]
+gradient = SubResource("Gradient_2swkj")
+fill_to = Vector2(0.5, 0.6)
 
 [node name="TitleScreen" type="Control" node_paths=PackedStringArray("button_selection_handler", "start_button", "gallery_button", "options_button", "credits_button", "exit_button", "submenu_origin", "blackout")]
 layout_mode = 3
@@ -276,3 +284,26 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+
+[node name="Backdrop" type="TextureRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.974
+anchor_bottom = 1.0
+offset_right = -0.138062
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_n342w")
+expand_mode = 1
+
+[node name="Logo" type="TextureRect" parent="."]
+texture_filter = 6
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 0.155
+offset_right = 730.0
+offset_bottom = 164.4
+mouse_filter = 2
+texture = ExtResource("18_ppfos")
+expand_mode = 1
+stretch_mode = 4

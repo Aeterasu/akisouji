@@ -168,6 +168,8 @@ LEFT TO DO:
     + ADD KARTOSHKA EASTER EGG
     + tutorial level final pass. setup heightmaps for tutorial level (add small pumpkins :3)
     + make keybinds and controller binds
+    + COME UP WITH A NAME FOR THE GAME!!! = AUTUMN CLEANUP
+    + add some sort of intro seq
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
     
     = consider reworking the sweeping mechanic. 
@@ -313,8 +315,6 @@ LEFT TO DO:
         - GAME NAME AND LOGO IN TITLE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 		- Add cleanable surface tag so that we can't exactly clean lampposts etc
-	
-        - add some sort of intro seq
         
         - set locale on first launch
         - check out TODOs in code and implement them 🥺🥺🥺
@@ -324,7 +324,6 @@ LEFT TO DO:
     
     FLUFF:
         - add chibis
-        - COME UP WITH A NAME FOR THE GAME!!!
         - come up with a name for a chara.
 
         - tutorial should have chibi in it!!!

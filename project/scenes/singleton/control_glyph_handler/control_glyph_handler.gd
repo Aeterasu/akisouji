@@ -39,6 +39,8 @@ func _get_glyph_bbcode(input : InputEvent) -> String:
 				result = _get_playstation_axis(joypadMotion.axis)
 			"PS5 Controller":
 				result = _get_playstation_axis(joypadMotion.axis)
+			_:
+				result = _get_xbox_axis(joypadMotion.axis)
 	elif (input is InputEventJoypadButton):
 		var joypadButton = input as InputEventJoypadButton;
 		var joypadName = Input.get_joy_name(0);
@@ -50,6 +52,8 @@ func _get_glyph_bbcode(input : InputEvent) -> String:
 				result = _get_playstation_button(joypadButton.button_index)
 			"PS5 Controller":
 				result = _get_playstation_button(joypadButton.button_index)
+			_:
+				result = _get_xbox_button(joypadButton.button_index)
 
 	if (result == ""):
 		return input.as_text()
