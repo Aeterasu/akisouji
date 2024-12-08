@@ -173,6 +173,9 @@ LEFT TO DO:
     + rewrite some of the keybind popups texts, to make them clearer (reference any other game)
     + add stage select audio
     + GAME NAME AND LOGO IN TITLE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    + add a final stage that unlocks upon completing all of them, that is just a field with grass and THANKS FOR PLAYING!
+    + also please don't let [game_name] string into release :D
+    + upon returning to stage select from the game, preserve the selected level
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
     
     = consider reworking the sweeping mechanic. 
@@ -215,7 +218,7 @@ LEFT TO DO:
         - alleyway level leaves are slighlty cutoff
     
     GAMEPLAY:
-        - add objectives
+        = add objectives
             = alleyway
                 =1. clean the leaves 0%
 
@@ -231,9 +234,6 @@ LEFT TO DO:
         = consider updating the scoring to take into acount the CLEANING ACTION, not the amount of leaves (basically remove multiplying by amount, but tweak brooms tickrate then. perhaps give each broom its own multiplier?)
 
         - WRITE THE MISSING TEXT DESCRIPTIONS
-        - also please don't let [game_name] string into release :D
-
-        - add a final stage that unlocks upon completing all of them, that is just a field with grass and THANKS FOR PLAYING!
 
         - add finding secret cats as a small side quest - needed to unlock the golden broom ?
 
@@ -257,6 +257,7 @@ LEFT TO DO:
 		- flowing leaves in the fountain
     
     AUDIO:
+        - add finale audio
         - separate songs into game and menus
         - write a simple piece for title menu (chords and some piano)
         - make improvements towards asmr sound
@@ -300,7 +301,6 @@ LEFT TO DO:
         
     STAGE SELECT:
         - add stage textures (reshoot them with a freecam)
-        - upon returning to stage select from the game, preserve the selected level
     
     GALLERY:
         - using keyboard blocks mouse buttons forever and ever - fix pls
