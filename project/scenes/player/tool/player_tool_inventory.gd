@@ -11,6 +11,8 @@ var tools : Array[PlayerTool] = []
 
 var swap_cooldown_timer : Timer = Timer.new()
 
+var first_hud_update : bool = false
+
 func _ready():
 	for node in tool_origin.get_children():
 		if (node is PlayerTool):
@@ -21,9 +23,10 @@ func _ready():
 	add_child(swap_cooldown_timer)
 	swap_cooldown_timer.one_shot = true
 
-	await get_tree().create_timer(0.05).timeout
-
-	_update_hud_textures()
+func _process(delta) -> void:
+	if (!first_hud_update and UI.instance):
+		_update_hud_textures()
+		first_hud_update = true
 
 func _update_hud_textures() -> void:
 	UI.instance.ui_tool_carousel.tool_center.texture = current_tool.hud_icon

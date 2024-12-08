@@ -161,6 +161,7 @@ LEFT TO DO:
     + add high score to stage select.
     + settings saving
     + add settings menu. master, sfx, ambience, music volume. fullscreen/windowed. language. leaf higlight color setting. fov - 70-100. controls. mouse sensitivity, gamepad sensitivity. -AUDIO, -VISUALS, -GAMEPLAY, -KEY BINDINGS, -GAMEPAD BINDINGS
+    + REMOVE TIMER FROM FIRST HUD UPDATE due to async it may fuck up and crash
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
     
     = consider reworking the sweeping mechanic. 
@@ -226,7 +227,6 @@ LEFT TO DO:
         - rework loading screen (chibis + let them show the stage picture. short stage description and "ENTERING [stage_name]...", press any button to start)
     
     IN-GAME HUD:
-        - REMOVE TIMER FROM FIRST HUD UPDATE due to async it may fuck up and crash
     
     VISUAL:
         GOLDEN AUTUMN MUCH?
