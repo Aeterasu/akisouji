@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://ctyas8et4qqpd"]
+[gd_scene load_steps=37 format=3 uid="uid://ctyas8et4qqpd"]
 
 [ext_resource type="PackedScene" uid="uid://cka5occqvar8n" path="res://assets/mesh/prop/mesh_fountain_prop_1.blend" id="1_pllja"]
 [ext_resource type="Script" path="res://scenes/prop/fountain/prop_fountain.gd" id="1_xaua7"]
@@ -184,14 +184,19 @@ albedo_texture = ExtResource("10_s6td5")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_kjx7w"]
 material = SubResource("StandardMaterial3D_gr0ib")
-size = Vector2(0.5, 0.5)
+size = Vector2(0.3, 0.5)
 
-[node name="Fountain" type="Node3D" node_paths=PackedStringArray("water_mesh", "floating_leaves")]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3lagu"]
+height = 1.36711
+radius = 3.78571
+
+[node name="Fountain" type="Node3D" node_paths=PackedStringArray("water_mesh", "floating_leaves", "water")]
 script = ExtResource("1_xaua7")
 water_mesh = NodePath("mesh_fountain_prop_1/Water")
 water_speed = 3.0
 floating_leaves = NodePath("Leaves")
 leaves_speed = 4.0
+water = NodePath("WaterArea")
 
 [node name="mesh_fountain_prop_1" parent="." instance=ExtResource("1_pllja")]
 surface_material_override/0 = SubResource("StandardMaterial3D_ipunq")
@@ -447,5 +452,14 @@ mesh = SubResource("PlaneMesh_kjx7w")
 [node name="MeshInstance3D36" type="MeshInstance3D" parent="Leaves"]
 transform = Transform3D(0.854966, 0, 0.518684, 0, 1, 0, -0.518684, 0, 0.854966, -0.144835, -3.30221, 2.45814)
 mesh = SubResource("PlaneMesh_kjx7w")
+
+[node name="WaterArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WaterArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.552494, 0)
+shape = SubResource("CylinderShape3D_3lagu")
 
 [editable path="mesh_fountain_prop_1"]

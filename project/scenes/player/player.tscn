@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://077fpjam3rlw"]
+[gd_scene load_steps=66 format=3 uid="uid://077fpjam3rlw"]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_e0tat"]
 [ext_resource type="Script" path="res://scenes/component/velocity_component/velocity_component.gd" id="3_umteq"]
@@ -32,8 +32,11 @@
 [ext_resource type="AudioStream" uid="uid://dv0g4v6satk5k" path="res://assets/audio/sfx_leaf_footstep_2.ogg" id="27_lpdwu"]
 [ext_resource type="AudioStream" uid="uid://qqrgriis5oeu" path="res://assets/audio/sfx_player_jump_1.ogg" id="28_b26d0"]
 [ext_resource type="AudioStream" uid="uid://bsvt0o7hjhf0m" path="res://assets/audio/sfx_leaf_footstep_3.ogg" id="28_mj80c"]
+[ext_resource type="AudioStream" uid="uid://ddqr62xgeo2rc" path="res://assets/audio/sfx_player_footstep_water_1.ogg" id="29_4ibol"]
+[ext_resource type="AudioStream" uid="uid://cihp6pn5uxvdn" path="res://assets/audio/sfx_player_footstep_water_2.ogg" id="30_l1mwh"]
 [ext_resource type="AudioStream" uid="uid://ckvfw1v4i7yov" path="res://assets/audio/sfx_player_land_1.ogg" id="30_u8teo"]
 [ext_resource type="Texture2D" uid="uid://b6te5m8ou6wik" path="res://assets/texture/fx/texture_fx_dust_1.png" id="31_l2a2d"]
+[ext_resource type="AudioStream" uid="uid://begxysjc3gvd4" path="res://assets/audio/sfx_player_footstep_water_3.ogg" id="31_ot6vx"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dq522"]
 
@@ -136,6 +139,12 @@ mode = 0
 meta = SubResource("Resource_ck1jr")
 play = false
 play_on_change = false
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_mgwcy"]
+streams_count = 3
+stream_0/stream = ExtResource("29_4ibol")
+stream_1/stream = ExtResource("30_l1mwh")
+stream_2/stream = ExtResource("31_ot6vx")
 
 [sub_resource type="Resource" id="Resource_owuml"]
 script = ExtResource("16_7g8ho")
@@ -313,7 +322,7 @@ collision_mask = 4
 debug_shape_custom_color = Color(3.6074e-07, 0.0827658, 0.550201, 1)
 debug_shape_thickness = 3
 
-[node name="FootstepManager" type="Node3D" parent="." node_paths=PackedStringArray("player", "velocity_component", "raycast", "concrete_footstep", "grass_footstep", "leaf_footstep")]
+[node name="FootstepManager" type="Node3D" parent="." node_paths=PackedStringArray("player", "velocity_component", "raycast", "concrete_footstep", "grass_footstep", "leaf_footstep", "water_footstep")]
 script = ExtResource("11_le046")
 player = NodePath("..")
 velocity_component = NodePath("../VelocityComponent")
@@ -322,6 +331,7 @@ step_rate = 2.1
 concrete_footstep = NodePath("ConcreteFootstep")
 grass_footstep = NodePath("GrassFootstep")
 leaf_footstep = NodePath("LeafFootstep")
+water_footstep = NodePath("WaterFootstep")
 
 [node name="ConcreteFootstep" type="Node" parent="FootstepManager"]
 script = ExtResource("12_ws1qt")
@@ -340,6 +350,10 @@ script = ExtResource("12_ws1qt")
 sound_effect = SubResource("Resource_wdgvj")
 bus = &"SFX"
 max_polyphony = 4
+
+[node name="WaterFootstep" type="AudioStreamPlayer" parent="FootstepManager"]
+stream = SubResource("AudioStreamRandomizer_mgwcy")
+bus = &"SFX"
 
 [node name="RayCast3D" type="RayCast3D" parent="FootstepManager"]
 enabled = false

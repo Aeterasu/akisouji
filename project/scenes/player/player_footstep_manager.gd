@@ -11,9 +11,13 @@ class_name FootstepManager extends Node3D
 
 @export var leaf_footstep : SoundEffectPlayer = null
 
+@export var water_footstep : AudioStreamPlayer = null
+
 var cur_step_rate : float = 0.0
 
 var current_footstep : SoundEffectPlayer = null
+
+var is_in_water : bool = false
 
 signal on_footstep 
 
@@ -41,3 +45,6 @@ func _physics_process(delta):
 		if (Game.game_instance.cleaning_handler and Game.game_instance.cleaning_handler.AreThereLeavesInRadius(Vector2(global_position.x, global_position.z), 0.5)):
 			#leaf_footstep.pitch_scale = randf_range(0.8, 1.0)
 			leaf_footstep.play()
+
+		if (is_in_water):
+			water_footstep.play()
