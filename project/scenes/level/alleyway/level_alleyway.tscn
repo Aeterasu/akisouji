@@ -98,7 +98,7 @@ billboard_keep_scale = true
 [node name="LevelAlleyway" node_paths=PackedStringArray("leaf_populator", "player_spawn_position") instance=ExtResource("1_yq5x8")]
 script = ExtResource("2_akrc7")
 leaf_populator = NodePath("LeafPopulator")
-leaf_leeway = 250
+leaf_leeway = 450
 player_spawn_position = NodePath("PlayerSpawnPosition")
 enable_rain = true
 s_rank_target_score = 550000.0

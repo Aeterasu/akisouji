@@ -309,9 +309,16 @@ billboard_keep_scale = true
 [node name="mesh_church" node_paths=PackedStringArray("leaf_populator", "player_spawn_position") instance=ExtResource("1_ut78t")]
 script = ExtResource("2_hsbfh")
 leaf_populator = NodePath("LeafPopulator")
-leaf_leeway = 400
+leaf_leeway = 1200
 player_spawn_position = NodePath("Marker3D")
 enable_rain = true
+s_rank_target_score = 800000.0
+a_rank_target_score = 450000.0
+b_rank_target_score = 350000.0
+c_rank_target_score = 120000.0
+s_target_speed_clear = 420.0
+a_target_speed_clear = 700.0
+b_target_speed_clear = 1100.0
 
 [node name="Ambience" type="AudioStreamPlayer" parent="." index="0"]
 process_mode = 3
@@ -657,19 +664,19 @@ transform = Transform3D(0.348261, 0, 0.937398, 0, 1, 0, -0.937398, 0, 0.348261, 
 [node name="VeryDistantFoliage" type="Node3D" parent="." index="27"]
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="VeryDistantFoliage" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.29474, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.40911, 0)
 multimesh = SubResource("MultiMesh_8kwpn")
 
 [node name="MultiMeshInstance3D2" type="MultiMeshInstance3D" parent="VeryDistantFoliage" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.335, -1.295, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.335, 2.36281, 0)
 multimesh = SubResource("MultiMesh_1l7la")
 
 [node name="MultiMeshInstance3D3" type="MultiMeshInstance3D" parent="VeryDistantFoliage" index="2"]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.335, -1.295, 0)
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 8.335, 3.86336, 0)
 multimesh = SubResource("MultiMesh_1l7la")
 
 [node name="MultiMeshInstance3D4" type="MultiMeshInstance3D" parent="VeryDistantFoliage" index="3"]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 104.812, -1.295, 24.8008)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 104.812, 3.04792, 24.8008)
 multimesh = SubResource("MultiMesh_1l7la")
 
 [node name="HorizonPavement_002" parent="." index="28"]
