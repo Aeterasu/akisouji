@@ -27,6 +27,7 @@ func _exit() -> void:
 	exiting = true
 
 	HighscoreManager._update_current_level_grade(RankingManager.Rank.S, 999999999)
+	SaveManager._save()
 	
 	var tween = get_tree().create_tween()
 	tween.tween_property(blackout, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.4)
