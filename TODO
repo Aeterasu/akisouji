@@ -179,6 +179,8 @@ LEFT TO DO:
     + fix floating trees in alleyway
     + add stage textures (reshoot them with a freecam)
     + WRITE THE MISSING TEXT DESCRIPTIONS
+    + fix alcove heightmap
+    + alleyway level leaves are slighlty cutoff
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
     
     = consider reworking the sweeping mechanic. 
@@ -234,10 +236,6 @@ LEFT TO DO:
     
     FIXES:
         - polish up the jank
-        
-        - alleyway level leaves are slighlty cutoff
-
-        - fix alcove heightmap
     
     GAMEPLAY:
         = add objectives
