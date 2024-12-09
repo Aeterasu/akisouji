@@ -181,6 +181,7 @@ LEFT TO DO:
     + WRITE THE MISSING TEXT DESCRIPTIONS
     + fix alcove heightmap
     + alleyway level leaves are slighlty cutoff
+    + flowing leaves in the fountain
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
     
     = consider reworking the sweeping mechanic. 
@@ -268,8 +269,6 @@ LEFT TO DO:
     
     VISUAL:
         GOLDEN AUTUMN MUCH?
-		
-		- flowing leaves in the fountain
     
     AUDIO:
         - add finale audio
