@@ -102,8 +102,10 @@ buffer = PackedFloat32Array(0.647813, 0, -0.763112, 48.0353, 0, 1.001, 0, 0, 0.7
 [node name="LevelFountain" node_paths=PackedStringArray("leaf_populator", "player_spawn_position") instance=ExtResource("1_xjuuk")]
 script = ExtResource("2_mcqjm")
 leaf_populator = NodePath("LeafPopulator")
-leaf_leeway = 350
+leaf_leeway = 150
 player_spawn_position = NodePath("Marker3D")
+s_rank_target_score = 450000.0
+s_target_speed_clear = 280.0
 
 [node name="LeafPopulator" parent="." index="0" instance=ExtResource("3_atajh")]
 leavesPerPixel = 17

@@ -515,7 +515,6 @@ script = ExtResource("19_r5y7g")
 shop_button = NodePath("../Buttons/PaperButtonHFlipped")
 
 [node name="BlackoutLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="ColorRect" type="ColorRect" parent="BlackoutLayer"]
 anchors_preset = 15

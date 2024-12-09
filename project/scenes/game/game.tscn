@@ -123,10 +123,12 @@ script = ExtResource("8_18ngi")
 cash_bonus_s_rank = 500.0
 cash_bonus_a_rank = 350.0
 cash_bonus_b_rank = 250.0
-multiplier_sprinting = 1.8
+multiplier_sprinting = 2.0
 multiplier_jumping = 3.0
 multiplier_sprint_jumping = 10.0
 multiplier_garbage_bag = 25.0
+multiplier_speed_clear_a = 1.3
+multiplier_speed_clear_b = 1.1
 
 [node name="Pausable" type="Node" parent="."]
 process_mode = 1
@@ -144,7 +146,6 @@ layer = -127
 
 [node name="UIUpscaler" type="Node" parent="UILayer/UI"]
 script = ExtResource("8_d3y8h")
-target_scale = 0.8
 
 [node name="SpeedEffect" type="TextureRect" parent="UILayer" node_paths=PackedStringArray("player")]
 material = SubResource("CanvasItemMaterial_e7rcr")

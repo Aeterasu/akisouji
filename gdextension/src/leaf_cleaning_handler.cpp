@@ -179,12 +179,12 @@ void LeafCleaningHandler::UpdateTicks(double delta)
             }
         }
 
-        if (cleaned > 0)
-        {
-            emit_signal("on_leaves_cleaned", cleaned);
-        }
-
         requests.remove_at(i);
+    }
+
+    if (cleaned > 0)
+    {
+        emit_signal("on_leaves_cleaned", cleaned);
     }
 }
 

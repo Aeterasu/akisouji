@@ -8,7 +8,7 @@
 script = ExtResource("1_4gtq8")
 broom_scene = ExtResource("1_rasha")
 upgrade_icon = ExtResource("3_sjv3r")
-cost = 2500
+cost = 3200
 name_key = "ITEM_NAME_LEAF_BLOWER"
 description_key = "ITEM_DESCRIPTION_LEAF_BLOWER"
 one_time_purchase = true

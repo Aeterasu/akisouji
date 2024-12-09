@@ -203,16 +203,16 @@ size = Vector3(1, 16, 40)
 script = ExtResource("2_xm36i")
 enable_tutorial = true
 leaf_populator = NodePath("LeafPopulator")
-leaf_leeway = 75
+leaf_leeway = 180
 player_spawn_position = NodePath("Marker3D")
 cash_reward = 150.0
-s_rank_target_score = 150000.0
-a_rank_target_score = 90000.0
-b_rank_target_score = 50000.0
+s_rank_target_score = 250000.0
+a_rank_target_score = 150000.0
+b_rank_target_score = 90000.0
 c_rank_target_score = 25000.0
-s_target_speed_clear = 90.0
-a_target_speed_clear = 180.0
-b_target_speed_clear = 280.0
+s_target_speed_clear = 180.0
+a_target_speed_clear = 360.0
+b_target_speed_clear = 500.0
 
 [node name="LeafPopulator" parent="." instance=ExtResource("3_bjglw")]
 leavesPerPixel = 5

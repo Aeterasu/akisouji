@@ -100,8 +100,8 @@ category_tools = NodePath("Categories/ShopCategoryTools")
 category_boots = NodePath("Categories/ShopCategoryBoots")
 sidepanel = NodePath("SidePanel")
 shop_default_motto_key = "SHOP_DEFAULT_MOTTO"
-category_tools_motto_key = "CATEGORY_TOOLS_MOTTO"
-category_boots_motto_key = "CATEGORY_BOOTS_MOTTO"
+category_tools_motto_key = "SHOP_TOOLS_MOTTO"
+category_boots_motto_key = "SHOP_BOOTS_MOTTO"
 purchase_accent_1 = NodePath("PurchaseAudio1")
 purchase_denied_accent_1 = NodePath("PurchaseDenied1")
 tools_exclamation_mark = NodePath("CategorySelect/Tools/AnimationOrigin/ExclamationMark")
@@ -199,6 +199,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 141.0
+offset_right = -48.0
 offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -208,6 +209,7 @@ theme_override_font_sizes/font_size = 32
 text = "Welcome to the shop!"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="InCategory" type="Control" parent="SidePanel/Gradient"]
 layout_mode = 1
