@@ -1,11 +1,11 @@
 class_name SceneTransitionHandler extends Node
 
 @export var title_screen_scene : PackedScene = null
-@export var game_scene : PackedScene = null
+@export var game_scene_path = "res://scenes/game/game.tscn"
 @export var shop_scene : PackedScene = null
 @export var gallery_scene : PackedScene = null
 @export var stage_select_scene : PackedScene = null
-@export var finale_scene : PackedScene = null
+@export var finale_scene_path = "res://scenes/level/finale/level_finale.tscn"
 
 var initialized_scenes : Array[Node] = []
 
@@ -50,7 +50,7 @@ func _load_game_scene(level : PackedScene) -> void:
 
 	await get_tree().create_timer(0.2).timeout
 
-	_load_scene(game_scene.resource_path, true, level)
+	_load_scene(game_scene_path, true, level)
 
 	tween.stop()
 	tween.tween_property(Main.instance.loading_screen, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.2)
@@ -73,7 +73,7 @@ func _load_finale_scene() -> void:
 
 	await get_tree().create_timer(0.2).timeout
 
-	_load_scene(finale_scene.resource_path)
+	_load_scene(finale_scene_path)
 
 	tween.stop()
 	tween.tween_property(Main.instance.loading_screen, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.2)

@@ -144,6 +144,7 @@ layer = -127
 
 [node name="UIUpscaler" type="Node" parent="UILayer/UI"]
 script = ExtResource("8_d3y8h")
+target_scale = 0.8
 
 [node name="SpeedEffect" type="TextureRect" parent="UILayer" node_paths=PackedStringArray("player")]
 material = SubResource("CanvasItemMaterial_e7rcr")
