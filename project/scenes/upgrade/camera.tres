@@ -8,5 +8,5 @@ script = ExtResource("1_13gv6")
 upgrade_icon = ExtResource("2_cchg6")
 cost = 0
 name_key = "ITEM_NAME_CAMERA"
-description_key = ""
+description_key = "ITEM_DESCRIPTION_CAMERA"
 one_time_purchase = true

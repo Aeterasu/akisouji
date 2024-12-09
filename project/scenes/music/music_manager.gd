@@ -1,4 +1,4 @@
-extends Node
+class_name MusicManager extends Node
 
 @export var player : SoundEffectPlayer = null
 

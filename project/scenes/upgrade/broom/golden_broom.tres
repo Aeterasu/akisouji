@@ -8,7 +8,7 @@
 script = ExtResource("2_g7ob6")
 broom_scene = ExtResource("1_lv58o")
 upgrade_icon = ExtResource("3_gy7jg")
-cost = 5000
+cost = 12000
 name_key = "ITEM_NAME_GOLDEN_BROOM"
 description_key = "ITEM_DESCRIPTION_GOLDEN_BROOM"
 one_time_purchase = true

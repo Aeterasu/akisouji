@@ -5,7 +5,7 @@ render_mode unshaded, depth_test_disabled;
 uniform vec4 highlight_color : source_color = vec4(1.0);
 uniform sampler2D leaf_texture;
 
-void vertex() 
+void vertex()
 {
 	COLOR = highlight_color * COLOR.a;
 }

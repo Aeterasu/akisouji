@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://csiwqcarnpidw"]
+[gd_scene load_steps=14 format=3 uid="uid://csiwqcarnpidw"]
 
 [ext_resource type="Script" path="res://scenes/music/music_manager.gd" id="1_skx2q"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/nodes/sound_effect_player.gd" id="2_ielfd"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/resources/multi_sound_effect_item.gd" id="3_2l3qq"]
 [ext_resource type="AudioStream" uid="uid://bhc2pfewhw54a" path="res://assets/audio/music_last_autumn.mp3" id="4_xhkju"]
+[ext_resource type="AudioStream" uid="uid://bws4qvwys51iq" path="res://assets/audio/music_gold_october.mp3" id="5_eqa2p"]
 [ext_resource type="AudioStream" uid="uid://c8fafapn08vus" path="res://assets/audio/music_at_night.mp3" id="5_qsqiu"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/resources/sound_effect_meta.gd" id="6_5kgup"]
 [ext_resource type="Script" path="res://addons/bmod/scripts/resources/multi_sound_effect.gd" id="7_g5kp4"]
@@ -11,6 +12,11 @@
 [sub_resource type="Resource" id="Resource_0k77k"]
 script = ExtResource("3_2l3qq")
 audio_stream = ExtResource("4_xhkju")
+weight = 1
+
+[sub_resource type="Resource" id="Resource_lxure"]
+script = ExtResource("3_2l3qq")
+audio_stream = ExtResource("5_eqa2p")
 weight = 1
 
 [sub_resource type="Resource" id="Resource_vcieb"]
@@ -27,7 +33,7 @@ pitch_variation = 0.0
 
 [sub_resource type="Resource" id="Resource_t0qnm"]
 script = ExtResource("7_g5kp4")
-effect_pool = Array[ExtResource("3_2l3qq")]([SubResource("Resource_0k77k"), SubResource("Resource_vcieb")])
+effect_pool = Array[ExtResource("3_2l3qq")]([SubResource("Resource_0k77k"), SubResource("Resource_lxure"), SubResource("Resource_vcieb")])
 mode = 2
 meta = SubResource("Resource_1amra")
 play = false

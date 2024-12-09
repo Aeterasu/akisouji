@@ -4,6 +4,8 @@ class_name Main extends Node
 
 @export var stage_start_audio : AudioStreamPlayer = null
 
+@export var music_manager : MusicManager = null
+
 var current_stashed_level : PackedScene = null
 
 static var instance = null
@@ -29,7 +31,7 @@ func _ready():
 
 	SaveManager._load()
 
-	MusicManager.player.play()
+	music_manager.player.play()
 
 func _process(delta):
 	_update_volume()

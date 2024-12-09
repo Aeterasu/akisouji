@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://d28lh7c58l5qv"]
+[gd_scene load_steps=17 format=3 uid="uid://d28lh7c58l5qv"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_bkdub"]
 [ext_resource type="Script" path="res://scenes/main/scene_transition_handler.gd" id="2_7iqhl"]
@@ -13,6 +13,7 @@
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="10_m1uao"]
 [ext_resource type="PackedScene" uid="uid://dh34t2y2h07bu" path="res://scenes/ui/fpscounter.tscn" id="11_h0csv"]
 [ext_resource type="AudioStream" uid="uid://3phj1iv5duuv" path="res://assets/audio/sfx_stage_start.ogg" id="12_xnjan"]
+[ext_resource type="PackedScene" uid="uid://csiwqcarnpidw" path="res://scenes/music/music_manager.tscn" id="14_03lec"]
 
 [sub_resource type="Gradient" id="Gradient_br6rk"]
 colors = PackedColorArray(0, 0, 0, 1, 0.126179, 0.0169545, 0.0044633, 1)
@@ -23,11 +24,12 @@ width = 320
 height = 180
 fill_to = Vector2(0, 1)
 
-[node name="Main" type="Node" node_paths=PackedStringArray("loading_screen", "stage_start_audio")]
+[node name="Main" type="Node" node_paths=PackedStringArray("loading_screen", "stage_start_audio", "music_manager")]
 process_mode = 3
 script = ExtResource("1_bkdub")
 loading_screen = NodePath("LoadingLayer/LoadingScreen")
 stage_start_audio = NodePath("StageStart")
+music_manager = NodePath("MusicManager")
 
 [node name="SceneTransitionHandler" type="Node" parent="."]
 script = ExtResource("2_7iqhl")
@@ -88,3 +90,5 @@ z_as_relative = false
 stream = ExtResource("12_xnjan")
 volume_db = -9.0
 bus = &"SFX"
+
+[node name="MusicManager" parent="." instance=ExtResource("14_03lec")]
