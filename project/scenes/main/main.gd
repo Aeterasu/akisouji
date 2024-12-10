@@ -21,8 +21,7 @@ func _ready():
 
 	SaveManager._load()
 
-	music_manager.player.play()
-	(music_manager.player.sound_effect as MultiSoundEffect).mode = MultiSoundEffect.Mode.SHUFFLE
+	music_manager.menu_music.play()
 
 func _process(delta):
 	_update_volume()

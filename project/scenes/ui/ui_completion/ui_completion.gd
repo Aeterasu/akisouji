@@ -70,6 +70,8 @@ func _transition(button : UIButton):
 
 	SceneTransitionHandler.instance._load_stage_select_scene()
 
+	Main.instance.music_manager.currently_playing = Main.instance.music_manager.CurrentlyPlaying.MENU
+
 func _set_grade(a : int):
 	grade_emblem.grade = a
 

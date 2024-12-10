@@ -183,6 +183,8 @@ func _on_navigation_button_pressed(button : UIButton):
 				Main.instance.current_stashed_level = (stages_container.container.get_child(current_selected_stage_id) as StageButton).stage_scene
 				Main.instance.stage_start_audio.play()
 				SceneTransitionHandler.instance._load_game_scene(Main.instance.current_stashed_level)
+
+				Main.instance.music_manager.currently_playing = Main.instance.music_manager.CurrentlyPlaying.GAMEPLAY
 			else:
 				if (SaveManager.beat_0 and SaveManager.beat_1 and SaveManager.beat_2 and SaveManager.beat_3):
 					Main.instance.stage_start_audio.play()

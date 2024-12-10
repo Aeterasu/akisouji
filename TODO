@@ -190,6 +190,8 @@ LEFT TO DO:
     + settings category doesn't properly update language
     + set ranking times and scores on levels !!!
     + sort language file
+    + separate songs into game and menus
+    + write a simple piece for title menu (chords and some piano)
     +make all shoes scale cleaning
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
     
@@ -263,11 +265,9 @@ LEFT TO DO:
         = consider updating the scoring to take into acount the CLEANING ACTION, not the amount of leaves (basically remove multiplying by amount, but tweak brooms tickrate then. perhaps give each broom its own multiplier?)
 
          disabled leaf populator completely breaks the game, pls add safety checks
-        - maybe implement optimization via cluster of multimeshes
     
     GENERAL UI:
         = ? add shop button to title screen ?
-        - ADD STYLISTIC POEMS TO OTHER MENUS!!! shop, stage select, gallery etc
 
         - rework loading screen (chibis + let them show the stage picture. short stage description and "ENTERING [stage_name]...", press any button to start)
     
@@ -277,11 +277,7 @@ LEFT TO DO:
         GOLDEN AUTUMN MUCH?
     
     AUDIO:
-        - add finale audio
-        - separate songs into game and menus
-        - write a simple piece for title menu (chords and some piano)
-        - make improvements towards asmr sound
-    
+
     SETTINGS:
         = CHANGEABLE KEYBINDS
             =KEYBOARD
@@ -316,33 +312,20 @@ LEFT TO DO:
 
         =UTILITY
             =leaf highlighting
-
-        - add like a 'bought' and 'equipped\ rectangle stamp
         
     STAGE SELECT:
     
     GALLERY:
-        - using keyboard blocks mouse buttons forever and ever - fix pls
-        - press horizontal buttons to swipe pictures
     
     PAUSE MENU:
     
     MISC:
         - also, before release, just in case, check with virustotal
 
-		- Add cleanable surface tag so that we can't exactly clean lampposts etc
-        
-        - set locale on first launch
-        - check out TODOs in code and implement them 🥺🥺🥺
-    
-        - disable console before release
         - IMPORTANT! BEFORE RELEASE, RECOMPILE C++ TO RELEASE TEMPLATE
     
     FLUFF:
         - add chibis
-        - come up with a name for a chara.
-
-        - tutorial should have chibi in it!!!
     
     LOCALIZATION:
         - add russian, and if possible, japanese localization

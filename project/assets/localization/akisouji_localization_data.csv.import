@@ -6,10 +6,10 @@ uid="uid://dphqcy2tjsxkr"
 
 [deps]
 
-files=["res://assets/localization/akisouji_localization_data.en.translation", "res://assets/localization/akisouji_localization_data.ru.translation", "res://assets/localization/akisouji_localization_data.ja.translation", "res://assets/localization/akisouji_localization_data.sp.translation"]
+files=["res://assets/localization/akisouji_localization_data.en.translation", "res://assets/localization/akisouji_localization_data.ru.translation", "res://assets/localization/akisouji_localization_data.sp.translation", "res://assets/localization/akisouji_localization_data.ja.translation"]
 
 source_file="res://assets/localization/akisouji_localization_data.csv"
-dest_files=["res://assets/localization/akisouji_localization_data.en.translation", "res://assets/localization/akisouji_localization_data.ru.translation", "res://assets/localization/akisouji_localization_data.ja.translation", "res://assets/localization/akisouji_localization_data.sp.translation"]
+dest_files=["res://assets/localization/akisouji_localization_data.en.translation", "res://assets/localization/akisouji_localization_data.ru.translation", "res://assets/localization/akisouji_localization_data.sp.translation", "res://assets/localization/akisouji_localization_data.ja.translation"]
 
 [params]
 

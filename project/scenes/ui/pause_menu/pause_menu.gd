@@ -124,6 +124,9 @@ func _on_exit_confirmed():
 	var tween = create_tween()
 	tween.tween_property(BlackoutLayer.instance.black_rect, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.1)
 	tween.tween_callback(func(): SceneTransitionHandler.instance._load_title_screen_scene()).set_delay(0.1)
+
+	Main.instance.music_manager.currently_playing = Main.instance.music_manager.CurrentlyPlaying.MENU
+	
 	get_tree().paused = false
 
 func _on_exit_discarded():

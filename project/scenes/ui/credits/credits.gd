@@ -63,6 +63,8 @@ func _process(delta):
 	label.text += "\n"
 	label.text += "[color=" + str(font_color_2.to_html()) + "]"
 	label.text += "[font_size=" + str(font_size_2) + "]" + tr("CREDITS_6") + "[/font_size]"
+	label.text += "\n"
+	label.text += "[font_size=" + str(font_size_2) + "]" + tr("CREDITS_2") + "[/font_size]"
 	label.text += "[/color]"
 
 	label.text += "[/center]"
