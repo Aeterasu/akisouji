@@ -5,6 +5,6 @@
 [node name="GlobalSettings" type="Node"]
 process_mode = 3
 script = ExtResource("1_diykh")
-music_volume = 0.8
+music_volume = 0.6
 gamepad_sensitvity = 96.0
 bindable_actions = Array[String](["player_move_forward", "player_move_backwards", "player_move_left", "player_move_right", "player_action_jump", "player_action_sprint", "player_action_primary", "player_action_secondary", "player_action_previous_tool", "player_action_next_tool", "menu_confirm", "hint_highlight", "open_inventory"])

@@ -22,6 +22,7 @@ boot_splash/show_image=false
 boot_splash/fullsize=false
 boot_splash/use_filter=false
 config/icon="res://assets/texture/icon.png"
+config/windows_native_icon="res://favicon.ico"
 
 [audio]
 
