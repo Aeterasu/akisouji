@@ -204,6 +204,7 @@ script = ExtResource("7_fgs88")
 buttons_origin = NodePath("..")
 
 [node name="GeneralSettings" type="Control" parent="." node_paths=PackedStringArray("button_selection_handler", "back_button")]
+visible = false
 layout_mode = 1
 anchor_left = 0.337
 anchor_top = 0.169
@@ -689,7 +690,6 @@ enabled = false
 buttons_origin = NodePath("..")
 
 [node name="KeyboardSettings" type="Control" parent="." node_paths=PackedStringArray("button_selection_handler", "back_button", "settings")]
-visible = false
 layout_mode = 1
 anchor_left = 0.337
 anchor_top = 0.169
@@ -719,6 +719,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("24_fb0uc")
+max_scroll = 580.0
 
 [node name="MouseSensitivityButton" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("setting_label", "setting_slider") instance=ExtResource("10_heo66")]
 layout_mode = 2
@@ -766,9 +767,9 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 72.0
+offset_top = 120.0
 offset_right = 816.0
-offset_bottom = 180.0
+offset_bottom = 228.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -839,14 +840,15 @@ theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
+scroll_active = false
 
 [node name="Keybind1Button2" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 144.0
+offset_top = 192.0
 offset_right = 816.0
-offset_bottom = 252.0
+offset_bottom = 300.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -917,14 +919,15 @@ theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
+scroll_active = false
 
 [node name="Keybind1Button3" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 216.0
+offset_top = 264.0
 offset_right = 816.0
-offset_bottom = 324.0
+offset_bottom = 372.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -985,24 +988,26 @@ keybind_label = NodePath("../KeybindLabel")
 [node name="KeybindLabel" type="RichTextLabel" parent="KeyboardSettings/Control/Scroll/Keybind1Button3"]
 clip_contents = false
 layout_mode = 0
-offset_left = 470.0
-offset_top = 5.0
-offset_right = 735.0
-offset_bottom = 56.0
+offset_left = 471.0
+offset_top = 7.0
+offset_right = 736.0
+offset_bottom = 58.0
 mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="Keybind1Button4" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 288.0
+offset_top = 336.0
 offset_right = 816.0
-offset_bottom = 396.0
+offset_bottom = 444.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -1063,24 +1068,26 @@ keybind_label = NodePath("../KeybindLabel")
 [node name="KeybindLabel" type="RichTextLabel" parent="KeyboardSettings/Control/Scroll/Keybind1Button4"]
 clip_contents = false
 layout_mode = 0
-offset_left = 470.0
-offset_top = 5.0
-offset_right = 735.0
-offset_bottom = 56.0
+offset_left = 471.0
+offset_top = 7.0
+offset_right = 736.0
+offset_bottom = 58.0
 mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="Keybind1Button5" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 360.0
+offset_top = 408.0
 offset_right = 816.0
-offset_bottom = 468.0
+offset_bottom = 516.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -1141,24 +1148,26 @@ keybind_label = NodePath("../KeybindLabel")
 [node name="KeybindLabel" type="RichTextLabel" parent="KeyboardSettings/Control/Scroll/Keybind1Button5"]
 clip_contents = false
 layout_mode = 0
-offset_left = 470.0
-offset_top = 5.0
-offset_right = 735.0
-offset_bottom = 56.0
+offset_left = 471.0
+offset_top = 7.0
+offset_right = 736.0
+offset_bottom = 58.0
 mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="Keybind1Button6" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 432.0
+offset_top = 480.0
 offset_right = 816.0
-offset_bottom = 540.0
+offset_bottom = 588.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -1219,24 +1228,26 @@ keybind_label = NodePath("../KeybindLabel")
 [node name="KeybindLabel" type="RichTextLabel" parent="KeyboardSettings/Control/Scroll/Keybind1Button6"]
 clip_contents = false
 layout_mode = 0
-offset_left = 470.0
-offset_top = 5.0
-offset_right = 735.0
-offset_bottom = 56.0
+offset_left = 471.0
+offset_top = 7.0
+offset_right = 736.0
+offset_bottom = 58.0
 mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="Keybind1Button7" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 504.0
+offset_top = 552.0
 offset_right = 816.0
-offset_bottom = 612.0
+offset_bottom = 660.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -1297,24 +1308,26 @@ keybind_label = NodePath("../KeybindLabel")
 [node name="KeybindLabel" type="RichTextLabel" parent="KeyboardSettings/Control/Scroll/Keybind1Button7"]
 clip_contents = false
 layout_mode = 0
-offset_left = 470.0
-offset_top = 5.0
-offset_right = 735.0
-offset_bottom = 56.0
+offset_left = 471.0
+offset_top = 7.0
+offset_right = 736.0
+offset_bottom = 58.0
 mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="Keybind1Button8" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 576.0
+offset_top = 624.0
 offset_right = 816.0
-offset_bottom = 684.0
+offset_bottom = 732.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -1375,24 +1388,26 @@ keybind_label = NodePath("../KeybindLabel")
 [node name="KeybindLabel" type="RichTextLabel" parent="KeyboardSettings/Control/Scroll/Keybind1Button8"]
 clip_contents = false
 layout_mode = 0
-offset_left = 470.0
-offset_top = 5.0
-offset_right = 735.0
-offset_bottom = 56.0
+offset_left = 471.0
+offset_top = 7.0
+offset_right = 736.0
+offset_bottom = 58.0
 mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="Keybind1Button9" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 648.0
+offset_top = 696.0
 offset_right = 816.0
-offset_bottom = 756.0
+offset_bottom = 804.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -1453,24 +1468,26 @@ keybind_label = NodePath("../KeybindLabel")
 [node name="KeybindLabel" type="RichTextLabel" parent="KeyboardSettings/Control/Scroll/Keybind1Button9"]
 clip_contents = false
 layout_mode = 0
-offset_left = 470.0
-offset_top = 5.0
-offset_right = 735.0
-offset_bottom = 56.0
+offset_left = 471.0
+offset_top = 7.0
+offset_right = 736.0
+offset_bottom = 58.0
 mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="Keybind1Button10" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 720.0
+offset_top = 768.0
 offset_right = 816.0
-offset_bottom = 828.0
+offset_bottom = 876.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -1531,24 +1548,26 @@ keybind_label = NodePath("../KeybindLabel")
 [node name="KeybindLabel" type="RichTextLabel" parent="KeyboardSettings/Control/Scroll/Keybind1Button10"]
 clip_contents = false
 layout_mode = 0
-offset_left = 470.0
-offset_top = 5.0
-offset_right = 735.0
-offset_bottom = 56.0
+offset_left = 471.0
+offset_top = 7.0
+offset_right = 736.0
+offset_bottom = 58.0
 mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="Keybind1Button11" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 792.0
+offset_top = 840.0
 offset_right = 816.0
-offset_bottom = 900.0
+offset_bottom = 948.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -1609,24 +1628,26 @@ keybind_label = NodePath("../KeybindLabel")
 [node name="KeybindLabel" type="RichTextLabel" parent="KeyboardSettings/Control/Scroll/Keybind1Button11"]
 clip_contents = false
 layout_mode = 0
-offset_left = 470.0
-offset_top = 5.0
-offset_right = 735.0
-offset_bottom = 56.0
+offset_left = 471.0
+offset_top = 7.0
+offset_right = 736.0
+offset_bottom = 58.0
 mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="Keybind1Button12" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 864.0
+offset_top = 912.0
 offset_right = 816.0
-offset_bottom = 972.0
+offset_bottom = 1020.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -1687,16 +1708,31 @@ keybind_label = NodePath("../KeybindLabel")
 [node name="KeybindLabel" type="RichTextLabel" parent="KeyboardSettings/Control/Scroll/Keybind1Button12"]
 clip_contents = false
 layout_mode = 0
-offset_left = 470.0
-offset_top = 5.0
-offset_right = 735.0
-offset_bottom = 56.0
+offset_left = 471.0
+offset_top = 7.0
+offset_right = 736.0
+offset_bottom = 58.0
 mouse_filter = 2
 theme_override_constants/outline_size = 16
 theme_override_fonts/normal_font = ExtResource("6_j37ya")
 theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Label" type="Label" parent="KeyboardSettings/Control/Scroll"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 72.0
+offset_right = 622.0
+offset_bottom = 106.0
+theme_override_colors/font_color = Color(0.656139, 0.656139, 0.656139, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("6_j37ya")
+theme_override_font_sizes/font_size = 26
+text = "SETTINGS_SEPARATOR_BUTTON_ASSIGNMENT"
 
 [node name="BackButton" parent="KeyboardSettings" instance=ExtResource("10_heo66")]
 layout_mode = 2
@@ -1748,7 +1784,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("24_fb0uc")
-max_scroll = 360.0
+max_scroll = 392.0
 
 [node name="GamepadSensitivityButton" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("setting_label", "setting_slider") instance=ExtResource("10_heo66")]
 layout_mode = 2
@@ -1765,6 +1801,11 @@ mouse_filter = 1
 setting_label = NodePath("MouseArea/HSlider/ValueLabel")
 setting_slider = NodePath("MouseArea/HSlider")
 text_key = "SETTINGS_PROPERTY_GAMEPAD_SENSITIVITY"
+
+[node name="Label" parent="GamepadSettings/Control/Scroll/GamepadSensitivityButton" index="1"]
+offset_right = -389.0
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 20
 
 [node name="HSlider" type="HSlider" parent="GamepadSettings/Control/Scroll/GamepadSensitivityButton/MouseArea" index="0"]
 layout_mode = 0
@@ -1808,6 +1849,10 @@ setting_label = NodePath("MouseArea/HSlider/ValueLabel")
 setting_slider = NodePath("MouseArea/HSlider")
 text_key = "SETTINGS_PROPERTY_GAMEPAD_DEADZONE"
 
+[node name="Label" parent="GamepadSettings/Control/Scroll/GamepadDeadzoneButton" index="1"]
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 20
+
 [node name="HSlider" type="HSlider" parent="GamepadSettings/Control/Scroll/GamepadDeadzoneButton/MouseArea" index="0"]
 layout_mode = 0
 offset_left = 444.0
@@ -1838,9 +1883,9 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 148.0
+offset_top = 196.0
 offset_right = 816.0
-offset_bottom = 256.0
+offset_bottom = 304.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -1918,9 +1963,9 @@ scroll_active = false
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 220.0
+offset_top = 268.0
 offset_right = 816.0
-offset_bottom = 328.0
+offset_bottom = 376.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -1998,9 +2043,9 @@ scroll_active = false
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 292.0
+offset_top = 340.0
 offset_right = 816.0
-offset_bottom = 400.0
+offset_bottom = 448.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -2078,9 +2123,9 @@ scroll_active = false
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 364.0
+offset_top = 412.0
 offset_right = 816.0
-offset_bottom = 472.0
+offset_bottom = 520.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -2158,9 +2203,9 @@ scroll_active = false
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 436.0
+offset_top = 484.0
 offset_right = 816.0
-offset_bottom = 544.0
+offset_bottom = 592.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -2238,9 +2283,9 @@ scroll_active = false
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 508.0
+offset_top = 556.0
 offset_right = 816.0
-offset_bottom = 616.0
+offset_bottom = 664.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -2318,9 +2363,9 @@ scroll_active = false
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 580.0
+offset_top = 628.0
 offset_right = 816.0
-offset_bottom = 688.0
+offset_bottom = 736.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -2398,9 +2443,9 @@ scroll_active = false
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
-offset_top = 652.0
+offset_top = 700.0
 offset_right = 816.0
-offset_bottom = 760.0
+offset_bottom = 808.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
 setting_keybind = NodePath("KeybindFunction1")
@@ -2474,6 +2519,19 @@ bbcode_enabled = true
 text = "[center]F"
 scroll_active = false
 
+[node name="Label" type="Label" parent="GamepadSettings/Control/Scroll"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 144.0
+offset_right = 622.0
+offset_bottom = 178.0
+theme_override_colors/font_color = Color(0.656139, 0.656139, 0.656139, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("6_j37ya")
+theme_override_font_sizes/font_size = 26
+text = "SETTINGS_SEPARATOR_BUTTON_ASSIGNMENT"
+
 [node name="BackButton" parent="GamepadSettings" instance=ExtResource("10_heo66")]
 layout_mode = 2
 anchors_preset = 0
@@ -2493,7 +2551,6 @@ enabled = false
 button_retrieve_list = [NodePath("../Control/Scroll/GamepadSensitivityButton"), NodePath("../Control/Scroll/GamepadDeadzoneButton"), NodePath("../Control/Scroll/Keybind1Button"), NodePath("../Control/Scroll/Keybind1Button2"), NodePath("../Control/Scroll/Keybind1Button3"), NodePath("../Control/Scroll/Keybind1Button4"), NodePath("../Control/Scroll/Keybind1Button5"), NodePath("../Control/Scroll/Keybind1Button6"), NodePath("../Control/Scroll/Keybind1Button7"), NodePath("../Control/Scroll/Keybind1Button8"), NodePath("../BackButton")]
 
 [node name="KeybindAwaiting" type="ColorRect" parent="." node_paths=PackedStringArray("label")]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

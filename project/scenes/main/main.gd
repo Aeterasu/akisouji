@@ -13,19 +13,9 @@ static var instance = null
 func _ready():
 	instance = self
 
-	if (FileAccess.file_exists("user://config.tres")):
-		GlobalSettings._load_config()
-	else:
-		GlobalSettings._save_config()
-
 	_update_volume()
 
-	GlobalSettings.locale = GlobalSettings.locale
-	TranslationServer.set_locale(GlobalSettings.locale)
-
 	SceneTransitionHandler.instance._load_title_screen_scene()
-
-	GlobalSettings.fullscreen = GlobalSettings.fullscreen
 
 	loading_screen.modulate = Color(0.0, 0.0, 0.0, 0.0)
 

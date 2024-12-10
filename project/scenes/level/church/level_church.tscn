@@ -316,7 +316,7 @@ s_rank_target_score = 800000.0
 a_rank_target_score = 450000.0
 b_rank_target_score = 350000.0
 c_rank_target_score = 120000.0
-s_target_speed_clear = 420.0
+s_target_speed_clear = 460.0
 a_target_speed_clear = 700.0
 b_target_speed_clear = 1100.0
 

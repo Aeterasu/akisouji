@@ -105,7 +105,7 @@ leaf_populator = NodePath("LeafPopulator")
 leaf_leeway = 650
 player_spawn_position = NodePath("Marker3D")
 s_rank_target_score = 450000.0
-s_target_speed_clear = 280.0
+s_target_speed_clear = 300.0
 
 [node name="LeafPopulator" parent="." index="0" instance=ExtResource("3_atajh")]
 leavesPerPixel = 17

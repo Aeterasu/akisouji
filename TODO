@@ -188,6 +188,7 @@ LEFT TO DO:
     + Loading на английском блядь
     + fix SHOP_TITLE
     + settings category doesn't properly update language
+    + set ranking times and scores on levels !!!
     +make all shoes scale cleaning
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
     
@@ -262,7 +263,6 @@ LEFT TO DO:
 
          disabled leaf populator completely breaks the game, pls add safety checks
         - maybe implement optimization via cluster of multimeshes
-        - set ranking times and scores on levels !!!
     
     GENERAL UI:
         = ? add shop button to title screen ?
