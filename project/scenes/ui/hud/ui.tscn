@@ -472,6 +472,7 @@ text = "100%"
 vertical_alignment = 1
 
 [node name="UICash" parent="." instance=ExtResource("8_8dhui")]
+process_mode = 3
 layout_mode = 1
 
 [node name="UITimer" type="Control" parent="." node_paths=PackedStringArray("label", "timer_label", "progress_bar", "grade")]

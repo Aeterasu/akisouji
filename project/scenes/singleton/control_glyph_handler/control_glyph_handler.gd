@@ -136,9 +136,9 @@ func _get_playstation_button(button : JoyButton) -> String:
 		JoyButton.JOY_BUTTON_B:
 			return "[img region=32,96,32,32]" + _get_glyph_image_path() + "[/img]"
 		JoyButton.JOY_BUTTON_X:
-			return "[img region=64,96,32,32]" + _get_glyph_image_path() + "[/img]"
-		JoyButton.JOY_BUTTON_Y:
 			return "[img region=96,96,32,32]" + _get_glyph_image_path() + "[/img]"
+		JoyButton.JOY_BUTTON_Y:
+			return "[img region=64,96,32,32]" + _get_glyph_image_path() + "[/img]"
 		JoyButton.JOY_BUTTON_BACK:
 			return "[img region=160,64,32,32]" + _get_glyph_image_path() + "[/img]"
 		JoyButton.JOY_BUTTON_GUIDE:

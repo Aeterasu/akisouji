@@ -82,7 +82,7 @@ light_mode = 1
 blend_mode = 3
 light_mode = 1
 
-[node name="Shop" type="Control" node_paths=PackedStringArray("back_button", "tools_button", "boots_button", "category_select_screen", "category_select_button_handler", "category_tools", "category_boots", "sidepanel", "purchase_accent_1", "purchase_denied_accent_1", "tools_exclamation_mark", "boots_exclamation_mark")]
+[node name="Shop" type="Control" node_paths=PackedStringArray("back_button", "tools_button", "boots_button", "category_select_screen", "category_select_button_handler", "category_tools", "category_boots", "sidepanel", "purchase_accent_1", "purchase_denied_accent_1", "tools_exclamation_mark", "boots_exclamation_mark", "title_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,6 +106,7 @@ purchase_accent_1 = NodePath("PurchaseAudio1")
 purchase_denied_accent_1 = NodePath("PurchaseDenied1")
 tools_exclamation_mark = NodePath("CategorySelect/Tools/AnimationOrigin/ExclamationMark")
 boots_exclamation_mark = NodePath("CategorySelect/Boots/AnimationOrigin/ExclamationMark")
+title_label = NodePath("Label2")
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 modulate = Color(0.561098, 0.530684, 0.247338, 1)
@@ -158,7 +159,8 @@ offset_bottom = 146.0
 theme_override_constants/outline_size = 16
 theme_override_fonts/font = ExtResource("2_yb51t")
 theme_override_font_sizes/font_size = 36
-text = "SHOP_TITLE"
+text = "SHOP_CATEGORIES
+"
 
 [node name="SidePanel" type="Control" parent="." node_paths=PackedStringArray("icon", "default_panel", "motto_label", "in_category_panel", "shop_entry_description_label")]
 layout_mode = 1
@@ -380,6 +382,7 @@ back_button = NodePath("Back")
 button_selection_handler = NodePath("ButtonSelectionHandler")
 sidepanel = NodePath("../../SidePanel")
 shop = NodePath("../..")
+category_key = "SHOP_CATEGORY_TOOLS"
 
 [node name="Broom1" parent="Categories/ShopCategoryTools" instance=ExtResource("5_qmceb")]
 layout_mode = 2
@@ -625,6 +628,7 @@ back_button = NodePath("Back")
 button_selection_handler = NodePath("ButtonSelectionHandler")
 sidepanel = NodePath("../../SidePanel")
 shop = NodePath("../..")
+category_key = "SHOP_CATEGORY_BOOTS"
 
 [node name="Boots1" parent="Categories/ShopCategoryBoots" instance=ExtResource("5_qmceb")]
 layout_mode = 2
@@ -828,6 +832,7 @@ z_index = -1
 layout_mode = 1
 
 [node name="UICash" parent="." instance=ExtResource("6_acpaq")]
+process_mode = 3
 layout_mode = 1
 
 [node name="UIUpscaler" type="Node" parent="."]

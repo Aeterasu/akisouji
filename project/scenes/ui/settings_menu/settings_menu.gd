@@ -31,6 +31,8 @@ var show_keybind_popup : bool = false
 
 var is_in_category : bool = false
 
+var current_category = null
+
 enum OnBackPressedType
 {
 	GO_TO_TITLE,
@@ -63,6 +65,10 @@ func _ready():
 	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.3)
 
 func _process(delta):
+	if (current_category):
+		category_name_label.text = "> " + tr(current_category.category_name_key)
+		category_name_label.show()
+
 	if (show_keybind_popup):
 		keybind_popup.modulate = keybind_popup.modulate.lerp(Color(1.0, 1.0, 1.0, 1.0), delta * 6.0)
 	else:
@@ -123,8 +129,6 @@ func _on_back_pressed() -> void:
 func _on_category_button_pressed(button : UIButton):
 	button_selection_handler._disable_all_buttons()
 
-	var current_category = null
-
 	match (button):
 		button_general:
 			_on_category_enter(settings_category_general)
@@ -141,10 +145,6 @@ func _on_category_button_pressed(button : UIButton):
 		button_audio:
 			_on_category_enter(settings_category_audio)
 			current_category = settings_category_audio
-
-	if (current_category):
-		category_name_label.text = "> " + tr(current_category.category_name_key)
-		category_name_label.show()
 
 func _on_category_enter(category: SettingsCategory) -> void:
 	category.button_selection_handler._enable_all_buttons()

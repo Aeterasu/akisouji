@@ -24,6 +24,8 @@ class_name Shop extends Control
 @export var tools_exclamation_mark : TextureRect = null
 @export var boots_exclamation_mark : TextureRect = null
 
+@export var title_label : Label = null
+
 var current_category : ShopCategory = null
 var is_in_category : bool = false
 
@@ -60,12 +62,15 @@ func _process(delta):
 	boots_exclamation_mark.visible = UpgradeManager.new_boots_unlocked
 
 	if (!is_in_category):
+		title_label.text = tr("SHOP_CATEGORIES")
 		sidepanel.in_category_panel.hide()
 		match category_select_button_handler.current_button:
 			tools_button:
 				sidepanel.motto_label.text = tr(category_tools_motto_key)
 			boots_button:
 				sidepanel.motto_label.text = tr(category_boots_motto_key)
+	else:
+		title_label.text = current_category.category_key
 
 func _on_category_select_button_pressed(button : UIButton):
 	sidepanel.current_shop_entry_upgrade = null

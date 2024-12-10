@@ -38,10 +38,10 @@
 [ext_resource type="Texture2D" uid="uid://cy03xyhmlyip7" path="res://assets/texture/kartoshka.jpg" id="36_siq36"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qdx78"]
-size = Vector3(1, 16, 105)
+size = Vector3(1, 5.31104, 105)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ygy0i"]
-size = Vector3(28, 16, 1)
+size = Vector3(28, 4.14941, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_r75cl"]
 
@@ -157,19 +157,19 @@ surface_material_override/0 = ExtResource("17_ok7y4")
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="14"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 7.5, 52)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.52193, 52)
 shape = SubResource("BoxShape3D_qdx78")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 7.5, -0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 2.08817, -0.5)
 shape = SubResource("BoxShape3D_ygy0i")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 7.5, 104.501)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 1.7449, 104.501)
 shape = SubResource("BoxShape3D_ygy0i")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.5, 7.5, 52)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.5, 1.4809, 52)
 shape = SubResource("BoxShape3D_qdx78")
 
 [node name="PlayerSpawnPosition" type="Marker3D" parent="." index="15"]

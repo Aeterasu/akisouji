@@ -762,7 +762,7 @@ theme_override_font_sizes/font_size = 24
 text = "75"
 vertical_alignment = 1
 
-[node name="Keybind1Button" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -771,10 +771,7 @@ offset_right = 816.0
 offset_bottom = 180.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_MOVE_FORWARD"
 label = NodePath("Label")
@@ -843,7 +840,7 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
 
-[node name="Keybind1Button2" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button2" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -852,10 +849,7 @@ offset_right = 816.0
 offset_bottom = 252.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_MOVE_BACKWARDS"
 label = NodePath("Label")
@@ -924,7 +918,7 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
 
-[node name="Keybind1Button3" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button3" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -933,10 +927,7 @@ offset_right = 816.0
 offset_bottom = 324.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_MOVE_LEFT"
 label = NodePath("Label")
@@ -1005,7 +996,7 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
 
-[node name="Keybind1Button4" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button4" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -1014,10 +1005,7 @@ offset_right = 816.0
 offset_bottom = 396.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_MOVE_RIGHT"
 label = NodePath("Label")
@@ -1086,7 +1074,7 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
 
-[node name="Keybind1Button5" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button5" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -1095,10 +1083,7 @@ offset_right = 816.0
 offset_bottom = 468.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_PRIMARY"
 label = NodePath("Label")
@@ -1167,7 +1152,7 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
 
-[node name="Keybind1Button6" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button6" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -1176,10 +1161,7 @@ offset_right = 816.0
 offset_bottom = 540.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_SECONDARY"
 label = NodePath("Label")
@@ -1248,7 +1230,7 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
 
-[node name="Keybind1Button7" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button7" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -1257,10 +1239,7 @@ offset_right = 816.0
 offset_bottom = 612.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_JUMP"
 label = NodePath("Label")
@@ -1329,7 +1308,7 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
 
-[node name="Keybind1Button8" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button8" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -1338,10 +1317,7 @@ offset_right = 816.0
 offset_bottom = 684.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_SPRINT"
 label = NodePath("Label")
@@ -1410,7 +1386,7 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
 
-[node name="Keybind1Button9" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button9" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -1419,10 +1395,7 @@ offset_right = 816.0
 offset_bottom = 756.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_PREVIOUS_TOOL"
 label = NodePath("Label")
@@ -1491,7 +1464,7 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
 
-[node name="Keybind1Button10" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button10" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -1500,10 +1473,7 @@ offset_right = 816.0
 offset_bottom = 828.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_NEXT_TOOL"
 label = NodePath("Label")
@@ -1572,7 +1542,7 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
 
-[node name="Keybind1Button11" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button11" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -1581,10 +1551,7 @@ offset_right = 816.0
 offset_bottom = 900.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_OPEN_INVENTORY"
 label = NodePath("Label")
@@ -1653,7 +1620,7 @@ theme_override_font_sizes/normal_font_size = 32
 bbcode_enabled = true
 text = "[center]F"
 
-[node name="Keybind1Button12" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button12" type="Control" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -1662,10 +1629,7 @@ offset_right = 816.0
 offset_bottom = 972.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_HIGHLIGHT_LEAVES"
 label = NodePath("Label")
@@ -1766,7 +1730,7 @@ offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("10_i323x")
-category_name_key = "SETTINGS_KEYBOARD"
+category_name_key = "SETTINGS_CONTROLLER"
 button_selection_handler = NodePath("ButtonSelectionHandler")
 back_button = NodePath("BackButton")
 settings = NodePath("..")
@@ -1870,7 +1834,7 @@ theme_override_font_sizes/font_size = 24
 text = "75"
 vertical_alignment = 1
 
-[node name="Keybind1Button" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -1879,10 +1843,7 @@ offset_right = 816.0
 offset_bottom = 256.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_PRIMARY"
 label = NodePath("Label")
@@ -1953,7 +1914,7 @@ bbcode_enabled = true
 text = "[center]F"
 scroll_active = false
 
-[node name="Keybind1Button2" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button2" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -1962,10 +1923,7 @@ offset_right = 816.0
 offset_bottom = 328.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_SECONDARY"
 label = NodePath("Label")
@@ -2036,7 +1994,7 @@ bbcode_enabled = true
 text = "[center]F"
 scroll_active = false
 
-[node name="Keybind1Button3" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button3" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -2045,10 +2003,7 @@ offset_right = 816.0
 offset_bottom = 400.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_JUMP"
 label = NodePath("Label")
@@ -2119,7 +2074,7 @@ bbcode_enabled = true
 text = "[center]F"
 scroll_active = false
 
-[node name="Keybind1Button4" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button4" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -2128,10 +2083,7 @@ offset_right = 816.0
 offset_bottom = 472.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_SPRINT"
 label = NodePath("Label")
@@ -2202,7 +2154,7 @@ bbcode_enabled = true
 text = "[center]F"
 scroll_active = false
 
-[node name="Keybind1Button5" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button5" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -2211,10 +2163,7 @@ offset_right = 816.0
 offset_bottom = 544.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_PREVIOUS_TOOL"
 label = NodePath("Label")
@@ -2285,7 +2234,7 @@ bbcode_enabled = true
 text = "[center]F"
 scroll_active = false
 
-[node name="Keybind1Button6" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button6" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -2294,10 +2243,7 @@ offset_right = 816.0
 offset_bottom = 616.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_NEXT_TOOL"
 label = NodePath("Label")
@@ -2368,7 +2314,7 @@ bbcode_enabled = true
 text = "[center]F"
 scroll_active = false
 
-[node name="Keybind1Button7" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button7" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -2377,10 +2323,7 @@ offset_right = 816.0
 offset_bottom = 688.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_OPEN_INVENTORY"
 label = NodePath("Label")
@@ -2451,7 +2394,7 @@ bbcode_enabled = true
 text = "[center]F"
 scroll_active = false
 
-[node name="Keybind1Button8" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_label", "setting_keybind", "toggle_area", "alt_toggle_area", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
+[node name="Keybind1Button8" type="Control" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("highlight", "setting_keybind", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 108)
 layout_mode = 3
 anchors_preset = 0
@@ -2460,10 +2403,7 @@ offset_right = 816.0
 offset_bottom = 760.0
 script = ExtResource("25_ukw4x")
 highlight = NodePath("TextureRect")
-setting_label = NodePath("")
 setting_keybind = NodePath("KeybindFunction1")
-toggle_area = NodePath("")
-alt_toggle_area = NodePath("")
 mouse_area = NodePath("MouseArea")
 text_key = "SETTINGS_PROPERTY_HIGHLIGHT_LEAVES"
 label = NodePath("Label")

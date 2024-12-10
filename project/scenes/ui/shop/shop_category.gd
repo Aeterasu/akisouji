@@ -9,6 +9,8 @@ class_name ShopCategory extends Control
 
 @export var shop : Shop = null
 
+@export var category_key : String = ""
+
 var last_entry : bool = false
 
 func _ready():

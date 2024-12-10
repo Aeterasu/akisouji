@@ -39,6 +39,8 @@ var is_in_shop : bool = false
 
 var cash_earned : float = 0.0
 
+var delay : float = 1.0
+
 func _ready():
 	CashManager.finalize = false
 
@@ -98,6 +100,8 @@ func _ready():
 func _process(delta):
 	_handle_tutorial(delta)
 
+	delay = max(delay - delta, 0.0)
+
 	if (await_completion_confirm and Input.is_action_just_pressed("open_inventory") and !ui_completion.confirmed):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		player._block_input = true
@@ -124,13 +128,13 @@ func _process(delta):
 	if (await_completion_confirm):
 		return
 
-	if (!pause_menu.is_displayed and !is_in_shop and Input.is_action_just_pressed("open_inventory")):
+	if (!pause_menu.is_displayed and !is_in_shop and delay <= 0.0 and Input.is_action_just_pressed("open_inventory")):
 		is_in_shop = true
 		_open_shop()
 		is_pausable = false
 		return
 
-	if (shop and is_in_shop and Input.is_action_just_pressed("open_inventory")):
+	if (shop and is_in_shop and delay <= 0.0 and Input.is_action_just_pressed("open_inventory")):
 		shop._on_back_button_pressed()
 		
 		return

@@ -39,6 +39,7 @@ func _tween_new_cash_label(label : Label):
 	var target_position : Vector2 = label.position + Vector2.LEFT * (label.size.x + 8.0) + Vector2.LEFT * ((len(target_cash_label.text) - 1) * 8.0)
 
 	var tween : Tween = get_tree().create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.set_parallel(true)
 	tween.tween_property(label, "position", target_position, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_BACK)
 	tween.tween_property(label, "modulate", Color(label.modulate.r, label.modulate.g, label.modulate.b, 0.0), 0.2).set_delay(CashManager.animation_delay)
@@ -49,5 +50,6 @@ func _tween_new_cash_label(label : Label):
 func _on_cash_substracted(amount : float):
 	var tween : Tween = get_tree().create_tween()
 	tween.set_parallel(true)
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 
 	tween.tween_property(self, "current_cash", CashManager.cash, animation_duration)
