@@ -119,12 +119,12 @@ grow_vertical = 2
 [node name="PaperButtonHFlipped" type="Control" parent="Control" node_paths=PackedStringArray("animation_origin", "selected_gradient", "deselected_gradient", "mouse_area", "label", "audio_accent_1", "audio_accent_2")]
 custom_minimum_size = Vector2(0, 128)
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 725.0
+offset_left = 85.0
 offset_top = 413.0
-offset_right = -42.0
+offset_right = 598.0
 offset_bottom = -179.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -232,12 +232,12 @@ bus = &"SFX"
 
 [node name="PaperButton" parent="Control" instance=ExtResource("9_75bx6")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 78.0
+offset_left = -562.0
 offset_top = 413.0
-offset_right = -689.0
+offset_right = -49.0
 offset_bottom = -179.0
 grow_horizontal = 2
 grow_vertical = 2
