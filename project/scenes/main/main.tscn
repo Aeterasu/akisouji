@@ -74,8 +74,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 16
 theme_override_fonts/font = ExtResource("10_m1uao")
 theme_override_font_sizes/font_size = 48
-text = "LOADING
-"
+text = "LOADING"
 horizontal_alignment = 2
 vertical_alignment = 2
 

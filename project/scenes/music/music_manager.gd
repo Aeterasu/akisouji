@@ -9,6 +9,8 @@ var menu_volume : float = 1.0
 var default_gameplay_volume : float = 0.0
 var default_menu_volume : float = 0.0
 
+var gameplay_first_time : bool = false
+
 var currently_playing : CurrentlyPlaying = CurrentlyPlaying.MENU:
 	set(value):
 		if (value == CurrentlyPlaying.MENU):
@@ -28,7 +30,7 @@ var currently_playing : CurrentlyPlaying = CurrentlyPlaying.MENU:
 			gameplay_volume = default_gameplay_volume
 
 			if (!gameplay_music.playing):
-				tween.tween_callback(_first_time_gameplay_music_play).set_delay(0.4)
+				tween.tween_callback(gameplay_music.play).set_delay(0.4)
 				(gameplay_music.stream as AudioStreamPlaylist).shuffle = true
 
 enum CurrentlyPlaying
@@ -49,4 +51,4 @@ func _process(delta):
 
 func _first_time_gameplay_music_play() -> void:
 	gameplay_music.play()
-	(gameplay_music.stream as AudioStreamPlaylist).shuffle = true
+	#(gameplay_music.stream as AudioStreamPlaylist).set_deferred("shuffle", true)
