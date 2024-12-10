@@ -189,6 +189,7 @@ LEFT TO DO:
     + fix SHOP_TITLE
     + settings category doesn't properly update language
     + set ranking times and scores on levels !!!
+    + sort language file
     +make all shoes scale cleaning
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
     
@@ -328,8 +329,6 @@ LEFT TO DO:
     
     MISC:
         - also, before release, just in case, check with virustotal
-
-        - sort language file
 
 		- Add cleanable surface tag so that we can't exactly clean lampposts etc
         
