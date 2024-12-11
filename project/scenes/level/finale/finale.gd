@@ -27,9 +27,10 @@ func _exit() -> void:
 	exiting = true
 
 	HighscoreManager._update_current_level_grade(RankingManager.Rank.S, 999999999)
+	SaveManager.seen_finale = true
 	SaveManager._save()
 	
 	var tween = get_tree().create_tween()
 	tween.tween_property(blackout, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.4)
 
-	tween.tween_callback(SceneTransitionHandler.instance._load_title_screen_scene).set_delay(0.45)
+	tween.tween_callback(SceneTransitionHandler.instance._load_stage_select_scene).set_delay(0.45)

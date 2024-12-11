@@ -7,6 +7,8 @@ var beat_1 : bool = false
 var beat_2 : bool = false
 var beat_3 : bool = false
 
+var seen_finale : bool = false
+
 func _save():
 	var save_file = FileAccess.open("user://leafsweep.save", FileAccess.WRITE)
 
@@ -34,6 +36,7 @@ func _save():
 		"level_4_grade" : HighscoreManager.level_grades[4],
 		"level_4_highscore" : HighscoreManager.level_highscores[4],
 		"seen_tutorial" : seen_tutorial,
+		"seen_finale" : seen_finale,
 	}
 
 	var json = JSON.stringify(save_dict)
@@ -106,3 +109,8 @@ func _load():
 		seen_tutorial = data["seen_tutorial"]
 	else:
 		seen_tutorial = false
+
+	if (data.has("seen_finale")):
+		seen_finale = data["seen_finale"]
+	else:
+		seen_finale = false

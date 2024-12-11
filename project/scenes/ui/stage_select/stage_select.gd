@@ -83,6 +83,9 @@ func _ready():
 	var tween = create_tween()
 	tween.tween_property(blackout, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.3)
 
+	if (!(SaveManager.beat_0 and SaveManager.beat_1 and SaveManager.beat_2 and SaveManager.beat_3)):
+		stage_amount -= 1
+
 	current_selected_stage_id = HighscoreManager.current_level_id
 
 	await get_tree().create_timer(0.05).timeout

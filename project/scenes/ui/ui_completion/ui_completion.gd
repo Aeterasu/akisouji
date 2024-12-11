@@ -47,6 +47,9 @@ func _show_initial_popup():
 func _show_menu():
 	confirmed = true
 
+	if ((SaveManager.beat_0 and SaveManager.beat_1 and SaveManager.beat_2 and SaveManager.beat_3) and !SaveManager.seen_finale):
+		menu_button_handler.buttons[0].text_key = tr("STAGE_NAME_FINALE")
+
 	initial_popup.hide()
 	menu.show()
 	var tween = get_tree().create_tween()
@@ -68,7 +71,14 @@ func _transition(button : UIButton):
 
 	await get_tree().create_timer(0.25).timeout
 
-	SceneTransitionHandler.instance._load_stage_select_scene()
+	if (!(SaveManager.beat_0 and SaveManager.beat_1 and SaveManager.beat_2 and SaveManager.beat_3)):
+		SceneTransitionHandler.instance._load_stage_select_scene()
+	else:
+		if (SaveManager.seen_finale):
+			SceneTransitionHandler.instance._load_stage_select_scene()
+		else:
+			HighscoreManager.current_level_id = 4
+			SceneTransitionHandler.instance._load_finale_scene()
 
 	Main.instance.music_manager.currently_playing = Main.instance.music_manager.CurrentlyPlaying.MENU
 
