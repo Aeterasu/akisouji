@@ -1,6 +1,6 @@
 extends Node
 
-@export var locale_count : int = 2
+var locale_count : int = 3
 
 func _int_to_locale(id : int) -> String:
 	match id:
@@ -8,6 +8,8 @@ func _int_to_locale(id : int) -> String:
 			return "en"
 		1:
 			return "ru"
+		2:
+			return "es"
 
 	return "en"
 
@@ -17,6 +19,8 @@ func _locale_to_int(locale_name : String) -> int:
 			return 0
 		"ru":
 			return 1
+		"es":
+			return 2
 
 	return 0
 
@@ -26,5 +30,7 @@ func _locale_to_text_key(locale_name : String) -> String:
 			return "LOCALE_NAME_EN"
 		"ru":
 			return "LOCALE_NAME_RU"
+		"es":
+			return "LOCALE_NAME_ES"
 
 	return "LOCALE_NAME_EN"

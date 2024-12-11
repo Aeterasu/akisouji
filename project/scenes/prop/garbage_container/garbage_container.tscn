@@ -1,0 +1,95 @@
+[gd_scene load_steps=10 format=3 uid="uid://cc58pp8op073o"]
+
+[ext_resource type="PackedScene" uid="uid://df0av83xelaqj" path="res://assets/mesh/prop/mesh_garbage_crate.blend" id="1_qokfg"]
+[ext_resource type="Texture2D" uid="uid://cscls801flb1v" path="res://assets/texture/environment/texture_oilpaint_1_rmmap.png" id="2_23208"]
+[ext_resource type="Texture2D" uid="uid://ci43qnpg5b0m4" path="res://assets/texture/environment/texture_oilpaint_1_rmmap_2.png" id="3_otjqk"]
+[ext_resource type="PackedScene" uid="uid://bwi15gobv053g" path="res://scenes/player/garbage_bag/mesh_garbage_bag.tscn" id="4_tpur4"]
+
+[sub_resource type="Gradient" id="Gradient_pdbdo"]
+offsets = PackedFloat32Array(0.0833333, 0.178295, 0.284884, 0.439922)
+colors = PackedColorArray(0.228454, 0.111236, 0.0526272, 1, 0.527155, 0.332276, 0.100636, 1, 0.262397, 0.11856, 0.0466413, 1, 0.25, 0.165, 0.1225, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ih40h"]
+noise_type = 2
+frequency = 0.0125
+domain_warp_enabled = true
+domain_warp_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y2ywx"]
+seamless = true
+color_ramp = SubResource("Gradient_pdbdo")
+noise = SubResource("FastNoiseLite_ih40h")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dsm7l"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.733333)
+albedo_texture = SubResource("NoiseTexture2D_y2ywx")
+metallic_specular = 0.0
+uv1_scale = Vector3(0.205, 0.205, 0.205)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0sulf"]
+next_pass = SubResource("StandardMaterial3D_dsm7l")
+albedo_color = Color(0.202378, 0.466057, 0.296161, 1)
+albedo_texture = ExtResource("2_23208")
+roughness = 0.86
+roughness_texture = ExtResource("3_otjqk")
+uv1_scale = Vector3(0.315, 0.315, 0.315)
+uv1_triplanar = true
+
+[node name="GarbageContainer" type="Node3D"]
+
+[node name="mesh_garbage_crate" parent="." instance=ExtResource("1_qokfg")]
+surface_material_override/0 = SubResource("StandardMaterial3D_0sulf")
+
+[node name="mesh_garbage_bag" parent="mesh_garbage_crate" instance=ExtResource("4_tpur4")]
+transform = Transform3D(0.896927, -0.442179, 0, 0.401694, 0.814806, 0.41801, -0.184835, -0.374924, 0.908443, -0.305877, 1.56217, 0)
+cast_shadow = 0
+
+[node name="mesh_garbage_bag2" parent="mesh_garbage_crate" instance=ExtResource("4_tpur4")]
+transform = Transform3D(0.90041, 0.366074, 0.235058, -0.338674, 0.928963, -0.149425, -0.273061, 0.0549355, 0.960427, 0.107814, 1.3822, 0.135933)
+cast_shadow = 0
+
+[node name="mesh_garbage_bag3" parent="mesh_garbage_crate" instance=ExtResource("4_tpur4")]
+transform = Transform3D(0.986099, -0.162525, -0.0345684, 0.15287, 0.805849, 0.572048, -0.065115, -0.56938, 0.819492, -0.319597, 1.3822, 0.800845)
+cast_shadow = 0
+
+[node name="mesh_garbage_bag4" parent="mesh_garbage_crate" instance=ExtResource("4_tpur4")]
+transform = Transform3D(0.0622261, 0.870527, 0.488172, -0.656137, 0.404249, -0.637235, -0.752072, -0.280655, 0.596339, 0.00398493, 1.3822, 1.04667)
+cast_shadow = 0
+
+[node name="mesh_garbage_bag5" parent="mesh_garbage_crate" instance=ExtResource("4_tpur4")]
+transform = Transform3D(-0.283303, -0.743701, 0.605515, 0.439681, 0.460396, 0.771179, -0.852303, 0.484711, 0.19656, -0.0655673, 1.3822, 1.04667)
+cast_shadow = 0
+
+[node name="mesh_garbage_bag6" parent="mesh_garbage_crate" instance=ExtResource("4_tpur4")]
+transform = Transform3D(0.802929, -0.586247, -0.107792, 0.439681, 0.460396, 0.771179, -0.402474, -0.666596, 0.627427, -0.0655673, 1.3822, -0.709577)
+cast_shadow = 0
+
+[node name="mesh_garbage_bag7" parent="mesh_garbage_crate" instance=ExtResource("4_tpur4")]
+transform = Transform3D(0.862951, 0.484968, -0.141853, -0.482656, 0.874228, 0.0526264, 0.149534, 0.0230521, 0.988488, 0.281078, 1.24648, -0.709577)
+cast_shadow = 0
+
+[node name="mesh_garbage_bag8" parent="mesh_garbage_crate" instance=ExtResource("4_tpur4")]
+transform = Transform3D(0.704524, 0.351862, 0.616312, -0.482655, 0.874228, 0.0526264, -0.520279, -0.334543, 0.785743, 0.281078, 1.0583, -1.15482)
+cast_shadow = 0
+
+[node name="mesh_garbage_bag9" parent="mesh_garbage_crate" instance=ExtResource("4_tpur4")]
+transform = Transform3D(0.374253, 0.15155, 0.914859, -0.482655, 0.874228, 0.0526264, -0.79182, -0.461257, 0.400329, -0.457508, 1.0583, -1.15482)
+cast_shadow = 0
+
+[node name="mesh_garbage_bag10" parent="mesh_garbage_crate" instance=ExtResource("4_tpur4")]
+transform = Transform3D(0.851058, 0.453982, 0.263819, -0.482655, 0.874228, 0.0526264, -0.206746, -0.172122, 0.963136, -0.166739, 1.0583, -0.240205)
+cast_shadow = 0
+
+[node name="mesh_garbage_bag11" parent="mesh_garbage_crate" instance=ExtResource("4_tpur4")]
+transform = Transform3D(0.938249, 0.274076, -0.211121, -0.279273, 0.960197, 0.00539776, 0.204198, 0.053896, 0.977445, 0.408779, 0.895019, -0.267721)
+cast_shadow = 0
+
+[node name="mesh_garbage_bag12" parent="mesh_garbage_crate" instance=ExtResource("4_tpur4")]
+transform = Transform3D(0.892574, 0.257524, 0.370127, -0.279273, 0.960197, 0.00539775, -0.354004, -0.108184, 0.928966, 0.408779, 0.895019, 0.53705)
+cast_shadow = 0
+
+[node name="mesh_garbage_bag13" parent="mesh_garbage_crate" instance=ExtResource("4_tpur4")]
+transform = Transform3D(0.892574, 0.257524, 0.370127, -0.279273, 0.960197, 0.00539775, -0.354004, -0.108184, 0.928966, 0.408779, 0.895019, 1.50027)
+cast_shadow = 0

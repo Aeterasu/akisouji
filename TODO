@@ -192,6 +192,8 @@ LEFT TO DO:
     + sort language file
     + separate songs into game and menus
     + write a simple piece for title menu (chords and some piano)
+    + add russian
+    + ask sensenko about spanish translation
     +make all shoes scale cleaning
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
     
@@ -332,5 +334,3 @@ LEFT TO DO:
         - add chibis
     
     LOCALIZATION:
-        - add russian, and if possible, japanese localization
-        - ask sensenko about spanish translation
