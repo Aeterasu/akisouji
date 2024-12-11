@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://8kw8vfjyax3p"]
+[gd_scene load_steps=65 format=3 uid="uid://8kw8vfjyax3p"]
 
 [ext_resource type="PackedScene" uid="uid://r34i4r8tnmcn" path="res://assets/mesh/level_design/mesh_tutorial_1.blend" id="1_hrr73"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="2_xm36i"]
@@ -41,6 +41,7 @@
 [ext_resource type="PackedScene" uid="uid://ffbredvleqm0" path="res://scenes/prop/gomibako/prop_gomibako_1.tscn" id="38_pbksm"]
 [ext_resource type="PackedScene" uid="uid://cdl3hbykq84ed" path="res://scenes/player/garbage_bag/garbage_bag.tscn" id="39_8yspe"]
 [ext_resource type="PackedScene" uid="uid://b4sbdo24ld2gb" path="res://scenes/prop/street_light/prop_street_light_1.tscn" id="40_e0nfa"]
+[ext_resource type="PackedScene" uid="uid://cc58pp8op073o" path="res://scenes/prop/garbage_container/garbage_container.tscn" id="42_whj1m"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_f3tet"]
 sky_top_color = Color(1, 0.662745, 0.34902, 1)
@@ -199,12 +200,13 @@ billboard_keep_scale = true
 [sub_resource type="BoxShape3D" id="BoxShape3D_h60t4"]
 size = Vector3(1, 16, 40)
 
-[node name="LevelTutorial1" type="Node3D" node_paths=PackedStringArray("leaf_populator", "player_spawn_position")]
+[node name="LevelTutorial1" type="Node3D" node_paths=PackedStringArray("leaf_populator", "player_spawn_position", "garbage_bag_origins")]
 script = ExtResource("2_xm36i")
 enable_tutorial = true
 leaf_populator = NodePath("LeafPopulator")
 leaf_leeway = 400
 player_spawn_position = NodePath("Marker3D")
+garbage_bag_origins = NodePath("GarbageBagOrigins")
 cash_reward = 240.0
 s_rank_target_score = 250000.0
 a_rank_target_score = 150000.0
@@ -845,15 +847,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.1089, 0, 27.1383)
 [node name="PropStreetLight4" parent="Prop" instance=ExtResource("40_e0nfa")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.3595, 0, 29.2075)
 
-[node name="GarbageBag" parent="." instance=ExtResource("39_8yspe")]
-transform = Transform3D(0.742198, 0, 0.670181, 0, 1, 0, -0.670181, 0, 0.742198, 8.52864, 0.619432, 9.04617)
-
-[node name="GarbageBag2" parent="." instance=ExtResource("39_8yspe")]
-transform = Transform3D(-0.484474, 0, 0.874806, 0, 1, 0, -0.874806, 0, -0.484474, 9.75887, 0.619432, 7.56794)
-
-[node name="GarbageBag3" parent="." instance=ExtResource("39_8yspe")]
-transform = Transform3D(-0.998901, 0, 0.0468619, 0, 1, 0, -0.0468619, 0, -0.998901, 33.7914, 0.619432, 11.217)
-
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
@@ -871,6 +864,23 @@ shape = SubResource("BoxShape3D_h60t4")
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 20, 8, -0.5)
 shape = SubResource("BoxShape3D_h60t4")
+
+[node name="GarbageBagOrigins" type="Node3D" parent="."]
+
+[node name="GarbageBag" parent="GarbageBagOrigins" instance=ExtResource("39_8yspe")]
+transform = Transform3D(0.742198, 0, 0.670181, 0, 1, 0, -0.670181, 0, 0.742198, 8.52864, 0.619432, 9.04617)
+
+[node name="GarbageBag2" parent="GarbageBagOrigins" instance=ExtResource("39_8yspe")]
+transform = Transform3D(-0.484474, 0, 0.874806, 0, 1, 0, -0.874806, 0, -0.484474, 9.75887, 0.619432, 7.56794)
+
+[node name="GarbageBag3" parent="GarbageBagOrigins" instance=ExtResource("39_8yspe")]
+transform = Transform3D(-0.998901, 0, 0.0468619, 0, 1, 0, -0.0468619, 0, -0.998901, 33.7914, 0.619432, 11.217)
+
+[node name="GarbageContainer" parent="." instance=ExtResource("42_whj1m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.60178, 0.00756931, 4.97124)
+
+[node name="GarbageContainer2" parent="." instance=ExtResource("42_whj1m")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 38.6018, 0.00756931, 4.97124)
 
 [editable path="LeafPopulator"]
 [editable path="mesh_tutorial_1"]

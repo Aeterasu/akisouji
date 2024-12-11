@@ -4,6 +4,8 @@ class_name UIProgress extends Control
 @export var progress_bar : TextureProgressBar = null
 @export var percent_label : Label = null
 
+@export var garbage_bag_label : Label = null
+
 var current_value : float = 0
 
 func _process(delta) -> void:

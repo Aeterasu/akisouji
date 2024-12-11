@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://6ngiuq2e3o7u"]
+[gd_scene load_steps=38 format=3 uid="uid://6ngiuq2e3o7u"]
 
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_bcfl2"]
 [ext_resource type="Script" path="res://scenes/leaf/leaf_highlight_handler.gd" id="2_74dy0"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://csspljpa4mobh" path="res://assets/texture/fx/texture_speed.png" id="10_0auwo"]
 [ext_resource type="AudioStream" uid="uid://dl8wj1e1mcaaj" path="res://assets/audio/sfx_leaves_rustle_1.ogg" id="10_l2gfw"]
 [ext_resource type="Script" path="res://scenes/fx/speed_effect.gd" id="11_e6qqw"]
+[ext_resource type="Script" path="res://scenes/player/garbage_bag/garbage_bag_progress_manager.gd" id="11_mpem2"]
 [ext_resource type="Shader" path="res://shader/sun_flare.gdshader" id="12_ceytl"]
 [ext_resource type="Script" path="res://scenes/player/tool/camera/camera_ui.gd" id="13_d2xbq"]
 [ext_resource type="Texture2D" uid="uid://dck3bm0cescg6" path="res://assets/texture/ui/hud/texture_ui_camera.png" id="13_fykye"]
@@ -71,7 +72,7 @@ shader_parameter/Saturation_ = 2.0
 shader_parameter/FlareMult = ExtResource("25_5i5i2")
 shader_parameter/FlareMult2 = ExtResource("14_gpri0")
 
-[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "ui_completion", "pause_menu", "shop_origin", "pausable", "progress_tracker", "particle_handler", "audio_handler", "ranking_manager", "rain_effect", "ui_layer")]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("player", "ui_completion", "pause_menu", "shop_origin", "pausable", "progress_tracker", "particle_handler", "audio_handler", "garbage_bag_progress_tracker", "ranking_manager", "rain_effect", "ui_layer")]
 process_mode = 3
 script = ExtResource("1_bcfl2")
 player = NodePath("Pausable/Player")
@@ -83,6 +84,7 @@ pausable = NodePath("Pausable")
 progress_tracker = NodePath("LeafProgressTracker")
 particle_handler = NodePath("LeafParticleHandler")
 audio_handler = NodePath("LeafAudioHandler")
+garbage_bag_progress_tracker = NodePath("GarbageBagProgressManager")
 ranking_manager = NodePath("RankingManager")
 rain_effect = NodePath("Pausable/Player/RainParticles")
 ui_layer = NodePath("UILayer")
@@ -129,6 +131,11 @@ multiplier_sprint_jumping = 10.0
 multiplier_garbage_bag = 25.0
 multiplier_speed_clear_a = 1.3
 multiplier_speed_clear_b = 1.1
+
+[node name="GarbageBagProgressManager" type="Node" parent="."]
+script = ExtResource("11_mpem2")
+bag_reward = 45.0
+bag_score = 14000.0
 
 [node name="Pausable" type="Node" parent="."]
 process_mode = 1

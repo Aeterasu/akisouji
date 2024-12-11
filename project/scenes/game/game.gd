@@ -13,6 +13,8 @@ class_name Game extends Node3D
 @export var particle_handler : LeafParticleHandler = null
 @export var audio_handler : LeafAudioHandler = null
 
+@export var garbage_bag_progress_tracker : GarbageBagProgressManager = null
+
 @export var ranking_manager : RankingManager = null
 
 @export var rain_effect : Node3D = null
@@ -76,6 +78,10 @@ func _ready():
 		cleaning_handler.on_leaves_cleaned.connect(ranking_manager._on_leaves_cleaned)
 		cleaning_handler.on_leaves_cleaned.connect(player._on_leaves_cleaned)
 
+	for node in level.garbage_bag_origins.get_children():
+		if (node is GarbageBag):
+			garbage_bag_progress_tracker.target += 1
+
 	progress_tracker.leeway = level.leaf_leeway
 
 	progress_tracker.on_completion.connect(_on_level_completion)
@@ -100,6 +106,8 @@ func _ready():
 	#get_viewport().debug_draw = Viewport.DEBUG_DRAW_OVERDRAW
 
 func _process(delta):
+	UI.instance.progress.garbage_bag_label.text = tr("GARBAGE_BAG_OBJECTIVE") + " " + str(garbage_bag_progress_tracker.current_disposed) + "/" + str(garbage_bag_progress_tracker.target)
+
 	_handle_tutorial(delta)
 
 	delay = max(delay - delta, 0.0)

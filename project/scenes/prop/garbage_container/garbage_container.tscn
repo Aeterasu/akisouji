@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://cc58pp8op073o"]
+[gd_scene load_steps=13 format=3 uid="uid://cc58pp8op073o"]
 
 [ext_resource type="PackedScene" uid="uid://df0av83xelaqj" path="res://assets/mesh/prop/mesh_garbage_crate.blend" id="1_qokfg"]
 [ext_resource type="Texture2D" uid="uid://cscls801flb1v" path="res://assets/texture/environment/texture_oilpaint_1_rmmap.png" id="2_23208"]
 [ext_resource type="Texture2D" uid="uid://ci43qnpg5b0m4" path="res://assets/texture/environment/texture_oilpaint_1_rmmap_2.png" id="3_otjqk"]
 [ext_resource type="PackedScene" uid="uid://bwi15gobv053g" path="res://scenes/player/garbage_bag/mesh_garbage_bag.tscn" id="4_tpur4"]
+[ext_resource type="Script" path="res://scenes/player/garbage_bag/garbage_bag_disposal_area.gd" id="5_71gdi"]
+[ext_resource type="AudioStream" uid="uid://b3sgddg10yiq2" path="res://assets/audio/sfx_garbage_bag_dispose.ogg" id="6_7u56k"]
 
 [sub_resource type="Gradient" id="Gradient_pdbdo"]
 offsets = PackedFloat32Array(0.0833333, 0.178295, 0.284884, 0.439922)
@@ -36,6 +38,9 @@ roughness = 0.86
 roughness_texture = ExtResource("3_otjqk")
 uv1_scale = Vector3(0.315, 0.315, 0.315)
 uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5jqy1"]
+size = Vector3(1, 2.78857, 3.21198)
 
 [node name="GarbageContainer" type="Node3D"]
 
@@ -93,3 +98,25 @@ cast_shadow = 0
 [node name="mesh_garbage_bag13" parent="mesh_garbage_crate" instance=ExtResource("4_tpur4")]
 transform = Transform3D(0.892574, 0.257524, 0.370127, -0.279273, 0.960197, 0.00539775, -0.354004, -0.108184, 0.928966, 0.408779, 0.895019, 1.50027)
 cast_shadow = 0
+
+[node name="GarbageBagDisposalArea" type="Area3D" parent="." node_paths=PackedStringArray("audio")]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("5_71gdi")
+audio = NodePath("AudioStreamPlayer3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GarbageBagDisposalArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.894287, 0.0230408)
+shape = SubResource("BoxShape3D_5jqy1")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="GarbageBagDisposalArea"]
+stream = ExtResource("6_7u56k")
+volume_db = -9.0
+max_db = 0.0
+pitch_scale = 0.9
+max_polyphony = 4
+bus = &"SFX"
+attenuation_filter_cutoff_hz = 20500.0
+
+[editable path="mesh_garbage_crate"]
