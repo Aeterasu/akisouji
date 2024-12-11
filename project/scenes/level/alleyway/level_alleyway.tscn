@@ -690,10 +690,10 @@ transform = Transform3D(0.000855258, 0, -1, 0, 1, 0, 1, 0, 0.000855258, 7.56877,
 transform = Transform3D(0.0449969, 0, -0.998987, 0, 1, 0, 0.998987, 0, 0.0449969, 7.56877, -0.102301, 59.8508)
 
 [node name="PavementBorder149" parent="Props" index="23" instance=ExtResource("23_jff5m")]
-transform = Transform3D(-0.0449438, 0, -0.998969, 0, 1, 0, 0.988979, 0, -0.0453978, 7.59694, -0.102301, 61.6175)
+transform = Transform3D(-0.0515265, 0, -0.998969, 0, 1, 0, 1.13383, 0, -0.0453978, 7.59694, -0.102301, 61.6505)
 
 [node name="PavementBorder150" parent="Props" index="24" instance=ExtResource("23_jff5m")]
-transform = Transform3D(1, 0, 0.000855126, 0, 1, 0, -0.000855126, 0, 1, 8.38773, -0.102301, 62.5975)
+transform = Transform3D(0.993749, 0, -0.111642, 0, 1, 0, 0.111642, 0, 0.993749, 8.38773, -0.102301, 62.7968)
 
 [node name="PavementBorder151" parent="Props" index="25" instance=ExtResource("23_jff5m")]
 transform = Transform3D(-1, 0, -0.000855214, 0, 1, 0, 0.000855214, 0, -1, 8.38773, -0.102301, 73.174)
