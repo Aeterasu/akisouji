@@ -26,7 +26,10 @@ class_name UIToolCarousel extends Control
 func _ready():
     icon_garbage_bag.hide()
 
-func _process(delta):
+    _update_label()
+    GlobalSettings.on_locale_updated.connect(_update_label)
+
+func _update_label():
     if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD):
         arrow_right_tooltip_label.text = "[center]" + ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_next_tool")[1])
         arrow_left_tooltip_label.text = "[center]" + ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_previous_tool")[1])

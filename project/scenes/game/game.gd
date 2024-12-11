@@ -97,6 +97,8 @@ func _ready():
 		for i in 15:
 			Game.game_instance.cleaning_handler.RequestCleaningAtPosition(Vector2.ZERO, Vector2.ZERO, Vector2.ZERO)
 
+	#get_viewport().debug_draw = Viewport.DEBUG_DRAW_OVERDRAW
+
 func _process(delta):
 	_handle_tutorial(delta)
 

@@ -13,6 +13,8 @@ var swap_cooldown_timer : Timer = Timer.new()
 
 var first_hud_update : bool = false
 
+var first_label_update : bool = false
+
 func _ready():
 	for node in tool_origin.get_children():
 		if (node is PlayerTool):
@@ -23,10 +25,16 @@ func _ready():
 	add_child(swap_cooldown_timer)
 	swap_cooldown_timer.one_shot = true
 
+	GlobalSettings.on_locale_updated.connect(_update_hud_label)
+
 func _process(delta) -> void:
 	if (!first_hud_update and UI.instance):
 		_update_hud_textures()
 		first_hud_update = true
+
+	if (!first_label_update and UI.instance and UI.instance.ui_tool_carousel):
+		_update_hud_label()
+		first_label_update = true
 
 func _update_hud_textures() -> void:
 	UI.instance.ui_tool_carousel.tool_center.texture = current_tool.hud_icon
@@ -59,30 +67,6 @@ func _update_hud_textures() -> void:
 func _physics_process(delta) -> void:
 	UI.instance.ui_tool_carousel.icon_garbage_bag.visible = player.garbage_bag_handler.is_holding_a_bag
 	UI.instance.ui_tool_carousel.tool_center.visible = !player.garbage_bag_handler.is_holding_a_bag
-
-	if (player.garbage_bag_handler.is_holding_a_bag):
-		UI.instance.ui_tool_carousel.label.text = tr("GARBAGE_BAG")
-
-		UI.instance.ui_tool_carousel.tooltip_label.text = "[right]" + tr("HUD_TOOLTIP_GARBAGE_BAG")
-	elif (current_tool):
-		UI.instance.ui_tool_carousel.label.text = tr(current_tool.tool_name)
-
-		UI.instance.ui_tool_carousel.tooltip_label.text = "[right]" + tr(current_tool.hud_tooltip_prompt)
-
-	if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD):
-		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[LMB]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_primary")[1]))
-		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[RMB]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_secondary")[1]))
-		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[F]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("hint_highlight")[1]))
-		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[Tab]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("open_inventory")[1]))
-		
-		UI.instance.ui_tool_carousel.tooltip_label.set("theme_override_constants/line_separation", 0)
-	elif (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE):
-		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[LMB]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_primary")[0]))
-		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[RMB]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_secondary")[0]))
-		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[F]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("hint_highlight")[0]))
-		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[Tab]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("open_inventory")[0]))
-
-		UI.instance.ui_tool_carousel.tooltip_label.set("theme_override_constants/line_separation", 6)
 
 	if (current_tool and !current_tool.allow_switch):
 		return
@@ -137,6 +121,8 @@ func _physics_process(delta) -> void:
 
 			UI.instance.ui_tool_carousel.tool_left_animated.texture = tools[next_id].hud_icon
 
+			_update_hud_label()
+
 			return
 		if (Input.is_action_just_pressed("player_action_previous_tool")):
 			_previous_tool()
@@ -187,6 +173,8 @@ func _physics_process(delta) -> void:
 
 			UI.instance.ui_tool_carousel.tool_right_animated.texture = tools[next_id].hud_icon
 
+			_update_hud_label()
+
 			return
 
 func _previous_tool():
@@ -227,3 +215,28 @@ func _get_camera() -> CameraTool:
 			return node as CameraTool
 
 	return null
+
+func _update_hud_label() -> void:
+	if (player.garbage_bag_handler.is_holding_a_bag):
+		UI.instance.ui_tool_carousel.label.text = tr("GARBAGE_BAG")
+
+		UI.instance.ui_tool_carousel.tooltip_label.text = "[right]" + tr("HUD_TOOLTIP_GARBAGE_BAG")
+	elif (current_tool):
+		UI.instance.ui_tool_carousel.label.text = tr(current_tool.tool_name)
+
+		UI.instance.ui_tool_carousel.tooltip_label.text = "[right]" + tr(current_tool.hud_tooltip_prompt)
+
+	if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD):
+		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[LMB]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_primary")[1]))
+		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[RMB]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_secondary")[1]))
+		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[F]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("hint_highlight")[1]))
+		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[Tab]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("open_inventory")[1]))
+		
+		UI.instance.ui_tool_carousel.tooltip_label.set("theme_override_constants/line_separation", 0)
+	elif (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE):
+		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[LMB]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_primary")[0]))
+		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[RMB]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("player_action_secondary")[0]))
+		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[F]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("hint_highlight")[0]))
+		UI.instance.ui_tool_carousel.tooltip_label.text = UI.instance.ui_tool_carousel.tooltip_label.text.replace("[Tab]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("open_inventory")[0]))
+
+		UI.instance.ui_tool_carousel.tooltip_label.set("theme_override_constants/line_separation", 6)

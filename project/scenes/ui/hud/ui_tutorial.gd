@@ -29,7 +29,10 @@ class_name UITutorial extends Control
 
 @export var label : RichTextLabel = null
 
-var current_text : String = ""
+var current_text : String = "":
+	set(value):
+		current_text = value
+		_update_text()
 
 var in_animation : bool = false
 
@@ -54,7 +57,12 @@ func _ready() -> void:
 
 	glyph_image = ControlGlyphHandler._get_glyph_image_path()
 
+	GlobalSettings.on_locale_updated.connect(_update_text)
+
 func _process(delta):
+	visible = modulate.a <= 0.01
+
+func _update_text():
 	label.text = current_text
 
 	if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD):

@@ -14,6 +14,8 @@ extends Node
 		TranslationServer.set_locale(value)
 		locale = value
 
+		on_locale_updated.emit()
+
 @export var master_volume : float = 1.0
 @export var sfx_volume : float = 1.0
 @export var ambience_volume : float = 1.0
@@ -81,6 +83,8 @@ extends Node
 @export var leaf_highlight_color : Color = Color(0.988, 0.525, 0.259, 1.0)
 
 @export var bindable_actions : Array[String] = []
+
+signal on_locale_updated
 
 func _ready() -> void:
 	if (FileAccess.file_exists("user://config.tres")):

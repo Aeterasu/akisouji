@@ -100,6 +100,8 @@ func _ready():
 			UpgradeManager.on_broom_update.emit(node as BroomUpgrade)
 	#_on_broom_upgrade_update()
 
+	garbage_bag_handler.on_bag_update.connect(inventory._update_hud_label)
+
 func _physics_process(delta : float):
 	UI.instance.ui_garbage_bag_popup.is_bag_full = garbage_bag_handler._is_full()
 
