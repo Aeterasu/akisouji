@@ -65,9 +65,6 @@ func _ready() -> void:
 	GlobalSettings.on_locale_updated.connect(_update_text)
 	InputDeviceCheck.on_device_change.connect(_update_text)
 
-func _process(delta):
-	visible = modulate.a > 0.01
-
 func _update_text():
 	current_text = tr(cur_text_key)
 
