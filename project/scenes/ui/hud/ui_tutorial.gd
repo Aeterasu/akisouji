@@ -8,7 +8,7 @@ class_name UITutorial extends Control
 
 		var tween = get_tree().create_tween()
 		tween.tween_property(self, "modulate", Color(0.0, 0.0, 0.0, 0.0), 0.4)
-		tween.tween_callback(func(): current_text = tr("TUTORIAL_" + str(tutorial_stage)))
+		tween.tween_callback(func(): cur_text_key = "TUTORIAL_" + str(tutorial_stage))
 		tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.4)
 		tween.tween_callback(func(): in_animation = false).set_delay(0.4)
 
@@ -29,10 +29,15 @@ class_name UITutorial extends Control
 
 @export var label : RichTextLabel = null
 
+var cur_text_key : String = "":
+	set(value):
+		cur_text_key = value
+		current_text = tr(value)
+		_update_text()
+
 var current_text : String = "":
 	set(value):
 		current_text = value
-		_update_text()
 
 var in_animation : bool = false
 
@@ -58,11 +63,14 @@ func _ready() -> void:
 	glyph_image = ControlGlyphHandler._get_glyph_image_path()
 
 	GlobalSettings.on_locale_updated.connect(_update_text)
+	InputDeviceCheck.on_device_change.connect(_update_text)
 
 func _process(delta):
-	visible = modulate.a <= 0.01
+	visible = modulate.a > 0.01
 
 func _update_text():
+	current_text = tr(cur_text_key)
+
 	label.text = current_text
 
 	if (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.GAMEPAD):

@@ -26,6 +26,7 @@ func _ready():
 	swap_cooldown_timer.one_shot = true
 
 	GlobalSettings.on_locale_updated.connect(_update_hud_label)
+	InputDeviceCheck.on_device_change.connect(_update_hud_label)
 
 func _process(delta) -> void:
 	if (!first_hud_update and UI.instance):

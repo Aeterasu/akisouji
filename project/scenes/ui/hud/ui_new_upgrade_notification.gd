@@ -11,6 +11,7 @@ func _ready():
 
 	_update_label()
 	GlobalSettings.on_locale_updated.connect(_update_label)
+	InputDeviceCheck.on_device_change.connect(_update_label)
 
 func _process(delta):
 	if (Input.is_action_just_pressed("open_inventory")):

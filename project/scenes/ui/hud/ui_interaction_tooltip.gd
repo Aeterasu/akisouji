@@ -9,6 +9,7 @@ func _ready():
     _update_label()
 
     GlobalSettings.on_locale_updated.connect(_update_label)
+    InputDeviceCheck.on_device_change.connect(_update_label)
 
 func _process(delta):
     visible = modulate.a > 0.01
