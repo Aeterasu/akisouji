@@ -13,8 +13,7 @@ radius = 0.22635
 [node name="mesh_gomibako" parent="." instance=ExtResource("1_15u6a")]
 
 [node name="Collision " parent="mesh_gomibako" index="0"]
-collision_layer = 4
-collision_mask = 4
+collision_mask = 2
 
 [node name="GarbageBagDisposalArea" type="Area3D" parent="." node_paths=PackedStringArray("audio")]
 collision_layer = 0

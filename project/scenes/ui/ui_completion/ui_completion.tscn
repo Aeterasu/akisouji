@@ -393,14 +393,7 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
-[node name="UIUpscaler" type="Node" parent="."]
-script = ExtResource("3_8a5oe")
-
-[node name="GradeAudio1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_s13gy")
-bus = &"SFX"
-
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="Menu"]
 modulate = Color(0.914108, 0.81703, 0.667462, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -414,3 +407,10 @@ offset_bottom = -140.0
 texture = SubResource("AnimatedTexture_nv6dw")
 expand_mode = 1
 stretch_mode = 4
+
+[node name="UIUpscaler" type="Node" parent="."]
+script = ExtResource("3_8a5oe")
+
+[node name="GradeAudio1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_s13gy")
+bus = &"SFX"

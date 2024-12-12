@@ -236,7 +236,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("24_fb0uc")
-max_scroll = 74.0
+max_scroll = 296.0
 
 [node name="FullscreenButton" parent="GeneralSettings/Control/Scroll" node_paths=PackedStringArray("setting_label", "setting_toggle") instance=ExtResource("10_heo66")]
 layout_mode = 2
@@ -719,7 +719,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("24_fb0uc")
-max_scroll = 580.0
+max_scroll = 748.0
 
 [node name="MouseSensitivityButton" parent="KeyboardSettings/Control/Scroll" node_paths=PackedStringArray("setting_label", "setting_slider") instance=ExtResource("10_heo66")]
 layout_mode = 2
@@ -1784,7 +1784,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("24_fb0uc")
-max_scroll = 392.0
+max_scroll = 600.0
 
 [node name="GamepadSensitivityButton" parent="GamepadSettings/Control/Scroll" node_paths=PackedStringArray("setting_label", "setting_slider") instance=ExtResource("10_heo66")]
 layout_mode = 2

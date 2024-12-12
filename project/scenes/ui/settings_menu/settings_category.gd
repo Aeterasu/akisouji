@@ -46,11 +46,6 @@ func _process(delta):
 			(scroll as SettingsScroll).target_scroll -= 74
 		elif (!block_input and selected and Input.is_action_just_released("scroll_down")):
 			(scroll as SettingsScroll).target_scroll += 74
-		#elif (!block_input and selected and button_selection_handler.current_button and (Input.is_action_just_pressed("gamepad_dpad_up") or Input.is_action_just_pressed("player_move_forward") or Input.is_action_just_pressed("gamepad_dpad_down") or Input.is_action_just_pressed("player_move_backwards"))):
-			#(scroll as SettingsScroll).target_scroll = button_selection_handler.current_button.position.y - 74.0
-
-		#var sc = clamp(button_selection_handler.current_button.position.y - 240.0, 0.0, scroll.max_scroll)
-		#(scroll as SettingsScroll).target_scroll = -sc
 
 		var sc = clamp((scroll as SettingsScroll).target_scroll - 240.0, 0.0, scroll.max_scroll)
 		(scroll as SettingsScroll).current_scroll = -sc

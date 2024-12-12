@@ -3,7 +3,9 @@ class_name SettingsScroll extends Control
 @export var max_scroll : float = 548.0
 @export var min_scroll : float = 0.0
 
-var target_scroll : float = 0.0
+var target_scroll : float = 0.0:
+    set(value):
+        target_scroll = clamp(value, min_scroll, max_scroll)
 
 var current_scroll : float = 0.0
 var lerped_scroll : float = 0.0
