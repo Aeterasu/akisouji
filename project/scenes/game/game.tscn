@@ -134,7 +134,7 @@ multiplier_speed_clear_b = 1.1
 
 [node name="GarbageBagProgressManager" type="Node" parent="."]
 script = ExtResource("11_mpem2")
-bag_reward = 45.0
+bag_reward = 65.0
 bag_score = 14000.0
 
 [node name="Pausable" type="Node" parent="."]
