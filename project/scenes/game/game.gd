@@ -249,7 +249,7 @@ func _handle_tutorial(delta : float) -> void:
 
 	if (UI.instance.ui_tutorial.tutorial_stage == 3 and UI.instance.ui_tutorial.stage_3_flag and !UI.instance.ui_tutorial.stage_3_hide_flag):
 		UI.instance.ui_tutorial.ticks += delta
-		if (UI.instance.ui_tutorial.ticks >= 8.0):
+		if (UI.instance.ui_tutorial.ticks >= 10.0):
 			UI.instance.ui_tutorial.is_shown = false
 			UI.instance.ui_tutorial.stage_3_hide_flag = true
 			UI.instance.ui_tutorial.ticks = 0.0
@@ -257,13 +257,13 @@ func _handle_tutorial(delta : float) -> void:
 
 	# stage 4
 
-	if (UI.instance.ui_tutorial.tutorial_stage == 3 and UI.instance.ui_tutorial.stage_3_hide_flag and ranking_manager.score > 6000):
+	if (UI.instance.ui_tutorial.tutorial_stage == 3 and UI.instance.ui_tutorial.stage_3_hide_flag and ranking_manager.score > 7000):
 		UI.instance.ui_tutorial.stage_4_flag = true
 		UI.instance.ui_tutorial.tutorial_stage += 1
 
 	if (UI.instance.ui_tutorial.tutorial_stage == 4 and UI.instance.ui_tutorial.stage_4_flag and !UI.instance.ui_tutorial.stage_4_hide_flag):
 		UI.instance.ui_tutorial.ticks += delta
-		if (UI.instance.ui_tutorial.ticks >= 8.0):
+		if (UI.instance.ui_tutorial.ticks >= 10.0):
 			UI.instance.ui_tutorial.is_shown = false
 			UI.instance.ui_tutorial.stage_4_hide_flag = true
 			UI.instance.ui_tutorial.ticks = 0.0
@@ -271,13 +271,13 @@ func _handle_tutorial(delta : float) -> void:
 
 	# stage 5
 
-	if (UI.instance.ui_tutorial.tutorial_stage == 4 and UI.instance.ui_tutorial.stage_4_hide_flag and ranking_manager.score > 9000):
+	if (UI.instance.ui_tutorial.tutorial_stage == 4 and UI.instance.ui_tutorial.stage_4_hide_flag and ranking_manager.score > 13000):
 		UI.instance.ui_tutorial.stage_5_flag = true
 		UI.instance.ui_tutorial.tutorial_stage += 1
 
 	if (UI.instance.ui_tutorial.tutorial_stage == 5 and UI.instance.ui_tutorial.stage_5_flag and !UI.instance.ui_tutorial.stage_5_hide_flag):
 		UI.instance.ui_tutorial.ticks += delta
-		if (UI.instance.ui_tutorial.ticks >= 8.0):
+		if (UI.instance.ui_tutorial.ticks >= 10.0):
 			UI.instance.ui_tutorial.is_shown = false
 			UI.instance.ui_tutorial.stage_5_hide_flag = true
 			UI.instance.ui_tutorial.ticks = 0.0
@@ -285,15 +285,31 @@ func _handle_tutorial(delta : float) -> void:
 
 	# stage 6
 
-	if (UI.instance.ui_tutorial.tutorial_stage == 5 and UI.instance.ui_tutorial.stage_5_hide_flag and ranking_manager.score > 15000):
+	if (UI.instance.ui_tutorial.tutorial_stage == 5 and UI.instance.ui_tutorial.stage_5_hide_flag and ranking_manager.score > 26000):
 		UI.instance.ui_tutorial.stage_6_flag = true
 		UI.instance.ui_tutorial.tutorial_stage += 1
 
 	if (UI.instance.ui_tutorial.tutorial_stage == 6 and UI.instance.ui_tutorial.stage_6_flag and !UI.instance.ui_tutorial.stage_6_hide_flag):
 		UI.instance.ui_tutorial.ticks += delta
-		if (UI.instance.ui_tutorial.ticks >= 8.0):
+		if (UI.instance.ui_tutorial.ticks >= 10.0):
 			UI.instance.ui_tutorial.is_shown = false
 			UI.instance.ui_tutorial.stage_6_hide_flag = true
+			UI.instance.ui_tutorial.ticks = 0.0
+			SaveManager.seen_tutorial = true
+			SaveManager._save()
+		return
+
+	# stage 6
+
+	if (UI.instance.ui_tutorial.tutorial_stage == 6 and UI.instance.ui_tutorial.stage_6_hide_flag and ranking_manager.score > 60000):
+		UI.instance.ui_tutorial.stage_7_flag = true
+		UI.instance.ui_tutorial.tutorial_stage += 1
+
+	if (UI.instance.ui_tutorial.tutorial_stage == 7 and UI.instance.ui_tutorial.stage_7_flag and !UI.instance.ui_tutorial.stage_7_hide_flag):
+		UI.instance.ui_tutorial.ticks += delta
+		if (UI.instance.ui_tutorial.ticks >= 12.0):
+			UI.instance.ui_tutorial.is_shown = false
+			UI.instance.ui_tutorial.stage_7_hide_flag = true
 			UI.instance.ui_tutorial.ticks = 0.0
 			SaveManager.seen_tutorial = true
 			SaveManager._save()

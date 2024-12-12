@@ -55,6 +55,9 @@ var stage_5_hide_flag : bool = false
 var stage_6_flag : bool = false
 var stage_6_hide_flag : bool = false
 
+var stage_7_flag : bool = false
+var stage_7_hide_flag : bool = false
+
 var glyph_image
 
 func _ready() -> void:

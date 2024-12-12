@@ -41,7 +41,7 @@ use_colors = true
 mesh = SubResource("PlaneMesh_ldsq4")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_elgqa"]
-size = Vector3(1, 5, 80)
+size = Vector3(1, 32.0695, 80)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fwi6h"]
 
@@ -363,11 +363,11 @@ leafInterpolationWeight = 12.0
 [node name="StaticBody3D" type="StaticBody3D" parent="." index="3"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 40)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.2842, 40)
 shape = SubResource("BoxShape3D_elgqa")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 2.5, 40)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 80, 5.25055, 40)
 shape = SubResource("BoxShape3D_elgqa")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2"]
@@ -1137,13 +1137,13 @@ transform = Transform3D(0.743729, 0, 0.668482, 0, 1, 0, -0.668482, 0, 0.743729, 
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 78.7151, -0.0647425, 57.1879)
 
 [node name="GarbageContainer2" parent="." index="43" instance=ExtResource("28_a68qy")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 63.7151, -0.0647425, 1.68791)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 63.7151, -0.0647425, 1.09402)
 
 [node name="GarbageContainer3" parent="." index="44" instance=ExtResource("28_a68qy")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 15.8945, -0.0647425, 1.68791)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 16.0796, -0.0647425, 1.15124)
 
 [node name="GarbageContainer4" parent="." index="45" instance=ExtResource("28_a68qy")]
-transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 1.38639, -0.0647425, 28.4089)
+transform = Transform3D(1, 0, 1.74846e-07, 0, 1, 0, -1.74846e-07, 0, 1, 1.12922, -0.0647425, 28.4089)
 
 [node name="PropBench1" parent="." index="46" instance=ExtResource("29_62rsx")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 73.5, 0, 56)

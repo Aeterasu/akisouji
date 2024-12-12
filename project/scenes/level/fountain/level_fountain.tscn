@@ -1379,16 +1379,16 @@ transform = Transform3D(0.863528, 0, 0.504302, 0, 1, 0, -0.504302, 0, 0.863528, 
 transform = Transform3D(0.642895, 0, 0.765955, 0, 1, 0, -0.765955, 0, 0.642895, 51.4635, 0.601766, 43.3642)
 
 [node name="GarbageContainer2" parent="." index="32" instance=ExtResource("34_irwhw")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 49.1018, -0.067058, 1.5232)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 49.1018, -0.067058, 1.27401)
 
 [node name="GarbageContainer3" parent="." index="33" instance=ExtResource("34_irwhw")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 11.1018, -0.067058, 1.5232)
+transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, 11.1018, -0.067058, 1.03403)
 
 [node name="GarbageContainer4" parent="." index="34" instance=ExtResource("34_irwhw")]
-transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 1.60178, -0.067058, 49.0185)
+transform = Transform3D(1, 0, 5.96046e-08, 0, 1, 0, -5.96046e-08, 0, 1, 1.17395, -0.067058, 49.0185)
 
 [node name="GarbageContainer5" parent="." index="35" instance=ExtResource("34_irwhw")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 58.6018, -0.067058, 51.0185)
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 58.954, -0.067058, 51.0185)
 
 [editable path="CityHorizon"]
 [editable path="Horizon"]
