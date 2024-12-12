@@ -163,10 +163,9 @@ func load_image_texture(path: String) -> ImageTexture:
 	return ImageTexture.create_from_image(loaded_image)
 
 func _on_button_pressed(button : UIButton):
-	button_selection_handler._disable_all_buttons()
-
 	match (button):
 		back_button:
+			button_selection_handler._disable_all_buttons()
 			_on_back_pressed()
 			return
 		open_folder_button:

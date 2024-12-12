@@ -100,6 +100,7 @@ offset_left = -192.09
 offset_top = -130.0
 offset_right = -0.0900002
 offset_bottom = 6.0
+mouse_filter = 2
 texture = SubResource("AnimatedTexture_lw1wm")
 expand_mode = 1
 stretch_mode = 4

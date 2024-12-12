@@ -263,7 +263,7 @@ offset_bottom = 50.12
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.5, 0.5)
-mouse_filter = 0
+mouse_filter = 2
 texture = ExtResource("1_mdruy")
 expand_mode = 1
 stretch_mode = 1
@@ -289,6 +289,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_np5xa")
 
 [node name="PaperButton" parent="Buttons" instance=ExtResource("5_6rj0g")]
@@ -318,6 +319,14 @@ target_selected_position = Vector2(12, 0)
 target_deselected_position = Vector2(96, 0)
 text_key = "MENU_BUTTON_GALLERY_FOLDER"
 custom_font_size = 24
+
+[node name="MouseArea" parent="Buttons/PaperButtonHFlipped" index="1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.019
+anchor_bottom = 0.602
+offset_right = 0.252991
+offset_bottom = -0.0560074
 
 [node name="ButtonSelectionHandler" type="Node" parent="Buttons" node_paths=PackedStringArray("buttons_origin")]
 script = ExtResource("7_jbjr6")
@@ -381,3 +390,5 @@ volume_db = -4.0
 pitch_scale = 0.9
 max_polyphony = 6
 bus = &"SFX"
+
+[editable path="Buttons/PaperButtonHFlipped"]

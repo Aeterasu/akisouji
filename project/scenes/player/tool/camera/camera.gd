@@ -2,6 +2,9 @@ class_name CameraTool extends PlayerTool
 
 @export var mesh : MeshInstance3D = null
 @export var camera : Camera3D = null
+@export var cooldown : float = 0.4
+
+var cur_cooldown : float = 0.0
 
 @export var audio_shutter : AudioStreamPlayer = null
 
@@ -18,6 +21,8 @@ signal on_exit_photo_mode
 func _physics_process(delta):
 	super(delta)
 
+	cur_cooldown = max(cur_cooldown - delta, 0.0)
+
 	ticks += 1
 
 	if (ticks >= tickrate):
@@ -26,7 +31,7 @@ func _physics_process(delta):
 func _use_primary() -> void:
 	super()
 
-	if (wish_photo_mode):
+	if (wish_photo_mode and cur_cooldown <= 0.0):
 		CameraUI.instance.hide()
 		
 		var ui_completion_flag : bool = Game.game_instance.ui_completion.visible
@@ -35,6 +40,8 @@ func _use_primary() -> void:
 
 		if (ui_completion_flag):
 			Game.game_instance.ui_completion.show()
+
+		cur_cooldown = cooldown
 
 		Main.instance._take_screenshot()
 		var tween = create_tween()
