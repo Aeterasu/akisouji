@@ -3,6 +3,8 @@ extends SettingsFunction
 func _ready():
     _update_text()
 
+    GlobalSettings.on_locale_updated.connect(_update_text)
+
 func _toggle() -> void:
     GlobalSettings.toggle_to_clean = not GlobalSettings.toggle_to_clean
     _update_text()

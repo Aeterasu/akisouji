@@ -13,9 +13,7 @@
 [ext_resource type="Shader" path="res://shader/uv_pulse.gdshader" id="6_ac7cn"]
 [ext_resource type="PackedScene" uid="uid://c15cmbbg5nyn0" path="res://scenes/ui/hud/ui_cash.tscn" id="6_acpaq"]
 [ext_resource type="Resource" uid="uid://dm1aayb6i2p5a" path="res://scenes/upgrade/move_speed/sneakers.tres" id="6_aii5i"]
-[ext_resource type="Texture2D" uid="uid://d2e2rr2vlm1bc" path="res://assets/texture/girl/texture_psx_1_1.png" id="6_l5r2h"]
 [ext_resource type="Shader" path="res://shader/rotate_uv.gdshader" id="6_s7n1s"]
-[ext_resource type="Texture2D" uid="uid://hbprk6wqoqtr" path="res://assets/texture/girl/texture_psx_1_2.png" id="7_13rmc"]
 [ext_resource type="Resource" uid="uid://cc7kdcc5fh4wk" path="res://scenes/upgrade/move_speed/wellies.tres" id="7_bq3o6"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="7_fg3im"]
 [ext_resource type="Script" path="res://scenes/ui/shop/shop_entry.gd" id="8_8rigd"]
@@ -45,11 +43,17 @@ gradient = SubResource("Gradient_fiolj")
 fill_from = Vector2(1, 0)
 fill_to = Vector2(0, 0)
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_cegkt"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uuqcd"]
+load_path = "res://.godot/imported/texture_psx_1_1.png-0b99e8592deae9a2c7d759c252d5bc36.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x4crc"]
+load_path = "res://.godot/imported/texture_psx_1_2.png-426680ece5fea71c1d77ac333520bb5b.ctex"
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_6fdej"]
 frames = 2
-frame_0/texture = ExtResource("6_l5r2h")
+frame_0/texture = SubResource("CompressedTexture2D_uuqcd")
 frame_0/duration = 0.3
-frame_1/texture = ExtResource("7_13rmc")
+frame_1/texture = SubResource("CompressedTexture2D_x4crc")
 frame_1/duration = 0.3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3i6hp"]
@@ -232,7 +236,7 @@ offset_left = 179.908
 offset_top = 160.0
 offset_right = -292.0
 offset_bottom = -368.0
-texture = SubResource("AnimatedTexture_cegkt")
+texture = SubResource("AnimatedTexture_6fdej")
 expand_mode = 1
 stretch_mode = 4
 

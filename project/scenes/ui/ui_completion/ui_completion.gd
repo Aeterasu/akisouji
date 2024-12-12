@@ -38,6 +38,10 @@ func _process(delta):
 		elif (InputDeviceCheck.input_device == InputDeviceCheck.InputDevice.KEYBOARD_MOUSE):
 			initial_popup_label.text = initial_popup_label.text.replace("[button]", ControlGlyphHandler._get_glyph_bbcode(InputMap.action_get_events("open_inventory")[0]))
 
+	if (confirmed):
+		if ((SaveManager.beat_0 and SaveManager.beat_1 and SaveManager.beat_2 and SaveManager.beat_3) and !SaveManager.seen_finale):
+			menu_button_handler.buttons[0].text_key = tr("STAGE_NAME_FINALE")
+
 func _show_initial_popup():
 	show()
 	initial_popup.show()
@@ -46,9 +50,6 @@ func _show_initial_popup():
 
 func _show_menu():
 	confirmed = true
-
-	if ((SaveManager.beat_0 and SaveManager.beat_1 and SaveManager.beat_2 and SaveManager.beat_3) and !SaveManager.seen_finale):
-		menu_button_handler.buttons[0].text_key = tr("STAGE_NAME_FINALE")
 
 	initial_popup.hide()
 	menu.show()

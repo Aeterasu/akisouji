@@ -15,10 +15,10 @@ var tween : Tween = null
 
 var currently_playing : CurrentlyPlaying = CurrentlyPlaying.MENU:
 	set(value):
-		if (value == CurrentlyPlaying.MENU):
-			#if (tween):
-				#tween.kill()
+		if (value == currently_playing):
+			return
 
+		if (value == CurrentlyPlaying.MENU):
 			tween = create_tween()
 			tween.tween_property(self, "gameplay_volume", 0.0, 0.3)
 			tween.tween_property(self, "menu_volume", default_menu_volume, 0.5)
@@ -28,9 +28,6 @@ var currently_playing : CurrentlyPlaying = CurrentlyPlaying.MENU:
 				menu_music.play()
 
 		elif (value == CurrentlyPlaying.GAMEPLAY):
-			#if (tween):
-				#tween.kill()
-
 			tween = create_tween()
 			tween.tween_property(self, "menu_volume", 0.0, 0.2)
 			tween.tween_callback(menu_music.stop).set_delay(0.2)
@@ -39,6 +36,8 @@ var currently_playing : CurrentlyPlaying = CurrentlyPlaying.MENU:
 
 			if (!gameplay_music.playing):
 				tween.tween_callback(_gameplay_music_play).set_delay(0.4)
+
+		currently_playing = value
 
 enum CurrentlyPlaying
 {

@@ -363,6 +363,9 @@ target_selected_position = Vector2(-120, 0)
 target_deselected_position = Vector2(-36, 0)
 text_key = "COMPLETION_BUTTON_TO_STAGE_SELECT"
 
+[node name="Label" parent="Menu/Control/PaperButtonHFlipped/AnimationOrigin" index="2"]
+theme_override_font_sizes/font_size = 36
+
 [node name="ButtonSelectionHandler" type="Node" parent="Menu/Control" node_paths=PackedStringArray("buttons_origin")]
 script = ExtResource("8_wqtt0")
 buttons_origin = NodePath("..")
@@ -414,3 +417,5 @@ script = ExtResource("3_8a5oe")
 [node name="GradeAudio1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_s13gy")
 bus = &"SFX"
+
+[editable path="Menu/Control/PaperButtonHFlipped"]

@@ -3,24 +3,32 @@
 [ext_resource type="Texture2D" uid="uid://c585bqlmijm63" path="res://assets/texture/ui/texture_ui_credits_splash.png" id="1_6nn83"]
 [ext_resource type="Script" path="res://scenes/ui/credits/credits.gd" id="1_trmkh"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="3_gcx8m"]
-[ext_resource type="Texture2D" uid="uid://cyetwj1j6o45y" path="res://assets/texture/girl/texture_psx_2_1.png" id="4_p7acn"]
-[ext_resource type="Texture2D" uid="uid://dml6tiiquw1hy" path="res://assets/texture/girl/texture_psx_2_2.png" id="5_pk64h"]
-[ext_resource type="Texture2D" uid="uid://hbprk6wqoqtr" path="res://assets/texture/girl/texture_psx_1_2.png" id="6_24uuu"]
-[ext_resource type="Texture2D" uid="uid://d2e2rr2vlm1bc" path="res://assets/texture/girl/texture_psx_1_1.png" id="6_l2myo"]
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_2otdh"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gofd8"]
+load_path = "res://.godot/imported/texture_psx_2_1.png-71869062e94d35b4b153b702b6b1e4b4.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_0530t"]
+load_path = "res://.godot/imported/texture_psx_2_2.png-18cf30e21109b10ad67ffe1fde218d8e.ctex"
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_56b73"]
 frames = 2
 speed_scale = 0.5
-frame_0/texture = ExtResource("4_p7acn")
+frame_0/texture = SubResource("CompressedTexture2D_gofd8")
 frame_0/duration = 0.3
-frame_1/texture = ExtResource("5_pk64h")
+frame_1/texture = SubResource("CompressedTexture2D_0530t")
 frame_1/duration = 0.3
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_5gyg0"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ga37t"]
+load_path = "res://.godot/imported/texture_psx_1_1.png-0b99e8592deae9a2c7d759c252d5bc36.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_u55xd"]
+load_path = "res://.godot/imported/texture_psx_1_2.png-426680ece5fea71c1d77ac333520bb5b.ctex"
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_dlkg1"]
 frames = 2
-frame_0/texture = ExtResource("6_l2myo")
+frame_0/texture = SubResource("CompressedTexture2D_ga37t")
 frame_0/duration = 0.4
-frame_1/texture = ExtResource("6_24uuu")
+frame_1/texture = SubResource("CompressedTexture2D_u55xd")
 frame_1/duration = 0.4
 
 [node name="Credits" type="Control" node_paths=PackedStringArray("splash", "label")]
@@ -83,7 +91,7 @@ offset_left = 144.0
 offset_top = -128.16
 offset_right = 139.64
 offset_bottom = -124.0
-texture = SubResource("AnimatedTexture_2otdh")
+texture = SubResource("AnimatedTexture_56b73")
 expand_mode = 1
 stretch_mode = 4
 
@@ -99,7 +107,7 @@ offset_left = -152.52
 offset_top = -129.72
 offset_right = -149.0
 offset_bottom = -125.0
-texture = SubResource("AnimatedTexture_5gyg0")
+texture = SubResource("AnimatedTexture_dlkg1")
 expand_mode = 1
 stretch_mode = 4
 flip_h = true
