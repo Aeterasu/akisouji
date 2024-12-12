@@ -278,6 +278,7 @@ anchor_bottom = 1.0
 offset_top = -0.0499954
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_flh8y")
 
 [node name="TextureRect2" type="TextureRect" parent="Buttons/Background2"]
