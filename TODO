@@ -195,6 +195,7 @@ LEFT TO DO:
     + add russian
     + ask sensenko about spanish translation
     + add garbage bins to throw bags into.
+    + add chibis
     +make all shoes scale cleaning
     = vacuum - hold rmb for powerful aoe leaf blow! (4-5 radius)
     
@@ -275,8 +276,6 @@ LEFT TO DO:
     
     GENERAL UI:
         = ? add shop button to title screen ?
-
-        - rework loading screen (chibis + let them show the stage picture. short stage description and "ENTERING [stage_name]...", press any button to start)
     
     IN-GAME HUD:
     
@@ -308,8 +307,6 @@ LEFT TO DO:
             =OPEN INVENTORY = TAB
             =HIGHLIGHT LEAVES = F
 
-        - add leaf highlight colors (upon pressing, opens up a submenu layer) (??????????)
-
     SHOP:
         =SHOP
 
@@ -332,6 +329,5 @@ LEFT TO DO:
         - IMPORTANT! BEFORE RELEASE, RECOMPILE C++ TO RELEASE TEMPLATE
     
     FLUFF:
-        - add chibis
     
     LOCALIZATION:

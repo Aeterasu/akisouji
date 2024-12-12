@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bvt1eg2hnqbmb"]
+[gd_scene load_steps=27 format=3 uid="uid://bvt1eg2hnqbmb"]
 
 [ext_resource type="Script" path="res://scenes/ui/ui_completion/ui_completion.gd" id="1_1oi0r"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="2_s0aa6"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://scenes/ui/button_selection_handler.gd" id="8_wqtt0"]
 [ext_resource type="PackedScene" uid="uid://bh1grw871br6n" path="res://scenes/ui/grade/grade.tscn" id="9_ql2oi"]
 [ext_resource type="AudioStream" uid="uid://dredrwmtlx4gx" path="res://assets/audio/sfx_completion.ogg" id="11_s13gy"]
+[ext_resource type="Texture2D" uid="uid://cyetwj1j6o45y" path="res://assets/texture/girl/texture_psx_2_1.png" id="12_ktmbl"]
+[ext_resource type="Texture2D" uid="uid://dml6tiiquw1hy" path="res://assets/texture/girl/texture_psx_2_2.png" id="13_jk2pn"]
 
 [sub_resource type="Gradient" id="Gradient_yxyfn"]
 offsets = PackedFloat32Array(0, 0.3, 0.7, 1)
@@ -54,6 +56,14 @@ colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_kbhp8"]
 gradient = SubResource("Gradient_x1dtd")
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_nv6dw"]
+frames = 2
+speed_scale = 0.5
+frame_0/texture = ExtResource("12_ktmbl")
+frame_0/duration = 0.3
+frame_1/texture = ExtResource("13_jk2pn")
+frame_1/duration = 0.3
 
 [node name="UICompletion" type="Control" node_paths=PackedStringArray("initial_popup", "initial_popup_label", "menu", "menu_button_handler", "grade_emblem", "time_label", "cash_label", "blackout", "grade_audio")]
 layout_mode = 3
@@ -389,3 +399,18 @@ script = ExtResource("3_8a5oe")
 [node name="GradeAudio1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_s13gy")
 bus = &"SFX"
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+modulate = Color(0.914108, 0.81703, 0.667462, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -130.0
+offset_top = 452.0
+offset_right = 9.0
+offset_bottom = -140.0
+texture = SubResource("AnimatedTexture_nv6dw")
+expand_mode = 1
+stretch_mode = 4

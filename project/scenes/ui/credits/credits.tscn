@@ -1,8 +1,27 @@
-[gd_scene load_steps=4 format=3 uid="uid://ny888yxasr8u"]
+[gd_scene load_steps=10 format=3 uid="uid://ny888yxasr8u"]
 
 [ext_resource type="Texture2D" uid="uid://c585bqlmijm63" path="res://assets/texture/ui/texture_ui_credits_splash.png" id="1_6nn83"]
 [ext_resource type="Script" path="res://scenes/ui/credits/credits.gd" id="1_trmkh"]
 [ext_resource type="FontFile" uid="uid://b16ggo6tgg351" path="res://assets/font/Gabriela-Regular.ttf" id="3_gcx8m"]
+[ext_resource type="Texture2D" uid="uid://cyetwj1j6o45y" path="res://assets/texture/girl/texture_psx_2_1.png" id="4_p7acn"]
+[ext_resource type="Texture2D" uid="uid://dml6tiiquw1hy" path="res://assets/texture/girl/texture_psx_2_2.png" id="5_pk64h"]
+[ext_resource type="Texture2D" uid="uid://hbprk6wqoqtr" path="res://assets/texture/girl/texture_psx_1_2.png" id="6_24uuu"]
+[ext_resource type="Texture2D" uid="uid://d2e2rr2vlm1bc" path="res://assets/texture/girl/texture_psx_1_1.png" id="6_l2myo"]
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_2otdh"]
+frames = 2
+speed_scale = 0.5
+frame_0/texture = ExtResource("4_p7acn")
+frame_0/duration = 0.3
+frame_1/texture = ExtResource("5_pk64h")
+frame_1/duration = 0.3
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_5gyg0"]
+frames = 2
+frame_0/texture = ExtResource("6_l2myo")
+frame_0/duration = 0.4
+frame_1/texture = ExtResource("6_24uuu")
+frame_1/duration = 0.4
 
 [node name="Credits" type="Control" node_paths=PackedStringArray("splash", "label")]
 layout_mode = 3
@@ -52,3 +71,35 @@ theme_override_constants/outline_size = 12
 theme_override_fonts/normal_font = ExtResource("3_gcx8m")
 bbcode_enabled = true
 scroll_active = false
+
+[node name="TextureRect2" type="TextureRect" parent="TextureRect"]
+modulate = Color(0.914108, 0.81703, 0.667462, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.828
+anchor_right = 0.112
+anchor_bottom = 1.0
+offset_left = 144.0
+offset_top = -128.16
+offset_right = 139.64
+offset_bottom = -124.0
+texture = SubResource("AnimatedTexture_2otdh")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect"]
+modulate = Color(0.893742, 0.797601, 0.70549, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.884
+anchor_top = 0.826
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -152.52
+offset_top = -129.72
+offset_right = -149.0
+offset_bottom = -125.0
+texture = SubResource("AnimatedTexture_5gyg0")
+expand_mode = 1
+stretch_mode = 4
+flip_h = true

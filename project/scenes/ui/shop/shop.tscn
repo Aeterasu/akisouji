@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://71lkn3s6kfqi"]
+[gd_scene load_steps=43 format=3 uid="uid://71lkn3s6kfqi"]
 
 [ext_resource type="Script" path="res://scenes/ui/shop/shop.gd" id="1_87sb4"]
 [ext_resource type="Texture2D" uid="uid://o065i8cobccy" path="res://assets/texture/ui/shop/texture_shop_background.png" id="2_4mw2w"]
@@ -13,7 +13,9 @@
 [ext_resource type="Shader" path="res://shader/uv_pulse.gdshader" id="6_ac7cn"]
 [ext_resource type="PackedScene" uid="uid://c15cmbbg5nyn0" path="res://scenes/ui/hud/ui_cash.tscn" id="6_acpaq"]
 [ext_resource type="Resource" uid="uid://dm1aayb6i2p5a" path="res://scenes/upgrade/move_speed/sneakers.tres" id="6_aii5i"]
+[ext_resource type="Texture2D" uid="uid://d2e2rr2vlm1bc" path="res://assets/texture/girl/texture_psx_1_1.png" id="6_l5r2h"]
 [ext_resource type="Shader" path="res://shader/rotate_uv.gdshader" id="6_s7n1s"]
+[ext_resource type="Texture2D" uid="uid://hbprk6wqoqtr" path="res://assets/texture/girl/texture_psx_1_2.png" id="7_13rmc"]
 [ext_resource type="Resource" uid="uid://cc7kdcc5fh4wk" path="res://scenes/upgrade/move_speed/wellies.tres" id="7_bq3o6"]
 [ext_resource type="Script" path="res://scenes/ui/ui_upscaler.gd" id="7_fg3im"]
 [ext_resource type="Script" path="res://scenes/ui/shop/shop_entry.gd" id="8_8rigd"]
@@ -42,6 +44,13 @@ colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
 gradient = SubResource("Gradient_fiolj")
 fill_from = Vector2(1, 0)
 fill_to = Vector2(0, 0)
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_cegkt"]
+frames = 2
+frame_0/texture = ExtResource("6_l5r2h")
+frame_0/duration = 0.3
+frame_1/texture = ExtResource("7_13rmc")
+frame_1/duration = 0.3
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_3i6hp"]
 shader = ExtResource("6_ac7cn")
@@ -200,7 +209,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = 141.0
+offset_top = 365.0
 offset_right = -48.0
 offset_bottom = -64.0
 grow_horizontal = 2
@@ -210,8 +219,22 @@ theme_override_fonts/font = ExtResource("2_yb51t")
 theme_override_font_sizes/font_size = 32
 text = "Welcome to the shop!"
 horizontal_alignment = 1
-vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="SidePanel/Gradient/Default"]
+modulate = Color(0.893742, 0.797601, 0.70549, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.083
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 179.908
+offset_top = 160.0
+offset_right = -292.0
+offset_bottom = -368.0
+texture = SubResource("AnimatedTexture_cegkt")
+expand_mode = 1
+stretch_mode = 4
 
 [node name="InCategory" type="Control" parent="SidePanel/Gradient"]
 visible = false
